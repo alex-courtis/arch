@@ -262,14 +262,6 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 	}
 fi
 
-# TextMate over ssh
-export RMATE_HOST=auto
-
-#=== Agent Charlie Environment ===
-if [ -f ~/atlassian/env/environment ]; then
-	. ~/atlassian/env/environment
-fi
-
 # home scripts should always be first in the path
 if [ -d ~/bin ]; then
 	export PATH=~/bin:${PATH}
