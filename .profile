@@ -17,8 +17,8 @@ if [ ${0} == "-bash" ]; then
 	fi
 
 	# bash completion provided by brew
-	if [ -f /usr/local/etc/bash_completion ]; then
-		. /usr/local/etc/bash_completion
+	if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+		. /usr/local/etc/profile.d/bash_completion.sh
 	fi
 fi
 
