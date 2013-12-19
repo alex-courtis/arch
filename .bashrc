@@ -40,12 +40,13 @@ elif [ ${LOGNAME} ]; then
 fi
 
 # scp compatible prompt
-if [ ${TERM} != "sun-color" -a ${TERM} != "vt100" -a ${TERM} != "linux" ]; then
-	export PROMPT_COMMAND="printf \"\033]0;\${PWD}\007\""
+if [ ${BASH} ]; then
+	promptTitle="\033]0;\${PWD}\007"
+	promptDate="\D{%d/%m/%Y %H:%M:%S}
+"
 fi
 export PS1="
-\[\033[${promptColour};1m\]\D{%d/%m/%Y %H:%M:%S}
-${promptUserName}${hostName}:\${PWD}\[\033[0m\]
+"$'\E'"[${promptColour};1m${promptTitle}${promptDate}${promptUserName}${hostName}:\${PWD}"$'\E'"[0m
 "
 
 # aliases
@@ -264,6 +265,8 @@ fi
 unset os
 unset hostName
 unset promptColour
+unset promptTitle
+unset promptDate
 unset promptUserName
 unset grepCmd
 unset lsArgs
