@@ -41,12 +41,12 @@ fi
 
 # scp compatible prompt
 if [ ${BASH} ]; then
-	promptTitle="\033]0;\${PWD}\007"
+	promptTitle="]0;\${PWD}"
 	promptDate="\D{%d/%m/%Y %H:%M:%S}
 "
 fi
 export PS1="
-"$'\E'"[${promptColour};1m${promptTitle}${promptDate}${promptUserName}${hostName}:\${PWD}"$'\E'"[0m
+[${promptColour};1m${promptTitle}${promptDate}${promptUserName}${hostName}:\${PWD}[0m
 "
 
 # aliases
