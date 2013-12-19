@@ -41,10 +41,12 @@ fi
 
 # scp compatible prompt
 if [ ${BASH} ]; then
-	promptTitle="]0;\${PWD}"
+	unset PROMPT_COMMAND
+	export PROMPT_COMMAND
 	promptDate="\D{%d/%m/%Y %H:%M:%S}
 "
 fi
+promptTitle="]0;\${PWD}"
 export PS1="
 [${promptColour};1m${promptTitle}${promptDate}${promptUserName}${hostName}:\${PWD}[0m
 "
