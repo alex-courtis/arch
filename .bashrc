@@ -41,11 +41,11 @@ fi
 
 # scp compatible prompt
 if [ ${TERM} != "sun-color" -a ${TERM} != "vt100" -a ${TERM} != "linux" ]; then
-	export PROMPT_COMMAND="printf \"]0;\${PWD}\007\""
+	export PROMPT_COMMAND="printf \"\033]0;\${PWD}\007\""
 fi
 export PS1="
-\[[${promptColour};1m\]\D{%d/%m/%Y %H:%M:%S}
-${promptUserName}${hostName}:\${PWD}\[[0m\]
+\[\033[${promptColour};1m\]\D{%d/%m/%Y %H:%M:%S}
+${promptUserName}${hostName}:\${PWD}\[\033[0m\]
 "
 
 # aliases
@@ -70,26 +70,22 @@ alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 set -o vi
 export EDITOR=vi
 
-# # grunt command completion
-# if [ $(which grunt) ]; then
-# 	eval "$(grunt --completion=bash)"
-# fi
-
-# change dodgey permissions
-chmodDir() {
-	if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-		printf "Usage: ${FUNCNAME} <directory to securely chmod: 755 for dir or shell script; 644 for other>\n" 1>&2
-	else
-		printf "\n\nDirectories: 755\n"
-		find "${1}" -type d -print -exec chmod 755 {} \;
-		printf "\n\nFiles 644\n"
-		find "${1}" -type f -not -iname "*sh" -print -exec chmod 644 {} \;
-		printf "\n\nExecutable Files 755\n"
-		find "${1}" -type f -iname "*sh" -print -exec chmod 755 {} \;
-	fi
-}
-
 if [ ${BASH} ]; then
+
+	# change dodgey permissions
+	chmodDir() {
+		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
+			printf "Usage: ${FUNCNAME} <directory to securely chmod: 755 for dir or shell script; 644 for other>\n" 1>&2
+		else
+			printf "\n\nDirectories: 755\n"
+			find "${1}" -type d -print -exec chmod 755 {} \;
+			printf "\n\nFiles 644\n"
+			find "${1}" -type f -not -iname "*sh" -print -exec chmod 644 {} \;
+			printf "\n\nExecutable Files 755\n"
+			find "${1}" -type f -iname "*sh" -print -exec chmod 755 {} \;
+		fi
+	}
+
 	# rename all contents
 	renameAll() {
 		if [[ ${#} -ne 3 || ! -d "${1}" ]]; then
@@ -107,55 +103,52 @@ if [ ${BASH} ]; then
 			unset replacePattern
 		fi
 	}
-fi
 
-# rename all files by date in the directory specified
-renameByDate() {
-	if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-		printf "Usage: ${FUNCNAME} <directory to add content file name prefix of: <number starting from 10000>_>\n" 1>&2
-	else
-		i=10000
-		cd "${1}"
-		orgifs=$IFS
-		IFS=$'\n'
-		for f in $(ls -tr); do
-			if [ -f "${f}" ]; then
-				printf "%s -> %s\n" ${f} "${i}_${f}"
-				mv "${f}" "${i}_${f}"
-				let i=i+1
-			fi
-		done
-		unset i
-		IFS=$orgifs
-		unset orgifs
-		cd - > /dev/null 2>&1
-	unset f
-	fi
-}
-
-# undo the effects of renameByDate in the directory specified
-undoRenameByDate() {
-	if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-		printf "Usage: ${FUNCNAME} <directory to remove content file name prefix of: <number starting from 10000>_>\n" 1>&2
-	else
-		cd "${1}"
-		orgifs=$IFS
-		IFS=$'\n'
-		for f in $(ls | grep "^[0-9]{5}_"); do
-			if [ -f "${f}" ]; then
-				printf "%s -> %s\n" "${f}" "${f#*_}"
-				mv "${f}" "${f#*_}"
-			fi
-		done
+	# rename all files by date in the directory specified
+	renameByDate() {
+		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
+			printf "Usage: ${FUNCNAME} <directory to add content file name prefix of: <number starting from 10000>_>\n" 1>&2
+		else
+			i=10000
+			cd "${1}"
+			orgifs=$IFS
+			IFS=$'\n'
+			for f in $(ls -tr); do
+				if [ -f "${f}" ]; then
+					printf "%s -> %s\n" ${f} "${i}_${f}"
+					mv "${f}" "${i}_${f}"
+					let i=i+1
+				fi
+			done
+			unset i
+			IFS=$orgifs
+			unset orgifs
+			cd - > /dev/null 2>&1
 		unset f
-		IFS=$orgifs
-		unset orgifs
-		cd - > /dev/null 2>&1
-	fi
-}
+		fi
+	}
 
-if [ ${BASH} ]; then
-	
+	# undo the effects of renameByDate in the directory specified
+	undoRenameByDate() {
+		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
+			printf "Usage: ${FUNCNAME} <directory to remove content file name prefix of: <number starting from 10000>_>\n" 1>&2
+		else
+			cd "${1}"
+			orgifs=$IFS
+			IFS=$'\n'
+			for f in $(ls | grep "^[0-9]{5}_"); do
+				if [ -f "${f}" ]; then
+					printf "%s -> %s\n" "${f}" "${f#*_}"
+					mv "${f}" "${f#*_}"
+				fi
+			done
+			unset f
+			IFS=$orgifs
+			unset orgifs
+			cd - > /dev/null 2>&1
+		fi
+	}
+
 	# perform an rsync with OSXish options
 	doRsync() {
 		if [[ ${#} -lt 2 ]]; then

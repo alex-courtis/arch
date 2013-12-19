@@ -9,9 +9,17 @@ fi
 # TextMate over ssh
 export RMATE_HOST=auto
 
-#=== Agent Charlie Environment ===
-if [ -f ~/atlassian/env/environment ]; then
-	. ~/atlassian/env/environment
+if [ ${0} == "-bash" ]; then
+
+	#=== Agent Charlie Environment ===
+	if [ -f ~/atlassian/env/environment ]; then
+		. ~/atlassian/env/environment
+	fi
+
+	# bash completion provided by brew
+	if [ -f /usr/local/etc/bash_completion ]; then
+		. /usr/local/etc/bash_completion
+	fi
 fi
 
 # freebsd-tips
