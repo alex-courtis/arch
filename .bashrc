@@ -1,6 +1,6 @@
 # local vars
 os=$(uname)
-hostName=$(hostname)
+hostName=$(hostname -f)
 
 # determine known host and prompt colour for it
 # 30 black
