@@ -175,8 +175,7 @@ if [ ${BASH} ]; then
 				return -1
 			fi
 			
-			# --archive : --recursive --links --perms --times --owner --group --devices --specials
-			rsync --archive --delete --verbose --progress --no-perms --omit-dir-times --delete-excluded ${*} "${src}" "${dst}"
+			rsync --recursive --delete --verbose --progress --times --omit-dir-times ${*} "${src}" "${dst}"
 		fi
 	}
 fi
@@ -216,6 +215,7 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 	alias syncMusicMarquis="doRsync ~/Music/iTunes/ marquis:Music/iTunes"
 	alias syncPicturesSerf="doRsync ~/Pictures/ serf:/volume1/Pictures --exclude=\"*Cache\""
 	alias syncFlacSerf="doRsync /Volumes/Data/flac/ serf:/volume1/Media/flac"
+	alias syncMusicBaron="doRsync ~/Music/iTunes/iTunes\ Media/Music/ baron:/sdcard/Music --no-times --size-only --exclude=\"*pamp\""
 	
 	# repack an avi with mencode
 	remuxAvi() {
