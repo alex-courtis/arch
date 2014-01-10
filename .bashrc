@@ -13,12 +13,12 @@ hostName=$(hostname -f)
 # 37 white
 if [ ${hostName%%.*} == "emperor" ]; then
 	promptColour=32
-elif [ ${hostName%%.*} == "prince" ]; then
-	promptColour=35
+elif [ ${hostName%%.*} == "acourtis" ]; then
+	promptColour=34
 elif [ ${hostName%%.*} == "marquis" ]; then
 	promptColour=36
 else
-	promptColour=34
+	promptColour=35
 fi
 
 # root has a red prompt on any host
