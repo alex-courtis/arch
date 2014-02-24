@@ -20,6 +20,11 @@ if [ ${0} == "-bash" ]; then
 	if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
 		. /usr/local/etc/profile.d/bash_completion.sh
 	fi
+	
+	# atlassian git scripts
+	if [ -d ~/src/git-scripts ]; then
+		alias gitMergePoms='git mergetool --tool=versions -y'
+	fi
 fi
 
 # freebsd-tips
