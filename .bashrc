@@ -43,7 +43,7 @@ fi
 if [ ${BASH} ]; then
 	unset PROMPT_COMMAND
 	export PROMPT_COMMAND
-	promptDate="\D{%d/%m/%Y %H:%M:%S}
+	promptDate="\D{%d/%m/%Y %H:%M:%S}\$(__git_ps1)
 "
 fi
 promptTitle="]0;\${PWD}"
