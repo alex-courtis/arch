@@ -25,6 +25,8 @@ if [ ${0} == "-bash" ]; then
 	if [ -d ~/src/git-scripts ]; then
 		alias gitMergePoms='git mergetool --tool=versions -y'
 	fi
+	
+	HISTSIZE=10000
 fi
 
 # freebsd-tips

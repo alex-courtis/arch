@@ -13,7 +13,7 @@ hostName=$(hostname -f)
 # 37 white
 if [ ${hostName%%.*} == "emperor" ]; then
 	promptColour=32
-elif [ ${hostName%%.*} == "acourtis" ]; then
+elif [ ${hostName%%.*} == "gigantor" ]; then
 	promptColour=34
 elif [ ${hostName%%.*} == "marquis" ]; then
 	promptColour=36
