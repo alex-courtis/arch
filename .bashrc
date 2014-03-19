@@ -200,6 +200,12 @@ if [ -x /usr/libexec/java_home ]; then
 		export PATH=${JAVA_HOME}/bin:${PATH}
 		echo ${JAVA_HOME}
 	}
+	
+	jdk8() {
+		export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+		export PATH=${JAVA_HOME}/bin:${PATH}
+		echo ${JAVA_HOME}
+	}
 fi
 
 if [ ${hostName%%.*} == "prince" ]; then
