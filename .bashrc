@@ -14,7 +14,7 @@ hostName=$(hostname -f)
 if [ ${hostName%%.*} == "emperor" ]; then
 	promptColour=32
 elif [ ${hostName%%.*} == "gigantor" ]; then
-	promptColour=34
+	promptColour=33
 elif [ ${hostName%%.*} == "marquis" ]; then
 	promptColour=36
 else
@@ -183,12 +183,6 @@ fi
 # OS X java environment setup
 if [ -x /usr/libexec/java_home ]; then
 	
-	jdk() {
-		export JAVA_HOME=$(/usr/libexec/java_home)
-		export PATH=${JAVA_HOME}/bin:${PATH}
-		echo ${JAVA_HOME}
-	}
-	
 	jdk6() {
 		export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
 		export PATH=${JAVA_HOME}/bin:${PATH}
@@ -262,11 +256,6 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 		IFS=$orgifsz	
 		unset orgifs
 	}
-fi
-
-# home scripts should always be first in the path
-if [ -d ~/bin ]; then
-	export PATH=~/bin:${PATH}
 fi
 
 # clear vars
