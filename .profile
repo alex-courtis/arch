@@ -23,11 +23,14 @@ fi
 
 export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
 
-if [ -x /usr/libexec/java_home -a $(/usr/libexec/java_home) == 0 ]; then
-	export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-	export PATH=${JAVA_HOME}/bin:${PATH}
+if [ -x /usr/libexec/java_home ]; then
+	/usr/libexec/java_home > /dev/null 2>&1
+	if [ ${?} -eq 0 ]; then
+		export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+		export PATH=${JAVA_HOME}/bin:${PATH}
+	fi
 fi
-
+#
 # freebsd-tips
 if [ -x /usr/games/fortune ]; then
 	/usr/games/fortune freebsd-tips
