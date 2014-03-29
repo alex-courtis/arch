@@ -4,31 +4,32 @@ hostName=$(hostname -f)
 
 # determine known host and prompt colour for it
 # 30 black
-# 31 red
-# 32 green
-# 33 yellow
-# 34 blue
-# 35 magenta
-# 36 cyan
+# 90 grey
+# 31, 91 red
+# 32, 92 green
+# 33, 93 yellow
+# 34, 94 blue
+# 35, 95 magenta
+# 36, 96 cyan
 # 37 white
 if [ ${hostName%%.*} == "emperor" ]; then
-	promptColour=32
+	promptColour=92
 elif [ ${hostName%%.*} == "gigantor" ]; then
-	promptColour=33
+	promptColour=93
 elif [ ${hostName%%.*} == "marquis" ]; then
-	promptColour=36
+	promptColour=96
 else
-	promptColour=35
+	promptColour=95
 fi
 
 # root has a red prompt on any host
 if [ ${USER} ]; then
 	if [ ${USER} == "root" ]; then
-		promptColour=31
+		promptColour=91
 	fi
 elif [ ${LOGNAME} ]; then
 	if [ ${LOGNAME} == "root" ]; then
-		promptColour=31
+		promptColour=91
 	fi
 fi
 
