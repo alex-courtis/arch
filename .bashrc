@@ -44,7 +44,13 @@ fi
 if [ ${BASH} ]; then
 	unset PROMPT_COMMAND
 	export PROMPT_COMMAND
-	promptDate="\D{%d/%m/%Y %H:%M:%S}\$(__git_ps1)
+	promptDate="\D{%d/%m/%Y %H:%M:%S}"
+
+	type __git_ps1 > /dev/null 2>&1
+	if [ ${?} -eq 0 ]; then
+		promptDate="${promptDate}\$(__git_ps1)"
+	fi
+	promptDate="${promptDate}
 "
 fi
 promptTitle="]0;\${PWD}"
