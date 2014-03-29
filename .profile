@@ -6,15 +6,7 @@ if [ -f ~/.bashrc ]; then
 	fi
 fi
 
-# TextMate over ssh
-export RMATE_HOST=auto
-
 if [ ${0} == "-bash" ]; then
-
-	#=== Agent Charlie Environment ===
-	if [ -f ~/atlassian/env/environment ]; then
-		. ~/atlassian/env/environment
-	fi
 
 	# bash completion provided by brew
 	if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
@@ -28,6 +20,10 @@ if [ ${0} == "-bash" ]; then
 	
 	HISTSIZE=10000
 fi
+
+export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export PATH=${JAVA_HOME}/bin:${PATH}
 
 # freebsd-tips
 if [ -x /usr/games/fortune ]; then
