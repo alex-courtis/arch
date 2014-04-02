@@ -53,7 +53,7 @@ if [ ${BASH} ]; then
 fi
 promptTitle="]0;\${PWD}"
 export PS1="
-[${promptColour};1m${promptTitle}${promptDateStatus}
+[${promptColour};3m${promptTitle}${promptDateStatus}
 ${promptUserName}${hostName}:\${PWD}[0m
 "
 
@@ -78,6 +78,11 @@ alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 # always use vi for command line editing
 set -o vi
 export EDITOR=vi
+
+# user's bin
+if [ -d ~/bin ]; then
+	export PATH=~/bin:${PATH}
+fi
 
 if [ ${BASH} ]; then
 
