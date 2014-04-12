@@ -53,7 +53,7 @@ if [ ${BASH} ]; then
 fi
 promptTitle="]0;\${PWD}"
 export PS1="
-[${promptColour};3m${promptTitle}${promptDateStatus}
+[${promptColour};1m${promptTitle}${promptDateStatus}
 ${promptUserName}${hostName}:\${PWD}[0m
 "
 
