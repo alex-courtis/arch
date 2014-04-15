@@ -15,9 +15,13 @@ if [ -f ~/.bashrc ]; then
 	fi
 fi
 
-# atlassian git scripts
+# atlassian scripts
 if [ -d ~/src/git-scripts ]; then
 	alias gitMergePoms='git mergetool --tool=versions -y'
+fi
+if [ -d ~/src/atlassian-scripts ]; then
+	export PATH=~/src/atlassian-scripts/bin:${PATH}
+	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
 
 export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
