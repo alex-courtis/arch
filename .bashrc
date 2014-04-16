@@ -222,6 +222,7 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 	
 	# rsync aliases
 	alias syncMusicSerf="doRsync ~/Music/iTunes/iTunes\ Media/Music/ serf:/volume1/Music"
+	alias syncMusicGigantor="doRsync ~/Music/iTunes/ acourtis@gigantor:Music/iTunes"
 	alias syncMusicPrince="doRsync ~/Music/iTunes/ prince:Music/iTunes"
 	alias syncMusicMarquis="doRsync ~/Music/iTunes/ marquis:Music/iTunes"
 	alias syncPicturesSerf="doRsync ~/Pictures/ serf:/volume1/Pictures --exclude=\"*Cache\""
