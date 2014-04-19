@@ -33,3 +33,8 @@ if [ -x /usr/libexec/java_home ]; then
 		export PATH=${JAVA_HOME}/bin:${PATH}
 	fi
 fi
+
+if [ -d /opt/jdk1.7.0 ]; then
+	export JAVA_HOME=/opt/jdk1.7.0
+	export PATH=${JAVA_HOME}/bin:${PATH}
+fi
