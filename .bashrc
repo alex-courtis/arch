@@ -54,8 +54,8 @@ fi
 promptTitle="]0;\${PWD}"
 export PS1="
 [${promptColour};1m${promptTitle}${promptDateStatus}
-${promptUserName}${hostName}:\${PWD}[0m
-"
+${promptUserName}${hostName}:\${PWD}
+:;[0m "
 
 # aliases
 if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
