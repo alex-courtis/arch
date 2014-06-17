@@ -38,7 +38,7 @@ if [ -d /opt/jdk1.7.0 ]; then
 	export JAVA_HOME=/opt/jdk1.7.0
 	export PATH=${JAVA_HOME}/bin:${PATH}
 fi
-if [ -d /opt/java/sdk/jdk1.7.0_40 ]; then
-	export JAVA_HOME=/opt/java/sdk/jdk1.7.0_40
+if [ -d /opt/java/sdk/jdk1.7.0_60 ]; then
+	export JAVA_HOME=/opt/java/sdk/jdk1.7.0_60
 	export PATH=${JAVA_HOME}/bin:${PATH}
 fi
