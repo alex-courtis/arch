@@ -25,14 +25,5 @@ if [ -d ~/src/atlassian-scripts ]; then
 fi
 
 if [ "$(type -t jdk8)" == "function" ]; then
-	jdk8 > /dev/null
-fi
-
-if [ -d /opt/jdk1.7.0 ]; then
-	export JAVA_HOME=/opt/jdk1.7.0
-	export PATH=${JAVA_HOME}/bin:${PATH}
-fi
-if [ -d /opt/java/sdk/jdk1.7.0_60 ]; then
-	export JAVA_HOME=/opt/java/sdk/jdk1.7.0_60
-	export PATH=${JAVA_HOME}/bin:${PATH}
+	jdk8
 fi

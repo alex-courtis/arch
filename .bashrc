@@ -46,7 +46,7 @@ if [ ${BASH} ]; then
 	export PROMPT_COMMAND
 	promptDateStatus="\D{%d/%m/%Y %H:%M:%S}"
 
-	if [ "$(type -t asdf__git_ps1)" == "function" ]; then
+	if [ "$(type -t __git_ps1)" == "function" ]; then
 		promptDateStatus="${promptDateStatus}\$(__git_ps1)"
 	fi
 fi
@@ -192,26 +192,29 @@ fi
 
 # OS X java environment setup
 if [ -x /usr/libexec/java_home ]; then
+
+	jdk() {
+		newJavaHome=$(/usr/libexec/java_home -v ${1})
+		if [ -n "${JAVA_HOME}" ]; then
+			export PATH=${PATH/${JAVA_HOME}\/bin:/}
+		fi
+		export JAVA_HOME=${newJavaHome}
+		export PATH=${JAVA_HOME}/bin:${PATH}
+	}
 	
 	jdk6() {
-		export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
-		export PATH=${JAVA_HOME}/bin:${PATH}
+		jdk 1.6
 		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
-		echo ${JAVA_HOME}
 	}
 	
 	jdk7() {
-		export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-		export PATH=${JAVA_HOME}/bin:${PATH}
+		jdk 1.7
 		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
-		echo ${JAVA_HOME}
 	}
 	
 	jdk8() {
-		export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-		export PATH=${JAVA_HOME}/bin:${PATH}
+		jdk 1.8
 		export MAVEN_OPTS='-Xmx768m'
-		echo ${JAVA_HOME}
 	}
 fi
 
