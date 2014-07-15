@@ -1,0 +1,17 @@
+[alias]
+	co = checkout
+	gup = smart-pull
+	gm = smart-merge
+	gl = smart-log
+[user]
+	name = Alexander Courtis
+	email = acourtis@atlassian.com
+[core]
+	excludesfile = ~/.gitignore
+[mergetool "versions"]
+	cmd = ~/src/git-scripts/resolve-maven-version-conflicts.pl <\"$MERGED\" >\"$MERGED.tmp\" && mv \"$MERGED.tmp\" \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = upstream
+[color]
+	ui = auto
