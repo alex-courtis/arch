@@ -24,14 +24,8 @@ if [ -d ~/src/atlassian-scripts ]; then
 	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
 
-export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
-
-if [ -x /usr/libexec/java_home ]; then
-	/usr/libexec/java_home > /dev/null 2>&1
-	if [ ${?} -eq 0 ]; then
-		export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-		export PATH=${JAVA_HOME}/bin:${PATH}
-	fi
+if [ "$(type -t jdk8)" == "function" ]; then
+	jdk8 > /dev/null
 fi
 
 if [ -d /opt/jdk1.7.0 ]; then

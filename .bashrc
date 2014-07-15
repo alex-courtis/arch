@@ -46,8 +46,7 @@ if [ ${BASH} ]; then
 	export PROMPT_COMMAND
 	promptDateStatus="\D{%d/%m/%Y %H:%M:%S}"
 
-	type __git_ps1 > /dev/null 2>&1
-	if [ ${?} -eq 0 ]; then
+	if [ "$(type -t asdf__git_ps1)" == "function" ]; then
 		promptDateStatus="${promptDateStatus}\$(__git_ps1)"
 	fi
 fi
@@ -197,18 +196,21 @@ if [ -x /usr/libexec/java_home ]; then
 	jdk6() {
 		export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
 		export PATH=${JAVA_HOME}/bin:${PATH}
+		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
 		echo ${JAVA_HOME}
 	}
 	
 	jdk7() {
 		export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 		export PATH=${JAVA_HOME}/bin:${PATH}
+		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
 		echo ${JAVA_HOME}
 	}
 	
 	jdk8() {
 		export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 		export PATH=${JAVA_HOME}/bin:${PATH}
+		export MAVEN_OPTS='-Xmx768m'
 		echo ${JAVA_HOME}
 	}
 fi
