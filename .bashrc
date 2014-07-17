@@ -52,7 +52,7 @@ if [ ${BASH} ]; then
 fi
 promptTitle="]0;\${PWD}"
 export PS1="
-[${promptColour};1m${promptTitle}${promptDate}\${JAVA_VERSION}${promptGit}
+[${promptColour};1m${promptTitle}${promptDate}\${JDK_VER}${promptGit}
 ${promptUserName}${hostName}:\${PWD}[0m
 "
 
@@ -200,7 +200,7 @@ if [ -x /usr/libexec/java_home ]; then
 		fi
 		export JAVA_HOME=${newJavaHome}
 		export PATH=${JAVA_HOME}/bin:${PATH}
-		export JAVA_VERSION=" [$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')]"
+		export JDK_VER=" [$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')]"
 	}
 	
 	jdk6() {
