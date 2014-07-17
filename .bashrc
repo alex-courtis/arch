@@ -16,7 +16,7 @@ if [ ${hostName%%.*} == "emperor" ]; then
 	promptColour=92
 elif [ ${hostName%%.*} == "gigantor" ]; then
 	promptColour=93
-elif [ ${hostName%%.*} == "marquis" ]; then
+elif [ ${hostName%%.*} == "earl" ]; then
 	promptColour=96
 else
 	promptColour=95
