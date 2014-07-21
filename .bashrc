@@ -190,34 +190,65 @@ if [ ${BASH} ]; then
 	}
 fi
 
-# OS X java environment setup
-if [ -x /usr/libexec/java_home ]; then
+# best effort at finding latest java version matching passed
+latestJavaHome() {
+	local roots="
+		/Library/Java/JavaVirtualMachines
+		/System/Library/Java/JavaVirtualMachines
+		/opt/java/sdk
+	"
 
-	jdk() {
-		newJavaHome=$(/usr/libexec/java_home -v ${1})
-		if [ -n "${JAVA_HOME}" ]; then
+	if [[ ${#} -ne 1 ]]; then
+		printf "Usage: ${FUNCNAME} <version e.g. 1.7>\n" 1>&2
+		return -1
+	fi
+
+	for root in ${roots}; do
+		if [[ -d "${root}" ]]; then
+			for home in $(ls "${root}" | sort -r); do
+				if [[ -d "${root}/${home}" && "${home}" =~ "${1}" ]]; then
+					if [[ -d "${root}/${home}/bin" ]]; then
+						printf "${root}/${home}"
+						return 0
+					elif [[ -d "${root}/${home}/Contents/Home/bin" ]]; then
+						printf "${root}/${home}/Contents/Home"
+						return 0
+					fi
+				fi
+			done
+		fi
+	done
+
+	printf "unable to find java home with version like '${1}' in ${roots}" 1>&2
+	return -1
+}
+
+jdk() {
+	local newJavaHome=$(latestJavaHome ${1})
+	if [[ ${?} -eq 0 ]]; then
+		if [[ -n "${JAVA_HOME}" && "${PATH}" =~ "${JAVA_HOME}/bin:" ]]; then
 			export PATH=${PATH/${JAVA_HOME}\/bin:/}
 		fi
 		export JAVA_HOME=${newJavaHome}
 		export PATH=${JAVA_HOME}/bin:${PATH}
 		export JDK_VER=" [$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')]"
-	}
-	
-	jdk6() {
-		jdk 1.6
-		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
-	}
-	
-	jdk7() {
-		jdk 1.7
-		export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
-	}
-	
-	jdk8() {
-		jdk 1.8
-		export MAVEN_OPTS='-Xmx768m'
-	}
-fi
+	fi
+}
+
+jdk6() {
+	jdk 1.6
+	export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
+}
+
+jdk7() {
+	jdk 1.7
+	export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
+}
+
+jdk8() {
+	jdk 1.8
+	export MAVEN_OPTS='-Xmx768m'
+}
 
 if [ ${hostName%%.*} == "prince" ]; then
 	
