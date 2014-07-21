@@ -175,14 +175,14 @@ if [ ${BASH} ]; then
 			printf "%s" "${src}" | grep \: > /dev/null 2>&1
 			if [[ ${?} -ne 0 && ! -d "${src}" ]]; then
 				printf "${src} does not exist\n" 1>&2
-				return -1
+				return 1
 			fi
 			
 			# check that dst exists or is remote
 			printf "%s" "${dst}" | grep \: > /dev/null 2>&1
 			if [[ ${?} -ne 0 && ! -d "${dst}" ]]; then
 				printf "${dst} does not exist\n" 1>&2
-				return -1
+				return 1
 			fi
 			
 			rsync --recursive --delete --verbose --progress --times --omit-dir-times ${*} "${src}" "${dst}"
@@ -200,12 +200,13 @@ latestJavaHome() {
 
 	if [[ ${#} -ne 1 ]]; then
 		printf "Usage: ${FUNCNAME} <version e.g. 1.7>\n" 1>&2
-		return -1
+		return 1
 	fi
 
+	local root home
 	for root in ${roots}; do
 		if [[ -d "${root}" ]]; then
-			for home in $(ls "${root}" | sort -r); do
+			for home in $(\ls "${root}" | sort -r); do
 				if [[ -d "${root}/${home}" && "${home}" =~ "${1}" ]]; then
 					if [[ -d "${root}/${home}/bin" ]]; then
 						printf "${root}/${home}"
@@ -220,7 +221,7 @@ latestJavaHome() {
 	done
 
 	printf "unable to find java home with version like '${1}' in ${roots}" 1>&2
-	return -1
+	return 1
 }
 
 jdk() {
