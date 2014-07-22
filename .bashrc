@@ -225,7 +225,8 @@ latestJavaHome() {
 }
 
 jdk() {
-	local newJavaHome=$(latestJavaHome ${1})
+	local newJavaHome
+	newJavaHome=$(latestJavaHome ${1})
 	if [[ ${?} -eq 0 ]]; then
 		if [[ -n "${JAVA_HOME}" && "${PATH}" =~ "${JAVA_HOME}/bin:" ]]; then
 			export PATH=${PATH/${JAVA_HOME}\/bin:/}
