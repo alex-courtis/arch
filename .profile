@@ -24,6 +24,6 @@ if [ -d ~/src/atlassian-scripts ]; then
 	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
 
-if [ "$(type -t jdk)" == "function" ]; then
-	jdk 1
+if [ "$(type -t jdk8)" == "function" ]; then
+	jdk8
 fi
