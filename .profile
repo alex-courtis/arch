@@ -15,6 +15,10 @@ if [ -f ~/.bashrc ]; then
 	fi
 fi
 
+# no OS X dotfiles
+export COPY_EXTENDED_ATTRIBUTES_DISABLE=true
+export COPYFILE_DISABLE=true
+
 # atlassian scripts
 if [ -d ~/src/git-scripts ]; then
 	alias gitMergePoms='git mergetool --tool=versions -y'

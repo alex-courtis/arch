@@ -12,6 +12,6 @@
 	cmd = ~/src/git-scripts/resolve-maven-version-conflicts.pl <\"$MERGED\" >\"$MERGED.tmp\" && mv \"$MERGED.tmp\" \"$MERGED\"
 	trustExitCode = true
 [push]
-	default = upstream
+	default = simple
 [color]
 	ui = auto
