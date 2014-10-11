@@ -269,7 +269,6 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 	alias syncPicturesEarl="doRsync ~/Pictures/ earl:/mnt/vol1/media/pictures --exclude=\"*Cache\""
 	alias syncFlacSerf="doRsync /Volumes/Data/flac/ serf:/volume1/Media/flac"
 	alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
-	alias syncMusicKing="doRsync ~/Music/iTunes/iTunes\ Media/Music/ king:/sdcard/Music --no-times --size-only --exclude=\"*pamp\""
 	
 	# repack an avi with mencode
 	remuxAvi() {
