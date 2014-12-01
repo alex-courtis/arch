@@ -21,7 +21,7 @@ export COPYFILE_DISABLE=true
 
 # atlassian scripts
 if [ -d ~/src/git-scripts ]; then
-	alias gitMergePoms='git mergetool --tool=versions -y'
+	alias git-merge-poms='git mergetool --tool=versions -y'
 fi
 if [ -d ~/src/robbieg.bin ]; then
 	export PATH=~/src/robbieg.bin:${PATH}
