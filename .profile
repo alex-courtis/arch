@@ -30,6 +30,9 @@ if [ -d ~/src/atlassian-scripts ]; then
 	export PATH=~/src/atlassian-scripts/bin:${PATH}
 	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
+if [ -d ~/Library/Haskell/bin ]; then
+	export PATH=~/Library/Haskell/bin:${PATH}
+fi
 
 if [ "$(type -t jdk8)" == "function" ]; then
 	jdk8
