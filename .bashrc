@@ -239,17 +239,17 @@ jdk() {
 
 jdk6() {
 	jdk 1.6
-	export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
+	export MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=384m'
 }
 
 jdk7() {
 	jdk 1.7
-	export MAVEN_OPTS='-Xmx768m -XX:MaxPermSize=384m'
+	export MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=384m'
 }
 
 jdk8() {
 	jdk 1.8
-	export MAVEN_OPTS='-Xmx768m'
+	export MAVEN_OPTS='-Xmx1024m'
 }
 
 if [ ${hostName%%.*} == "prince" ]; then
