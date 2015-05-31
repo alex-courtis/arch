@@ -1,6 +1,18 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
 # local vars
 os=$(uname)
 hostName=$(hostname -f)
+promptColour=95
+
+
+# bash completion provided by brew
+if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+	. /usr/local/etc/profile.d/bash_completion.sh
+fi
+
 
 # determine known host and prompt colour for it
 # 30 black
@@ -12,49 +24,41 @@ hostName=$(hostname -f)
 # 35, 95 magenta
 # 36, 96 cyan
 # 37 white
-if [ ${hostName%%.*} == "emperor" ]; then
+case "${hostName}" in
+emperor*)
 	promptColour=92
-elif [ ${hostName%%.*} == "gigantor" ]; then
+	;;
+gigantor*)
 	promptColour=93
-elif [ ${hostName%%.*} == "earl" ]; then
+	;;
+earl*)
+	promptColour=94
+	;;
+prince*)
 	promptColour=96
-else
-	promptColour=95
+	;;
+esac
+
+if [ ${USER} == "root" ]; then
+	promptColour=91
 fi
 
-# root has a red prompt on any host
-if [ ${USER} ]; then
-	if [ ${USER} == "root" ]; then
-		promptColour=91
-	fi
-elif [ ${LOGNAME} ]; then
-	if [ ${LOGNAME} == "root" ]; then
-		promptColour=91
-	fi
+
+# scp friendly prompt
+unset PROMPT_COMMAND
+export PROMPT_COMMAND
+
+if [ "$(type -t __git_ps1)" == "function" ]; then
+	promptGit="\$(__git_ps1)"
 fi
 
-# determine the username prompt
-if [ ${USER} ]; then
-	promptUserName=\${USER}@
-elif [ ${LOGNAME} ]; then
-	promptUserName=\${LOGNAME}@
-fi
-
-# scp compatible prompt
-if [ ${BASH} ]; then
-	unset PROMPT_COMMAND
-	export PROMPT_COMMAND
-	promptDate="\D{%d/%m/%Y %H:%M:%S}"
-
-	if [ "$(type -t __git_ps1)" == "function" ]; then
-		promptGit="\$(__git_ps1)"
-	fi
-fi
-promptTitle="]0;\${PWD}"
 export PS1="
-[${promptColour};1m${promptTitle}${promptDate}\${JDK_VER}${promptGit}
-${promptUserName}${hostName}:\${PWD}[0m
+[${promptColour};1m]0;\${PWD}\D{%d/%m/%Y %H:%M:%S}\${JDK_VER}${promptGit}
+\${USER}@\$(hostname -f):\${PWD}[0m
 "
+
+unset promptGit
+
 
 # aliases
 if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
@@ -64,24 +68,113 @@ elif [ ${os} == "Linux" ]; then
 else
 	lsArgs="-F"
 fi
-if [ ${os} == "Darwin" -o ${os} == "FreeBSD" -o ${os} == "Linux" ]; then
-	grepCmd="grep -E --color"
-else
-	grepCmd="grep"
-fi
+
 alias ls="ls ${lsArgs}"
 alias ll="ls -lah"
-alias grep="${grepCmd}"
+alias grep="grep -E --color"
 alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 
-# always use vi for command line editing
+unset lsArgs
+
+
+# always use vi for command line editing and friends
 set -o vi
 export EDITOR=vi
 
-# user's bin
+
+# user's bin in path
 if [ -d ~/bin ]; then
 	export PATH=~/bin:${PATH}
 fi
+
+
+# no OS X dotfiles in tars
+if [ ${os} == "Darwin" ]; then
+	export COPY_EXTENDED_ATTRIBUTES_DISABLE=true
+	export COPYFILE_DISABLE=true
+fi
+
+
+# assorted scripts
+if [ -d ~/src/git-scripts ]; then
+	alias git-merge-poms='git mergetool --tool=versions -y'
+fi
+if [ -d ~/src/robbieg.bin ]; then
+	export PATH=~/src/robbieg.bin:${PATH}
+fi
+if [ -d ~/src/atlassian-scripts ]; then
+	export PATH=~/src/atlassian-scripts/bin:${PATH}
+	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
+fi
+if [ -d ~/Library/Haskell/bin ]; then
+	export PATH=~/Library/Haskell/bin:${PATH}
+fi
+
+
+# java home selection
+latestJavaHome() {
+	local roots="
+		/Library/Java/JavaVirtualMachines
+		/System/Library/Java/JavaVirtualMachines
+		/opt/java/sdk
+		/usr/lib/jvm
+	"
+
+	if [[ ${#} -ne 1 ]]; then
+		printf "Usage: ${FUNCNAME} <version e.g. 1.7>\n" 1>&2
+		return 1
+	fi
+
+	local root home
+	for root in ${roots}; do
+		if [[ -d "${root}" ]]; then
+			for home in $(\ls "${root}" | sort -r); do
+				if [[ -d "${root}/${home}" && "${home}" =~ "${1}" ]]; then
+					if [[ -d "${root}/${home}/bin" ]]; then
+						printf "${root}/${home}"
+						return 0
+					elif [[ -d "${root}/${home}/Contents/Home/bin" ]]; then
+						printf "${root}/${home}/Contents/Home"
+						return 0
+					fi
+				fi
+			done
+		fi
+	done
+
+	printf "unable to find java home with version like '${1}' in ${roots}" 1>&2
+	return 1
+}
+
+jdk() {
+	local newJavaHome
+	newJavaHome=$(latestJavaHome ${1})
+	if [[ ${?} -eq 0 ]]; then
+		if [[ -n "${JAVA_HOME}" && "${PATH}" =~ "${JAVA_HOME}/bin:" ]]; then
+			export PATH=${PATH/${JAVA_HOME}\/bin:/}
+		fi
+		export JAVA_HOME=${newJavaHome}
+		export PATH=${JAVA_HOME}/bin:${PATH}
+		export JDK_VER=" [$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')]"
+		export MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=384m'
+	fi
+}
+
+jdk6() {
+	jdk 1.6
+}
+
+jdk7() {
+	jdk 1.7
+}
+
+jdk8() {
+	jdk 1.8
+	export MAVEN_OPTS='-Xmx1024m'
+}
+
+jdk8
+
 
 if [ ${BASH} ]; then
 
@@ -190,67 +283,6 @@ if [ ${BASH} ]; then
 	}
 fi
 
-# best effort at finding latest java version matching passed
-latestJavaHome() {
-	local roots="
-		/Library/Java/JavaVirtualMachines
-		/System/Library/Java/JavaVirtualMachines
-		/opt/java/sdk
-	"
-
-	if [[ ${#} -ne 1 ]]; then
-		printf "Usage: ${FUNCNAME} <version e.g. 1.7>\n" 1>&2
-		return 1
-	fi
-
-	local root home
-	for root in ${roots}; do
-		if [[ -d "${root}" ]]; then
-			for home in $(\ls "${root}" | sort -r); do
-				if [[ -d "${root}/${home}" && "${home}" =~ "${1}" ]]; then
-					if [[ -d "${root}/${home}/bin" ]]; then
-						printf "${root}/${home}"
-						return 0
-					elif [[ -d "${root}/${home}/Contents/Home/bin" ]]; then
-						printf "${root}/${home}/Contents/Home"
-						return 0
-					fi
-				fi
-			done
-		fi
-	done
-
-	printf "unable to find java home with version like '${1}' in ${roots}" 1>&2
-	return 1
-}
-
-jdk() {
-	local newJavaHome
-	newJavaHome=$(latestJavaHome ${1})
-	if [[ ${?} -eq 0 ]]; then
-		if [[ -n "${JAVA_HOME}" && "${PATH}" =~ "${JAVA_HOME}/bin:" ]]; then
-			export PATH=${PATH/${JAVA_HOME}\/bin:/}
-		fi
-		export JAVA_HOME=${newJavaHome}
-		export PATH=${JAVA_HOME}/bin:${PATH}
-		export JDK_VER=" [$(java -version 2>&1 | awk -F '"' '/version/ {print $2}')]"
-	fi
-}
-
-jdk6() {
-	jdk 1.6
-	export MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=384m'
-}
-
-jdk7() {
-	jdk 1.7
-	export MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=384m'
-}
-
-jdk8() {
-	jdk 1.8
-	export MAVEN_OPTS='-Xmx1024m'
-}
 
 if [ ${hostName%%.*} == "prince" ]; then
 	
@@ -311,13 +343,8 @@ elif [ ${hostName%%.*} == "emperor" ]; then
 	}
 fi
 
-# clear vars
+
+# clear local vars
 unset os
 unset hostName
 unset promptColour
-unset promptTitle
-unset promptDate
-unset promptGit
-unset promptUserName
-unset grepCmd
-unset lsArgs
