@@ -8,6 +8,34 @@ hostName=$(hostname -f)
 promptColour=95
 
 
+# user's bin in path
+if [ -d ~/bin ]; then
+	export PATH=~/bin:${PATH}
+fi
+
+
+# always use vi for command line editing and friends
+set -o vi
+export EDITOR=vi
+
+
+# aliases
+if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
+	lsArgs="-G"
+elif [ ${os} == "Linux" ]; then
+	lsArgs="--color"
+else
+	lsArgs="-F"
+fi
+
+alias ls="ls ${lsArgs}"
+alias ll="ls -lah"
+alias grep="grep -E --color"
+alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
+
+unset lsArgs
+
+
 # bash completion provided by brew
 if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
 	. /usr/local/etc/profile.d/bash_completion.sh
@@ -58,34 +86,6 @@ export PS1="
 "
 
 unset promptGit
-
-
-# aliases
-if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
-	lsArgs="-G"
-elif [ ${os} == "Linux" ]; then
-	lsArgs="--color"
-else
-	lsArgs="-F"
-fi
-
-alias ls="ls ${lsArgs}"
-alias ll="ls -lah"
-alias grep="grep -E --color"
-alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
-
-unset lsArgs
-
-
-# always use vi for command line editing and friends
-set -o vi
-export EDITOR=vi
-
-
-# user's bin in path
-if [ -d ~/bin ]; then
-	export PATH=~/bin:${PATH}
-fi
 
 
 # no OS X dotfiles in tars
@@ -176,86 +176,8 @@ jdk8() {
 jdk8
 
 
-if [ ${BASH} ]; then
-
-	# change dodgey permissions
-	chmodDir() {
-		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <directory to securely chmod: 755 for dir or shell script; 644 for other>\n" 1>&2
-		else
-			printf "\n\nDirectories: 755\n"
-			find "${1}" -type d -print -exec chmod 755 {} \;
-			printf "\n\nFiles 644\n"
-			find "${1}" -type f -not -iname "*sh" -print -exec chmod 644 {} \;
-			printf "\n\nExecutable Files 755\n"
-			find "${1}" -type f -iname "*sh" -print -exec chmod 755 {} \;
-		fi
-	}
-
-	# rename all contents
-	renameAll() {
-		if [[ ${#} -ne 3 || ! -d "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <directory to search> <search string> <replace string>\n" 1>&2
-		else
-			export findPattern=${2}
-			export replacePattern=${3}
-			find "${1}" -type f -execdir bash -c '
-				fromName=${1}
-				toName=${1/${findPattern}/${replacePattern}}
-				echo "${fromName} -> ${toName}"
-				mv "${fromName}" "${toName}"
-			' _ {} \;
-			unset findPattern
-			unset replacePattern
-		fi
-	}
-
-	# rename all files by date in the directory specified
-	renameByDate() {
-		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <directory to add content file name prefix of: <number starting from 10000>_>\n" 1>&2
-		else
-			i=10000
-			cd "${1}"
-			orgifs=$IFS
-			IFS=$'\n'
-			for f in $(ls -tr); do
-				if [ -f "${f}" ]; then
-					printf "%s -> %s\n" ${f} "${i}_${f}"
-					mv "${f}" "${i}_${f}"
-					let i=i+1
-				fi
-			done
-			unset i
-			IFS=$orgifs
-			unset orgifs
-			cd - > /dev/null 2>&1
-		unset f
-		fi
-	}
-
-	# undo the effects of renameByDate in the directory specified
-	undoRenameByDate() {
-		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <directory to remove content file name prefix of: <number starting from 10000>_>\n" 1>&2
-		else
-			cd "${1}"
-			orgifs=$IFS
-			IFS=$'\n'
-			for f in $(ls | grep "^[0-9]{5}_"); do
-				if [ -f "${f}" ]; then
-					printf "%s -> %s\n" "${f}" "${f#*_}"
-					mv "${f}" "${f#*_}"
-				fi
-			done
-			unset f
-			IFS=$orgifs
-			unset orgifs
-			cd - > /dev/null 2>&1
-		fi
-	}
-
-	# perform an rsync with OSXish options
+# perform an rsync with OSXish options
+if [ ${os} == "Darwin" ]; then
 	doRsync() {
 		if [[ ${#} -lt 2 ]]; then
 			printf "Usage: ${FUNCNAME} <SRC> <DST> [<rsync args>]...\n" 1>&2
@@ -282,7 +204,6 @@ if [ ${BASH} ]; then
 		fi
 	}
 fi
-
 
 if [ ${hostName%%.*} == "prince" ]; then
 	
