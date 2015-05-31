@@ -1,3 +1,6 @@
+*m4v
+Unknown Album
+
 1990s
 A New Funky Generation
 Air
@@ -12,6 +15,7 @@ Apollo 440
 April March
 Arbouretum
 Architecture In Helsinki
+Art vs Science/Art vs Science
 Area 7
 Armand Van Helden
 Ash
@@ -46,7 +50,6 @@ Burt Bacharach
 Butthole Surfers
 CJ Bolland
 Cake
-Calvin Harris
 Cartman
 Cat Power
 Catatonia
@@ -84,7 +87,6 @@ Def FX
 Deftones
 Deliverance
 Depeche Mode
-Dethklok
 Devoted Few
 Dido
 Diesel
@@ -93,7 +95,6 @@ Dismemberment Plan
 Disturbed
 Divine Comedy
 Dogs Die In Hot Cars
-DragonForce
 Dropkick Murphys
 Eels
 Elastica
@@ -142,7 +143,6 @@ Halogen
 Hamish
 Hipocrisy
 Hoodoo Gurus
-Hot Chip
 Ian Brown
 Ill Nino
 In Strict Confidence
@@ -178,7 +178,6 @@ Led Zeppelin
 Leftfield
 Lemon Jelly
 Lenny Kravitz
-Less Than Jake
 Liam Lynch
 Life Without Buildings
 Lior
@@ -199,7 +198,6 @@ Marcy Playground
 Marilyn Manson
 Marina & The Diamonds
 Massive Attack
-Meshuggah
 Metallica
 Metric
 Michael Franti And Spearhead
@@ -216,7 +214,6 @@ Mum Smokes
 Muscles
 Muse
 Mylo vs Miami Sound Machine
-NOFX
 Nerf Herder
 New Order
 Nine Inch Nails
@@ -239,7 +236,6 @@ PPK
 Palladium
 Panic! At The Disco
 Pantera
-Passion Pit
 Paul Kelly
 Paul Mac
 Pearl Jam
@@ -299,7 +295,6 @@ Soundgarden
 South Park
 Space
 Spank Rock
-Sparkadia
 Speedstar
 Spiderbait
 Spill
@@ -315,7 +310,6 @@ Sum 41
 Superheist
 Surrogate
 Swoop
-System Of A Down
 TISM
 TV On The Radio
 Tame Impala
@@ -353,17 +347,14 @@ The Postal Service
 The Preatures
 The Presidents Of The USA
 The Prodigy
-The Raconteurs
 The Reindeer Section
 The Shins
 The Stranglers
 The Streets
 The Titanics
-The White Stripes
 The Whitlams
 The Yeah Yeah Yeahs
 Theredsunband
-They Might Be Giants
 Thomas Newman
 Tim & Jean
 Tom Jones
@@ -390,7 +381,7 @@ Violent Femmes
 Voodoo Glow Skulls
 Vydamo
 Wannadies
-Weezer
+Weezer/Maladroit
 Weird Al Yankovic
 White Zombie
 Wilco
