@@ -208,7 +208,7 @@ fi
 if [ ${hostName%%.*} == "prince" -o ${hostName%%.*} == "gigantor" -o ${hostName%%.*} == "emperor" ]; then
 
 	# rsync to android via sshelper
-	alias syncMusicSerf="rsync -e 'ssh -p 2222' -azv --no-perms --no-times --size-only --delete --delete-excluded --exclude-from='${HOME}/.home/serf-itunes-excludes.txt' ~/Music/iTunes/iTunes\ Media/Music/ serf:/sdcard/Music"
+	alias syncMusicAndroid="rsync -e 'ssh -p 2222' -azv --no-perms --no-times --size-only --delete --delete-excluded --exclude-from='${HOME}/.home/serf-itunes-excludes.txt' ~/Music/iTunes/iTunes\ Media/Music/ serf:/sdcard/Music"
 fi
 
 if [ ${hostName%%.*} == "prince" -o ${hostName%%.*} == "gigantor" ]; then
