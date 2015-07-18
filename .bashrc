@@ -161,15 +161,15 @@ jdk() {
 }
 
 jdk6() {
-	jdk 1.6
+	jdk 6
 }
 
 jdk7() {
-	jdk 1.7
+	jdk 7
 }
 
 jdk8() {
-	jdk 1.8
+	jdk 8
 	export MAVEN_OPTS='-Xmx1024m'
 }
 
