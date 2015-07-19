@@ -179,6 +179,17 @@ jdk8() {
 jdk8
 
 
+# launch intellij with dpi mode
+ijlo() {
+	sed -i s/hidpi=true/hidpi=false/g ~/.IntelliJIdea14/idea64.vmoptions
+	intellij-idea-14-ultimate
+}
+ijhi() {
+	sed -i s/hidpi=false/hidpi=true/g ~/.IntelliJIdea14/idea64.vmoptions
+	intellij-idea-14-ultimate
+}
+
+
 # perform an rsync with OSXish options
 if [ ${os} == "Darwin" ]; then
 	doRsync() {
