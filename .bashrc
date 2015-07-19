@@ -109,6 +109,9 @@ fi
 if [ -d ~/Library/Haskell/bin ]; then
 	export PATH=~/Library/Haskell/bin:${PATH}
 fi
+if [ -f ~/.jmake/completion/jmake.completion.bash ]; then
+	. ~/.jmake/completion/jmake.completion.bash
+fi
 
 
 # java home selector
