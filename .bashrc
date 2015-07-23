@@ -103,7 +103,9 @@ fi
 if [ -d ~/Library/Haskell/bin ]; then
 	export PATH=~/Library/Haskell/bin:${PATH}
 fi
-
+if [ -d /opt/atlassian-plugin-sdk ]; then
+	export PATH=/opt/atlassian-plugin-sdk/bin:${PATH}
+fi
 
 # bash completions
 if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
