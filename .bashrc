@@ -36,12 +36,6 @@ alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 unset lsArgs
 
 
-# bash completion provided by brew
-if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
-	. /usr/local/etc/profile.d/bash_completion.sh
-fi
-
-
 # determine known host and prompt colour for it
 # 30 black
 # 90 grey
@@ -82,7 +76,7 @@ fi
 
 export PS1="
 [${promptColour};1m]0;\${PWD}\D{%d/%m/%Y %H:%M:%S}\${JDK_VER}${promptGit}
-\${USER}@\$(hostname -f):\${PWD}[0m
+\${USER}@${hostName%%.*}:\${PWD}[0m
 "
 
 unset promptGit
@@ -108,6 +102,15 @@ if [ -d ~/src/atlassian-scripts ]; then
 fi
 if [ -d ~/Library/Haskell/bin ]; then
 	export PATH=~/Library/Haskell/bin:${PATH}
+fi
+
+
+# bash completions
+if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+	. /usr/local/etc/profile.d/bash_completion.sh
+fi
+if [ -f ~/src/maven-bash-completion/bash_completion.bash ]; then
+	. ~/src/maven-bash-completion/bash_completion.bash
 fi
 if [ -f ~/.jmake/completion/jmake.completion.bash ]; then
 	. ~/.jmake/completion/jmake.completion.bash
