@@ -16,13 +16,16 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
        , overrideRedirect = True
        , pickBroadest = False
        , iconRoot = "."
-       , commands = [ Run Date "%a %b %_d %Y | %H:%M:%S" "theDate" 10
-                    , Run Cpu ["-L","3","-H","50",
+       , commands = [ Run Date "%a %b %_d %Y : %H:%M:%S" "theDate" 10
+                    , Run Cpu ["-t","Cpu <total>%",
+                               "-L","3","-H","50",
                                "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Memory ["-t","Mem <usedratio>%"] 10
+                    , Run Swap ["-t","Swap <usedratio>%"] 10
+                    , Run Network "wlp4s0" ["-t","Wlan <rx>KB <tx>KB"] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% | %theDate%"
+       , template = "%StdinReader% }{ %wlp4s0% : %cpu% : %memory% : %swap% : %theDate%"
        }
