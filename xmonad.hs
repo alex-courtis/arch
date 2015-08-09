@@ -64,10 +64,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Source Code Pro-10:Bold'")
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- switch Xft setttings
+    , ((modm .|. shiftMask, xK_u     ), spawn "echo 'Xft.dpi: 96' | xrdb -merge; xmonad --restart")
+    , ((modm .|. shiftMask, xK_i     ), spawn "echo 'Xft.dpi: 144' | xrdb -merge; xmonad --restart")
+    , ((modm .|. shiftMask, xK_o     ), spawn "echo 'Xft.dpi: 192' | xrdb -merge; xmonad --restart")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
