@@ -1,0 +1,26 @@
+-- defaults sourced from https://github.com/jaor/xmobar/blob/master/src/Config.hs
+Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+       , additionalFonts = []
+       , bgColor = "#000000"
+       , fgColor = "#BFBFBF"
+       , alpha   = 255
+       , position = Top
+       , border = NoBorder
+       , borderColor = "#BFBFBF"
+       , borderWidth = 1
+       , textOffset = -1
+       , iconOffset = -1
+       , hideOnStart = False
+       , lowerOnStart = True
+       , persistent = False
+       , allDesktops = True
+       , overrideRedirect = True
+       , pickBroadest = False
+       , iconRoot = "."
+       , commands = [ Run Date "%a %b %_d %Y * %H:%M:%S" "theDate" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ <fc=#00FF00>%uname%</fc> * <fc=#FF0000>%theDate%</fc>"
+       }
