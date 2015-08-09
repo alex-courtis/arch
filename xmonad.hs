@@ -67,7 +67,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Source Code Pro-10:Bold'")
 
-    -- switch Xft setttings
+    -- switch Xft DPI setttings
     , ((modm .|. shiftMask, xK_u     ), spawn "echo 'Xft.dpi: 96' | xrdb -merge; xmonad --restart")
     , ((modm .|. shiftMask, xK_i     ), spawn "echo 'Xft.dpi: 144' | xrdb -merge; xmonad --restart")
     , ((modm .|. shiftMask, xK_o     ), spawn "echo 'Xft.dpi: 192' | xrdb -merge; xmonad --restart")
@@ -247,7 +247,9 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = setWMName "LG3D"
+myStartupHook = do
+  setWMName "LG3D"
+  spawn "xsetroot -cursor_name left_ptr -solid Gray20"
 
 myBar = "xmobar"
 myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
