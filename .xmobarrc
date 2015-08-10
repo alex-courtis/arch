@@ -11,9 +11,9 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
        , iconOffset = -1
        , hideOnStart = False
        , lowerOnStart = True
-       , persistent = False
+       , persistent = True
        , allDesktops = True
-       , overrideRedirect = True
+       , overrideRedirect = False
        , pickBroadest = False
        , iconRoot = "."
        , commands = [ Run Date "%a %b %_d %Y : %H:%M:%S" "theDate" 10
