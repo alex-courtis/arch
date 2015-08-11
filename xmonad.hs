@@ -132,6 +132,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
+    -- lock the screen
+    , ((modm .|. shiftMask, xK_l     ), spawn "xautolock -locknow")
+
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
@@ -251,7 +254,8 @@ myLogHook = return ()
 myStartupHook = do
   setWMName "LG3D"
   spawn "xsetroot -cursor_name left_ptr -solid Black"
-  spawn "pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255"
+  spawn "pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255 &"
+  spawn "pkill xautolock; xautolock -locker slock -time 5 &"
 
 myBar = "xmobar"
 myPP = xmobarPP { ppCurrent = wrap "<" ">" }
