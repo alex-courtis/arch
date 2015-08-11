@@ -26,11 +26,12 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
                     , Run Swap ["-t","Swap <usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
-                    , Run Network "wlp4s0" ["-t","Wlan <rx>KB <tx>KB"] 10
-                    , Run Network "enp0s20u1u3i5" ["-t","Eth <rx>KB <tx>KB"] 10
+                    , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s",
+                                      "-L","512","-H","524288",
+                                      "--normal","green","--high","red"] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "      %StdinReader% }{ %enp0s20u1u3i5% : %wlp4s0% : %cpu% : %memory% : %swap% : %theDate%"
+       , template = "      %StdinReader% }{ %dynnetwork% : %cpu% : %memory% : %swap% : %theDate%"
        }
