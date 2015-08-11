@@ -18,14 +18,19 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
        , iconRoot = "."
        , commands = [ Run Date "%a %b %_d %Y : %H:%M:%S" "theDate" 10
                     , Run Cpu ["-t","Cpu <total>%",
-                               "-L","3","-H","50",
+                               "-L","10","-H","50",
                                "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem <usedratio>%"] 10
-                    , Run Swap ["-t","Swap <usedratio>%"] 10
+                    , Run Memory ["-t","Mem <usedratio>%",
+                                  "-L","40","-H","70",
+                                  "--normal","green","--high","red"] 10
+                    , Run Swap ["-t","Swap <usedratio>%",
+                                  "-L","10","-H","40",
+                                  "--normal","green","--high","red"] 10
                     , Run Network "wlp4s0" ["-t","Wlan <rx>KB <tx>KB"] 10
+                    , Run Network "enp0s20u1u3i5" ["-t","Eth <rx>KB <tx>KB"] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wlp4s0% : %cpu% : %memory% : %swap% : %theDate%"
+       , template = "      %StdinReader% }{ %enp0s20u1u3i5% : %wlp4s0% : %cpu% : %memory% : %swap% : %theDate%"
        }

@@ -250,10 +250,11 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
   setWMName "LG3D"
-  spawn "xsetroot -cursor_name left_ptr -solid Gray20"
+  spawn "xsetroot -cursor_name left_ptr -solid Black"
+  spawn "pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255"
 
 myBar = "xmobar"
-myPP = xmobarPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">" }
+myPP = xmobarPP { ppCurrent = wrap "<" ">" }
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
