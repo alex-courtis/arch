@@ -16,14 +16,14 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
        , overrideRedirect = False
        , pickBroadest = False
        , iconRoot = "."
-       , commands = [ Run Date "%a %b %_d %Y : %H:%M:%S" "theDate" 10
-                    , Run Cpu ["-t","Cpu <total>%",
+       , commands = [ Run Date "%a %b %_d %Y | %H:%M:%S" "theDate" 10
+                    , Run Cpu ["-t","C <total>%",
                                "-L","10","-H","50",
                                "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem <usedratio>%",
+                    , Run Memory ["-t","M <usedratio>%",
                                   "-L","40","-H","70",
                                   "--normal","green","--high","red"] 10
-                    , Run Swap ["-t","Swap <usedratio>%",
+                    , Run Swap ["-t","S <usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
                     , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s",
@@ -33,5 +33,5 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "      %StdinReader% }{ %dynnetwork% : %cpu% : %memory% : %swap% : %theDate%"
+       , template = "      %StdinReader% }{ %dynnetwork% | %cpu% | %memory% | %swap% | %theDate%"
        }
