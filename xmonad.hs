@@ -19,7 +19,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "gnome-terminal"
+myTerminal      = "terminator"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -65,7 +65,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Source Code Pro-10:Bold'")
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Source Code Pro-10:bold'")
+    -- launch j4-dmenu-desktop
+    , ((modm .|. shiftMask, xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -fn 'Source Code Pro-10:bold'\"")
 
     -- switch Xft DPI setttings
     , ((modm .|. shiftMask, xK_u     ), spawn "echo 'Xft.dpi: 96' | xrdb -merge; xmonad --restart")
