@@ -5,7 +5,6 @@
 # local vars
 os=$(uname)
 hostName=$(hostname -f)
-promptColour=95
 
 
 # user's bin in path
@@ -50,7 +49,7 @@ case "${hostName}" in
 emperor*)
 	promptColour=92
 	;;
-gigantor*)
+gigantor|duke*)
 	promptColour=93
 	;;
 earl*)
@@ -59,6 +58,9 @@ earl*)
 prince*)
 	promptColour=96
 	;;
+*)
+        promptColour=95
+        ;;
 esac
 
 if [ ${USER} == "root" ]; then
