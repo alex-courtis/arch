@@ -165,4 +165,4 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- misc
 myModMask   = mod4Mask -- Super_L
-myTerminal  = "terminator"
+myTerminal  = "gnome-terminal"
