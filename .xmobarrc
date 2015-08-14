@@ -29,9 +29,10 @@ Config { font = "xft:Source Code Pro:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-
                     , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s",
                                       "-L","512","-H","524288",
                                       "--normal","green","--high","red"] 10
+                    , Run Battery ["-t", "B <left>% <timeleft>"] 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "      %StdinReader% }{ %dynnetwork% | %cpu% | %memory% | %swap% | %theDate%"
+       , template = "      %StdinReader% }{ %dynnetwork% | %cpu% | %memory% | %swap% | %battery% | %theDate%"
        }
