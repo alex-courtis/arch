@@ -1,6 +1,3 @@
-# networkmanager - always run it!
-[ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
-
 # disable touchpad while and 1 sec after typing
 [ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 1 -d
 

@@ -44,6 +44,9 @@ myStartupHook = do
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "pkill xautolock; xautolock -locker slock -time 5 &"
 
+  -- always launch network manager
+  spawn "pkill nm-applet; nm-applet &"
+
 
 -- layouts
 myLayout = Tall nmaster delta ratio ||| Full
