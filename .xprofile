@@ -1,6 +1,8 @@
+# networkmanager - always run it!
 [ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
 
-# disable touchpad while and 0.5 sec after typing
-[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
+# disable touchpad while and 1 sec after typing
+[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 1 -d
 
-[ -f ~/xSwipe/xSwipe.pl ] && perl ~/xSwipe/xSwipe.pl &
+# xswipe will enable natural scrolling as well as gestures
+[ -f ~/.xSwipe/xSwipe.pl ] && ~/.xSwipe/xSwipe.pl -n &
