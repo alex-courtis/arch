@@ -28,6 +28,10 @@ myConfig = defaultConfig
   , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "pulseaudio-ctl up")
   , ((noModMask,                xF86XK_AudioMicMute     ), spawn "pulseaudio-ctl mute-input")
 
+  -- brightness controls
+  , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
+  , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
+
   -- switch Xft DPI setttings
   , ((myModMask .|. shiftMask,  xK_u     ), spawn "echo 'Xft.dpi: 96'  | xrdb -merge; xmonad --restart")
   , ((myModMask .|. shiftMask,  xK_i     ), spawn "echo 'Xft.dpi: 144' | xrdb -merge; xmonad --restart")
