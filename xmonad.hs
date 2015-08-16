@@ -1,7 +1,8 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig
+import Graphics.X11.ExtraTypes.XF86
 
 
 -- launch XMonad with a status bar and overridden configuration
@@ -20,6 +21,12 @@ myConfig = defaultConfig
   [ ((myModMask,                xK_p     ), spawn "dmenu_run -fn 'Source Code Pro-10:bold'")
   -- launch j4-dmenu-desktop
   , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -fn 'Source Code Pro-10:bold'\"")
+
+  -- volume control
+  , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
+  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "pulseaudio-ctl down")
+  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "pulseaudio-ctl up")
+  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "pulseaudio-ctl mute-input")
 
   -- switch Xft DPI setttings
   , ((myModMask .|. shiftMask,  xK_u     ), spawn "echo 'Xft.dpi: 96'  | xrdb -merge; xmonad --restart")
@@ -77,3 +84,7 @@ myLayout = Tall nmaster delta ratio ||| Full
 -- misc
 myModMask   = mod4Mask -- Super_L
 myTerminal  = "gnome-terminal"
+
+-- missing from Graphics.X11.ExtraTypes.XF86
+xF86XK_AudioMicMute            :: KeySym
+xF86XK_AudioMicMute            = 0x1008ffb2
