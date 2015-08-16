@@ -32,6 +32,9 @@ myConfig = defaultConfig
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
   , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
 
+  -- twiddle displays
+  , ((noModMask,                xF86XK_Display          ), spawn "")
+
   -- switch Xft DPI setttings
   , ((myModMask .|. shiftMask,  xK_u     ), spawn "echo 'Xft.dpi: 96'  | xrdb -merge; xmonad --restart")
   , ((myModMask .|. shiftMask,  xK_i     ), spawn "echo 'Xft.dpi: 144' | xrdb -merge; xmonad --restart")
@@ -90,5 +93,5 @@ myModMask   = mod4Mask -- Super_L
 myTerminal  = "gnome-terminal"
 
 -- missing from Graphics.X11.ExtraTypes.XF86
-xF86XK_AudioMicMute            :: KeySym
-xF86XK_AudioMicMute            = 0x1008ffb2
+xF86XK_AudioMicMute     :: KeySym
+xF86XK_AudioMicMute     = 0x1008ffb2
