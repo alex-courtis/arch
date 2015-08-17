@@ -13,9 +13,15 @@ if [ -d ~/bin ]; then
 fi
 
 
-# always use vi for command line editing and friends
+# sensible shell defaults
 set -o vi
 export EDITOR=vi
+export VISUAL=vi
+export PAGER=less
+if [ ${os} == "Linux" ]; then
+	export DE=generic
+	export BROWSER=google-chrome-stable
+fi
 
 
 # aliases
