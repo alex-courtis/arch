@@ -18,10 +18,6 @@ set -o vi
 export EDITOR=vi
 export VISUAL=vi
 export PAGER=less
-if [ ${os} == "Linux" ]; then
-	export DE=generic
-	export BROWSER=google-chrome-stable
-fi
 
 
 # aliases
