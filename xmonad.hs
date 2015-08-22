@@ -38,10 +38,10 @@ myConfig = defaultConfig
   -- switch Xft DPI setttings
   , ((myModMask .|. shiftMask,  xK_u     ), spawn "echo 'Xft.dpi: 96'  | xrdb -merge; xmonad --restart")
   , ((myModMask .|. shiftMask,  xK_i     ), spawn "echo 'Xft.dpi: 144' | xrdb -merge; xmonad --restart")
-  , ((myModMask .|. shiftMask,  xK_o     ), spawn "echo 'Xft.dpi: 192' | xrdb -merge; xmonad --restart")
+  , ((myModMask .|. shiftMask,  xK_o     ), spawn "echo 'Xft.dpi: 168' | xrdb -merge; xmonad --restart")
 
   -- lock the screen
-  , ((myModMask,                xK_l     ), spawn "xautolock -locknow")
+  , ((myModMask .|. shiftMask,  xK_l     ), spawn "xautolock -locknow")
 
   -- take screenshots
   , ((noModMask,                xK_Print ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f >/dev/null 2>&1 &'")

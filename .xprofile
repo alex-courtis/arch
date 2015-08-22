@@ -1,5 +1,5 @@
 # disable touchpad while and 1 sec after typing
-[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 1 -d
+[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 2 -d
 
 # xswipe will enable natural scrolling as well as gestures
 [ -f ~/.xSwipe/xSwipe.pl ] && ~/.xSwipe/xSwipe.pl -n &
