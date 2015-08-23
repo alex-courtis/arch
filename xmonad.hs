@@ -33,7 +33,8 @@ myConfig = defaultConfig
   , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
 
   -- twiddle displays
-  , ((noModMask,                xF86XK_Display          ), spawn "")
+  , ((noModMask,                xF86XK_Display          ), spawn "autoDetectDisplays.sh > /tmp/autoDetectDisplays.log")
+  , ((myModMask .|. shiftMask,  xK_y                    ), spawn "autoDetectDisplays.sh > /tmp/autoDetectDisplays.log")
 
   -- switch Xft DPI setttings
   , ((myModMask .|. shiftMask,  xK_u     ), spawn "echo 'Xft.dpi: 96'  | xrdb -merge; xmonad --restart")

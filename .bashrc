@@ -4,7 +4,7 @@
 
 # local vars
 os=$(uname)
-hostName=$(hostname -f)
+hostName=$(hostname)
 
 
 # user's bin in path
@@ -13,11 +13,12 @@ if [ -d ~/bin ]; then
 fi
 
 
-# sensible shell defaults
+# sensible editor defaults
 set -o vi
-export EDITOR=vi
-export VISUAL=vi
-export PAGER=less
+alias vi="vim"
+export EDITOR="vim"
+export VISUAL="vim"
+export PAGER="less"
 
 
 # aliases
@@ -80,7 +81,7 @@ fi
 
 export PS1="
 [${promptColour};1m]0;\${PWD}\D{%d/%m/%Y %H:%M:%S}\${JDK_VER}${promptGit}
-\${USER}@${hostName%%.*}:\${PWD}[0m
+\${USER}@${hostName}:\${PWD}[0m
 "
 
 unset promptGit
@@ -228,18 +229,18 @@ if [ ${os} == "Darwin" ]; then
 	}
 fi
 
-if [ ${hostName%%.*} == "prince" -o ${hostName%%.*} == "gigantor" -o ${hostName%%.*} == "emperor" ]; then
+if [ ${hostName} == "prince" -o ${hostName} == "gigantor" -o ${hostName} == "emperor" ]; then
 
 	# rsync to android via sshelper
 	alias syncMusicAndroid="rsync -e 'ssh -p 2222' -azv --no-perms --no-times --size-only --delete --delete-excluded --exclude-from='${HOME}/.home/serf-itunes-excludes.txt' ~/Music/iTunes/iTunes\ Media/Music/ serf:/sdcard/Music"
 fi
 
-if [ ${hostName%%.*} == "prince" -o ${hostName%%.*} == "gigantor" ]; then
+if [ ${hostName} == "prince" -o ${hostName} == "gigantor" ]; then
 	
 	# rsync aliases
 	alias syncMusicEmperor="doRsync ~/Music/iTunes/ emperor:Music/iTunes"
 	
-elif [ ${hostName%%.*} == "emperor" ]; then
+elif [ ${hostName} == "emperor" ]; then
 	
 	# rsync aliases
 	alias syncMusicEarl="doRsync ~/Music/iTunes/iTunes\ Media/Music/ earl:/mnt/vol1/music --exclude=\".AppleDB\""
