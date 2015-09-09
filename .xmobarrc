@@ -1,4 +1,4 @@
-Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:Hack:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , additionalFonts = []
        , bgColor = "#000000"
        , fgColor = "#BFBFBF"
