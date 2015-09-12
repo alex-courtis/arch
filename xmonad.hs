@@ -68,16 +68,17 @@ myStartupHook = do
   setWMName "LG3D"
 
   -- reasonable X pointer and, more importantly, a background refresh
-  spawn "xsetroot -cursor_name left_ptr -solid Black"
+  spawn "which xsetroot > /dev/null 2>&1 && xsetroot -cursor_name left_ptr -solid Black"
 
   -- trayer in top left, over xmobar (launch after it), but not too intrusive on the layout (partial strut false)
-  spawn "pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255 &"
+  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255 &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
-  spawn "pkill xautolock; xautolock -locker slock -time 5 &"
+  spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
 
-  -- always launch network manager
+  -- applets/system tray apps
   spawn "pkill nm-applet; nm-applet &"
+  spawn "which pasystray > /dev/null 2>&1 && (pkill pasystray ; pasystray &)"
 
 
 -- layouts
