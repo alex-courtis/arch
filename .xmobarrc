@@ -1,22 +1,7 @@
 Config { font = "xft:Hack:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
-       , bgColor = "#000000"
-       , fgColor = "#BFBFBF"
-       , alpha   = 255
-       , position = Top
-       , border = NoBorder
-       , borderColor = "#BFBFBF"
-       , borderWidth = 0
-       , textOffset = -1
-       , iconOffset = -1
-       , hideOnStart = False
-       , lowerOnStart = True
-       , persistent = True
-       , allDesktops = True
-       , overrideRedirect = False
-       , pickBroadest = False
-       , iconRoot = "."
-       , commands = [ Run Date "%a %b %_d %Y | %H:%M:%S" "theDate" 10
+       , bgColor = "#222222"
+       , fgColor = "#ffffff"
+       , commands = [ Run Date "%a %b %_d %Y  %H:%M:%S" "date" 10
                     , Run Cpu ["-t","C <total>%",
                                "-L","10","-H","50",
                                "--normal","green","--high","red"] 10
@@ -32,7 +17,5 @@ Config { font = "xft:Hack:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
                     , Run Battery ["-t", "B <left>% <timeleft>"] 10
                     , Run StdinReader
                     ]
-       , sepChar = "%"
-       , alignSep = "}{"
-       , template = "      %StdinReader% }{ %dynnetwork% | %cpu% | %memory% | %swap% | %battery% | %theDate%"
+       , template = "        %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
        }

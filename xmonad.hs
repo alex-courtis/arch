@@ -18,9 +18,9 @@ myConfig = defaultConfig
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn "dmenu_run -fn 'Hack-11:bold'")
+  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-18:bold'")
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -fn 'Hack-11:bold'\"")
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-18:bold'\"")
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
@@ -55,8 +55,8 @@ myBar = "xmobar"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppCurrent   = xmobarColor "green" "" . wrap "<" ">"
   , ppVisible   = xmobarColor "yellow" "" . wrap "(" ")"
-  , ppSep       = " | "
-  , ppTitle     = xmobarColor "green" "" . shorten 75
+  , ppSep       = "   "
+  , ppTitle     = xmobarColor "green" ""
   }
 toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b) -- need to get rid of this....
 
