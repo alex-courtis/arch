@@ -71,7 +71,7 @@ myStartupHook = do
   spawn "which xsetroot > /dev/null 2>&1 && xsetroot -cursor_name left_ptr -solid Black"
 
   -- trayer in top left, over xmobar (launch after it), but not too intrusive on the layout (partial strut false)
-  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 255 &)"
+  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 0 --tint 0x222222 &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
