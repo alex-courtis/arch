@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# example 3a https://wiki.archlinux.org/index.php/Xrandr
+# based on example 3a https://wiki.archlinux.org/index.php/Xrandr
 
 XRANDR="xrandr"
-CMD="${XRANDR}"
+OFF_CMD="${XRANDR}"
+ON_CMD="${XRANDR}"
 declare -A VOUTS
 eval VOUTS=$(${XRANDR}|awk 'BEGIN {printf("(")} /^\S.*connected/{printf("[%s]=%s ", $1, $2)} END{printf(")")}')
 declare -A POS
@@ -15,23 +16,27 @@ find_mode() {
 }
 
 xrandr_params_for() {
-  if [ "${2}" == 'connected' ]
-  then
+  OFF_CMD="${OFF_CMD} --output ${1} --off"
+  if [ "${2}" == 'connected' ]; then
     eval $(find_mode ${1})  #sets ${WIDTH} and ${HEIGHT}
     MODE="${WIDTH}x${HEIGHT}"
-    CMD="${CMD} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
+    ON_CMD="${ON_CMD} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
     POS[X]=$((${POS[X]}+${WIDTH}))
     return 0
   else
-    CMD="${CMD} --output ${1} --off"
+    ON_CMD="${ON_CMD} --output ${1} --off"
     return 1
   fi
 }
 
-for VOUT in ${!VOUTS[*]}
-do
+for VOUT in ${!VOUTS[*]}; do
   xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
 done
 
-echo ${CMD}
-${CMD}
+# turn everything off
+echo ${OFF_CMD}
+${OFF_CMD}
+
+# turn everything back on in the discovered order
+echo ${ON_CMD}
+${ON_CMD}
