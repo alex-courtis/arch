@@ -30,13 +30,24 @@ xrandr_params_for() {
   fi
 }
 
+# disconnected if the lid is closed, otherwise status returned by xrandr
+laptop_status() {
+  grep "closed" /proc/acpi/button/lid/LID/state > /dev/null 2>&1
+  if [ ${?} -eq 0 ]; then
+    echo "disconnected"
+  else
+    echo ${VOUTS[${LAPTOP_ID}]}
+  fi
+}
+
 for VOUT in ${!VOUTS[*]}; do
   if [ "${VOUT}" == "${LAPTOP_ID}" ]; then
-    LAPTOP_STATUS=${VOUTS[${VOUT}]}
+    LAPTOP_STATUS=$(laptop_status)
   else
     xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
   fi
 done
+
 # laptop display goes last
 if [ -n "${LAPTOP_STATUS}" ]; then
   xrandr_params_for "${LAPTOP_ID}" ${LAPTOP_STATUS}
