@@ -3,6 +3,7 @@
 # based on example 3a https://wiki.archlinux.org/index.php/Xrandr
 
 XRANDR="xrandr"
+LAPTOP_ID="eDP1"
 OFF_CMD="${XRANDR}"
 ON_CMD="${XRANDR}"
 declare -A VOUTS
@@ -30,8 +31,16 @@ xrandr_params_for() {
 }
 
 for VOUT in ${!VOUTS[*]}; do
-  xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
+  if [ "${VOUT}" == "${LAPTOP_ID}" ]; then
+    LAPTOP_STATUS=${VOUTS[${VOUT}]}
+  else
+    xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
+  fi
 done
+# laptop display goes last
+if [ -n "${LAPTOP_STATUS}" ]; then
+  xrandr_params_for "${LAPTOP_ID}" ${LAPTOP_STATUS}
+fi
 
 # turn everything off
 echo ${OFF_CMD}
