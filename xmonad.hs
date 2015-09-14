@@ -18,9 +18,9 @@ myConfig = defaultConfig
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-18:bold'")
+  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-16:bold'")
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-18:bold'\"")
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-16:bold'\"")
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
@@ -77,8 +77,8 @@ myStartupHook = do
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
 
   -- applets/system tray apps
-  spawn "pkill nm-applet; nm-applet &"
   spawn "which pasystray > /dev/null 2>&1 && (pkill pasystray ; pasystray &)"
+  spawn "which nm-applet > /dev/null 2>&1 && (pkill nm-applet; nm-applet &)"
 
 
 -- layouts

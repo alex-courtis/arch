@@ -54,8 +54,8 @@ if [ -n "${LAPTOP_STATUS}" ]; then
 fi
 
 # turn everything off
-echo ${OFF_CMD}
-${OFF_CMD}
+#echo ${OFF_CMD}
+#${OFF_CMD}
 
 # turn everything back on in the discovered order
 echo ${ON_CMD}
