@@ -70,15 +70,15 @@ myStartupHook = do
   -- reasonable X pointer and, more importantly, a background refresh
   spawn "which xsetroot > /dev/null 2>&1 && xsetroot -cursor_name left_ptr -solid Black"
 
-  -- trayer in top left, over xmobar (launch after it), but not too intrusive on the layout (partial strut false)
-  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; sleep 1; trayer --edge top --align left --widthtype request --heighttype request --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 0 --tint 0x222222 &)"
+  -- trayer in top right, over xmobar
+  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; trayer --edge top --align right --widthtype request --SetDockType true --transparent true --alpha 255 --tint 0x000000 &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
 
   -- applets/system tray apps
   spawn "which pasystray > /dev/null 2>&1 && (pkill pasystray ; pasystray &)"
-  spawn "which nm-applet > /dev/null 2>&1 && (pkill nm-applet; nm-applet &)"
+  spawn "which nm-applet > /dev/null 2>&1 && (pkill nm-applet ; nm-applet &)"
 
 
 -- layouts
