@@ -24,7 +24,7 @@ xrandr_params_for() {
     POS[X]=$((${POS[X]}+${WIDTH}))
     return 0
   else
-    OFF_ARGS="${ON_ARGS} --output ${1} --off"
+    OFF_ARGS="${OFF_ARGS} --output ${1} --off"
     return 1
   fi
 }
@@ -41,7 +41,7 @@ laptop_status() {
 
 for VOUT in ${!VOUTS[*]}; do
   if [ "${VOUT}" == "${LAPTOP_ID}" ]; then
-    LAPTOP_STATUS=$(laptop_status)
+    xrandr_params_for ${VOUT} $(laptop_status)
   else
     xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
   fi
@@ -49,11 +49,6 @@ done
 
 # last (right most) display is primary
 ON_ARGS="${ON_ARGS} --primary"
-
-# laptop display goes at the very end i.e. far right
-if [ -n "${LAPTOP_STATUS}" ]; then
-  xrandr_params_for "${LAPTOP_ID}" ${LAPTOP_STATUS}
-fi
 
 # turn everything off and on again
 echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
