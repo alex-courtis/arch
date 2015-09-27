@@ -67,9 +67,6 @@ myStartupHook = do
   -- bad old java apps need this
   setWMName "LG3D"
 
-  -- layout X displays
-  spawn "which autoDetectDisplays.sh > /dev/null 2>&1 && autoDetectDisplays.sh"
-
   -- trayer in top right, over xmobar
   spawn "which trayer > /dev/null 2>&1 && (pkill trayer ; trayer --edge top --align right --widthtype request --SetDockType true --transparent true --alpha 255 --tint 0x000000 &)"
   
