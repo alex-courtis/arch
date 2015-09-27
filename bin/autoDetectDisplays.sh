@@ -4,8 +4,8 @@
 
 XRANDR="xrandr"
 LAPTOP_ID="eDP1"
-OFF_CMD="${XRANDR}"
-ON_CMD="${XRANDR}"
+OFF_ARGS=""
+ON_ARGS=""
 declare -A VOUTS
 eval VOUTS=$(${XRANDR}|awk 'BEGIN {printf("(")} /^\S.*connected/{printf("[%s]=%s ", $1, $2)} END{printf(")")}')
 declare -A POS
@@ -17,15 +17,14 @@ find_mode() {
 }
 
 xrandr_params_for() {
-  OFF_CMD="${OFF_CMD} --output ${1} --off"
   if [ "${2}" == 'connected' ]; then
     eval $(find_mode ${1})  #sets ${WIDTH} and ${HEIGHT}
     MODE="${WIDTH}x${HEIGHT}"
-    ON_CMD="${ON_CMD} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
+    ON_ARGS="${ON_ARGS} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
     POS[X]=$((${POS[X]}+${WIDTH}))
     return 0
   else
-    ON_CMD="${ON_CMD} --output ${1} --off"
+    OFF_ARGS="${ON_ARGS} --output ${1} --off"
     return 1
   fi
 }
@@ -48,15 +47,14 @@ for VOUT in ${!VOUTS[*]}; do
   fi
 done
 
-# laptop display goes last
+# last (right most) display is primary
+ON_ARGS="${ON_ARGS} --primary"
+
+# laptop display goes at the very end i.e. far right
 if [ -n "${LAPTOP_STATUS}" ]; then
   xrandr_params_for "${LAPTOP_ID}" ${LAPTOP_STATUS}
 fi
 
-# turn everything off
-#echo ${OFF_CMD}
-#${OFF_CMD}
-
-# turn everything back on in the discovered order
-echo ${ON_CMD}
-${ON_CMD}
+# turn everything off and on again
+echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
+${XRANDR} ${OFF_ARGS} ${ON_ARGS}
