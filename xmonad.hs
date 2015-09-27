@@ -67,11 +67,11 @@ myStartupHook = do
   -- bad old java apps need this
   setWMName "LG3D"
 
-  -- reasonable X pointer and, more importantly, a background refresh
-  spawn "which xsetroot > /dev/null 2>&1 && xsetroot -cursor_name left_ptr -solid Black"
+  -- layout X displays
+  spawn "which autoDetectDisplays.sh > /dev/null 2>&1 && autoDetectDisplays.sh"
 
   -- trayer in top right, over xmobar
-  spawn "which trayer > /dev/null 2>&1 && (pkill trayer; trayer --edge top --align right --widthtype request --SetDockType true --transparent true --alpha 255 --tint 0x000000 &)"
+  spawn "which trayer > /dev/null 2>&1 && (pkill trayer ; trayer --edge top --align right --widthtype request --SetDockType true --transparent true --alpha 255 --tint 0x000000 &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
