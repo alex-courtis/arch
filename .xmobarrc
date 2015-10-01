@@ -1,6 +1,6 @@
 Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
        , fgColor = "#ffffff"
-       , position = TopSize L 97 0
+       , position = TopSize L 96 0
        , commands = [ Run Date "%a %b %_d %Y  %H:%M:%S" "date" 10
                     , Run Cpu ["-t","C <total>%",
                                "-L","10","-H","50",
