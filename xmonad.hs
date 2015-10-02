@@ -67,8 +67,8 @@ myStartupHook = do
   -- bad old java apps need this
   setWMName "LG3D"
 
-  -- trayer in top right, over xmobar
-  spawn "which trayer > /dev/null 2>&1 && (pkill trayer ; trayer --edge top --align right --widthtype request --SetDockType true --transparent true --alpha 255 --tint 0x000000 &)"
+  -- stalonetray in top right, not a strut
+  spawn "which stalonetray > /dev/null 2>&1 && (pkill stalonetray ; stalonetray --geometry 1x1-0+0 --grow-gravity E --window-strut none -t &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
