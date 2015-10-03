@@ -18,9 +18,9 @@ myConfig = defaultConfig
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-16:bold'")
+  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'")
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-16:bold'\"")
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'\"")
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
