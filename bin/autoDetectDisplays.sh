@@ -4,6 +4,7 @@
 
 XRANDR="xrandr"
 LAPTOP_ID="eDP1"
+LAPTOP_OFF=false
 OFF_ARGS=""
 ON_ARGS=""
 declare -A VOUTS
@@ -35,6 +36,7 @@ laptop_status() {
   if [ ${?} -eq 0 ]; then
     echo "disconnected"
   else
+    LAPTOP_OFF=true
     echo ${VOUTS[${LAPTOP_ID}]}
   fi
 }
@@ -50,6 +52,12 @@ done
 # last (right most) display is primary
 ON_ARGS="${ON_ARGS} --primary"
 
-# turn everything off and on again
+# cycle the laptop display (if it was on) so that it doesn't get confused
+if [ ${LAPTOP_OFF} ]; then
+  echo "${XRANDR} --output ${LAPTOP_ID} --off"
+  ${XRANDR} --output ${LAPTOP_ID} --off
+fi
+
+# turn everything on
 echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
 ${XRANDR} ${OFF_ARGS} ${ON_ARGS}
