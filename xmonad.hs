@@ -63,7 +63,7 @@ myStartupHook = do
   setWMName "LG3D"
 
   -- stalonetray in top right, not a strut
-  spawn "which stalonetray > /dev/null 2>&1 && (pkill stalonetray ; stalonetray --geometry 1x1-0+0 --grow-gravity E -t &)"
+  spawn "which stalonetray > /dev/null 2>&1 && (pkill stalonetray ; stalonetray &)"
   
   -- lock the screen after 5 mins, using slock as the "locker"
   spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
