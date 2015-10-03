@@ -30,7 +30,8 @@ else
 fi
 
 alias ls="ls ${lsArgs}"
-alias ll="ls -lah"
+alias ll="ls -lh"
+alias lla="ll -a"
 alias grep="grep -E --color"
 alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 
