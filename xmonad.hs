@@ -59,6 +59,9 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b) -- need t
 -- startup
 myStartupHook = do
 
+  -- ensure that we use a reasonable pointer with Xcursor.size set
+  spawn "which xsetroot > /dev/null 2>&1 && (xsetroot -cursor_name left_ptr)"
+
   -- bad old java apps need this
   setWMName "LG3D"
 
