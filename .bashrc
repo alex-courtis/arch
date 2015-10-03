@@ -15,9 +15,8 @@ fi
 
 # sensible editor defaults
 set -o vi
-alias vi="vim"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="vi"
+export VISUAL="vi"
 export PAGER="less"
 
 
