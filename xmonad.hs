@@ -68,8 +68,8 @@ myStartupHook = do
   -- stalonetray in top right, not a strut
   spawn "which stalonetray > /dev/null 2>&1 && (pkill stalonetray ; stalonetray &)"
   
-  -- lock the screen after 5 mins, using slock as the "locker"
-  spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker slock -time 5 &)"
+  -- lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
+  spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker 'i3lock -e -c aaaaaa' -time 5 -killer 'systemctl suspend' -killtime 10 &)"
 
   -- applets/system tray apps
   spawn "which pasystray > /dev/null 2>&1 && (pkill pasystray ; pasystray &)"
