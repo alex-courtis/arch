@@ -37,11 +37,11 @@ myConfig = defaultConfig
   , ((myModMask .|. shiftMask,  xK_y                    ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh && xmonad --restart")
 
   -- lock the screen
-  , ((myModMask .|. shiftMask,  xK_l     ), spawn "xautolock -locknow")
+  , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
 
   -- take screenshots
-  , ((noModMask,                xK_Print ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f >/dev/null 2>&1 &'")
-  , ((myModMask,                xK_Print ), spawn "           cd /tmp && scrot    -e 'xdg-open $f >/dev/null 2>&1 &'")
+  , ((noModMask,                xK_Print                ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f >/dev/null 2>&1 &'")
+  , ((myModMask,                xK_Print                ), spawn "           cd /tmp && scrot    -e 'xdg-open $f >/dev/null 2>&1 &'")
   ]
 
 
@@ -60,21 +60,11 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b) -- need t
 myStartupHook = do
 
   -- ensure that we use a reasonable pointer with Xcursor.size set
-  spawn "which xsetroot > /dev/null 2>&1 && (xsetroot -cursor_name left_ptr)"
+  spawn "xsetroot -cursor_name left_ptr > /dev/null 2>&1"
 
   -- bad old java apps need this
   setWMName "LG3D"
-
-  -- stalonetray in top right, not a strut
-  spawn "which stalonetray > /dev/null 2>&1 && (pkill stalonetray ; stalonetray &)"
   
-  -- lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
-  spawn "which xautolock > /dev/null 2>&1 && (pkill xautolock ; xautolock -locker 'i3lock -e -c aaaaaa' -time 5 -killer 'systemctl suspend' -killtime 10 &)"
-
-  -- applets/system tray apps
-  spawn "which pasystray > /dev/null 2>&1 && (pkill pasystray ; pasystray &)"
-  spawn "which nm-applet > /dev/null 2>&1 && (pkill nm-applet ; nm-applet &)"
-
 
 -- layouts
 myLayout = Tall nmaster delta ratio ||| Full
