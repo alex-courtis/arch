@@ -50,13 +50,13 @@ for VOUT in ${!VOUTS[*]}; do
 done
 
 # last (right most) display is primary
-ON_ARGS="${ON_ARGS} --primary"
+#ON_ARGS="${ON_ARGS} --primary"
 
 # cycle the laptop display (if it was on) so that it doesn't get confused
-if [ ${LAPTOP_OFF} ]; then
-  echo "${XRANDR} --output ${LAPTOP_ID} --off"
-  ${XRANDR} --output ${LAPTOP_ID} --off
-fi
+#if [ ${LAPTOP_OFF} ]; then
+#  echo "${XRANDR} --output ${LAPTOP_ID} --off"
+#  ${XRANDR} --output ${LAPTOP_ID} --off
+#fi
 
 # turn everything on
 echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
