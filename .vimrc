@@ -1,4 +1,5 @@
-" AMC
+runtime! vimrc_example.vim
+
 set nobackup
 set noundofile
 set ic
