@@ -92,38 +92,39 @@ theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/defau
 --theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
 -- sky layout icons
---theme.layout_fairh           = "/usr/share/awesome/themes/sky/layouts/fairh.png"
---theme.layout_fairv           = "/usr/share/awesome/themes/sky/layouts/fairv.png"
---theme.layout_floating        = "/usr/share/awesome/themes/sky/layouts/floating.png"
---theme.layout_magnifier       = "/usr/share/awesome/themes/sky/layouts/magnifier.png"
---theme.layout_max             = "/usr/share/awesome/themes/sky/layouts/max.png"
---theme.layout_fullscreen      = "/usr/share/awesome/themes/sky/layouts/fullscreen.png"
---theme.layout_tilebottom      = "/usr/share/awesome/themes/sky/layouts/tilebottom.png"
---theme.layout_tileleft        = "/usr/share/awesome/themes/sky/layouts/tileleft.png"
---theme.layout_tile            = "/usr/share/awesome/themes/sky/layouts/tile.png"
---theme.layout_tiletop         = "/usr/share/awesome/themes/sky/layouts/tiletop.png"
---theme.layout_spiral          = "/usr/share/awesome/themes/sky/layouts/spiral.png"
---theme.layout_dwindle         = "/usr/share/awesome/themes/sky/layouts/dwindle.png"
+theme.layout_fairh           = "/usr/share/awesome/themes/sky/layouts/fairh.png"
+theme.layout_fairv           = "/usr/share/awesome/themes/sky/layouts/fairv.png"
+theme.layout_floating        = "/usr/share/awesome/themes/sky/layouts/floating.png"
+theme.layout_magnifier       = "/usr/share/awesome/themes/sky/layouts/magnifier.png"
+theme.layout_max             = "/usr/share/awesome/themes/sky/layouts/max.png"
+theme.layout_fullscreen      = "/usr/share/awesome/themes/sky/layouts/fullscreen.png"
+theme.layout_tilebottom      = "/usr/share/awesome/themes/sky/layouts/tilebottom.png"
+theme.layout_tileleft        = "/usr/share/awesome/themes/sky/layouts/tileleft.png"
+theme.layout_tile            = "/usr/share/awesome/themes/sky/layouts/tile.png"
+theme.layout_tiletop         = "/usr/share/awesome/themes/sky/layouts/tiletop.png"
+theme.layout_spiral          = "/usr/share/awesome/themes/sky/layouts/spiral.png"
+theme.layout_dwindle         = "/usr/share/awesome/themes/sky/layouts/dwindle.png"
 
 -- zenburn layout icons
-theme.layout_tile       = "/usr/share/awesome/themes/zenburn/layouts/tile.png"
-theme.layout_tileleft   = "/usr/share/awesome/themes/zenburn/layouts/tileleft.png"
-theme.layout_tilebottom = "/usr/share/awesome/themes/zenburn/layouts/tilebottom.png"
-theme.layout_tiletop    = "/usr/share/awesome/themes/zenburn/layouts/tiletop.png"
-theme.layout_fairv      = "/usr/share/awesome/themes/zenburn/layouts/fairv.png"
-theme.layout_fairh      = "/usr/share/awesome/themes/zenburn/layouts/fairh.png"
-theme.layout_spiral     = "/usr/share/awesome/themes/zenburn/layouts/spiral.png"
-theme.layout_dwindle    = "/usr/share/awesome/themes/zenburn/layouts/dwindle.png"
-theme.layout_max        = "/usr/share/awesome/themes/zenburn/layouts/max.png"
-theme.layout_fullscreen = "/usr/share/awesome/themes/zenburn/layouts/fullscreen.png"
-theme.layout_magnifier  = "/usr/share/awesome/themes/zenburn/layouts/magnifier.png"
-theme.layout_floating   = "/usr/share/awesome/themes/zenburn/layouts/floating.png"
+--theme.layout_tile       = "/usr/share/awesome/themes/zenburn/layouts/tile.png"
+--theme.layout_tileleft   = "/usr/share/awesome/themes/zenburn/layouts/tileleft.png"
+--theme.layout_tilebottom = "/usr/share/awesome/themes/zenburn/layouts/tilebottom.png"
+--theme.layout_tiletop    = "/usr/share/awesome/themes/zenburn/layouts/tiletop.png"
+--theme.layout_fairv      = "/usr/share/awesome/themes/zenburn/layouts/fairv.png"
+--theme.layout_fairh      = "/usr/share/awesome/themes/zenburn/layouts/fairh.png"
+--theme.layout_spiral     = "/usr/share/awesome/themes/zenburn/layouts/spiral.png"
+--theme.layout_dwindle    = "/usr/share/awesome/themes/zenburn/layouts/dwindle.png"
+--theme.layout_max        = "/usr/share/awesome/themes/zenburn/layouts/max.png"
+--theme.layout_fullscreen = "/usr/share/awesome/themes/zenburn/layouts/fullscreen.png"
+--theme.layout_magnifier  = "/usr/share/awesome/themes/zenburn/layouts/magnifier.png"
+--theme.layout_floating   = "/usr/share/awesome/themes/zenburn/layouts/floating.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
 -- Define the icon theme for application icons. If not set then the icons 
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+-- AMC seems to be more up to date than "gnome"
+theme.icon_theme = "Adwaita"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80

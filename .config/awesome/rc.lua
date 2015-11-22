@@ -116,11 +116,21 @@ menugenmonkeypatch.patch(menubar)
 
 -- {{{ Wibox
 -- textclock widget
-clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S ", 1)
+clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S", 1)
 
 -- network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, " eno1 ${eno1 down_kb}KiB/s ", 1)
+vicious.register(netwidget, vicious.widgets.net, " eno1:${eno1 down_kb}KiB/s ", 1)
+
+-- cpu usage widget
+vicious.cache(vicious.widgets.cpu)
+cpuwidgettext = wibox.widget.textbox()
+vicious.register(cpuwidgettext, vicious.widgets.cpu, " $1% ", 1)
+cpuwidgetgraph = awful.widget.graph()
+cpuwidgetgraph:set_color("#aaaaaa") -- pull this from the theme
+cpuwidgetgraph:set_width(50)
+cpuwidgetgraph:set_background_color("#222222") -- pull this from the theme
+vicious.register(cpuwidgetgraph, vicious.widgets.cpu, "$1", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -204,6 +214,8 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(cpuwidgetgraph)
+    right_layout:add(cpuwidgettext)
     right_layout:add(netwidget)
     right_layout:add(clockwidget)
 
