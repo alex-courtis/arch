@@ -124,13 +124,13 @@ vicious.register(netwidget, vicious.widgets.net, " eno1:${eno1 down_kb}KiB/s ", 
 
 -- cpu usage widget
 vicious.cache(vicious.widgets.cpu)
-cpuwidgettext = wibox.widget.textbox()
-vicious.register(cpuwidgettext, vicious.widgets.cpu, " $1% ", 1)
 cpuwidgetgraph = awful.widget.graph()
 cpuwidgetgraph:set_color("#aaaaaa") -- pull this from the theme
 cpuwidgetgraph:set_width(50)
 cpuwidgetgraph:set_background_color("#222222") -- pull this from the theme
 vicious.register(cpuwidgetgraph, vicious.widgets.cpu, "$1", 1)
+cpuwidgettext = wibox.widget.textbox()
+vicious.register(cpuwidgettext, vicious.widgets.cpu, "$1% ", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
