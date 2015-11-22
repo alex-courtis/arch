@@ -2,3 +2,5 @@
 *iml
 *ipr
 .DS_Store
+bin/idea
+bin/mvn

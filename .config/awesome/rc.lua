@@ -11,6 +11,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local menugenmonkeypatch = require("menugenmonkeypatch")
+-- widget library
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -83,7 +85,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ " 1 ", " 2 ", " 3 ", " 4 ", " 5 " }, s, layouts[1])
 end
 -- }}}
 
@@ -113,8 +115,12 @@ menugenmonkeypatch.patch(menubar)
 -- }}}
 
 -- {{{ Wibox
--- Create a textclock widget
-mytextclock = awful.widget.textclock()
+-- textclock widget
+clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S ", 1)
+
+-- network usage widget
+netwidget = wibox.widget.textbox()
+vicious.register(netwidget, vicious.widgets.net, " eno1 ${eno1 down_kb}KiB/s ", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -150,8 +156,10 @@ mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 3, function ()
                                               if instance then
                                                   instance:hide()
+                                                  --noinspection GlobalCreationOutsideO
                                                   instance = nil
                                               else
+                                                  --noinspection GlobalCreationOutsideO
                                                   instance = awful.menu.clients({
                                                       theme = { width = 250 }
                                                   })
@@ -188,15 +196,16 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
+--    left_layout:add(mylauncher)
+    left_layout:add(mylayoutbox[s])
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(mytextclock)
-    right_layout:add(mylayoutbox[s])
+    right_layout:add(netwidget)
+    right_layout:add(clockwidget)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
