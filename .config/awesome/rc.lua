@@ -10,6 +10,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local menugenmonkeypatch = require("menugenmonkeypatch")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -38,7 +39,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/alex/.config/awesome/themes/amc/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/amc/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "gnome-terminal"
@@ -105,6 +106,10 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.show_categories = false
+-- monkey patch menu_gen to show uncategorised applications, with local showing after global
+menugenmonkeypatch.patch(menubar)
+
 -- }}}
 
 -- {{{ Wibox
