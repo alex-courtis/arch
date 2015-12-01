@@ -1,10 +1,20 @@
 ---------------------------
 -- Default awesome theme --
 ---------------------------
+local awful = require("awful")
+local math = require("math")
+--local io = require("io")
 
 theme = {}
 
 font_size = 11
+dpi_default = 96
+
+_, _, dpi = awful.util.pread('xrdb -q'):find("Xft.dpi:%s+(%d+)")
+if tonumber(dpi) then
+    font_size = math.floor(dpi * font_size / dpi_default + 0.5)
+    --io.stderr:write('dpi adjusted font_size="' .. font_size .. '"\n')
+end
 
 theme.font          = "hack " .. font_size
 
@@ -43,8 +53,8 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
-theme.menu_height = font_size * 1.5
-theme.menu_width  = 140
+theme.menu_height = font_size * 2
+theme.menu_width  = font_size * 15
 
 -- You can add as many variables as
 -- you wish and access them by using
