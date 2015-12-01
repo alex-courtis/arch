@@ -1,15 +1,15 @@
 # lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
 [ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
-# system tray
-[ -f /usr/bin/stalonetray ] && stalonetray &
+# system tray - only needed for xmonad
+#[ -f /usr/bin/stalonetray ] && stalonetray &
 
 # applets/system tray apps
 [ -f /usr/bin/pasystray ] && /usr/bin/pasystray &
 [ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
 
 # disable touchpad while and 2 sec after typing
-[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 2 -d
+[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
 
-# xswipe will enable natural scrolling as well as gestures
-[ -f ~/.xSwipe/xSwipe.pl ] && ~/.xSwipe/xSwipe.pl -n &
+# xswipe will enable natural scrolling as well as gestures - not functional after 2015/11/25, replaced with regular synaptics driver
+#[ -f ~/.xSwipe/xSwipe.pl ] && ~/.xSwipe/xSwipe.pl -n &

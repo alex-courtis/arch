@@ -57,18 +57,22 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
-    --awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.bottom
+
+--    awful.layout.suit.floating,
+--    awful.layout.suit.tile,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -114,23 +118,31 @@ menugenmonkeypatch.patch(menubar)
 
 -- }}}
 
+-- {{{ Display adjustment
+function adjustDisplays()
+    awful.util.spawn("/home/alex/bin/autoDetectDisplays.sh")
+    awful.util.spawn("/etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh")
+    awesome.restart()
+end
+-- }}}
+
 -- {{{ Wibox
 -- textclock widget
 clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S", 1)
 
 -- network usage widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, " eno1:${eno1 down_kb}KiB/s ", 1)
+vicious.register(netwidget, vicious.widgets.net, " ${enp0s20u3u1u3 down_kb}KiB/s ", 1)
 
 -- cpu usage widget
 vicious.cache(vicious.widgets.cpu)
+cpuwidgettext = wibox.widget.textbox()
+vicious.register(cpuwidgettext, vicious.widgets.cpu, " $1%", 1)
 cpuwidgetgraph = awful.widget.graph()
 cpuwidgetgraph:set_color("#aaaaaa") -- pull this from the theme
 cpuwidgetgraph:set_width(50)
 cpuwidgetgraph:set_background_color("#222222") -- pull this from the theme
 vicious.register(cpuwidgetgraph, vicious.widgets.cpu, "$1", 1)
-cpuwidgettext = wibox.widget.textbox()
-vicious.register(cpuwidgettext, vicious.widgets.cpu, "$1% ", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -142,23 +154,27 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
+                    awful.button({ }, 5, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),
+                    awful.button({ }, 4, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
+                                              --if c == client.focus then
+                                                  --c.minimized = true
+                                              --else
                                                   -- Without this, the following
                                                   -- :isvisible() makes no sense
-                                                  c.minimized = false
-                                                  if not c:isvisible() then
-                                                      awful.tag.viewonly(c:tags()[1])
-                                                  end
+                                                  --c.minimized = false
+                                                  --if not c:isvisible() then
+                                                      --awful.tag.viewonly(c:tags()[1])
+                                                  --end
                                                   -- This will also un-minimize
                                                   -- the client, if needed
+                                                  --client.focus = c
+                                                  --c:raise()
+                                              --end
+                                              if c ~= client.focus then
                                                   client.focus = c
                                                   c:raise()
                                               end
@@ -175,11 +191,11 @@ mytasklist.buttons = awful.util.table.join(
                                                   })
                                               end
                                           end),
-                     awful.button({ }, 4, function ()
+                     awful.button({ }, 5, function ()
                                               awful.client.focus.byidx(1)
                                               if client.focus then client.focus:raise() end
                                           end),
-                     awful.button({ }, 5, function ()
+                     awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(-1)
                                               if client.focus then client.focus:raise() end
                                           end))
@@ -214,9 +230,9 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(cpuwidgetgraph)
-    right_layout:add(cpuwidgettext)
     right_layout:add(netwidget)
+    right_layout:add(cpuwidgettext)
+    right_layout:add(cpuwidgetgraph)
     right_layout:add(clockwidget)
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -231,9 +247,9 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end)
+    --awful.button({ }, 5, awful.tag.viewnext),
+    --awful.button({ }, 4, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -253,7 +269,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
+    --awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -261,6 +277,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+    -- AMC todo pop instead
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -283,7 +300,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    --awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -301,27 +318,51 @@ globalkeys = awful.util.table.join(
     -- toggle wiibox
     awful.key({ modkey }, "b", function()
         mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
-    end)
+    end),
+
+    -- lock the screen
+    awful.key({ modkey, "Shift" }, ";",     function() awful.util.spawn("xautolock -locknow") end),
+
+    -- audio controls
+    awful.key({}, "XF86AudioMute",          function() awful.util.spawn("pulseaudio-ctl mute") end),
+    awful.key({}, "XF86AudioLowerVolume",   function() awful.util.spawn("pulseaudio-ctl down") end),
+    awful.key({}, "XF86AudioRaiseVolume",   function() awful.util.spawn("pulseaudio-ctl up") end),
+    awful.key({}, "XF86AudioMicMute",       function() awful.util.spawn("pulseaudio-ctl mute-input") end),
+
+    -- brightness controls
+    awful.key({}, "XF86MonBrightnessDown",  function() awful.util.spawn("xbacklight -dec 10%") end),
+    awful.key({}, "XF86MonBrightnessUp",    function() awful.util.spawn("xbacklight -inc 10%") end),
+
+    -- screenshots
+    awful.key({},           "Print",        function() awful.util.spawn_with_shell("sleep 0.1; cd /tmp && scrot -s -e 'xdg-open $f >/dev/null 2>&1 &'") end),
+    awful.key({ modkey },   "Print",        function() awful.util.spawn_with_shell("           cd /tmp && scrot    -e 'xdg-open $f >/dev/null 2>&1 &'") end),
+
+    -- display adjustment
+    awful.key({},                   "XF86Display",  adjustDisplays),
+    awful.key({ modkey, "Shift" },  "y",            adjustDisplays)
 )
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    --awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    awful.key({ modkey,           }, "n",
-        function (c)
+    --awful.key({ modkey,           }, "n",
+        --function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized_horizontal = not c.maximized_horizontal
-            c.maximized_vertical   = not c.maximized_vertical
-        end)
+            --c.minimized = true
+        --end),
+    --awful.key({ modkey,           }, "m",
+        --function (c)
+            --c.maximized_horizontal = not c.maximized_horizontal
+            --c.maximized_vertical   = not c.maximized_vertical
+        --end),
+
+    -- close window
+    awful.key({ modkey, },  "w",    function (c) c:kill() end)
 )
 
 -- Bind all key numbers to tags.
