@@ -107,9 +107,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   }
                         })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
-
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 menubar.show_categories = false
@@ -130,19 +127,28 @@ end
 -- textclock widget
 clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S", 1)
 
--- network usage widget
-netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, " ${enp0s20u3u1u3 down_kb}KiB/s ", 1)
-
 -- cpu usage widget
 vicious.cache(vicious.widgets.cpu)
 cpuwidgettext = wibox.widget.textbox()
-vicious.register(cpuwidgettext, vicious.widgets.cpu, " $1%", 1)
+vicious.register(cpuwidgettext, vicious.widgets.cpu, " C:$1%", 1)
 cpuwidgetgraph = awful.widget.graph()
-cpuwidgetgraph:set_color("#aaaaaa") -- pull this from the theme
+-- todo: pull the following from the theme
+cpuwidgetgraph:set_color("#aaaaaa")
 cpuwidgetgraph:set_width(50)
-cpuwidgetgraph:set_background_color("#222222") -- pull this from the theme
+cpuwidgetgraph:set_background_color("#222222")
 vicious.register(cpuwidgetgraph, vicious.widgets.cpu, "$1", 1)
+
+-- swap usage widget
+swapwidget = wibox.widget.textbox()
+vicious.register(swapwidget, vicious.widgets.mem, " S:$5%", 1)
+
+-- memory usage widget
+memwidget = wibox.widget.textbox()
+vicious.register(memwidget, vicious.widgets.mem, " M:$1%", 1)
+
+-- network usage widget
+netwidget = wibox.widget.textbox()
+vicious.register(netwidget, vicious.widgets.net, " N:${enp0s20u3u1u3 down_kb}KiB/s", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -222,7 +228,6 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
---    left_layout:add(mylauncher)
     left_layout:add(mylayoutbox[s])
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
@@ -231,6 +236,8 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(netwidget)
+    right_layout:add(memwidget)
+    right_layout:add(swapwidget)
     right_layout:add(cpuwidgettext)
     right_layout:add(cpuwidgetgraph)
     right_layout:add(clockwidget)
