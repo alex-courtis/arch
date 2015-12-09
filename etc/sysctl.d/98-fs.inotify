@@ -1,2 +1,0 @@
-# https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
-fs.inotify.max_user_watches = 524288

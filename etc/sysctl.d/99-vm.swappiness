@@ -1,2 +1,0 @@
-# https://wiki.archlinux.org/index.php/Swap#Swappiness
-vm.swappiness=5
