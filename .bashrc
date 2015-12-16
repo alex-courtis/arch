@@ -52,10 +52,10 @@ case "${hostName}" in
 emperor*)
 	promptColour=92
 	;;
-gigantor|duke*)
+duke*)
 	promptColour=93
 	;;
-earl*)
+gigantor*)
 	promptColour=94
 	;;
 prince*)
