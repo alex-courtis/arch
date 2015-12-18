@@ -60,19 +60,6 @@ local layouts =
     awful.layout.suit.max,
     awful.layout.suit.tile,
     awful.layout.suit.tile.bottom
-
---    awful.layout.suit.floating,
---    awful.layout.suit.tile,
---    awful.layout.suit.tile.left,
---    awful.layout.suit.tile.bottom,
---    awful.layout.suit.tile.top,
---    awful.layout.suit.fair,
---    awful.layout.suit.fair.horizontal,
---    awful.layout.suit.spiral,
---    awful.layout.suit.spiral.dwindle,
---    awful.layout.suit.max,
---    awful.layout.suit.max.fullscreen,
---    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -103,7 +90,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "terminal", terminal }
+                                    { "open terminal", terminal }
                                   }
                         })
 
@@ -124,8 +111,8 @@ end
 -- }}}
 
 -- {{{ Wibox
--- textclock widget
-clockwidget = awful.widget.textclock(" %a %d %b %Y %H:%M:%S", 1)
+-- Create a textclock widget
+mytextclock = awful.widget.textclock(" %a %d %b %Y %H:%M:%S", 1)
 
 -- cpu usage widget
 vicious.cache(vicious.widgets.cpu)
@@ -168,21 +155,17 @@ mytaglist.buttons = awful.util.table.join(
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 1, function (c)
-                                              --if c == client.focus then
-                                                  --c.minimized = true
-                                              --else
+                                              if c == client.focus then
+                                                  c.minimized = true
+                                              else
                                                   -- Without this, the following
                                                   -- :isvisible() makes no sense
-                                                  --c.minimized = false
-                                                  --if not c:isvisible() then
-                                                      --awful.tag.viewonly(c:tags()[1])
-                                                  --end
+                                                  c.minimized = false
+                                                  if not c:isvisible() then
+                                                      awful.tag.viewonly(c:tags()[1])
+                                                  end
                                                   -- This will also un-minimize
                                                   -- the client, if needed
-                                                  --client.focus = c
-                                                  --c:raise()
-                                              --end
-                                              if c ~= client.focus then
                                                   client.focus = c
                                                   c:raise()
                                               end
@@ -190,10 +173,8 @@ mytasklist.buttons = awful.util.table.join(
                      awful.button({ }, 3, function ()
                                               if instance then
                                                   instance:hide()
-                                                  --noinspection GlobalCreationOutsideO
                                                   instance = nil
                                               else
-                                                  --noinspection GlobalCreationOutsideO
                                                   instance = awful.menu.clients({
                                                       theme = { width = 250 }
                                                   })
@@ -242,7 +223,7 @@ for s = 1, screen.count() do
     right_layout:add(cpuwidgettext)
     right_layout:add(cpuwidgetgraph)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(clockwidget)
+    right_layout:add(mytextclock)
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
@@ -256,9 +237,9 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end)
-    --awful.button({ }, 5, awful.tag.viewnext),
-    --awful.button({ }, 4, awful.tag.viewprev)
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 4, awful.tag.viewnext),
+    awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -278,7 +259,6 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    --awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -286,7 +266,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    -- AMC todo pop instead
     awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
@@ -309,7 +288,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    --awful.key({ modkey, "Control" }, "n", awful.client.restore),
+    awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -353,25 +332,23 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-    --awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ modkey,           }, "w",      function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    --awful.key({ modkey,           }, "n",
-        --function (c)
+    awful.key({ modkey,           }, "n",
+        function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
-            --c.minimized = true
-        --end),
-    --awful.key({ modkey,           }, "m",
-        --function (c)
-            --c.maximized_horizontal = not c.maximized_horizontal
-            --c.maximized_vertical   = not c.maximized_vertical
-        --end),
-
-    -- close window
-    awful.key({ modkey, },  "w",    function (c) c:kill() end)
+            c.minimized = true
+        end),
+    awful.key({ modkey,           }, "m",
+        function (c)
+            c.maximized_horizontal = not c.maximized_horizontal
+            c.maximized_vertical   = not c.maximized_vertical
+        end)
 )
 
 -- Bind all key numbers to tags.
