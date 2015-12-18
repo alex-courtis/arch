@@ -236,12 +236,12 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(netwidget)
     right_layout:add(memwidget)
     right_layout:add(swapwidget)
     right_layout:add(cpuwidgettext)
     right_layout:add(cpuwidgetgraph)
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(clockwidget)
 
     -- Now bring it all together (with the tasklist in the middle)
