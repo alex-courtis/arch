@@ -1,9 +1,8 @@
 ---------------------------
--- Default awesome theme --
+-- AMC awesome theme     --
 ---------------------------
 local awful = require("awful")
 local math = require("math")
---local io = require("io")
 
 theme = {}
 
@@ -13,7 +12,6 @@ dpi_default = 96
 _, _, dpi = awful.util.pread('xrdb -q'):find("Xft.dpi:%s+(%d+)")
 if tonumber(dpi) then
     font_size = math.floor(dpi * font_size / dpi_default + 0.5)
-    --io.stderr:write('dpi adjusted font_size="' .. font_size .. '"\n')
 end
 
 theme.font          = "hack " .. font_size
@@ -85,21 +83,7 @@ theme.titlebar_maximized_button_focus_inactive  = "/usr/share/awesome/themes/def
 theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
---theme.wallpaper = "/usr/share/awesome/themes/default/background.png"
-
--- default layout icons
---theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
---theme.layout_fairv = "/usr/share/awesome/themes/default/layouts/fairvw.png"
---theme.layout_floating  = "/usr/share/awesome/themes/default/layouts/floatingw.png"
---theme.layout_magnifier = "/usr/share/awesome/themes/default/layouts/magnifierw.png"
---theme.layout_max = "/usr/share/awesome/themes/default/layouts/maxw.png"
---theme.layout_fullscreen = "/usr/share/awesome/themes/default/layouts/fullscreenw.png"
---theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottomw.png"
---theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleftw.png"
---theme.layout_tile = "/usr/share/awesome/themes/default/layouts/tilew.png"
---theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
---theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
---theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
+theme.wallpaper = "/usr/share/awesome/themes/default/background.png"
 
 -- sky layout icons
 theme.layout_fairh           = "/usr/share/awesome/themes/sky/layouts/fairh.png"
@@ -114,20 +98,6 @@ theme.layout_tile            = "/usr/share/awesome/themes/sky/layouts/tile.png"
 theme.layout_tiletop         = "/usr/share/awesome/themes/sky/layouts/tiletop.png"
 theme.layout_spiral          = "/usr/share/awesome/themes/sky/layouts/spiral.png"
 theme.layout_dwindle         = "/usr/share/awesome/themes/sky/layouts/dwindle.png"
-
--- zenburn layout icons
---theme.layout_tile       = "/usr/share/awesome/themes/zenburn/layouts/tile.png"
---theme.layout_tileleft   = "/usr/share/awesome/themes/zenburn/layouts/tileleft.png"
---theme.layout_tilebottom = "/usr/share/awesome/themes/zenburn/layouts/tilebottom.png"
---theme.layout_tiletop    = "/usr/share/awesome/themes/zenburn/layouts/tiletop.png"
---theme.layout_fairv      = "/usr/share/awesome/themes/zenburn/layouts/fairv.png"
---theme.layout_fairh      = "/usr/share/awesome/themes/zenburn/layouts/fairh.png"
---theme.layout_spiral     = "/usr/share/awesome/themes/zenburn/layouts/spiral.png"
---theme.layout_dwindle    = "/usr/share/awesome/themes/zenburn/layouts/dwindle.png"
---theme.layout_max        = "/usr/share/awesome/themes/zenburn/layouts/max.png"
---theme.layout_fullscreen = "/usr/share/awesome/themes/zenburn/layouts/fullscreen.png"
---theme.layout_magnifier  = "/usr/share/awesome/themes/zenburn/layouts/magnifier.png"
---theme.layout_floating   = "/usr/share/awesome/themes/zenburn/layouts/floating.png"
 
 theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 
