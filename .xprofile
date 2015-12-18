@@ -4,6 +4,7 @@
 # applets/system tray apps
 [ -f /usr/bin/pasystray ] && /usr/bin/pasystray &
 [ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
+[ -f /usr/bin/cbatticon ] && /usr/bin/cbatticon &
 
 # disable touchpad while and 2 sec after typing
 [ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
