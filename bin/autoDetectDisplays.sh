@@ -7,6 +7,7 @@ LAPTOP_ID="eDP1"
 LAPTOP_OFF=false
 OFF_ARGS=""
 ON_ARGS=""
+PRIMARY="--primary"
 declare -A VOUTS
 eval VOUTS=$(${XRANDR}|awk 'BEGIN {printf("(")} /^\S.*connected/{printf("[%s]=%s ", $1, $2)} END{printf(")")}')
 declare -A POS
@@ -21,7 +22,8 @@ xrandr_params_for() {
   if [ "${2}" == 'connected' ]; then
     eval $(find_mode ${1})  #sets ${WIDTH} and ${HEIGHT}
     MODE="${WIDTH}x${HEIGHT}"
-    ON_ARGS="${ON_ARGS} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
+    ON_ARGS="${ON_ARGS} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]} ${PRIMARY}"
+    PRIMARY=""
     POS[X]=$((${POS[X]}+${WIDTH}))
     return 0
   else
@@ -32,7 +34,7 @@ xrandr_params_for() {
 
 # disconnected if the lid is closed, otherwise status returned by xrandr
 laptop_status() {
-  grep "closed" /proc/acpi/button/lid/LID/state > /dev/null 2>&1
+  grep "closed" /proc/acpi/button/lid/LID*/state > /dev/null 2>&1
   if [ ${?} -eq 0 ]; then
     echo "disconnected"
   else
