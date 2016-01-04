@@ -126,6 +126,7 @@ cpuwidgetgraph:set_background_color("#222222")
 vicious.register(cpuwidgetgraph, vicious.widgets.cpu, "$1", 1)
 
 -- swap usage widget
+vicious.cache(vicious.widgets.mem)
 swapwidget = wibox.widget.textbox()
 vicious.register(swapwidget, vicious.widgets.mem, " S:$5%", 1)
 
@@ -135,9 +136,7 @@ vicious.register(memwidget, vicious.widgets.mem, " M:$1%", 1)
 
 -- network usage widget
 netwidget = wibox.widget.textbox()
---vicious.register(netwidget, vicious.widgets.net, " N:${enp0s20u3u1u3 down_kb}KiB/s", 1)
---vicious.register(netwidget, vicious.widgets.net, " N:${wlp4s0 down_kb}KiB/s", 1)
-vicious.register(netwidget, vicious.widgets.net, " N:${wlp6s0 down_kb}KiB/s", 1)
+vicious.register(netwidget, vicious.widgets.net, " N:${first down_kb}KiB/s", 1)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
