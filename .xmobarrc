@@ -1,7 +1,7 @@
 Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
        , fgColor = "#ffffff"
-       , position = TopSize R 96 0
-       , commands = [ Run Date "%a %_d %b %Y  %H:%M:%S" "date" 10
+       , position = Top
+       , commands = [ Run Date "%a %d %b %Y %H:%M:%S" "date" 10
                     , Run Cpu ["-t","C <total>%",
                                "-L","10","-H","50",
                                "--normal","green","--high","red"] 10
@@ -11,12 +11,13 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run Swap ["-t","S <usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
-                    , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s",
+                    , Run DynNetwork ["-t","<dev> <rx> <tx>",
                                       "-L","524288","-H","1572864",
-                                      "--normal","green","--high","red"] 10
+                                      "--normal","green","--high","red",
+                                      "-S","True"] 10
                     , Run Battery ["-t", "B <leftvbar> <timeleft>",
                                    "-l", "red"] 10
                     , Run StdinReader
                     ]
-       , template = " %StdinReader%  }{  %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
+       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
        }

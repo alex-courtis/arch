@@ -40,27 +40,28 @@ myConfig = defaultConfig
   , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
 
   -- take screenshots
-  , ((noModMask,                xK_Print                ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f >/dev/null 2>&1 &'")
-  , ((myModMask,                xK_Print                ), spawn "           cd /tmp && scrot    -e 'xdg-open $f >/dev/null 2>&1 &'")
+  , ((noModMask,                xK_Print                ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f &'")
+  , ((myModMask,                xK_Print                ), spawn "           cd /tmp && scrot    -e 'xdg-open $f &'")
   ]
 
 
 -- status bar
 myBar = "xmobar"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
-  { ppCurrent   = xmobarColor "green" "" . wrap "<" ">"
-  , ppVisible   = xmobarColor "yellow" "" . wrap "(" ")"
-  , ppSep       = "   "
-  , ppTitle     = xmobarColor "green" ""
+  { ppSep       = "   "
+  , ppTitle     = xmobarColor "green" "" . shorten 80
   }
-toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b) -- need to get rid of this....
+toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 
 -- startup
 myStartupHook = do
 
+  -- ensure that we have a background set
+  spawn "xsetroot -solid black"
+
   -- ensure that we use a reasonable pointer with Xcursor.size set
-  spawn "xsetroot -cursor_name left_ptr > /dev/null 2>&1"
+  spawn "xsetroot -cursor_name left_ptr"
 
   -- bad old java apps need this
   setWMName "LG3D"
