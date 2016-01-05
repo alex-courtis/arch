@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig
 import Graphics.X11.ExtraTypes.XF86
 
@@ -68,7 +69,7 @@ myStartupHook = do
   
 
 -- layouts
-myLayout = Tall nmaster delta ratio ||| Full
+myLayout = smartBorders Full ||| Tall nmaster delta ratio
   where
      -- number of windows in the master pane
      nmaster = 1
