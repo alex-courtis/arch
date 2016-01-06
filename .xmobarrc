@@ -12,13 +12,21 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run Swap ["-t","S <usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
-                    , Run DynNetwork ["-t","<dev> <rx> <tx>",
+                    , Run DynNetwork ["-t","<dev> <rx>KB/s <tx>KB/s",
                                       "-L","524288","-H","1572864",
                                       "--normal","green","--high","red",
-                                      "-S","True"] 10
-                    , Run Battery ["-t", "B <leftvbar> <timeleft>",
-                                   "-l", "red"] 10
+                                      "-S","False"] 10
+                    , Run Battery ["-t", "<acstatus>"
+                                  , "-l", "red"
+                                  , "--", "-f", "ACAD/online"
+                                  -- discharging status
+                                  , "-o"   , "B <left>% (<timeleft>)"
+                                  -- AC "on" status
+                                  , "-O"   , "B <left>%"
+                                  -- charged status
+                                  , "-i"   , "B <left>%"
+                                  ] 50
                     , Run StdinReader
                     ]
-       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
+       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date%                  "
        }

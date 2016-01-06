@@ -62,4 +62,5 @@ done
 
 # turn everything on
 echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
+echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}" > /tmp/autoDetectDisplays.log
 ${XRANDR} ${OFF_ARGS} ${ON_ARGS}
