@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Renamed
 import XMonad.Util.EZConfig
 import Graphics.X11.ExtraTypes.XF86
 
@@ -69,13 +70,16 @@ myStartupHook = do
   
 
 -- layouts
-myLayout = smartBorders Full ||| Tall nmaster delta ratio
+myLayout = smartBorders $ Full ||| tall ||| wide
   where
+     tall    = Tall nmaster delta ratio
+     wide    = renamed [ Replace "Wide" ] $ Mirror tall
+
      -- number of windows in the master pane
      nmaster = 1
 
-     -- proportion of screen occupied by master pane
-     ratio   = 3/5 -- default 1/2
+     -- Default proportion of screen occupied by master pane
+     ratio   = 1/2
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100

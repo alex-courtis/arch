@@ -1,7 +1,7 @@
 Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
        , fgColor = "#ffffff"
        , bgColor = "gray20"
-       , position = Top
+       , position = TopW L 95
        , commands = [ Run Date "%a %d %b %Y %H:%M:%S" "date" 10
                     , Run Cpu ["-t","C <total>%",
                                "-L","10","-H","50",
@@ -28,5 +28,5 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                                   ] 50
                     , Run StdinReader
                     ]
-       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date%              "
+       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
        }

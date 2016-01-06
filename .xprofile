@@ -1,8 +1,8 @@
 # lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
 [ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
-# stalone tray top right
-[ -f /usr/bin/stalonetray ] && /usr/bin/stalonetray &
+# stalone tray top right, primary monitor
+[ -f /usr/bin/trayer ] && /usr/bin/trayer -l --edge top --align right --width 5 --widthtype percent --transparent true --alpha 0 --tint 0x333333 --monitor 0 &
 
 # applets/system tray apps
 [ -f /usr/bin/pasystray ] && /usr/bin/pasystray &
