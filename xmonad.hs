@@ -50,7 +50,7 @@ myConfig = defaultConfig
 myBar = "xmobar"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppSep       = "   "
-  , ppTitle     = xmobarColor "green" "" . shorten 80
+  , ppTitle     = xmobarColor "green" "" . shorten 100
   }
 toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
@@ -59,7 +59,7 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 myStartupHook = do
 
   -- ensure that we have a background set
-  spawn "xsetroot -solid black"
+  spawn "xsetroot -solid gray20"
 
   -- ensure that we use a reasonable pointer with Xcursor.size set
   spawn "xsetroot -cursor_name left_ptr"
