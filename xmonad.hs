@@ -35,8 +35,8 @@ myConfig = defaultConfig
   , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
 
   -- twiddle displays
-  , ((noModMask,                xF86XK_Display          ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh || xmonad --restart")
-  , ((myModMask .|. shiftMask,  xK_y                    ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh || xmonad --restart")
+  , ((noModMask,                xF86XK_Display          ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh ; xmonad --restart")
+  , ((myModMask .|. shiftMask,  xK_y                    ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh ; xmonad --restart")
 
   -- lock the screen
   , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
