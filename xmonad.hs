@@ -87,7 +87,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 
 -- misc
 myModMask   = mod4Mask -- Super_L
-myTerminal  = "gnome-terminal"
+myTerminal  = "urxvt"
 
 -- missing from Graphics.X11.ExtraTypes.XF86
 xF86XK_AudioMicMute     :: KeySym
