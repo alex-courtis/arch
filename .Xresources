@@ -3,8 +3,12 @@ Xcursor.size: 48
 URxvt*loginShell: true
 URxvt*font: xft:Hack:size=11
 URxvt*scrollBar: false
+URxvt*saveLines: 10000
 URxvt*pointerBlank: true
 URxvt*pointerBlankDelay: 3
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
 URxvt*secondaryScreen: true
 URxvt*secondaryScroll: true
 ! provided by rxvt-unicode-better-wheel-scrolling
