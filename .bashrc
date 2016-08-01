@@ -102,6 +102,9 @@ fi
 if [ -d ~/src/robbieg.bin ]; then
 	export PATH=~/src/robbieg.bin:${PATH}
 fi
+if [ -d ~/src/mftools ]; then
+	export PATH=~/src/mftools:${PATH}
+fi
 if [ -d ~/src/atlassian-scripts ]; then
 	export PATH=~/src/atlassian-scripts/bin:${PATH}
 	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
