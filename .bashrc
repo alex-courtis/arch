@@ -193,17 +193,6 @@ jdk8() {
 jdk8
 
 
-# launch intellij with dpi mode
-ijlo() {
-	sed -i s/hidpi=true/hidpi=false/g ~/.IntelliJIdea14/idea64.vmoptions
-	intellij-idea-14-ultimate
-}
-ijhi() {
-	sed -i s/hidpi=false/hidpi=true/g ~/.IntelliJIdea14/idea64.vmoptions
-	intellij-idea-14-ultimate
-}
-
-
 # perform an rsync with OSXish options
 if [ ${os} == "Darwin" ]; then
 	doRsync() {
@@ -233,18 +222,7 @@ if [ ${os} == "Darwin" ]; then
 	}
 fi
 
-if [ ${hostName} == "prince" -o ${hostName} == "gigantor" -o ${hostName} == "emperor" ]; then
-
-	# rsync to android via sshelper
-	alias syncMusicAndroid="rsync -e 'ssh -p 2222' -azv --no-perms --no-times --size-only --delete --delete-excluded --exclude-from='${HOME}/.home/serf-itunes-excludes.txt' ~/Music/iTunes/iTunes\ Media/Music/ serf:/sdcard/Music"
-fi
-
-if [ ${hostName} == "prince" -o ${hostName} == "gigantor" ]; then
-	
-	# rsync aliases
-	alias syncMusicEmperor="doRsync ~/Music/iTunes/ emperor:Music/iTunes"
-	
-elif [ ${hostName} == "emperor" ]; then
+if [ ${hostName} == "emperor" ]; then
 	
 	# rsync aliases
 	alias syncMusicEarl="doRsync ~/Music/iTunes/iTunes\ Media/Music/ earl:/mnt/vol1/music --exclude=\".AppleDB\""
@@ -253,46 +231,6 @@ elif [ ${hostName} == "emperor" ]; then
 	alias syncMusicMarquis="doRsync ~/Music/iTunes/ marquis:Music/iTunes"
 	alias syncPicturesEarl="doRsync ~/Pictures/ earl:/mnt/vol1/media/pictures --exclude=\"*Cache\""
 	alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
-	
-	# repack an avi with mencode
-	remuxAvi() {
-		if [[ ${#} -ne 1 || ! -f "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <avi file>\n" 1>&2
-		else
-			mencoder -quiet -ovc copy -oac copy -of avi -o remuxed.avi "${1}" && touch -r "${1}" remuxed.avi && mv remuxed.avi "${1}"
-		fi
-	}
-	
-	# create an iso image of a DVD directory
-	mkDvdIso() {
-		if [[ ${#} -ne 1 || ! -d "${1}" ]]; then
-			printf "Usage: ${FUNCNAME} <directory containing AUDIO_TS and VIDEO_TS>\n" 1>&2
-		else
-			cd "${1}"/..
-			local isoName=$(basename "${1}")
-			mkisofs -dvd-video -o "${isoName}.iso" -V "${isoName}" "${isoName}"
-			cd - > /dev/null 2>&1
-		fi
-	}
-	
-	# identify immediate subdirectories of /Volumes/Data/flac which do not exist under ~/Music/iTunes/iTunes\ Media/Music with the iTunes escape characters applied
-	missingAudioCDs() {
-		orgifs=$IFS
-		IFS=$'\n'
-		for d in $(ls "/Volumes/Data/flac/FLAC (level 5)"); do
-			iTunesName=${d}
-			iTunesName=${iTunesName/\?/_}
-			iTunesName=${iTunesName/\:/_}
-			iTunesName=${iTunesName/\(/\\\(}
-			iTunesName=${iTunesName/\)/\\\)}
-			find ~/Music/iTunes/iTunes\ Media/Music -type d -name "${iTunesName}" | grep "${iTunesName}" > /dev/null 2>&1
-			if [[ ${?} -ne 0 ]]; then
-				printf "%s\n" ${d}
-			fi
-		done
-		IFS=$orgifsz	
-		unset orgifs
-	}
 fi
 
 
