@@ -190,7 +190,7 @@ jdk8() {
 	export MAVEN_OPTS='-Xmx1024m'
 }
 
-jdk8
+jdk8 > /dev/null 2>&1
 
 
 
