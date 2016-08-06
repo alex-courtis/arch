@@ -193,8 +193,10 @@ jdk8() {
 jdk8
 
 
-# perform an rsync with OSXish options
-if [ ${os} == "Darwin" ]; then
+
+if [ ${hostName} == "EMPEROR" ]; then
+
+	# perform an rsync with OSXish options
 	doRsync() {
 		if [[ ${#} -lt 2 ]]; then
 			printf "Usage: ${FUNCNAME} <SRC> <DST> [<rsync args>]...\n" 1>&2
@@ -220,17 +222,14 @@ if [ ${os} == "Darwin" ]; then
 			rsync --recursive --delete --verbose --progress --times --omit-dir-times ${*} "${src}" "${dst}"
 		fi
 	}
-fi
-
-if [ ${hostName} == "emperor" ]; then
 	
 	# rsync aliases
-	alias syncMusicEarl="doRsync ~/Music/iTunes/iTunes\ Media/Music/ earl:/mnt/vol1/music --exclude=\".AppleDB\""
-	alias syncMusicGigantor="doRsync ~/Music/iTunes/ acourtis@gigantor:Music/iTunes"
-	alias syncMusicPrince="doRsync ~/Music/iTunes/ prince:Music/iTunes"
-	alias syncMusicMarquis="doRsync ~/Music/iTunes/ marquis:Music/iTunes"
-	alias syncPicturesEarl="doRsync ~/Pictures/ earl:/mnt/vol1/media/pictures --exclude=\"*Cache\""
-	alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
+	alias syncMusicEarl="doRsync /mnt/c/Users/alex/Music/iTunes/iTunes\ Media/Music/ earl:/mnt/vol1/music --exclude=\"desktop.ini\""
+	#alias syncMusicGigantor="doRsync ~/Music/iTunes/ acourtis@gigantor:Music/iTunes"
+	#alias syncMusicPrince="doRsync ~/Music/iTunes/ prince:Music/iTunes"
+	#alias syncMusicMarquis="doRsync ~/Music/iTunes/ marquis:Music/iTunes"
+	#alias syncPicturesEarl="doRsync ~/Pictures/ earl:/mnt/vol1/media/pictures --exclude=\"*Cache\""
+	#alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
 fi
 
 
