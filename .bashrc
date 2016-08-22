@@ -102,12 +102,15 @@ fi
 if [ -d ~/src/robbieg.bin ]; then
 	export PATH=~/src/robbieg.bin:${PATH}
 fi
-if [ -d ~/src/mftools ]; then
-	export PATH=~/src/mftools:${PATH}
+if [ -d ~/src/branchinator-script ]; then
+	export PATH=~/src/branchinator-script:${PATH}
 fi
 if [ -d ~/src/atlassian-scripts ]; then
 	export PATH=~/src/atlassian-scripts/bin:${PATH}
 	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
+fi
+if [ -d ~/src/mftools ]; then
+	export PATH=~/src/mftools:${PATH}
 fi
 if [ -d ~/Library/Haskell/bin ]; then
 	export PATH=~/Library/Haskell/bin:${PATH}
