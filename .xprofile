@@ -2,7 +2,7 @@
 [ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
 # trayer top right 5%, primary monitor, lowered
-[ -f /usr/bin/trayer ] && /usr/bin/trayer -l --edge top --align right --width 5 --widthtype percent --heighttype request --transparent true --alpha 0 --tint 0x333333 --monitor 0 &
+[ -f /usr/bin/trayer ] && /usr/bin/trayer --edge top --align right --width 5 --widthtype percent --heighttype request --transparent true --alpha 0 --tint 0x333333 --monitor 0 &
 
 # applets/system tray apps
 [ -f /usr/bin/pasystray ] && /usr/bin/pasystray &
