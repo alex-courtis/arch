@@ -35,6 +35,7 @@ alias lla="ll -a"
 alias grep="grep -E --color"
 alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 alias yaourt="yaourt --aur --noconfirm"
+alias ij="intellij-idea-ultimate-edition pom.xml"
 
 unset lsArgs
 
