@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Util.EZConfig
@@ -17,6 +18,7 @@ myConfig = def
   , terminal        = myTerminal
   , startupHook     = myStartupHook
   , layoutHook      = myLayout
+  , handleEventHook = handleEventHook def <+> fullscreenEventHook
   } `additionalKeys`
 
   -- launch dmenu
