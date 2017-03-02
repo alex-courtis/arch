@@ -12,7 +12,7 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 
 -- general configuration with keyboard customisation
-myConfig = defaultConfig
+myConfig = def
   { modMask         = myModMask
   , terminal        = myTerminal
   , startupHook     = myStartupHook
@@ -88,7 +88,3 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 -- misc
 myModMask   = mod4Mask -- Super_L
 myTerminal  = "urxvt"
-
--- missing from Graphics.X11.ExtraTypes.XF86
-xF86XK_AudioMicMute     :: KeySym
-xF86XK_AudioMicMute     = 0x1008ffb2
