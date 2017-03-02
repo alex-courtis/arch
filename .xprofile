@@ -10,3 +10,6 @@
 
 # disable touchpad while and 2 sec after typing
 [ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
+
+# start steam minimised
+[ -f /usr/bin/steam ] && /usr/bin/steam -silent &
