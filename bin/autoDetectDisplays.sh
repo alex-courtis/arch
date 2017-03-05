@@ -21,7 +21,7 @@ xrandr_params_for() {
   if [ "${2}" == 'connected' ]; then
     eval $(find_mode ${1})  #sets ${WIDTH} and ${HEIGHT}
     MODE="${WIDTH}x${HEIGHT}"
-    ON_ARGS="${ON_ARGS} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]} ${PRIMARY}"
+    ON_ARGS="${ON_ARGS} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]} --rate 200 ${PRIMARY}"
     PRIMARY=""
     POS[X]=$((${POS[X]}+${WIDTH}))
     return 0
