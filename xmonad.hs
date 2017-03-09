@@ -22,9 +22,9 @@ myConfig = def
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn "dmenu_run                           -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'")
+  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ dmenuArgs))
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn "j4-dmenu-desktop --dmenu=\"dmenu -i -b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'\" --term=\"urxvt\"")
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\""))
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
@@ -36,9 +36,9 @@ myConfig = def
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
   , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
 
-  -- twiddle displays
-  , ((noModMask,                xF86XK_Display          ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh ; xmonad --restart")
-  , ((myModMask .|. shiftMask,  xK_y                    ), spawn "~/bin/autoDetectDisplays.sh && /etc/X11/xinit/xinitrc.d/z-laptop-dpi.sh ; xmonad --restart")
+  -- twiddle displays, restarting xmonad
+  , ((noModMask,                xF86XK_Display          ), spawn twiddleDisplaysCmd)
+  , ((myModMask .|. shiftMask,  xK_y                    ), spawn twiddleDisplaysCmd)
 
   -- lock the screen
   , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
@@ -49,8 +49,8 @@ myConfig = def
   ]
 
 
--- status bar
-myBar = "xmobar"
+-- status bar xmobar on screen 0 (see ~/.xmobarrc) top left 95%
+myBar = "xmobar -x 0"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppSep       = "   "
   , ppTitle     = xmobarColor "green" "" . shorten 100
@@ -61,15 +61,8 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 -- startup
 myStartupHook = do
 
-  -- ensure that we have a background set
-  spawn "xsetroot -solid gray20"
-
-  -- ensure that we use a reasonable pointer with Xcursor.size set
-  spawn "xsetroot -cursor_name left_ptr"
-
-  -- bad old java apps need this
+  -- bad old java apps need this WM hint
   setWMName "LG3D"
-  
 
 -- layouts
 myLayout = smartBorders $ Full ||| tall ||| wide
@@ -87,6 +80,14 @@ myLayout = smartBorders $ Full ||| tall ||| wide
      delta   = 3/100
 
 
--- misc
-myModMask   = mod4Mask -- Super_L
-myTerminal  = "urxvt"
+-- update monitor outputs, reset trayer, then reset xmonad
+twiddleDisplaysCmd = "~/bin/setupDisplays.sh && ~/bin/trayer.sh && xmonad --restart"
+
+-- common dmenu args
+dmenuArgs = "-b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'"
+
+-- mod key of choice - super
+myModMask = mod4Mask -- Super_L
+
+-- terminal of choice
+myTerminal = "urxvt"
