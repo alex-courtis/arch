@@ -13,8 +13,8 @@ fi
 # setup displays
 [ -f ~/bin/autoDetectDisplays.sh ] && ~/bin/autoDetectDisplays.sh
 
-# trayer top right, first monitor
-[ -f /usr/bin/trayer ] && /usr/bin/trayer --edge top --align right --widthtype request --heighttype request --transparent true --alpha 0 --tint 0x333333 --monitor 0 &
+# trayer top left
+[ -f ~/bin/trayer.sh ] && ~/bin/trayer.sh
 
 # lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
 [ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
@@ -27,7 +27,7 @@ fi
 [ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
 
 # clear any xmonad saved state
-rm .xmonad/xmonad.state
+rm -f .xmonad/xmonad.state
 
 # start xmonad
 xmonad &
