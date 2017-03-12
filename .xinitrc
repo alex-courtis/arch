@@ -20,7 +20,6 @@ fi
 [ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
 # applets/system tray apps
-[ -f /usr/bin/pasystray ] && /usr/bin/pasystray &
 [ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
 
 # disable touchpad while and 2 sec after typing

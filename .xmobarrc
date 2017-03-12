@@ -26,7 +26,8 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                                   -- charged status
                                   , "-i"   , "B <left>%"
                                   ] 50
+                    , Run PipeReader "${XDG_RUNTIME_DIR}/xmobarPulseVolume" "volume"
                     , Run StdinReader
                     ]
-       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %date% "
+       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   <action=`pavucontrol` button=1>%volume%</action>   %date%"
        }

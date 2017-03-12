@@ -27,10 +27,10 @@ myConfig = def
   , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\""))
 
   -- volume control
-  , ((noModMask,                xF86XK_AudioMute        ), spawn "pulseaudio-ctl mute")
-  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "pulseaudio-ctl down")
-  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "pulseaudio-ctl up")
-  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "pulseaudio-ctl mute-input")
+  , ((noModMask,                xF86XK_AudioMute        ), spawn "~/bin/xmobarPulseVolume.sh mute")
+  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "~/bin/xmobarPulseVolume.sh down")
+  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "~/bin/xmobarPulseVolume.sh up")
+  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "~/bin/xmobarPulseVolume.sh mute-input")
 
   -- brightness controls
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
@@ -60,6 +60,9 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 -- startup
 myStartupHook = do
+
+  -- write the volume status, opening the named pipe for read by xmobar
+  spawn "~/bin/xmobarPulseVolume.sh"
 
   -- bad old java apps need this WM hint
   setWMName "LG3D"
