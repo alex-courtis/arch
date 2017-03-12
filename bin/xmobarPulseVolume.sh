@@ -48,7 +48,7 @@ if [ ${OUT_MUTE} ]; then
 else
     OUTPUT+=" ${OUT_VOL}%"
 fi
-OUTPUT+=" Vi"
+OUTPUT+="   Vi"
 if [ ${IN_MUTE} ]; then
     OUTPUT+=" off"
 else
