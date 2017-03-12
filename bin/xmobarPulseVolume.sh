@@ -54,4 +54,4 @@ if [ ${IN_MUTE} ]; then
 else
     OUTPUT+=" on"
 fi
-echo "<action=\`pavucontrol\` button=1>${OUTPUT}</action>" > ${PIPE}
+echo "${OUTPUT}" > ${PIPE}
