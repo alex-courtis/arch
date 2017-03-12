@@ -21,8 +21,8 @@ CUR_PA_STATUS=($(${PA_CTL} full-status))
 # unmute if changing volume and we are muted
 if [ ${CUR_OUT_MUTE} ]; then
     if [ "${ACTION}" == "up" -o "${ACTION}" == "down" ]; then
-        echo "turning on Vo"
         ${PA_CTL} mute
+        unset ACTION
     fi
 fi
 
