@@ -42,16 +42,13 @@ OUT_VOL=${PA_STATUS[0]}
 [ ${PA_STATUS[2]} == "yes" ] && IN_MUTE="true"
 
 # output for xmobar
-OUTPUT="Vo"
+OUTPUT="V"
 if [ ${OUT_MUTE} ]; then
-    OUTPUT+=" off"
+    OUTPUT+=" Off"
 else
     OUTPUT+=" ${OUT_VOL}%"
 fi
-OUTPUT+="   Vi"
-if [ ${IN_MUTE} ]; then
-    OUTPUT+=" off"
-else
-    OUTPUT+=" on"
+if [ ! ${IN_MUTE} ]; then
+    OUTPUT+="   <fc=#FF0000>Mic On</fc>"
 fi
 echo "${OUTPUT}" > ${PIPE}
