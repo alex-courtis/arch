@@ -50,5 +50,4 @@ for VOUT in ${!VOUTS[*]}; do
 done
 
 # turn everything on
-echo "${XRANDR} ${OFF_ARGS} ${ON_ARGS}"
 ${XRANDR} ${OFF_ARGS} ${ON_ARGS}

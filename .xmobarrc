@@ -3,19 +3,19 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
        , bgColor = "gray20"
        , position = Top
        , commands = [ Run Date "%a %d %b %Y %H:%M:%S" "date" 10
-                    , Run Cpu ["-t","C <total>%",
-                               "-L","10","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","M <usedratio>%",
-                                  "-L","40","-H","70",
-                                  "--normal","green","--high","red"] 10
+                    , Run Cpu ["-t","C <total>%"
+                               , "-L","10","-H","50"
+                               , "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","M <usedratio>%"
+                                  , "-L","40","-H","70"
+                                  , "--normal","green","--high","red"] 10
                     , Run Swap ["-t","S <usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
-                    , Run DynNetwork ["-t","<dev> <rx>KB/s <tx>KB/s",
-                                      "-L","524288","-H","1572864",
-                                      "--normal","green","--high","red",
-                                      "-S","False"] 10
+                    , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s"
+                                      , "-L","524288","-H","1572864"
+                                      , "--normal", "green", "--high", "red"
+                                      , "-S", "false"] 10
                     , Run Battery ["-t", "<acstatus>"
                                   , "-l", "red"
                                   , "--", "-f", "ACAD/online"
@@ -29,5 +29,6 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run PipeReader "${XDG_RUNTIME_DIR}/xmobarPulseVolume" "volume"
                     , Run StdinReader
                     ]
-       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %volume%   %date%     "
+       -- left button invokes and kills systray
+       , template = " %StdinReader% }{ <action=`systray.sh > /dev/null 2>&1` button=1>%dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %volume%   %date%</action> "
        }
