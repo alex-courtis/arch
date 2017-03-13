@@ -8,7 +8,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # ensure that we have a background set and a reasonable pointer
-[ $(type -t xsetroot) ] && xsetroot -solid gray40 -cursor_name left_ptr
+[ $(type -t xsetroot) ] && xsetroot -solid gray30 -cursor_name left_ptr
 
 # setup displays
 [ $(type -t autoDetectDisplays.sh) ] && autoDetectDisplays.sh
@@ -16,8 +16,8 @@ fi
 # trayer top left
 [ $(type -t trayer.sh) ] && trayer.sh
 
-# lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
-[ $(type -t xautolock) ] && [ $(type -t i3lock) ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
+# i3lock (grey30 background) is the screen "locker" after 5 mins and suspend as the "killer" 10 mins after that
+[ $(type -t xautolock) ] && [ $(type -t i3lock) ] && xautolock -locker 'i3lock -e -c 4D4D4D' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
 # applets/system tray apps
 [ $(type -t nm-applet) ] && nm-applet &
