@@ -8,7 +8,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # ensure that we have a background set and a reasonable pointer
-[ $(type -t xsetroot) ] && xsetroot -solid gray20 -cursor_name left_ptr
+[ $(type -t xsetroot) ] && xsetroot -solid gray40 -cursor_name left_ptr
 
 # setup displays
 [ $(type -t autoDetectDisplays.sh) ] && autoDetectDisplays.sh
@@ -24,9 +24,6 @@ fi
 
 # disable touchpad while and 2 sec after typing
 [ $(type -t syndaemon) ] && syndaemon -i 0.5 -d
-
-# open up the volume status pipe
-[ $(type -t xmobarPulseVolume.sh) ] && xmobarPulseVolume.sh
 
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state

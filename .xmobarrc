@@ -30,5 +30,5 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run StdinReader
                     ]
        --, template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   <action=`pavucontrol` button=3>%volume%</action>   %date%"
-       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %volume%   %date%"
+       , template = " %StdinReader% }{ %dynnetwork%   %cpu%   %memory%   %swap%   %battery%   %volume%   %date% "
        }

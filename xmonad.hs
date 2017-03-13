@@ -61,6 +61,9 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 -- startup
 myStartupHook = do
 
+  -- write to the named pipe for xmobar volume info consumption
+  spawn "xmobarPulseVolume.sh"
+
   -- bad old java apps need this WM hint
   setWMName "LG3D"
 
