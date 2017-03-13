@@ -2,6 +2,7 @@
 *iml
 *ipr
 .DS_Store
-bin/idea*
-bin/mvn*
-bin/clion*
+bin/idea
+bin/clion
+bin/mvn
+bin/volt
