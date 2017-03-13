@@ -3,9 +3,10 @@
 # passes up, down, mute, mute-input to pulseaudio-ctl
 # unmutes prior to up, down
 # outputs status to named pipe ${XDG_RUNTIME_DIR}/xmobarPulseVolume, for display by xmobar or similar
+# left click updates, right click opens pavucontrol
 
-PA_CTL="/usr/bin/pulseaudio-ctl"
-[ ! -f ${PA_CTL} ] && exit 1
+PA_CTL="pulseaudio-ctl"
+[ ! $(type -t ${PA_CTL}) ] && exit 1
 
 # setup a named pipe
 PIPE=${XDG_RUNTIME_DIR}/xmobarPulseVolume
@@ -51,4 +52,4 @@ fi
 if [ ! ${IN_MUTE} ]; then
     OUTPUT+="   <fc=#FF0000>Mic On</fc>"
 fi
-echo "${OUTPUT}" > ${PIPE}
+echo "<action=\`~/bin/xmobarPulseVolume.sh\` button=1><action=\`pavucontrol\` button=3>${OUTPUT}</action></action>" > ${PIPE}

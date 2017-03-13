@@ -27,10 +27,10 @@ myConfig = def
   , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\""))
 
   -- volume control
-  , ((noModMask,                xF86XK_AudioMute        ), spawn "~/bin/xmobarPulseVolume.sh mute")
-  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "~/bin/xmobarPulseVolume.sh down")
-  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "~/bin/xmobarPulseVolume.sh up")
-  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "~/bin/xmobarPulseVolume.sh mute-input")
+  , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume.sh mute")
+  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "xmobarPulseVolume.sh down")
+  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "xmobarPulseVolume.sh up")
+  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "xmobarPulseVolume.sh mute-input")
 
   -- brightness controls
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
@@ -61,9 +61,6 @@ toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 -- startup
 myStartupHook = do
 
-  -- write the volume status, opening the named pipe for read by xmobar
-  spawn "~/bin/xmobarPulseVolume.sh"
-
   -- bad old java apps need this WM hint
   setWMName "LG3D"
 
@@ -84,7 +81,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 
 
 -- update monitor outputs, reset trayer, then reset xmonad
-twiddleDisplaysCmd = "~/bin/autoDetectDisplays.sh && ~/bin/trayer.sh && xmonad --restart"
+twiddleDisplaysCmd = "autoDetectDisplays.sh && trayer.sh && xmonad --restart"
 
 -- common dmenu args
 dmenuArgs = "-b -nf '#000000' -nb '#aaaaaa' -fn 'Hack-11:bold'"

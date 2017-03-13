@@ -17,7 +17,7 @@ URxvt*secondaryWheel: true
 URxvt*iso14755: false
 
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.url-launcher: xdg-open
 URxvt.matcher.button: 1
 
 ! white text on black background

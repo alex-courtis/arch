@@ -7,12 +7,6 @@ os=$(uname)
 hostName=$(hostname)
 
 
-# user's bin in path
-if [ -d ~/bin ]; then
-	export PATH=~/bin:${PATH}
-fi
-
-
 # sensible editor defaults
 set -o vi
 export EDITOR="vi"

@@ -8,28 +8,36 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # ensure that we have a background set and a reasonable pointer
-[ -f /usr/bin/xsetroot ] && xsetroot -solid gray20 -cursor_name left_ptr
+[ $(type -t xsetroot) ] && xsetroot -solid gray20 -cursor_name left_ptr
 
 # setup displays
-[ -f ~/bin/autoDetectDisplays.sh ] && ~/bin/autoDetectDisplays.sh
+[ $(type -t autoDetectDisplays.sh) ] && autoDetectDisplays.sh
 
 # trayer top left
-[ -f ~/bin/trayer.sh ] && ~/bin/trayer.sh
+[ $(type -t trayer.sh) ] && trayer.sh
 
 # lock the screen after 5 mins, using i3lock as the "locker" after 5 mins and suspend as the "killer" after 10 mins after that
-[ -f /usr/bin/xautolock ] && [ -f /usr/bin/i3lock ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
+[ $(type -t xautolock) ] && [ $(type -t i3lock) ] && xautolock -locker 'i3lock -e -c 888888' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
 # applets/system tray apps
-[ -f /usr/bin/nm-applet ] && /usr/bin/nm-applet &
+[ $(type -t nm-applet) ] && nm-applet &
 
 # disable touchpad while and 2 sec after typing
-[ -f /usr/bin/syndaemon ] && /usr/bin/syndaemon -i 0.5 -d
+[ $(type -t syndaemon) ] && syndaemon -i 0.5 -d
+
+# open up the volume status pipe
+[ $(type -t xmobarPulseVolume.sh) ] && xmobarPulseVolume.sh
 
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
 
-# start xmonad
-xmonad &
+if [ $(type -t xmonad) ]; then
+    # start xmonad
+    xmonad &
 
-# wait for xmonad to stop
-wait $!
+    # wait for xmonad to stop
+    wait $!
+else
+    # start a terminal
+    urxvt
+fi
