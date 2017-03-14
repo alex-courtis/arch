@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# links all files in SYSTEM directories of ALEX to their equivalents on the file system
-# must be run as root
+# links all files in SYSTEM directories to their appropriate place under the filesystem root
+# must be run as root from this directory
 SYSTEM="etc"
-ALEX=/opt/alex
+ALEX_ROOT=$(pwd)
 
-cd ${ALEX}
 for f in $(find ${SYSTEM} -type f); do 
-    ln -fsv ${ALEX}/${f} /$(dirname ${f})
+    ln -fsv ${ALEX_ROOT}/${f} /${f}
 done

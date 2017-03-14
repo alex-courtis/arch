@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# links all files in ALEX_HOME directory to their equivalents on the file system relative to user home
-# must be run as root
-ALEX_HOME=/opt/alex/home
+# links all files in home directory to their appropriate place under user HOME
+# must be run as user from this directory
+ALEX_HOME=$(pwd)/home
 
-cd ${ALEX_HOME}
-for f in $(find . -type f); do 
-    ln -fsv ${ALEX_HOME}/${f} ${HOME}/$(dirname ${f})
+for f in $(find ${ALEX_HOME} -type f); do
+    ln -fsv ${f} ${f/${ALEX_HOME}/${HOME}}
 done
