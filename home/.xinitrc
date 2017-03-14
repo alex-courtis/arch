@@ -39,4 +39,4 @@ else
 fi
 
 # stop touchpad gesture recogniser
-[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup stop > /dev/null 2>&1 &
+[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup stop > /dev/null 2>&1
