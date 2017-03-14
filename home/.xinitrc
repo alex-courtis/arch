@@ -22,6 +22,11 @@ fi
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
 
+# temporary dpi hardcoded overrides
+if [ $(hostname) = "duke" -o $(hostname) = "gigantor" ]; then
+    echo "Xft.dpi: 168" | xrdb -merge
+fi
+
 if [ $(type -t xmonad) ]; then
     # start xmonad
     xmonad &
