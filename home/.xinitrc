@@ -17,7 +17,7 @@ fi
 [ $(type -t xautolock) ] && [ $(type -t i3lock) ] && xautolock -locker 'i3lock -e -c 4D4D4D' -time 5 -killer 'systemctl suspend' -killtime 10 &
 
 # start touchpad gesture recogniser
-[ $(type -t libinput-gestures) ] && libinput-gestures &
+[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup start > /dev/null 2>&1
 
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
@@ -37,3 +37,6 @@ else
     # start a terminal
     urxvt
 fi
+
+# stop touchpad gesture recogniser
+[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup stop > /dev/null 2>&1 &
