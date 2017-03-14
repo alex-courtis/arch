@@ -11,7 +11,8 @@ fi
 [ $(type -t nm-applet) ] && nm-applet &
 
 # start trayer in foreground, centred at the top over xmobar
-trayer --edge top --align center --widthtype request --heighttype request --transparent true --alpha 0 --tint 0x333333 --monitor 0
+# default height is 26; use double that, multiplied by the DPI/96 and we are talking
+trayer --edge top --align center --widthtype request --heighttype pixel --height 52 --transparent false --monitor 0
 
 # kill applets
 killall nm-applet
