@@ -87,7 +87,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 twiddleDisplaysCmd = "autoDetectDisplays.sh"
 
 -- common dmenu args
-dmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'black' -fn 'Hack-11:bold'"
+dmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-11:bold'"
 
 -- mod key of choice - super
 myModMask = mod4Mask -- Super_L
