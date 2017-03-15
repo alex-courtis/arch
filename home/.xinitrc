@@ -24,7 +24,7 @@ rm -f .xmonad/xmonad.state
 
 # start up nm-applet, for use by networkmanager_dmenu
 # it won't be shown without a tray however is necessary to spawn windows
-[ $(type -t nm-applet) ] && nm-applet &
+[ $(type -t nm-applet) ] && nm-applet > /dev/null 2>&1 &
 
 # temporary dpi hardcoded overrides
 if [ $(hostname) = "duke" -o $(hostname) = "gigantor" ]; then
