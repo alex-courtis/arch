@@ -22,6 +22,10 @@ fi
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
 
+# start up nm-applet, for use by networkmanager_dmenu
+# it won't be shown without a tray however is necessary to spawn windows
+[ $(type -t nm-applet) ] && nm-applet &
+
 # temporary dpi hardcoded overrides
 if [ $(hostname) = "duke" -o $(hostname) = "gigantor" ]; then
     echo "Xft.dpi: 168" | xrdb -merge
