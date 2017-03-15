@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # kill trayer if it is running
-killall trayer
+killall trayer >/dev/null 2>&1
 if [ ${?} -eq 0 ]; then
     exit
 fi

@@ -22,9 +22,9 @@ myConfig = def
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ dmenuArgs))
+  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ dmenuArgs ++ " >/dev/null 2>&1"))
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\""))
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\"" ++ " >/dev/null 2>&1"))
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume.sh mute")
