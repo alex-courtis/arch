@@ -3,7 +3,7 @@
 # passes up, down, mute, mute-input to pulseaudio-ctl
 # unmutes instead of up or down, if muted
 # outputs status to named pipe ${XDG_RUNTIME_DIR}/xmobarPulseVolume, for display by xmobar
-# attempts to start ${PA_USER_SERVICE} once, if ${PA_CTL} can't get a reasonable response
+# attempts to start ${PA_USER_SERVICE} once in a blocking manner, if ${PA_CTL} can't get a reasonable response
 
 PA_CTL="pulseaudio-ctl"
 PA_USER_SERVICE="pulseaudio.service"
