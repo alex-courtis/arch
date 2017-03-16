@@ -19,17 +19,17 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run Battery ["-t", "<acstatus>"
                                   , "-l", "red"
                                   , "--", "-f", "ACAD/online"
-                                  -- discharging status
-                                  , "-o"   , "B <left>% (<timeleft>)"
-                                  -- AC "on" status
-                                  , "-O"   , "B <left>%"
+                                  -- battery status
+                                  , "-o"   , "   B <left>% (<timeleft>)"
+                                  -- AC (dis)charging status
+                                  , "-O"   , "   B <left>%"
                                   -- charged status
-                                  , "-i"   , "B <left>%"
+                                  , "-i"   , ""
                                   ] 50
                     , Run PipeReader "${XDG_RUNTIME_DIR}/xmobarPulseVolume" "volume"
                     , Run StdinReader
                     ]
        -- left button on network, cpu, memory, swap, battery invokes networkmanager_dmenu
        -- left button on volume invokes pavucontrol, then updates ${XDG_RUNTIME_DIR}/xmobarPulseVolume on exit
-       , template = " %StdinReader% }{ <action=`networkmanager_dmenu` button=1>%dynnetwork%   %cpu%   %memory%   %swap%   %battery%</action>   <action=`pavucontrol && xmobarPulseVolume.sh` button=1>%volume%</action>   %date% "
+       , template = " %StdinReader% }{ <action=`networkmanager_dmenu` button=1>%dynnetwork%   %cpu%   %memory%   %swap%%battery%</action>   <action=`pavucontrol && xmobarPulseVolume.sh` button=1>%volume%</action>   %date% "
        }
