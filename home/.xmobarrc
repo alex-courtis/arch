@@ -19,11 +19,11 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run Battery ["-t", "<acstatus>"
                                   , "-l", "red"
                                   , "--", "-f", "ACAD/online"
-                                  -- battery status
+                                  -- battery only status
                                   , "-o"   , "   B <left>% (<timeleft>)"
                                   -- AC (dis)charging status
                                   , "-O"   , "   B <left>%"
-                                  -- charged status
+                                  -- AC charged status
                                   , "-i"   , ""
                                   ] 50
                     , Run PipeReader "${XDG_RUNTIME_DIR}/xmobarPulseVolume" "volume"
