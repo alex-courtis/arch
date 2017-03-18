@@ -262,6 +262,20 @@ xorg-xbacklight
 xorg-xrandr
 xorg-xrdb
 
+## Video Driver
+
+### Intel Only (lightweight laptop)
+
+`pacman -S xf86-video-intel`
+
+### Nvidia Only (desktop)
+
+`pacman -S nvidia`
+
+### Nvidia + Intel (stupid laptop)
+
+TODO
+
 ## Install System Configuration
 
 Execute `linkSystem.sh` as root. Any failures due to missing directories should be manually resolved by installing the package or manually creating the directory.
