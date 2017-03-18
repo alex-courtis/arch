@@ -80,6 +80,111 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `pacstrap -i /mnt base base-devel`
 
-`genfstab -U -p /mnt >> /mnt/etc/fstab`
+`genfstab -U /mnt >> /mnt/etc/fstab`
 
 `arch-chroot /mnt /bin/bash`
+
+## Swap File
+
+Create a swap file the same size as physical memory:
+
+```
+fallocate -l 8G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
+```
+
+## Locale And Time
+
+Uncomment your desired locale in `/etc/locale.gen`
+
+`locale-gen`
+
+`echo LANG=en_AU.UTF-8 > /etc/locale.conf`
+
+`ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime`
+
+`hwclock --systohc --utc`
+
+## Install And Enable Basic Networking
+
+```
+pacman -S openssh networkmanager
+systemctl enable sshd
+systemctl enable NetworkManager
+```
+
+## Users
+
+Secure root first with `passwd`
+
+Add a user
+```
+useradd -m -g users -G wheel -c "Alexander Courtis" -s /bin/bash alex
+passwd alex
+```
+
+`pacman -S vim`
+
+Invoke `visudo` and uncomment the following:
+
+```
+%wheel ALL=(ALL) ALL
+```
+
+## systemd boot loader
+
+`bootctl --path=/boot install`
+
+Edit `/boot/loader/loader.conf` and change its contents to:
+
+```
+default arch
+```
+
+Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself.
+
+`blkid -s UUID -o value /dev/sda2`
+
+Add `/boot/loader/entries/arch.conf`:
+```
+title          Arch Linux
+linux          /vmlinuz-linux
+initrd         /initramfs-linux.img
+options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
+```
+
+## Boot Image
+
+Update the boot image configuration: `/etc/mkinitcpio.conf`
+
+If you have an Intel i915 display, add it:
+
+```
+MODULES="i915"
+```
+
+Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase:
+
+```
+HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck"
+```
+
+Regenerate the boot image:
+
+`mkinitcpio -g /boot/initramfs-linux.img`
+
+If the kernel you booted with is a different version to the kernel you just installed, you can achieve the regeneration by reinstalling the later kernel `pacman -S linux`
+
+## Reboot
+
+Install some useful packages prior to reboot, to get you going:
+
+```
+pacman -S bash-completion git wget pkgfile
+pkgfile --update
+```
+
+Exit chroot and reboot
