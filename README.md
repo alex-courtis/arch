@@ -216,6 +216,8 @@ Link the CLI profile bits:
 
 I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
 
+Remove netctl: `pacman -R netctl`
+
 Install desired packages.
 
 Some packages I like, in no particular order.
