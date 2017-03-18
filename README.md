@@ -266,4 +266,4 @@ Execute `linkSystem.sh` as root. Any failures due to missing directories should 
 
 Reboot
 
-Everything should be ready to go... check `dmesg --human` for any oddities.
+Everything should be ready to go... check `dmesg --human` and `~/.xsession-errors` for any oddities.
