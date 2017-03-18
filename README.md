@@ -271,14 +271,14 @@ xmobar
 xmonad
 xmonad-contrib
 xorg-server
-xorg-xbacklight
 xorg-xrandr
 xorg-xrdb
 
-Touchpad systems like:
+Laptops like:
 
 libinput-gestures
 xf86-input-libinput
+xorg-xbacklight
 
 ## Install System Configuration
 
