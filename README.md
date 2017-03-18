@@ -247,6 +247,7 @@ ttf-hack
 xautolock
 xdm-archlinux
 xf86-input-libinput
+xf86-video-intel
 xmlstarlet
 xmobar
 xmonad
