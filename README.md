@@ -14,6 +14,10 @@ You may need to create some directories if they don't exist or the package has n
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
+## Wireless Connectivity
+
+You can use `wifi-menu` to connect to a secured network, temporarily.
+
 ## Start SSHD for easier installation from a remote system
 
 ```
@@ -136,6 +140,8 @@ Invoke `visudo` and uncomment the following:
 
 ## systemd boot loader
 
+Install Intel microcode updater: `pacman -S intel-ucode`
+
 `bootctl --path=/boot install`
 
 Edit `/boot/loader/loader.conf` and change its contents to:
@@ -152,6 +158,7 @@ Add `/boot/loader/entries/arch.conf`:
 ```
 title          Arch Linux
 linux          /vmlinuz-linux
+initrd         /intel-ucode.img
 initrd         /initramfs-linux.img
 options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
@@ -178,13 +185,73 @@ Regenerate the boot image:
 
 If the kernel you booted with is a different version to the kernel you just installed, you can achieve the regeneration by reinstalling the later kernel `pacman -S linux`
 
+TODO! intel-ucode
+
 ## Reboot
 
 Install some useful packages prior to reboot, to get you going:
 
 ```
-pacman -S bash-completion git wget pkgfile
+pacman -S bash-completion dialog git wget pkgfile
 pkgfile --update
 ```
 
 Exit chroot and reboot
+
+## Set Hostname
+
+Use `nmtui` to setup the network connection.
+
+Apply the hostname:
+
+`hostnamectl set-hostname duke`
+
+## Setup CLI User Environment
+
+Install your public/private keys under `~/.ssh`
+
+Clone this repo to, say, `/opt/alex`, ensuring the ownership of that directory and its children is the user.
+
+Link the CLI profile bits:
+
+`./linkHome.sh`
+
+Don't worry about the link failures - we'll install those package later and re-run.
+
+## Install Packages
+
+I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
+
+Install desired packages.
+
+Some packages I like, in no particular order.
+
+[ttf-ms-win10](https://aur.archlinux.org/packages/ttf-ms-win10/) - needs manual install
+google-chrome
+j4-dmenu-desktop
+jdk
+libinput-gestures
+networkmanager-dmenu-git
+rxvt-unicode-better-wheel-scrolling
+arandr
+calc
+dmenu
+i3lock
+network-manager-applet
+networkmanager-openconnect
+pavucontrol
+pinta
+pwgen
+scrot
+the_silver_searcher
+ttf-hack
+xautolock
+xdm-archlinux
+xf86-input-libinput
+xmlstarlet
+xmobar
+xmonad
+xmonad-contrib
+xorg-xbacklight
+xorg-xrandr
+xorg-xrdb
