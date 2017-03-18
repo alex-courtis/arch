@@ -277,7 +277,7 @@ Everything should be ready to go... check `dmesg --human` and `~/.xsession-error
 
 For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
 
-## Partition A Bootable Root
+## Partition Root/Boot
 
 Find your destination disk with `lsblk -f`
 
