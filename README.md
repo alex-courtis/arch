@@ -185,8 +185,6 @@ Regenerate the boot image:
 
 If the kernel you booted with is a different version to the kernel you just installed, you can achieve the regeneration by reinstalling the later kernel `pacman -S linux`
 
-TODO! intel-ucode
-
 ## Reboot
 
 Install some useful packages prior to reboot, to get you going:
@@ -227,6 +225,7 @@ Install desired packages.
 Some packages I like, in no particular order.
 
 [ttf-ms-win10](https://aur.archlinux.org/packages/ttf-ms-win10/) - needs manual install
+
 google-chrome
 j4-dmenu-desktop
 jdk
