@@ -6,7 +6,7 @@ This repository contains system and user configuration files for both laptop and
 
 ## Quick Usage
 
-Clone to somewhere unique e.g. `/opt/alex`.
+Clone to somewhere unique e.g. `/opt/alex`
 
 Execute `linkHome.sh` as your user.
 
@@ -265,6 +265,7 @@ scrot
 the_silver_searcher
 ttf-hack
 xautolock
+xdg-utils
 xdm-archlinux
 xf86-input-libinput
 xmlstarlet
