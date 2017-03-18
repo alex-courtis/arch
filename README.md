@@ -228,7 +228,7 @@ Link the CLI profile bits:
 
 ### Nvidia Only (desktop)
 
-`pacman -S nvidia`
+`pacman -S nvidia nvidia-settings`
 
 ### Nvidia + Intel (heavy laptop)
 
