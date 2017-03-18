@@ -2,13 +2,11 @@
 
 ### Quick Usage
 
-Clone to somewhere unique e.g. `/opt/alex`
+Clone to somewhere unique e.g. `/opt/alex`.
 
-Execute `linkHome.sh` as your user
+Execute `linkHome.sh` as your user.
 
-Execute `linkSystem.sh` as root
-
-You may need to create some directories if they don't exist or the package has not yet been installed.
+Execute `linkSystem.sh` as root. You may need to create some directories if they don't exist or the package has not yet been installed; I'm loathe to allow autocreation of root owned directories so as not to interfere with pacman.
 
 # Arch Installation
 
