@@ -234,7 +234,6 @@ Some packages I like, in no particular order.
 
 google-chrome
 j4-dmenu-desktop
-jdk
 libinput-gestures
 networkmanager-dmenu-git
 rxvt-unicode-better-wheel-scrolling
