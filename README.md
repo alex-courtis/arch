@@ -16,6 +16,8 @@ Execute `linkSystem.sh` as root. You may need to create some directories if they
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
+Those marked with * have an alternate installation method mentioned at the end.
+
 ## Wireless Connectivity
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
@@ -36,7 +38,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## Partition An EFI Boot and Root
+## Partition An EFI Boot and Root *
 
 Find your destination disk with `lsblk -f`
 
@@ -51,7 +53,7 @@ set 1 boot on
 mkpart primary ext4 513MiB 100%
 ```
 
-## Create FAT32 Boot and LUKS Encrypted EXT4 Root
+## Create FAT32 Boot and LUKS Encrypted EXT4 Root *
 
 ```
 mkfs.vfat  -F32 /dev/sda1
@@ -144,7 +146,7 @@ Invoke `visudo` and uncomment the following:
 
 Install Intel microcode updater: `pacman -S intel-ucode`
 
-## systemd boot loader
+## systemd boot loader *
 
 `bootctl --path=/boot install`
 
