@@ -277,7 +277,7 @@ Everything should be ready to go... check `dmesg --human` and `~/.xsession-error
 
 For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
 
-## Partition An EFI Boot and Root
+## Partition A Bootable Root
 
 Find your destination disk with `lsblk -f`
 
@@ -288,24 +288,25 @@ Wipe everything: `wipefs --all /dev/sda`
 ```
 mktable GPT
 mkpart primary ext4 1MiB 100%
-```
-
-## Create Bootable EXT4 Root
-
-`parted /dev/sda`
-
-```
-mkfs -t ext4 /dev/sda1
 set 1 boot on
 ```
 
+## Create EXT4 Root
+
 ```
-mount -t ext4 /dev/sda1 /mnt
+mkfs -t ext4 /dev/sda1
+mount /dev/sda1  /mnt
 ```
 
 `lsblk -f` should show something like this:
 ```
-
+NAME        FSTYPE   LABEL       UUID                                 MOUNTPOINT
+loop0       squashfs                                                  /run/archiso/sfs/airootfs
+sda                                                                   
+└─sda1      ext4                 eae67272-1674-4f10-8e6c-6a02548ee069 /mnt
+sdb         iso9660  ARCH_201703 2017-03-01-18-21-15-00               
+├─sdb1      iso9660  ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
+└─sdb2      vfat     ARCHISO_EFI 0F89-08ED
 ```
 
 ## GRUB boot loader
