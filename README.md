@@ -1,6 +1,10 @@
 # Alex's Arch Linux Settings Repository
 
-### Quick Usage
+I use Arch Linux and XDM+Xmonad/Xmobar is my desktop environment.
+
+This repository contains system and user configuration files for both laptop and desktop usage.
+
+## Quick Usage
 
 Clone to somewhere unique e.g. `/opt/alex`.
 
@@ -124,7 +128,7 @@ Secure root first with `passwd`
 
 Add a user
 ```
-useradd -m -g users -G wheel input -c "Alexander Courtis" -s /bin/bash alex
+useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/bash alex
 passwd alex
 ```
 
@@ -136,9 +140,11 @@ Invoke `visudo` and uncomment the following:
 %wheel ALL=(ALL) ALL
 ```
 
-## systemd boot loader
+## Intel Microcode
 
 Install Intel microcode updater: `pacman -S intel-ucode`
+
+## systemd boot loader
 
 `bootctl --path=/boot install`
 
@@ -267,9 +273,9 @@ Reboot
 
 Everything should be ready to go... check `dmesg --human` and `~/.xsession-errors` for any oddities.
 
-# Non-UEFI Differences
+# Non-UEFI Differences, Without Encryption
 
-For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition.
+For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
 
 ## Partition An EFI Boot and Root
 
@@ -284,29 +290,27 @@ mktable GPT
 mkpart primary ext4 1MiB 100%
 ```
 
-## Create LUKS Encrypted EXT4 Root
+## Create Bootable EXT4 Root
+
+`parted /dev/sda`
 
 ```
-cryptsetup -y -v luksFormat /dev/sda1
-cryptsetup open /dev/sda1 cryptroot
-mkfs -t ext4 /dev/mapper/cryptroot
+mkfs -t ext4 /dev/sda1
+set 1 boot on
 ```
 
 ```
-mount -t ext4 /dev/mapper/cryptroot /mnt
+mount -t ext4 /dev/sda1 /mnt
 ```
 
 `lsblk -f` should show something like this:
 ```
-NAME          FSTYPE LABEL UUID                                 MOUNTPOINT
-loop0         squash                                            /run/archi
-sda                                                             
-└─sda1        crypto       52d5fc1b-d0ca-46e3-95f4-1b07992ae755 
-  └─cryptroot ext4         554fa13c-c55b-41dd-9ed2-dfcf49822dec /mnt
-sdb           iso966 ARCH_201703
-│                          2017-03-01-18-21-15-00               
-├─sdb1        iso966 ARCH_201703
-│                          2017-03-01-18-21-15-00               /run/archi
-└─sdb2        vfat   ARCHISO_EFI
-                           0F89-08ED
+
 ```
+
+## GRUB boot loader
+
+```
+pacman -S grub
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
