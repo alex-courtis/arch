@@ -190,7 +190,7 @@ If the kernel you booted with is a different version to the kernel you just inst
 Install some useful packages prior to reboot, to get you going:
 
 ```
-pacman -S bash-completion dialog git wget pkgfile
+pacman -S bash-completion git wget pkgfile
 pkgfile --update
 ```
 
@@ -198,7 +198,7 @@ Exit chroot and reboot
 
 ## Set Hostname
 
-Use `nmtui` to setup the network connection.
+Use `nmtui` to setup the system network connection.
 
 Apply the hostname:
 
@@ -213,8 +213,6 @@ Clone this repo to, say, `/opt/alex`, ensuring the ownership of that directory a
 Link the CLI profile bits:
 
 `./linkHome.sh`
-
-Don't worry about the link failures - we'll install those package later and re-run.
 
 ## Install Packages
 
@@ -240,6 +238,7 @@ network-manager-applet
 networkmanager-openconnect
 pavucontrol
 pinta
+pulseaudio-ctl
 pwgen
 scrot
 the_silver_searcher
@@ -252,6 +251,19 @@ xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
+xorg-server
 xorg-xbacklight
 xorg-xrandr
 xorg-xrdb
+
+## Install System Configuration
+
+Execute `linkSystem.sh` as root. Any failures due to missing directories should be manually resolved by installing the package or manually creating the directory.
+
+## Enable XDM And Reboot
+
+`sudo systemctl enable xdm-archlinux`
+
+Reboot
+
+Everything should be ready to go... check `dmesg --human` for any oddities.
