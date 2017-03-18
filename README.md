@@ -304,7 +304,7 @@ mount /dev/sda1  /mnt
 NAME        FSTYPE   LABEL       UUID                                 MOUNTPOINT
 loop0       squashfs                                                  /run/archiso/sfs/airootfs
 sda                                                                   
-└─sda1      ext4                 eae67272-1674-4f10-8e6c-6a02548ee069 /mnt
+└─sda1      ext4                 f187b093-0d41-4dc9-87bf-ff8ff45ebba1 /mnt
 sdb         iso9660  ARCH_201703 2017-03-01-18-21-15-00               
 ├─sdb1      iso9660  ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
 └─sdb2      vfat     ARCHISO_EFI 0F89-08ED
