@@ -288,9 +288,8 @@ Wipe everything: `wipefs --all /dev/sda`
 `parted /dev/sda`
 
 ```
-mktable GPT
+mktable MSDOS
 mkpart primary ext4 1MiB 100%
-set 1 boot on
 ```
 
 ## Create EXT4 Root
