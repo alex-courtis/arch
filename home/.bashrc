@@ -1,11 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
 # local vars
 os=$(uname)
 hostName=$(hostname)
-
 
 # sensible editor defaults
 set -o vi
@@ -16,25 +14,24 @@ export PAGER="less"
 # sensible java defaults
 export MAVEN_OPTS='-Xmx1024m'
 
-
 # aliases
 if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
-	lsArgs="-G"
+    lsArgs="-G"
 elif [ ${os} == "Linux" ]; then
-	lsArgs="--color"
+    lsArgs="--color"
 else
-	lsArgs="-F"
+    lsArgs="-F"
 fi
-
 alias ls="ls ${lsArgs}"
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep -E --color"
 alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
 alias yaourt="yaourt --aur --noconfirm"
-
+if [ -d ~/src/git-scripts ]; then
+    alias git-merge-poms='git mergetool --tool=versions -y'
+fi
 unset lsArgs
-
 
 # determine known host and prompt colour for it
 # 30 black
@@ -48,66 +45,53 @@ unset lsArgs
 # 37 white
 case "${hostName}" in
 emperor*)
-	promptColour=92
-	;;
+    promptColour=92
+    ;;
 duke*)
-	promptColour=93
-	;;
+    promptColour=93
+    ;;
 gigantor*)
-	promptColour=94
-	;;
+    promptColour=94
+    ;;
 prince*)
-	promptColour=96
-	;;
+    promptColour=96
+    ;;
 *)
-        promptColour=95
-        ;;
+    promptColour=95
+    ;;
 esac
-
 if [ ${USER} == "root" ]; then
-	promptColour=91
+    promptColour=91
 fi
 
+# bash completions
+. /usr/share/git/completion/git-prompt.sh > /dev/null 2>&1
+. ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
+. ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
 # scp friendly prompt
 unset PROMPT_COMMAND
 export PROMPT_COMMAND
-
 if [ "$(type -t __git_ps1)" == "function" ]; then
-	promptGit="\$(__git_ps1)"
+    promptGit="\$(__git_ps1)"
 fi
-
 export PS1="
 [${promptColour};1m]0;\${PWD}\D{%d/%m/%Y %H:%M:%S}\${JDK_VER}${promptGit}
 \${USER}@${hostName}:\${PWD}[0m
 "
-
 unset promptGit
+unset promptColour
 
-
-# assorted scripts
-if [ -d ~/src/git-scripts ]; then
-	alias git-merge-poms='git mergetool --tool=versions -y'
-fi
+# assorted tools to add to PATH
 if [ -d ~/src/robbieg.bin ]; then
-	export PATH=~/src/robbieg.bin:${PATH}
+    export PATH=~/src/robbieg.bin:${PATH}
 fi
 if [ -d ~/src/atlassian-scripts ]; then
-	export PATH=~/src/atlassian-scripts/bin:${PATH}
-	export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
+    export PATH=~/src/atlassian-scripts/bin:${PATH}
+    export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
 
-# bash completions
-if [ -f ~/src/maven-bash-completion/bash_completion.bash ]; then
-	. ~/src/maven-bash-completion/bash_completion.bash
-fi
-if [ -f ~/.jmake/completion/jmake.completion.bash ]; then
-	. ~/.jmake/completion/jmake.completion.bash
-fi
-
-
-
-
+# rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
 
 	# perform an rsync with OSXish options
@@ -146,8 +130,6 @@ if [ ${hostName} == "EMPEROR" ]; then
 	#alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
 fi
 
-
 # clear local vars
 unset os
 unset hostName
-unset promptColour
