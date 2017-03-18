@@ -124,7 +124,7 @@ Secure root first with `passwd`
 
 Add a user
 ```
-useradd -m -g users -G wheel -c "Alexander Courtis" -s /bin/bash alex
+useradd -m -g users -G wheel input -c "Alexander Courtis" -s /bin/bash alex
 passwd alex
 ```
 
