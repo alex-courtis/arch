@@ -248,7 +248,6 @@ Some packages I like, in no particular order.
 
 google-chrome
 j4-dmenu-desktop
-libinput-gestures
 networkmanager-dmenu-git
 rxvt-unicode-better-wheel-scrolling
 arandr
@@ -267,7 +266,6 @@ ttf-hack
 xautolock
 xdg-utils
 xdm-archlinux
-xf86-input-libinput
 xmlstarlet
 xmobar
 xmonad
@@ -276,6 +274,11 @@ xorg-server
 xorg-xbacklight
 xorg-xrandr
 xorg-xrdb
+
+Touchpad systems like:
+
+libinput-gestures
+xf86-input-libinput
 
 ## Install System Configuration
 
