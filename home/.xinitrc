@@ -27,8 +27,11 @@ rm -f .xmonad/xmonad.state
 [ $(type -t nm-applet) ] && nm-applet > /dev/null 2>&1 &
 
 # temporary dpi hardcoded overrides
-if [ $(hostname) = "duke" -o $(hostname) = "gigantor" ]; then
+if [ $(hostname) = "gigantor" ]; then
     echo "Xft.dpi: 168" | xrdb -merge
+fi
+if [ $(hostname) = "duke" ]; then
+    echo "Xft.dpi: 144" | xrdb -merge
 fi
 
 if [ $(type -t xmonad) ]; then
