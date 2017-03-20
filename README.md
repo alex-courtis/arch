@@ -228,7 +228,7 @@ Link the CLI profile bits:
 
 ### Nvidia Only (desktop)
 
-`pacman -S nvidia nvidia-settings`
+`pacman -S nvidia`
 
 ### Nvidia + Intel (heavy laptop)
 
@@ -237,8 +237,6 @@ TODO
 ## Install Packages
 
 I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
-
-Remove netctl: `pacman -R netctl`
 
 Install desired packages.
 
@@ -270,7 +268,6 @@ xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
-xorg-server
 xorg-xrandr
 xorg-xrdb
 
