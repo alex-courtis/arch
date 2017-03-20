@@ -23,6 +23,7 @@ else
     lsArgs="-F"
 fi
 alias ls="ls ${lsArgs}"
+unset lsArgs
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep -E --color"
@@ -31,7 +32,10 @@ alias yaourt="yaourt --aur --noconfirm"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
-unset lsArgs
+if [ $(type -t udisksctl) ]; then
+    alias mnt="udisksctl mount -b"
+    alias umnt="udisksctl unmount -b"
+fi
 
 # determine known host and prompt colour for it
 # 30 black
