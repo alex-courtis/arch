@@ -173,7 +173,7 @@ options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-If you have an Intel i915 display, add it:
+If you ONLY have an Intel i915 display, add it:
 
 ```
 MODULES="i915"
@@ -232,7 +232,9 @@ Link the CLI profile bits:
 
 ### Nvidia + Intel (heavy laptop)
 
-TODO
+`pacman -S nvidia xf86-video-intel bumblebee`
+
+TODO: set intel as default
 
 ## Install Packages
 
