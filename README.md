@@ -169,15 +169,18 @@ initrd         /initramfs-linux.img
 options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
 
-## Boot Image
+Add `/boot/loader/entries/arch.fallback.conf`:
+```
+title          Arch Linux (Fallback)
+linux          /vmlinuz-linux
+initrd         /intel-ucode.img
+initrd         /initramfs-linux-fallback.img
+options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
+```
+
+## Boot Image *
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
-
-If you ONLY have an Intel i915 display, add it:
-
-```
-MODULES="i915"
-```
 
 Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase:
 
