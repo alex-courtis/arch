@@ -146,7 +146,7 @@ Invoke `visudo` and uncomment the following:
 
 Install Intel microcode updater: `pacman -S intel-ucode`
 
-## systemd boot loader *
+## systemd boot loader and boot image *
 
 `bootctl --path=/boot install`
 
@@ -177,8 +177,6 @@ initrd         /intel-ucode.img
 initrd         /initramfs-linux-fallback.img
 options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
-
-## Boot Image *
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
@@ -292,7 +290,7 @@ Reboot
 
 Login on tty1
 
-Everything should start in your X environment... check `~/.x.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
+Everything should start in your X environment... check `~/.X.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
 
 # Non-UEFI Differences, Without Encryption
 
