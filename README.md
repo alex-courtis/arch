@@ -1,6 +1,6 @@
 # Alex's Arch Linux Settings Repository
 
-I use Arch Linux and XDM+Xmonad/Xmobar is my desktop environment.
+I use Arch Linux and Xmonad/Xmobar is my desktop environment.
 
 This repository contains system and user configuration files for both laptop and desktop usage.
 
@@ -268,11 +268,11 @@ the_silver_searcher
 ttf-hack
 xautolock
 xdg-utils
-xdm-archlinux
 xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
+xorg-xinit
 xorg-xrandr
 xorg-xrdb
 
@@ -286,13 +286,13 @@ xorg-xbacklight
 
 Execute `linkSystem.sh` as root. Any failures due to missing directories should be manually resolved by installing the package or manually creating the directory.
 
-## Enable XDM And Reboot
-
-`sudo systemctl enable xdm-archlinux`
+## Reboot And Start X
 
 Reboot
 
-Everything should be ready to go... check `dmesg --human` and `~/.xsession-errors` for any oddities.
+Login on tty1
+
+Everything should start in your X environment... check `~/.x.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
 
 # Non-UEFI Differences, Without Encryption
 
