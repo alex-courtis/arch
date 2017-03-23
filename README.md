@@ -262,7 +262,7 @@ Why? I'm not sure... however it allows xorg-backlight to function and stops any 
 
 ## Hibernation
 
-Hibernation is achieved by saving the memory state to the swap file.
+Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
 Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file
 
