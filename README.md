@@ -186,6 +186,12 @@ Add an encrypt hook and move the keyboard configration before it, so that we can
 HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck"
 ```
 
+If you have Intel 915 graphics, add the module to the image:
+
+```
+MODULES="i915"
+```
+
 Regenerate the boot image:
 
 `mkinitcpio -g /boot/initramfs-linux.img`
@@ -233,9 +239,15 @@ Link the CLI profile bits:
 
 ### Nvidia + Intel (heavy laptop)
 
+Install both drivers and bumblebee to switch between:
+
 `pacman -S nvidia xf86-video-intel bumblebee`
 
-TODO: set intel as default
+`systemctl enable bumblebeed.service`
+
+`sudo gpasswd -a alex bumblebee`
+
+You can test this out as per https://wiki.archlinux.org/index.php/bumblebee#Test
 
 ## Install Packages
 
@@ -333,3 +345,4 @@ sdb         iso9660  ARCH_201703 2017-03-01-18-21-15-00
 pacman -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+```
