@@ -247,7 +247,18 @@ Install both drivers and bumblebee to switch between:
 
 `sudo gpasswd -a alex bumblebee`
 
-You can test this out as per https://wiki.archlinux.org/index.php/bumblebee#Test
+You can test switching out as per https://wiki.archlinux.org/index.php/bumblebee#Test
+
+Add a direct invocation of the intel driver in `/etc/X11/xorg.conf.d/20-intel.conf`:
+
+```
+Section "Device"
+   Identifier  "Intel Graphics"
+   Driver      "intel"
+EndSection
+```
+
+Why? I'm not sure... however it allows xorg-backlight to function and stops any graphical tearing/glitches.
 
 ## Install Packages
 
