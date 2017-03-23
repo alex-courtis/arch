@@ -5,6 +5,6 @@
 SYSTEM="etc usr"
 ALEX_ROOT=$(pwd)
 
-for f in $(find ${SYSTEM} -type f); do 
+for f in $(find ${SYSTEM} -type f -or -type l); do 
     ln -fsv ${ALEX_ROOT}/${f} /${f}
 done

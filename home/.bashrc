@@ -135,6 +135,9 @@ if [ ${hostName} == "EMPEROR" ]; then
 	#alias syncFlacEarl="doRsync /Volumes/Data/flac/ earl:/mnt/vol1/media/flac"
 fi
 
+# user bin at start of path
+[ -d ~/bin ] && export PATH=~/bin:${PATH}
+
 # clear local vars
 unset os
 unset hostName
