@@ -245,7 +245,7 @@ Install both drivers and bumblebee to switch between:
 
 `systemctl enable bumblebeed.service`
 
-`sudo gpasswd -a alex bumblebee`
+`gpasswd -a alex bumblebee`
 
 You can test switching out as per https://wiki.archlinux.org/index.php/bumblebee#Test
 
