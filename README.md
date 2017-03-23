@@ -260,6 +260,26 @@ EndSection
 
 Why? I'm not sure... however it allows xorg-backlight to function and stops any graphical tearing/glitches.
 
+## Hibernation
+
+Hibernation is achieved by saving the memory state to the swap file.
+
+Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file
+
+Add `/boot/loader/entries/arch.conf` `options`: `resume` is the root volume and `resume_offset` is the value derived above e.g.
+
+```
+options        root=/dev/mapper/cryptroot resume=/dev/mapper/cryptroot resume_offset=126976 cryptdevice=/dev/disk/by-uuid/2180f899-0705-4b48-bdd4-7d1c8793008d:cryptroot rw`
+```
+
+Enable the resume hook in the boot image, after the decrypt hook e.g.:
+
+`HOOKS="base udev autodetect modconf block keyboard encrypt resume filesystems fsck"`
+
+Regenerate the boot image:
+
+`mkinitcpio -g /boot/initramfs-linux.img`
+
 ## Install Packages
 
 I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
