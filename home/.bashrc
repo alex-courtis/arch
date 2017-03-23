@@ -28,7 +28,7 @@ unset lsArgs
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep -E --color"
-alias rgrep="find . -type f -print0 | xargs -0 ${grepCmd}"
+alias rgrep="find . -type f -print0 | xargs -0 grep"
 alias yaourt="yaourt --aur --noconfirm"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
@@ -37,6 +37,20 @@ if [ $(type -t udisksctl) ]; then
     alias mnt="udisksctl mount -b"
     alias umnt="udisksctl unmount -b"
 fi
+
+# assorted tools to add to PATH
+if [ -d ~/src/robbieg.bin ]; then
+    export PATH=~/src/robbieg.bin:${PATH}
+fi
+if [ -d ~/src/atlassian-scripts ]; then
+    export PATH=~/src/atlassian-scripts/bin:${PATH}
+    export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
+fi
+
+# bash completions
+. /usr/share/git/completion/git-prompt.sh > /dev/null 2>&1
+. ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
+. ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
 # determine known host and prompt colour for it
 # 30 black
@@ -69,11 +83,6 @@ if [ ${USER} == "root" ]; then
     promptColour=91
 fi
 
-# bash completions
-. /usr/share/git/completion/git-prompt.sh > /dev/null 2>&1
-. ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
-. ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
-
 # scp friendly prompt
 unset PROMPT_COMMAND
 export PROMPT_COMMAND
@@ -86,15 +95,6 @@ export PS1="
 "
 unset promptGit
 unset promptColour
-
-# assorted tools to add to PATH
-if [ -d ~/src/robbieg.bin ]; then
-    export PATH=~/src/robbieg.bin:${PATH}
-fi
-if [ -d ~/src/atlassian-scripts ]; then
-    export PATH=~/src/atlassian-scripts/bin:${PATH}
-    export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
-fi
 
 # rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
