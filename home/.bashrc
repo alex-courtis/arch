@@ -5,11 +5,12 @@
 os=$(uname)
 hostName=$(hostname)
 
-# sensible editor defaults
+# sensible editor/pager defaults
 set -o vi
 export EDITOR="vi"
 export VISUAL="vi"
 export PAGER="less"
+export LESS="R"
 
 # sensible java defaults
 export MAVEN_OPTS='-Xmx1024m'
