@@ -273,7 +273,7 @@ Add `/boot/loader/entries/arch.conf` `options`: `resume` is the root volume and 
 options        root=/dev/mapper/cryptroot resume=/dev/mapper/cryptroot resume_offset=126976 cryptdevice=/dev/disk/by-uuid/2180f899-0705-4b48-bdd4-7d1c8793008d:cryptroot rw`
 ```
 
-Enable the resume hook in the boot image, after the decrypt hook e.g.:
+Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, after the encrypt hook e.g.:
 
 `HOOKS="base udev autodetect modconf block keyboard encrypt resume filesystems fsck"`
 
