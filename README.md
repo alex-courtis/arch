@@ -154,6 +154,7 @@ Edit `/boot/loader/loader.conf` and change its contents to:
 
 ```
 default arch
+timeout 1
 ```
 
 Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself.
