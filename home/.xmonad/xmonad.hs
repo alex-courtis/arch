@@ -84,7 +84,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 
 
 -- update monitor outputs
-twiddleDisplaysCmd = "autoDetectDisplays.sh"
+twiddleDisplaysCmd = "xLayoutDisplays && xmonad --restart"
 
 -- common dmenu args
 dmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-11:bold'"
