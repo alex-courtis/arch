@@ -40,7 +40,7 @@ Connect from a remote machine
 
 ### GPT Partition: ESP Boot and ext4 Root
 
-*Alternative: [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)*
+*Alternative:* [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)
 
 Find your destination disk with `lsblk -f`
 
@@ -57,7 +57,7 @@ mkpart primary ext4 513MiB 100%
 
 ### FAT32 Boot and LUKS Encrypted ext4 Root
 
-*Alternative: [ext4 Root](#ext4-root)*
+*Alternative:* [ext4 Root](#ext4-root)
 
 ```
 mkfs.vfat  -F32 /dev/sda1
@@ -152,7 +152,7 @@ Install Intel microcode updater: `pacman -S intel-ucode`
 
 ### systemd boot loader and boot image
 
-*Alternative: [GRUB boot loader](#grub-boot-loader)
+*Alternative:* [GRUB boot loader](#grub-boot-loader)
 
 `bootctl --path=/boot install`
 
