@@ -40,7 +40,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root *
+## GPT Partition: ESP Boot and ext4 Root [(Alt: MBR Partition: ext4 Boot/Root)](#mbr-partition-ext4-boot-root)
 
 Find your destination disk with `lsblk -f`
 
@@ -55,7 +55,7 @@ set 1 boot on
 mkpart primary ext4 513MiB 100%
 ```
 
-## Create FAT32 Boot and LUKS Encrypted EXT4 Root [(Alt: MBR Partition: ext4 Boot and Root)](#mbr-partition-ext4-boot-and-root)
+## FAT32 Boot and LUKS Encrypted ext4 Root
 
 ```
 mkfs.vfat  -F32 /dev/sda1
@@ -348,7 +348,7 @@ Everything should start in your X environment... check `~/.X.log`, `/var/log/Xor
 
 For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
 
-## MBR Partition: ext4 Boot and Root
+## MBR Partition: ext4 Boot/Root
 
 Find your destination disk with `lsblk -f`
 
