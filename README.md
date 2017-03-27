@@ -250,7 +250,9 @@ Install both drivers and bumblebee to switch between:
 
 You can test switching out as per https://wiki.archlinux.org/index.php/bumblebee#Test
 
-Add a direct invocation of the intel driver in `/etc/X11/xorg.conf.d/20-intel.conf`:
+Add a direct invocation of the intel driver in `/etc/X11/xorg.conf.d/20-intel.conf`
+
+This allows the Intel GPU to "take charge" and provide interfaces to standard stuff e.g. xorg-backlight
 
 ```
 Section "Device"
@@ -259,7 +261,11 @@ Section "Device"
 EndSection
 ```
 
-Why? I'm not sure... however it allows xorg-backlight to function and stops any graphical tearing/glitches.
+If having problems with tearing on scrolling, you can add the following option. Tip gained from https://wiki.archlinux.org/index.php/intel_graphics#Tear-free_video, however the original bug report no longer seems accurate.
+
+```
+   Option      "TearFree"       "true"
+```
 
 ## Hibernation
 
