@@ -55,7 +55,7 @@ set 1 boot on
 mkpart primary ext4 513MiB 100%
 ```
 
-## Create FAT32 Boot and LUKS Encrypted EXT4 Root [MBR Partition: ext4 Boot and Root](#mbr-partition:-ext4-boot-and-root)
+## Create FAT32 Boot and LUKS Encrypted EXT4 Root [Alt: MBR](##mbr-partition:-ext4-boot-and-root)
 
 ```
 mkfs.vfat  -F32 /dev/sda1
