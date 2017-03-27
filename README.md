@@ -40,7 +40,9 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root   [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)
+## GPT Partition: ESP Boot and ext4 Root
+
+*Alternative: [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)*
 
 Find your destination disk with `lsblk -f`
 
@@ -56,6 +58,8 @@ mkpart primary ext4 513MiB 100%
 ```
 
 ## FAT32 Boot and LUKS Encrypted ext4 Root
+
+*Alternative: [ext4 Root](#ext4-root)*
 
 ```
 mkfs.vfat  -F32 /dev/sda1
@@ -361,7 +365,7 @@ mktable MSDOS
 mkpart primary ext4 1MiB 100%
 ```
 
-## Create EXT4 Root
+## ext4 Root
 
 ```
 mkfs -t ext4 /dev/sda1
