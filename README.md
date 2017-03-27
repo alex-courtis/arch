@@ -4,6 +4,8 @@ I use Arch Linux and Xmonad/Xmobar is my desktop environment.
 
 This repository contains system and user configuration files for both laptop and desktop usage.
 
+Also included are instructions for installing Arch from scratch, for a variety of use cases.
+
 ## Quick Usage
 
 Clone to somewhere unique e.g. `/opt/alex`
