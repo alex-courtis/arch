@@ -14,15 +14,15 @@ Execute `linkHome.sh` as your user.
 
 Execute `linkSystem.sh` as root. You may need to create some directories if they don't exist or the package has not yet been installed; I'm loathe to allow autocreation of root owned directories so as not to interfere with pacman.
 
-# Arch Installation
+## Arch Installation
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
-## Wireless Connectivity
+### Wireless Connectivity
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
 
-## Start SSHD for easier installation from a remote system
+### Start SSHD for easier installation from a remote system
 
 ```
 passwd
@@ -34,11 +34,11 @@ Connect from a remote machine
 
 `ssh root@some.ip.address`
 
-## Update the system clock
+### Update the system clock
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root
+### GPT Partition: ESP Boot and ext4 Root
 
 *Alternative: [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)*
 
@@ -55,7 +55,7 @@ set 1 boot on
 mkpart primary ext4 513MiB 100%
 ```
 
-## FAT32 Boot and LUKS Encrypted ext4 Root
+### FAT32 Boot and LUKS Encrypted ext4 Root
 
 *Alternative: [ext4 Root](#ext4-root)*
 
@@ -86,7 +86,7 @@ sdb       iso9660     ARCH_201703 2017-03-01-18-21-15-00
 └─sdb2    vfat        ARCHISO_EFI 0F89-08ED
 ```
 
-## Bootstrap System And Chroot
+### Bootstrap System And Chroot
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
@@ -96,7 +96,7 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `arch-chroot /mnt /bin/bash`
 
-## Swap File
+### Swap File
 
 Create a swap file the same size as physical memory:
 
@@ -108,7 +108,7 @@ swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 ```
 
-## Locale And Time
+### Locale And Time
 
 Uncomment your desired locale in `/etc/locale.gen`
 
@@ -120,7 +120,7 @@ Uncomment your desired locale in `/etc/locale.gen`
 
 `hwclock --systohc --utc`
 
-## Install And Enable Basic Networking
+### Install And Enable Basic Networking
 
 ```
 pacman -S openssh networkmanager
@@ -128,7 +128,7 @@ systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
-## Users
+### Users
 
 Secure root first with `passwd`
 
@@ -146,13 +146,13 @@ Invoke `visudo` and uncomment the following:
 %wheel ALL=(ALL) ALL
 ```
 
-## Intel Microcode
+### Intel Microcode
 
 Install Intel microcode updater: `pacman -S intel-ucode`
 
-## systemd boot loader and boot image *
+### systemd boot loader and boot image
 
-*Alternative: [GRUB boot loader](#grub-boot-loader)*
+*Alternative: [GRUB boot loader](#grub-boot-loader)
 
 `bootctl --path=/boot install`
 
@@ -205,7 +205,7 @@ Regenerate the boot image:
 
 If the kernel you booted with is a different version to the kernel you just installed, you can achieve the regeneration by reinstalling the later kernel `pacman -S linux`
 
-## Reboot
+### Reboot
 
 Install some useful packages prior to reboot, to get you going:
 
@@ -216,7 +216,7 @@ pkgfile --update
 
 Exit chroot and reboot
 
-## Set Hostname
+### Set Hostname
 
 Use `nmtui` to setup the system network connection.
 
@@ -224,7 +224,7 @@ Apply the hostname:
 
 `hostnamectl set-hostname duke`
 
-## Setup CLI User Environment
+### Setup CLI User Environment
 
 Install your public/private keys under `~/.ssh`
 
@@ -234,17 +234,17 @@ Link the CLI profile bits:
 
 `./linkHome.sh`
 
-## Video Driver
+### Video Driver
 
-### Intel Only (lightweight laptop)
+#### Intel Only (lightweight laptop)
 
 `pacman -S xf86-video-intel`
 
-### Nvidia Only (desktop)
+#### Nvidia Only (desktop)
 
 `pacman -S nvidia`
 
-### Nvidia + Intel (heavy laptop)
+#### Nvidia + Intel (heavy laptop)
 
 Install both drivers and bumblebee to switch between:
 
@@ -273,7 +273,7 @@ If having problems with tearing on scrolling, you can add the following option. 
    Option      "TearFree"       "true"
 ```
 
-## Hibernation
+### Hibernation
 
 Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
@@ -293,7 +293,7 @@ Regenerate the boot image:
 
 `mkinitcpio -g /boot/initramfs-linux.img`
 
-## Install Packages
+### Install Packages
 
 I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
 
@@ -336,11 +336,11 @@ libinput-gestures
 xf86-input-libinput
 xorg-xbacklight
 
-## Install System Configuration
+### Install System Configuration
 
 Execute `linkSystem.sh` as root. Any failures due to missing directories should be manually resolved by installing the package or manually creating the directory.
 
-## Reboot And Start X
+### Reboot And Start X
 
 Reboot
 
@@ -348,11 +348,11 @@ Login on tty1
 
 Everything should start in your X environment... check `~/.X.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
 
-# Non-UEFI Differences, Without Encryption
+## Non-UEFI Differences, Without Encryption
 
 For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
 
-## MBR Partition: ext4 Boot/Root
+### MBR Partition: ext4 Boot/Root
 
 Find your destination disk with `lsblk -f`
 
@@ -365,7 +365,7 @@ mktable MSDOS
 mkpart primary ext4 1MiB 100%
 ```
 
-## ext4 Root
+### ext4 Root
 
 ```
 mkfs -t ext4 /dev/sda1
@@ -383,7 +383,7 @@ sdb         iso9660  ARCH_201703 2017-03-01-18-21-15-00
 └─sdb2      vfat     ARCHISO_EFI 0F89-08ED
 ```
 
-## GRUB boot loader
+### GRUB boot loader
 
 ```
 pacman -S grub
