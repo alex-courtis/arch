@@ -18,8 +18,8 @@ fi
 # setup displays
 [ $(type -t xLayoutDisplays) ] && xLayoutDisplays
 
-# i3lock (grey30 background) is the screen "locker" after 5 mins and suspend as the "killer" 10 mins after that
-[ $(type -t xautolock) ] && [ $(type -t i3lock) ] && xautolock -locker 'i3lock -e -c 4D4D4D' -time 5 -killer 'systemctl suspend' -killtime 10 &
+# slock the screen after 5 mins
+[ $(type -t xautolock) ] && [ $(type -t slock) ] && xautolock -locker slock -time 5 &
 
 # start touchpad gesture recogniser
 [ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup start > /dev/null 2>&1

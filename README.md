@@ -310,7 +310,6 @@ rxvt-unicode-better-wheel-scrolling
 arandr
 calc
 dmenu
-i3lock
 network-manager-applet
 networkmanager-openconnect
 pavucontrol
@@ -318,6 +317,7 @@ pinta
 pulseaudio-ctl
 pwgen
 scrot
+slock
 the_silver_searcher
 ttf-hack
 xautolock
