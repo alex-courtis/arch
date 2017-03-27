@@ -40,7 +40,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root [(Alt: MBR Partition: ext4 Boot/Root)](#mbr-partition-ext4-boot-root)
+## GPT Partition: ESP Boot and ext4 Root   [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)
 
 Find your destination disk with `lsblk -f`
 
