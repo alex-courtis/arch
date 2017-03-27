@@ -18,7 +18,7 @@ Execute `linkSystem.sh` as root. You may need to create some directories if they
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
-Those marked with * have an alternate installation method mentioned at the end.
+Sections followed with a link have an alternate installation method.
 
 ## Wireless Connectivity
 
@@ -55,7 +55,7 @@ set 1 boot on
 mkpart primary ext4 513MiB 100%
 ```
 
-## Create FAT32 Boot and LUKS Encrypted EXT4 Root [Alt: MBR](##mbr-partition:-ext4-boot-and-root)
+## Create FAT32 Boot and LUKS Encrypted EXT4 Root [(Alt: MBR Partition: ext4 Boot and Root)](#mbr-partition-ext4-boot-and-root)
 
 ```
 mkfs.vfat  -F32 /dev/sda1
