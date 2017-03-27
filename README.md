@@ -18,8 +18,6 @@ Execute `linkSystem.sh` as root. You may need to create some directories if they
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
-Sections followed with a link have an alternate installation method.
-
 ## Wireless Connectivity
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
@@ -153,6 +151,8 @@ Invoke `visudo` and uncomment the following:
 Install Intel microcode updater: `pacman -S intel-ucode`
 
 ## systemd boot loader and boot image *
+
+*Alternative: [GRUB boot loader](#grub-boot-loader)*
 
 `bootctl --path=/boot install`
 
