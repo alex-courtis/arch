@@ -299,7 +299,7 @@ I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AU
 
 Install desired packages.
 
-Some packages I like, in no particular order.
+#### Packages I Like
 
 [ttf-ms-win10](https://aur.archlinux.org/packages/ttf-ms-win10/) - needs manual install
 
@@ -330,7 +330,7 @@ xorg-xinit
 xorg-xrandr
 xorg-xrdb
 
-Laptops like:
+#### Laptops Like
 
 libinput-gestures
 xf86-input-libinput
