@@ -224,6 +224,12 @@ Apply the hostname:
 
 `hostnamectl set-hostname duke`
 
+### Enable NTP Sync
+
+`timedatectl set-ntp true`
+
+You can check this with: `timedatectl status`
+
 ### Setup CLI User Environment
 
 Install your public/private keys under `~/.ssh`
