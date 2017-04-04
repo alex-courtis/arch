@@ -96,6 +96,11 @@ export PS1="
 unset promptGit
 unset promptColour
 
+# arch friendly java home - will update with archlinx-java
+if [ -d /usr/lib/jvm/default ]; then
+    export JAVA_HOME=/usr/lib/jvm/default
+fi
+
 # rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
 
