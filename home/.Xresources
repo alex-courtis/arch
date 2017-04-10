@@ -16,10 +16,6 @@ URxvt*secondaryWheel: true
 ! disable this mode as it has a ctrl-shift keybinding
 URxvt*iso14755: false
 
-URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: xdg-open
-URxvt.matcher.button: 1
-
 ! white text on black background
 URxvt*background: #000000
 URxvt*foreground: #ffffff
