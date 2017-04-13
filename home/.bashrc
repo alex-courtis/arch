@@ -46,6 +46,9 @@ if [ -d ~/src/atlassian-scripts ]; then
     export PATH=~/src/atlassian-scripts/bin:${PATH}
     export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
 fi
+if [ -d ~/src/monorepo_utils ]; then
+    export PATH=~/src/monorepo_utils:${PATH}
+fi
 
 # bash completions
 . /usr/share/git/completion/git-prompt.sh > /dev/null 2>&1
