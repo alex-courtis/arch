@@ -55,49 +55,38 @@ fi
 . ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
 . ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
-# determine known host and prompt colour for it
-# 30 black
-# 90 grey
-# 31, 91 red
-# 32, 92 green
-# 33, 93 yellow
-# 34, 94 blue
-# 35, 95 magenta
-# 36, 96 cyan
-# 37 white
+# set prompt background colour
 case "${hostName}" in
 emperor*)
-    promptColour=92
+    promptBgColour=2
     ;;
 duke*)
-    promptColour=93
+    promptBgColour=6
     ;;
 gigantor*)
-    promptColour=94
-    ;;
-prince*)
-    promptColour=96
+    promptBgColour=4
     ;;
 *)
-    promptColour=95
+    promptBgColour=5
     ;;
 esac
-if [ ${USER} == "root" ]; then
-    promptColour=91
-fi
 
-# scp friendly prompt
-unset PROMPT_COMMAND
-export PROMPT_COMMAND
-if [ "$(type -t __git_ps1)" == "function" ]; then
-    promptGit="\$(__git_ps1)"
-fi
-export PS1="
-[${promptColour};1m]0;\${PWD}\D{%d/%m/%Y %H:%M:%S}\${JDK_VER}${promptGit}
-\${USER}@${hostName}:\${PWD}[0m
-"
-unset promptGit
-unset promptColour
+# \033 is the escape code
+# \033[4xm is the background colour where x==colour:
+#  0 black
+#  1 red
+#  2 green
+#  3 yellow
+#  4 blue
+#  5 magenta
+#  6 cyan
+#  7 white
+# \033(B\033[m resets all text attributes
+# \033]0; starts writing to the title
+# \007 ends writing to the title
+PROMPT_COMMAND='LAST_EXIT="${?}"; [ "${LAST_EXIT}" -ne 0 ] && printf "\033[41m${LAST_EXIT}\033(B\033[m\n" ; unset LAST_EXIT'
+export PS1="\033]0;\${PWD}\007\033[4${promptBgColour}m:;\033(B\033[m "
+unset promptBgColour
 
 # arch friendly java home - will update with archlinx-java
 if [ -d /usr/lib/jvm/default ]; then
