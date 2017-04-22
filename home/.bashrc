@@ -84,9 +84,14 @@ esac
 # \033(B\033[m resets all text attributes
 # \033]0; starts writing to the title
 # \007 ends writing to the title
-PROMPT_COMMAND='LAST_EXIT="${?}"; [ "${LAST_EXIT}" -ne 0 ] && printf "\033[41m${LAST_EXIT}\033(B\033[m\n" ; unset LAST_EXIT'
+PROMPT_COMMAND=__prompt_command
+__prompt_command() {
+    local LAST_EXIT="${?}"
+    [ "${LAST_EXIT}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${LAST_EXIT}"
+}
 export PS1="\033]0;\${PWD}\007\033[4${promptBgColour}m:;\033(B\033[m "
 unset promptBgColour
+
 
 # arch friendly java home - will update with archlinx-java
 if [ -d /usr/lib/jvm/default ]; then
