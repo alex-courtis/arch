@@ -18,6 +18,10 @@ Execute `linkSystem.sh` as root. You may need to create some directories if they
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
+### Boot
+
+Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media) or prepare a [Raspberry PI SD card](https://archlinuxarm.org/platforms/armv6/raspberry-pi).
+
 ### Wireless Connectivity
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
