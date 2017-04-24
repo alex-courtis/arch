@@ -13,18 +13,16 @@ export PAGER="less"
 export LESS="R"
 
 # sensible java defaults
-export MAVEN_OPTS='-Xmx1024m'
+export MAVEN_OPTS='-Xmx1536m'
 
 # aliases
-if [ ${os} == "Darwin" -o ${os} == "FreeBSD" ]; then
-    lsArgs="-G"
-elif [ ${os} == "Linux" ]; then
-    lsArgs="--color"
+if [ "${os}" == "Darwin" -o "${os}" == "FreeBSD" ]; then
+    alias ls="ls -G"
+elif [ "${os}" == "Linux" ]; then
+    alias ls="ls --color"
 else
-    lsArgs="-F"
+    alias ls="ls -F"
 fi
-alias ls="ls ${lsArgs}"
-unset lsArgs
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep -E --color"
@@ -55,22 +53,7 @@ fi
 . ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
 . ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
-# set prompt background colour
-case "${hostName}" in
-emperor*)
-    promptBgColour=2
-    ;;
-duke*)
-    promptBgColour=6
-    ;;
-gigantor*)
-    promptBgColour=4
-    ;;
-*)
-    promptBgColour=5
-    ;;
-esac
-
+# prompt:
 # \033 is the escape code
 # \033[4xm is the background colour where x==colour:
 #  0 black
@@ -84,14 +67,28 @@ esac
 # \033(B\033[m resets all text attributes
 # \033]0; starts writing to the title
 # \007 ends writing to the title
-PROMPT_COMMAND=__prompt_command
+case "${hostName}" in
+emperor*)
+    promptBgColour=2
+    ;;
+duke*)
+    promptBgColour=6
+    ;;
+gigantor*)
+    promptBgColour=4
+    ;;
+* )
+    promptBgColour=5
+    ;;
+esac
+# write non-zero exit code in red
 __prompt_command() {
-    local LAST_EXIT="${?}"
-    [ "${LAST_EXIT}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${LAST_EXIT}"
+    local rc="${?}"
+    [ "${rc}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${rc}"
 }
+export PROMPT_COMMAND=__prompt_command
+# write current directory to title, ":;" as bg coloured prompt
 export PS1="\033]0;\${PWD}\007\033[4${promptBgColour}m:;\033(B\033[m "
-unset promptBgColour
-
 
 # arch friendly java home - will update with archlinx-java
 if [ -d /usr/lib/jvm/default ]; then
@@ -141,5 +138,6 @@ fi
 [ -d ~/bin ] && export PATH=~/bin:${PATH}
 
 # clear local vars
+unset promptBgColour
 unset os
 unset hostName
