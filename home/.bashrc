@@ -56,6 +56,7 @@ fi
 # optional git PS1 shows extra flags
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWSTASHSTATE=true
 
 # prompt ":;"
 #   "\e"    escape sequence start
