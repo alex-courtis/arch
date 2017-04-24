@@ -20,7 +20,7 @@ URxvt*iso14755: false
 URxvt*background: #000000
 URxvt*foreground: #ffffff
 
-! tango colours
+! tango colours otherwise; see https://gist.github.com/menski/2176539
 ! black dark/light
 URxvt*color0:             #2e3436
 URxvt*color8:             #6e706b

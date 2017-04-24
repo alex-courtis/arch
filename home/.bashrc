@@ -5,15 +5,16 @@
 os=$(uname)
 hostName=$(hostname)
 
-# sensible editor/pager defaults
+# more history
+HISTSIZE=10000
+HISTFILESIZE=10000
+
+# editor/pager defaults
 set -o vi
 export EDITOR="vi"
 export VISUAL="vi"
 export PAGER="less"
 export LESS="R"
-
-# sensible java defaults
-export MAVEN_OPTS='-Xmx1536m'
 
 # aliases
 if [ "${os}" == "Darwin" -o "${os}" == "FreeBSD" ]; then
@@ -106,6 +107,9 @@ PROMPT_COMMAND=__prompt_command
 if [ -d /usr/lib/jvm/default ]; then
     export JAVA_HOME=/usr/lib/jvm/default
 fi
+
+# maven defaults
+export MAVEN_OPTS='-Xmx1536m'
 
 # rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
