@@ -53,43 +53,51 @@ fi
 . ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
 . ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
-# prompt:
-# \033 is the escape code
-# \033[4xm is the background colour where x==colour:
-#  0 black
-#  1 red
-#  2 green
-#  3 yellow
-#  4 blue
-#  5 magenta
-#  6 cyan
-#  7 white
-# \033(B\033[m resets all text attributes
-# \033]0; starts writing to the title
-# \007 ends writing to the title
+# optional git PS1 shows dirty flag
+export GIT_PS1_SHOWDIRTYSTATE=true
+
+# prompt ":;"
+#   "\[\e"  nonprinting escape sequence start
+#   "\]"    nonprinting escape sequence end
+#   "[4xm"  background colour where x==colour:
+#       0 black  1 red       2 green 3 yellow
+#       4 blue   5 magenta   6 cyan  7 white
+#   "[0m"   resets all colours to whatever we had before
 case "${hostName}" in
 emperor*)
-    promptBgColour=2
+    promptColour="[42m"
     ;;
 duke*)
-    promptBgColour=6
+    promptColour="[46m"
     ;;
 gigantor*)
-    promptBgColour=4
+    promptColour="[44m"
     ;;
 * )
-    promptBgColour=5
+    promptColour="[45m"
     ;;
 esac
-# print non-zero exit code in red
-PROMPT_COMMAND='rc="${?}" ; [ "${rc}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${rc}" ; unset rc'
-# print current directory and optional git status (with dirty) to title
-# print ":;" as bg coloured prompt
-if [ "$(type -t __git_ps1)" == "function" ]; then
-    GIT_PS1_SHOWDIRTYSTATE=true
-    promptGit="\$(__git_ps1)"
-fi
-PS1="\033]0;\${PWD}${promptGit}\007\033[4${promptBgColour}m:;\033(B\033[m "
+PS1="\[\e${promptColour}\]:;\[\e[0m\] "
+
+# pre prompt
+#   "\e]2;" ESC xterm (title) code
+#   "\a"    BEL xterm (title) code
+__prompt_command() {
+
+    # print non-zero exit code in red, on its own line
+    local rc=$?
+    [ $rc -ne 0 ] && printf "\e[41m%s\e[0m\n" ${rc}
+
+    # print current directory to title
+    printf "\e]2;%s" "${PWD}"
+    
+    # optionally print git status
+    [ "$(type -t __git_ps1)" == "function" ] && printf "%s" "$(__git_ps1)"
+
+    # end title
+    printf "\a"
+}
+PROMPT_COMMAND=__prompt_command
 
 # arch friendly java home - will update with archlinx-java
 if [ -d /usr/lib/jvm/default ]; then
@@ -139,6 +147,6 @@ fi
 [ -d ~/bin ] && export PATH=~/bin:${PATH}
 
 # clear local vars
-unset promptBgColour
+unset promptColour
 unset os
 unset hostName
