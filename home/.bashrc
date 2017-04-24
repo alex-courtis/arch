@@ -53,8 +53,9 @@ fi
 . ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
 . ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
 
-# optional git PS1 shows dirty flag
+# optional git PS1 shows extra flags
 export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
 
 # prompt ":;"
 #   "\e"    escape sequence start
