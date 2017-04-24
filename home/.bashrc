@@ -81,14 +81,15 @@ gigantor*)
     promptBgColour=5
     ;;
 esac
-# write non-zero exit code in red
-__prompt_command() {
-    local rc="${?}"
-    [ "${rc}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${rc}"
-}
-export PROMPT_COMMAND=__prompt_command
-# write current directory to title, ":;" as bg coloured prompt
-export PS1="\033]0;\${PWD}\007\033[4${promptBgColour}m:;\033(B\033[m "
+# print non-zero exit code in red
+PROMPT_COMMAND='rc="${?}" ; [ "${rc}" -ne 0 ] && printf "\033[41m%s\033(B\033[m\n" "${rc}" ; unset rc'
+# print current directory and optional git status (with dirty) to title
+# print ":;" as bg coloured prompt
+if [ "$(type -t __git_ps1)" == "function" ]; then
+    GIT_PS1_SHOWDIRTYSTATE=true
+    promptGit="\$(__git_ps1)"
+fi
+PS1="\033]0;\${PWD}${promptGit}\007\033[4${promptBgColour}m:;\033(B\033[m "
 
 # arch friendly java home - will update with archlinx-java
 if [ -d /usr/lib/jvm/default ]; then
