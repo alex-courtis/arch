@@ -57,8 +57,9 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=true
 
 # prompt ":;"
-#   "\[\e"  nonprinting escape sequence start
-#   "\]"    nonprinting escape sequence end
+#   "\e"    escape sequence start
+#   "\["    nonprinting sequence start
+#   "\]"    nonprinting sequence end
 #   "[4xm"  background colour where x==colour:
 #       0 black  1 red       2 green 3 yellow
 #       4 blue   5 magenta   6 cyan  7 white
@@ -80,7 +81,7 @@ esac
 PS1="\[\e${promptColour}\]:;\[\e[0m\] "
 
 # pre prompt
-#   "\e]2;" ESC xterm (title) code
+#   "]2;"   ESC xterm (title) code
 #   "\a"    BEL xterm (title) code
 __prompt_command() {
 
