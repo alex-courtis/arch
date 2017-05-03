@@ -38,21 +38,15 @@ if [ $(type -t udisksctl) ]; then
 fi
 
 # assorted tools to add to PATH
-if [ -d ~/src/robbieg.bin ]; then
-    export PATH=~/src/robbieg.bin:${PATH}
-fi
-if [ -d ~/src/atlassian-scripts ]; then
-    export PATH=~/src/atlassian-scripts/bin:${PATH}
-    export ATLASSIAN_SCRIPTS=~/src/atlassian-scripts
-fi
-if [ -d ~/src/monorepo_utils ]; then
-    export PATH=~/src/monorepo_utils:${PATH}
-fi
+[ -d ~/src/robbieg.bin ] && export PATH=~/src/robbieg.bin:${PATH}
+[ -d ~/src/atlassian-scripts ] && export PATH=~/src/atlassian-scripts/bin:${PATH}
+[ -d ~/src/monorepo_utils ] && export PATH=~/src/monorepo_utils:${PATH}
 
 # bash completions
-. /usr/share/git/completion/git-prompt.sh > /dev/null 2>&1
-. ~/src/maven-bash-completion/bash_completion.bash > /dev/null 2>&1
-. ~/.jmake/completion/jmake.completion.bash > /dev/null 2>&1
+[ $(type -t /usr/share/git/completion/git-prompt.sh) ] && /usr/share/git/completion/git-prompt.sh
+[ $(type -t ~/src/maven-bash-completion/bash_completion.bash) ] && . ~/src/maven-bash-completion/bash_completion.bash
+[ $(type -t ~/.jmake/completion/jmake.completion.bash) ] && . ~/.jmake/completion/jmake.completion.bash
+[ $(type -t pio) ] && eval "$(_PIO_COMPLETE=source pio)"
 
 # optional git PS1 shows extra flags
 export GIT_PS1_SHOWDIRTYSTATE=true
@@ -104,9 +98,7 @@ __prompt_command() {
 PROMPT_COMMAND=__prompt_command
 
 # arch friendly java home - will update with archlinx-java
-if [ -d /usr/lib/jvm/default ]; then
-    export JAVA_HOME=/usr/lib/jvm/default
-fi
+[ -d /usr/lib/jvm/default ] && export JAVA_HOME=/usr/lib/jvm/default
 
 # maven defaults
 export MAVEN_OPTS='-Xmx1536m'
