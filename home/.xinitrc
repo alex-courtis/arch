@@ -31,17 +31,6 @@ rm -f .xmonad/xmonad.state
 # it won't be shown without a tray however is necessary to spawn windows
 [ $(type -t nm-applet) ] && nm-applet > /dev/null 2>&1 &
 
-if [ $(hostname) = "gigantor" ]; then
-    # temporary dpi hardcoded override
-    echo "Xft.dpi: 168" | xrdb -merge
-fi
-if [ $(hostname) = "duke" ]; then
-    # thinkpad carbon x1 g3 doesn't correctly report screen size
-    # 192 is close, but still a bit less than reality
-    # use 144 to fit more things onto the 14" laptop screen at 2560x1440
-    xrandr --dpi 144
-fi
-
 if [ $(type -t xmonad) ]; then
     # start xmonad
     xmonad &
