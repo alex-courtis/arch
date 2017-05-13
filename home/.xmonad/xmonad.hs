@@ -16,9 +16,10 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 myConfig = def
   { modMask         = myModMask
   , terminal        = myTerminal
-  , startupHook     = myStartupHook
+  , startupHook     = ewmhDesktopsStartup <+> myStartupHook
   , layoutHook      = myLayout
-  , handleEventHook = handleEventHook def <+> fullscreenEventHook
+  , handleEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
+  , logHook         = ewmhDesktopsLogHook
   } `additionalKeys`
 
   -- launch dmenu
@@ -69,6 +70,7 @@ myStartupHook = do
 
   -- bad old java apps need this WM hint
   setWMName "LG3D"
+
 
 -- layouts
 myLayout = smartBorders $ Full ||| tall ||| wide
