@@ -1,6 +1,5 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
@@ -9,7 +8,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 
 -- launch XMonad with a status bar and overridden configuration
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey  myConfig
 
 
 -- general configuration with keyboard customisation
@@ -20,6 +19,7 @@ myConfig = def
   , layoutHook      = myLayout
   , handleEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
   , logHook         = ewmhDesktopsLogHook
+  , manageHook      = myManageHook
   } `additionalKeys`
 
   -- launch dmenu
@@ -68,8 +68,11 @@ myStartupHook = do
   -- write to the named pipe for xmobar volume
   spawn "xmobarPulseVolume.sh"
 
-  -- bad old java apps need this WM hint
-  setWMName "LG3D"
+
+-- application specific overrides; use xprop to investigate a running window
+myManageHook = composeAll
+   [ className =? "net-sourceforge-jnlp-runtime-Boot"   --> doFloat     -- iced tea javaws
+   , className =? "Xmessage"                            --> doFloat ]
 
 
 -- layouts

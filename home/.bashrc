@@ -99,6 +99,10 @@ PROMPT_COMMAND=__prompt_command
 # maven defaults
 export MAVEN_OPTS='-Xmx1536m'
 
+# tell the old AWT apps that we're not using a reparenting window manager
+# see: https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Problems_with_Java_applications.2C_Applet_java_console
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # user mount helpers
 if [ $(type -t udisksctl) ]; then
     mnt() {
