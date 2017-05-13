@@ -32,10 +32,6 @@ alias yaourt="yaourt --aur --noconfirm"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
-if [ $(type -t udisksctl) ]; then
-    alias mnt="udisksctl mount -b"
-    alias umnt="udisksctl unmount -b"
-fi
 
 # assorted tools to add to PATH
 [ -d ~/src/robbieg.bin ] && export PATH=~/src/robbieg.bin:${PATH}
@@ -102,6 +98,24 @@ PROMPT_COMMAND=__prompt_command
 
 # maven defaults
 export MAVEN_OPTS='-Xmx1536m'
+
+# user mount helpers
+if [ $(type -t udisksctl) ]; then
+    mnt() {
+        if [ ${#} -ne 1 ]; then
+            echo "Usage: ${FUNCNAME} <block device>" >&2
+            return 1
+        fi
+        udisksctl mount -b ${1} && cd $(findmnt -n -o TARGET ${1})
+    }
+    umnt() {
+        if [ ${#} -ne 1 ]; then
+            echo "Usage: ${FUNCNAME} <block device>" >&2
+            return 1
+        fi
+        udisksctl unmount -b ${1}
+    }
+fi
 
 # rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
