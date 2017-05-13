@@ -39,10 +39,10 @@ fi
 [ -d ~/src/monorepo_utils ] && export PATH=~/src/monorepo_utils:${PATH}
 
 # bash completions
-[ $(type -t /usr/share/git/completion/git-prompt.sh) ] && /usr/share/git/completion/git-prompt.sh
-[ $(type -t ~/src/maven-bash-completion/bash_completion.bash) ] && . ~/src/maven-bash-completion/bash_completion.bash
-[ $(type -t ~/.jmake/completion/jmake.completion.bash) ] && . ~/.jmake/completion/jmake.completion.bash
-[ $(type -t pio) ] && eval "$(_PIO_COMPLETE=source pio)"
+[ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
+[ -f ~/src/maven-bash-completion/bash_completion.bash ] && . ~/src/maven-bash-completion/bash_completion.bash
+[ -f ~/.jmake/completion/jmake.completion.bash ] && . ~/.jmake/completion/jmake.completion.bash
+[ -f pio ] && eval "$(_PIO_COMPLETE=source pio)"
 
 # optional git PS1 shows extra flags
 export GIT_PS1_SHOWDIRTYSTATE=true
