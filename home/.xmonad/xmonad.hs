@@ -26,6 +26,9 @@ myConfig = def
   -- launch j4-dmenu-desktop
   , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\"" ++ " >/dev/null 2>&1"))
 
+  -- launch browser
+  , ((myModMask .|. shiftMask,  xK_o     ), spawn (myBrowser ++ " >/dev/null 2>&1"))
+
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume.sh mute")
   , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "xmobarPulseVolume.sh down")
@@ -94,3 +97,6 @@ myModMask = mod4Mask -- Super_L
 
 -- terminal of choice
 myTerminal = "urxvt"
+
+-- browser of choice
+myBrowser = "chromium"
