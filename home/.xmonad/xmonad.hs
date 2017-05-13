@@ -8,7 +8,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 
 -- launch XMonad with a status bar and overridden configuration
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey  myConfig
+main = xmonad =<< statusBar myBar myPP myToggleStrutsKey  myConfig
 
 
 -- general configuration with keyboard customisation
@@ -23,9 +23,9 @@ myConfig = def
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ dmenuArgs ++ " >/dev/null 2>&1"))
+  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ myDmenuArgs ++ " >/dev/null 2>&1"))
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ dmenuArgs ++ "\" --term=\"urxvt\"" ++ " >/dev/null 2>&1"))
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ myDmenuArgs ++ "\" --term=\"urxvt\"" ++ " >/dev/null 2>&1"))
 
   -- launch browser
   , ((myModMask .|. shiftMask,  xK_o     ), spawn (myBrowser ++ " >/dev/null 2>&1"))
@@ -40,9 +40,9 @@ myConfig = def
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
   , ((noModMask,                xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10%")
 
-  -- twiddle displays, restarting xmonad
-  , ((noModMask,                xF86XK_Display          ), spawn twiddleDisplaysCmd)
-  , ((myModMask .|. shiftMask,  xK_y                    ), spawn twiddleDisplaysCmd)
+  -- twiddle displays
+  , ((noModMask,                xF86XK_Display          ), spawn myTwiddleDisplaysCmd)
+  , ((myModMask .|. shiftMask,  xK_y                    ), spawn myTwiddleDisplaysCmd)
 
   -- lock the screen
   , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
@@ -59,7 +59,7 @@ myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppSep       = "   "
   , ppTitle     = xmobarColor "green" "" . shorten 100
   }
-toggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
+myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
 
 -- startup
@@ -91,11 +91,11 @@ myLayout = smartBorders $ Full ||| tall ||| wide
      delta   = 3/100
 
 
--- update monitor outputs
-twiddleDisplaysCmd = "xLayoutDisplays && xmonad --restart"
+-- update monitor outputs and restart xmonad
+myTwiddleDisplaysCmd = "xLayoutDisplays && xmonad --restart"
 
 -- common dmenu args
-dmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-11:bold'"
+myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-11:bold'"
 
 -- mod key of choice - super
 myModMask = mod4Mask -- Super_L
