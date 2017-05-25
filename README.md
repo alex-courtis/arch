@@ -20,7 +20,14 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 
 ### Boot
 
-Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media) or prepare a [Raspberry PI SD card](https://archlinuxarm.org/platforms/armv6/raspberry-pi).
+* Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
+
+ or
+ 
+* prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
+* boot it
+* login as root/root via ssh or console
+* skip to [Locale And Time](#locale-and-time)
 
 ### Wireless Connectivity
 
