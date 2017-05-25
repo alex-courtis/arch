@@ -234,6 +234,12 @@ pkgfile --update
 
 Exit chroot and reboot
 
+### Remove Default User
+
+Any default users (with known passwords) should be removed e.g.
+
+`userdel -r alarm`
+
 ### Set Hostname
 
 Use `nmtui` to setup the system network connection.
@@ -256,7 +262,7 @@ You can check this with: `timedatectl status`
 
 Install your public/private keys under `~/.ssh`
 
-Clone this repo to, say, `/opt/alex`, ensuring the ownership of that directory and its children is the user.
+Clone this repo to, say, `/opt/arch`, ensuring the ownership of that directory and its children is the user.
 
 Link the CLI profile bits:
 
