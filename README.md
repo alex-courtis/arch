@@ -134,6 +134,10 @@ Uncomment your desired locale in `/etc/locale.gen`
 
 `hwclock --systohc --utc`
 
+### Update pacman Packages And Installations To Current
+
+`pacman -Suy`
+
 ### Install And Enable Basic Networking
 
 ```
@@ -152,7 +156,7 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/bash alex
 passwd alex
 ```
 
-`pacman -S vim`
+`pacman -S vim sudo`
 
 Invoke `visudo` and uncomment the following:
 
@@ -165,6 +169,8 @@ Invoke `visudo` and uncomment the following:
 Install Intel microcode updater: `pacman -S intel-ucode`
 
 ### systemd boot loader and boot image
+
+Obviously not for Raspberry PI...
 
 *Alternative:* [GRUB boot loader](#grub-boot-loader)
 
