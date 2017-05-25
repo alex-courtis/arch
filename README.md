@@ -28,7 +28,7 @@ Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_ins
 
 * prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
 * insert card and boot the device
-* ssh as `alarm/alarm`, if network is available or login via console
+* ssh or login via console as `alarm/alarm`
 * `su - ` with default password `root`
 * skip to [Locale And Time](#locale-and-time)
 
