@@ -110,7 +110,7 @@ if [ $(type -t udisksctl) ]; then
             echo "Usage: ${FUNCNAME} <block device>" >&2
             return 1
         fi
-        udisksctl mount -b ${1} && cd $(findmnt -n -o TARGET ${1})
+        udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
     }
     umnt() {
         if [ ${#} -ne 1 ]; then
