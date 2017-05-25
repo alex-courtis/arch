@@ -20,13 +20,16 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 
 ### Boot
 
-* Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
+#### Intel PC
 
- or
- 
+Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
+
+#### Raspberry PI
+
 * prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
-* boot it
-* login as root/root via ssh or console
+* insert card and boot the device
+* ssh as `alarm/alarm`, if network is available or login via console
+* `su - ` with default password `root`
 * skip to [Locale And Time](#locale-and-time)
 
 ### Wireless Connectivity
