@@ -170,8 +170,6 @@ Install Intel microcode updater: `pacman -S intel-ucode`
 
 ### systemd boot loader and boot image
 
-Obviously not for Raspberry PI...
-
 *Alternative:* [GRUB boot loader](#grub-boot-loader)
 
 `bootctl --path=/boot install`
@@ -244,6 +242,10 @@ Apply the hostname:
 
 `hostnamectl set-hostname duke`
 
+Add the hostname to `/etc/hosts` first, as IPv4 local:
+
+`127.0.0.1	duke`
+
 ### Enable NTP Sync
 
 `timedatectl set-ntp true`
@@ -299,7 +301,7 @@ If having problems with tearing on scrolling, you can add the following option. 
    Option      "TearFree"       "true"
 ```
 
-### Hibernation
+### Desktop Hibernation
 
 Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
