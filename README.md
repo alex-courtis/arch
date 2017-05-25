@@ -262,9 +262,11 @@ You can check this with: `timedatectl status`
 
 Install your public/private keys under `~/.ssh`
 
-Clone this repo to, say, `/opt/arch`, ensuring the ownership of that directory and its children is the user.
+Clone this repo to a user available location i.e. `~`
 
-Link the CLI profile bits:
+As root, move it to, say, `/opt/alex`
+
+From the end location, link the CLI profile bits:
 
 `./linkHome.sh`
 
