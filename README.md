@@ -350,9 +350,11 @@ xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
+xorg-server
 xorg-xinit
 xorg-xrandr
 xorg-xrdb
+xorg-xsetroot
 
 #### Laptops Like
 
