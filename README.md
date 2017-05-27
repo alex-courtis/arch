@@ -211,12 +211,6 @@ Add an encrypt hook and move the keyboard configration before it, so that we can
 HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck"
 ```
 
-If you have Intel 915 graphics, add the module to the image:
-
-```
-MODULES="i915"
-```
-
 Regenerate the boot image:
 
 `mkinitcpio -g /boot/initramfs-linux.img`
@@ -301,12 +295,6 @@ Section "Device"
    Identifier  "Intel Graphics"
    Driver      "intel"
 EndSection
-```
-
-If having problems with tearing on scrolling, you can add the following option. Tip gained from https://wiki.archlinux.org/index.php/intel_graphics#Tear-free_video, however the original bug report no longer seems accurate.
-
-```
-   Option      "TearFree"       "true"
 ```
 
 ### Desktop Hibernation
