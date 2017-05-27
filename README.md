@@ -337,25 +337,25 @@ Install desired packages.
 
 #### Packages I Like
 
-[ttf-ms-win10](https://aur.archlinux.org/packages/ttf-ms-win10/) - needs manual install
-
-google-chrome
-j4-dmenu-desktop
-networkmanager-dmenu-git
-rxvt-unicode-better-wheel-scrolling
 arandr
 calc
+chromium
 dmenu
+j4-dmenu-desktop
 network-manager-applet
+networkmanager-dmenu-git
 networkmanager-openconnect
 pavucontrol
 pinta
 pulseaudio-ctl
 pwgen
+rxvt-unicode-better-wheel-scrolling
 scrot
 slock
 the_silver_searcher
 ttf-hack
+ttf-ms-fonts
+udisks2
 xautolock
 xdg-utils
 xmlstarlet
