@@ -12,11 +12,11 @@ if [ -f "${HOME}/.Xresources" ]; then
     xrdb -merge "${HOME}/.Xresources"
 fi
 
-# ensure that we have a background set and a reasonable pointer
-[ $(type -t xsetroot) ] && xsetroot -solid gray30 -cursor_name left_ptr
-
 # setup displays
 [ $(type -t xLayoutDisplays) ] && xLayoutDisplays
+
+# ensure that we have a background set and a reasonable pointer
+[ $(type -t xsetroot) ] && xsetroot -solid gray30 -cursor_name left_ptr
 
 # slock the screen after 5 mins
 [ $(type -t xautolock) ] && [ $(type -t slock) ] && xautolock -locker slock -time 5 &
