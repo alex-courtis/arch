@@ -1,5 +1,3 @@
-Xcursor.size: 48
-
 URxvt*loginShell: true
 URxvt*font: xft:Hack:size=11
 URxvt*scrollBar: false
