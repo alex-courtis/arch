@@ -103,6 +103,11 @@ export MAVEN_OPTS='-Xmx1536m'
 # see: https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Problems_with_Java_applications.2C_Applet_java_console
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# added by https://github.com/creationix/nvm install.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # user mount helpers
 if [ $(type -t udisksctl) ]; then
     mnt() {
