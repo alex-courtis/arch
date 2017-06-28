@@ -126,22 +126,6 @@ if [ $(type -t udisksctl) ]; then
     }
 fi
 
-dockerListTags() {
-    if [ ${#} -ne 2 ]; then
-        echo "Usage: ${FUNCNAME} <image path on docker.atlassian.io> <username without @atlassian.com>" >&2
-        return 1
-    fi
-
-    image=${1}
-    username=${2}
-
-    dockerBearer=$(curl -q -H "Accept: application/json" -u $username "https://docker-auth.internal.useast.atlassian.io/v2/token?service=docker.atlassian.io&scope=repository:$image:pull" | jq -r ".token")
-
-    echo "dockerBearer=${dockerBearer}"
-
-    curl -H "Accept: application/json" -H "Authorization: Bearer $dockerBearer" "https://docker.atlassian.io/v2/$image/tags/list"
-}
-
 # rsync scripts
 if [ ${hostName} == "EMPEROR" ]; then
 
