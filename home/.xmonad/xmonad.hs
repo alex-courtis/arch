@@ -56,7 +56,7 @@ myConfig = def
   -- https://bugs.archlinux.org/task/54561
   -- cd ~/.xmonad
   -- ghc --make xmonad.hs -i -ilib -dynamic -fforce-recomp -main-is main -v0 -o xmonad-x86_64-linux
-  , ((myModMask,                xK_q                    ), spawn "xmessage 'needs https://bugs.archlinux.org/task/54561'")
+  , ((myModMask,                xK_q                    ), spawn "if type xmonad; xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
   ]
 
 
