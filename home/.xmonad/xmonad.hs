@@ -50,13 +50,6 @@ myConfig = def
   -- take screenshots
   , ((noModMask,                xK_Print                ), spawn "sleep 0.2; cd /tmp && scrot -s -e 'xdg-open $f &'")
   , ((myModMask,                xK_Print                ), spawn "           cd /tmp && scrot    -e 'xdg-open $f &'")
-
-
-  -- https://bbs.archlinux.org/viewtopic.php?id=227580
-  -- https://bugs.archlinux.org/task/54561
-  -- cd ~/.xmonad
-  -- ghc --make xmonad.hs -i -ilib -dynamic -fforce-recomp -main-is main -v0 -o xmonad-x86_64-linux
-  , ((myModMask,                xK_q                    ), spawn "if type xmonad; xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
   ]
 
 
