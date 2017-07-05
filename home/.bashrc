@@ -36,13 +36,12 @@ fi
 # assorted tools to add to PATH
 [ -d ~/src/robbieg.bin ] && export PATH=~/src/robbieg.bin:${PATH}
 [ -d ~/src/atlassian-scripts ] && export PATH=~/src/atlassian-scripts/bin:${PATH}
-[ -d ~/src/monorepo_utils ] && export PATH=~/src/monorepo_utils:${PATH}
 
 # bash completions
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
 [ -f ~/src/maven-bash-completion/bash_completion.bash ] && . ~/src/maven-bash-completion/bash_completion.bash
 [ -f ~/.jmake/completion/jmake.completion.bash ] && . ~/.jmake/completion/jmake.completion.bash
-[ -f pio ] && eval "$(_PIO_COMPLETE=source pio)"
+#[ -f pio ] && eval "$(_PIO_COMPLETE=source pio)"
 
 # optional git PS1 shows extra flags
 export GIT_PS1_SHOWDIRTYSTATE=true
