@@ -16,6 +16,11 @@ export VISUAL="vi"
 export PAGER="less"
 export LESS="R"
 
+# added by https://github.com/creationix/nvm install.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # aliases
 if [ "${os}" == "Darwin" -o "${os}" == "FreeBSD" ]; then
     alias ls="ls -G"
@@ -28,7 +33,9 @@ alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep -E --color"
 alias rgrep="find . -type f -print0 | xargs -0 grep"
-alias yaourt="yaourt --aur --noconfirm"
+if [ $(type -t nvm) -a $(type -t code) ]; then
+    alias nodecode="nvm use && code ."
+fi
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
@@ -102,11 +109,6 @@ export MAVEN_OPTS='-Xmx1536m'
 # tell the old AWT apps that we're not using a reparenting window manager
 # see: https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Problems_with_Java_applications.2C_Applet_java_console
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-# added by https://github.com/creationix/nvm install.sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # user mount helpers
 if [ $(type -t udisksctl) ]; then
