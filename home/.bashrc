@@ -32,6 +32,9 @@ if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
 alias ipmi="ipmitool -U ${USER} -I lanplus -H 192.168.10.7"
+alias ipmiConsole="ipmi sol activate"
+alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
+
 
 # assorted tools to add to PATH
 [ -d ~/src/robbieg.bin ] && export PATH=~/src/robbieg.bin:${PATH}
