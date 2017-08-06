@@ -41,6 +41,7 @@ alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 [ -d ~/src/atlassian-scripts ] && export PATH=~/src/atlassian-scripts/bin:${PATH}
 
 # bash completions
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
 [ -f ~/src/maven-bash-completion/bash_completion.bash ] && . ~/src/maven-bash-completion/bash_completion.bash
 [ -f ~/.jmake/completion/jmake.completion.bash ] && . ~/.jmake/completion/jmake.completion.bash
@@ -68,6 +69,9 @@ duke*)
     ;;
 gigantor*)
     promptColour="[44m"
+    ;;
+prince*)
+    promptColour="[43m"
     ;;
 * )
     promptColour="[45m"
