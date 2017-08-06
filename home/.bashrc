@@ -111,10 +111,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # nvm helpers
-if [ $(type -t nvm) -a -f "./.nvmrc" ]; then
-    nvm use
+if [ $(type -t nvm) ]; then
+    alias nvmcode="nvm use && code ."
+    if [ -f "./.nvmrc" ]; then
+        nvm use
+    fi
 fi
-alias nvmcode="nvm use && code ."
 
 # user mount helpers
 if [ $(type -t udisksctl) ]; then
