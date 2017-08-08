@@ -10,8 +10,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # boot the zsh completion system 
-# TODO: what does the following actually do???
-#zstyle :compinstall filename '/home/alex/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -39,7 +37,6 @@ alias ipmiConsoleDeact="ipmi sol deactivate"
 alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 
 # shell completions
-# TODO: how do I get maven completion???
 [ -f ~/.jmake/completion/jmake.completion.zsh ] && . ~/.jmake/completion/jmake.completion.zsh
 [ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
 

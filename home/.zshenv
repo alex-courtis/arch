@@ -1,6 +1,3 @@
-# TODO: what's the advantage of separating .zshenv from .zshrc?
-# these come before zprofile / .zprofile which is problematic
-
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
 export VISUAL="vi"
