@@ -13,25 +13,25 @@ if [ -f "${HOME}/.Xresources" ]; then
 fi
 
 # setup displays
-[ $(type -t xLayoutDisplays) ] && xLayoutDisplays
+[ -n "$(type xLayoutDisplays)" ] && xLayoutDisplays
 
 # ensure that we have a background set and a reasonable pointer
-[ $(type -t xsetroot) ] && xsetroot -solid gray30 -cursor_name left_ptr
+[ -n "$(type xsetroot)" ] && xsetroot -solid gray30 -cursor_name left_ptr
 
 # slock the screen after 5 mins
-[ $(type -t xautolock) ] && [ $(type -t slock) ] && xautolock -locker slock -time 5 &
+[ -n "$(type xautolock)" ] && [ -n "$(type slock)" ] && xautolock -locker slock -time 5 &
 
 # start touchpad gesture recogniser
-[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup start > /dev/null 2>&1
+[ -n "$(type libinput-gestures-setup)" ] && libinput-gestures-setup start > /dev/null 2>&1
 
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
 
 # start up nm-applet, for use by networkmanager_dmenu
 # it won't be shown without a tray however is necessary to spawn windows
-[ $(type -t nm-applet) ] && nm-applet > /dev/null 2>&1 &
+[ -n "$(type nm-applet)" ] && nm-applet > /dev/null 2>&1 &
 
-if [ $(type -t xmonad) ]; then
+if [ -n "$(type xmonad)" ]; then
     # start xmonad
     xmonad &
 
@@ -43,4 +43,4 @@ else
 fi
 
 # stop touchpad gesture recogniser
-[ $(type -t libinput-gestures-setup) ] && libinput-gestures-setup stop > /dev/null 2>&1
+[ -n "$(type libinput-gestures-setup)" ] && libinput-gestures-setup stop > /dev/null 2>&1

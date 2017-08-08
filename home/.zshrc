@@ -16,6 +16,11 @@ compinit
 # vim CLI mode
 bindkey -v
 
+# bindings for insert mode
+bindkey "^J" history-beginning-search-forward
+bindkey "^K" history-beginning-search-backward
+bindkey "^X" vi-cmd-mode
+
 # aliases
 if [ "${os}" = "Linux" ]; then
     alias ls="ls --color"
@@ -67,8 +72,7 @@ PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
 #   "\a"    BEL xterm (title) code
-# TODO: determine presence of __git_ps1
-if [ 1 -eq 1 ]; then
+if [ -n "$(type __git_ps1)" ]; then
     precmd() {
         printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
     }
@@ -81,8 +85,7 @@ fi
 # TODO: make a decision on nvm
 
 # user mount helpers
-# TODO: there is a way in zsh...
-#if [ $(type -t udisksctl) ]; then
+if [ -n "$(type udisksctl)" ]; then
     mnt() {
         if [ ${#} -ne 1 ]; then
             echo "Usage: ${FUNCNAME} <block device>" >&2
@@ -97,7 +100,7 @@ fi
         fi
         udisksctl unmount -b ${1}
     }
-#fi
+fi
 
 # complete PATH
 typeset -U path
