@@ -1,3 +1,7 @@
+function isAThing() {
+    return $(type "${1}" > /dev/null 2>&1)
+}
+
 # local vars
 hostName=$(hostname)
 newLine=$'\n'
@@ -72,7 +76,7 @@ PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
 #   "\a"    BEL xterm (title) code
-if [ -n "$(type __git_ps1)" ]; then
+if isAThing __git_ps1; then
     precmd() {
         printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
     }
@@ -85,7 +89,7 @@ fi
 # TODO: make a decision on nvm
 
 # user mount helpers
-if [ -n "$(type udisksctl)" ]; then
+if isAThing udisksctl; then
     mnt() {
         if [ ${#} -ne 1 ]; then
             echo "Usage: ${FUNCNAME} <block device>" >&2
