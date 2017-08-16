@@ -68,10 +68,11 @@ prince*)
     ;;
 esac
 
-# prompt:
-#   bg red nonzero return code and newline
-#   bg host coloured ":; "
-PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
+# left prompt: bg host coloured ":; "
+PROMPT="%K{${promptColour}}:;%k "
+
+# right prompt: bg red nonzero return code
+RPROMPT="%(?..%K{red}%?%k)"
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
