@@ -46,8 +46,8 @@ alias ipmiConsoleDeact="ipmi sol deactivate"
 alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 
 # shell completions
-[ -f ~/.jmake/completion/jmake.completion.zsh ] && . ~/.jmake/completion/jmake.completion.zsh
-[ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
+# todo: this is slow as fuck
+# [ -f ~/.jmake/completion/jmake.completion.zsh ] && . ~/.jmake/completion/jmake.completion.zsh
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 case "${hostName}" in
@@ -76,6 +76,7 @@ PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
 #   "\a"    BEL xterm (title) code
+[[ -f /usr/share/git/completion/git-prompt.sh ]] && . /usr/share/git/completion/git-prompt.sh
 if isAThing __git_ps1; then
 
     # show extra flags
@@ -90,18 +91,18 @@ else
     }
 fi
 
+# todo: this is slow as fuck
 # added by https://github.com/creationix/nvm install.sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# nvm helpers
-if isAThing nvm; then
-    alias nvmcode="nvm use && code ."
-    if [ -f "./.nvmrc" ]; then
-        nvm use
-    fi
-fi
+# # nvm helpers
+# if isAThing nvm; then
+#     alias nvmcode="nvm use && code ."
+#     if [ -f "./.nvmrc" ]; then
+#         nvm use
+#     fi
+# fi
 
 # user mount helpers
 if isAThing udisksctl; then
@@ -123,9 +124,9 @@ fi
 
 # complete PATH
 typeset -U path
-[ -d ~/src/robbieg.bin ] && path=(~/src/robbieg.bin "$path[@]")
-[ -d ~/src/atlassian-scripts ] && path=(~/src/atlassian-scripts/bin "$path[@]")
-[ -d ~/bin ] && path=(~/bin "$path[@]")
+[[ -d ~/src/robbieg.bin ]] && path=(~/src/robbieg.bin "$path[@]")
+[[ -d ~/src/atlassian-scripts ]] && path=(~/src/atlassian-scripts/bin "$path[@]")
+[[ -d ~/bin ]] && path=(~/bin "$path[@]")
 
 # clear local vars
 unset hostName
