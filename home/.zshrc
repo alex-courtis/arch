@@ -45,10 +45,6 @@ alias ipmiConsoleAct="TERM=vt100; ipmi sol activate"
 alias ipmiConsoleDeact="ipmi sol deactivate"
 alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 
-# shell completions
-# todo: this is slow as fuck
-# [ -f ~/.jmake/completion/jmake.completion.zsh ] && . ~/.jmake/completion/jmake.completion.zsh
-
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 case "${hostName}" in
 emperor*)
