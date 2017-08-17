@@ -23,7 +23,6 @@ bindkey -v
 # bindings for insert mode
 bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
-bindkey "^X" vi-cmd-mode
 
 # aliases
 if [ "${os}" = "Linux" ]; then
