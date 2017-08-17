@@ -7,9 +7,7 @@ export PAGER="less"
 export LESS="R"
 
 # optional git PS1 shows extra flags
-# TODO: zsh has different flags
 export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWSTASHSTATE=true
 
 # arch friendly java home - will update with archlinx-java
