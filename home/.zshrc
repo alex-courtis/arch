@@ -86,19 +86,6 @@ else
     }
 fi
 
-# todo: this is slow as fuck
-# added by https://github.com/creationix/nvm install.sh
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# # nvm helpers
-# if isAThing nvm; then
-#     alias nvmcode="nvm use && code ."
-#     if [ -f "./.nvmrc" ]; then
-#         nvm use
-#     fi
-# fi
-
 # user mount helpers
 if isAThing udisksctl; then
     mnt() {
