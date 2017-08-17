@@ -6,10 +6,6 @@ export VISUAL="vi"
 export PAGER="less"
 export LESS="R"
 
-# optional git PS1 shows extra flags
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=true
-
 # arch friendly java home - will update with archlinx-java
 [ -d /usr/lib/jvm/default ] && export JAVA_HOME=/usr/lib/jvm/default
 

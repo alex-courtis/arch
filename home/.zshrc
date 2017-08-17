@@ -68,16 +68,19 @@ prince*)
     ;;
 esac
 
-# left prompt: bg host coloured ":; "
-PROMPT="%K{${promptColour}}:;%k "
-
-# right prompt: bg red nonzero return code
-RPROMPT="%(?..%K{red}%?%k)"
+# prompt:
+#   bg red nonzero return code and newline
+#   bg host coloured ":; "
+PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
 #   "\a"    BEL xterm (title) code
 if isAThing __git_ps1; then
+
+    # show extra flags
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWSTASHSTATE=true
     precmd() {
         printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
     }
