@@ -4,7 +4,6 @@ function isAThing() {
 
 # local vars
 hostName=$(hostname)
-newLine=$'\n'
 os=$(uname)
 promptColour=
 
@@ -68,7 +67,7 @@ esac
 # prompt:
 #   bg red nonzero return code and newline
 #   bg host coloured ":; "
-PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
+PROMPT="%(?..%K{red}%?%k"$'\n'")%K{${promptColour}}:;%k "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
@@ -114,6 +113,5 @@ typeset -U path
 
 # clear local vars
 unset hostName
-unset newLine
 unset os
 unset promptColour
