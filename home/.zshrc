@@ -13,12 +13,12 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
+# vim CLI mode
+bindkey -v
+
 # boot the zsh completion system 
 autoload -Uz compinit
 compinit
-
-# vim CLI mode
-bindkey -v
 
 # bindings for insert mode
 bindkey "^J" history-beginning-search-forward
@@ -39,10 +39,12 @@ alias rgrep="find . -type f -print0 | xargs -0 grep"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
-alias ipmi="ipmitool -U ${USER} -I lanplus -H 192.168.10.7"
-alias ipmiConsoleAct="TERM=vt100; ipmi sol activate"
-alias ipmiConsoleDeact="ipmi sol deactivate"
-alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
+if isAThing ipmitool; then
+    alias ipmi="ipmitool -U ${USER} -I lanplus -H 192.168.10.7"
+    alias ipmiConsoleAct="TERM=vt100; ipmi sol activate"
+    alias ipmiConsoleDeact="ipmi sol deactivate"
+    alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
+fi
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 case "${hostName}" in
@@ -70,7 +72,7 @@ PROMPT="%(?..%K{red}%?%k${newLine})%K{${promptColour}}:;%k "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
-#   "\a"    BEL xterm (title) code
+#   "\a"    BEL
 [[ -f /usr/share/git/completion/git-prompt.sh ]] && . /usr/share/git/completion/git-prompt.sh
 if isAThing __git_ps1; then
 
