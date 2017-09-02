@@ -4,7 +4,9 @@ export VISUAL="vi"
 
 # better paging
 export PAGER="less"
-export LESS="R"
+
+# not sure why this is a good thing
+#export LESS="R"
 
 # arch friendly java home - will update with archlinx-java
 [ -d /usr/lib/jvm/default ] && export JAVA_HOME=/usr/lib/jvm/default
