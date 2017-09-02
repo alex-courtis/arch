@@ -6,3 +6,6 @@ vbell off
 
 # scrollback defaults to 100
 defscrollback 100000
+
+# CI searching
+ignorecase on
