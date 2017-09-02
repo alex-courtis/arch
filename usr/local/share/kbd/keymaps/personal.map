@@ -1,3 +1,0 @@
-# really swap caps lock with control; execute the following to get all alternate mappings
-# dumpkeys -f | grep  29 | sed -e s/29/58/g
-keycode  58 = Control          Control          Control          VoidSymbol       Control          Control          VoidSymbol       VoidSymbol       Control          VoidSymbol       VoidSymbol       VoidSymbol       Control         
