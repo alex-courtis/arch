@@ -116,3 +116,8 @@ typeset -U path
 unset hostName
 unset os
 unset promptColour
+
+# startup screen if not already running
+if isAThing screen && [[ ! "${TERM}" =~ "screen" ]]; then
+    exec screen
+fi
