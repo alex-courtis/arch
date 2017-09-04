@@ -117,7 +117,7 @@ unset hostName
 unset os
 unset promptColour
 
-# startup screen if not already running
-if isAThing screen && [[ ! "${TERM}" =~ "screen" ]]; then
+# startup screen if not already running and we have a .screenrc
+if isAThing screen && [[ ! "${TERM}" =~ "screen" ]] && [ -f ~/.screenrc ]; then
     exec screen
 fi
