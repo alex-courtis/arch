@@ -43,7 +43,7 @@ if isAThing xmonad; then
     wait $!
 else
     # start a terminal
-    urxvt
+    st
 fi
 
 # stop touchpad gesture recogniser
