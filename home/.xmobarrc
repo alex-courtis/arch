@@ -9,7 +9,7 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     , Run Memory ["-t","M <usedratio>%"
                                   , "-L","40","-H","70"
                                   , "--normal","green","--high","red"] 10
-                    , Run Swap ["-t","S <usedratio>%",
+                    , Run Swap ["-t","/<usedratio>%",
                                   "-L","10","-H","40",
                                   "--normal","green","--high","red"] 10
                     , Run DynNetwork ["-t","<dev> <rx>Kb/s <tx>Kb/s"
@@ -31,5 +31,5 @@ Config { font = "xft:Hack:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
                     ]
        -- left button on network, cpu, memory, swap, battery invokes networkmanager_dmenu
        -- left button on volume invokes pavucontrol, then updates ${XDG_RUNTIME_DIR}/xmobarPulseVolume on exit
-       , template = " %StdinReader% }{ <action=`networkmanager_dmenu >/dev/null 2>&1` button=1>%dynnetwork%   %cpu%   %memory%   %swap%%battery%</action>   <action=`pavucontrol && xmobarPulseVolume.sh` button=1>%volume%</action>   %date% "
+       , template = " %StdinReader% }{ <action=`networkmanager_dmenu >/dev/null 2>&1` button=1>%dynnetwork%   %cpu%   %memory%%swap%%battery%</action>   <action=`pavucontrol && xmobarPulseVolume.sh` button=1>%volume%</action>   %date% "
        }
