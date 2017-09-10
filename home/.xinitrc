@@ -26,7 +26,7 @@ isAThing xsetroot && xsetroot -solid gray30 -cursor_name left_ptr
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 
 # start touchpad gesture recogniser
-isAThing libinput-gestures-setup && libinput-gestures-setup start > /dev/null 2>&1
+isAThing libinput-gestures && libinput-gestures &
 
 # clear any xmonad saved state
 rm -f .xmonad/xmonad.state
@@ -45,6 +45,3 @@ else
     # start a terminal
     st
 fi
-
-# stop touchpad gesture recogniser
-isAThing libinput-gestures-setup && libinput-gestures-setup stop > /dev/null 2>&1
