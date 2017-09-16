@@ -95,7 +95,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 myTwiddleDisplaysCmd = "xLayoutDisplays && xmonad --restart"
 
 -- common dmenu args
-myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-11:bold'"
+myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-10:bold'"
 
 -- mod key of choice - super
 myModMask = mod4Mask -- Super_L
