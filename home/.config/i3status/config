@@ -59,13 +59,6 @@ volume master {
         color_degraded = "#FFFFFF"
 }
 
-order += "volume input"
-volume input {
-        format = "Vi %volume"
-        format_muted = "Vi"
-        color_degraded = "#FFFFFF"
-}
-
 order += "tztime local"
 tztime local {
         format = "%a %Y-%m-%d %H:%M:%S"
