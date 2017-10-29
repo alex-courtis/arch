@@ -193,6 +193,16 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+#
+# Volume:
+#
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
+    #bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up > /dev/null 2>&1
+    #bindsym XF86AudioLowerVolume exec pulseaudio-ctl down > /dev/null 2>&1
+    #bindsym XF86AudioMute exec pulseaudio-ctl mute > /dev/null 2>&1
+    #bindsym XF86AudioMicMute exec pulseaudio-ctl mute-input > /dev/null 2>&1
 
 #
 # Status Bar:

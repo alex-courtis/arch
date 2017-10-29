@@ -54,8 +54,15 @@ battery all {
 
 order += "volume master"
 volume master {
-        format = "V %volume"
-        format_muted = "V"
+        format = "Vo %volume"
+        format_muted = "Vo"
+        color_degraded = "#FFFFFF"
+}
+
+order += "volume input"
+volume input {
+        format = "Vi %volume"
+        format_muted = "Vi"
         color_degraded = "#FFFFFF"
 }
 
