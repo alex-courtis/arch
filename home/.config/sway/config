@@ -197,7 +197,12 @@ bindsym $mod+r mode "resize"
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
     bindsym XF86AudioMute exec pactl set-sink-mute $(pacmd list-sinks |awk '/* index:/{print $3}') toggle
     bindsym XF86AudioMicMute exec pactl set-source-mute $(pacmd list-sources |awk '/* index:/{print $3}') toggle
-
+#
+# Brightness:
+#
+    # see https://wiki.archlinux.org/index.php/Sway#Custom_keybindings
+    bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+    bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 #
 # Status Bar:
 #
