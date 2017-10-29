@@ -1,9 +1,3 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 s
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
