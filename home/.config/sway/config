@@ -16,10 +16,11 @@ set $right l
 # global fonts
 set $font_name Hack
 set $font_size 10
+set $font_size_dmenu 18
 # Your preferred terminal emulator
 set $term st
 # application launcher
-set $dmenu_args -fn $font_name-$font_size
+set $dmenu_args -fn $font_name-$font_size_dmenu
 set $menu_cmd dmenu_run $dmenu_args
 #set $menu_app sway-dmenu-desktop --dmenu="dmenu -i $dmenu_args"
 set $menu_app j4-dmenu-desktop --dmenu="dmenu -i $dmenu_args"
