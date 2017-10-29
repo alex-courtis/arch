@@ -16,7 +16,7 @@ set $term st
 # application launcher
 set $dmenu_args -fn $font_name-$font_size_dmenu
 set $menu_cmd dmenu_run $dmenu_args
-#set $menu_app sway-dmenu-desktop --dmenu="dmenu -i $dmenu_args"
+# consider sway-dmenu-desktop with similar args, once it is stable
 set $menu_app j4-dmenu-desktop --dmenu="dmenu -i $dmenu_args"
 
 ### Output configuration
