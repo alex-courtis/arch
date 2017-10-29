@@ -49,6 +49,10 @@ font $font_name $font_size
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+# thinkpad x1g3 touchpad
+input "Synaptics TM3072-003" {
+    tap enabled
+}
 
 ### Key bindings
 #
