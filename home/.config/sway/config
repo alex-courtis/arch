@@ -28,12 +28,18 @@ set $menu_app j4-dmenu-desktop --dmenu="dmenu -i $dmenu_args"
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
 output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# window title font
+font $font_name $font_size
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+# lenovo x1cg3 14" 2560x1440
+output eDP-1 scale 2
 
 ### Input configuration
 #
