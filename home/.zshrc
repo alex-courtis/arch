@@ -35,6 +35,7 @@ alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep --color"
 alias rgrep="find . -type f -print0 | xargs -0 grep"
+alias diff="diff --color"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
 fi
