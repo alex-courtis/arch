@@ -6,7 +6,7 @@ export VISUAL="vi"
 export PAGER="less"
 
 # not sure why this is a good thing
-#export LESS="R"
+export LESS="R"
 
 # sway
 export XKB_DEFAULT_OPTIONS=ctrl:nocaps
