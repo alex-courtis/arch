@@ -224,3 +224,5 @@ bar {
 }
 
 include /etc/sway/config.d/*
+
+# todo: hostname dependent configurations, i3blocks as per https://github.com/embik/dotfiles
