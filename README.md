@@ -327,17 +327,13 @@ Install desired packages.
 
 arandr
 calc
-chromium
 dmenu
 j4-dmenu-desktop
 network-manager-applet
 networkmanager-dmenu-git
 networkmanager-openconnect
-pavucontrol
 pinta
-pulseaudio-ctl
 pwgen
-rxvt-unicode-better-wheel-scrolling
 scrot
 slock
 the_silver_searcher
@@ -355,6 +351,7 @@ xorg-xinit
 xorg-xrandr
 xorg-xrdb
 xorg-xsetroot
+
 
 #### Laptops Like
 
