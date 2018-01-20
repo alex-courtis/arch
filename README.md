@@ -332,7 +332,9 @@ j4-dmenu-desktop
 network-manager-applet
 networkmanager-dmenu-git
 networkmanager-openconnect
+pavucontrol
 pinta
+pulseaudio-ctl
 pwgen
 scrot
 slock
