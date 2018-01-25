@@ -1,0 +1,15 @@
+#!/bin/sh
+
+xmessage -buttons UEFI,Reboot,PowerOff "$@" ""
+
+case "$?" in
+	101)
+		systemctl reboot --firmware-setup
+		;;
+	102)
+		systemctl reboot
+		;;
+	103)
+		systemctl poweroff
+		;;
+esac
