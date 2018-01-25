@@ -16,6 +16,9 @@ if [ -f "${HOME}/.Xresources" ]; then
     xrdb -merge "${HOME}/.Xresources"
 fi
 
+# load up nvidia settings
+isAThing nvidia-settings && nvidia-settings --load-config-only
+
 # setup displays
 isAThing xLayoutDisplays && xLayoutDisplays
 
