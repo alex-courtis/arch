@@ -101,7 +101,7 @@ myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Hack-1
 myModMask = mod4Mask -- Super_L
 
 -- terminal of choice
-myTerminal = "st"
+myTerminal = "alacritty"
 
 -- browser of choice
 myBrowser = "chromium"
