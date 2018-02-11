@@ -49,26 +49,26 @@ fi
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 case "${hostName}" in
 emperor*)
-    promptColour="green"
+    promptColour="yellow"
     ;;
 duke*)
-    promptColour="cyan"
+    promptColour="green"
     ;;
 gigantor*)
     promptColour="blue"
     ;;
 prince*)
-    promptColour="yellow"
+    promptColour="magenta"
     ;;
 * )
-    promptColour="magenta"
+    promptColour="white"
     ;;
 esac
 
 # prompt:
-#   bg red nonzero return code and newline
-#   bg host coloured ":; "
-PS1="%(?..%K{red}%?%k"$'\n'")%K{${promptColour}}:;%k "
+#   bg red background nonzero return code and newline
+#   bg host background coloured ":; " in black text
+PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${promptColour}}:;%k%f "
 PS2="%K{${promptColour}}:; %_%k "
 
 # title pwd and __git_ps1 (if present)
