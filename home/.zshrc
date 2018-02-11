@@ -118,7 +118,7 @@ unset hostName
 unset os
 unset promptColour
 
-# startup screen if not already running and we have a .screenrc
-if isAThing screen && [[ ! "${TERM}" =~ "screen" ]] && [ -f ~/.screenrc ]; then
-    exec screen
-fi
+# start tmux if interactive terminal and not already inside tmux
+case $- in *i*)
+    if [ -z "$TMUX" ] && isAThing tmux; then exec tmux; fi;;
+esac
