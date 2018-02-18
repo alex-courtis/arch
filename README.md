@@ -325,6 +325,7 @@ Install desired packages.
 
 #### Packages I Like
 
+alacritty-git
 arandr
 calc
 dmenu
@@ -339,6 +340,7 @@ pwgen
 scrot
 slock
 the_silver_searcher
+tmux
 ttf-hack
 ttf-ms-fonts
 udisks2
@@ -348,12 +350,7 @@ xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
-xorg-server
-xorg-xinit
-xorg-xrandr
-xorg-xrdb
-xorg-xsetroot
-
+xdm-archlinux
 
 #### Laptops Like
 
