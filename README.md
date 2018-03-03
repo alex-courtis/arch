@@ -65,6 +65,7 @@ mktable GPT
 mkpart ESP fat32 1MiB 513MiB
 set 1 boot on
 mkpart primary ext4 513MiB 100%
+exit
 ```
 
 ### FAT32 Boot and LUKS Encrypted ext4 Root
