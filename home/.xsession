@@ -1,4 +1,4 @@
-# .xinitrc
+# .xsession
 
 function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
@@ -34,13 +34,8 @@ rm -f .xmonad/xmonad.state
 # it won't be shown without a tray however is necessary to spawn windows
 isAThing nm-applet && nm-applet > /dev/null 2>&1 &
 
-if isAThing xmonad; then
-    # start xmonad
-    xmonad &
+# start xmonad
+xmonad &
 
-    # wait for xmonad to stop
-    wait $!
-else
-    # start a terminal
-    st
-fi
+# wait for xmonad to stop
+wait $!
