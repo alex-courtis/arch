@@ -60,4 +60,4 @@ typeset -i selected_index=$((${?}))
 
 
 # invoke the command
-echo "${button_cmds[${selected_index}]}"
+eval "${button_cmds[${selected_index}]}"
