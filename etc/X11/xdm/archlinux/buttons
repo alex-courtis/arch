@@ -23,7 +23,7 @@ unset i
 IFS="${ifs_prev}"
 
 
-# build buttons for the boot entries
+# buttons for the boot entries
 typeset button_names
 for (( i=${RC_START} ; i<${next_index}; i++ ))
 do
@@ -35,7 +35,7 @@ do
 done
 
 
-# reboot into firmware - only for UEFI
+# button: reboot into firmware - only for UEFI
 efivar > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
@@ -44,21 +44,20 @@ then
     i=$((${i} + 1))
 fi
 
-# reboot
+# button: reboot
 button_names="${button_names}Reboot:${i},"
 button_cmds[${i}]="${CMD_REBOOT}"
 i=$((${i} + 1))
 
-# poweroff
+# button: poweroff
 button_names="${button_names}Power Off:${i}"
 button_cmds[${i}]="${CMD_POWEROFF}"
 
-echo $button_names
-echo ${button_cmds[*]}
 
 # launch the xmessage, blocking on response
 xmessage -buttons "${button_names}" "$@" ""
 typeset -i selected_index=$((${?}))
+
 
 # invoke the command
 echo "${button_cmds[${selected_index}]}"
