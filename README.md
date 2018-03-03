@@ -188,7 +188,15 @@ initrd         /initramfs-linux.img
 options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot
 ```
 
-Add `/boot/loader/entries/arch.fallback.conf` as above except with:
+If not using encryption, it's best to add an entry for the partition by PARTUUID, specifying the filesystem type.
+
+PARTUUID may be determined via `blkid -s PARTUUID -o value /dev/nvme0n1p2` e.g.
+
+```
+options root=PARTUUID=556d022d-4ec8-443d-ae13-be6ab1ef6dae rootfstype=ext4 add_efi_memmap
+```
+
+Add `/boot/loader/entries/arch.fallback.conf` as `arch.conf` except with:
 ```
 initrd         /initramfs-linux-fallback.img
 ```
