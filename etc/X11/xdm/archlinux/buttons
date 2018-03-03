@@ -28,7 +28,7 @@ typeset button_names
 for (( i=${RC_START} ; i<${next_index}; i++ ))
 do
     # name
-    button_names="${button_names}Reboot - ${boot_names[${i}]}:${i},"
+    button_names="${button_names}[${boot_names[${i}]}]:${i},"
 
     # command
     button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
@@ -39,22 +39,22 @@ done
 efivar > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-    button_names="${button_names}Reboot - Firmware:${i},"
+    button_names="${button_names}[Firmware]:${i},"
     button_cmds[${i}]="${CMD_REBOOT} --firmware-setup"
     i=$((${i} + 1))
 fi
 
 # button: reboot
-button_names="${button_names}Reboot:${i},"
+button_names="${button_names}[Reboot]:${i},"
 button_cmds[${i}]="${CMD_REBOOT}"
 i=$((${i} + 1))
 
 # button: poweroff
-button_names="${button_names}Power Off:${i}"
+button_names="${button_names}[Power Off]:${i}"
 button_cmds[${i}]="${CMD_POWEROFF}"
 
 
-# launch the xmessage, blocking on response
+# launch xmessage, blocking on response
 xmessage -buttons "${button_names}" "$@" ""
 typeset -i selected_index=$((${?}))
 
