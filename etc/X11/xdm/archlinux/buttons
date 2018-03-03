@@ -1,20 +1,64 @@
-#!/bin/sh
+#!/bin/bash
 
-xmessage -buttons "Reboot Firmware,Reboot 0000,Reboot 0001,PowerOff" "$@" ""
+typeset -r CMD_REBOOT="systemctl reboot"
+typeset -r CMD_POWEROFF="systemctl poweroff"
+typeset -r REGEX_BOOT_ENTRIES="^Boot([[:xdigit:]]*)\* (.*)$"
 
-case "$?" in
-	101)
-		systemctl reboot --firmware-setup
-		;;
-	102)
-		efibootmgr -n 0000
-		systemctl reboot
-		;;
-	103)
-		efibootmgr -n 0001
-		systemctl reboot
-		;;
-	104)
-		systemctl poweroff
-		;;
-esac
+
+# loop through $REGEX_BOOT_ENTRIES, saving the captures into $entry and $boot_names
+typeset -a boot_entries
+typeset -a boot_names
+ifs_prev="${IFS}"
+IFS=$'\n'
+typeset -i i=0
+for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
+do
+    boot_entries[${i}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
+    boot_names[${i}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/")
+    i=$((i+1))
+done
+typeset -i num_boot_entries=${i}
+unset i
+IFS="${ifs_prev}"
+
+
+# build buttons for the boot entries
+typeset button_names
+typeset -i i=0
+for (( ; i<${num_boot_entries}; i++ ))
+do
+    # name
+    button_names="${button_names}Reboot - ${boot_names[${i}]},"
+
+    # command
+    button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
+done
+
+
+# reboot into firmware - only for UEFI
+efivar > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+    button_names="${button_names}Reboot - Firmware,"
+    button_cmds[${i}]="${CMD_REBOOT} --firmware-setup"
+    i=$((${i} + 1))
+fi
+
+# reboot
+button_names="${button_names}Reboot,"
+button_cmds[${i}]="${CMD_REBOOT}"
+i=$((${i} + 1))
+
+# poweroff
+button_names="${button_names}Power Off"
+button_cmds[${i}]="${CMD_POWEROFF}"
+
+echo $button_names
+echo ${button_cmds[*]}
+
+# launch the xmessage, blocking on response
+xmessage -buttons "${button_names}" "$@" ""
+typeset -i selected_index=$((${?} - 101))
+
+# invoke the command
+eval "${button_cmds[${selected_index}]}"
