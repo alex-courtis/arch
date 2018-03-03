@@ -54,8 +54,6 @@ Connect from a remote machine
 
 ### GPT Partition: ESP Boot and ext4 Root
 
-*Alternative:* [MBR Partition: ext4 Boot/Root](#mbr-partition-ext4-bootroot)
-
 Find your destination disk with `lsblk -f`
 
 Wipe everything: `wipefs --all /dev/sda`
@@ -70,8 +68,6 @@ mkpart primary ext4 513MiB 100%
 ```
 
 ### FAT32 Boot and LUKS Encrypted ext4 Root
-
-*Alternative:* [ext4 Root](#ext4-root)
 
 ```
 mkfs.vfat  -F32 /dev/sda1
@@ -169,8 +165,6 @@ Invoke `visudo` and uncomment the following:
 Install Intel microcode updater: `pacman -S intel-ucode`
 
 ### systemd boot loader and boot image
-
-*Alternative:* [GRUB boot loader](#grub-boot-loader)
 
 `bootctl --path=/boot install`
 
@@ -373,46 +367,3 @@ Reboot
 Login on tty1
 
 Everything should start in your X environment... check `~/.X.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
-
-## Non-UEFI Differences, Without Encryption
-
-For systems that are not happy with UEFI e.g. gigabyte, you can use GRUB and a single root partition. No encryption is used here.
-
-### MBR Partition: ext4 Boot/Root
-
-Find your destination disk with `lsblk -f`
-
-Wipe everything: `wipefs --all /dev/sda`
-
-`parted /dev/sda`
-
-```
-mktable MSDOS
-mkpart primary ext4 1MiB 100%
-```
-
-### ext4 Root
-
-```
-mkfs -t ext4 /dev/sda1
-mount /dev/sda1  /mnt
-```
-
-`lsblk -f` should show something like this:
-```
-NAME        FSTYPE   LABEL       UUID                                 MOUNTPOINT
-loop0       squashfs                                                  /run/archiso/sfs/airootfs
-sda                                                                   
-└─sda1      ext4                 f187b093-0d41-4dc9-87bf-ff8ff45ebba1 /mnt
-sdb         iso9660  ARCH_201703 2017-03-01-18-21-15-00               
-├─sdb1      iso9660  ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
-└─sdb2      vfat     ARCHISO_EFI 0F89-08ED
-```
-
-### GRUB boot loader
-
-```
-pacman -S grub
-grub-install --target=i386-pc /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
-```
