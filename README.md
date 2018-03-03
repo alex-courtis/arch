@@ -345,12 +345,11 @@ ttf-ms-fonts
 udisks2
 xautolock
 xdg-utils
-xdm-arch-theme
+xdm-archlinux
 xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
-xdm-archlinux
 xorg-fonts-75dpi
 xorg-fonts-100dpi
 
@@ -370,7 +369,7 @@ Execute `linkSystem.sh` as root. Any failures due to missing directories should 
 
 ### Enable XDM
 
-`systemctl disable xdm-arch-theme`
+`systemctl enable xdm-archlinux`
 
 ### Reboot And Start X
 
@@ -378,4 +377,4 @@ Reboot
 
 Login
 
-Everything should start in your X environment... check `~/.xsession-errors`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for oddities.
+Everything should start in your X environment... check `/var/log/xdm.log`, `~/.xsession-errors`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for oddities.
