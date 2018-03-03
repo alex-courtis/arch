@@ -1,15 +1,20 @@
 #!/bin/sh
 
-xmessage -buttons UEFI,Reboot,PowerOff "$@" ""
+xmessage -buttons "Reboot Firmware,Reboot 0000,Reboot 0001,PowerOff" "$@" ""
 
 case "$?" in
 	101)
 		systemctl reboot --firmware-setup
 		;;
 	102)
+		efibootmgr -n 0000
 		systemctl reboot
 		;;
 	103)
+		efibootmgr -n 0001
+		systemctl reboot
+		;;
+	104)
 		systemctl poweroff
 		;;
 esac
