@@ -337,6 +337,7 @@ pulseaudio-ctl
 pwgen
 scrot
 slock
+terminus-font
 the_silver_searcher
 tmux
 ttf-hack
@@ -344,11 +345,14 @@ ttf-ms-fonts
 udisks2
 xautolock
 xdg-utils
+xdm-arch-theme
 xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
 xdm-archlinux
+xorg-fonts-75dpi
+xorg-fonts-100dpi
 
 #### Laptops Like
 
@@ -364,10 +368,14 @@ Execute `linkSystem.sh` as root. Any failures due to missing directories should 
 
 `locale-gen`
 
+### Enable XDM
+
+`systemctl disable xdm-arch-theme`
+
 ### Reboot And Start X
 
 Reboot
 
-Login on tty1
+Login
 
-Everything should start in your X environment... check `~/.X.log`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for any oddities.
+Everything should start in your X environment... check `~/.xsession-errors`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for oddities.
