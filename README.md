@@ -185,16 +185,12 @@ title          Arch Linux
 linux          /vmlinuz-linux
 initrd         /intel-ucode.img
 initrd         /initramfs-linux.img
-options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
+options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot
 ```
 
-Add `/boot/loader/entries/arch.fallback.conf`:
+Add `/boot/loader/entries/arch.fallback.conf` as above except with:
 ```
-title          Arch Linux (Fallback)
-linux          /vmlinuz-linux
-initrd         /intel-ucode.img
 initrd         /initramfs-linux-fallback.img
-options        root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
