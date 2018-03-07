@@ -27,8 +27,9 @@ IFS="${ifs_prev}"
 typeset button_names
 for (( i=${RC_START} ; i<${next_index}; i++ ))
 do
-    # name
-    button_names="${button_names}[${boot_names[${i}]}]:${i},"
+    # name, with commas escaped
+    typeset escaped_name=$(echo ${boot_names[${i}]} | sed -e "s/,/\\\,/g");
+    button_names="${button_names}[${escaped_name}]:${i},"
 
     # command
     button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
