@@ -1,5 +1,5 @@
 URxvt*loginShell: true
-URxvt*font: xft:monospace:size=12
+URxvt*font: xft:monospace:size=11
 URxvt*scrollBar: false
 URxvt*saveLines: 10000
 URxvt*scrollTtyOutput: false
