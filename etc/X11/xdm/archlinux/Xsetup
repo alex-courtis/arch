@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # start the display properly... looking at you ASUS ROG monitors
-/usr/local/bin/xLayoutDisplays
+/usr/local/bin/xLayoutDisplay
 
 ## the root window should have this color
 xsetroot -solid "#223377" -cursor_name left_ptr

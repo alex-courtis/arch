@@ -16,7 +16,7 @@ fi
 isAThing nvidia-settings && nvidia-settings --load-config-only
 
 # setup displays
-isAThing xLayoutDisplays && xLayoutDisplays
+isAThing xLayoutDisplay && xLayoutDisplay
 
 # ensure that we have a background set and a reasonable pointer
 isAThing xsetroot && xsetroot -solid gray30 -cursor_name left_ptr
