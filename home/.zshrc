@@ -2,6 +2,11 @@ function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
 }
 
+# execute tmux if it isn't running; it will replace this process with a new login shell
+if [ -z "${TMUX}" ] && isAThing tmux; then
+    exec tmux
+fi
+
 # local vars
 hostName=$(hostname)
 os=$(uname)
@@ -117,8 +122,3 @@ typeset -U path
 unset hostName
 unset os
 unset promptColour
-
-# start tmux if interactive terminal and not already inside tmux
-case $- in *i*)
-    if [ -z "$TMUX" ] && isAThing tmux; then exec tmux; fi;;
-esac

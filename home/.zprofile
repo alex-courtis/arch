@@ -1,5 +1,6 @@
-# start a GUI from first tty, providing one's not already running
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+# maybe start a GUI from first tty if one isn't running
+# we need to test for tmux as it starts a login shell
+if [ -z "${TMUX}" -a -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
     if [ -f ~/.amc.start.weston ]; then
         exec weston > "${HOME}/.weston.log" 2>&1
     elif [ -f ~/.amc.start.sway ]; then
