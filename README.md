@@ -186,7 +186,7 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot
+options root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
 
 If not using encryption, it's best to add an entry for the partition by PARTUUID, specifying the filesystem type.
@@ -194,7 +194,7 @@ If not using encryption, it's best to add an entry for the partition by PARTUUID
 PARTUUID may be determined via `blkid -s PARTUUID -o value /dev/nvme0n1p2` e.g.
 
 ```
-options root=PARTUUID=556d022d-4ec8-443d-ae13-be6ab1ef6dae rootfstype=ext4 add_efi_memmap
+options root=PARTUUID=556d022d-4ec8-443d-ae13-be6ab1ef6dae rootfstype=ext4 rw
 ```
 
 Add `/boot/loader/entries/arch.fallback.conf` as `arch.conf` except with the fallback image:
