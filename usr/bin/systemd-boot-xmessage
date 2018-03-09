@@ -5,8 +5,6 @@ typeset -r CMD_REBOOT="systemctl reboot"
 typeset -r CMD_POWEROFF="systemctl poweroff"
 typeset -ri RC_START=111
 
-typeset -a boot_entries
-typeset -a boot_names
 typeset -a button_cmds
 typeset button_names
 typeset -i i=${RC_START}
@@ -62,5 +60,4 @@ typeset -i selected_index=$((${?}))
 
 
 # invoke the command
-#eval "${button_cmds[${selected_index}]}"
-echo "${button_cmds[${selected_index}]}"
+eval "${button_cmds[${selected_index}]}"
