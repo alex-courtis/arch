@@ -4,16 +4,11 @@ function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
 }
 
-# Run all system xinitrc shell scripts
+# run all system xinitrc shell scripts - xdm doesn't automagically do this
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for script in /etc/X11/xinit/xinitrc.d/*; do
         [ -x "$script" -a ! -d "$script" ] && . "$script"
     done
-fi
-
-# merge local resources
-if [ -f "${HOME}/.Xresources" ]; then
-    xrdb -merge "${HOME}/.Xresources"
 fi
 
 # apply nvidia settings if available
