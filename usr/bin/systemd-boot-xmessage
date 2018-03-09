@@ -30,28 +30,20 @@ then
 fi
 
 
-# loop through $REGEX_BOOT_ENTRIES, saving the captures into $boot_entries and $boot_names
+# loop through $REGEX_BOOT_ENTRIES, adding the captures to $button_cmds and $button_names
 ifs_prev="${IFS}"
 IFS=$'\n'
-typeset -i j=${i}
 for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
 do
-    boot_entries[${j}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
-    boot_names[${j}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/")
-    j=$((j+1))
+    entry=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
+    # just remove commas, which are used as the delimiter by xmessage 
+    name=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/;s/,//g")
+
+    button_cmds[${i}]="efibootmgr -n ${entry} && ${CMD_REBOOT}"
+    button_names="${button_names},${name}:${i}"
+    i=$((i+1))
 done
 IFS="${ifs_prev}"
-
-# buttons for the boot entries
-for (( ; i<${j}; i++ ))
-do
-    # name, with commas escaped
-    typeset escaped_name=$(echo ${boot_names[${i}]} | sed -e "s/,/\\\,/g");
-    button_names="${button_names},${escaped_name}:${i}"
-
-    # command
-    button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
-done
 
 
 # launch xmessage, blocking on response
