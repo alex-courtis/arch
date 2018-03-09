@@ -129,6 +129,7 @@ Chooser*label.label:		XDMCP Host Menu from CLIENTHOST
 Chooser*list.font:		-*-*-medium-r-normal-*-*-230-*-*-c-*-iso8859-1
 Chooser*Command.font:		*-new century schoolbook-bold-r-normal-*-180-*
 
+Xmessage*borderWidth:0
 Xmessage.Form.message.scrollVertical:Never
 Xmessage.Form.message.scrollHorizontal:Never
 Xmessage.Form*background:black
@@ -137,4 +138,4 @@ Xmessage.Form.Command.background:grey
 Xmessage.Form.Command.borderColor: grey30
 Xmessage.Form.Command.borderWidth: 2
 Xmessage.Form.Command.highlightThickness: 2
-Xmessage*font: -*-helvetica-medium-r-*-*-24-*-*-*-*-*-iso8859-1
+Xmessage*font: -adobe-helvetica-medium-r-normal--24-*-*-*-*-*-iso8859-1

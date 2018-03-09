@@ -4,6 +4,6 @@
 /usr/local/bin/xLayoutDisplay
 
 # show some useful buttons in the top left
-systemd-boot-xmessage -geometry+0-0 &
+systemd-boot-xmessage -geometry +0+0 &
 
 xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
