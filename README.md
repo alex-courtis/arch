@@ -338,7 +338,6 @@ pulseaudio-ctl
 pwgen
 scrot
 slock
-terminus-font
 the_silver_searcher
 tmux
 ttf-hack
@@ -353,6 +352,7 @@ xmonad
 xmonad-contrib
 xorg-fonts-75dpi
 xorg-fonts-100dpi
+xorg-fonts-misc
 
 #### Laptops Like
 

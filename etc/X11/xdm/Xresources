@@ -138,4 +138,4 @@ Xmessage.Form.Command.background:grey
 Xmessage.Form.Command.borderColor: grey30
 Xmessage.Form.Command.borderWidth: 2
 Xmessage.Form.Command.highlightThickness: 2
-Xmessage*font: -adobe-helvetica-medium-r-normal--24-*-*-*-*-*-iso8859-1
+Xmessage*font: -adobe-helvetica-bold-r-normal--24-*-*-*-*-*-iso8859-1
