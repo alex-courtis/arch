@@ -1,58 +1,59 @@
 #!/bin/bash
 
+typeset -r REGEX_BOOT_ENTRIES="^Boot([[:xdigit:]]*)\* (.*)$"
 typeset -r CMD_REBOOT="systemctl reboot"
 typeset -r CMD_POWEROFF="systemctl poweroff"
-typeset -r REGEX_BOOT_ENTRIES="^Boot([[:xdigit:]]*)\* (.*)$"
 typeset -ri RC_START=111
 
-
-# loop through $REGEX_BOOT_ENTRIES, saving the captures into $entry and $boot_names
 typeset -a boot_entries
 typeset -a boot_names
-ifs_prev="${IFS}"
-IFS=$'\n'
-typeset -i i=${RC_START}
-for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
-do
-    boot_entries[${i}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
-    boot_names[${i}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/")
-    i=$((i+1))
-done
-typeset -ri next_index=${i}
-unset i
-IFS="${ifs_prev}"
-
-
-# buttons for the boot entries
+typeset -a button_cmds
 typeset button_names
-for (( i=${RC_START} ; i<${next_index}; i++ ))
-do
-    # name, with commas escaped
-    typeset escaped_name=$(echo ${boot_names[${i}]} | sed -e "s/,/\\\,/g");
-    button_names="${button_names}[${escaped_name}]:${i},"
-
-    # command
-    button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
-done
+typeset -i i=${RC_START}
 
 
-# button: reboot into firmware - only for UEFI
+# first button: poweroff
+button_names="Power Off:${i}"
+button_cmds[${i}]="${CMD_POWEROFF}"
+i=$((${i} + 1))
+
+# button: reboot
+button_names="${button_names},Reboot:${i}"
+button_cmds[${i}]="${CMD_REBOOT}"
+i=$((${i} + 1))
+
+# button: reboot into firmware; only for UEFI
 efivar > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
-    button_names="${button_names}[Firmware]:${i},"
+    button_names="${button_names},Firmware:${i}"
     button_cmds[${i}]="${CMD_REBOOT} --firmware-setup"
     i=$((${i} + 1))
 fi
 
-# button: reboot
-button_names="${button_names}[Reboot]:${i},"
-button_cmds[${i}]="${CMD_REBOOT}"
-i=$((${i} + 1))
 
-# button: poweroff
-button_names="${button_names}[Power Off]:${i}"
-button_cmds[${i}]="${CMD_POWEROFF}"
+# loop through $REGEX_BOOT_ENTRIES, saving the captures into $boot_entries and $boot_names
+ifs_prev="${IFS}"
+IFS=$'\n'
+typeset -i j=${i}
+for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
+do
+    boot_entries[${j}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
+    boot_names[${j}]=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/")
+    j=$((j+1))
+done
+IFS="${ifs_prev}"
+
+# buttons for the boot entries
+for (( ; i<${j}; i++ ))
+do
+    # name, with commas escaped
+    typeset escaped_name=$(echo ${boot_names[${i}]} | sed -e "s/,/\\\,/g");
+    button_names="${button_names},${escaped_name}:${i}"
+
+    # command
+    button_cmds[${i}]="efibootmgr -n ${boot_entries[${i}]} && ${CMD_REBOOT}"
+done
 
 
 # launch xmessage, blocking on response
@@ -61,4 +62,5 @@ typeset -i selected_index=$((${?}))
 
 
 # invoke the command
-eval "${button_cmds[${selected_index}]}"
+#eval "${button_cmds[${selected_index}]}"
+echo "${button_cmds[${selected_index}]}"
