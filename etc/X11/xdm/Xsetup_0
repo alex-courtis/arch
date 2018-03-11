@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# start the display properly... looking at you ASUS ROG monitors
-/usr/local/bin/xLayoutDisplay
+# start the display mirrored
+# also "reboot" displays for monitors that don't like to boot cold... looking at you ASUS ROG monitors
+xLayoutDisplay -m
 
 # show some useful buttons in the top left
 systemd-boot-xmessage -geometry +0+0 &
