@@ -189,22 +189,20 @@ initrd /initramfs-linux.img
 options root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
 ```
 
-If not using encryption, it's best to add an entry for the partition by PARTUUID, specifying the filesystem type.
-
-PARTUUID may be determined via `blkid -s PARTUUID -o value /dev/nvme0n1p2` e.g.
+If not using encryption, it's best to add an entry for the root partition by UUID instead of device name, as device names are aribtrary. e.g.
 
 ```
-options root=PARTUUID=556d022d-4ec8-443d-ae13-be6ab1ef6dae rootfstype=ext4 rw
+options root=UUID=86923e75-214e-46ed-98d4-dd15226a67a3 rootfstype=ext4 rw fbcon=scrollback:1024k
 ```
 
-Add `/boot/loader/entries/arch.fallback.conf` as `arch.conf` except with the fallback image:
+Add `/boot/loader/entries/arch.fallback.conf` as per `arch.conf` except with the fallback image:
 ```
 initrd /initramfs-linux-fallback.img
 ```
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase:
+Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase. e.g.
 
 ```
 HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck"
