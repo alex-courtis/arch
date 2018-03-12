@@ -62,7 +62,7 @@ duke*)
 gigantor*)
     promptColour="blue"
     ;;
-prince*)
+lord*)
     promptColour="magenta"
     ;;
 * )
