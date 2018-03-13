@@ -52,6 +52,7 @@ Xcursor.theme: whiteglass
 
 xlogin*login.translations: #override \
 	Ctrl<Key>R: abort-display()\n\
+	Ctrl<Key>Y: abort-session()\n\
 	<Key>F1: set-session-argument(failsafe) finish-field()\n\
 	<Key>Delete: delete-character()\n\
 	<Key>Left: move-backward-character()\n\
