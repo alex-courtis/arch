@@ -4,7 +4,10 @@
 # also "reboot" displays for monitors that don't like to boot cold... looking at you ASUS ROG monitors
 xLayoutDisplay -m
 
-# show some useful buttons in the top left
-systemd-boot-xmessage -geometry +0+0 &
+# cool ancient background
+xsetroot -gray
+
+# boot buttons
+systemd-boot-xmessage &
 
 xconsole -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail
