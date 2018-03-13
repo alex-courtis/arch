@@ -6,15 +6,15 @@ xlogin*greeting: CLIENTHOST
 
 ! xmessage top left, 4px inset
 Xmessage.geometry: x28+4+4
-Xmessage*borderWidth: 0
 Xmessage.borderWidth: 2
-Xmessage*borderColor: black
 Xmessage.Form.Command.shapeStyle: rectangle
 Xmessage.Form.Command.borderWidth: 2
+Xmessage.Form.Command.borderColor: black
+! shrink the scrollback as far as possible and give it the same colour as the command borders which it overlays
+Xmessage.Form.message.borderWidth: 0
 Xmessage.Form.message.background: black
 Xmessage.Form.message.scrollVertical: Never
 Xmessage.Form.message.scrollHorizontal: Never
 
 ! xlogin 4px inset, 4px below xmessage
 xlogin.geometry: +4+40
-xlogin*borderColor: black
