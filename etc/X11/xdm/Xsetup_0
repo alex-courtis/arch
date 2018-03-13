@@ -4,8 +4,8 @@
 # also "reboot" displays for monitors that don't like to boot cold... looking at you ASUS ROG monitors
 xLayoutDisplay -m
 
-# cool ancient background
-xsetroot -gray
+# background to match desktop
+xsetroot -solid gray20
 
 # boot buttons
 systemd-boot-xmessage &

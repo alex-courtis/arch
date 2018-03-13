@@ -12,10 +12,17 @@ xlogin*login.translations: #override \
 	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
 	<Key>Return: set-session-argument() finish-field()
 
-! xmessage top left
-Xmessage.geometry: +4+4
-Xmessage*borderWidth: 2
-Xmessage.Form.Command.shapeStyle:rectangle
+! xmessage top left, 4px inset
+Xmessage.geometry: x28+4+4
+Xmessage*borderWidth: 0
+Xmessage.borderWidth: 2
+Xmessage*borderColor: black
+Xmessage.Form.Command.shapeStyle: rectangle
+Xmessage.Form.Command.borderWidth: 2
+Xmessage.Form.message.background: black
+Xmessage.Form.message.scrollVertical: Never
+Xmessage.Form.message.scrollHorizontal: Never
 
-! xlogin 4 pixels below that... via emperical measurements
-xlogin.geometry: +4+67
+! xlogin 4px inset, 4px below xmessage
+xlogin.geometry: +4+40
+xlogin*borderColor: black
