@@ -23,8 +23,8 @@ isAThing nvidia-settings && nvidia-settings --load-config-only
 # setup displays
 isAThing xLayoutDisplay && xLayoutDisplay
 
-# cool legacy background
-isAThing xsetroot && xsetroot -grey
+# empty background; xLayoutDisplay will set the cursor for the root window
+isAThing xsetroot && xsetroot -solid gray20
 
 # slock the screen after 5 mins
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
