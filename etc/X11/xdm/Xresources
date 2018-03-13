@@ -1,16 +1,8 @@
+! add controls for reset/abort xdm
 xlogin*login.translations: #override \
 	Ctrl<Key>R: abort-display()\n\
-	Ctrl<Key>Y: abort-session()\n\
-	<Key>F1: set-session-argument(failsafe) finish-field()\n\
-	<Key>Delete: delete-character()\n\
-	<Key>Left: move-backward-character()\n\
-	<Key>Right: move-forward-character()\n\
-	<Key>Home: move-to-begining()\n\
-	<Key>End: move-to-end()\n\
-	Ctrl<Key>KP_Enter: set-session-argument(failsafe) finish-field()\n\
-	<Key>KP_Enter: set-session-argument() finish-field()\n\
-	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
-	<Key>Return: set-session-argument() finish-field()
+	Ctrl<Key>Y: abort-session()
+xlogin*greeting: CLIENTHOST
 
 ! xmessage top left, 4px inset
 Xmessage.geometry: x28+4+4
