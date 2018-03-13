@@ -11,6 +11,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     done
 fi
 
+# merge .Xresources, in case we're running without any sort of display manager
+if [ -r ${HOME}/.Xresources ]; then
+    xrdb -load ${HOME}/.Xresources
+fi
+xrdb -q
+
 # apply nvidia settings if available
 isAThing nvidia-settings && nvidia-settings --load-config-only
 
