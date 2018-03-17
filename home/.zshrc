@@ -7,8 +7,8 @@ if [ -z "${TMUX}" ] && isAThing tmux; then
     exec tmux
 fi
 
-# use the keychain wrapper to start ssh-agent if needed
-isAThing keychain && eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
+# use the keychain wrapper to start ssh-agent if needed, using the RSA key for "alex"
+isAThing keychain && eval $(keychain --eval --quiet --agents ssh ~alex/.ssh/id_rsa)
 
 # local vars
 hostName=$(hostname)
@@ -72,6 +72,11 @@ lord*)
     promptColour="white"
     ;;
 esac
+
+# root prompt is always red
+if [ "${USER}" = "root" ]; then
+    promptColour="red"
+fi
 
 # prompt:
 #   bg red background nonzero return code and newline
