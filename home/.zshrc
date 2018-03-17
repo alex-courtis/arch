@@ -7,6 +7,9 @@ if [ -z "${TMUX}" ] && isAThing tmux; then
     exec tmux
 fi
 
+# use the keychain wrapper to start ssh-agent if needed
+isAThing keychain && eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
+
 # local vars
 hostName=$(hostname)
 os=$(uname)
@@ -114,9 +117,9 @@ fi
 
 # complete PATH
 typeset -U path
-[[ -d ~/src/robbieg.bin ]] && path=(~/src/robbieg.bin "$path[@]")
-[[ -d ~/src/atlassian-scripts ]] && path=(~/src/atlassian-scripts/bin "$path[@]")
 [[ -d ~/bin ]] && path=(~/bin "$path[@]")
+[[ -d ~/src/robbieg.bin ]] && path=("$path[@]" ~/src/robbieg.bin)
+[[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
 # clear local vars
 unset hostName

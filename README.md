@@ -329,6 +329,7 @@ arandr
 calc
 dmenu
 j4-dmenu-desktop
+keychain
 network-manager-applet
 networkmanager-dmenu-git
 networkmanager-openconnect
