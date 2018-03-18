@@ -17,7 +17,7 @@ if [ -r ${HOME}/.Xresources ]; then
 fi
 
 # gnome polkit agent
-if [ /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
+if [ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
