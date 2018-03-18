@@ -16,11 +16,6 @@ if [ -r ${HOME}/.Xresources ]; then
     xrdb -load ${HOME}/.Xresources
 fi
 
-# gnome polkit agent
-if [ -x /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 ]; then
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-fi
-
 # apply nvidia settings if available
 isAThing nvidia-settings && nvidia-settings --load-config-only
 
