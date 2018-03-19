@@ -32,12 +32,12 @@ isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 # start touchpad gesture recogniser
 isAThing libinput-gestures && libinput-gestures &
 
-# clear any xmonad saved state
-rm -f .xmonad/xmonad.state
-
 # start up nm-applet, for use by networkmanager_dmenu
 # it won't be shown without a tray however is necessary to spawn windows
 isAThing nm-applet && nm-applet > /dev/null 2>&1 &
+
+# clear any xmonad saved state
+rm -f .xmonad/xmonad.state
 
 # start xmonad
 xmonad &
