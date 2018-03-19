@@ -20,31 +20,30 @@ button_names="${button_names},Reboot:${i}"
 button_cmds[${i}]="${CMD_REBOOT}"
 i=$((${i} + 1))
 
-# button: reboot into firmware; only for UEFI
+# only for UEFI
 efivar > /dev/null 2>&1
 if [ $? -eq 0 ]
 then
+    # button: reboot into firmware
     button_names="${button_names},Firmware:${i}"
     button_cmds[${i}]="${CMD_REBOOT} --firmware-setup"
     i=$((${i} + 1))
+
+    # loop through $REGEX_BOOT_ENTRIES, adding the captures to $button_cmds and $button_names
+    ifs_prev="${IFS}"
+    IFS=$'\n'
+    for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
+    do
+        entry=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
+        # just remove commas, which are used as the delimiter by xmessage 
+        name=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/;s/,//g")
+
+        button_cmds[${i}]="efibootmgr -n ${entry} && ${CMD_REBOOT}"
+        button_names="${button_names},${name}:${i}"
+        i=$((i+1))
+    done
+    IFS="${ifs_prev}"
 fi
-
-
-# loop through $REGEX_BOOT_ENTRIES, adding the captures to $button_cmds and $button_names
-ifs_prev="${IFS}"
-IFS=$'\n'
-for line in $(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
-do
-    entry=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
-    # just remove commas, which are used as the delimiter by xmessage 
-    name=$(echo $line | sed -E "s/${REGEX_BOOT_ENTRIES}/\2/;s/,//g")
-
-    button_cmds[${i}]="efibootmgr -n ${entry} && ${CMD_REBOOT}"
-    button_names="${button_names},${name}:${i}"
-    i=$((i+1))
-done
-IFS="${ifs_prev}"
-
 
 # launch xmessage, blocking on response
 xmessage -buttons "${button_names}" "$@" ""

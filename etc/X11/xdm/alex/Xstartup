@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# kill off any xmessages from systemd-boot-xmessage first
+pkill xmessage

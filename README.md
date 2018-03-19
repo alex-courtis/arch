@@ -147,11 +147,15 @@ systemctl enable NetworkManager
 
 ### Users
 
+```
+pacman -S zsh
+```
+
 Secure root first with `passwd`
 
 Add a user
 ```
-useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/bash alex
+useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
@@ -318,9 +322,14 @@ Regenerate the boot image:
 
 ### Install Packages
 
-I prefer to use [yaourt](https://archlinux.fr/yaourt-en) to manage system and AUR packages.
+I'm liking [aura](https://github.com/aurapm/aura) to manage system and AUR packages.
 
-Install desired packages.
+```
+cd /tmp
+git clone https://aur.archlinux.org/aura-bin.git
+cd aura-bin
+makepkg -sri
+```
 
 #### Packages I Like
 
@@ -328,7 +337,10 @@ alacritty-git
 arandr
 calc
 dmenu
+facter
+gron-bin
 j4-dmenu-desktop
+jq
 keychain
 network-manager-applet
 networkmanager-dmenu-git
@@ -344,6 +356,7 @@ tmux
 ttf-hack
 ttf-ms-fonts
 udisks2
+unzip
 xautolock
 xdg-utils
 xdm-archlinux
@@ -354,6 +367,10 @@ xmonad-contrib
 xorg-fonts-75dpi
 xorg-fonts-100dpi
 xorg-fonts-misc
+xorg-xdm
+xorg-xterm
+xorg-xhost
+xorg-xinit
 
 #### Laptops Like
 
@@ -371,9 +388,9 @@ Execute `linkSystem.sh` as root. Any failures due to missing directories should 
 
 ### Enable XDM
 
-`systemctl enable xdm-archlinux`
+`systemctl enable xdm-alex`
 
-### Reboot And Start X
+### Ready To Go
 
 Reboot
 
