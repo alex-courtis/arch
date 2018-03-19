@@ -1,3 +1,10 @@
+# zsh on arch will source /etc/profile from /etc/zsh/zprofile which is run after .zshenv, so need to set path here
+typeset -U path
+[[ -d ~/bin ]] && path=(~/bin "$path[@]")
+[[ -d ~/src/robbieg.bin ]] && path=("$path[@]" ~/src/robbieg.bin)
+[[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
+
+# shell agnostic function returns true if ${1} is a valid executable, function etc.
 function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
 }
@@ -6,14 +13,6 @@ function isAThing() {
 if [ -z "${TMUX}" ] && isAThing tmux; then
     exec tmux
 fi
-
-# use the keychain wrapper to start ssh-agent if needed, using the RSA key for "alex"
-isAThing keychain && eval $(keychain --eval --quiet --agents ssh ~alex/.ssh/id_rsa)
-
-# local vars
-hostName=$(hostname)
-os=$(uname)
-promptColour=
 
 # moar history
 HISTFILE=~/.histfile
@@ -32,6 +31,7 @@ bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
 
 # aliases
+local os=$(uname)
 if [ "${os}" = "Linux" ]; then
     alias ls="ls --color"
 elif [ "${os}" = "Darwin" -o "${os}" = "FreeBSD" ]; then
@@ -53,14 +53,13 @@ if isAThing ipmitool; then
     alias ipmiConsoleDeact="ipmi sol deactivate"
     alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 fi
+unset os
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
-case "${hostName}" in
+local promptColour
+case "$(hostname)" in
 emperor*)
     promptColour="yellow"
-    ;;
-duke*)
-    promptColour="green"
     ;;
 gigantor*)
     promptColour="blue"
@@ -69,7 +68,7 @@ lord*)
     promptColour="magenta"
     ;;
 * )
-    promptColour="white"
+    promptColour="green"
     ;;
 esac
 
@@ -101,6 +100,7 @@ else
         printf "\e]0;%s\a" "${PWD}"
     }
 fi
+unset promptColour
 
 # user mount helpers
 if isAThing udisksctl; then
@@ -120,13 +120,5 @@ if isAThing udisksctl; then
     }
 fi
 
-# complete PATH
-typeset -U path
-[[ -d ~/bin ]] && path=(~/bin "$path[@]")
-[[ -d ~/src/robbieg.bin ]] && path=("$path[@]" ~/src/robbieg.bin)
-[[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
-
-# clear local vars
-unset hostName
-unset os
-unset promptColour
+# use the keychain wrapper to start ssh-agent if needed, using the RSA key for "alex"
+isAThing keychain && eval $(keychain --eval --quiet --agents ssh ~alex/.ssh/id_rsa)

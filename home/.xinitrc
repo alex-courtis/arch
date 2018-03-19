@@ -1,5 +1,6 @@
 # .xsession
 
+# shell agnostic function returns true if ${1} is a valid executable, function etc.
 function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
 }
