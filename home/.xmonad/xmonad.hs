@@ -25,7 +25,7 @@ myConfig = def
   -- launch dmenu
   [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ myDmenuArgs ++ " >/dev/null 2>&1"))
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ myDmenuArgs ++ "\" --term=\"st\"" ++ " >/dev/null 2>&1"))
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ myDmenuArgs ++ "\" --term=\"" ++ myTerminal ++ "\"" ++ " >/dev/null 2>&1"))
 
   -- launch browser
   , ((myModMask .|. shiftMask,  xK_o     ), spawn (myBrowser ++ " >/dev/null 2>&1"))
