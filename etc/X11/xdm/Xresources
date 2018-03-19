@@ -2,7 +2,7 @@
 xlogin*login.translations: #override \
 	Ctrl<Key>R: abort-display()\n\
 	Ctrl<Key>Y: abort-session()
-xlogin*greeting: CLIENTHOST
+xlogin*greeting: Welcome to HOST
 
 ! xmessage top left, 4px inset
 Xmessage.geometry: x28+4+4
