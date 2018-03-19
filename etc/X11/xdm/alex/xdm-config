@@ -14,7 +14,7 @@ DisplayManager*chooser:		/usr/lib/X11/xdm/chooser
 DisplayManager*session:		/etc/X11/xdm/Xsession
 DisplayManager*authComplain:	true
 
-! customise both login widget and buttons
+! override default resources
 DisplayManager*resources:	/etc/X11/xdm/alex/Xresources
 
 ! run when xdm login is displayed
@@ -24,8 +24,8 @@ DisplayManager*setup:	/etc/X11/xdm/alex/Xsetup
 DisplayManager*startup:	/etc/X11/xdm/alex/Xstartup
 
 ! don't use the outdated xdm paths; hardcode these to the arch basics
-DisplayManager._0.userPath: /usr/local/sbin:/usr/local/bin:/usr/bin
-DisplayManager._0.systemPath: /usr/local/sbin:/usr/local/bin:/usr/bin
+DisplayManager*userPath: /usr/local/sbin:/usr/local/bin:/usr/bin
+DisplayManager*systemPath: /usr/local/sbin:/usr/local/bin:/usr/bin
 
 DisplayManager*loginmoveInterval:	10
 
