@@ -6,6 +6,8 @@ This repository contains system and user configuration files for both laptop and
 
 Also included are instructions for installing Arch from scratch, for a variety of use cases.
 
+![xmonad screenshot](/screenshot.png?raw=true "xmonad in action!")
+
 ## Quick Usage
 
 Clone to somewhere unique e.g. `/opt/alex`
