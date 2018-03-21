@@ -1,2 +1,0 @@
-#compdef jmake
-_arguments "*: :(`./jmake auto-complete $words`)"
