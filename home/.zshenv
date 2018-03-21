@@ -5,11 +5,11 @@ export VISUAL="vi"
 # better paging
 export PAGER="less"
 
-# not sure why this is a good thing
-export LESS="R"
+# case insensitive searching and colours
+export LESS="IR"
 
-# sway
-export XKB_DEFAULT_OPTIONS=ctrl:nocaps
+# will be default soon...
+export USE_NEW_JMAKE=true
 
 # arch friendly java home - will update with archlinx-java
 [ -d /usr/lib/jvm/default ] && export JAVA_HOME=/usr/lib/jvm/default
