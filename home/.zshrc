@@ -120,7 +120,7 @@ if isAThing udisksctl; then
     }
 fi
 
-# use the keychain wrapper to start ssh-agent if needed, using the RSA key for "alex"
+# use the keychain wrapper to start ssh-agent if needed
 if isAThing keychain; then
-	eval $(keychain --eval --quiet --agents ssh ~alex/.ssh/id_rsa)
+	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
