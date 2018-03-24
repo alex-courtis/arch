@@ -279,7 +279,7 @@ From the end location, link the CLI profile bits:
 
 #### Nvidia Only (desktop)
 
-`pacman -S nvidia`
+`pacman -S nvidia nvidia-settings`
 
 #### Nvidia + Intel (heavy laptop)
 
@@ -337,28 +337,30 @@ makepkg -sri
 
 #### Packages I Like
 
-alacritty-git
-arandr
+Official:
+
+autofs
 calc
-dmenu
+chromium
+efibootmgr
 facter
-gron-bin
-j4-dmenu-desktop
 jq
 keychain
 network-manager-applet
 networkmanager-dmenu-git
 networkmanager-openconnect
+nfs-utils
+noto-fonts
+noto-fonts-emoji
+noto-fonts-extra
 pavucontrol
 pinta
-pulseaudio-ctl
 pwgen
 scrot
 slock
 the_silver_searcher
 tmux
 ttf-hack
-ttf-ms-fonts
 udisks2
 unzip
 xautolock
@@ -372,9 +374,21 @@ xorg-fonts-75dpi
 xorg-fonts-100dpi
 xorg-fonts-misc
 xorg-xdm
-xorg-xterm
+xterm
 xorg-xhost
 xorg-xinit
+
+AUR:
+
+alacritty-git
+dmenu
+gron-bin
+j4-dmenu-desktop
+ncurses5-compat-libs
+pulseaudio-ctl
+qdirstat
+ttf-ms-fonts
+visual-studio-code-bin
 
 #### Laptops Like
 
