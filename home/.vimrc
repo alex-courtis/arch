@@ -8,4 +8,6 @@ set expandtab
 
 set mouse=
 
+set hlsearch
+
 set background=dark
