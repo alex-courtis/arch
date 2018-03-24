@@ -342,6 +342,7 @@ Official:
 autofs
 calc
 chromium
+dmenu
 efibootmgr
 facter
 jq
@@ -373,15 +374,18 @@ xmonad-contrib
 xorg-fonts-75dpi
 xorg-fonts-100dpi
 xorg-fonts-misc
+xorg-server
 xorg-xdm
+xorg-xmessage
+xorg-xsetroot
 xterm
 xorg-xhost
 xorg-xinit
+xorg-xrandr
 
 AUR:
 
 alacritty-git
-dmenu
 gron-bin
 j4-dmenu-desktop
 ncurses5-compat-libs
