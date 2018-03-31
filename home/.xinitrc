@@ -21,7 +21,7 @@ fi
 isAThing nvidia-settings && nvidia-settings --load-config-only
 
 # setup displays
-isAThing xLayoutDisplay && xLayoutDisplay
+isAThing xlayoutdisplay && xlayoutdisplay
 
 # empty background; xLayoutDisplay will set the cursor for the root window
 isAThing xsetroot && xsetroot -solid gray20
