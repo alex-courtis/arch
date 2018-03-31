@@ -2,7 +2,7 @@
 
 # start the display mirrored
 # also "reboot" displays for monitors that don't like to boot cold... looking at you ASUS ROG monitors
-xlayoutlisplay -m
+xlayoutdisplay -m
 
 # background to match desktop
 xsetroot -solid gray20

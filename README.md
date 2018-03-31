@@ -393,6 +393,7 @@ pulseaudio-ctl
 qdirstat
 ttf-ms-fonts
 visual-studio-code-bin
+xlayoutdisplay
 
 #### Laptops Like
 
