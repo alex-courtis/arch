@@ -39,19 +39,15 @@ elif [ "${os}" = "Darwin" -o "${os}" = "FreeBSD" ]; then
 else
     alias ls="ls -F"
 fi
+if [ "${os}" = "Linux" -o "${os}" = "Darwin" ]; then
+    alias diff="diff --color"
+fi
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep --color"
-alias rgrep="find . -type f -print0 | xargs -0 grep"
-alias diff="diff --color"
+alias rgrep="find . -type f -print0 | xargs -0 grep --color"
 if [ -d ~/src/git-scripts ]; then
     alias git-merge-poms='git mergetool --tool=versions -y'
-fi
-if isAThing ipmitool; then
-    alias ipmi="ipmitool -U ${USER} -I lanplus -H 192.168.10.7"
-    alias ipmiConsoleAct="TERM=vt100; ipmi sol activate"
-    alias ipmiConsoleDeact="ipmi sol deactivate"
-    alias ipmiBios="ipmi chassis bootparam set bootflag force_bios"
 fi
 unset os
 
