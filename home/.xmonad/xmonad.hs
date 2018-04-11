@@ -57,7 +57,7 @@ myConfig = def
 myBar = "xmobar -x 0"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppSep       = "   "
-  , ppTitle     = xmobarColor "green" "" . shorten 100
+  , ppTitle     = xmobarColor "green" "" . shorten 140
   }
 myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 
