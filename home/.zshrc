@@ -117,6 +117,6 @@ if isAThing udisksctl; then
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
-if isAThing keychain; then
+if isAThing keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
