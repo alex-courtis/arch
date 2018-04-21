@@ -55,7 +55,7 @@ unset os
 local promptColour
 case "$(hostname)" in
 emperor*)
-    promptColour="yellow"
+    promptColour="green"
     ;;
 gigantor*)
     promptColour="blue"
@@ -64,7 +64,7 @@ lord*)
     promptColour="magenta"
     ;;
 * )
-    promptColour="green"
+    promptColour="yellow"
     ;;
 esac
 
