@@ -279,30 +279,23 @@ From the end location, link the CLI profile bits:
 
 #### Nvidia Only (desktop)
 
+Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
+
 `pacman -S nvidia nvidia-settings`
 
 #### Nvidia + Intel (heavy laptop)
 
-Install both drivers and bumblebee to switch between:
+I don't need the nvidia discrete GPU for a work laptop, so completely disable it.
 
-`pacman -S nvidia xf86-video-intel bumblebee`
+`pacman -S xf86-video-intel bbswitch`
 
-`systemctl enable bumblebeed.service`
-
-`gpasswd -a alex bumblebee`
-
-You can test switching out as per https://wiki.archlinux.org/index.php/bumblebee#Test
-
-Add a direct invocation of the intel driver in `/etc/X11/xorg.conf.d/20-intel.conf`
-
-This allows the Intel GPU to "take charge" and provide interfaces to standard stuff e.g. xorg-backlight
+Disable/enable the GPU on module load/unload via `/etc/modprobe.d/bbswitch.conf`:
 
 ```
-Section "Device"
-   Identifier  "Intel Graphics"
-   Driver      "intel"
-EndSection
+options bbswitch load_state=0 unload_state=1
 ```
+
+Alternatively, if the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
 ### Desktop Hibernation
 
