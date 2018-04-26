@@ -17,6 +17,9 @@ if [ -r ${HOME}/.Xresources ]; then
     xrdb -load ${HOME}/.Xresources
 fi
 
+# die caps lock
+setxkbmap -option ctrl:nocaps
+
 # apply nvidia settings if available
 isAThing nvidia-settings && nvidia-settings --load-config-only
 
