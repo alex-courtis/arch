@@ -7,6 +7,7 @@ if [ -z "${TMUX}" -a -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
     elif [ -f ~/.amc.start.sway ]; then
         exec sway > "${HOME}/.sway.log" 2>&1
     else
-        exec startx > "${HOME}/.x.log" 2>&1
+        # according to man 5 xorg.conf an absolute directory should not be usable for a non root user :shrug:
+        exec startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "${HOME}/.x.log" 2>&1
     fi
 fi
