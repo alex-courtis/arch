@@ -1,3 +1,6 @@
+typeset -U path
+[[ -d ~/bin ]] && path=(~/bin "$path[@]")
+
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
 export VISUAL="vi"

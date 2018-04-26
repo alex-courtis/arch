@@ -1,22 +1,18 @@
-# Alex's Arch Linux Settings Repository
+# Alex's Arch Linux Dotfiles Repository
 
 I use Arch Linux and Xmonad/Xmobar is my desktop environment.
 
-This repository contains system and user configuration files for both laptop and desktop usage.
-
-Also included are instructions for installing Arch from scratch, for a variety of use cases.
-
-See [xLayoutDisplay](https://github.com/alex-courtis/xLayoutDisplays) for X display and DPI setup.
+Arch installation instructions and user configuration for desktop, laptop and embedded usage.
 
 ![xmonad screenshot](/ss.png?raw=true "xmonad in action!")
 
-## Quick Usage
+## Usage
 
-Clone to somewhere unique e.g. `/opt/alex`
-
-Execute `linkHome.sh` as your user.
-
-Execute `linkSystem.sh` as root. You may need to create some directories if they don't exist or the package has not yet been installed; I'm loathe to allow autocreation of root owned directories so as not to interfere with pacman.
+```
+git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
+cd ~/.dotfiles
+./link.sh
+```
 
 ## Arch Installation
 
@@ -379,10 +375,8 @@ xorg-fonts-75dpi
 xorg-fonts-100dpi
 xorg-fonts-misc
 xorg-server
-xorg-xmessage
 xorg-xsetroot
 xterm
-xorg-xhost
 xorg-xinit
 xorg-xrandr
 
