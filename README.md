@@ -371,7 +371,6 @@ udisks2
 unzip
 xautolock
 xdg-utils
-xdm-archlinux
 xmlstarlet
 xmobar
 xmonad
@@ -380,7 +379,6 @@ xorg-fonts-75dpi
 xorg-fonts-100dpi
 xorg-fonts-misc
 xorg-server
-xorg-xdm
 xorg-xmessage
 xorg-xsetroot
 xterm
@@ -414,14 +412,10 @@ Execute `linkSystem.sh` as root. Any failures due to missing directories should 
 
 `locale-gen`
 
-### Enable XDM
-
-`systemctl enable xdm-alex`
-
 ### Ready To Go
 
 Reboot
 
-Login
+Login at TTY1
 
-Everything should start in your X environment... check `/var/log/xdm.log`, `~/.xsession-errors`, `/var/log/Xorg.0.log`, `dmesg --human` and any console errors for oddities.
+Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `~/.x.log`, `dmesg --human` and any console errors for oddities.
