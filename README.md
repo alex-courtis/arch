@@ -208,10 +208,12 @@ initrd /initramfs-linux-fallback.img
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase. e.g.
+Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase.
+
+Add the usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
 ```
-HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck"
+HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr shutdown"
 ```
 
 Regenerate the boot image:
