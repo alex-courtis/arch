@@ -269,7 +269,7 @@ You can check this with: `timedatectl status`
 
 Install your public/private keys under `~/.ssh`
 
-See ## Usage
+See [Usage](#usage)
 
 ### Video Driver
 
