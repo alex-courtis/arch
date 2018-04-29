@@ -402,14 +402,6 @@ libinput-gestures
 xf86-input-libinput
 xorg-xbacklight
 
-### Install System Configuration
-
-Execute `linkSystem.sh` as root. Any failures due to missing directories should be manually resolved by installing the package or manually creating the directory.
-
-### Regenerate Locales
-
-`locale-gen`
-
 ### Ready To Go
 
 Reboot
