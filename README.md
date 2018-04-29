@@ -201,6 +201,14 @@ If not using encryption, it's best to add an entry for the root partition by UUI
 options root=UUID=86923e75-214e-46ed-98d4-dd15226a67a3 rootfstype=ext4 rw fbcon=scrollback:1024k
 ```
 
+If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
+
+Add the following option:
+
+```
+pcie_aspm=off
+```
+
 Add `/boot/loader/entries/arch.fallback.conf` as per `arch.conf` except with the fallback image:
 ```
 initrd /initramfs-linux-fallback.img
