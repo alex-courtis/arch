@@ -269,13 +269,7 @@ You can check this with: `timedatectl status`
 
 Install your public/private keys under `~/.ssh`
 
-Clone this repo to a user available location i.e. `~`
-
-As root, move it to, say, `/opt/alex`
-
-From the end location, link the CLI profile bits:
-
-`./linkHome.sh`
+See ## Usage
 
 ### Video Driver
 
@@ -359,7 +353,6 @@ facter
 jq
 keychain
 network-manager-applet
-networkmanager-dmenu-git
 networkmanager-openconnect
 nfs-utils
 noto-fonts
@@ -396,6 +389,7 @@ alacritty-git
 gron-bin
 j4-dmenu-desktop
 ncurses5-compat-libs
+networkmanager-dmenu-git
 pulseaudio-ctl
 qdirstat
 ttf-ms-fonts
