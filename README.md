@@ -8,7 +8,7 @@ Arch installation instructions and user configuration for desktop, laptop and em
 
 ## Usage
 
-```
+```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 cd ~/.dotfiles
 ./link.sh
@@ -38,7 +38,7 @@ You can use `wifi-menu` to connect to a secured network, temporarily.
 
 ### Start SSHD for easier installation from a remote system
 
-```
+```sh
 passwd
 systemctl start sshd
 ip addr
@@ -57,12 +57,12 @@ Connect from a remote machine
 Find your destination disk with `lsblk -f`
 
 Wipe everything e.g.
-```
+```sh
 wipefs --all /dev/nvme0n1
 ```
 
 Create partitions e.g.
-```
+```sh
 parted /dev/nvme0n1
 ```
 ```
@@ -77,14 +77,14 @@ quit
 
 ### FAT32 Boot and LUKS Encrypted ext4 Root
 
-```
+```sh
 mkfs.vfat -n archboot -F32 /dev/nvme0n1p1
 cryptsetup -y -v luksFormat /dev/nvme0n1p2
 cryptsetup open /dev/nvme0n1p2 cryptroot
 mkfs.ext4 -L archroot /dev/mapper/cryptroot
 ```
 
-```
+```sh
 mount /dev/mapper/cryptroot /mnt
 mkdir /mnt/boot
 mount /dev/sda1  /mnt/boot
@@ -118,7 +118,7 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 Create a swap file the same size as physical memory:
 
-```
+```sh
 fallocate -l 16G /swapfile
 chmod 600 /swapfile
 mkswap /swapfile
@@ -144,7 +144,7 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 
 ### Install And Enable Basic Networking
 
-```
+```sh
 pacman -S openssh networkmanager
 systemctl enable sshd
 systemctl enable NetworkManager
@@ -152,20 +152,20 @@ systemctl enable NetworkManager
 
 ### Users
 
-```
+```sh
 pacman -S zsh vim sudo
 ```
 
 Invoke `visudo` and uncomment the following:
 
-```
+```sh
 %wheel ALL=(ALL) ALL
 ```
 
 Secure root first with `passwd`
 
 Add a user e.g.
-```
+```sh
 useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
@@ -181,7 +181,7 @@ Not needed for AMD, as they're included in the kernel.
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
 Create `/boot/efiBootEntry.sh`:
-```
+```sh
 #!/bin/sh
 
 set -e
@@ -228,7 +228,7 @@ Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw d
 `blkid -s UUID -o value /dev/nvme0n1p2`
 
 Append this to the `KERNEL_ARGS` e.g.:
-```
+```sh
 KERNEL_ARGS='initrd=\initramfs-linux.img initrd=\intel-ucode.img root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw quiet'
 ```
 
@@ -247,7 +247,7 @@ Add an encrypt hook and move the keyboard configration before it, so that we can
 
 Add the usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
-```
+```sh
 HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr shutdown"
 ```
 
@@ -257,7 +257,7 @@ HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr 
 
 ### Create The EFISTUB
 
-```
+```sh
 pacman -S efibootmgr
 /boot/efiBootEntry.sh
 ```
@@ -266,7 +266,7 @@ pacman -S efibootmgr
 
 Beforehand, install some useful packages prior to reboot, to get you going:
 
-```
+```sh
 pacman -S git wget pkgfile
 pkgfile --update
 ```
@@ -359,7 +359,7 @@ Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, a
 `HOOKS="base udev autodetect modconf block keyboard encrypt resume filesystems fsck"`
 
 Regenerate the boot image and the EFI stub:
-```
+```sh
 pacman -S linux
 /boot/efiBootEntry.sh
 ```
@@ -368,7 +368,7 @@ pacman -S linux
 
 I'm liking [aura](https://github.com/aurapm/aura) to manage system and AUR packages.
 
-```
+```sh
 cd /tmp
 git clone https://aur.archlinux.org/aura-bin.git
 cd aura-bin
