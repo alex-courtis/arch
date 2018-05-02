@@ -112,6 +112,16 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `arch-chroot /mnt /bin/bash`
 
+## Preserve Boot Messages
+
+TTY1 displays system boot messages, however they are cleared by default. Preserve them:
+
+```
+mkdir /etc/systemd/system/getty@tty1.service.d
+echo "[Service]
+TTYVTDisallocate=no" > /etc/systemd/system/getty@tty1.service.d/noclear.conf
+```
+
 ## Swap File
 
 Create a swap file the same size as physical memory:
