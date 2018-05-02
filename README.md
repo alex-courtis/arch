@@ -1,12 +1,10 @@
-# Alex's Arch Linux Dotfiles Repository
-
 I use Arch Linux and Xmonad/Xmobar is my desktop environment.
 
 Arch installation instructions and user configuration for desktop, laptop and embedded usage.
 
 ![xmonad screenshot](/ss.png?raw=true "xmonad in action!")
 
-## Usage
+# Usage
 
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
@@ -14,17 +12,17 @@ cd ~/.dotfiles
 ./link.sh
 ```
 
-## Arch Installation
+# Arch Installation
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
-### Boot
+## Boot
 
-#### Intel PC
+### Intel PC
 
 Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-#### Raspberry PI
+### Raspberry PI
 
 * prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
 * insert card and boot the device
@@ -32,11 +30,11 @@ Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_ins
 * `su - ` with default password `root`
 * skip to [Locale And Time](#locale-and-time)
 
-### Wireless Connectivity
+## Wireless Connectivity
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
 
-### Start SSHD for easier installation from a remote system
+## Start SSHD for easier installation from a remote system
 
 ```sh
 passwd
@@ -48,11 +46,11 @@ Connect from a remote machine
 
 `ssh root@some.ip.address`
 
-### Update the system clock
+## Update the system clock
 
 `timedatectl set-ntp true`
 
-### GPT Partition: ESP Boot and ext4 Root
+## GPT Partition: ESP Boot and ext4 Root
 
 Find your destination disk with `lsblk -f`
 
@@ -75,7 +73,7 @@ name 2 archroot
 quit
 ```
 
-### FAT32 Boot and LUKS Encrypted ext4 Root
+## FAT32 Boot and LUKS Encrypted ext4 Root
 
 ```sh
 mkfs.vfat -n archboot -F32 /dev/nvme0n1p1
@@ -104,7 +102,7 @@ sda         iso9660     ARCH_201703 2017-03-01-18-21-15-00
 └─sdb2      vfat        ARCHISO_EFI 0F89-08ED
 ```
 
-### Bootstrap System And Chroot
+## Bootstrap System And Chroot
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
@@ -114,7 +112,7 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `arch-chroot /mnt /bin/bash`
 
-### Swap File
+## Swap File
 
 Create a swap file the same size as physical memory:
 
@@ -126,7 +124,7 @@ swapon /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 ```
 
-### Locale And Time
+## Locale And Time
 
 Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too many things expect it :sigh:.
 
@@ -138,11 +136,11 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 
 `hwclock --systohc --utc`
 
-### Update pacman Packages And Installations To Current
+## Update pacman Packages And Installations To Current
 
 `pacman -Suy`
 
-### Install And Enable Basic Networking
+## Install And Enable Basic Networking
 
 ```sh
 pacman -S openssh networkmanager
@@ -150,7 +148,7 @@ systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
-### Users
+## Users
 
 ```sh
 pacman -S zsh vim sudo
@@ -170,13 +168,13 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
-### Intel Microcode
+## Intel Microcode
 
 Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
 Not needed for AMD, as they're included in the kernel.
 
-### EFISTUB Preparation
+## EFISTUB Preparation
 
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
@@ -239,7 +237,7 @@ Append to `KERNEL_ARGS`:
 pcie_aspm=off
 ```
 
-### Create Boot Image
+## Create Boot Image
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
@@ -255,14 +253,14 @@ HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr 
 
 `pacman -S linux`
 
-### Create The EFISTUB
+## Create The EFISTUB
 
 ```sh
 pacman -S efibootmgr
 /boot/efiBootEntry.sh
 ```
 
-### Reboot
+## Reboot
 
 Beforehand, install some useful packages prior to reboot, to get you going:
 
@@ -273,13 +271,13 @@ pkgfile --update
 
 Exit chroot and reboot
 
-### Remove Default User
+## Remove Default User
 
 Any default users (with known passwords) should be removed e.g.
 
 `userdel -r alarm`
 
-### Set Hostname
+## Set Hostname
 
 Use `nmtui` to setup the system network connection.
 
@@ -291,31 +289,31 @@ Add the hostname to `/etc/hosts` first, as IPv4 local:
 
 `127.0.0.1	gigantor`
 
-### Enable NTP Sync
+## Enable NTP Sync
 
 `timedatectl set-ntp true`
 
 You can check this with: `timedatectl status`
 
-### Setup CLI User Environment
+## Setup CLI User Environment
 
 Install your public/private keys under `~/.ssh`
 
 See [Usage](#usage)
 
-### Video Driver
+## Video Driver
 
-#### Intel Only (lightweight laptop)
+### Intel Only (lightweight laptop)
 
 `pacman -S xf86-video-intel`
 
-#### Nvidia Only (desktop)
+### Nvidia Only (desktop)
 
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 `pacman -S nvidia nvidia-settings`
 
-#### Nvidia + Intel (heavy laptop)
+### Nvidia + Intel (heavy laptop)
 
 I don't need the nvidia discrete GPU for a work laptop, so completely disable it.
 
@@ -341,7 +339,7 @@ blacklist nouveau
 
 Alternatively, if the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
-### Desktop Hibernation
+## Desktop Hibernation
 
 Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
@@ -364,7 +362,7 @@ pacman -S linux
 /boot/efiBootEntry.sh
 ```
 
-### Install Packages
+## Install Packages
 
 I'm liking [aura](https://github.com/aurapm/aura) to manage system and AUR packages.
 
@@ -375,9 +373,9 @@ cd aura-bin
 makepkg -sri
 ```
 
-#### Packages I Like
+### Packages I Like
 
-Official:
+#### Official
 
 autofs
 calc
@@ -418,7 +416,7 @@ xterm
 xorg-xinit
 xorg-xrandr
 
-AUR:
+#### AUR
 
 alacritty-git
 gron-bin
@@ -431,13 +429,13 @@ ttf-ms-fonts
 visual-studio-code-bin
 xlayoutdisplay
 
-#### Laptops Like
+### Laptops Like
 
 libinput-gestures
 xf86-input-libinput
 xorg-xbacklight
 
-### Ready To Go
+## Ready To Go
 
 Reboot
 
