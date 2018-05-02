@@ -174,12 +174,6 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
-## Intel Microcode
-
-Install Intel CPU microcode updater: `pacman -S intel-ucode`
-
-Not needed for AMD, as they're included in the kernel.
-
 ## EFISTUB Preparation
 
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
@@ -233,7 +227,7 @@ Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw d
 
 Append this to the `KERNEL_ARGS` e.g.:
 ```sh
-KERNEL_ARGS='initrd=\initramfs-linux.img initrd=\intel-ucode.img root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw quiet'
+KERNEL_ARGS='initrd=\initramfs-linux.img root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw quiet'
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
@@ -259,6 +253,14 @@ HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr 
 
 `pacman -S linux`
 
+## Intel Microcode
+
+Install Intel CPU microcode updater: `pacman -S intel-ucode`
+
+Not needed for AMD, as they're included in the kernel.
+
+Prepend `initrd=\intel-ucode.img` to `KERNEL_ARGS`.
+
 ## Create The EFISTUB
 
 ```sh
@@ -268,7 +270,7 @@ pacman -S efibootmgr
 
 ## Reboot
 
-Beforehand, install some useful packages prior to reboot, to get you going:
+First, install some useful packages to get you going:
 
 ```sh
 pacman -S git wget pkgfile
