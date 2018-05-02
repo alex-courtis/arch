@@ -383,7 +383,6 @@ makepkg -sri
 
 #### Official
 
-autofs
 calc
 chromium
 dmenu
@@ -398,7 +397,6 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 pavucontrol
-pinta
 pwgen
 scrot
 slock
@@ -418,9 +416,9 @@ xorg-fonts-100dpi
 xorg-fonts-misc
 xorg-server
 xorg-xsetroot
-xterm
 xorg-xinit
 xorg-xrandr
+zsh-completions
 
 #### AUR
 
@@ -430,9 +428,7 @@ j4-dmenu-desktop
 ncurses5-compat-libs
 networkmanager-dmenu-git
 pulseaudio-ctl
-qdirstat
 ttf-ms-fonts
-visual-studio-code-bin
 xlayoutdisplay
 
 ### Laptops Like
