@@ -179,6 +179,10 @@ Not needed for AMD, as they're included in the kernel.
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
 Create `/boot/efiBootEntry.sh`:
+
+<details><summary>efiBootEntry.sh</summary>
+<p>
+
 ```sh
 #!/bin/sh
 
@@ -220,6 +224,9 @@ echo " CREATED:"
 efibootmgr --create --disk "${1}" --part "${2}" --label "${LABEL}" --loader "${LOADER}" --unicode --verbose "${KERNEL_ARGS}"
 echo
 ```
+</p>
+</details>
+
 
 Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself. e.g.
 
