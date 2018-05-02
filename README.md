@@ -56,10 +56,15 @@ Connect from a remote machine
 
 Find your destination disk with `lsblk -f`
 
-Wipe everything: `wipefs --all /dev/sda`
+Wipe everything e.g.
+```
+wipefs --all /dev/nvme0n1
+```
 
-`parted /dev/sda`
-
+Create partitions e.g.
+```
+parted /dev/nvme0n1
+```
 ```
 mktable GPT
 mkpart ESP fat32 1MiB 513MiB
@@ -67,15 +72,15 @@ set 1 boot on
 name 1 archboot
 mkpart primary ext4 513MiB 100%
 name 2 archroot
-exit
+quit
 ```
 
 ### FAT32 Boot and LUKS Encrypted ext4 Root
 
 ```
-mkfs.vfat -n archboot -F32 /dev/sda1
-cryptsetup -y -v luksFormat /dev/sda2
-cryptsetup open /dev/sda2 cryptroot
+mkfs.vfat -n archboot -F32 /dev/nvme0n1p1
+cryptsetup -y -v luksFormat /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptroot
 mkfs.ext4 -L archroot /dev/mapper/cryptroot
 ```
 
@@ -87,16 +92,16 @@ mount /dev/sda1  /mnt/boot
 
 `lsblk -f` should show something like this:
 ```
-NAME      FSTYPE      LABEL       UUID                                 MOUNTPOINT
-loop0     squashfs                                                     /run/archiso/sfs/airootfs
-sda                                                                    
-├─sda1    vfat                    0526-22BA                            /mnt/boot
-└─sda2    crypto_LUKS             9291ea2c-0543-41e1-a0af-e9198b63e0b5 
+NAME        FSTYPE      LABEL       UUID                                 MOUNTPOINT
+loop0       squashfs                                                     /run/archiso/sfs/airootfs
+nvme0n1                                                                    
+├─nvme0n1p1 vfat                    0526-22BA                            /mnt/boot
+└─nvme0n1p2 crypto_LUKS             9291ea2c-0543-41e1-a0af-e9198b63e0b5 
   └─cryptroot
-          ext4                    d64c8087-badc-4fe6-9214-8483d9aa0f96 /mnt
-sdb       iso9660     ARCH_201703 2017-03-01-18-21-15-00               
-├─sdb1    iso9660     ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
-└─sdb2    vfat        ARCHISO_EFI 0F89-08ED
+            ext4                    d64c8087-badc-4fe6-9214-8483d9aa0f96 /mnt
+sda         iso9660     ARCH_201703 2017-03-01-18-21-15-00               
+├─sdb1      iso9660     ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
+└─sdb2      vfat        ARCHISO_EFI 0F89-08ED
 ```
 
 ### Bootstrap System And Chroot
@@ -114,7 +119,7 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 Create a swap file the same size as physical memory:
 
 ```
-fallocate -l 8G /swapfile
+fallocate -l 16G /swapfile
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
@@ -123,7 +128,7 @@ echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 
 ### Locale And Time
 
-Uncomment your desired locale in `/etc/locale.gen`
+Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too many things expect it :sigh:.
 
 `locale-gen`
 
@@ -148,18 +153,8 @@ systemctl enable NetworkManager
 ### Users
 
 ```
-pacman -S zsh
+pacman -S zsh vim sudo
 ```
-
-Secure root first with `passwd`
-
-Add a user
-```
-useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
-passwd alex
-```
-
-`pacman -S vim sudo`
 
 Invoke `visudo` and uncomment the following:
 
@@ -167,52 +162,84 @@ Invoke `visudo` and uncomment the following:
 %wheel ALL=(ALL) ALL
 ```
 
+Secure root first with `passwd`
+
+Add a user e.g.
+```
+useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
+passwd alex
+```
+
 ### Intel Microcode
 
-Install Intel microcode updater: `pacman -S intel-ucode`
+Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
-### systemd boot loader and boot image
+Not needed for AMD, as they're included in the kernel.
 
-`bootctl --path=/boot install`
+### EFISTUB Preparation
 
-Edit `/boot/loader/loader.conf` and change its contents to:
+I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
+Create `/boot/efiBootEntry.sh`:
 ```
-default arch
-timeout 1
+#!/bin/sh
+
+set -e
+
+if [ ${#} -ne 2 ]; then
+    echo "usage: ${0} <disk> <partnum, starting at 1>"
+    echo "e.g.: ${0} /dev/sda 1"
+    exit 1
+fi
+
+# cusomise your kernel arguments
+KERNEL_ARGS='initrd=\initramfs-linux.img rw quiet'
+
+LOADER='\vmlinuz-linux'
+LABEL="Arch Linux"
+REGEX_BOOT_ENTRIES="^Boot([[:xdigit:]]*)\* (${LABEL})$"
+
+# print the current table
+echo " CURRENT:"
+efibootmgr --unicode --verbose
+echo
+
+# is there already an entry present?
+set +e
+EXISTING_ENTRY=$(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
+set -e
+if [ -n "${EXISTING_ENTRY}" ]; then
+
+    # delete existing
+    EXISTING_NUM=$(echo "${EXISTING_ENTRY}" | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
+    echo " REMOVED ${EXISTING_NUM}:"
+    efibootmgr -b "${EXISTING_NUM}" -B --unicode --verbose
+    echo
+fi
+
+# create the entry
+echo " CREATED:"
+efibootmgr --create --disk "${1}" --part "${2}" --label "${LABEL}" --loader "${LOADER}" --unicode --verbose "${KERNEL_ARGS}"
+echo
 ```
 
-Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself.
+Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself. e.g.
 
-`blkid -s UUID -o value /dev/sda2`
+`blkid -s UUID -o value /dev/nvme0n1p2`
 
-Add `/boot/loader/entries/arch.conf`:
+Append this to the `KERNEL_ARGS` e.g.:
 ```
-title Arch Linux
-linux /vmlinuz-linux
-initrd /intel-ucode.img
-initrd /initramfs-linux.img
-options root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw
-```
-
-If not using encryption, it's best to add an entry for the root partition by UUID instead of device name, as device names are aribtrary. e.g.
-
-```
-options root=UUID=86923e75-214e-46ed-98d4-dd15226a67a3 rootfstype=ext4 rw fbcon=scrollback:1024k
+KERNEL_ARGS='initrd=\initramfs-linux.img initrd=\intel-ucode.img root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw quiet'
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
 
-Add the following option:
-
+Append to `KERNEL_ARGS`:
 ```
 pcie_aspm=off
 ```
 
-Add `/boot/loader/entries/arch.fallback.conf` as per `arch.conf` except with the fallback image:
-```
-initrd /initramfs-linux-fallback.img
-```
+### Create Boot Image
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
@@ -224,18 +251,23 @@ Add the usr and shutdown hooks so that the root filesystem may be retained durin
 HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr shutdown"
 ```
 
-Regenerate the boot image:
+(Re)generate the boot image:
 
-`mkinitcpio -g /boot/initramfs-linux.img`
+`pacman -S linux`
 
-If the kernel you booted with is a different version to the kernel you just installed, you can achieve the regeneration by reinstalling the later kernel `pacman -S linux`
+### Create The EFISTUB
+
+```
+pacman -S efibootmgr
+/boot/efiBootEntry.sh
+```
 
 ### Reboot
 
-Install some useful packages prior to reboot, to get you going:
+Beforehand, install some useful packages prior to reboot, to get you going:
 
 ```
-pacman -S bash-completion git wget pkgfile
+pacman -S git wget pkgfile
 pkgfile --update
 ```
 
@@ -251,13 +283,13 @@ Any default users (with known passwords) should be removed e.g.
 
 Use `nmtui` to setup the system network connection.
 
-Apply the hostname:
+Apply the hostname e.g.:
 
-`hostnamectl set-hostname duke`
+`hostnamectl set-hostname gigantor`
 
 Add the hostname to `/etc/hosts` first, as IPv4 local:
 
-`127.0.0.1	duke`
+`127.0.0.1	gigantor`
 
 ### Enable NTP Sync
 
@@ -313,21 +345,24 @@ Alternatively, if the discrete GPU is needed, optimus/prime may be used to enabl
 
 Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
-Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file
-
-Add `/boot/loader/entries/arch.conf` `options`: `resume` is the root volume and `resume_offset` is the value derived above e.g.
-
+Add `resume` and `resume_offset` to `KERNEL_ARGS` in `/boot/efiBootEntry.sh` e.g.
 ```
-options        root=/dev/mapper/cryptroot resume=/dev/mapper/cryptroot resume_offset=126976 cryptdevice=/dev/disk/by-uuid/2180f899-0705-4b48-bdd4-7d1c8793008d:cryptroot rw`
+resume=/dev/mapper/cryptroot resume_offset=126976
 ```
+
+`resume` is the root volume.
+
+Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file. This is `resume_offset`.
 
 Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, after the encrypt hook e.g.:
 
 `HOOKS="base udev autodetect modconf block keyboard encrypt resume filesystems fsck"`
 
-Regenerate the boot image:
-
-`mkinitcpio -g /boot/initramfs-linux.img`
+Regenerate the boot image and the EFI stub:
+```
+pacman -S linux
+/boot/efiBootEntry.sh
+```
 
 ### Install Packages
 
