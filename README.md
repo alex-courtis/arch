@@ -257,7 +257,7 @@ HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr 
 
 ```sh
 pacman -S efibootmgr
-/boot/efiBootEntry.sh
+/boot/efiBootEntry.sh /dev/nvme0n1 1
 ```
 
 ## Reboot
@@ -359,7 +359,7 @@ Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, a
 Regenerate the boot image and the EFI stub:
 ```sh
 pacman -S linux
-/boot/efiBootEntry.sh
+/boot/efiBootEntry.sh /dev/nvme0n1 1
 ```
 
 ## Install Packages
