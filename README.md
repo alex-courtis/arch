@@ -154,6 +154,12 @@ systemctl enable NetworkManager
 pacman -S zsh vim sudo
 ```
 
+Link vi to vim:
+```sh
+ln -s /usr/bin/vim /usr/local/bin/vi
+ln -s /usr/bin/vim /usr/local/bin/view
+```
+
 Invoke `visudo` and uncomment the following:
 
 ```sh
@@ -339,7 +345,7 @@ blacklist nouveau
 
 Alternatively, if the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
-## Desktop Hibernation
+## Hibernation
 
 Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
 
