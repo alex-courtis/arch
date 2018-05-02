@@ -356,8 +356,6 @@ Add `resume` and `resume_offset` to `KERNEL_ARGS` in `/boot/efiBootEntry.sh` e.g
 resume=/dev/mapper/cryptroot resume_offset=126976
 ```
 
-`resume` is the root volume.
-
 Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file. This is `resume_offset`.
 
 Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, after the encrypt hook e.g.:
