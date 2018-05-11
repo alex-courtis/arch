@@ -50,7 +50,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root
+## GPT Partition: ESP Boot and LVM on LUKS
 
 Find your destination disk with `lsblk -f`
 
@@ -63,23 +63,30 @@ Create partitions e.g.
 ```sh
 parted /dev/nvme0n1
 ```
+
 ```
 mktable GPT
 mkpart ESP fat32 1MiB 513MiB
 set 1 boot on
 name 1 archboot
-mkpart primary ext4 513MiB 100%
-name 2 archroot
+mkpart primary 513MiB 100%
+name 2 luksroot
 quit
 ```
 
-## FAT32 Boot and LUKS Encrypted ext4 Root
+## Filesystems
+
+### Fat32 Boot
 
 ```sh
 mkfs.vfat -n archboot -F32 /dev/nvme0n1p1
-cryptsetup -y -v luksFormat /dev/nvme0n1p2
-cryptsetup open /dev/nvme0n1p2 cryptroot
-mkfs.ext4 -L archroot /dev/mapper/cryptroot
+```
+
+### Swap and BTRFS
+```sh
+cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+
 ```
 
 ```sh
