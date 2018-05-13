@@ -152,28 +152,24 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 Modify `/` for first fsck by setting the last field to 1.
 
-Modify `/home` and `/boot` for second fsck by setting to 2.
+Modify `/home`, `/var/lib/docker` and `/boot` for second fsck by setting to 2.
 
 `/mnt/etc/fstab` should look something like:
 ```
-# Static information about the filesystems.
-# See fstab(5) for details.
-
-# <file system> <dir> <type> <options> <dump> <pass>
 # /dev/mapper/vg1-archroot LABEL=archroot
-UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=
-@root   0 1
+UUID=5adbe7a1-cb4d-4811-b98b-b0cb53a0b4a7       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=@root     0 1
 
 # /dev/mapper/vg1-archroot LABEL=archroot
-UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=
-@home   0 2
+UUID=5adbe7a1-cb4d-4811-b98b-b0cb53a0b4a7       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=@home     0 2
+
+# /dev/mapper/vg1-archroot LABEL=archroot
+UUID=5adbe7a1-cb4d-4811-b98b-b0cb53a0b4a7       /var/lib/docker btrfs           rw,relatime,ssd,space_cache,subvolid=259,subvol=/@docker,subvol=@docker 0 2
 
 # /dev/nvme0n1p1 LABEL=boot
-UUID=070C-46E6          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf
-8,errors=remount-ro     0 2
+UUID=B13B-C8E5          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
 
 # /dev/mapper/vg1-archswap LABEL=archswap
-UUID=beeb009e-bf7b-4026-81a2-fd4bbb2e82f9       none            swap            defaults,pri=-2 0 0
+UUID=1001d473-537a-4145-b070-0bcd962296d5       none            swap            defaults,pri=-2 0 0
 ```
 
 ## Chroot
