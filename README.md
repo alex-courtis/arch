@@ -389,6 +389,8 @@ makepkg -sri
 
 #### Official
 
+`pacman -S ...`
+
 calc
 chromium
 dmenu
@@ -427,6 +429,8 @@ xorg-xrandr
 zsh-completions
 
 #### AUR
+
+`aura -Ax ...`
 
 alacritty-git
 gron-bin
