@@ -188,18 +188,6 @@ echo "[Service]
 TTYVTDisallocate=no" > /etc/systemd/system/getty@tty1.service.d/noclear.conf
 ```
 
-## Swap File
-
-Create a swap file the same size as physical memory:
-
-```sh
-fallocate -l 16G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo "/swapfile none swap defaults 0 0" >> /etc/fstab
-```
-
 ## Locale And Time
 
 Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too many things expect it :sigh:.
