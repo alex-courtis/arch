@@ -73,7 +73,7 @@ name 2 luks
 quit
 ```
 
-## Filesystem: FAT32 Boot
+## Fat32 Boot
 
 ```sh
 mkfs.vfat -n boot -F32 /dev/nvme0n1p1
