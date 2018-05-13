@@ -176,6 +176,10 @@ UUID=1001d473-537a-4145-b070-0bcd962296d5       none            swap            
 
 `arch-chroot /mnt /bin/bash`
 
+## btrfs filesystem drivers
+
+`pacman -S btrfs-progs`
+
 ## Preserve Boot Messages
 
 TTY1 displays system boot messages, however they are cleared by default. Preserve them:
