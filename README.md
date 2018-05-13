@@ -18,11 +18,11 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 
 ## Boot
 
-### Intel PC
+### x86_64
 
 Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-### Raspberry PI
+### Raspberry PI ARM
 
 * prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
 * insert card and boot the device
@@ -244,7 +244,7 @@ I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EF
 
 Copy `bin/efiBootStub` from this repository into `/usr/local/bin`
 
-Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself. e.g.
+Determine the UUID of the your crypto_LUKS volume. Note that it's the raw device, not the crypto volume itself. e.g.
 
 `blkid -s UUID -o value /dev/nvme0n1p2`
 
@@ -280,13 +280,13 @@ HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems resu
 
 `pacman -S linux`
 
-## Intel Microcode
+## Intel CPU Microcode
 
 Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
-Not needed for AMD, as they're included in the kernel.
-
 Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
+
+Note that AMD CPU microcode is included in the kernel.
 
 ## Create The EFISTUB
 
