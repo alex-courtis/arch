@@ -79,7 +79,7 @@ quit
 mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 ```
 
-## LUKS Volume Group
+## LVM on LUKS
 
 ```sh
 cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
