@@ -291,7 +291,7 @@ Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw d
 
 Append this to the `KERNEL_ARGS` e.g.:
 ```sh
-KERNEL_ARGS='initrd=\initramfs-linux.img root=/dev/mapper/cryptroot cryptdevice=/dev/disk/by-uuid/9291ea2c-0543-41e1-a0af-e9198b63e0b5:cryptroot rw quiet'
+KERNEL_ARGS='initrd=\initramfs-linux.img cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5 root=/dev/vg1/root rw quiet'
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
@@ -301,7 +301,7 @@ Append to `KERNEL_ARGS`:
 pcie_aspm=off
 ```
 
-## Create Boot Image
+## Create initrd and kernel
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
@@ -310,7 +310,7 @@ Add an encrypt hook and move the keyboard configration before it, so that we can
 Add the usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
 ```sh
-HOOKS="base udev autodetect modconf block keyboard encrypt filesystems fsck usr shutdown"
+HOOKS=(base udev autodetect modconf block keyboard encrypt filesystems fsck usr shutdown)
 ```
 
 (Re)generate the boot image:
