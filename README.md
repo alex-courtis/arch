@@ -94,7 +94,7 @@ Same size as physical RAM.
 
 ```sh
 lvcreate -L 16G vg1 -n archswap
-mkswap /dev/vg1/archswap -L archswapbtrfs
+mkswap /dev/vg1/archswap -L archswap
 swapon /dev/vg1/archswap
 ```
 
@@ -111,15 +111,17 @@ mkfs.btrfs /dev/vg1/archroot -L archroot
 mount /dev/vg1/archroot /mnt
 btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@docker
 umount /mnt
 ```
 
 ## Mount All Filesystems
 
 ```sh
-mount /dev/vg1/archroot /mnt -o subvol=@root
-mkdir /mnt/home /mnt/boot
-mount /dev/vg1/archroot /mnt/home -o subvol=@home
+mount /dev/vg1/archroot /mnt -o subvol=/@root
+mkdir -p /mnt/home /mnt/boot /mnt/var/lib/docker
+mount /dev/vg1/archroot /mnt/home -o subvol=/@home
+mount /dev/vg1/archroot /mnt/var/lib/docker -o subvol=/@docker
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
