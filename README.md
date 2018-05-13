@@ -93,22 +93,22 @@ vgcreate vg1 /dev/mapper/cryptlvm
 Same size as physical RAM.
 
 ```sh
-lvcreate -L 16G vg1 -n swap
-mkswap /dev/vg1/swap -L swap
-swapon /dev/vg1/swap
+lvcreate -L 16G vg1 -n archswap
+mkswap /dev/vg1/archswap -L archswapbtrfs
+swapon /dev/vg1/archswap
 ```
 
 ### BTRFS Volume
 
 ```sh
-lvcreate -l 100%FREE vg1 -n btrfs
-mkfs.btrfs /dev/vg1/btrfs -L btrfs
+lvcreate -l 100%FREE vg1 -n archroot
+mkfs.btrfs /dev/vg1/archroot -L archroot
 ```
 
 ## BTRFS Subvolumes
 
 ```sh
-mount /dev/vg1/btrfs /mnt
+mount /dev/vg1/archroot /mnt
 btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
 umount /mnt
@@ -117,25 +117,25 @@ umount /mnt
 ## Mount All Filesystems
 
 ```sh
-mount /dev/vg1/btrfs /mnt -o subvol=@root
+mount /dev/vg1/archroot /mnt -o subvol=@root
 mkdir /mnt/home /mnt/boot
-mount /dev/vg1/btrfs /mnt/home -o subvol=@home
+mount /dev/vg1/archroot /mnt/home -o subvol=@home
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 `lsblk -f` should show something like this:
 ```
-NAME            FSTYPE      LABEL       UUID                                   MOUNTPOINT
-loop0           squashfs                                                       /run/archiso/sfs/airootfs
-sda             iso9660     ARCH_201805 2018-05-01-05-08-12-00
-├─sda1          iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
-└─sda2          vfat        ARCHISO_EFI 6116-EC41
+NAME                FSTYPE      LABEL       UUID                                   MOUNTPOINT
+loop0               squashfs                                                       /run/archiso/sfs/airootfs
+sda                 iso9660     ARCH_201805 2018-05-01-05-08-12-00
+├─sda1              iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
+└─sda2              vfat        ARCHISO_EFI 6116-EC41
 nvme0n1
-├─nvme0n1p1     vfat        boot        070C-46E6                              /mnt/boot
-└─nvme0n1p2     crypto_LUKS             f92f75a8-995d-428d-bf72-6a1fc7d482e5
-  └─cryptlvm    LVM2_member             DsgNGR-oSKb-yBD4-EDvd-RhGq-8abB-PRTzbc
-    ├─vg1-swap  swap        swap        beeb009e-bf7b-4026-81a2-fd4bbb2e82f9   [SWAP]
-    └─vg1-btrfs btrfs       btrfs       4a90fabc-7e40-446d-b507-1bdad61f93b6   /mnt/home
+├─nvme0n1p1         vfat        boot        070C-46E6                              /mnt/boot
+└─nvme0n1p2         crypto_LUKS             f92f75a8-995d-428d-bf72-6a1fc7d482e5
+  └─cryptlvm        LVM2_member             DsgNGR-oSKb-yBD4-EDvd-RhGq-8abB-PRTzbc
+    ├─vg1-archswap  swap        archswap    beeb009e-bf7b-4026-81a2-fd4bbb2e82f9   [SWAP]
+    └─vg1-archroot  btrfs       archroot    4a90fabc-7e40-446d-b507-1bdad61f93b6   /mnt/home
 ```
 
 ## Bootstrap System
@@ -158,11 +158,11 @@ Modify /home and /boot for second fsck by setting to 2.
 # See fstab(5) for details.
 
 # <file system> <dir> <type> <options> <dump> <pass>
-# /dev/mapper/vg1-btrfs LABEL=btrfs
+# /dev/mapper/vg1-archroot LABEL=archroot
 UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=
 @root   0 1
 
-# /dev/mapper/vg1-btrfs LABEL=btrfs
+# /dev/mapper/vg1-archroot LABEL=archroot
 UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=
 @home   0 2
 
@@ -170,7 +170,7 @@ UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /home           btrfs           
 UUID=070C-46E6          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf
 8,errors=remount-ro     0 2
 
-# /dev/mapper/vg1-swap LABEL=swap
+# /dev/mapper/vg1-archswap LABEL=archswap
 UUID=beeb009e-bf7b-4026-81a2-fd4bbb2e82f9       none            swap            defaults,pri=-2 0 0
 ```
 
@@ -291,7 +291,7 @@ Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw d
 
 Append this to the `KERNEL_ARGS` e.g.:
 ```sh
-KERNEL_ARGS='initrd=\initramfs-linux.img cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5 root=/dev/vg1/root rw quiet'
+KERNEL_ARGS='initrd=\initramfs-linux.img cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root rw quiet'
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
