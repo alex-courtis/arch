@@ -127,17 +127,17 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 `lsblk -f` should show something like this:
 ```
-NAME                FSTYPE      LABEL       UUID                                   MOUNTPOINT
-loop0               squashfs                                                       /run/archiso/sfs/airootfs
-sda                 iso9660     ARCH_201805 2018-05-01-05-08-12-00
-├─sda1              iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
-└─sda2              vfat        ARCHISO_EFI 6116-EC41
+NAME               FSTYPE      LABEL       UUID                                   MOUNTPOINT
+loop0              squashfs                                                       /run/archiso/sfs/airootfs
+sda                iso9660     ARCH_201805 2018-05-01-05-08-12-00
+├─sda1             iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
+└─sda2             vfat        ARCHISO_EFI 6116-EC41
 nvme0n1
-├─nvme0n1p1         vfat        boot        070C-46E6                              /mnt/boot
-└─nvme0n1p2         crypto_LUKS             f92f75a8-995d-428d-bf72-6a1fc7d482e5
-  └─cryptlvm        LVM2_member             DsgNGR-oSKb-yBD4-EDvd-RhGq-8abB-PRTzbc
-    ├─vg1-archswap  swap        archswap    beeb009e-bf7b-4026-81a2-fd4bbb2e82f9   [SWAP]
-    └─vg1-archroot  btrfs       archroot    4a90fabc-7e40-446d-b507-1bdad61f93b6   /mnt/home
+├─nvme0n1p1        vfat        boot        B13B-C8E5                              /mnt/boot
+└─nvme0n1p2        crypto_LUKS             acc2d02e-6ff8-43aa-af8a-ee70238bdd9d
+  └─cryptlvm       LVM2_member             HNCdaw-6o1E-n0Td-2IJV-6jDW-bCkY-T60ufS
+    ├─vg1-archswap swap        archswap    1001d473-537a-4145-b070-0bcd962296d5   [SWAP]
+    └─vg1-archroot btrfs       archroot    5adbe7a1-cb4d-4811-b98b-b0cb53a0b4a7   /mnt/var/lib/docker
 ```
 
 ## Bootstrap System
