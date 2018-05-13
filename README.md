@@ -433,7 +433,6 @@ noto-fonts-emoji
 noto-fonts-extra
 pavucontrol
 pwgen
-qdirstat
 scrot
 slock
 sysstat
@@ -466,6 +465,7 @@ zsh-completions
 alacritty-git
 gron-bin
 j4-dmenu-desktop
+qdirstat
 ncurses5-compat-libs
 networkmanager-dmenu-git
 pulseaudio-ctl
