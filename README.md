@@ -150,9 +150,9 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `genfstab -U /mnt >> /mnt/etc/fstab`
 
-Modify / for first fsck by setting the last field to 1.
+Modify `/` for first fsck by setting the last field to 1.
 
-Modify /home and /boot for second fsck by setting to 2.
+Modify `/home` and `/boot` for second fsck by setting to 2.
 
 `/mnt/etc/fstab` should look something like:
 ```
