@@ -50,7 +50,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partitions: ESP Boot and LUKS
+## GPT Partitioning: [LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
 
 Find your destination disk with `lsblk -f`
 
