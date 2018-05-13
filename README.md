@@ -50,7 +50,7 @@ Connect from a remote machine
 
 `timedatectl set-ntp true`
 
-## GPT Partition: ESP Boot and ext4 Root
+## GPT Partitions: ESP Boot and LUKS
 
 Find your destination disk with `lsblk -f`
 
@@ -67,39 +67,75 @@ parted /dev/nvme0n1
 mktable GPT
 mkpart ESP fat32 1MiB 513MiB
 set 1 boot on
-name 1 archboot
-mkpart primary ext4 513MiB 100%
-name 2 archroot
+name 1 boot
+mkpart primary 513MiB 100%
+name 2 luks
 quit
 ```
 
-## FAT32 Boot and LUKS Encrypted ext4 Root
+## Filesystem: FAT32 Boot
 
 ```sh
-mkfs.vfat -n archboot -F32 /dev/nvme0n1p1
-cryptsetup -y -v luksFormat /dev/nvme0n1p2
-cryptsetup open /dev/nvme0n1p2 cryptroot
-mkfs.ext4 -L archroot /dev/mapper/cryptroot
+mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 ```
 
+## LUKS Volume Group
+
 ```sh
-mount /dev/mapper/cryptroot /mnt
-mkdir /mnt/boot
-mount /dev/sda1  /mnt/boot
+cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+pvcreate /dev/mapper/cryptlvm
+vgcreate vg1 /dev/mapper/cryptlvm
+```
+
+### Swap Volume
+
+Same size as physical RAM.
+
+```sh
+lvcreate -L 16G vg1 -n swap
+mkswap /dev/vg1/swap
+swapon /dev/vg1/swap
+```
+
+### BTRFS Volume
+
+```sh
+lvcreate -l 100%FREE vg1 -n btrfs
+mkfs.btrfs /dev/vg1/btrfs
+```
+
+#### BTRFS Subvolumes
+
+```sh
+mount /dev/vg1/btrfs /mnt
+btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@home
+umount /mnt
+```
+
+## Mount All
+
+```sh
+mount /dev/vg1/btrfs /mnt -o subvol=@root
+mkdir /mnt/home /mnt/boot
+mount /dev/vg1/btrfs /mnt/home -o subvol=@home
+mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 `lsblk -f` should show something like this:
 ```
-NAME        FSTYPE      LABEL       UUID                                 MOUNTPOINT
-loop0       squashfs                                                     /run/archiso/sfs/airootfs
-nvme0n1                                                                    
-├─nvme0n1p1 vfat                    0526-22BA                            /mnt/boot
-└─nvme0n1p2 crypto_LUKS             9291ea2c-0543-41e1-a0af-e9198b63e0b5 
-  └─cryptroot
-            ext4                    d64c8087-badc-4fe6-9214-8483d9aa0f96 /mnt
-sda         iso9660     ARCH_201703 2017-03-01-18-21-15-00               
-├─sdb1      iso9660     ARCH_201703 2017-03-01-18-21-15-00               /run/archiso/bootmnt
-└─sdb2      vfat        ARCHISO_EFI 0F89-08ED
+NAME                FSTYPE      LABEL       UUID                                   MOUNTPOINT
+sda                 iso9660     ARCH_201805 2018-05-01-05-08-12-00
+├─sda1              iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
+└─sda2              vfat        ARCHISO_EFI 6116-EC41
+loop0               squashfs                                                       /run/archiso/sfs/airootfs
+nvme0n1
+├─nvme0n1p1         vfat        archboot    8619-92FC                              /mnt/boot
+└─nvme0n1p2         crypto_LUKS             f2e45a14-b919-4388-a9d7-ea931e1464bc
+  └─cryptlvm        LVM2_member             upqaRg-tw2r-CX8C-fBCD-REYo-crSe-nJamwc
+    ├─vg1-swap      swap        swap        f08bbf82-e161-4483-a027-aee0cc7a2902   [SWAP]
+    └─vg1-root      btrfs       btrfs       643d4e44-ad2d-41fe-9989-4f6cb030477d   /mnt/home
 ```
 
 ## Bootstrap System And Chroot
