@@ -378,6 +378,8 @@ Unfortunately, the nouveau drivers aren't feature complete or performant, so use
 
 I don't need the nvidia discrete GPU for a work laptop, so completely disable it.
 
+If the discrete GPU is needed, optimus/prime may be used to enable it on demand.
+
 `pacman -S xf86-video-intel bbswitch`
 
 Load the bbswitch module via `/etc/modules-load.d/bbswitch.conf`:
@@ -397,8 +399,6 @@ Ban the nouveau module, which can block bbswitch, via `/etc/modprobe.d/blacklist
 ```
 blacklist nouveau
 ```
-
-Alternatively, if the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
 ## Install Packages
 
