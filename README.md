@@ -297,6 +297,30 @@ pacman -S efibootmgr
 efiBootStub /dev/nvme0n1 1
 ```
 
+### Alternative: systemd-boot
+
+Some terribad UEFI implementations such as Dell 5520 don't want to boot directly from UEFI; they only seem to support booting from an .efi file, hence we use systemd-boot.
+
+```sh
+bootctl --path=/boot install
+```
+
+Edit `/boot/loader/loader.conf` and change its contents to:
+```
+default arch
+timeout 1
+```
+
+Add `/boot/loader/entries/arch.conf`, using `/boot/kargs` for options, with initrd moved up:
+
+```
+title Arch Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root resume=/dev/vg1/archswap rw quiet
+```
+
 ## Reboot
 
 First, install some useful packages to get you going:
