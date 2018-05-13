@@ -242,61 +242,20 @@ passwd alex
 
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
-Create `/boot/efiBootEntry.sh`:
-```sh
-#!/bin/sh
-
-set -e
-
-if [ ${#} -ne 2 ]; then
-    echo "usage: ${0} <disk> <partnum, starting at 1>"
-    echo "e.g.: ${0} /dev/sda 1"
-    exit 1
-fi
-
-# cusomise your kernel arguments
-KERNEL_ARGS='initrd=\initramfs-linux.img rw quiet'
-
-LOADER='\vmlinuz-linux'
-LABEL="Arch Linux"
-REGEX_BOOT_ENTRIES="^Boot([[:xdigit:]]*)\* (${LABEL})$"
-
-# print the current table
-echo " CURRENT:"
-efibootmgr --unicode --verbose
-echo
-
-# is there already an entry present?
-set +e
-EXISTING_ENTRY=$(efibootmgr | grep -E "${REGEX_BOOT_ENTRIES}")
-set -e
-if [ -n "${EXISTING_ENTRY}" ]; then
-
-    # delete existing
-    EXISTING_NUM=$(echo "${EXISTING_ENTRY}" | sed -E "s/${REGEX_BOOT_ENTRIES}/\1/")
-    echo " REMOVED ${EXISTING_NUM}:"
-    efibootmgr -b "${EXISTING_NUM}" -B --unicode --verbose
-    echo
-fi
-
-# create the entry
-echo " CREATED:"
-efibootmgr --create --disk "${1}" --part "${2}" --label "${LABEL}" --loader "${LOADER}" --unicode --verbose "${KERNEL_ARGS}"
-echo
-```
+Copy `bin/efiBootStub` from this repository into `/usr/local/bin`
 
 Determine the UUID of the your crypto_LUKS root volume. Note that it's the raw device, not the crypto volume itself. e.g.
 
 `blkid -s UUID -o value /dev/nvme0n1p2`
 
-Append this to the `KERNEL_ARGS` e.g.:
-```sh
-KERNEL_ARGS='initrd=\initramfs-linux.img cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root rw quiet'
+Create kernel command line in `/boot/kargs` e.g.
+```
+initrd=\initramfs-linux.img cryptdevice=UUID=f92f75a8-995d-428d-bf72-6a1fc7d482e5:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root resume=/dev/vg1/archswap rw quiet
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
 
-Append to `KERNEL_ARGS`:
+Append to `/boot/kargs`:
 ```
 pcie_aspm=off
 ```
@@ -309,10 +268,12 @@ Add an encrypt hook and move the keyboard configration before it, so that we can
 
 Add lvm2 before filessystems so that we may open the volumes.
 
-Add the usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
+Add resume hook after filesystems.
+
+Add usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
 ```sh
-HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems fsck usr shutdown)
+HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems resume fsck usr shutdown)
 ```
 
 (Re)generate the boot image:
@@ -412,27 +373,6 @@ blacklist nouveau
 ```
 
 Alternatively, if the discrete GPU is needed, optimus/prime may be used to enable it on demand.
-
-## Hibernation
-
-Hibernation is achieved by saving the memory state to the swap file. I do not understand how this works without losing paged out memory.
-
-Add `resume` and `resume_offset` to `KERNEL_ARGS` in `/boot/efiBootEntry.sh` e.g.
-```
-resume=/dev/mapper/cryptroot resume_offset=126976
-```
-
-Find the offset of `/swapfile` on the (encrypted) disk: `filefrag -v /swapfile` and find the first physical offset as per https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file. This is `resume_offset`.
-
-Enable the resume hook in the boot image configuration `/etc/mkinitcpio.conf`, after the encrypt hook e.g.:
-
-`HOOKS="base udev autodetect modconf block keyboard encrypt resume filesystems fsck"`
-
-Regenerate the boot image and the EFI stub:
-```sh
-pacman -S linux
-/boot/efiBootEntry.sh /dev/nvme0n1 1
-```
 
 ## Install Packages
 
