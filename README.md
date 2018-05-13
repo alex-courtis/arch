@@ -131,20 +131,50 @@ sda             iso9660     ARCH_201805 2018-05-01-05-08-12-00
 ├─sda1          iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
 └─sda2          vfat        ARCHISO_EFI 6116-EC41
 nvme0n1
-├─nvme0n1p1     vfat        boot        070C-46E6
+├─nvme0n1p1     vfat        boot        070C-46E6                              /mnt/boot
 └─nvme0n1p2     crypto_LUKS             f92f75a8-995d-428d-bf72-6a1fc7d482e5
   └─cryptlvm    LVM2_member             DsgNGR-oSKb-yBD4-EDvd-RhGq-8abB-PRTzbc
     ├─vg1-swap  swap        swap        beeb009e-bf7b-4026-81a2-fd4bbb2e82f9   [SWAP]
     └─vg1-btrfs btrfs       btrfs       4a90fabc-7e40-446d-b507-1bdad61f93b6   /mnt/home
 ```
 
-## Bootstrap System And Chroot
+## Bootstrap System
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `pacstrap -i /mnt base base-devel`
 
+## Setup /etc/fstab
+
 `genfstab -U /mnt >> /mnt/etc/fstab`
+
+Modify / for first fsck by setting the last field to 1.
+
+Modify /home and /boot for second fsck by setting to 2.
+
+`/mnt/etc/fstab` should look something like:
+```
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/mapper/vg1-btrfs LABEL=btrfs
+UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=
+@root   0 1
+
+# /dev/mapper/vg1-btrfs LABEL=btrfs
+UUID=4a90fabc-7e40-446d-b507-1bdad61f93b6       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=
+@home   0 2
+
+# /dev/nvme0n1p1 LABEL=boot
+UUID=070C-46E6          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf
+8,errors=remount-ro     0 2
+
+# /dev/mapper/vg1-swap LABEL=swap
+UUID=beeb009e-bf7b-4026-81a2-fd4bbb2e82f9       none            swap            defaults,pri=-2 0 0
+```
+
+## Chroot
 
 `arch-chroot /mnt /bin/bash`
 
