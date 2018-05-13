@@ -286,13 +286,13 @@ Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
 Not needed for AMD, as they're included in the kernel.
 
-Prepend `initrd=\intel-ucode.img` to `KERNEL_ARGS`.
+Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
 
 ## Create The EFISTUB
 
 ```sh
 pacman -S efibootmgr
-/boot/efiBootEntry.sh /dev/nvme0n1 1
+efiBootStub /dev/nvme0n1 1
 ```
 
 ## Reboot
