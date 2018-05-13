@@ -391,25 +391,29 @@ makepkg -sri
 
 `pacman -S ...`
 
+autofs
 calc
 chromium
 dmenu
+docker
 efibootmgr
 facter
 jq
 keychain
 network-manager-applet
-networkmanager-openconnect
 nfs-utils
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 pavucontrol
 pwgen
+qdirstat
 scrot
 slock
+sysstat
 the_silver_searcher
 tmux
+ttf-dejavu
 ttf-hack
 udisks2
 unzip
@@ -419,13 +423,14 @@ xmlstarlet
 xmobar
 xmonad
 xmonad-contrib
-xorg-fonts-75dpi
 xorg-fonts-100dpi
+xorg-fonts-75dpi
 xorg-fonts-misc
 xorg-server
-xorg-xsetroot
 xorg-xinit
 xorg-xrandr
+xorg-xsetroot
+xterm
 zsh-completions
 
 #### AUR
