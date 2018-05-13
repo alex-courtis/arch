@@ -94,7 +94,7 @@ Same size as physical RAM.
 
 ```sh
 lvcreate -L 16G vg1 -n swap
-mkswap /dev/vg1/swap
+mkswap /dev/vg1/swap -L swap
 swapon /dev/vg1/swap
 ```
 
@@ -102,10 +102,10 @@ swapon /dev/vg1/swap
 
 ```sh
 lvcreate -l 100%FREE vg1 -n btrfs
-mkfs.btrfs /dev/vg1/btrfs
+mkfs.btrfs /dev/vg1/btrfs -L btrfs
 ```
 
-#### BTRFS Subvolumes
+## BTRFS Subvolumes
 
 ```sh
 mount /dev/vg1/btrfs /mnt
@@ -114,7 +114,7 @@ btrfs subvolume create /mnt/@home
 umount /mnt
 ```
 
-## Mount All
+## Mount All Filesystems
 
 ```sh
 mount /dev/vg1/btrfs /mnt -o subvol=@root
@@ -125,17 +125,17 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 `lsblk -f` should show something like this:
 ```
-NAME                FSTYPE      LABEL       UUID                                   MOUNTPOINT
-sda                 iso9660     ARCH_201805 2018-05-01-05-08-12-00
-├─sda1              iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
-└─sda2              vfat        ARCHISO_EFI 6116-EC41
-loop0               squashfs                                                       /run/archiso/sfs/airootfs
+NAME            FSTYPE      LABEL       UUID                                   MOUNTPOINT
+loop0           squashfs                                                       /run/archiso/sfs/airootfs
+sda             iso9660     ARCH_201805 2018-05-01-05-08-12-00
+├─sda1          iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
+└─sda2          vfat        ARCHISO_EFI 6116-EC41
 nvme0n1
-├─nvme0n1p1         vfat        archboot    8619-92FC                              /mnt/boot
-└─nvme0n1p2         crypto_LUKS             f2e45a14-b919-4388-a9d7-ea931e1464bc
-  └─cryptlvm        LVM2_member             upqaRg-tw2r-CX8C-fBCD-REYo-crSe-nJamwc
-    ├─vg1-swap      swap        swap        f08bbf82-e161-4483-a027-aee0cc7a2902   [SWAP]
-    └─vg1-root      btrfs       btrfs       643d4e44-ad2d-41fe-9989-4f6cb030477d   /mnt/home
+├─nvme0n1p1     vfat        boot        070C-46E6
+└─nvme0n1p2     crypto_LUKS             f92f75a8-995d-428d-bf72-6a1fc7d482e5
+  └─cryptlvm    LVM2_member             DsgNGR-oSKb-yBD4-EDvd-RhGq-8abB-PRTzbc
+    ├─vg1-swap  swap        swap        beeb009e-bf7b-4026-81a2-fd4bbb2e82f9   [SWAP]
+    └─vg1-btrfs btrfs       btrfs       4a90fabc-7e40-446d-b507-1bdad61f93b6   /mnt/home
 ```
 
 ## Bootstrap System And Chroot
