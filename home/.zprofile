@@ -2,8 +2,10 @@
 # we need to test that we're outside tmux, as environment variables are inherited when starting new tmux sessions
 if [ -z "${TMUX}" -a -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
     if [ -f ~/.amc.start.weston ]; then
-        #. ~/src/weston.env.sh
         weston-launch > "${HOME}/.weston.log" 2>&1
+    elif [ -f ~/.amc.start.waytile ]; then
+        . ~/src/weston.env.sh
+        waytile-launch > "${HOME}/.waytile.log" 2>&1
     elif [ -f ~/.amc.start.sway ]; then
         sway > "${HOME}/.sway.log" 2>&1
     else
