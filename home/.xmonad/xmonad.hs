@@ -30,6 +30,9 @@ myConfig = def
   -- launch browser
   , ((myModMask .|. shiftMask,  xK_o     ), spawn (myBrowser ++ " >/dev/null 2>&1"))
 
+  -- launch steam native
+  , ((myModMask .|. shiftMask,  xK_s     ), spawn ("steam-native >/dev/null 2>&1"))
+
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume.sh mute")
   , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "xmobarPulseVolume.sh down")
