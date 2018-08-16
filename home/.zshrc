@@ -57,7 +57,7 @@ case "$(hostname)" in
 emperor*)
     promptColour="green"
     ;;
-gigantor*)
+tinygod*)
     promptColour="blue"
     ;;
 lord*)
