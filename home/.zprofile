@@ -10,13 +10,6 @@ if [ -z "${TMUX}" -a -z "${DISPLAY}" -a "${XDG_VTNR}" -eq 1 ]; then
         sway > "${HOME}/.sway.log" 2>&1
     else
         # according to man 5 xorg.conf an absolute directory should not be usable for a non root user
-        lsmod | grep ^nvidia > /dev/null 2>&1
-        if [ $? -eq 0 ]; then
-            # nvidia does not allow
-            startx > "${HOME}/.x.log" 2>&1
-        else
-            # other drivers do e.g. nouveau, i915
-            startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "${HOME}/.x.log" 2>&1
-        fi
+        startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "${HOME}/.x.log" 2>&1
     fi
 fi

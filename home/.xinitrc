@@ -20,11 +20,6 @@ fi
 # die caps lock
 setxkbmap -option ctrl:nocaps
 
-# apply nvidia settings if available
-isAThing nvidia-settings && nvidia-settings \
-    -a "[gpu:0]/GPUMemoryTransferRateOffsetAllPerformanceLevels=1200" \
-    -a "[gpu:0]/GPUGraphicsClockOffsetAllPerformanceLevels=64"
-
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
 
