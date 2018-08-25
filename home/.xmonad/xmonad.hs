@@ -13,13 +13,16 @@ main = xmonad =<< statusBar myBar myPP myToggleStrutsKey  myConfig
 
 -- general configuration with keyboard customisation
 myConfig = def
-  { modMask         = myModMask
-  , terminal        = myTerminal
-  , startupHook     = ewmhDesktopsStartup <+> myStartupHook
-  , layoutHook      = myLayout
-  , handleEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
-  , logHook         = ewmhDesktopsLogHook
-  , manageHook      = myManageHook
+  { modMask             = myModMask
+  , terminal            = myTerminal
+  , startupHook         = ewmhDesktopsStartup <+> myStartupHook
+  , layoutHook          = myLayout
+  , handleEventHook     = ewmhDesktopsEventHook <+> fullscreenEventHook
+  , logHook             = ewmhDesktopsLogHook
+  , manageHook          = myManageHook
+  , borderWidth         = 2
+  , normalBorderColor   = "gray20"
+  , focusedBorderColor  = "white"
   } `additionalKeys`
 
   -- launch dmenu
