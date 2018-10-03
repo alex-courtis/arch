@@ -1,11 +1,9 @@
-# .xsession
-
 # shell agnostic function returns true if ${1} is a valid executable, function etc.
 function isAThing() {
     return $(type "${1}" > /dev/null 2>&1)
 }
 
-# run all system xinitrc shell scripts - xdm doesn't automagically do this
+# run all system xinitrc shell scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
     for script in /etc/X11/xinit/xinitrc.d/*; do
         [ -x "$script" -a ! -d "$script" ] && . "$script"
@@ -20,17 +18,14 @@ fi
 # die caps lock
 setxkbmap -option ctrl:nocaps
 
+# empty background
+isAThing xsetroot && xsetroot -solid gray20 -cursor left_ptr
+
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
 
-# empty background; xLayoutDisplay will set the cursor for the root window
-isAThing xsetroot && xsetroot -solid gray20
-
 # slock the screen after 5 mins
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
-
-# start touchpad gesture recogniser
-isAThing libinput-gestures && libinput-gestures &
 
 # start up nm-applet, for use by networkmanager_dmenu
 # it won't be shown without a tray however is necessary to spawn windows
