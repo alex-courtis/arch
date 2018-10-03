@@ -469,16 +469,20 @@ qdirstat
 ncurses5-compat-libs
 networkmanager-dmenu-git
 pulseaudio-ctl
+redshift-minimal
 ttf-ms-fonts
 xlayoutdisplay
 
 ### Laptops Like
 
-libinput-gestures
 xf86-input-libinput
 xorg-xbacklight
 
 ## Ready To Go
+
+Enable redshift for all users:
+
+`systemctl --user --global enable redshift`
 
 Reboot
 
