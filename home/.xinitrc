@@ -19,7 +19,7 @@ fi
 setxkbmap -option ctrl:nocaps
 
 # empty background
-isAThing xsetroot && xsetroot -solid gray20 -cursor left_ptr
+isAThing xsetroot && xsetroot -solid gray20 -cursor_name left_ptr
 
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
