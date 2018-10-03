@@ -50,6 +50,9 @@ myConfig = def
   , ((noModMask,                xF86XK_Display          ), spawn myTwiddleDisplaysCmd)
   , ((myModMask .|. shiftMask,  xK_y                    ), spawn myTwiddleDisplaysCmd)
 
+  -- toggle redshift
+  , ((myModMask .|. shiftMask,  xK_r                    ), spawn myToggleRedshiftCmd)
+
   -- lock the screen
   , ((myModMask .|. shiftMask,  xK_l                    ), spawn "xautolock -locknow")
 
@@ -99,6 +102,9 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 
 -- update monitor outputs and restart xmonad
 myTwiddleDisplaysCmd = "xlayoutdisplay && xmonad --restart"
+
+-- toggle redshift
+myToggleRedshiftCmd = "if [ $(systemctl --user is-active redshift) = active ] ; then systemctl --user stop redshift ; else systemctl --user start redshift; fi"
 
 -- common dmenu args
 myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Monospace-10:bold'"
