@@ -492,10 +492,6 @@ xorg-xbacklight
 
 ## Ready To Go
 
-Enable redshift for all users:
-
-`systemctl --user --global enable redshift`
-
 Reboot
 
 Login at TTY1
