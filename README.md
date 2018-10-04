@@ -169,7 +169,7 @@ UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /var/lib/docker btrfs           
 UUID=3906-F913          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro     0 2
 
 # /dev/mapper/vg1-archswap LABEL=archswap
-UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            defaults,pri=-2 0 0
+UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            defaults    0 0
 ```
 
 ## Chroot
