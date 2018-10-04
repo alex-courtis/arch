@@ -282,13 +282,17 @@ HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems resu
 
 `pacman -S linux`
 
+## AMD CPU Microcode
+
+Install AMD CPU microcode updater: `pacman -S amd-ucode`
+
+Prepend `initrd=\amd-ucode.img ` to `/boot/kargs`.
+
 ## Intel CPU Microcode
 
 Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
 Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
-
-Note that AMD CPU microcode is included in the kernel.
 
 ## Create The EFISTUB
 
@@ -363,6 +367,14 @@ Install your public/private keys under `~/.ssh`
 See [Usage](#usage)
 
 ## Video Driver
+
+### Modern AMD
+
+Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
+
+Install the X driver and (re)generate the boot image:
+
+`pacman -S xf86-video-amdgpu linux`
 
 ### Intel Only (lightweight laptop)
 
