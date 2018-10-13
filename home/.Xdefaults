@@ -1,43 +1,35 @@
 URxvt*loginShell: true
 URxvt*font: xft:monospace:size=10
-URxvt*scrollBar: false
-URxvt*saveLines: 10000
-URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: true
-URxvt*scrollTtyKeypress: true
-URxvt*secondaryScreen: true
-URxvt*secondaryScroll: true
-! provided by rxvt-unicode-better-wheel-scrolling
+URxvt*saveLines: 0
+! provided by rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
 URxvt*secondaryWheel: true
 ! disable this mode as it has a ctrl-shift keybinding
 URxvt*iso14755: false
 
-! white text on black background
+! alacritty default colours: Tomorrow Night Bright
 URxvt*background: #000000
-URxvt*foreground: #ffffff
-
-! tango colours otherwise; see https://gist.github.com/menski/2176539
+URxvt*foreground: #eaeaea
 ! black dark/light
-URxvt*color0:             #2e3436
-URxvt*color8:             #6e706b
+URxvt*color0:             #000000
+URxvt*color8:             #666666
 ! red dark/light
-URxvt*color1:             #cc0000
-URxvt*color9:             #ef2929
+URxvt*color1:             #d54e53
+URxvt*color9:             #ff3334
 ! green dark/light
-URxvt*color2:             #4e9a06
-URxvt*color10:            #8ae234
+URxvt*color2:             #b9ca4a
+URxvt*color10:            #9ec400
 ! yellow dark/light
-URxvt*color3:             #edd400
-URxvt*color11:            #fce94f
+URxvt*color3:             #e6c547
+URxvt*color11:            #e7c547
 ! blue dark/light
-URxvt*color4:             #3465a4
-URxvt*color12:            #729fcf
+URxvt*color4:             #7aa6da
+URxvt*color12:            #7aa6da
 ! magenta dark/light
-URxvt*color5:             #92659a
-URxvt*color13:            #c19fbe
+URxvt*color5:             #c397d8
+URxvt*color13:            #b77ee0
 ! cyan dark/light
-URxvt*color6:             #07c7ca
-URxvt*color14:            #63e9e9
+URxvt*color6:             #70c0ba
+URxvt*color14:            #54ced6
 ! white dark/light
-URxvt*color7:             #d3d7cf
-URxvt*color15:            #eeeeec
+URxvt*color7:             #ffffff
+URxvt*color15:            #ffffff
