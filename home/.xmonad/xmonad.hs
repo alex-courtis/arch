@@ -49,6 +49,7 @@ myConfig = def
   -- twiddle displays
   , ((noModMask,                xF86XK_Display          ), spawn myTwiddleDisplaysCmd)
   , ((myModMask .|. shiftMask,  xK_y                    ), spawn myTwiddleDisplaysCmd)
+  , ((myModMask .|. shiftMask,  xK_t                    ), spawn myTwiddleDisplaysMirroredCmd)
 
   -- toggle redshift
   , ((myModMask .|. shiftMask,  xK_r                    ), spawn myToggleRedshiftCmd)
