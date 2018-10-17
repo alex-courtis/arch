@@ -37,10 +37,10 @@ myConfig = def
   , ((myModMask .|. mod1Mask,   xK_s     ), spawn ("steam-native >/dev/null 2>&1"))
 
   -- volume control
-  , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume.sh mute")
-  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "xmobarPulseVolume.sh down")
-  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "xmobarPulseVolume.sh up")
-  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "xmobarPulseVolume.sh mute-input")
+  , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume mute")
+  , ((noModMask,                xF86XK_AudioLowerVolume ), spawn "xmobarPulseVolume down")
+  , ((noModMask,                xF86XK_AudioRaiseVolume ), spawn "xmobarPulseVolume up")
+  , ((noModMask,                xF86XK_AudioMicMute     ), spawn "xmobarPulseVolume mute-input")
 
   -- brightness controls
   , ((noModMask,                xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10%")
@@ -102,6 +102,7 @@ myLayout = smartBorders $ Full ||| tall ||| wide
 
 -- update monitor outputs and restart xmonad
 myTwiddleDisplaysCmd = "xlayoutdisplay && xmonad --restart"
+myTwiddleDisplaysMirroredCmd = "xlayoutdisplay -m && xmonad --restart"
 
 -- toggle redshift
 myToggleRedshiftCmd = "if [ $(systemctl --user is-active redshift) = active ] ; then systemctl --user stop redshift ; else systemctl --user start redshift; fi"

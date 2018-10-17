@@ -1,0 +1,52 @@
+#!/bin/sh
+
+gpuReset
+
+echo "manual" > /sys/class/drm/card0/device/power_dpm_force_performance_level
+
+#  852Mhz  800mV
+#  991Mhz  900mV
+# 1084Mhz  950mV
+# 1138Mhz 1000mV
+# 1200Mhz 1050mV
+# 1401Mhz 1100mV
+echo "s 5 1500 1050" > /sys/class/drm/card0/device/pp_od_clk_voltage
+# 1536Mhz 1150mV
+echo "s 6 1630 1052" > /sys/class/drm/card0/device/pp_od_clk_voltage
+# 1630Mhz 1200mV
+echo "s 7 1700 1054" > /sys/class/drm/card0/device/pp_od_clk_voltage
+
+# 167Mhz  800mV
+# 500Mhz  800mV
+# 800Mhz  950mV
+echo "m 2 800 850" > /sys/class/drm/card0/device/pp_od_clk_voltage
+# 945Mhz 1100mV
+echo "m 3 1020 1000" > /sys/class/drm/card0/device/pp_od_clk_voltage
+
+echo "c" > /sys/class/drm/card0/device/pp_od_clk_voltage
+
+# force top level which draws memory up; it will drop if the power limit is reached
+echo "7" > /sys/class/drm/card0/device/pp_dpm_sclk
+
+# requires removal of cap check in amd_powerplay.c pp_set_power_limit
+echo "350000000" > /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap
+
+echo "power_dpm_force_performance_level"
+echo "================================="
+cat /sys/class/drm/card0/device/power_dpm_force_performance_level
+echo "================================="
+echo
+
+echo "pp_od_clk_voltage"
+echo "================="
+cat /sys/class/drm/card0/device/pp_od_clk_voltage
+echo "================="
+echo
+
+echo "power1_cap"
+echo "=========="
+cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap_min
+cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap
+cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap_max
+echo "=========="
+echo

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "pp_dpm_sclk"
+echo "==========="
+cat /sys/class/drm/card0/device/pp_dpm_sclk
+echo "==========="
+echo
+
+echo "pp_dpm_mclk"
+echo "==========="
+cat /sys/class/drm/card0/device/pp_dpm_mclk
+echo "==========="
+echo
+
+echo "amdgpu_pm_info"
+echo "=============="
+grep -A 9 "^GFX" /sys/kernel/debug/dri/0/amdgpu_pm_info
+echo "=============="
+echo
