@@ -76,7 +76,7 @@ myToggleStrutsKey XConfig { XMonad.modMask = modMask } = (modMask, xK_b)
 myStartupHook = do
 
   -- write to the named pipe for xmobar volume
-  spawn "xmobarPulseVolume.sh"
+  spawn "xmobarPulseVolume"
 
 
 -- application specific overrides; use xprop to investigate a running window
