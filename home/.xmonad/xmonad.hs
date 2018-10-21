@@ -109,7 +109,7 @@ myTwiddleDisplaysMirroredCmd = "xlayoutdisplay -m && xmonad --restart"
 myToggleRedshiftCmd = "if [ $(systemctl --user is-active redshift) = active ] ; then systemctl --user stop redshift ; else systemctl --user start redshift; fi"
 
 -- common dmenu args
-myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Monospace-10:bold'"
+myDmenuArgs = "-b -nf 'white' -sf 'yellow' -nb 'gray20' -sb 'gray30' -fn 'Monospace-11:bold'"
 
 -- mod key of choice - super
 myModMask = mod4Mask -- Super_L

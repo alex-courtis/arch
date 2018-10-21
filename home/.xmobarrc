@@ -1,4 +1,4 @@
-Config { font = "xft:Monospace:bold:size=10, -misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+Config { font = "xft:Monospace:bold:size=11, -misc-fixed-*-*-*-*-11-*-*-*-*-*-*-*"
        , fgColor = "white"
        , bgColor = "gray20"
        , position = Top

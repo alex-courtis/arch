@@ -1,5 +1,5 @@
 URxvt*loginShell: true
-URxvt*font: xft:monospace:size=10
+URxvt*font: xft:monospace:size=11
 URxvt*saveLines: 0
 ! provided by rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
 URxvt*secondaryWheel: true
