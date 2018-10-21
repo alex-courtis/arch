@@ -1,0 +1,48 @@
+#!/bin/sh
+
+set -e
+
+BASEDIR=/tmp/amc-temps
+
+rm -rf "${BASEDIR}"
+mkdir "${BASEDIR}"
+
+# CPU Tdie - k10
+i=0
+for d in /sys/module/k10temp/drivers/pci:k10temp/[0-9]*
+do
+    if [ -d "${d}" ]
+    then
+        pciId="$(basename "${d}")"
+        for f in "$(find /sys/devices/pci*/${pciId} -name temp1_input)"
+        do
+            if [ -f "${f}" ]
+            then
+                tempFile="${f}"
+                ln -sv "${tempFile}" "${BASEDIR}/Tc${i}"
+                i=$((i+1))
+            fi
+        done
+    fi
+done
+
+# amdgpu
+i=0
+for d in /sys/bus/pci/drivers/amdgpu/[0-9]*
+do
+    if [ -d "${d}" ]
+    then
+        pciId="$(basename "${d}")"
+        for e in "$(find /sys/devices/pci* -name "${pciId}")"
+        do
+            if [ -d "${e}" ]
+            then
+                for f in "$(find "${e}" -name temp1_input)"
+                do
+                    ln -sv "${f}" "${BASEDIR}/Tg${i}"
+                    i=$((i+1))
+                done
+            fi
+        done
+    fi
+done
