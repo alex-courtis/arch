@@ -27,8 +27,8 @@ isAThing xsetroot && xsetroot -solid gray20 -cursor_name left_ptr
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
 
-# start redshift
-systemctl --user start redshift 2>/dev/null
+# (re)start redshift
+systemctl --user restart redshift 2>/dev/null &
 
 # slock the screen after 5 mins
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
