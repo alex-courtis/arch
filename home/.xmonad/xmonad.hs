@@ -63,8 +63,8 @@ myConfig = def
   ]
 
 
--- status bar xmobar on screen 0 (see ~/.xmobarrc) top left 95%
-myBar = "xmobar -x 0"
+-- status bar xmobar on primary X display
+myBar = "xmobar"
 myPP = xmobarPP -- http://code.haskell.org/XMonadContrib/
   { ppSep       = "   "
   , ppTitle     = xmobarColor "green" "" . shorten 140
