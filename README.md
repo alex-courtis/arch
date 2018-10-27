@@ -79,6 +79,14 @@ quit
 mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 ```
 
+## Software RAID
+
+Optional, if multiple devices available.
+
+mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2
+
+Use /dev/md0 as the device for LUKS.
+
 ## LVM on LUKS
 
 ```sh
@@ -274,8 +282,10 @@ Add resume hook after filesystems.
 
 Add usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
+If using software raid, add mdadm_udev before encrypt.
+
 ```sh
-HOOKS=(base udev autodetect modconf block keyboard encrypt lvm2 filesystems resume fsck usr shutdown)
+HOOKS=(base udev autodetect modconf block keyboard mdadm_udev encrypt lvm2 filesystems resume fsck usr shutdown)
 ```
 
 (Re)generate the boot image:
@@ -429,6 +439,7 @@ makepkg -sri
 
 `pacman -S ...`
 
+alacritty
 autofs
 calc
 chromium
@@ -474,7 +485,6 @@ zsh-completions
 
 `aura -Ax ...`
 
-alacritty-git
 gron-bin
 j4-dmenu-desktop
 qdirstat
