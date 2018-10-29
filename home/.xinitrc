@@ -15,9 +15,6 @@ if [ -r ${HOME}/.Xresources ]; then
     xrdb -load ${HOME}/.Xresources
 fi
 
-# detect temperatures for use by displayTemps
-locateTemps
-
 # die caps lock
 setxkbmap -option ctrl:nocaps
 
