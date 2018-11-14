@@ -24,6 +24,9 @@ isAThing xsetroot && xsetroot -solid gray20 -cursor_name left_ptr
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
 
+# monitor sensors
+isAThing sensorsmonitor && sensorsmonitor&
+
 # (re)start redshift
 systemctl --user restart redshift 2>/dev/null &
 
