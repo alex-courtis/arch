@@ -14,7 +14,7 @@ echo "s 5 1500 1052" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1536Mhz 1150mV
 echo "s 6 1630 1054" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1630Mhz 1200mV
-echo "s 7 1780 1056" > /sys/class/drm/card0/device/pp_od_clk_voltage
+echo "s 7 1750 1056" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
 # 167Mhz  800mV
 # 500Mhz  800mV
