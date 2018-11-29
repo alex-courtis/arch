@@ -12,6 +12,54 @@ cd ~/.dotfiles
 ./link.sh
 ```
 
+# Arch Top Tips From Alex
+
+## Don't Compress Packages
+
+When invoking makepkg, the results are xz'd by default. This is unnecessary, as they are almost always immediately un-xz'd.
+
+`vi /etc/makepkg.conf` (yes, I know what I'm doing):
+
+```sh
+#########################################################################
+# EXTENSION DEFAULTS
+#########################################################################
+#
+# WARNING: Do NOT modify these variables unless you know what you are
+#          doing.
+#
+#PKGEXT='.pkg.tar.xz'
+PKGEXT='.pkg.tar'
+#SRCEXT='.src.tar.gz'
+SRCEXT='.src.tar'
+```
+
+## Enable Multi-CPU Compilation
+
+Invoke your c compiler with the `-j` option when building packages.
+
+`vi /etc/makepkg.conf` (my tinygod):
+
+```sh
+#########################################################################
+# ARCHITECTURE, COMPILE FLAGS
+#########################################################################
+#
+CARCH="x86_64"
+CHOST="x86_64-pc-linux-gnu"
+
+#-- Compiler and Linker Flags
+CPPFLAGS="-D_FORTIFY_SOURCE=2"
+CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt"
+CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt"
+LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
+#-- Make Flags: change this for DistCC/SMP systems
+MAKEFLAGS="-j32"
+#-- Debugging flags
+DEBUG_CFLAGS="-g -fvar-tracking-assignments"
+DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+```
+
 # Arch Installation
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
