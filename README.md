@@ -18,7 +18,9 @@ cd ~/.dotfiles
 
 When invoking makepkg, the results are xz'd by default. This is unnecessary, as they are almost always immediately un-xz'd.
 
-`vi /etc/makepkg.conf` (yes, I know what I'm doing):
+`vi /etc/makepkg.conf`
+
+(yes, I know what I'm doing)
 
 ```sh
 #########################################################################
@@ -38,7 +40,9 @@ SRCEXT='.src.tar'
 
 Invoke your c compiler with the `-j` option when building packages.
 
-`vi /etc/makepkg.conf` (my tinygod):
+`vi /etc/makepkg.conf`
+
+(my tinygod)
 
 ```sh
 #########################################################################
@@ -54,10 +58,43 @@ CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt
 CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt"
 LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
 #-- Make Flags: change this for DistCC/SMP systems
-MAKEFLAGS="-j32"
+MAKEFLAGS="-j64"
 #-- Debugging flags
 DEBUG_CFLAGS="-g -fvar-tracking-assignments"
 DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
+```
+
+## Don't Build Fallback Kernel Image
+
+We live on the stable edge in Arch land; I've _never_ had to boot to a "default options" kernel image. Remove it.
+
+`vi /etc/mkinitcpio.d/linux.preset`
+
+```sh
+
+PRESETS=('default')
+
+```
+
+## Don't Compress Your Kernel Image
+
+In 2018 we have disk space to burn. Don't bother compressing the kernel image.
+
+This doesn't make booting any faster, but it does make new image installation a bit faster.
+
+`vi /etc/mkinitcpio.conf`
+
+```sh
+# COMPRESSION
+# Use this to compress the initramfs image. By default, gzip compression
+# is used. Use 'cat' to create an uncompressed image.
+#COMPRESSION="gzip"
+#COMPRESSION="bzip2"
+#COMPRESSION="lzma"
+#COMPRESSION="xz"
+#COMPRESSION="lzop"
+#COMPRESSION="lz4"
+COMPRESSION=cat
 ```
 
 # Arch Installation
