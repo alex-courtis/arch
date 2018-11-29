@@ -16,7 +16,7 @@ cd ~/.dotfiles
 
 ## Don't Compress Packages
 
-When invoking makepkg, the results are xz'd by default. This is unnecessary, as they are almost always immediately un-xz'd.
+When invoking makepkg, the results are xz'd by default. This is unnecessary, as they are almost always immediately un-xz'd. Your AUR updates will be _muchly_ faster.
 
 `vi /etc/makepkg.conf`
 
@@ -38,7 +38,7 @@ SRCEXT='.src.tar'
 
 ## Enable Multi-CPU Compilation
 
-Invoke your c compiler with the `-j` option when building packages.
+We have multi CPU/thread processors nowadays. Invoke your c compiler with the `-j` option when building packages. Such quick AUR source package updates.
 
 `vi /etc/makepkg.conf`
 
@@ -66,7 +66,7 @@ DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
 
 ## Don't Build Fallback Kernel Image
 
-We live on the stable edge in Arch land; I've _never_ had to boot to a "default options" kernel image. Remove it.
+We live on the stable edge in Arch land; I've _never_ had to boot to a "default options" kernel image. Remove it for reduced complexity and a little bit of kernel update speed.
 
 `vi /etc/mkinitcpio.d/linux.preset`
 
