@@ -14,14 +14,15 @@ echo "s 5 1500 1052" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1536Mhz 1150mV
 echo "s 6 1630 1054" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1630Mhz 1200mV
-echo "s 7 1700 1056" > /sys/class/drm/card0/device/pp_od_clk_voltage
+echo "s 7 1780 1056" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
 # 167Mhz  800mV
 # 500Mhz  800mV
 # 800Mhz  950mV
 echo "m 2 800 850" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 945Mhz 1100mV
-echo "m 3 1020 1000" > /sys/class/drm/card0/device/pp_od_clk_voltage
+#  capped at 1107MHz here, regardless of voltage
+echo "m 3 1107 1000" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
 echo "c" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
@@ -29,7 +30,7 @@ echo "c" > /sys/class/drm/card0/device/pp_od_clk_voltage
 echo "7" > /sys/class/drm/card0/device/pp_dpm_sclk
 
 # requires removal of cap check in amd_powerplay.c pp_set_power_limit
-echo "400000000" > /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap
+echo "800000000" > /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap
 
 echo "power_dpm_force_performance_level"
 echo "================================="
