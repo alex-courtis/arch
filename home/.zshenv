@@ -19,3 +19,5 @@ export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 
 # tell old java apps that we're using xmonad which is a non-reparanting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+export STAFFID=acourtis
