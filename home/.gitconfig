@@ -8,6 +8,7 @@
 	email = acourtis@atlassian.com
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [mergetool "versions"]
 	cmd = ~/src/git-scripts/resolve-maven-version-conflicts.pl <\"$MERGED\" >\"$MERGED.tmp\" && mv \"$MERGED.tmp\" \"$MERGED\"
 	trustExitCode = true
@@ -15,3 +16,5 @@
 	default = current
 [color]
 	ui = auto
+[merge]
+	renameLimit = 9999
