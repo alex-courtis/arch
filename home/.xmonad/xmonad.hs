@@ -82,6 +82,7 @@ myStartupHook = do
 -- application specific overrides; use xprop to investigate a running window
 myManageHook = composeAll
    [ className =? "net-sourceforge-jnlp-runtime-Boot"   --> doFloat     -- iced tea javaws
+   , className =? "FTL.amd64"                           --> doFloat
    , className =? "Xmessage"                            --> doFloat ]
 
 
