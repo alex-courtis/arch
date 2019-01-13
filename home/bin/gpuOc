@@ -10,19 +10,15 @@ echo "manual" > /sys/class/drm/card0/device/power_dpm_force_performance_level
 # 1138Mhz 1000mV
 # 1200Mhz 1050mV
 # 1401Mhz 1100mV
-echo "s 5 1500 1052" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1536Mhz 1150mV
-echo "s 6 1630 1054" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 1630Mhz 1200mV
-echo "s 7 1750 1056" > /sys/class/drm/card0/device/pp_od_clk_voltage
+echo "s 7 1732 1175" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
 # 167Mhz  800mV
 # 500Mhz  800mV
 # 800Mhz  950mV
-echo "m 2 800 850" > /sys/class/drm/card0/device/pp_od_clk_voltage
 # 945Mhz 1100mV
-#  capped at 1107MHz here, regardless of voltage
-echo "m 3 1107 1000" > /sys/class/drm/card0/device/pp_od_clk_voltage
+echo "m 3 1100 1050" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
 echo "c" > /sys/class/drm/card0/device/pp_od_clk_voltage
 
@@ -46,8 +42,6 @@ echo
 
 echo "power1_cap"
 echo "=========="
-cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap_min
 cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap
-cat /sys/class/drm/card0/device/hwmon/hwmon0/power1_cap_max
 echo "=========="
 echo
