@@ -26,15 +26,15 @@ myConfig = def
   } `additionalKeys`
 
   -- launch dmenu
-  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ myDmenuArgs ++ " >/dev/null 2>&1"))
+  [ ((myModMask,                xK_p     ), spawn ("dmenu_run " ++ myDmenuArgs))
   -- launch j4-dmenu-desktop
-  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ myDmenuArgs ++ "\" --term=\"" ++ myTerminal ++ "\"" ++ " >/dev/null 2>&1"))
+  , ((myModMask .|. shiftMask,  xK_p     ), spawn ("j4-dmenu-desktop --dmenu=\"dmenu -i " ++ myDmenuArgs ++ "\" --term=\"" ++ myTerminal ++ "\""))
 
   -- launch browser
   , ((myModMask .|. shiftMask,  xK_o     ), spawn (myBrowser ++ " >/dev/null 2>&1"))
 
-  -- launch steam native
-  , ((myModMask .|. mod1Mask,   xK_s     ), spawn ("steam-native >/dev/null 2>&1"))
+  -- launch steam
+  , ((myModMask .|. shiftMask,  xK_m     ), spawn ("steam"))
 
   -- volume control
   , ((noModMask,                xF86XK_AudioMute        ), spawn "xmobarPulseVolume mute")
