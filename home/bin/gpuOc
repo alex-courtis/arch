@@ -23,6 +23,6 @@ echo "c" > /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:4
 
 echo "profile_peak" > /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/power_dpm_force_performance_level
 
-cat /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon3/power1_cap_max > /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon3/power1_cap
+cat /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon0/power1_cap_max > /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon0/power1_cap
 
 gpuMonitor -v
