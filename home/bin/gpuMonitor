@@ -18,7 +18,7 @@ if [ "${1}" = "-v" ]; then
     
     echo "power1_cap"
     echo "================="
-    cat /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon3/power1_cap
+    cat /sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0/hwmon/hwmon0/power1_cap
     echo "================="
     echo
 fi
