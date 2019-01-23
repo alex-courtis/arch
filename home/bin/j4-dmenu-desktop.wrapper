@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# trivial wrapper to take all arguments and pass them to j4-dmenu-desktop as a single --dmenu= argument
-
-j4-dmenu-desktop --dmenu="${*}"
