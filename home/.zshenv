@@ -11,10 +11,5 @@ export PAGER="less"
 # case insensitive searching and colours
 export LESS="IR"
 
-# die caps lock
-export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
-
-# tell old java apps that we're using xmonad which is a non-reparanting window manager
+# tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-export STAFFID=acourtis
