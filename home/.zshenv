@@ -1,3 +1,4 @@
+# see .zshrc for full path enumeration
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin "$path[@]")
 
@@ -13,3 +14,6 @@ export LESS="IR"
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# some java build systems seem to like this
+export JAVA_HOME=/usr/lib/jvm/default
