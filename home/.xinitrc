@@ -15,17 +15,12 @@ if [ -r ${HOME}/.Xresources ]; then
     xrdb -load ${HOME}/.Xresources
 fi
 
-# die caps lock
-setxkbmap -option ctrl:nocaps
-
-# empty background
-isAThing xsetroot && xsetroot -solid gray20 -cursor_name left_ptr
-
 # setup displays
 isAThing xlayoutdisplay && xlayoutdisplay
 
-# monitor sensors
-isAThing sensorsmonitor && sensorsmonitor&
+# system tray apps
+isAThing pasystray && pasystray --volume-max=100 --volume-inc=5 --no-icon-tooltip --notify=none &
+isAThing nm-applet && nm-applet &
 
 # (re)start redshift
 systemctl --user restart redshift 2>/dev/null &
@@ -33,15 +28,9 @@ systemctl --user restart redshift 2>/dev/null &
 # slock the screen after 5 mins
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 
-# start up nm-applet, for use by networkmanager_dmenu
-# it won't be shown without a tray however is necessary to spawn windows
-isAThing nm-applet && nm-applet > /dev/null 2>&1 &
+# start dwm
+slstatus &
+dwm &
 
-# clear any xmonad saved state
-rm -f .xmonad/xmonad.state
-
-# start xmonad
-xmonad &
-
-# wait for xmonad to stop
+# wait for dwm to stop
 wait $!

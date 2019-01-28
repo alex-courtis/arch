@@ -1,6 +1,11 @@
-I use Arch Linux and Xmonad/Xmobar is my desktop environment.
+I use Arch Linux and [suckless](http://suckless.org/) is my "desktop environment", using the [dwm](http://dwm.suckless.org/) window manager.
 
 Arch installation instructions and user configuration for desktop, laptop and embedded usage.
+
+My tools/configurations:
+* [dwm](https://github.com/alex-courtis/dwm/)
+* [slstatus](https://github.com/alex-courtis/slstatus/)
+* [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
 ![xmonad screenshot](/ss.png?raw=true "xmonad in action!")
 
@@ -539,6 +544,7 @@ nfs-utils
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
+pasystray
 pavucontrol
 pwgen
 scrot
@@ -553,16 +559,12 @@ unzip
 xautolock
 xdg-utils
 xmlstarlet
-xmobar
-xmonad
-xmonad-contrib
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-misc
 xorg-server
 xorg-xinit
 xorg-xrandr
-xorg-xsetroot
 xterm
 zsh-completions
 
@@ -573,10 +575,9 @@ zsh-completions
 gron-bin
 j4-dmenu-desktop
 qdirstat
-ncurses5-compat-libs
-networkmanager-dmenu-git
 pulseaudio-ctl
 redshift-minimal
+slack-desktop
 ttf-ms-fonts
 xlayoutdisplay
 
