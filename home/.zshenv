@@ -1,4 +1,4 @@
-# see .zshrc for full path enumeration
+# .zshenv is invoked when a login shell is started; zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append to the path
 typeset -U path
 [[ -d ~/bin ]] && path=(~/bin "$path[@]")
 

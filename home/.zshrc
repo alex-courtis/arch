@@ -1,6 +1,7 @@
-# zsh on arch will source /etc/profile from /etc/zsh/zprofile which is run after .zshenv, so need to set path here
+# zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
 typeset -U path
-[[ -d ~/bin ]] && path=(~/bin "$path[@]")
+
+# ensure that these are at the very end of the path, to prevent clobbering of system utils e.g. xpath, nvm
 [[ -d ~/src/robbieg.bin ]] && path=("$path[@]" ~/src/robbieg.bin)
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
