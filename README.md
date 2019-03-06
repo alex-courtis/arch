@@ -278,16 +278,6 @@ UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            
 
 `pacman -S btrfs-progs`
 
-## Preserve Boot Messages
-
-TTY1 displays system boot messages, however they are cleared by default. Preserve them:
-
-```
-mkdir /etc/systemd/system/getty@tty1.service.d
-echo "[Service]
-TTYVTDisallocate=no" > /etc/systemd/system/getty@tty1.service.d/noclear.conf
-```
-
 ## Locale And Time
 
 Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too many things expect it :sigh:.
