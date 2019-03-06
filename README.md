@@ -300,6 +300,17 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 
 `hwclock --systohc --utc`
 
+## Caps Lock -> Control In Console
+
+```
+mkdir -p /usr/local/share/kbd/keymaps
+
+echo 'include "/usr/share/kbd/keymaps/i386/qwerty/us.map"
+keycode 58 = Control' > /usr/local/share/kbd/keymaps/us-caps-lock-ctrl.map
+
+echo "KEYMAP=/usr/local/share/kbd/keymaps/us-caps-lock-ctrl.map" > /etc/vconsole.conf
+```
+
 ## Update pacman Packages And Installations To Current
 
 `pacman -Suy`
