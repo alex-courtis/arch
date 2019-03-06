@@ -22,6 +22,9 @@ isAThing xlayoutdisplay && xlayoutdisplay
 isAThing pasystray && pasystray --volume-max=100 --volume-inc=5 --no-icon-tooltip --notify=none &
 isAThing nm-applet && nm-applet &
 
+# touchpad gestures
+isAThing libinput-gestures && libinput-gestures > /dev/null 2>&1 &
+
 # (re)start redshift
 systemctl --user restart redshift 2>/dev/null &
 
