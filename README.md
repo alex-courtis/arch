@@ -533,6 +533,7 @@ alacritty
 autofs
 calc
 chromium
+dex
 dmenu
 docker
 efibootmgr
@@ -547,6 +548,7 @@ noto-fonts-extra
 pasystray
 pavucontrol
 pwgen
+rsync
 scrot
 slock
 sysstat
@@ -577,14 +579,24 @@ j4-dmenu-desktop
 qdirstat
 pulseaudio-ctl
 redshift-minimal
-slack-desktop
 ttf-ms-fonts
 xlayoutdisplay
 
 ### Laptops Like
 
 xf86-input-libinput
+libinput-gestures
 xorg-xbacklight
+
+## Build Desktop Environment
+
+Clone the following:
+* [dwm](https://github.com/alex-courtis/dwm/)
+* [slstatus](https://github.com/alex-courtis/slstatus/)
+
+Run for each:
+`make && sudo make install`
+
 
 ## Ready To Go
 
