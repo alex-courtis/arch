@@ -15,11 +15,11 @@ if [ -r ${HOME}/.Xresources ]; then
     xrdb -load ${HOME}/.Xresources
 fi
 
+# setup displays before we start any applications
+isAThing xlayoutdisplay && xlayoutdisplay
+
 # start all the background apps
 dex -a
-
-# setup displays
-isAThing xlayoutdisplay && xlayoutdisplay
 
 # (re)start redshift
 systemctl --user restart redshift 2>/dev/null &
