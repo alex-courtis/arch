@@ -536,6 +536,7 @@ chromium
 dex
 dmenu
 docker
+dunst
 efibootmgr
 facter
 jq
