@@ -2,7 +2,7 @@
 
 set -e
 
-PROGNAME=efiBootStub
+PROGNAME=efibootstub
 KERNEL_ARGS_FILE=/boot/kargs
 LOADER='\vmlinuz-linux'
 LABEL="Arch Linux"

@@ -342,7 +342,7 @@ passwd alex
 
 I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
 
-Copy `bin/efiBootStub` from this repository into `/usr/local/bin`
+Copy `bin/efibootstub` from this repository into `/usr/local/bin`
 
 Determine the UUID of the your crypto_LUKS volume. Note that it's the raw device, not the crypto volume itself. e.g.
 
@@ -398,7 +398,7 @@ Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
 
 ```sh
 pacman -S efibootmgr
-efiBootStub /dev/nvme0n1 1
+efibootstub /dev/nvme0n1 1
 ```
 
 ### Alternative: systemd-boot
