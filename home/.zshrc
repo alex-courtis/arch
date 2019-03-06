@@ -117,6 +117,22 @@ if isAThing udisksctl; then
     }
 fi
 
+if isAThing simple-mtpfs; then
+	mntmtp() {
+		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
+		simple-mtpfs ${XDG_RUNTIME_DIR}/mtp
+		cd ${XDG_RUNTIME_DIR}/mtp
+		pwd
+	}
+	umntmtp() {
+		fusermount -u ${XDG_RUNTIME_DIR}/mtp
+		rmdir ${XDG_RUNTIME_DIR}/mtp
+	}
+	syncAndroidMusic() {
+		rsync -a -v --omit-dir-times --update --delete-after /net/lord/music/ ${XDG_RUNTIME_DIR}/mtp/Music/
+	}
+fi
+
 # use the keychain wrapper to start ssh-agent if needed
 if isAThing keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
