@@ -485,11 +485,11 @@ Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
 Install the X driver and (re)generate the boot image:
 
-`pacman -S xf86-video-amdgpu linux`
+`pacman -S xf86-video-amdgpu libva-mesa-driver linux`
 
 ### Intel Only (lightweight laptop)
 
-`pacman -S xf86-video-intel`
+`pacman -S xf86-video-intel libva-intel-driver`
 
 ### Nvidia Only (desktop)
 
@@ -503,7 +503,7 @@ I don't need the nvidia discrete GPU for a work laptop, so completely disable it
 
 If the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
-`pacman -S xf86-video-intel bbswitch`
+`pacman -S xf86-video-intel libva-intel-driver bbswitch`
 
 Load the bbswitch module via `/etc/modules-load.d/bbswitch.conf`:
 
