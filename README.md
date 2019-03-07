@@ -292,17 +292,6 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 
 `hwclock --systohc --utc`
 
-## Caps Lock -> Control In Console
-
-```
-mkdir -p /usr/local/share/kbd/keymaps
-
-echo 'include "/usr/share/kbd/keymaps/i386/qwerty/us.map"
-keycode 58 = Control' > /usr/local/share/kbd/keymaps/us-caps-lock-ctrl.map
-
-echo "KEYMAP=/usr/local/share/kbd/keymaps/us-caps-lock-ctrl.map" > /etc/vconsole.conf
-```
-
 ## Update pacman Packages And Installations To Current
 
 `pacman -Suy`
@@ -396,6 +385,25 @@ Prepend `initrd=\amd-ucode.img ` to `/boot/kargs`.
 Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
 Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
+
+## Caps Lock -> Control In Console
+
+```
+echo 'include "us.map"
+keycode 58 = Control' > /usr/share/kbd/keymaps/i386/qwerty/us-caps-lock-ctrl.map
+```
+
+Append `vconsole.keymap=us-caps-lock-ctrl` to kargs.
+
+## Larger Console Fonts
+
+In the case of a laptop with high resolution, it is necessary to increase the font size when using virtual consoles.
+
+```
+pacman -S terminus-font
+```
+
+Append `vconsole.font=ter-v32n` to kargs.
 
 ## Create The EFISTUB
 
@@ -542,6 +550,7 @@ docker
 dunst
 efibootmgr
 facter
+gpm
 jq
 keychain
 network-manager-applet
