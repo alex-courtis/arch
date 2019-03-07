@@ -188,6 +188,8 @@ vgcreate vg1 /dev/mapper/cryptlvm
 
 ### Swap Volume
 
+TODO: linux 5.0+ allows btrfs swap files
+
 Same size as physical RAM.
 
 ```sh
