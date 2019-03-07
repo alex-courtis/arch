@@ -12,8 +12,18 @@ export PAGER="less"
 # case insensitive searching and colours
 export LESS="IR"
 
-# tell old java apps that we're using a non-reparenting window manager
-export _JAVA_AWT_WM_NONREPARENTING=1
+# die caps lock
+export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 
-# some java build systems seem to like this
-export JAVA_HOME=/usr/lib/jvm/default
+if [ -L /usr/lib/jvm/default ]; then
+
+	# some java build systems seem to like having JAVA_HOME set
+	export JAVA_HOME=/usr/lib/jvm/default
+
+	# tell old java apps that we're using a non-reparenting window manager
+	export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+
+# allow use of "dev version" libraries under /usr/local/lib
+export LD_LIBRARY_PATH="/usr/local/lib"
+export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
