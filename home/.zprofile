@@ -7,9 +7,12 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" ]; then
 		startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "${HOME}/.x.log" 2>&1
 		;;
 	"2")
-		/home/alex/src/wlroots/tinywl/tinywl -s alacritty > "${HOME}/.tinywl.log" 2>&1
+		wdwm -s alacritty > "${HOME}/.wdwm.log" 2>&1
 		;;
 	"3")
+		/home/alex/src/wlroots/tinywl/tinywl -s alacritty > "${HOME}/.tinywl.log" 2>&1
+		;;
+	"4")
 		sway > "${HOME}/.sway.log" 2>&1
 		;;
 	esac
