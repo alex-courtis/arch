@@ -11,7 +11,7 @@ function isAThing() {
 }
 
 # execute tmux if it isn't running; it will replace this process with a new login shell
-if [ -z "${TMUX}" ] && [ -z "${VSCODE_CLI}" ] && isAThing tmux; then
+if [ -z "${TMUX}" ] && isAThing tmux && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
     exec tmux
 fi
 
