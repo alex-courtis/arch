@@ -12,8 +12,15 @@ export PAGER="less"
 # case insensitive searching and colours
 export LESS="IR"
 
-# die caps lock
-export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
+# keep this synced with 90-keyboard.conf, until X goes away
+case "$(hostname)" in
+duke*)
+	export XKB_DEFAULT_OPTIONS="ctrl:nocaps,altwin:swap_alt_win"
+	;;
+* )
+	export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
+	;;
+esac
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
