@@ -29,5 +29,5 @@ isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 
 # start window manager
 slstatus &
-exec dwm >"/tmp/dwm.${USER}.log" 2>&1
+exec dwm 
 

@@ -4,7 +4,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 	case "${XDG_VTNR}" in
 	1|5)
 		# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
-		startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "/tmp/startx.${USER}.log" 2>&1
+		startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "/tmp/x.${USER}.log" 2>&1
 		;;
 	2)
 		wdwm -s /home/tu/spawn.sh > "/tmp/wdwm.${USER}.log" 2>&1
