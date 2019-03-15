@@ -619,4 +619,4 @@ Reboot
 
 Login at TTY1
 
-Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `~/.x.log`, `dmesg --human` and any console errors for oddities.
+Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/startx.alex.log`, `/tmp/dwm.alex.log`, `dmesg --human` and any console errors for oddities.
