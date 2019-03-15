@@ -29,8 +29,5 @@ isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 
 # start window manager
 slstatus &
-dwm &
-#xmonad&
+exec dwm >"/tmp/dwm.${USER}.log" 2>&1
 
-# wait for the window manager to stop
-wait $!
