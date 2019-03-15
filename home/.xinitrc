@@ -1,24 +1,24 @@
 # shell agnostic function returns true if ${1} is a valid executable, function etc.
 function isAThing() {
-    return $(type "${1}" > /dev/null 2>&1)
+	return $(type "${1}" > /dev/null 2>&1)
 }
 
 # run all system xinitrc shell scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-    for script in /etc/X11/xinit/xinitrc.d/*; do
-        [ -x "$script" -a ! -d "$script" ] && . "$script"
-    done
+	for script in /etc/X11/xinit/xinitrc.d/*; do
+		[ -x "$script" -a ! -d "$script" ] && . "$script"
+	done
 fi
 
 # merge .Xresources, in case we're running without any sort of display manager
 if [ -r ${HOME}/.Xresources ]; then
-    xrdb -load ${HOME}/.Xresources
+	xrdb -load ${HOME}/.Xresources
 fi
 
 # setup displays before we start any applications
 isAThing xlayoutdisplay && xlayoutdisplay
 
-# start all the background apps
+# start all the autostart apps
 dex -a
 
 # (re)start redshift
@@ -27,9 +27,10 @@ systemctl --user restart redshift 2>/dev/null &
 # slock the screen after 5 mins
 isAThing xautolock && isAThing slock && xautolock -locker slock -time 5 &
 
-# start dwm
+# start window manager
 slstatus &
 dwm &
+#xmonad&
 
-# wait for dwm to stop
+# wait for the window manager to stop
 wait $!

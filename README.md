@@ -583,6 +583,8 @@ xorg-xrandr
 xterm
 zsh-completions
 
+`gtk2` is not required for Jetbrains products, however as at 2019/03 it allows it to draw using the actual DPI of the monitor.
+
 #### AUR
 
 `aura -Ax ...`
