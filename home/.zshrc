@@ -6,12 +6,12 @@ typeset -U path
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
 # shell agnostic function returns true if ${1} is a valid executable, function etc.
-function isAThing() {
+function wat() {
     return $(type "${1}" > /dev/null 2>&1)
 }
 
 # execute tmux if it isn't running; it will replace this process with a new login shell
-if [ -z "${TMUX}" ] && isAThing tmux && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
+if [ -z "${TMUX}" ] && wat tmux && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
     exec tmux
 fi
 
@@ -84,7 +84,7 @@ PS2="%K{${promptColour}}:; %_%k "
 #   "\e]0;" ESC xterm (title) code
 #   "\a"    BEL
 [[ -f /usr/share/git/completion/git-prompt.sh ]] && . /usr/share/git/completion/git-prompt.sh
-if isAThing __git_ps1; then
+if wat __git_ps1; then
 
     # show extra flags
     export GIT_PS1_SHOWDIRTYSTATE=true
@@ -100,7 +100,7 @@ fi
 unset promptColour
 
 # user mount helpers
-if isAThing udisksctl; then
+if wat udisksctl; then
     mnt() {
         if [ ${#} -ne 1 ]; then
             echo "Usage: ${FUNCNAME} <block device>" >&2
@@ -117,7 +117,7 @@ if isAThing udisksctl; then
     }
 fi
 
-if isAThing simple-mtpfs; then
+if wat simple-mtpfs; then
 	mntmtp() {
 		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
 		simple-mtpfs ${XDG_RUNTIME_DIR}/mtp
@@ -134,6 +134,6 @@ if isAThing simple-mtpfs; then
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
-if isAThing keychain && [ -f ~/.ssh/id_rsa ]; then
+if wat keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
