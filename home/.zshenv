@@ -13,14 +13,7 @@ export PAGER="less"
 export LESS="IR"
 
 # keep this synced with 90-keyboard.conf, until X goes away
-case "$(hostname)" in
-duke*)
-	export XKB_DEFAULT_OPTIONS="ctrl:nocaps,altwin:swap_alt_win"
-	;;
-* )
-	export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
-	;;
-esac
+export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
