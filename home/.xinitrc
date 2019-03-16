@@ -1,5 +1,5 @@
 # shell agnostic function returns true if ${1} is a valid executable, function etc.
-function wat() {
+function haz() {
 	return $(type "${1}" > /dev/null 2>&1)
 }
 
@@ -16,16 +16,16 @@ if [ -r ${HOME}/.Xresources ]; then
 fi
 
 # setup displays before we start any applications
-wat xlayoutdisplay && xlayoutdisplay
+haz xlayoutdisplay && xlayoutdisplay
 
 # start all the autostart apps
-wat dex && dex -a
+haz dex && dex -a
 
 # (re)start redshift
 systemctl --user restart redshift 2>/dev/null &
 
 # slock the screen after 5 mins
-wat xautolock && wat slock && xautolock -locker slock -time 5 &
+haz xautolock && haz slock && xautolock -locker slock -time 5 &
 
 # start window manager
 slstatus &

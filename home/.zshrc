@@ -6,13 +6,13 @@ typeset -U path
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
 # shell agnostic function returns true if ${1} is a valid executable, function etc.
-function wat() {
-    return $(type "${1}" > /dev/null 2>&1)
+function haz() {
+	return $(type "${1}" > /dev/null 2>&1)
 }
 
 # execute tmux if it isn't running; it will replace this process with a new login shell
-if [ -z "${TMUX}" ] && wat tmux && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
-    exec tmux
+if [ -z "${TMUX}" ] && haz tmux && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
+	exec tmux
 fi
 
 # moar history
@@ -34,21 +34,21 @@ bindkey "^K" history-beginning-search-backward
 # aliases
 local os=$(uname)
 if [ "${os}" = "Linux" ]; then
-    alias ls="ls --color"
+	alias ls="ls --color"
 elif [ "${os}" = "Darwin" -o "${os}" = "FreeBSD" ]; then
-    alias ls="ls -G"
+	alias ls="ls -G"
 else
-    alias ls="ls -F"
+	alias ls="ls -F"
 fi
 if [ "${os}" = "Linux" -o "${os}" = "Darwin" ]; then
-    alias diff="diff --color"
+	alias diff="diff --color"
 fi
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep --color"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color"
 if [ -d ~/src/git-scripts ]; then
-    alias git-merge-poms='git mergetool --tool=versions -y'
+	alias git-merge-poms='git mergetool --tool=versions -y'
 fi
 unset os
 
@@ -56,22 +56,22 @@ unset os
 local promptColour
 case "$(hostname)" in
 emperor*)
-    promptColour="green"
-    ;;
+	promptColour="green"
+	;;
 tinygod*)
-    promptColour="blue"
-    ;;
+	promptColour="blue"
+	;;
 lord*)
-    promptColour="magenta"
-    ;;
+	promptColour="magenta"
+	;;
 * )
-    promptColour="yellow"
-    ;;
+	promptColour="yellow"
+	;;
 esac
 
 # root prompt is always red
 if [ "${USER}" = "root" ]; then
-    promptColour="red"
+	promptColour="red"
 fi
 
 # prompt:
@@ -82,42 +82,42 @@ PS2="%K{${promptColour}}:; %_%k "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
-#   "\a"    BEL
+#   "\a"	BEL
 [[ -f /usr/share/git/completion/git-prompt.sh ]] && . /usr/share/git/completion/git-prompt.sh
-if wat __git_ps1; then
+if haz __git_ps1; then
 
-    # show extra flags
-    export GIT_PS1_SHOWDIRTYSTATE=true
-    export GIT_PS1_SHOWSTASHSTATE=true
-    precmd() {
-        printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
-    }
+	# show extra flags
+	export GIT_PS1_SHOWDIRTYSTATE=true
+	export GIT_PS1_SHOWSTASHSTATE=true
+	precmd() {
+		printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
+	}
 else
-    precmd() {
-        printf "\e]0;%s\a" "${PWD}"
-    }
+	precmd() {
+		printf "\e]0;%s\a" "${PWD}"
+	}
 fi
 unset promptColour
 
 # user mount helpers
-if wat udisksctl; then
-    mnt() {
-        if [ ${#} -ne 1 ]; then
-            echo "Usage: ${FUNCNAME} <block device>" >&2
-            return 1
-        fi
-        udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
-    }
-    umnt() {
-        if [ ${#} -ne 1 ]; then
-            echo "Usage: ${FUNCNAME} <block device>" >&2
-            return 1
-        fi
-        udisksctl unmount -b ${1}
-    }
+if haz udisksctl; then
+	mnt() {
+		if [ ${#} -ne 1 ]; then
+			echo "Usage: ${FUNCNAME} <block device>" >&2
+			return 1
+		fi
+		udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
+	}
+	umnt() {
+		if [ ${#} -ne 1 ]; then
+			echo "Usage: ${FUNCNAME} <block device>" >&2
+			return 1
+		fi
+		udisksctl unmount -b ${1}
+	}
 fi
 
-if wat simple-mtpfs; then
+if haz simple-mtpfs; then
 	mntmtp() {
 		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
 		simple-mtpfs ${XDG_RUNTIME_DIR}/mtp
@@ -134,6 +134,6 @@ if wat simple-mtpfs; then
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
-if wat keychain && [ -f ~/.ssh/id_rsa ]; then
+if haz keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi

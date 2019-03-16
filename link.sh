@@ -5,10 +5,10 @@
 ALEX_HOME="$(pwd)/home"
 
 for f in $(find "${ALEX_HOME}" -type f); do
-    TARGET="${f/${ALEX_HOME}/${HOME}}"
-    TARGET_DIR=$(dirname "${TARGET}")
-    if [ ! -d ${TARGET_DIR} ]; then
-        mkdir -pv "${TARGET_DIR}"
-    fi
-    ln -fsv "${f}" "${TARGET}"
+	TARGET="${f/${ALEX_HOME}/${HOME}}"
+	TARGET_DIR=$(dirname "${TARGET}")
+	if [ ! -d ${TARGET_DIR} ]; then
+		mkdir -pv "${TARGET_DIR}"
+	fi
+	ln -fsv "${f}" "${TARGET}"
 done
