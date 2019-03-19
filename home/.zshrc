@@ -117,6 +117,8 @@ if haz udisksctl; then
 	}
 fi
 
+# music management utilities
+alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/Music/ /net/lord/music/"
 if haz simple-mtpfs; then
 	mntmtp() {
 		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
@@ -128,9 +130,7 @@ if haz simple-mtpfs; then
 		fusermount -u ${XDG_RUNTIME_DIR}/mtp
 		rmdir ${XDG_RUNTIME_DIR}/mtp
 	}
-	syncAndroidMusic() {
-		rsync -a -v --omit-dir-times --update --delete-after /net/lord/music/ ${XDG_RUNTIME_DIR}/mtp/Music/
-	}
+	alias music-lord-to-android="rsync -a -v --omit-dir-times --update --delete-after /net/lord/music/ \${XDG_RUNTIME_DIR}/mtp/Music/"
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
