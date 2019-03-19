@@ -118,7 +118,9 @@ if haz udisksctl; then
 fi
 
 # music management utilities
-alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/Music/ /net/lord/music/"
+if [ -d /net/lord/music ]; then
+	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/Music/ /net/lord/music/"
+fi
 if haz simple-mtpfs; then
 	mntmtp() {
 		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
