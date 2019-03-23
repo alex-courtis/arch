@@ -612,6 +612,11 @@ Clone the following:
 Run for each:
 `make && sudo make install`
 
+Clone:
+* [pasystray](git@github.com:christophgysin/pasystray.git)
+
+Run:
+`./bootstrap.sh --disable-avahi --disable-x11 --disable-appindicator && make && sudo make install`
 
 ## Ready To Go
 
