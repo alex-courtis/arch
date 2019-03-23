@@ -1,0 +1,23 @@
+plugins: inline
+
+directory: ~/music
+library: ~/.config/beets/musiclibrary.db
+
+import:
+        copy: yes
+        write: yes
+        move: no
+
+paths:
+        # use the itunes convention of a disc prefix for multidisc, as there seems to be no other reasonable standard
+        default: $albumartist/$album%aunique{}/$disc_and_track $title
+
+        # remove the default Non-Album directory
+        singleton: $artist/$title
+
+# provided by the inline plugin
+item_fields:
+        disc_and_track: u'%i-%02i' % (disc, track) if disctotal > 1 else u'%02i' % (track)
+
+# 2.4 (current default) is not widely understood
+id3v23: yes
