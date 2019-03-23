@@ -27,12 +27,12 @@ bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
 
 # common aliases
-alias ls="ls --color"
+alias ls="ls --color=always"
 alias ll="ls -lh"
 alias lla="ll -a"
-alias grep="grep --color"
-alias diff="diff --color"
-alias rgrep="find . -type f -print0 | xargs -0 grep --color"
+alias grep="grep --color=always"
+alias diff="diff --color=always"
+alias rgrep="find . -type f -print0 | xargs -0 grep --color=always"
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 export PROMPT_COLOUR
@@ -100,20 +100,11 @@ fi
 
 # music management utilities
 if [ -d /net/lord/music ]; then
-	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/Music/ /net/lord/music/"
-fi
-if haz simple-mtpfs; then
-	mntmtp() {
-		mkdir ${XDG_RUNTIME_DIR}/mtp > /dev/null 2>&1
-		simple-mtpfs ${XDG_RUNTIME_DIR}/mtp
-		cd ${XDG_RUNTIME_DIR}/mtp
-		pwd
-	}
-	umntmtp() {
-		fusermount -u ${XDG_RUNTIME_DIR}/mtp
-		rmdir ${XDG_RUNTIME_DIR}/mtp
-	}
-	alias music-lord-to-android="rsync -a -v --omit-dir-times --update --delete-after /net/lord/music/ \${XDG_RUNTIME_DIR}/mtp/Music/"
+	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
+	alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ ${HOME}/music/"
+	if haz adb-sync; then
+		alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/music"
+	fi
 fi
 
 # use the keychain wrapper to start ssh-agent if needed

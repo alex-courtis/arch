@@ -5,16 +5,12 @@
 	gl = smart-log
 [user]
 	name = Alexander Courtis
-	email = acourtis@atlassian.com
+	email = alex@courtis.org
 [core]
 	excludesfile = ~/.gitignore
-	autocrlf = input
-[mergetool "versions"]
-	cmd = ~/src/git-scripts/resolve-maven-version-conflicts.pl <\"$MERGED\" >\"$MERGED.tmp\" && mv \"$MERGED.tmp\" \"$MERGED\"
-	trustExitCode = true
 [push]
 	default = current
 [color]
-	ui = auto
+	ui = always
 [merge]
 	renameLimit = 9999

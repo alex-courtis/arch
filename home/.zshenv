@@ -10,7 +10,7 @@ export VISUAL="vi"
 export PAGER="less"
 
 # case insensitive searching and colours
-export LESS="IR"
+export LESS="iR"
 
 # keep this synced with 90-keyboard.conf, until X goes away
 export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
