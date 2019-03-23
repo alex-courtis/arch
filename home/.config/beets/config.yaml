@@ -1,16 +1,16 @@
-plugins: zero lyrics
+plugins: zero lyrics discogs
 
 directory: ~/music
 library: ~/.config/beets/musiclibrary.db
 
 import:
-        copy: yes
-        write: yes
-        move: no
+  copy: yes
+  write: yes
+  move: no
 
 paths:
-        # remove the default Non-Album directory
-        singleton: $artist/$title
+  # remove the default Non-Album directory
+  singleton: $artist/$title
 
 format_item: $albumartist - $album - $track - $title
 
@@ -18,5 +18,24 @@ format_item: $albumartist - $album - $track - $title
 id3v23: yes
 
 zero:
-        fields: artist_sort artist_credit albumartist_sort albumartist_credit genre lyricist composer composer_sort arranger grouping albumtype label asin catalognum language country albumstatus media albumdisambig
-        update_database: true
+  update_database: true
+  fields:
+    - albumartist_credit
+    - albumartist_sort
+    - albumdisambig
+    - albumstatus
+    - albumtype
+    - arranger
+    - artist_credit
+    - artist_sort
+    - asin
+    - catalognum
+    - composer
+    - composer_sort
+    - country
+    - genre
+    - grouping
+    - label
+    - language
+    - lyricist
+    - media
