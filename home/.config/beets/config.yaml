@@ -1,4 +1,4 @@
-plugins: inline zero lyrics
+plugins: zero lyrics
 
 directory: ~/music
 library: ~/.config/beets/musiclibrary.db
@@ -9,15 +9,8 @@ import:
         move: no
 
 paths:
-        # use the itunes convention of a disc prefix for multidisc, as there seems to be no other reasonable standard
-        default: $albumartist/$album%aunique{}/$disc_and_track $title
-
         # remove the default Non-Album directory
         singleton: $artist/$title
-
-# provided by the inline plugin
-item_fields:
-        disc_and_track: u'%i-%02i' % (disc, track) if disctotal > 1 else u'%02i' % (track)
 
 format_item: $albumartist - $album - $track - $title
 
@@ -25,5 +18,5 @@ format_item: $albumartist - $album - $track - $title
 id3v23: yes
 
 zero:
-        # these are still retained in the beets db, just not present in the file metadata
         fields: artist_sort artist_credit albumartist_sort albumartist_credit genre lyricist composer composer_sort arranger grouping albumtype label asin catalognum language country albumstatus media albumdisambig
+        update_database: true
