@@ -1,4 +1,4 @@
-plugins: inline
+plugins: inline zero
 
 directory: ~/music
 library: ~/.config/beets/musiclibrary.db
@@ -21,3 +21,7 @@ item_fields:
 
 # 2.4 (current default) is not widely understood
 id3v23: yes
+
+zero:
+        # these are still retained in the beets db, just not present in the file metadata
+        fields: artist_sort artist_credit albumartist_sort albumartist_credit genre lyricist composer_sort arranger grouping albumtype label asin catalognum language country albumstatus media albumdisambig
