@@ -27,12 +27,14 @@ bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
 
 # common aliases
-alias ls="ls --color=always"
+alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
-alias grep="grep --color=always"
-alias diff="diff --color=always"
-alias rgrep="find . -type f -print0 | xargs -0 grep --color=always"
+alias grep="grep --color=auto"
+alias cgrep="grep --color=always"
+alias diff="diff --color=auto"
+alias cdiff="diff --color=always"
+alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 export PROMPT_COLOUR
@@ -101,7 +103,9 @@ fi
 # music management utilities
 if [ -d /net/lord/music ]; then
 	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
+	alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
 	alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ ${HOME}/music/"
+	alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ ${HOME}/music.arch/"
 	if haz adb-sync; then
 		alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/music"
 	fi
