@@ -11,6 +11,6 @@
 [push]
 	default = current
 [color]
-	ui = always
+	ui = auto
 [merge]
 	renameLimit = 9999
