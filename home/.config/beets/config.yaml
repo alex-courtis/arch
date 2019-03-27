@@ -1,4 +1,12 @@
-plugins: zero lyrics discogs
+# todo: grab missing artwork - fetchart embedart plugins
+
+# strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote
+
+plugins:
+  - zero
+  - lyrics
+# only use this if musicbrainz doesn't have the metadata
+#  - discogs
 
 directory: ~/music
 library: ~/.config/beets/musiclibrary.db
@@ -12,22 +20,18 @@ paths:
   # remove the default Non-Album directory
   singleton: $artist/$title
 
-format_item: $albumartist - $album - $track - $title
-
-# 2.4 (current default) is not widely understood
-id3v23: yes
+format_item: $albumartist - $album - $track - $title - $format
 
 zero:
   update_database: true
+  # be conservative when removing fields
   fields:
     - albumartist_credit
-    - albumartist_sort
     - albumdisambig
     - albumstatus
     - albumtype
     - arranger
     - artist_credit
-    - artist_sort
     - asin
     - catalognum
     - composer
