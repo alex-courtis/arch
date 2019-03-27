@@ -2,11 +2,11 @@
 
 # strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote
 
+# don't muck around with discogs; stick with musicbrainz as beets is very tightly coupled
+
 plugins:
   - zero
   - lyrics
-# only use this if musicbrainz doesn't have the metadata
-#  - discogs
 
 directory: ~/music
 library: ~/.config/beets/musiclibrary.db
@@ -22,9 +22,10 @@ paths:
 
 format_item: $albumartist - $album - $track - $title - $format
 
+# zero doesn't currently affect album cruft; manually remove via
+#   beet modify -a albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
 zero:
   update_database: true
-  # be conservative when removing fields
   fields:
     - albumartist_credit
     - albumdisambig
@@ -36,10 +37,14 @@ zero:
     - catalognum
     - composer
     - composer_sort
+    - comments
     - country
+    - disctitle
+    - encoder
     - genre
     - grouping
     - label
     - language
     - lyricist
     - media
+    - script
