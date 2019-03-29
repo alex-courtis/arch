@@ -110,7 +110,7 @@ if haz rsync; then
 	alias music.new-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.new/ \${HOME}/music.new/"
 fi
 if haz adb-sync; then
-	alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/music"
+	alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
