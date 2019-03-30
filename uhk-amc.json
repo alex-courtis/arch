@@ -6436,52 +6436,5 @@
       ]
     }
   ],
-  "macros": [
-    {
-      "isLooped": true,
-      "isPrivate": true,
-      "name": "Go to UHK site in browser",
-      "macroActions": [
-        {
-          "macroActionType": "key",
-          "action": "tap",
-          "type": "basic",
-          "scancode": 15,
-          "modifierMask": 1
-        },
-        {
-          "macroActionType": "text",
-          "text": "https://ultimatehackingkeyboard.com"
-        },
-        {
-          "macroActionType": "key",
-          "action": "tap",
-          "type": "basic",
-          "scancode": 40
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "God mode in Doom",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "iddqd"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "Type Silent Bob's address",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "Silent Bob\n711-2880 Nulla St.\nMankato Mississippi 96522\n(257) 563-7401"
-        }
-      ]
-    }
-  ]
+  "macros": []
 }
