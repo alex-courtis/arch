@@ -21,9 +21,6 @@ haz xlayoutdisplay && xlayoutdisplay
 # start all the autostart apps
 haz dex && dex -a
 
-# (re)start redshift
-systemctl --user restart redshift 2>/dev/null &
-
 # slock the screen after 5 mins
 haz xautolock && haz slock && xautolock -locker slock -time 5 &
 
