@@ -17,6 +17,9 @@
 #
 # remove dodgey lyrics:
 #   beet modify New Album lyrics=''
+#
+# manually write lyrics:
+#   beet modify Weezer Maladroit track:6 lyrics="$(cat 6.slob.txt)"
 
 
 # strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote
@@ -24,6 +27,10 @@
 # don't muck around with discogs; stick with musicbrainz as beets is very tightly coupled
 #
 # musicbrainz notes track lengths, however these are ignored in favour of the actual length of the track
+
+#
+# TODO
+# - migrate from lyricwiki to genius, as genius has better lyrics with headings, however currently cannot be scraped if there are web annotations
 
 
 plugins:
@@ -82,9 +89,15 @@ embedart:
   remove_art_file: yes
 
 lyrics:
-  # google custom search returned variable result quality; stick to one source
+  # google has a good hit rate, however the results are of variable quality and differing sources
+  # lyricwiki has reasonable results, however refuses to host some lyrics e.g. NOFX Best God In Show
+  # musixmatch is rubbish
+  # manually fall back to genius, which at time of writing fails when there are web page annotations on the lyrics
   sources:
+#    - google
     - lyricwiki
+#    - musixmatch
+#    - genius
 
 permissions:
   file: 664
