@@ -1,0 +1,91 @@
+# import:
+#   beet import ~/Downloads/NewAlbum
+#
+# manually fix fails:
+#   beet modify -a album:"Once More ’Round The Sun" album="Once More 'Round The Sun"
+#   beet modify album:"Once More 'Round The Sun" title:"Once More ’Round The Sun" track:4 title="Once More 'Round The Sun"
+#
+# detect art in FLAC:
+#   metaflac --list music/Mastodon/Blood\ Mountain/01\ The\ Wolf\ Is\ Loose.flac | grep "type: 6 (PICTURE)"
+#
+# embed art:
+#   beet fetchart Blood Mountain
+#   beet embedart Blood Mountain
+#
+# remove album cruft from db:
+#   beet modify -a albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
+#
+# remove dodgey lyrics:
+#   beet modify New Album lyrics=''
+
+
+# strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote
+#
+# don't muck around with discogs; stick with musicbrainz as beets is very tightly coupled
+#
+# musicbrainz notes track lengths, however these are ignored in favour of the actual length of the track
+
+
+plugins:
+  - zero
+  - lyrics
+  - fetchart
+  - embedart
+  - permissions
+
+directory: ~/music
+library: ~/.config/beets/musiclibrary.db
+
+import:
+  copy: yes
+  write: yes
+  move: no
+
+paths:
+  # remove the default Non-Album directory
+  singleton: $artist/$title
+
+format_item: $albumartist - $album - $track - $title - $format
+
+# zero doesn't currently affect album cruft; manually remove via recipe above
+zero:
+  update_database: true
+  fields:
+    - albumartist_credit
+    - albumdisambig
+    - albumstatus
+    - albumtype
+    - arranger
+    - artist_credit
+    - asin
+    - catalognum
+    - composer
+    - composer_sort
+    - comments
+    - country
+    - disctitle
+    - encoder
+    - genre
+    - grouping
+    - label
+    - language
+    - lyricist
+    - media
+    - script
+
+fetchart:
+  auto: no
+
+embedart:
+  auto: no
+  ifempty: yes
+  remove_art_file: yes
+
+lyrics:
+  # google custom search returned variable result quality; stick to one source
+  sources:
+    - lyricwiki
+
+permissions:
+  file: 664
+  dir: 775
