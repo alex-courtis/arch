@@ -19,7 +19,7 @@
 #   beet modify New Album lyrics=''
 #
 # manually write lyrics:
-#   beet modify Weezer Maladroit track:6 lyrics="$(cat 6.slob.txt)"
+#   beet modify Weezer Maladroit track:6 lyrics="$(cat 6.txt)"
 
 
 # strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote

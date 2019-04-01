@@ -104,13 +104,13 @@ fi
 if haz rsync; then
 	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
 	alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
-	alias music.new-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.new/ /net/lord/music.new/"
 	alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/music/"
 	alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ \${HOME}/music.arch/"
-	alias music.new-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.new/ \${HOME}/music.new/"
 fi
 if haz adb-sync; then
+	alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
 	alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
+	alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
 fi
 
 # use the keychain wrapper to start ssh-agent if needed
