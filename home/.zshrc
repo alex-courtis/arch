@@ -40,7 +40,7 @@ alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 export PROMPT_COLOUR
 case "$(hostname)" in
 emperor*)
-	PROMPT_COLOUR="green"
+	PROMPT_COLOUR="yellow"
 	;;
 tinygod*)
 	PROMPT_COLOUR="blue"
@@ -49,7 +49,7 @@ lord*)
 	PROMPT_COLOUR="magenta"
 	;;
 * )
-	PROMPT_COLOUR="yellow"
+	PROMPT_COLOUR="cyan"
 	;;
 esac
 
