@@ -20,10 +20,12 @@
 #
 # manually write lyrics:
 #   beet modify Weezer Maladroit track:6 lyrics="$(cat 6.txt)"
-
-
-# strange android bug: a space followed by RIGHT SINGLE QUOTATION MARK U+2019 will cause an escaping glitch when displaying; beet modify it to a regular single quote
 #
+# hunt down any RIGHT SINGLE QUOTATION MARK U+2019 and just replace them with a single quote; android will glitch on this character with no apparent pattern:
+#   beet ls | grep ’
+#   beet modify Say It Ain’t So title="Say It Ain't So"
+
+
 # don't muck around with discogs; stick with musicbrainz as beets is very tightly coupled
 #
 # musicbrainz notes track lengths, however these are ignored in favour of the actual length of the track
