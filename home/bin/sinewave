@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ ${#} -ne 1 ]; then
+	echo "Usage: $(basename ${0}) <frequency in Hz>" >&2
+	exit 1
+fi
+
+function stop() {
+	if [ -z "${index}" ]; then
+		index="module-sine"
+	fi
+	pactl unload-module ${index}
+	exit 0
+}
+
+trap "stop" SIGINT
+
+index=$(pactl load-module module-sine frequency=${1})
+
+sleep 60
+
+stop
