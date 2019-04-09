@@ -705,7 +705,7 @@
                 },
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "GAM"
+                  "keymapAbbreviation": "FPS"
                 },
                 {
                   "keyActionType": "switchKeymap",
@@ -1614,7 +1614,7 @@
                 },
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "GAM"
+                  "keymapAbbreviation": "FPS"
                 },
                 {
                   "keyActionType": "switchKeymap",
@@ -2517,7 +2517,7 @@
                 null,
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "GAM"
+                  "keymapAbbreviation": "FPS"
                 },
                 {
                   "keyActionType": "switchKeymap",
@@ -2742,8 +2742,8 @@
     },
     {
       "isDefault": false,
-      "abbreviation": "GAM",
-      "name": "QWERTY Gaming",
+      "abbreviation": "FPS",
+      "name": "QWERTY FPS Gaming",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
