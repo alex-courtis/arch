@@ -17,6 +17,10 @@ cd ~/.dotfiles
 ./link.sh
 ```
 
+# Note To Users
+
+If you wish to use these dotfiles, it is advisable to fork this repository. I frequently make large and breaking changes.
+
 # Arch Top Tips From Alex
 
 ## Don't Compress Packages
