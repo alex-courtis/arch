@@ -31,10 +31,11 @@ alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
 alias grep="grep --color=auto"
-alias cgrep="grep --color=always"
+alias grepc="grep --color=always"
 alias diff="diff --color=auto"
-alias cdiff="diff --color=always"
+alias diffc="diff --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
+alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
 
 # select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
 export PROMPT_COLOUR
