@@ -12,6 +12,9 @@
 #   beet fetchart Blood Mountain
 #   beet embedart Blood Mountain
 #
+# check for lyrics:
+#   beet ls lyrics::'^$'
+#
 # remove album cruft from db:
 #   beet modify -a albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
 #
