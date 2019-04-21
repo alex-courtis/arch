@@ -18,6 +18,10 @@ export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# don't minimise fullscreen SDL (i.e. most steam) when losing focus
+# they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+
 # some java build systems seem to like having JAVA_HOME set
 if [ -L /usr/lib/jvm/default ]; then
 	export JAVA_HOME=/usr/lib/jvm/default
