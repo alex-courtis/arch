@@ -606,7 +606,6 @@ xlayoutdisplay
 
 ### Laptops Like
 
-xf86-input-libinput
 libinput-gestures
 xorg-xbacklight
 
@@ -631,4 +630,4 @@ Reboot
 
 Login at TTY1
 
-Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/startx.alex.log`, `/tmp/dwm.alex.log`, `dmesg --human` and any console errors for oddities.
+Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/x.${USER}.log`, `dmesg --human` and any console errors for oddities.
