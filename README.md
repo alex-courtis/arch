@@ -250,6 +250,8 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `pacstrap -i /mnt base base-devel`
 
+I choose `systemd-resolvconf`.
+
 ## Setup /etc/fstab
 
 `genfstab -U /mnt >> /mnt/etc/fstab`
@@ -547,13 +549,13 @@ makepkg -sri
 alacritty
 autofs
 calc
-chromium
 dex
 dmenu
 docker
 dunst
 efibootmgr
 facter
+firefox
 gpm
 jq
 keychain
@@ -565,6 +567,7 @@ noto-fonts-extra
 pasystray
 pavucontrol
 pwgen
+redshift
 rsync
 scrot
 slock
@@ -589,15 +592,15 @@ zsh-completions
 
 `gtk2` is not required for Jetbrains products, however as at 2019/03 it allows it to draw using the actual DPI of the monitor.
 
+`python-xdg` and `python-xdg` are optional redshift requirements, needed for the gtk systray app.
+
 #### AUR
 
 `aura -Ax ...`
 
 gron-bin
-j4-dmenu-desktop
 qdirstat
 pulseaudio-ctl
-redshift-minimal
 ttf-ms-fonts
 xlayoutdisplay
 
@@ -610,14 +613,14 @@ xorg-xbacklight
 ## Build Desktop Environment
 
 Clone the following:
-* [dwm](https://github.com/alex-courtis/dwm/)
-* [slstatus](https://github.com/alex-courtis/slstatus/)
+* `git@github.com:alex-courtis/dwm.git`
+* `git@github.com:alex-courtis/slstatus.git`
 
 Run for each:
 `make && sudo make install`
 
 Clone:
-* [pasystray](git@github.com:christophgysin/pasystray.git)
+* `git@github.com:christophgysin/pasystray.git`
 
 Run:
 `./bootstrap.sh --disable-avahi --disable-x11 --disable-appindicator && make && sudo make install`
