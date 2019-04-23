@@ -5,7 +5,7 @@
   "deviceName": "Sir Reginald Von Bartlesby",
   "doubleTapSwitchLayerTimeout": 250,
   "iconsAndLayerTextsBrightness": 255,
-  "alphanumericSegmentsBrightness": 255,
+  "alphanumericSegmentsBrightness": 32,
   "keyBacklightBrightness": 255,
   "mouseMoveInitialSpeed": 4,
   "mouseMoveAcceleration": 68,
@@ -21,7 +21,7 @@
   "keymaps": [
     {
       "isDefault": true,
-      "abbreviation": "QWE",
+      "abbreviation": "DEF",
       "name": "QWERTY",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
@@ -179,7 +179,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 42
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -275,7 +275,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 42
                 },
                 {
                   "keyActionType": "keystroke",
@@ -366,7 +366,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 42
+                  "modifierMask": 1
                 },
                 null
               ]
@@ -496,7 +496,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -559,7 +563,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 76
                 },
                 null,
                 null,
@@ -595,7 +599,11 @@
                   "modifierMask": 8
                 },
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
+                },
                 null
               ]
             }
@@ -664,7 +672,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -688,23 +700,22 @@
               "keyActions": [
                 null,
                 null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "FPS"
                 },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -739,7 +750,11 @@
                   "modifierMask": 8
                 },
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
+                },
                 null
               ]
             }
@@ -846,11 +861,7 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
-                },
+                null,
                 null,
                 {
                   "keyActionType": "mouse",
@@ -906,9 +917,9 @@
     },
     {
       "isDefault": false,
-      "abbreviation": "QWR",
-      "name": "QWERTY for PC",
-      "description": "QWERTY is the mother of all layouts. This is the PC version.",
+      "abbreviation": "FPS",
+      "name": "QWERTY FPS",
+      "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
           "modules": [
@@ -948,7 +959,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 42
+                  "scancode": 49
                 },
                 {
                   "keyActionType": "keystroke",
@@ -983,7 +994,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 49
+                  "scancode": 53
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1061,15 +1072,11 @@
                   "type": "basic",
                   "scancode": 44
                 },
+                null,
                 {
-                  "keyActionType": "switchLayer",
-                  "layer": "mod",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
-                },
-                {
-                  "keyActionType": "switchLayer",
-                  "layer": "fn",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1077,14 +1084,14 @@
                   "modifierMask": 64
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 128
+                  "keyActionType": "switchLayer",
+                  "layer": "fn",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
+                  "keyActionType": "switchLayer",
+                  "layer": "mod",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 }
               ]
             },
@@ -1094,7 +1101,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 53
+                  "scancode": 41
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1158,9 +1165,9 @@
                   "scancode": 23
                 },
                 {
-                  "keyActionType": "switchLayer",
-                  "layer": "mouse",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 42
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1224,19 +1231,9 @@
                   "scancode": 5
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 4
+                  "keyActionType": "switchLayer",
+                  "layer": "mod",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 },
                 {
                   "keyActionType": "switchLayer",
@@ -1246,12 +1243,18 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 44
+                  "modifierMask": 4
                 },
                 {
-                  "keyActionType": "switchLayer",
-                  "layer": "mod",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
+                },
+                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 44
                 },
                 null
               ]
@@ -1297,11 +1300,7 @@
                   "type": "basic",
                   "scancode": 69
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1369,11 +1368,7 @@
                   "type": "basic",
                   "scancode": 78
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 41
-                },
+                null,
                 null,
                 null,
                 null,
@@ -1389,37 +1384,29 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "switchLayer",
-                  "layer": "mod",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
-                },
                 null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
                   "modifierMask": 64
                 },
+                null,
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 128
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
+                  "keyActionType": "switchLayer",
+                  "layer": "mod",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 }
               ]
             },
             {
               "id": 1,
               "keyActions": [
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 41
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1451,55 +1438,21 @@
                   "scancode": 63
                 },
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 41
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 75,
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 23,
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 78,
-                  "modifierMask": 1
-                },
+                null,
+                null,
+                null,
                 null,
                 null,
                 null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 57
+                  "scancode": 76
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 80,
-                  "modifierMask": 5
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 43,
-                  "modifierMask": 4
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 79,
-                  "modifierMask": 5
-                },
+                null,
+                null,
+                null,
+                null,
                 null,
                 null,
                 {
@@ -1509,40 +1462,8 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 75,
-                  "modifierMask": 3
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 26,
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 78,
-                  "modifierMask": 3
-                },
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 4
-                },
+                null,
                 null,
                 null,
                 {
@@ -1550,6 +1471,19 @@
                   "layer": "mod",
                   "switchLayerMode": "holdAndDoubleTapToggle"
                 },
+                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 4
+                },
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
+                },
+                null,
+                null,
                 null
               ]
             }
@@ -1581,11 +1515,7 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "system",
-                  "scancode": 130
-                },
+                null,
                 null,
                 {
                   "keyActionType": "keystroke",
@@ -1624,9 +1554,9 @@
                 null,
                 null,
                 {
-                  "keyActionType": "switchLayer",
-                  "layer": "fn",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1634,22 +1564,21 @@
                   "modifierMask": 64
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 128
+                  "keyActionType": "switchLayer",
+                  "layer": "fn",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                }
+                null
               ]
             },
             {
               "id": 1,
               "keyActions": [
                 null,
-                null,
+                {
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "DEF"
+                },
                 null,
                 null,
                 null,
@@ -1680,15 +1609,11 @@
                 null,
                 null,
                 null,
+                null,
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
+                  "keyActionType": "switchLayer",
+                  "layer": "fn",
+                  "switchLayerMode": "holdAndDoubleTapToggle"
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1696,9 +1621,9 @@
                   "modifierMask": 4
                 },
                 {
-                  "keyActionType": "switchLayer",
-                  "layer": "fn",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
                 },
                 null,
                 null,
@@ -1777,22 +1702,18 @@
                   "keyActionType": "mouse",
                   "mouseAction": "rightClick"
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 16
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
                   "modifierMask": 64
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 128
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                }
+                null,
+                null
               ]
             },
             {
@@ -1812,11 +1733,7 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "switchLayer",
-                  "layer": "mouse",
-                  "switchLayerMode": "holdAndDoubleTapToggle"
-                },
+                null,
                 null,
                 {
                   "keyActionType": "mouse",
@@ -1843,22 +1760,18 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
-                },
+                null,
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
                   "modifierMask": 4
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 1
+                },
                 {
                   "keyActionType": "mouse",
                   "mouseAction": "decelerate"
