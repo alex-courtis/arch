@@ -21,8 +21,8 @@
   "keymaps": [
     {
       "isDefault": true,
-      "abbreviation": "DEF",
-      "name": "QWERTY",
+      "abbreviation": "SUN",
+      "name": "Sun",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
@@ -918,7 +918,7 @@
     {
       "isDefault": false,
       "abbreviation": "FPS",
-      "name": "QWERTY FPS",
+      "name": "Sun FPS",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
@@ -1072,7 +1072,11 @@
                   "type": "basic",
                   "scancode": 44
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 128
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1250,7 +1254,11 @@
                   "type": "basic",
                   "modifierMask": 1
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 8
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1384,7 +1392,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 128
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1482,7 +1494,11 @@
                   "type": "basic",
                   "modifierMask": 1
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 8
+                },
                 null,
                 null
               ]
@@ -1552,7 +1568,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 128
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1577,7 +1597,7 @@
                 null,
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "DEF"
+                  "keymapAbbreviation": "SUN"
                 },
                 null,
                 null,
@@ -1625,7 +1645,11 @@
                   "type": "basic",
                   "modifierMask": 1
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "modifierMask": 8
+                },
                 null,
                 null
               ]

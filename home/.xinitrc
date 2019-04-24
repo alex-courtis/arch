@@ -24,6 +24,8 @@ haz dex && dex -a
 # slock the screen after 5 mins
 haz xautolock && haz slock && xautolock -locker slock -time 5 &
 
+setroot ${HOME}/.uhk.png
+
 # start window manager
 slstatus &
 exec dwm 
