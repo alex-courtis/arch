@@ -27,6 +27,7 @@ haz xautolock && haz slock && xautolock -locker slock -time 5 &
 setroot ${HOME}/.uhk.png
 
 # start window manager
+compton -b
 slstatus &
 exec dwm 
 
