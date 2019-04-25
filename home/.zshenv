@@ -13,7 +13,10 @@ export PAGER="less"
 export LESS="iR"
 
 # keep this synced with 90-keyboard.conf, until X goes away
-export XKB_DEFAULT_OPTIONS="ctrl:nocaps"
+export XKB_DEFAULT_LAYOUT="us"
+export XKB_DEFAULT_MODEL="pc105"
+export XKB_DEFAULT_VARIANT="dvp"
+export XKB_DEFAULT_OPTIONS="caps:backspace"
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
