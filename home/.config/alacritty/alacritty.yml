@@ -472,9 +472,9 @@ key_bindings:
   #- { key: W,      mods: Command, action: Quit             }
 
   # AMC
-  - { key: Equals,   mods: Alt,     action: ResetFontSize                    }
-  - { key: Add,      mods: Alt,     action: IncreaseFontSize                 }
-  - { key: Subtract, mods: Alt,     action: DecreaseFontSize                 }
+  - { key: Equals,   mods: Control|Shift,       action: ResetFontSize        }
+  - { key: Add,      mods: Control|Shift,       action: IncreaseFontSize     }
+  - { key: Subtract, mods: Control|Shift,       action: DecreaseFontSize     }
 
   - { key: C,        mods: Alt,     action: Copy                             }
   - { key: V,        mods: Alt,     action: Paste                            }
