@@ -1,14 +1,41 @@
+# shell agnostic function returns true if ${1} is a valid executable, function etc.
+function haz() {
+	return $(type "${1}" > /dev/null 2>&1)
+}
+
+# select host prompt colour (used by tmux) from: black, red, green, yellow, blue, magenta, cyan, white
+export PROMPT_COLOUR
+case "$(hostname)" in
+emperor*)
+	PROMPT_COLOUR="yellow"
+	;;
+tinygod*)
+	PROMPT_COLOUR="blue"
+	;;
+lord*)
+	PROMPT_COLOUR="magenta"
+	;;
+* )
+	PROMPT_COLOUR="cyan"
+	;;
+esac
+
+# root prompt is always red
+if [ "${USER}" = "root" ]; then
+	PROMPT_COLOUR="red"
+fi
+
+# execute tmux if it isn't running; it will replace this process with a new login shell
+if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
+	exec tmux
+fi
+
 # zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
 typeset -U path
 
 # ensure that these are at the very end of the path, to prevent clobbering of system utils e.g. xpath, nvm
 [[ -d ~/src/robbieg.bin ]] && path=("$path[@]" ~/src/robbieg.bin)
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
-
-# shell agnostic function returns true if ${1} is a valid executable, function etc.
-function haz() {
-	return $(type "${1}" > /dev/null 2>&1)
-}
 
 # moar history
 HISTFILE=~/.histfile
@@ -36,28 +63,6 @@ alias diff="diff --color=auto"
 alias diffc="diff --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
-
-# select host prompt colour from: black, red, green, yellow, blue, magenta, cyan, white
-export PROMPT_COLOUR
-case "$(hostname)" in
-emperor*)
-	PROMPT_COLOUR="yellow"
-	;;
-tinygod*)
-	PROMPT_COLOUR="blue"
-	;;
-lord*)
-	PROMPT_COLOUR="magenta"
-	;;
-* )
-	PROMPT_COLOUR="cyan"
-	;;
-esac
-
-# root prompt is always red
-if [ "${USER}" = "root" ]; then
-	PROMPT_COLOUR="red"
-fi
 
 # prompt:
 #   bg red background nonzero return code and newline
@@ -117,9 +122,4 @@ fi
 # use the keychain wrapper to start ssh-agent if needed
 if haz keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
-fi
-
-# execute tmux if it isn't running; it will replace this process with a new login shell
-if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
-	exec tmux
 fi
