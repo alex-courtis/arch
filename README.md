@@ -594,6 +594,8 @@ zsh-completions
 
 `python-xdg` and `python-xdg` are optional redshift requirements, needed for the gtk systray app.
 
+Enable gpm: `systemctl add-wants getty.target gpm.service`
+
 #### AUR
 
 `aura -Ax ...`
