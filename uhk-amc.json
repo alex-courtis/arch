@@ -21,8 +21,8 @@
   "keymaps": [
     {
       "isDefault": true,
-      "abbreviation": "SUN",
-      "name": "Sun",
+      "abbreviation": "DVP",
+      "name": "Dvorak Programmer",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
@@ -63,7 +63,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 49
+                  "scancode": 76
                 },
                 {
                   "keyActionType": "keystroke",
@@ -98,7 +98,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 53
+                  "scancode": 49
                 },
                 {
                   "keyActionType": "keystroke",
@@ -179,7 +179,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
@@ -209,7 +210,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41
+                  "scancode": 53
                 },
                 {
                   "keyActionType": "keystroke",
@@ -366,7 +367,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 41,
+                  "secondaryRoleAction": "leftCtrl"
                 },
                 null
               ]
@@ -499,7 +501,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
@@ -560,11 +563,7 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 null,
                 null,
                 null,
@@ -602,7 +601,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 41,
+                  "secondaryRoleAction": "leftCtrl"
                 },
                 null
               ]
@@ -675,7 +675,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
@@ -753,7 +754,8 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 41,
+                  "secondaryRoleAction": "leftCtrl"
                 },
                 null
               ]
@@ -918,7 +920,7 @@
     {
       "isDefault": false,
       "abbreviation": "FPS",
-      "name": "Sun FPS",
+      "name": "Dvorak Programmer FPS",
       "description": "QWERTY is the mother of all layouts.",
       "layers": [
         {
@@ -959,7 +961,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 49
+                  "scancode": 76
                 },
                 {
                   "keyActionType": "keystroke",
@@ -994,7 +996,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 53
+                  "scancode": 49
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1075,12 +1077,13 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 128
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "modifierMask": 128
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1105,7 +1108,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41
+                  "scancode": 53
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1257,7 +1260,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
+                  "scancode": 41
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1395,12 +1398,13 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 128
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "modifierMask": 128
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1456,11 +1460,7 @@
                 null,
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 null,
                 null,
                 null,
@@ -1494,11 +1494,7 @@
                   "type": "basic",
                   "modifierMask": 1
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
-                },
+                null,
                 null,
                 null
               ]
@@ -1571,12 +1567,13 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 128
+                  "scancode": 41,
+                  "secondaryRoleAction": "rightCtrl"
                 },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "modifierMask": 128
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1597,7 +1594,7 @@
                 null,
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "SUN"
+                  "keymapAbbreviation": "DVP"
                 },
                 null,
                 null,
@@ -1645,11 +1642,7 @@
                   "type": "basic",
                   "modifierMask": 1
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 8
-                },
+                null,
                 null,
                 null
               ]
@@ -1729,7 +1722,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "modifierMask": 128
                 },
                 {
                   "keyActionType": "keystroke",
