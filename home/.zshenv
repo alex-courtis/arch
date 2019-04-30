@@ -33,3 +33,8 @@ fi
 # allow use of "dev version" libraries under /usr/local/lib
 export LD_LIBRARY_PATH="/usr/local/lib"
 export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+
+# unfortunately some apps need extra encouragement to follow the XDG base directory spec
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
