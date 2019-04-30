@@ -7,7 +7,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 		startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "/tmp/x.${USER}.log" 2>&1
 		;;
 	6)
-		wdwm -s /home/tu/spawn.sh > "/tmp/wdwm.${USER}.log" 2>&1
+		wdwm > "/tmp/wdwm.${USER}.log" 2>&1
 		;;
 	5)
 		/home/alex/src/wlroots/tinywl/tinywl -s alacritty > "/tmp/tinywl.${USER}.log" 2>&1
