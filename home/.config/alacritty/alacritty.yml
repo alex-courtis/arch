@@ -474,15 +474,9 @@ key_bindings:
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
-  # AMC clear the not very dvorak friendly defaults
-  - { key: V,        mods: Control|Shift, action: None             }
-  - { key: C,        mods: Control|Shift, action: None             }
-  - { key: Insert,   mods: Shift,         action: None             }
+  # AMC dvorak friendly font sizing
   - { key: Key0,     mods: Control,       action: None             }
-  - { key: Equals,   mods: Control,       action: None             }
-  - { key: Add,      mods: Control,       action: None             }
-  - { key: Subtract, mods: Control,       action: None             }
-  - { key: Minus,    mods: Control,       action: None             }
+  - { key: Equals,   mods: Control,       action: ResetFontSize    }
   # AMC
 
   # (macOS only)
@@ -499,13 +493,7 @@ key_bindings:
   #- { key: W,      mods: Command, action: Quit             }
 
   # AMC
-  - { key: Equals,   mods: Control|Shift,       action: ResetFontSize        }
-  - { key: Add,      mods: Control|Shift,       action: IncreaseFontSize     }
-  - { key: Subtract, mods: Control|Shift,       action: DecreaseFontSize     }
-
-  - { key: C,        mods: Alt,     action: Copy                             }
-  - { key: V,        mods: Alt,     action: Paste                            }
-  - { key: S,        mods: Alt,     action: PasteSelection                   }
+  - { key: S,        mods: Control|Shift, action: PasteSelection   }
   # AMC
 
   - { key: Paste,                   action: Paste                            }
