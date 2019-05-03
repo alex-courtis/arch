@@ -21,9 +21,9 @@
   "keymaps": [
     {
       "isDefault": true,
-      "abbreviation": "DVP",
-      "name": "Dvorak Programmer",
-      "description": "QWERTY is the mother of all layouts.",
+      "abbreviation": "Q",
+      "name": "QWERTY",
+      "description": "QWERTY is the mother of all layouts. This is the PC version.",
       "layers": [
         {
           "modules": [
@@ -63,7 +63,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 76
+                  "scancode": 42
                 },
                 {
                   "keyActionType": "keystroke",
@@ -276,7 +276,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 42
+                  "scancode": 57
                 },
                 {
                   "keyActionType": "keystroke",
@@ -414,7 +414,11 @@
                   "type": "basic",
                   "scancode": 69
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -703,7 +707,7 @@
                 null,
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "FPS"
+                  "keymapAbbreviation": "G"
                 },
                 null,
                 null,
@@ -919,9 +923,9 @@
     },
     {
       "isDefault": false,
-      "abbreviation": "FPS",
-      "name": "Dvorak Programmer FPS",
-      "description": "QWERTY is the mother of all layouts.",
+      "abbreviation": "G",
+      "name": "QWERTY Gaming",
+      "description": "QWERTY is the mother of all layouts. This is the PC version.",
       "layers": [
         {
           "modules": [
@@ -961,7 +965,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 76
+                  "scancode": 42
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1174,7 +1178,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 42
+                  "scancode": 57
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1311,7 +1315,11 @@
                   "type": "basic",
                   "scancode": 69
                 },
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
+                },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1594,7 +1602,7 @@
                 null,
                 {
                   "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "DVP"
+                  "keymapAbbreviation": "Q"
                 },
                 null,
                 null,
