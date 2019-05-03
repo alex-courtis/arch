@@ -5,43 +5,45 @@ set -e
 devicepath="/sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0"
 
 #
-# sys level clock voltage
-#
 # any attempts to increase clock or decrease voltage upsets something and that altered state will not be used unless forced
 #
+
+#
+# sys level clock voltage
+#
 #       0  852  800
-echo "s 0  852  800" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 0  852  800" > "${devicepath}/pp_od_clk_voltage"
 #       1  991  900
-echo "s 1  991  900" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 1  991  900" > "${devicepath}/pp_od_clk_voltage"
 #       2 1084  950
-echo "s 2 1084  950" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 2 1084  950" > "${devicepath}/pp_od_clk_voltage"
 #       3 1138 1000
-echo "s 3 1138 1000" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 3 1138 1000" > "${devicepath}/pp_od_clk_voltage"
 #       4 1200 1050
-echo "s 4 1200 1050" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 4 1200 1050" > "${devicepath}/pp_od_clk_voltage"
 #       5 1401 1100
-echo "s 5 1401 1100" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 5 1401 1100" > "${devicepath}/pp_od_clk_voltage"
 #       6 1536 1150
-echo "s 6 1536 1150" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 6 1536 1150" > "${devicepath}/pp_od_clk_voltage"
 #       7 1630 1200
-echo "s 7 1630 1200" > "${devicepath}/pp_od_clk_voltage"
+#echo "s 7 1630 1200" > "${devicepath}/pp_od_clk_voltage"
 
 #
 # mem level clock voltage
 #
 #       0  167  800
-echo "m 0  167  800" > "${devicepath}/pp_od_clk_voltage"
+#echo "m 0  167  800" > "${devicepath}/pp_od_clk_voltage"
 #       1  500  800
-echo "m 1  500  800" > "${devicepath}/pp_od_clk_voltage"
+#echo "m 1  500  800" > "${devicepath}/pp_od_clk_voltage"
 #       2  800  950
-echo "m 2  800  950" > "${devicepath}/pp_od_clk_voltage"
+#echo "m 2  800  950" > "${devicepath}/pp_od_clk_voltage"
 #       3  945 1100
-echo "m 3 1100 1050" > "${devicepath}/pp_od_clk_voltage"
+#echo "m 3 1100 1050" > "${devicepath}/pp_od_clk_voltage"
 
 #
 # commmit
 #
-echo "c" > "${devicepath}/pp_od_clk_voltage"
+#echo "c" > "${devicepath}/pp_od_clk_voltage"
 
 #
 # max power is set to +50% i.e. 240W to 360W
