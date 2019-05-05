@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rm /usr/lib/systemd/system/amdgpu-power.service
+
+systemctl disable amdgpu-power.service
+

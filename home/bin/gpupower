@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+devicepath="/sys/devices/pci0000:40/0000:40:03.1/0000:43:00.0/0000:44:00.0/0000:45:00.0"
+
+#
+# for vega64, max power is set to +50% i.e. 240W to 360W
+#
+cat "${devicepath}/hwmon/hwmon0/power1_cap_max" > "${devicepath}/hwmon/hwmon0/power1_cap"

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+cat << EOF > /usr/lib/systemd/system/amdgpu-power.service
+[Unit]
+Description=amdgpu power limit to maximum
+
+[Service]
+Type=oneshot
+ExecStart=/home/alex/bin/gpupower
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable amdgpu-power.service
