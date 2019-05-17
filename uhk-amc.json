@@ -179,8 +179,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -276,7 +275,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 57
+                  "scancode": 41
                 },
                 {
                   "keyActionType": "keystroke",
@@ -367,8 +366,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "leftCtrl"
+                  "modifierMask": 1
                 },
                 null
               ]
@@ -434,11 +432,7 @@
                   "type": "basic",
                   "scancode": 77
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -474,11 +468,7 @@
                   "type": "basic",
                   "scancode": 79
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 73
-                },
+                null,
                 null,
                 null,
                 {
@@ -488,7 +478,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
+                },
                 null,
                 {
                   "keyActionType": "keystroke",
@@ -505,8 +499,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -605,8 +598,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "leftCtrl"
+                  "modifierMask": 1
                 },
                 null
               ]
@@ -679,8 +671,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -758,8 +749,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "leftCtrl"
+                  "modifierMask": 1
                 },
                 null
               ]
@@ -1081,8 +1071,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1335,11 +1324,7 @@
                   "type": "basic",
                   "scancode": 77
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1375,11 +1360,7 @@
                   "type": "basic",
                   "scancode": 79
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 73
-                },
+                null,
                 null,
                 null,
                 {
@@ -1389,7 +1370,11 @@
                 },
                 null,
                 null,
-                null,
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
+                },
                 null,
                 {
                   "keyActionType": "keystroke",
@@ -1406,8 +1391,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1575,8 +1559,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 41,
-                  "secondaryRoleAction": "rightCtrl"
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "keystroke",
