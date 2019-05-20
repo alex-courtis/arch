@@ -473,12 +473,28 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-
-  # AMC dvorak friendly font sizing
+  # AMC reset builtins
+  - { key: V,        mods: Control|Shift, action: None             }
+  - { key: C,        mods: Control|Shift, action: None             }
+  - { key: Insert,   mods: Shift,         action: None             }
   - { key: Key0,     mods: Control,       action: None             }
-  - { key: Equals,   mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: None             }
+  - { key: Add,      mods: Control,       action: None             }
+  - { key: Subtract, mods: Control,       action: None             }
+  - { key: Add,      mods: Control,       action: None             }
   # AMC
 
+  # AMC less chording
+  - { key: V,        mods: Control|Alt,   action: Paste            }
+  - { key: C,        mods: Control|Alt,   action: Copy             }
+  # AMC
+  
+  # AMC dvorak friendly font sizing
+  - { key: Equals,   mods: Control,       action: ResetFontSize    }
+  - { key: Add,      mods: Control,       action: IncreaseFontSize }
+  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  # AMC
+   
   # (macOS only)
   #- { key: Key0,   mods: Command, action: ResetFontSize    }
   #- { key: Equals, mods: Command, action: IncreaseFontSize }
@@ -491,10 +507,6 @@ key_bindings:
   #- { key: H,      mods: Command, action: Hide             }
   #- { key: Q,      mods: Command, action: Quit             }
   #- { key: W,      mods: Command, action: Quit             }
-
-  # AMC
-  - { key: S,        mods: Control|Shift, action: PasteSelection   }
-  # AMC
 
   - { key: Paste,                   action: Paste                            }
   - { key: Copy,                    action: Copy                             }
