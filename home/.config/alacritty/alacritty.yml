@@ -473,9 +473,7 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  # AMC reset builtins
-  - { key: V,        mods: Control|Shift, action: None             }
-  - { key: C,        mods: Control|Shift, action: None             }
+  # AMC reset some builtins
   - { key: Insert,   mods: Shift,         action: None             }
   - { key: Key0,     mods: Control,       action: None             }
   - { key: Equals,   mods: Control,       action: None             }
