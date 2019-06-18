@@ -41,7 +41,7 @@ echo "m 1  500  800" > "${devicepath}/pp_od_clk_voltage"
 #       2  800  950
 echo "m 2  800  950" > "${devicepath}/pp_od_clk_voltage"
 #       3  945 1100
-echo "m 3 1100 1050" > "${devicepath}/pp_od_clk_voltage"
+echo "m 3 1080 1050" > "${devicepath}/pp_od_clk_voltage"
 
 #
 # commmit
