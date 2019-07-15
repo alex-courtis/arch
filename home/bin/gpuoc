@@ -32,6 +32,16 @@ echo "s 6 1637 1150" > "${devicepath}/pp_od_clk_voltage"
 echo "s 7 1732 1175" > "${devicepath}/pp_od_clk_voltage"
 
 #
+# commmit
+#
+echo "c" > "${devicepath}/pp_od_clk_voltage"
+
+#
+# without being forced, the gpu won't move to higher states
+#
+gpuforce
+
+#
 # mem level clock voltage
 #
 #       0  167  800
