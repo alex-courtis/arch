@@ -197,9 +197,9 @@ TODO: linux 5.0+ allows btrfs swap files
 Same size as physical RAM.
 
 ```sh
-lvcreate -L 16G vg1 -n archswap
-mkswap /dev/vg1/archswap -L archswap
-swapon /dev/vg1/archswap
+lvcreate -L 16G vg1 -n swap
+mkswap /dev/vg1/swap -L swap
+swapon /dev/vg1/swap
 ```
 
 ### BTRFS Volume
@@ -256,7 +256,7 @@ I choose `systemd-resolvconf`.
 
 Modify `/` for first fsck by setting the last field to 1.
 
-Modify `/home`, `/var/lib/docker` and `/boot` for second fsck by setting to 2.
+Modify `/home` and `/boot` for second fsck by setting to 2.
 
 `/mnt/etc/fstab` should look something like:
 ```
@@ -269,7 +269,7 @@ UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /home           btrfs           
 # /dev/nvme0n1p1 LABEL=boot
 UUID=3906-F913          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro     0 2
 
-# /dev/mapper/vg1-archswap LABEL=archswap
+# /dev/mapper/vg1-swap LABEL=swap
 UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            defaults    0 0
 ```
 
@@ -343,7 +343,7 @@ Determine the UUID of the your crypto_LUKS volume. Note that it's the raw device
 
 Create kernel command line in `/boot/kargs` e.g.
 ```
-initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/archswap rw quiet
+initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
@@ -434,7 +434,7 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/archswap pcie_aspm=off rw
+options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap pcie_aspm=off rw
 ```
 
 ## Reboot
