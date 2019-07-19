@@ -205,27 +205,25 @@ swapon /dev/vg1/archswap
 ### BTRFS Volume
 
 ```sh
-lvcreate -l 100%FREE vg1 -n archroot
-mkfs.btrfs /dev/vg1/archroot -L archroot
+lvcreate -l 100%FREE vg1 -n btrfs
+mkfs.btrfs /dev/vg1/btrfs -L btrfs
 ```
 
 ## BTRFS Subvolumes
 
 ```sh
-mount /dev/vg1/archroot /mnt
+mount /dev/vg1/btrfs /mnt
 btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
-btrfs subvolume create /mnt/@docker
 umount /mnt
 ```
 
 ## Mount All Filesystems
 
 ```sh
-mount /dev/vg1/archroot /mnt -o subvol=/@root
-mkdir -p /mnt/home /mnt/boot /mnt/var/lib/docker
-mount /dev/vg1/archroot /mnt/home -o subvol=/@home
-mount /dev/vg1/archroot /mnt/var/lib/docker -o subvol=/@docker
+mount /dev/vg1/btrfs /mnt -o subvol=/@root
+mkdir -p /mnt/home /mnt/boot
+mount /dev/vg1/btrfs /mnt/home -o subvol=/@home
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
@@ -240,8 +238,8 @@ nvme0n1
 ├─nvme0n1p1        vfat        boot        3906-F913                              /mnt/boot
 └─nvme0n1p2        crypto_LUKS             b874fabd-ae06-485e-b858-6532cec92d3c
   └─cryptlvm       LVM2_member             k2icwX-dJ1i-lLpk-hBiz-8SP8-dg1X-Fdqh0T
-    ├─vg1-archswap swap        archswap    ede007f9-f560-4044-82ca-acf0fbb6824e   [SWAP]
-    └─vg1-archroot btrfs       archroot    031a2b85-c701-4f2c-bf32-f86d222391ae   /mnt/var/lib/docker
+    ├─vg1-swap     swap        swap        ede007f9-f560-4044-82ca-acf0fbb6824e   [SWAP]
+    └─vg1-btrfs    btrfs       root        031a2b85-c701-4f2c-bf32-f86d222391ae   /mnt/home
 ```
 
 ## Bootstrap System
@@ -262,14 +260,11 @@ Modify `/home`, `/var/lib/docker` and `/boot` for second fsck by setting to 2.
 
 `/mnt/etc/fstab` should look something like:
 ```
-# /dev/mapper/vg1-archroot LABEL=archroot
+# /dev/mapper/vg1-btrfs LABEL=btrfs
 UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=@root   0 1
 
-# /dev/mapper/vg1-archroot LABEL=archroot
+# /dev/mapper/vg1-btrfs LABEL=btrfs
 UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=@home   0 2
-
-# /dev/mapper/vg1-archroot LABEL=archroot
-UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /var/lib/docker btrfs           rw,relatime,ssd,space_cache,subvolid=259,subvol=/@docker,subvol=@docker       0 2
 
 # /dev/nvme0n1p1 LABEL=boot
 UUID=3906-F913          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro     0 2
@@ -348,7 +343,7 @@ Determine the UUID of the your crypto_LUKS volume. Note that it's the raw device
 
 Create kernel command line in `/boot/kargs` e.g.
 ```
-initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root resume=/dev/vg1/archswap rw quiet
+initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/archswap rw quiet
 ```
 
 If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
@@ -439,7 +434,7 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /intel-ucode.img
 initrd /initramfs-linux.img
-options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/archroot rootflags=subvol=/@root resume=/dev/vg1/archswap pcie_aspm=off rw
+options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/archswap pcie_aspm=off rw
 ```
 
 ## Reboot
