@@ -387,14 +387,13 @@ Install Intel CPU microcode updater: `pacman -S intel-ucode`
 
 Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
 
-## Caps Lock -> Control In Console
+## Nonstardard Keymap
+
+Add the following to `/etc/vconsole.conf`
 
 ```
-echo 'include "us.map"
-keycode 58 = Control' > /usr/share/kbd/keymaps/i386/qwerty/us-caps-lock-ctrl.map
+KEYMAP=dvorak-programmer
 ```
-
-Append `vconsole.keymap=us-caps-lock-ctrl` to kargs.
 
 ## Larger Console Fonts
 
@@ -404,7 +403,11 @@ In the case of a laptop with high resolution, it is necessary to increase the fo
 pacman -S terminus-font
 ```
 
-Append `vconsole.font=ter-v32n` to kargs.
+Add the following to `/etc/vconsole.conf`
+
+```
+FONT=ter-v32n
+```
 
 ## Create The EFISTUB
 
