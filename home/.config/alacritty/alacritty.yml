@@ -534,6 +534,8 @@ key_bindings:
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
 
   # AMC reset some builtins
+  - { key: V,        mods: Control|Shift, action: None             }
+  - { key: C,        mods: Control|Shift, action: None             }
   - { key: Insert,   mods: Shift,         action: None             }
   - { key: Key0,     mods: Control,       action: None             }
   - { key: Equals,   mods: Control,       action: None             }
