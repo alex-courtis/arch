@@ -5,7 +5,7 @@
 	gl = smart-log
 [user]
 	name = Alexander Courtis
-	email = alex@courtis.org
+	email = acourtis@atlassian.com
 [core]
 	excludesfile = ~/.gitignore
 [push]

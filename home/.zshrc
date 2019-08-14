@@ -9,7 +9,7 @@ case "$(hostname)" in
 emperor*)
 	PROMPT_COLOUR="yellow"
 	;;
-tinygod*)
+gigantor*)
 	PROMPT_COLOUR="blue"
 	;;
 lord*)
