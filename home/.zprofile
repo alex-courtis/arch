@@ -7,7 +7,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 		lsmod | grep ^nvidia > /dev/null 2>&1
 		if [ $? -eq 0 ]; then
 			# nvidia does not allow; manually symlink .config/X11/xorg.conf.d/* to /etc/X11/xorg.conf.d
-			startx > "${HOME}/.x.log" 2>&1
+			startx > "/tmp/x.${USER}.log" 2>&1
 		else
 			# other drivers do e.g. nouveau, i915
 			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "/tmp/x.${USER}.log" 2>&1
