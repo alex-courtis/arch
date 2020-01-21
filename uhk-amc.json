@@ -189,7 +189,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 4
+                  "modifierMask": 64
                 },
                 {
                   "keyActionType": "switchKeymap",
