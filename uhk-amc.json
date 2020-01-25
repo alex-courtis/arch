@@ -191,7 +191,10 @@
                   "type": "basic",
                   "modifierMask": 64
                 },
-                null,
+                {
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "QWE"
+                },
                 {
                   "keyActionType": "switchLayer",
                   "layer": "mod",
@@ -1084,7 +1087,10 @@
                   "type": "basic",
                   "modifierMask": 64
                 },
-                null,
+                {
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "GAM"
+                },
                 {
                   "keyActionType": "switchLayer",
                   "layer": "mod",
@@ -1794,201 +1800,5 @@
       ]
     }
   ],
-  "macros": [
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp -",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 8"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write !"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp `",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write ~"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write $"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp =",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write `"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write #"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 0",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 6"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write ]"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 1",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write %"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write &"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 2",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 7"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write ["
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 3",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 5"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write {"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 4",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 3"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write }"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 5",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 1"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write ("
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 6",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 9"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write ="
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 7",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 0"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write *"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 8",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 2"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write )"
-        }
-      ]
-    },
-    {
-      "isLooped": false,
-      "isPrivate": true,
-      "name": "dvp 9",
-      "macroActions": [
-        {
-          "macroActionType": "text",
-          "text": "$ifShift suppressMods write 4"
-        },
-        {
-          "macroActionType": "text",
-          "text": "$ifNotShift write +"
-        }
-      ]
-    }
-  ]
+  "macros": []
 }
