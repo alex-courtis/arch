@@ -18,6 +18,13 @@ else
 	AMDGPU="false"
 fi
 
+lsmod | grep nvidia >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+	NVIDIA="true"
+else
+	NVIDIA="false"
+fi
+
 for f in $(find "${ALEX_HOME}" -type f); do
 	TARGET="${f/${ALEX_HOME}/${HOME}}"
 	TARGET_FILE=$(basename "${TARGET}")
@@ -27,7 +34,10 @@ for f in $(find "${ALEX_HOME}" -type f); do
 	if [ "${TARGET_FILE}" = "20-intel.conf" -a "${I915}" = "false" ]; then
 		SKIP="true"
 	fi
-	if [ "${TARGET_FILE}" = "20-amdgpu.conf" -a "${AMDGPU}" = "false" ]; then
+	if [ "${TARGET_FILE}" = "20-amdgpu.conf" -a \( "${AMDGPU}" = "false" -o "${NVIDIA}" = "true" \) ]; then
+		SKIP="true"
+	fi
+	if [ "${TARGET_FILE}" = "20-nvidia.conf" -a "${NVIDIA}" = "false" ]; then
 		SKIP="true"
 	fi
 
