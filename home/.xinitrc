@@ -19,7 +19,7 @@ fi
 haz xlayoutdisplay && xlayoutdisplay
 
 # start all the autostart apps
-haz dex && dex -a
+haz dex && dex -a -v
 
 # slock the screen after 5 mins
 haz xautolock && haz slock && xautolock -locker slock -time 5 &
