@@ -611,6 +611,8 @@ xorg-xbacklight
 
 ## Build Desktop Environment
 
+### dwm and slstatus
+
 Clone the following:
 * `git@github.com:alex-courtis/dwm.git`
 * `git@github.com:alex-courtis/slstatus.git`
@@ -618,11 +620,23 @@ Clone the following:
 Run for each:
 `make && sudo make install`
 
+### Less Intrusive pasystray
+
 Clone:
 * `git@github.com:christophgysin/pasystray.git`
 
 Run:
 `./bootstrap.sh --disable-avahi --disable-x11 --disable-appindicator && make && sudo make install`
+
+### libinput-gestures
+
+`libinput-gestures-setup autostart`
+
+### Redshift
+
+`redshift-gtk`
+
+Right click systray icon for autostart.
 
 ## Ready To Go
 
