@@ -365,6 +365,8 @@ Add resume hook after filesystems.
 
 Add usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
 
+Add consolefont and keymap after base, so that the disk encryption password may be entered sanely.
+
 If using software raid, add mdadm_udev before encrypt.
 
 ```sh
