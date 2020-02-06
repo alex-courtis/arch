@@ -370,7 +370,7 @@ Add consolefont and keymap after base, so that the disk encryption password may 
 If using software raid, add mdadm_udev before encrypt.
 
 ```sh
-HOOKS=(base udev autodetect modconf block keyboard mdadm_udev encrypt lvm2 filesystems resume fsck usr shutdown)
+HOOKS=(base consolefont keymap udev autodetect modconf block keyboard mdadm_udev encrypt lvm2 filesystems resume fsck usr shutdown)
 ```
 
 (Re)generate the boot image:
