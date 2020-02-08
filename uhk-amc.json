@@ -21,9 +21,9 @@
   "keymaps": [
     {
       "isDefault": false,
-      "abbreviation": "GAM",
+      "abbreviation": "G",
       "name": "Gaming",
-      "description": "QWERTY is the mother of all layouts. This is the PC version.",
+      "description": "Gaming",
       "layers": [
         {
           "modules": [
@@ -60,11 +60,7 @@
                   "type": "basic",
                   "scancode": 46
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 42
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -130,11 +126,7 @@
                   "type": "basic",
                   "scancode": 52
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 40
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -179,7 +171,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "scancode": 40
                 },
                 {
                   "keyActionType": "keystroke",
@@ -192,8 +184,9 @@
                   "modifierMask": 64
                 },
                 {
-                  "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "QWE"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
                 },
                 {
                   "keyActionType": "switchLayer",
@@ -343,14 +336,13 @@
                   "switchLayerMode": "hold"
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 4
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "Q"
                 },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
+                  "modifierMask": 4
                 },
                 {
                   "keyActionType": "keystroke",
@@ -365,7 +357,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 44
+                  "scancode": 42
                 },
                 null
               ]
@@ -411,11 +403,7 @@
                   "type": "basic",
                   "scancode": 69
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -499,11 +487,7 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -590,6 +574,7 @@
                   "layer": "mod",
                   "switchLayerMode": "hold"
                 },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -598,12 +583,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
+                  "modifierMask": 16
                 },
                 null,
                 null,
@@ -675,11 +655,7 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -734,6 +710,7 @@
                 null,
                 null,
                 null,
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -742,12 +719,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
+                  "modifierMask": 16
                 },
                 null,
                 null,
@@ -898,7 +870,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "modifierMask": 16
                 },
                 {
                   "keyActionType": "mouse",
@@ -917,9 +889,9 @@
     },
     {
       "isDefault": true,
-      "abbreviation": "QWE",
+      "abbreviation": "Q",
       "name": "QWERTY",
-      "description": "QWERTY is the mother of all layouts. This is the PC version.",
+      "description": "QWERTY",
       "layers": [
         {
           "modules": [
@@ -956,11 +928,7 @@
                   "type": "basic",
                   "scancode": 46
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 42
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1026,11 +994,7 @@
                   "type": "basic",
                   "scancode": 52
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 40
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1075,7 +1039,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 16
+                  "scancode": 40
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1088,8 +1052,9 @@
                   "modifierMask": 64
                 },
                 {
-                  "keyActionType": "switchKeymap",
-                  "keymapAbbreviation": "GAM"
+                  "keyActionType": "keystroke",
+                  "type": "basic",
+                  "scancode": 76
                 },
                 {
                   "keyActionType": "switchLayer",
@@ -1239,9 +1204,8 @@
                   "switchLayerMode": "hold"
                 },
                 {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 65
+                  "keyActionType": "switchKeymap",
+                  "keymapAbbreviation": "G"
                 },
                 {
                   "keyActionType": "keystroke",
@@ -1251,17 +1215,17 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
+                  "modifierMask": 1
+                },
+                {
+                  "keyActionType": "keystroke",
+                  "type": "basic",
                   "modifierMask": 8
                 },
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 44
-                },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 1
+                  "scancode": 42
                 },
                 null
               ]
@@ -1307,11 +1271,7 @@
                   "type": "basic",
                   "scancode": 69
                 },
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "scancode": 76
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1395,11 +1355,7 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1491,14 +1447,14 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
+                  "modifierMask": 1
                 },
-                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "modifierMask": 8
                 },
+                null,
                 null
               ]
             }
@@ -1567,11 +1523,7 @@
                 },
                 null,
                 null,
-                {
-                  "keyActionType": "keystroke",
-                  "type": "basic",
-                  "modifierMask": 16
-                },
+                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
@@ -1631,14 +1583,14 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
+                  "modifierMask": 1
                 },
-                null,
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 1
+                  "modifierMask": 8
                 },
+                null,
                 null
               ]
             }
@@ -1782,7 +1734,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "modifierMask": 8
+                  "modifierMask": 1
                 },
                 {
                   "keyActionType": "mouse",
