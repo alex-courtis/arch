@@ -1504,8 +1504,7 @@
                 {
                   "keyActionType": "keystroke",
                   "type": "basic",
-                  "scancode": 53,
-                  "modifierMask": 2
+                  "scancode": 53
                 },
                 null,
                 {
