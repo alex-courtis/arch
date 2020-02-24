@@ -66,7 +66,7 @@
 [kpmult]>[null]
 [home]>[kpshft]
 [kp-home]>[kpshft]
-[end]>[delete]
+[end]>[bspace]
 [kp-end]>[null]
 [kp-Y]>[pup]
 [kp7]>[home]
@@ -90,7 +90,7 @@
 [kp-rwin]>[ralt]
 [pup]>[up]
 [kp-pup]>[null]
-[pdown]>[down]
+[pdown]>[delete]
 [kp-pdown]>[null]
 [kp-N]>[null]
 [kp1]>[null]
@@ -108,6 +108,9 @@
 [9]>[0]
 [0]>[hyphen]
 [hyphen]>[=]
+[bspace]>[lshift]
+[lshift]>[null]
+[rshift]>[null]
 {`}>{-lctrl}{/}{+lctrl}
 {intl-\}>{-lctrl}{b}{+lctrl}
 {left}>{-lctrl}{i}{+lctrl}
