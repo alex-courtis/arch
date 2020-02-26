@@ -76,7 +76,7 @@
 [kp9]>[end]
 [kpmin]>[null]
 [delete]>[lwin]
-[kp-delete]>[lwin]
+[kp-delete]>[bspace]
 [kp-bspace]>[null]
 [kp-enter]>[null]
 [kp0]>[null]
@@ -108,6 +108,11 @@
 [9]>[0]
 [0]>[hyphen]
 [hyphen]>[=]
+[bspace]>[lwin]
+[']>[enter]
+[rshift]>[']
+[space]>[rshift]
+[enter]>[space]
 {`}>{-lctrl}{/}{+lctrl}
 {intl-\}>{-lctrl}{b}{+lctrl}
 {left}>{-lctrl}{i}{+lctrl}
