@@ -547,6 +547,12 @@ key_bindings:
   - { key: Equals,   mods: Control,       action: None }
   - { key: Equals,   mods: Control,       action: ResetFontSize    }
 
+  # AMC  less chording for copypasta
+  - { key: V,        mods: Control|Shift,       action: None }
+  - { key: V,        mods: Control|Alt,         action: Paste }
+  - { key: C,        mods: Control|Shift,       action: None    }
+  - { key: C,        mods: Control|Alt,         action: Copy    }
+
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
