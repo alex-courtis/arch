@@ -1,8 +1,8 @@
 runtime! defaults.vim
 
-set ic
-
 set mouse=
+
+set clipboard=unnamedplus,exclude:cons\|linux
 
 set hlsearch
 
