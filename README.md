@@ -308,11 +308,12 @@ systemctl enable NetworkManager
 ## Users
 
 ```sh
-pacman -S zsh vim sudo
+pacman -S zsh gvim sudo
 ```
 
-Link vi to vim:
+Link vi and others to vim:
 ```sh
+ln -s /usr/bin/vim /usr/local/bin/ex
 ln -s /usr/bin/vim /usr/local/bin/vi
 ln -s /usr/bin/vim /usr/local/bin/view
 ```
