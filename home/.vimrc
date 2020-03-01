@@ -6,4 +6,7 @@ set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
 set hlsearch
 
+set ignorecase
+set smartcase
+
 set background=dark
