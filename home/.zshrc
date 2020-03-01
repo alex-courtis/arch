@@ -26,7 +26,7 @@ if [ "${USER}" = "root" ]; then
 fi
 
 # execute tmux if it isn't running; it will replace this process with a new login shell
-if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ]; then
+if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ] && [ ! -f "${HOME}/notmux" ] ; then
 	exec tmux
 fi
 
