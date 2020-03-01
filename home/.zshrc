@@ -44,14 +44,15 @@ SAVEHIST=10000
 
 # vim CLI mode
 bindkey -v
-
-# boot the zsh completion system 
-autoload -Uz compinit
-compinit
+bindkey "^[[3~" delete-char
 
 # bindings for insert mode
 bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
+
+# boot the zsh completion system
+autoload -Uz compinit
+compinit
 
 # common aliases
 alias ls="ls --color=auto"
