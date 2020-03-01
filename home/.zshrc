@@ -45,6 +45,7 @@ SAVEHIST=10000
 # vim CLI mode
 bindkey -v
 bindkey "^[[3~" delete-char
+bindkey -a "^[[3~" delete-char
 
 # bindings for insert mode
 bindkey "^J" history-beginning-search-forward
