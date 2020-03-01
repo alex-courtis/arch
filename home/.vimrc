@@ -1,8 +1,8 @@
 runtime! defaults.vim
 
-set mouse=
-
-set clipboard=unnamedplus,exclude:cons\|linux
+" unnamedplus: yank etc. uses the + register: XA_PRIMARY
+" autoselect: visual selections go to * register: XA_SECONDARY
+set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
 set hlsearch
 
