@@ -1,7 +1,0 @@
-#!/bin/sh
-
-BOOT_NUM=$(efibootmgr | grep "Arch Linux$" | sed -E "s/^Boot([[:xdigit:]]*)\* .*$/\1/g")
-
-sudo efibootmgr -n ${BOOT_NUM}
-
-sudo systemctl reboot
