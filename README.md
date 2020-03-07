@@ -562,6 +562,7 @@ jq
 keychain
 network-manager-applet
 nfs-utils
+numlockx
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra

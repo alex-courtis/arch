@@ -27,6 +27,9 @@ maybe dex -a -v
 # slock the screen after 5 mins
 haz xautolock && haz slock && xautolock -locker slock -time 5 &
 
+# numlock on
+maybe numlockx
+
 # start window manager
 slstatus &
 exec dwm 
