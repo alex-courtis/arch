@@ -30,6 +30,11 @@ if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE
 	exec tmux
 fi
 
+# if we've got to this point tmux is not running, so replace the vim unfriendly alacritty term
+if [ "${TERM}" = "alacritty" ]; then
+	TERM="xterm-256color"
+fi
+
 # zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
 typeset -U path
 
