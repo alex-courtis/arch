@@ -589,6 +589,7 @@ xorg-fonts-misc
 xorg-server
 xorg-xinit
 xorg-xrandr
+xsel
 xterm
 zsh-completions
 
