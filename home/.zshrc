@@ -25,12 +25,24 @@ if [ "${USER}" = "root" ]; then
 	PROMPT_COLOUR="red"
 fi
 
-# execute tmux if it isn't running; it will replace this process with a new login shell
+# maybe run tmux: replace this shell with a new login shell
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ] && [ ! -f "${HOME}/notmux" ] ; then
-	exec tmux
+	TMUX_MOST_RECENT_DETACHED=$(tmux 2> /dev/null ls -F \
+		'#{session_attached} #{?#{==:#{session_last_attached},},1,#{session_last_attached}} #{session_id}' |
+		awk '/^0/ { if ($2 > t) { t = $2; s = $3 } }; END { if (s) printf "%s", s }')
+
+	if [ -n "${TMUX_MOST_RECENT_DETACHED}" ]; then
+
+		# attach to most recent detached session
+		exec tmux attach -t "${TMUX_MOST_RECENT_DETACHED}"
+	else
+
+		# new tmux session
+		exec tmux
+	fi
 fi
 
-# if we've got to this point tmux is not running, so replace the vim unfriendly alacritty term
+# if we've got to this point and tmux is not running, so replace the vim unfriendly alacritty term
 if [ "${TERM}" = "alacritty" ]; then
 	TERM="xterm-256color"
 fi
