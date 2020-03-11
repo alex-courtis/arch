@@ -75,9 +75,9 @@
 [kp-\]>[null]
 [kp9]>[end]
 [kpmin]>[null]
-[delete]>[bspace]
-[kp-delete]>[null]
-[kp-bspace]>[lwin]
+[delete]>[lwin]
+[kp-delete]>[lwin]
+[kp-bspace]>[null]
 [kp-enter]>[null]
 [kp0]>[null]
 [kp-H]>[pdown]
@@ -108,12 +108,6 @@
 [9]>[0]
 [0]>[hyphen]
 [hyphen]>[=]
-[bspace]>[lwin]
-[']>[enter]
-[rshift]>[']
-[space]>[rshift]
-[kp-space]>[rshift]
-[enter]>[space]
 {`}>{-lctrl}{/}{+lctrl}
 {intl-\}>{-lctrl}{b}{+lctrl}
 {left}>{-lctrl}{i}{+lctrl}
