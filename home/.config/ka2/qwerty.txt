@@ -18,7 +18,7 @@
 [0]>[hyphen]
 [home]>[lwin]
 [end]>[delete]
-[delete]>[escape]
+[delete]>[escape][t&h150][lwin]
 [rwin]>[ralt]
 [pup]>[rwin]
 [pdown]>[tab]
