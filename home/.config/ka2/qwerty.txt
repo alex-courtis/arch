@@ -22,5 +22,5 @@
 [rwin]>[ralt]
 [pup]>[rwin]
 [pdown]>[tab]
-{`}>{-shift}{kp-insert}{+shift}
-{cbrack}>{-shift}{kp-insert}{+shift}
+{`}>{-lshift}{kp-insert}{+lshift}
+{cbrack}>{-lshift}{kp-insert}{+lshift}
