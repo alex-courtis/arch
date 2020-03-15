@@ -25,10 +25,10 @@
 [space]>[space][t&h150][rctrl]
 [rshift]>[null]
 [`]>[null]
-{`}>{-shift}{kp-insert}{+shift}
+{`}>{-lshift}{kp-insert}{+lshift}
 [intl-\]>[lalt]
 [end]>[null]
 [pdown]>[null]
 [obrack]>[cbrack]
 [cbrack]>[null]
-{cbrack}>{-shift}{kp-insert}{+shift}
+{cbrack}>{-lshift}{kp-insert}{+lshift}
