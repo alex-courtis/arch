@@ -12,7 +12,9 @@
 	default = current
 [color]
 	ui = auto
-[merge]
-	renameLimit = 9999
-[diff]
-	renameLimit = 9999
+
+# only use these when attempting a particularly large operation
+#[merge]
+	#renameLimit = 9999
+#[diff]
+	#renameLimit = 9999
