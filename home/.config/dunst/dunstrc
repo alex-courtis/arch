@@ -29,7 +29,10 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "x5+0+80"
+    #geometry = "300x5-30+20"
+
+    # 38 pixels is the size of an 11 pt dwm/dmenu bar
+    geometry = "1200x5-0+38"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -86,6 +89,7 @@
 
     ### Text ###
 
+    #font = Monospace 8
     font = Monospace 11
 
     # The spacing between lines.  If the height is smaller than the
