@@ -27,7 +27,7 @@ fi
 
 # maybe run tmux: replace this shell with a new login shell
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ] && [ ! -f "${HOME}/notmux" ] ; then
-	DETACHED="$( tmux ls | grep -vm1 attached | cut -d: -f1 )"
+	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 
 	if [ -z "${DETACHED}" ]; then
 		exec tmux
