@@ -27,18 +27,12 @@ fi
 
 # maybe run tmux: replace this shell with a new login shell
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ -z "${VSCODE_CLI}" ] && [ ! -f "${HOME}/notmux" ] ; then
-	TMUX_MOST_RECENT_DETACHED=$(tmux 2> /dev/null ls -F \
-		'#{session_attached} #{?#{==:#{session_last_attached},},1,#{session_last_attached}} #{session_id}' |
-		awk '/^0/ { if ($2 > t) { t = $2; s = $3 } }; END { if (s) printf "%s", s }')
+	DETACHED="$( tmux ls | grep -vm1 attached | cut -d: -f1 )"
 
-	if [ -n "${TMUX_MOST_RECENT_DETACHED}" ]; then
-
-		# attach to most recent detached session
-		exec tmux attach -t "${TMUX_MOST_RECENT_DETACHED}"
-	else
-
-		# new tmux session
+	if [ -z "${DETACHED}" ]; then
 		exec tmux
+	else
+		exec tmux attach -t "${DETACHED}"
 	fi
 fi
 
