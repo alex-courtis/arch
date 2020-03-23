@@ -77,8 +77,8 @@ alias diffc="diff --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
 alias diffp="diff -Naur"
-alias pt='pstree -Tap'
-alias wpt='watch -t -n 0.5 pstree -Tap'
+alias pt='pstree -Tap -C age'
+alias wpt='watch -t -n 0.5 -c pstree -Tap -C age'
 
 # prompt:
 #   bg red background nonzero return code and newline
