@@ -25,7 +25,7 @@ else
 	NVIDIA="false"
 fi
 
-for f in $(find "${ALEX_HOME}" -type f); do
+for f in $(find "${ALEX_HOME}" -type f -or -type l); do
 	TARGET="${f/${ALEX_HOME}/${HOME}}"
 	TARGET_FILE=$(basename "${TARGET}")
 	TARGET_DIR=$(dirname "${TARGET}")

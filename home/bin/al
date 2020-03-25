@@ -1,2 +1,0 @@
-#!/bin/sh
-exec alacritty "$@" > "/tmp/alacritty.${USER}.stdout.log" 2> "/tmp/alacritty.${USER}.stderr.log" 
