@@ -30,3 +30,5 @@
 [bspace]>[lshift]
 [space]>[rshift]
 [enter]>[rwin]
+[lshift]>[null]
+[rshift]>[null]
