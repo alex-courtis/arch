@@ -1,0 +1,208 @@
+#!/bin/sh
+
+# sourced from git@bitbucket.org:robbieg/bin.git
+
+doOpen()
+{
+  case "$(uname)" in
+  Darwin*)
+    open "$@"
+    ;;
+  Linux*)
+    xdg-open "$@"
+    ;;
+  * )
+    echo "$@"
+    ;;
+  esac
+}
+
+bitbucketShow ()
+{
+  slug="${1:?}"
+  case "${2:?}" in
+    branch) context="branch/${3:?}" ;;
+    commit) context="commits/${3:?}" ;;
+    file) context="src/${3:?}/${4:?}" ;;
+    default) ;;
+    *) echo "No context format for bitbucket '$2'" 1>&2 ;;
+  esac
+  base="https://bitbucket.org/${slug}"
+  doOpen "${base}/${context}"
+}
+
+stashShow ()
+{
+  slug="${1:?}"
+  case "${2:?}" in
+    branch) context="commits?until=${3:?}" ;;
+    commit) context="commits/${3:?}" ;;
+    file) context="browse/${4:?}?until=${3:?}" ;;
+    default) ;;
+    *) echo "No context format for stash '$2'" 1>&2 ;;
+  esac
+  context="${context:-browse}"
+  project="${slug%/*}"
+  repo="${slug#*/}"
+  base="https://stash.atlassian.com/projects/${project}/repos/${repo}"
+  doOpen "${base}/${context}"
+}
+
+githubShow ()
+{
+  slug="${1:?}"
+  case "${2:?}" in
+    branch) context="tree/${3:?}" ;;
+    commit) context="commit/${3:?}" ;;
+    file) context="blob/${3:?}/${4:?}" ;;
+    default) ;;
+    *) echo "No context format for github '$2'" 1>&2 ;;
+  esac
+  base="https://github.com/${slug}"
+  doOpen "${base}/${context}"
+}
+
+gitShow ()
+{
+  # Try for a pushurl first, because this is the correct url when bitbucket server mirroring is in use
+  origin="$(git config remote.origin.pushurl)"
+  if [ -z "${origin}" ]
+  then
+      origin="$(git config remote.origin.url)"
+  fi
+
+  case "${origin}" in
+    git@bitbucket.org:*)
+      slug=${origin#git@bitbucket.org:}
+      bitbucketShow "${slug%.git}" "$@"
+      ;;
+    https://*bitbucket.org/*)
+      slug=${origin#https://*bitbucket.org/}
+      bitbucketShow "${slug%.git}" "$@"
+      ;;
+    ssh://git@bitbucket.org/*)
+      slug=${origin#ssh://git@bitbucket.org/}
+      bitbucketShow "${slug%.git}" "$@"
+      ;;
+    ssh://git@bitbucket-mirror-*.internal.atlassian.com:*/stash/*)
+      slug=${origin#ssh://git@bitbucket-mirror-*.internal.atlassian.com:*/stash/}
+      stashShow "${slug%.git}" "$@"
+      ;;
+    ssh://git@mirror.spartez.com:*/stash/*)
+      slug=${origin#ssh://git@mirror.spartez.com:*/stash/}
+      stashShow "${slug%.git}" "$@"
+      ;;
+    ssh://git@stash.atlassian.com:*/*)
+      slug=${origin#ssh://git@stash.atlassian.com:*/}
+      stashShow "${slug%.git}" "$@"
+      ;;
+    https://github.com/*)
+      slug=${origin#https://github.com/}
+      githubShow "${slug%.git}" "$@"
+      ;;
+    git@github.com:*)
+      slug=${origin#git@github.com:}
+      githubShow "${slug%.git}" "$@"
+      ;;
+    *)
+      echo "Sorry, i don't know where to find ${origin}"
+      exit 1
+      ;;
+  esac
+}
+
+gitParseAndShow ()
+{
+  case "$#" in
+    0)
+      # fine, no argument shows default
+      symbolic=$(git symbolic-ref -q HEAD)
+      if [ "${?}" -eq 0 ]
+      then
+        # We appear to be on a branch
+        branch=${symbolic#refs/heads/}
+        if [ master = "${branch}" ]
+        then
+          # For master, show default anyway, because bitbucket looks better that way
+          gitShow default
+          return
+        else
+          gitShow branch "${branch}"
+          return
+        fi
+      else
+        echo "HEAD is not symbolic (detached?) - showing repository home"
+        gitShow default
+        return
+      fi
+      ;;
+    1)
+      argument="${1:?}"
+      # If argument can be parsed as a commit hash, show commit context
+      commit=$(git rev-parse --verify "${argument}^{commit}" 2>/dev/null)
+      if [ "${?}" -eq 0 ]
+      then
+        gitShow commit "${commit}"
+        return
+      fi
+      # If argument names an existing file, show file in its head commit context
+      if [ -f "${argument}" ]
+      then
+        commit=$(git log --max-count=1 --pretty='format:%H' "${argument}" 2>/dev/null)
+        logStatus="${?}"
+        if [ "${logStatus}" -eq 0 -a ! -z "${commit}" ]
+        then
+          relative=$(git ls-files --full-name "${argument}")
+          lsFilesStatus="${?}"
+          if [ "${lsFilesStatus}" -eq 0 ]
+          then
+            gitShow file "${commit}" "${relative}"
+            return
+          else
+            echo "Cannot relativize (status {$lsFilesStatus}) file '${argument}'" 1>&2
+          fi
+        else
+          echo "No git commit (status {$logStatus}) for file '${argument}'" 1>&2
+        fi
+      fi
+      ;;
+  esac
+  echo "Ignoring unparseable context: $@" 1>&2
+  gitShow default
+}
+
+hgShow ()
+{
+  origin="$(hg paths default)"
+
+  case "${origin}" in
+    ssh://hg@bitbucket.org/*)
+      slug="${origin#*//}"
+      slug="${slug#*/}"
+      doOpen "https://bitbucket.org/${slug}"
+      ;;
+    *)
+      echo "Sorry, i don't know where to find ${origin}"
+      exit 1
+      ;;
+  esac
+}
+
+hgParseAndShow ()
+{
+  case "$#" in
+    0)
+      # fine, no argument shows default
+      hgShow default
+      return
+      ;;
+  esac
+  echo "Ignoring unparseable context: $@" 1>&2
+  hgShow default
+}
+
+{ git rev-parse --git-dir > /dev/null 2>&1 ; } && { gitParseAndShow "$@"; exit ; }
+{ hg root > /dev/null 2>&1 ; } && { hgParseAndShow "$@"; exit ; }
+
+echo "Cannot determine repository type"
+exit 1
