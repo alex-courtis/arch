@@ -27,3 +27,6 @@
 {cbrack}>{-lshift}{kp-insert}{+lshift}
 [kp-home]>[kpshift]
 [kp-pup]>[kptoggle]
+[bspace]>[lshift]
+[space]>[rshift]
+[enter]>[rwin]
