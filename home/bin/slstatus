@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/local/bin/slstatus "$@" > "/tmp/slstatus.${USER}.stdout.log" 2> "/tmp/slstatus.${USER}.stderr.log"
+[ -x /usr/local/bin/slstatus ] && exec /usr/local/bin/slstatus "$@" > "${DE_LOG_DIR}/slstatus.stdout.log" 2> "${DE_LOG_DIR}/slstatus.stderr.log"

@@ -39,5 +39,8 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+# place for any logs (stdout, stderr) captured from commonly used applications
+export DE_LOG_DIR="/var/log/de/${USER}"
+
 # firefox will create several logs with this prefix
-export MOZ_LOG_FILE=/tmp/firefox.alex
+export MOZ_LOG_FILE="${DE_LOG_DIR}/firefox"

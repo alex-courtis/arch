@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/dex "$@" > "/tmp/dex.${USER}.stdout.log" 2> "/tmp/dex.${USER}.stderr.log"
+[ -x /usr/bin/dex ] && exec /usr/bin/dex "$@" > "${DE_LOG_DIR}/dex.stdout.log" 2> "${DE_LOG_DIR}/dex.stderr.log"
