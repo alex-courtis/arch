@@ -1,2 +1,2 @@
 #!/bin/sh
-[ -x /usr/bin/alacritty ] && exec /usr/bin/alacritty "$@" > "${DE_LOG_DIR}/alacritty.stdout" 2> "${DE_LOG_DIR}/alacritty.stderr"
+[ -x /usr/bin/alacritty ] && exec /usr/bin/alacritty "$@" >> "${DE_LOG_DIR}/alacritty.stdout" 2>> "${DE_LOG_DIR}/alacritty.stderr"

@@ -6,6 +6,7 @@ function maybe() {
 	! haz "${1}" || "${@}"
 }
 
+
 # run all system xinitrc shell scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	for script in /etc/X11/xinit/xinitrc.d/*; do
@@ -32,4 +33,4 @@ maybe numlockx
 
 # start window manager
 slstatus &
-exec dwm > "${DE_LOG_DIR}/dwm.stdout" 2> "${DE_LOG_DIR}/dwm.stderr"
+exec dwm >> "${DE_LOG_DIR}/dwm.stdout" 2>> "${DE_LOG_DIR}/dwm.stderr"
