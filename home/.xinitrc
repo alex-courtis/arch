@@ -30,6 +30,8 @@ maybe xautolock -locker slock -time 5 &
 # numlock on
 maybe numlockx
 
+# fork off slstatus
+"${SHELL}" -c "slstatus > \"/tmp/slstatus.${USER}.log\" &"
+
 # start window manager
-slstatus &
 exec dwm > "/tmp/dwm.${USER}.log" 2>&1
