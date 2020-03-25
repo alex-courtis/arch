@@ -1,0 +1,2 @@
+#!/bin/sh
+exec firefox "$@" > "${MOZ_LOG_FILE}.stdout.log" 2> "${MOZ_LOG_FILE}.stderr.log" 
