@@ -14,13 +14,14 @@
 [\]>[obrack]
 [caps]>[\]
 [rwin]>[ralt]
+[delete]>[lwin]
 [home]>[kpshift]
 [pup]>[kptoggle]
 [`]>[null]
 {`}>{-lshift}{kp-insert}{+lshift}
 [intl-\]>[null]
 [end]>[tab]
-[pdown]>[del]
+[pdown]>[delete]
 [obrack]>[cbrack]
 [cbrack]>[null]
 {cbrack}>{-lshift}{kp-insert}{+lshift}
