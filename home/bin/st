@@ -1,2 +1,2 @@
 #!/bin/sh
-[ -x /usr/local/bin/st ] && exec /usr/local/bin/st "$@" > "${DE_LOG_DIR}/st.stdout.log" 2> "${DE_LOG_DIR}/st.stderr.log" 
+[ -x /usr/local/bin/st ] && exec /usr/local/bin/st "$@" > "${DE_LOG_DIR}/st.stdout" 2> "${DE_LOG_DIR}/st.stderr"

@@ -1,2 +1,2 @@
 #!/bin/sh
-[ -x /usr/bin/firefox ] && exec /usr/bin/firefox "$@" > "${MOZ_LOG_FILE}.stdout.log" 2> "${MOZ_LOG_FILE}.stderr.log"
+[ -x /usr/bin/firefox ] && exec /usr/bin/firefox "$@" > "${MOZ_LOG_FILE}.stdout" 2> "${MOZ_LOG_FILE}.stderr"

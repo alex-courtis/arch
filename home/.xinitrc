@@ -32,4 +32,4 @@ maybe numlockx
 
 # start window manager
 slstatus &
-exec dwm > "${DE_LOG_DIR}/dwm.stdout.log" 2> "${DE_LOG_DIR}/dwm.stderr.log"
+exec dwm > "${DE_LOG_DIR}/dwm.stdout" 2> "${DE_LOG_DIR}/dwm.stderr"
