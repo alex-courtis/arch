@@ -14,7 +14,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			startx > "${DE_LOG_DIR}/startx.stdout" 2> "${DE_LOG_DIR}/startx.stderr"
 		else
 			# other drivers do e.g. nouveau, i915
-			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "/tmp/startx.${USER}.stdout" 2> "/tmp/startx.${USER}.stderr"
+			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" > "${DE_LOG_DIR}/startx.stdout" 2> "${DE_LOG_DIR}/startx.stderr"
 		fi
 		;;
 	6)
