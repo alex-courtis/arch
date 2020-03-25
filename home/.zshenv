@@ -38,3 +38,6 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+
+# firefox will create several logs with this prefix
+export MOZ_LOG_FILE=/tmp/firefox.alex
