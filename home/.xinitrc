@@ -22,10 +22,10 @@ fi
 maybe xlayoutdisplay
 
 # start all the autostart apps
-maybe dex -a -v > "/tmp/dex.${USER}.log" 2>&1
+maybe dex -a -v
 
 # slock the screen after 5 mins
-haz xautolock && haz slock && xautolock -locker slock -time 5 &
+maybe xautolock -locker slock -time 5 &
 
 # numlock on
 maybe numlockx
