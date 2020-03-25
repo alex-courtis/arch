@@ -22,7 +22,7 @@ fi
 maybe xlayoutdisplay
 
 # start all the autostart apps
-maybe dex -a -v
+maybe dex -a -v > "/tmp/dex.${USER}.log" 2>&1
 
 # slock the screen after 5 mins
 maybe xautolock -locker slock -time 5 &
@@ -31,7 +31,7 @@ maybe xautolock -locker slock -time 5 &
 maybe numlockx
 
 # fork off slstatus
-"${SHELL}" -c "slstatus > \"/tmp/slstatus.${USER}.log\" &"
+"${SHELL}" -c "slstatus > \"/tmp/slstatus.${USER}.log\" 2>&1 &"
 
 # start window manager
 exec dwm > "/tmp/dwm.${USER}.log" 2>&1
