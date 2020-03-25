@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xcape -e 'Control_L=Tab;Control_R=Delete;Super_L=Escape' -t 200 > "${DE_LOG_DIR}/xcapes.stdout" 2> "${DE_LOG_DIR}/xcapes.stdout"
