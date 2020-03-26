@@ -8,7 +8,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 		if [ ! -d "${DE_LOG_DIR}" ]; then
 			mkdir -v "${DE_LOG_DIR}"
 		fi
-		rm -v "${DE_LOG_DIR}/"*
+		rm "${DE_LOG_DIR}/"*
 
 		# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
 		lsmod | grep ^nvidia > /dev/null 2>&1

@@ -1,0 +1,2 @@
+#!/bin/sh
+[ -x /usr/local/bin/dwm ] && exec /usr/local/bin/dwm "$@" >> "${DE_LOG_DIR}/dwm.stdout" 2>> "${DE_LOG_DIR}/dwm.stderr"
