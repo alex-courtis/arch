@@ -1,3 +1,6 @@
 #!/bin/sh
 
-xcape -e 'Control_L=Tab;Control_R=Delete;Super_L=Escape;Super_R=Return;Shift_L=BackSpace;Shift_R=space' -t 200 > "${DE_LOG_DIR}/xcapes.stdout" 2> "${DE_LOG_DIR}/xcapes.stdout"
+xcape \
+	-e 'Control_L=Tab;Control_R=Delete;Super_L=Escape;Super_R=Return;Shift_L=BackSpace;Shift_R=space' \
+	-t 200 \
+	> "${DE_LOG_DIR}/xcapes.stdout" 2> "${DE_LOG_DIR}/xcapes.stderr"
