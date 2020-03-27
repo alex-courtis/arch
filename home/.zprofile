@@ -20,14 +20,5 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" >> "${DE_LOG_DIR}/startx.stdout" 2>> "${DE_LOG_DIR}/startx.stderr"
 		fi
 		;;
-	6)
-		wdwm > "/tmp/wdwm.${USER}.log" 2>&1
-		;;
-	5)
-		/home/alex/src/wlroots/tinywl/tinywl -s alacritty > "/tmp/tinywl.${USER}.log" 2>&1
-		;;
-	4)
-		sway -d > "/tmp/sway.${USER}.log" 2>&1
-		;;
 	esac
 fi
