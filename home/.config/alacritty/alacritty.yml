@@ -1896,7 +1896,11 @@ schemes:
   tango: &tango
     primary:
       background: '#000000'
-      foreground: '#00ff00'
+      # horrible green swapped to a white
+      #foreground: '#00ff00'
+      #foreground: '#d3d7cf'
+      foreground: '#eeeeec'
+      #foreground: '#ffffff'
 
     # Normal colors
     normal:
@@ -2188,13 +2192,30 @@ schemes:
        cyan:    '#00ffff'
        white:   '#ffffff'
 
+# appealing
+#colors: *ayudark
+#colors: *bloodmoon
+#colors: *campbell
+#colors: *hyper
+#colors: *kitty
+#colors: *molokaidark
+#colors: *pencildark
+#colors: *sourcerer
+colors: *tango
+#colors: *tender
+#colors: *terminalapp
+#colors: *tomorrownight
+#colors: *wombat
+#colors: *xterm
+
+# not actually the same as default, has white switched for grey
+#colors: *tomorrownightbright
+
+# eye bleach
 #colors: *afterglow
 #colors: *argonaut
-#colors: *ayudark
 #colors: *base16defaultdark
-#colors: *bloodmoon
 #colors: *kdebreeze
-#colors: *campbell
 #colors: *cobalt2
 #colors: *darkside
 #colors: *darktooth
@@ -2202,14 +2223,11 @@ schemes:
 #colors: *gruvboxlight
 #colors: *gruvboxdark
 #colors: *hybrid
-#colors: *hyper
 #colors: *iceberg
 #colors: *irblack
 #colors: *itermdefault
 #colors: *jellybeans
-#colors: *kitty
 #colors: *material
-#colors: *molokaidark
 #colors: *monokaidark
 #colors: *monokaipro
 #colors: *monokaisoda
@@ -2220,21 +2238,12 @@ schemes:
 #colors: *onedark
 #colors: *oxide
 #colors: *pencillite
-#colors: *pencildark
 #colors: *seabird
 #colors: *seoul256
 #colors: *snazzy
 #colors: *solarizedlight
 #colors: *solarizeddark
-#colors: *sourcerer
 #colors: *taerminal
-#colors: *tango
 #colors: *tangoish
-#colors: *tender
-#colors: *terminalapp
 #colors: *terminalappbasic
-#colors: *tomorrownight
-#colors: *tomorrownightbright
 #colors: *ubuntu
-#colors: *wombat
-#colors: *xterm
