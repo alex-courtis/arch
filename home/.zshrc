@@ -54,16 +54,16 @@ SAVEHIST=10000
 
 # vim CLI mode
 bindkey -v
-bindkey    -- "${terminfo[kdch1]}" delete-char
-bindkey -a -- "${terminfo[kdch1]}" delete-char
+bindkey    "${terminfo[kdch1]}" delete-char
+bindkey -a "${terminfo[kdch1]}" delete-char
 
 # search up to cursor
-bindkey    -- "^J" history-beginning-search-forward
-bindkey    -- "^K" history-beginning-search-backward
+bindkey "^J" history-beginning-search-forward
+bindkey "^K" history-beginning-search-backward
 
 # incremental search with the mystery isearch keymap
 # keys can be bound to that keymap, but the defaults are not visible to bindkey -M isearch
-bindkey    -- "^B" history-incremental-search-backward
+bindkey "^B" history-incremental-search-backward
 # this is not great; try https://github.com/zsh-users/zsh-history-substring-search if it gets too annoying
 
 # boot the zsh completion system
