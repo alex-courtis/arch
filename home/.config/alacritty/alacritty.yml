@@ -1929,7 +1929,9 @@ schemes:
   # Note: Orange is used in place of Cyan
   tangoish: &tangoish
     primary:
-      background: '#2e3436'
+      # too bright
+      #background: '#2e3436'
+      background: '#000000'
       foreground: '#eeeeec'
 
     # Normal colors
@@ -2201,7 +2203,8 @@ schemes:
 #colors: *molokaidark
 #colors: *pencildark
 #colors: *sourcerer
-colors: *tango
+#colors: *tango
+colors: *tangoish
 #colors: *tender
 #colors: *terminalapp
 #colors: *tomorrownight
@@ -2244,6 +2247,5 @@ colors: *tango
 #colors: *solarizedlight
 #colors: *solarizeddark
 #colors: *taerminal
-#colors: *tangoish
 #colors: *terminalappbasic
 #colors: *ubuntu
