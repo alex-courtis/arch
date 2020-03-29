@@ -1896,33 +1896,31 @@ schemes:
   tango: &tango
     primary:
       background: '#000000'
-      # horrible green swapped to a white
+      # horrible green replaced by bright white
       #foreground: '#00ff00'
-      #foreground: '#d3d7cf'
-      foreground: '#eeeeec'
-      #foreground: '#ffffff'
+      foreground: '#eeeeec' # light white-aluminium
 
     # Normal colors
     normal:
-        black:   '#2e3436'
-        red:     '#cc0000'
-        green:   '#73d216'
-        yellow:  '#edd400'
-        blue:    '#3465a4'
-        magenta: '#75507b'
-        cyan:    '#06989a'
-        white:   '#d3d7cf'
+      black:   '#2e3436' # dark black-aluminium
+      red:     '#cc0000' # mid red
+      green:   '#73d216' # mid chameleon
+      yellow:  '#edd400' # mid butter
+      blue:    '#3465a4' # mid blue
+      magenta: '#75507b' # mid plum
+      cyan:    '#06989a'
+      white:   '#d3d7cf' # mid white-aluminium
 
     # Bright colors
     bright:
-        black:   '#2e3436'
-        red:     '#ef2929'
-        green:   '#8ae234'
-        yellow:  '#fce94f'
-        blue:    '#729fcf'
-        magenta: '#ad7fa8'
-        cyan:    '#34e2e2'
-        white:   '#eeeeec'
+      black:   '#2e3436' # dark black-aluminium
+      red:     '#ef2929' # light red
+      green:   '#8ae234' # light chameleon
+      yellow:  '#fce94f' # light butter
+      blue:    '#729fcf' # light blue
+      magenta: '#ad7fa8' # light plum
+      cyan:    '#34e2e2'
+      white:   '#eeeeec' # light white-aluminium
 
 
   ## [Tangoish](https://en.wikipedia.org/wiki/Tango_Desktop_Project)
@@ -1930,31 +1928,33 @@ schemes:
   tangoish: &tangoish
     primary:
       # too bright
-      #background: '#2e3436'
+      #background: '#2e3436' # dark black-aluminium
       background: '#000000'
-      foreground: '#eeeeec'
+      foreground: '#eeeeec' # light white-aluminium
 
     # Normal colors
     normal:
-       black:   '#2e3436'
-       red:     '#cc0000'
-       green:   '#73d216'
-       yellow:  '#edd400'
-       blue:    '#3465a4'
-       magenta: '#75507b'
-       cyan:    '#f57900'
-       white:   '#d3d7cf'
+      black:   '#2e3436' # dark black-aluminium
+      red:     '#cc0000' # mid red
+      green:   '#73d216' # mid chameleon
+      yellow:  '#edd400' # mid butter
+      blue:    '#3465a4' # mid blue
+      magenta: '#75507b' # mid plum
+      cyan:    '#f57900' # mid orange
+      #cyan:    '#c17d11' # mid chocolate
+      white:   '#d3d7cf' # mid white-aluminium
 
     # Bright colors
     bright:
-       black:   '#2e3436'
-       red:     '#ef2929'
-       green:   '#8ae234'
-       yellow:  '#fce94f'
-       blue:    '#729fcf'
-       magenta: '#ad7fa8'
-       cyan:    '#fcaf3e'
-       white:   '#eeeeec'
+      black:   '#2e3436' # dark black-aluminium
+      red:     '#ef2929' # light red
+      green:   '#8ae234' # light chameleon
+      yellow:  '#fce94f' # light butter
+      blue:    '#729fcf' # light blue
+      magenta: '#ad7fa8' # light plum
+      cyan:    '#fcaf3e' # light orange
+      #cyan:    '#e9b96e' # light chocolate
+      white:   '#eeeeec' # light white-aluminium
 
 
   ## [Tender](https://github.com/huyvohcmc/tender-alacritty)
