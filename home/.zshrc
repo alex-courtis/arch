@@ -47,28 +47,27 @@ typeset -U path
 # ensure that these are at the very end of the path, to prevent clobbering of system utils e.g. xpath, nvm
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
+# boot the zsh completion system
+autoload -Uz compinit
+compinit
+
 # moar history
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# vim CLI mode
+# vim zle mode with proper deletes
 bindkey -v
-bindkey    "${terminfo[kdch1]}" delete-char
-bindkey -a "${terminfo[kdch1]}" delete-char
+bindkey -M viins "${terminfo[kdch1]}" delete-char
+bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
 # search up to cursor
-bindkey "^J" history-beginning-search-forward
-bindkey "^K" history-beginning-search-backward
+bindkey -M viins "^J" history-beginning-search-forward
+bindkey -M viins "^K" history-beginning-search-backward
 
-# incremental search with the mystery isearch keymap
-# keys can be bound to that keymap, but the defaults are not visible to bindkey -M isearch
-bindkey "^B" history-incremental-search-backward
-# this is not great; try https://github.com/zsh-users/zsh-history-substring-search if it gets too annoying
-
-# boot the zsh completion system
-autoload -Uz compinit
-compinit
+# remove some escape,something bindings added by compinit
+bindkey -M viins -r "^[/"
+bindkey -M viins -r "^[,"
 
 # common aliases
 alias ls="ls --color=auto"
