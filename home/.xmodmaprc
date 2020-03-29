@@ -1,0 +1,5 @@
+! there are no unused keycodes that I can make the kinesis generate, so sacrifice these two keys
+! page down
+keycode 117 = XF86Paste
+! page up
+keycode 112 = XF86Copy

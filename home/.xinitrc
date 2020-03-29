@@ -19,6 +19,11 @@ if [ -r ${HOME}/.Xresources ]; then
 	xrdb -load ${HOME}/.Xresources
 fi
 
+# xmodmap is required by xinit
+if [ -r ${HOME}/.xmodmaprc ]; then
+	xmodmap ${HOME}/.xmodmaprc
+fi
+
 # setup displays before we start any applications
 maybe xlayoutdisplay
 
