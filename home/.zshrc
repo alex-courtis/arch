@@ -65,7 +65,11 @@ bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 bindkey -M viins "^J" history-beginning-search-forward
 bindkey -M viins "^K" history-beginning-search-backward
 
+# incremental search which uses a limited set of regular bindings, overridden by the (empty) isearch map
+bindkey -M viins "^B" history-incremental-search-backward
+
 # remove some escape,something bindings added by compinit
+# don't try setting KEYTIMEOUT=1 as that can prevent useful sequences like arrow keys
 bindkey -M viins -r "^[/"
 bindkey -M viins -r "^[,"
 
