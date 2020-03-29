@@ -3,28 +3,6 @@ function haz() {
 	return $(type "${1}" > /dev/null 2>&1)
 }
 
-# select host prompt colour (used by tmux) from: black, red, green, yellow, blue, magenta, cyan, white
-export PROMPT_COLOUR
-case "$(hostname)" in
-emperor*)
-	PROMPT_COLOUR="yellow"
-	;;
-gigantor*)
-	PROMPT_COLOUR="blue"
-	;;
-lord*)
-	PROMPT_COLOUR="magenta"
-	;;
-* )
-	PROMPT_COLOUR="cyan"
-	;;
-esac
-
-# root prompt is always red
-if [ "${USER}" = "root" ]; then
-	PROMPT_COLOUR="red"
-fi
-
 # maybe run tmux: replace this shell with a new login shell
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
 	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
@@ -90,8 +68,8 @@ alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
 # prompt:
 #   bg red background nonzero return code and newline
 #   bg host background coloured ":; " in black text
-PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${PROMPT_COLOUR}}:;%k%f "
-PS2="%K{${PROMPT_COLOUR}}:; %_%k "
+PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
+PS2="%K{${HOST_COLOUR}}:; %_%k "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code

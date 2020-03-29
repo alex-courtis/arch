@@ -44,3 +44,24 @@ export DE_LOG_DIR="/var/log/de/${USER}"
 
 # firefox will create several logs with this prefix
 export MOZ_LOG_FILE="${DE_LOG_DIR}/firefox"
+
+# select host colour for prompts, tmux
+export HOST_COLOUR
+if [ "${USER}" = "root" ]; then
+	HOST_COLOUR="red"
+else
+	case "$(hostname)" in
+	emperor*)
+		HOST_COLOUR="yellow"
+		;;
+	gigantor*)
+		HOST_COLOUR="blue"
+		;;
+	lord*)
+		HOST_COLOUR="magenta"
+		;;
+	* )
+		HOST_COLOUR="cyan"
+		;;
+	esac
+fi
