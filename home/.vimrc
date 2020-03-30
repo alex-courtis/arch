@@ -9,4 +9,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" use only the terminal's carefully selected 16 colours
+set t_Co=16
+
 set background=dark
