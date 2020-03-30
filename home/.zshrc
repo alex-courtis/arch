@@ -19,17 +19,12 @@ fi
 if [ -n "${TMUX}" ]; then
 	case $(tmux showenv TERM 2>/dev/null) in
 	*256color)
-		export TERM="tmux-256color"
+		TERM="tmux-256color"
 		;;
 	*)
-		export TERM="tmux"
+		TERM="tmux"
 		;;
 	esac
-fi
-
-# if we've got to this point and tmux is not running, replace the vim unfriendly alacritty term
-if [ "${TERM}" = "alacritty" ]; then
-	TERM="xterm-256color"
 fi
 
 # zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
