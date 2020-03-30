@@ -2203,8 +2203,8 @@ schemes:
 #colors: *molokaidark
 #colors: *pencildark
 #colors: *sourcerer
-#colors: *tango
-colors: *tangoish
+colors: *tango
+#colors: *tangoish
 #colors: *tender
 #colors: *terminalapp
 #colors: *tomorrownight
