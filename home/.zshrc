@@ -14,6 +14,19 @@ if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME
 	fi
 fi
 
+# We cannot use the tmux's default-terminal as it is set once at startup.
+# This does not help with existing sessions that change to a different term; perhaps a PS1 for that?
+if [ -n "${TMUX}" ]; then
+	case $(tmux showenv TERM 2>/dev/null) in
+	*256color)
+		export TERM="tmux-256color"
+		;;
+	*)
+		export TERM="tmux"
+		;;
+	esac
+fi
+
 # if we've got to this point and tmux is not running, replace the vim unfriendly alacritty term
 if [ "${TERM}" = "alacritty" ]; then
 	TERM="xterm-256color"
