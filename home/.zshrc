@@ -3,28 +3,44 @@ function haz() {
 	return $(type "${1}" > /dev/null 2>&1)
 }
 
+# calculate a new TERM based on the OTERM tmux environment variabe, if it has changed
+function update_tmux_term() {
+	if [ -n "${TMUX}" ]; then
+		PARENT_OTERM="${$(tmux show-environment OTERM 2>/dev/null)#*=}"
+		if [ $? -eq 0 ]; then
+			if [ "${OTERM}" != "${PARENT_OTERM}" ]; then
+				case "${PARENT_OTERM}" in
+				*256color)
+					TERM="tmux-256color"
+					;;
+				*)
+					TERM="tmux"
+					;;
+				esac
+				if [ -n "${OTERM}" ]; then
+					echo "Updated TERM=${TERM} following changed tmux env OTERM=${PARENT_OTERM}"
+				fi
+				OTERM="${PARENT_OTERM}"
+			fi
+		fi
+	fi
+}
+
 # maybe run tmux: replace this shell with a new login shell
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
 	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 
 	if [ -z "${DETACHED}" ]; then
-		exec tmux
+		OTERM="${TERM}" exec tmux
 	else
-		exec tmux attach -t "${DETACHED}"
+		OTERM="${TERM}" exec tmux attach -t "${DETACHED}"
 	fi
 fi
 
-# We cannot use the tmux's default-terminal as it is set once at startup.
-# This does not help with existing sessions that change to a different term; perhaps a PS1 for that?
-if [ -n "${TMUX}" ]; then
-	case $(tmux showenv TERM 2>/dev/null) in
-	*256color)
-		TERM="tmux-256color"
-		;;
-	*)
-		TERM="tmux"
-		;;
-	esac
+# force a (silent) calculation of TERM
+if [ -n "${TMUX}" -a -n "${OTERM}" ]; then
+	OTERM=
+	update_tmux_term
 fi
 
 # zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
@@ -89,10 +105,12 @@ if haz __git_ps1; then
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWSTASHSTATE=true
 	precmd() {
+		update_tmux_term
 		printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
 	}
 else
 	precmd() {
+		update_tmux_term
 		printf "\e]0;%s\a" "${PWD}"
 	}
 fi
@@ -132,3 +150,4 @@ fi
 if haz keychain && [ -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
+
