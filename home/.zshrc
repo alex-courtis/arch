@@ -106,12 +106,12 @@ if haz __git_ps1; then
 	export GIT_PS1_SHOWSTASHSTATE=true
 	precmd() {
 		update_tmux_term
-		print -Pn "\e]0;%~$(__git_ps1)\a"
+		printf "\e]0;%s%s\a" "${PWD}" "$(__git_ps1)"
 	}
 else
 	precmd() {
 		update_tmux_term
-		print -Pn "\e]0;%~\a"
+		printf "\e]0;%s\a" "${PWD}"
 	}
 fi
 
