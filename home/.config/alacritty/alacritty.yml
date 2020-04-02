@@ -746,6 +746,16 @@ schemes:
       background: '#10100E'
       foreground: '#C6C6C4'
 
+    # copy of primary
+    cursor:
+      text: '#10100E'
+      cursor: '#C6C6C6'
+
+    # copy of primary
+    selection:
+      text: '#10100E'
+      background: '#C6C6C6'
+
     # Normal colors
     normal:
       black:   '#10100E'
@@ -1902,6 +1912,16 @@ schemes:
       #foreground: '#00ff00'
       foreground: '#eeeeec' # light white-aluminium
 
+    # copy of primary
+    cursor:
+      text: '#000000'
+      cursor: '#eeeeec'
+
+    # copy of primary
+    selection:
+      text: '#000000'
+      background: '#eeeeec'
+
     # Normal colors
     normal:
       black:   '#2e3436' # dark black-aluminium
@@ -1933,6 +1953,16 @@ schemes:
       #background: '#2e3436' # dark black-aluminium
       background: '#000000'
       foreground: '#eeeeec' # light white-aluminium
+
+    # copy of primary
+    cursor:
+      text: '#000000'
+      cursor: '#eeeeec'
+
+    # copy of primary
+    selection:
+      text: '#000000'
+      background: '#eeeeec'
 
     # Normal colors
     normal:
@@ -2170,42 +2200,53 @@ schemes:
 
   ## XTerm
   xterm: &xterm
-     # Default colors
-     primary:
-       background: '#000000'
-       foreground: '#ffffff'
-     # Normal colors
-     normal:
-       black:   '#000000'
-       red:     '#cd0000'
-       green:   '#00cd00'
-       yellow:  '#cdcd00'
-       blue:    '#0000ee'
-       magenta: '#cd00cd'
-       cyan:    '#00cdcd'
-       white:   '#e5e5e5'
+    # Default colors
+    primary:
+      background: '#000000'
+      foreground: '#ffffff'
 
-     # Bright colors
-     bright:
-       black:   '#7f7f7f'
-       red:     '#ff0000'
-       green:   '#00ff00'
-       yellow:  '#ffff00'
-       blue:    '#5c5cff'
-       magenta: '#ff00ff'
-       cyan:    '#00ffff'
-       white:   '#ffffff'
+    # copy of primary
+    cursor:
+      text: '#000000'
+      cursor: '#ffffff'
+
+    # copy of primary
+    selection:
+      text: '#000000'
+      background: '#ffffff'
+
+    # Normal colors
+    normal:
+      black:   '#000000'
+      red:     '#cd0000'
+      green:   '#00cd00'
+      yellow:  '#cdcd00'
+      blue:    '#0000ee'
+      magenta: '#cd00cd'
+      cyan:    '#00cdcd'
+      white:   '#e5e5e5'
+
+    # Bright colors
+    bright:
+      black:   '#7f7f7f'
+      red:     '#ff0000'
+      green:   '#00ff00'
+      yellow:  '#ffff00'
+      blue:    '#5c5cff'
+      magenta: '#ff00ff'
+      cyan:    '#00ffff'
+      white:   '#ffffff'
 
 # appealing
 #colors: *ayudark
-#colors: *bloodmoon
+colors: *bloodmoon
 #colors: *campbell
 #colors: *hyper
 #colors: *kitty
 #colors: *molokaidark
 #colors: *pencildark
 #colors: *sourcerer
-colors: *tango
+#colors: *tango
 #colors: *tangoish
 #colors: *tender
 #colors: *terminalapp
