@@ -579,6 +579,7 @@ scrot
 slock
 sysstat
 the_silver_searcher
+tldr
 tmux
 ttf-dejavu
 ttf-hack
