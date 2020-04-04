@@ -10,7 +10,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			startx >"/tmp/x.${USER}.stdout" 2> "/tmp/x.${USER}.stderr"
 		else
 			# other drivers do e.g. nouveau, i915
-			startx -- -configdir >"/tmp/x.${USER}.stdout" 2> "/tmp/x.${USER}.stderr"
+			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" >"/tmp/x.${USER}.stdout" 2> "/tmp/x.${USER}.stderr"
 		fi
 		;;
 	esac
