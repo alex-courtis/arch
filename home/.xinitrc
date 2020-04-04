@@ -37,5 +37,5 @@ maybe xautolock -locker slock -time 5 &
 maybe numlockx
 
 # start window manager
-slstatus &
-exec dwm
+slstatus >/dev/null 2>&1 &
+exec dwm >/dev/null 2>&1
