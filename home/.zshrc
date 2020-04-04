@@ -3,10 +3,26 @@ function haz() {
 	return $(type "${1}" > /dev/null 2>&1)
 }
 
-# maybe run tmux: replace this shell with a new login shell
+# Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.
+# Manually invoke when attaching to an existing session; too expensive for precmd.
+function updatetmuxterm() {
+	if [ -n "${TMUX}" ]; then
+		case $(tmux show-environment TERM 2>/dev/null) in
+			*256color)
+				TERM="tmux-256color"
+				;;
+			*)
+				TERM="tmux"
+				;;
+		esac
+	fi
+}
+
+# maybe run tmux
 if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
 	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 
+	# replace this shell with a new login shell
 	if [ -z "${DETACHED}" ]; then
 		exec tmux
 	else
@@ -14,18 +30,8 @@ if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME
 	fi
 fi
 
-# We cannot use the tmux's default-terminal as it is set once at startup.
-# This does not help with existing sessions that change to a different term; perhaps a PS1 for that?
-if [ -n "${TMUX}" ]; then
-	case $(tmux showenv TERM 2>/dev/null) in
-	*256color)
-		TERM="tmux-256color"
-		;;
-	*)
-		TERM="tmux"
-		;;
-	esac
-fi
+# calculate TERM once
+updatetmuxterm
 
 # zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
 typeset -U path
