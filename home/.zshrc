@@ -104,24 +104,6 @@ else
 	}
 fi
 
-# user mount helpers
-if haz udisksctl; then
-	mnt() {
-		if [ ${#} -ne 1 ]; then
-			echo "Usage: ${FUNCNAME} <block device>" >&2
-			return 1
-		fi
-		udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
-	}
-	umnt() {
-		if [ ${#} -ne 1 ]; then
-			echo "Usage: ${FUNCNAME} <block device>" >&2
-			return 1
-		fi
-		udisksctl unmount -b ${1}
-	}
-fi
-
 # music management utilities
 if haz rsync; then
 	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
