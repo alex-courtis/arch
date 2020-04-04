@@ -556,8 +556,11 @@ docker
 dunst
 efibootmgr
 facter
-firefox
+firefox-developer-edition
+firefox-developer-edition-i18n-en-gb
 gpm
+hunspell-en_AU
+hunspell-en_GB
 jq
 keychain
 network-manager-applet
@@ -592,6 +595,7 @@ xorg-xinit
 xorg-xrandr
 xsel
 xterm
+yq
 zsh-completions
 
 `gtk2` is not required for Jetbrains products, however as at 2019/03 it allows it to draw using the actual DPI of the monitor.
