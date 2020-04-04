@@ -1,0 +1,2 @@
+#!/bin/sh
+[ -x /usr/bin/firefox-developer-edition ] && exec /usr/bin/firefox-developer-edition "$@" >> "${MOZ_LOG_FILE}.stdout" 2>> "${MOZ_LOG_FILE}.stderr"
