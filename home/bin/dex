@@ -1,2 +1,0 @@
-#!/bin/sh
-[ -x /usr/bin/dex ] && exec /usr/bin/dex "$@" >> "${DE_LOG_DIR}/dex.stdout" 2>> "${DE_LOG_DIR}/dex.stderr"

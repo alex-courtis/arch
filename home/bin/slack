@@ -1,2 +1,0 @@
-#!/bin/sh
-[ -x /usr/bin/slack ] && exec /usr/bin/slack "$@" >> "${DE_LOG_DIR}/slack.stdout" 2>> "${DE_LOG_DIR}/slack.stderr"
