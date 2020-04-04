@@ -9,7 +9,9 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" use only the terminal's carefully selected 16 colours
-set t_Co=16
+" use only the terminal's carefully selected ANSI colours
+if $TERM =~? "256color"
+	set t_Co=16
+endif
 
 set background=dark
