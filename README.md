@@ -585,6 +585,7 @@ ttf-dejavu
 ttf-hack
 udisks2
 unzip
+vim-gitgutter
 xautolock
 xdg-utils
 xmlstarlet

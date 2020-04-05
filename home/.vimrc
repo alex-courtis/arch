@@ -18,3 +18,15 @@ set background=dark
 
 set listchars+=eol:¬
 set listchars+=tab:>·
+
+
+" vim-gitgutter
+"
+set updatetime=250
+
+set signcolumn=yes
+
+" ansi colours to match git diff
+highlight GitGutterAdd    ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
