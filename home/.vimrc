@@ -15,3 +15,6 @@ if $TERM =~? "256color"
 endif
 
 set background=dark
+
+set listchars+=eol:¬
+set listchars+=tab:>·
