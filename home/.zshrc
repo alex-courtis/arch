@@ -84,7 +84,7 @@ alias colours='msgcat --color=test'
 #   bg red background nonzero return code and newline
 #   bg host background coloured ":; " in black text
 PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
-PS2="%K{${HOST_COLOUR}}:; %_%k "
+PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 
 # title pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
