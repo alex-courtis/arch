@@ -32,7 +32,7 @@
     #geometry = "300x5-30+20"
 
     # 38 pixels is the size of an 11 pt dwm/dmenu bar
-    geometry = "1200x5-0+38"
+    geometry = "900x5-38-38"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
