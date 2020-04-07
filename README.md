@@ -581,7 +581,6 @@ sysstat
 the_silver_searcher
 tldr
 tmux
-ttf-dejavu
 ttf-hack
 udisks2
 unzip
@@ -612,7 +611,6 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 gron-bin
 qdirstat
 pulseaudio-ctl
-ttf-ms-fonts
 xlayoutdisplay
 
 ### Laptops Like
