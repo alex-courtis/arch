@@ -67,10 +67,11 @@ bindkey -M viins -r "^[,"
 # not using any esc, something sequences so drop the timeout from 40 for better editing responsiveness
 KEYTIMEOUT=1
 
-# vim beam/block cursor style; experimentation revealed the following values:
-# block: 0,1,2
-# underscore: 3,4
-# beam: 5,6
+# vim beam/block cursor style; using the same VTE values as vim terminus plugin
+# block/nomal: 2
+# underscore/replace: 4 (not yet...)
+# beam/insert: 6
+# mapping these to terminfo is a task for another day
 function zle-line-init zle-keymap-select {
 	case ${KEYMAP} in
 		(vicmd)
