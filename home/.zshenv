@@ -39,6 +39,9 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+# XDG mime can look at a "desktop specific" alex-mimeinfo.list, useful for managing a very small set
+export XDG_CURRENT_DESKTOP=alex
+
 # select host colour for prompts, tmux
 export HOST_COLOUR
 if [ "${USER}" = "root" ]; then
