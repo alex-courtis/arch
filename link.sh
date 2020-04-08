@@ -1,8 +1,13 @@
 #!/bin/sh
 
+#
 # links all files in home directory to their appropriate place under user HOME
 # must be run as user from this directory
+#
+
 ALEX_HOME="$(pwd)/home"
+
+ln -fsv "$(pwd)/.vim" "${HOME}"
 
 lsmod | grep i915 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
