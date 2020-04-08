@@ -61,9 +61,34 @@ bindkey -M viins "^K" history-beginning-search-backward
 bindkey -M viins "^B" history-incremental-search-backward
 
 # remove some escape,something bindings added by compinit
-# don't try setting KEYTIMEOUT=1 as that can prevent useful sequences like arrow keys
 bindkey -M viins -r "^[/"
 bindkey -M viins -r "^[,"
+
+# not using any esc, something sequences so drop the timeout from 40 for better editing responsiveness
+KEYTIMEOUT=1
+
+# vim beam/block cursor style; experimentation revealed the following values:
+# block: 0,1,2
+# underscore: 3,4
+# beam: 5,6
+function zle-line-init zle-keymap-select {
+	case ${KEYMAP} in
+		(vicmd)
+			printf "\033[2 q"
+			;;
+		(*)
+			printf "\033[6 q"
+			;;
+	esac
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# reset cursor to block
+function zle-line-finish {
+	printf "\033[2 q"
+}
+zle -N zle-line-finish
 
 # common aliases
 alias ls="ls --color=auto"
