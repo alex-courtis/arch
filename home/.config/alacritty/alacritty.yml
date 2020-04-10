@@ -721,11 +721,6 @@ schemes:
       text: '#181818'
       background: '#d8d8d8'
 
-    # copy of primary
-    selection:
-      text: '#181818'
-      background: '#d8d8d8'
-
     # Normal colors
     normal:
       black:   '#181818'
@@ -760,11 +755,6 @@ schemes:
     cursor:
       text: '#10100E'
       cursor: '#C6C6C6'
-
-    # copy of primary
-    selection:
-      text: '#10100E'
-      background: '#C6C6C6'
 
     # Normal colors
     normal:
@@ -1927,11 +1917,6 @@ schemes:
       text: '#000000'
       cursor: '#eeeeec'
 
-    # copy of primary
-    selection:
-      text: '#000000'
-      background: '#eeeeec'
-
     # Normal colors
     normal:
       black:   '#2e3436' # dark black-aluminium
@@ -1968,11 +1953,6 @@ schemes:
     cursor:
       text: '#000000'
       cursor: '#eeeeec'
-
-    # copy of primary
-    selection:
-      text: '#000000'
-      background: '#eeeeec'
 
     # Normal colors
     normal:
@@ -2219,11 +2199,6 @@ schemes:
     cursor:
       text: '#000000'
       cursor: '#ffffff'
-
-    # copy of primary
-    selection:
-      text: '#000000'
-      background: '#ffffff'
 
     # Normal colors
     normal:
