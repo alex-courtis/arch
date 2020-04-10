@@ -712,14 +712,9 @@ schemes:
       foreground: '#d8d8d8'
 
     # Colors the cursor will use if `custom_cursor_colors` is true
-    #cursor:
-      #text: '#d8d8d8'
-      #cursor: '#d8d8d8'
-
-    # copy of primary
     cursor:
-      text: '#181818'
-      background: '#d8d8d8'
+      text: '#d8d8d8'
+      cursor: '#d8d8d8'
 
     # Normal colors
     normal:
@@ -750,11 +745,6 @@ schemes:
     primary:
       background: '#10100E'
       foreground: '#C6C6C4'
-
-    # copy of primary
-    cursor:
-      text: '#10100E'
-      cursor: '#C6C6C6'
 
     # Normal colors
     normal:
@@ -1912,11 +1902,6 @@ schemes:
       #foreground: '#00ff00'
       foreground: '#eeeeec' # light white-aluminium
 
-    # copy of primary
-    cursor:
-      text: '#000000'
-      cursor: '#eeeeec'
-
     # Normal colors
     normal:
       black:   '#2e3436' # dark black-aluminium
@@ -1948,11 +1933,6 @@ schemes:
       #background: '#2e3436' # dark black-aluminium
       background: '#000000'
       foreground: '#eeeeec' # light white-aluminium
-
-    # copy of primary
-    cursor:
-      text: '#000000'
-      cursor: '#eeeeec'
 
     # Normal colors
     normal:
