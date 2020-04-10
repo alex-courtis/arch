@@ -53,3 +53,5 @@ for f in $(find "${ALEX_HOME}" -type f -or -type l); do
 		ln -fsv "${f}" "${TARGET}"
 	fi
 done
+
+update-desktop-database ~/.local/share/applications
