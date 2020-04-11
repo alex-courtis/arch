@@ -556,8 +556,8 @@ docker
 dunst
 efibootmgr
 facter
-firefox-developer-edition
-firefox-developer-edition-i18n-en-gb
+firefox
+firefox-i18n-en-gb
 gpm
 hunspell-en_AU
 hunspell-en_GB
@@ -585,7 +585,6 @@ ttf-dejavu
 ttf-hack
 udisks2
 unzip
-vim-gitgutter
 xautolock
 xdg-utils
 xmlstarlet
