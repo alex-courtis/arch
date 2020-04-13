@@ -1,8 +1,41 @@
-#!/bin/zsh
+#!/bin/sh
 
-# https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
+usage() {
+	echo "usage: $(basename ${0}) <local|system>"
+	exit 1
+}
 
-cc -M **/*c **/*h | \
-	sed -e 's/[\\ ]/\n/g' | \
-	sed -e '/^$/d' -e '/\.o:[ \t]*$/d' | \
-	ctags -L - --kinds-C=+pl
+if [ ${#} -ne 1 ]; then
+	usage
+fi
+
+TARGET=${1}
+if [ "${TARGET}" != "local" -a "${TARGET}" != "system" ]; then
+	usage
+fi
+
+OPTS="--languages=C,C++"
+
+# function prototypes
+OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
+
+# signatures
+OPTS="${OPTS} --fields=+S"
+
+case "${TARGET}" in
+	local)
+		# locals
+		OPTS="${OPTS} --fields=+l"
+
+		IN="."
+		OUT="tags"
+		;;
+	system)
+		IN="/usr/include"
+		OUT="${HOME}/.tags"
+esac
+
+CMD="ctags ${OPTS} -f ${OUT} -R ${IN}"
+
+echo $CMD
+$CMD
