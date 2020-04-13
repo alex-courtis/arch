@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# There are some more elegant solutions: https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
+# That does need some makefile integration, to pass the cc options, so that the correct includes are followed.
+
 usage() {
 	echo "usage: $(basename ${0}) <local|system>"
 	exit 1
@@ -25,7 +28,7 @@ OPTS="${OPTS} --fields=+S"
 case "${TARGET}" in
 	local)
 		# locals
-		OPTS="${OPTS} --fields=+l"
+		OPTS="${OPTS} --c-kinds=+l"
 
 		IN="."
 		OUT="tags"
