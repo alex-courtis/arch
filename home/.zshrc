@@ -58,6 +58,7 @@ bindkey -M viins "^J" history-beginning-search-forward
 bindkey -M viins "^K" history-beginning-search-backward
 
 # incremental search which uses a limited set of regular bindings, overridden by the (empty) isearch map
+bindkey -M viins "^F" history-incremental-search-forward
 bindkey -M viins "^B" history-incremental-search-backward
 
 # remove some escape,something bindings added by compinit
