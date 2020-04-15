@@ -107,29 +107,29 @@ alias pt='pstree -Tap -C age'
 alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
 alias colours='msgcat --color=test'
 
+# git PS1
+[ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
+if haz __git_ps1; then
+	export GIT_PS1_SHOWDIRTYSTATE=true
+	export GIT_PS1_SHOWSTASHSTATE=true
+	export GIT_PS1_SHOWUNTRACKEDFILES=true
+else
+	function __git_ps1() { : }
+fi
+
 # prompt:
 #   bg red background nonzero return code and newline
 #   bg host background coloured ":; " in black text
 PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
 PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 
-# title pwd and __git_ps1 (if present)
+# title:
+#   pwd and __git_ps1 (if present)
 #   "\e]0;" ESC xterm (title) code
 #   "\a"	BEL
-[[ -f /usr/share/git/completion/git-prompt.sh ]] && . /usr/share/git/completion/git-prompt.sh
-if haz __git_ps1; then
-
-	# show extra flags
-	export GIT_PS1_SHOWDIRTYSTATE=true
-	export GIT_PS1_SHOWSTASHSTATE=true
-	precmd() {
-		print -Pn "\e]0;%~$(__git_ps1)\a"
-	}
-else
-	precmd() {
-		print -Pn "\e]0;%~\a"
-	}
-fi
+function precmd() {
+	print -Pn "\e]0;%~$(__git_ps1)\a"
+}
 
 # user mount helpers
 if haz udisksctl; then
