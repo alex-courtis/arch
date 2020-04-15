@@ -585,6 +585,7 @@ ttf-dejavu
 ttf-hack
 udisks2
 unzip
+vimpager
 xautolock
 xdg-utils
 xmlstarlet

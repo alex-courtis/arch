@@ -6,11 +6,8 @@ typeset -U path
 export EDITOR="vi"
 export VISUAL="vi"
 
-# better paging
-export PAGER="less"
-
-# case insensitive searching and colours
-export LESS="iR"
+# page with vim
+export PAGER="/usr/bin/vimpager"
 
 # keep this synced with 90-keyboard.conf, until X goes away
 export XKB_DEFAULT_LAYOUT="us"
