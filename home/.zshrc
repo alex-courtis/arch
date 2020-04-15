@@ -131,35 +131,29 @@ function precmd() {
 }
 
 # user mount helpers
-if haz udisksctl; then
-	mnt() {
-		if [ ${#} -ne 1 ]; then
-			echo "Usage: ${FUNCNAME} <block device>" >&2
-			return 1
-		fi
-		udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
-	}
-	umnt() {
-		if [ ${#} -ne 1 ]; then
-			echo "Usage: ${FUNCNAME} <block device>" >&2
-			return 1
-		fi
-		udisksctl unmount -b ${1}
-	}
-fi
+function mnt() {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${FUNCNAME} <block device>" >&2
+		return 1
+	fi
+	udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
+}
+function umnt() {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${FUNCNAME} <block device>" >&2
+		return 1
+	fi
+	udisksctl unmount -b ${1}
+}
 
 # music management utilities
-if haz rsync; then
-	alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
-	alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
-	alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/music/"
-	alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ \${HOME}/music.arch/"
-fi
-if haz adb-sync; then
-	alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
-	alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
-	alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
-fi
+alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
+alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
+alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/music/"
+alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ \${HOME}/music.arch/"
+alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
+alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
+alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
 
 # use the keychain wrapper to start ssh-agent if needed
 if haz keychain && [ -f ~/.ssh/id_rsa ]; then
