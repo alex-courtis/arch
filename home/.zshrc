@@ -72,8 +72,8 @@ KEYTIMEOUT=1
 # block/nomal: 2
 # underscore/replace: 4 (not yet...)
 # beam/insert: 6
-# mapping these to terminfo is a task for another day
-function zle-line-init zle-keymap-select {
+# mapping these to $terminfo is a task for another day
+function updatecursor() {
 	case ${KEYMAP} in
 		(vicmd)
 			printf "\033[2 q"
@@ -83,14 +83,13 @@ function zle-line-init zle-keymap-select {
 			;;
 	esac
 }
-zle -N zle-line-init
-zle -N zle-keymap-select
+zle -N zle-line-init updatecursor
+zle -N zle-keymap-select updatecursor
 
-# reset cursor to block
-function zle-line-finish {
+function resetcursor() {
 	printf "\033[2 q"
 }
-zle -N zle-line-finish
+zle -N zle-line-finish resetcursor
 
 # common aliases
 alias ls="ls --color=auto"
