@@ -19,8 +19,6 @@ set background=dark
 set listchars+=eol:¬
 set listchars+=tab:>·
 
-set tags+=~/.tags
-
 " vim-gitgutter
 "
 set updatetime=250

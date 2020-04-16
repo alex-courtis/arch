@@ -3,3 +3,5 @@
 *ipr
 cmake-build-*/
 .vscode/
+tags
+ctag.filenames

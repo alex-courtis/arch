@@ -1,44 +1,32 @@
 #!/bin/sh
 
-# There are some more elegant solutions: https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
-# That does need some makefile integration, to pass the cc options, so that the correct includes are followed.
+# Intended for C projects. C++ is included to make sense of C/C++ system headers.
+#
+# Invoke from a makefile e.g.
+# ctags:
+#	gentags $(SRC) $(CSRC)
 
-usage() {
-	echo "usage: $(basename ${0}) <local|system>"
-	exit 1
-}
+# https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
+cc -M "$@" \
+	| sed -e 's/[\\ ]/\n/g'  \
+	| sed -e '/^$/d' \
+	| sed -e '/\.o:[ \t]*$/d' \
+	> ctag.filenames
+wc -l ctag.filenames
 
-if [ ${#} -ne 1 ]; then
-	usage
-fi
-
-TARGET=${1}
-if [ "${TARGET}" != "local" -a "${TARGET}" != "system" ]; then
-	usage
-fi
-
+# only a few system headers and project files will be C
 OPTS="--languages=C,C++"
 
-# function prototypes
-OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
+# prototypes
+OPTS="${OPTS} --c++-kinds=+pl --c-kinds=+pl"
 
 # signatures
 OPTS="${OPTS} --fields=+S"
 
-case "${TARGET}" in
-	local)
-		# locals
-		OPTS="${OPTS} --c-kinds=+l"
+# signatures
+OPTS="${OPTS} --extras=+q"
 
-		IN="."
-		OUT="tags"
-		;;
-	system)
-		IN="/usr/include"
-		OUT="${HOME}/.tags"
-esac
+CMD="ctags -L ctag.filenames ${OPTS}"
 
-CMD="ctags ${OPTS} -f ${OUT} -R ${IN}"
-
-echo $CMD
-$CMD
+echo "${CMD}"
+${CMD}
