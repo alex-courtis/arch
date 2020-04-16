@@ -1,11 +1,4 @@
-function haz() {
-        return $(type "${1}" > /dev/null 2>&1)
-}
-
-function maybe() {
-	! haz "${1}" || "${@}"
-}
-
+#!/bin/sh
 
 # run all system xinitrc shell scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -14,27 +7,22 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 	done
 fi
 
-# merge .Xresources, in case we're running without any sort of display manager
+# merge .Xresources
 if [ -r ${HOME}/.Xresources ]; then
 	xrdb -load ${HOME}/.Xresources
 fi
 
-# xmodmap is required by xinit
-if [ -r ${HOME}/.xmodmaprc ]; then
-	xmodmap ${HOME}/.xmodmaprc
-fi
-
 # setup displays before we start any applications
-maybe xlayoutdisplay
+xlayoutdisplay
 
 # start all the autostart apps
-maybe dex -a -v
+dex -a -v
 
 # slock the screen after 5 mins
-maybe xautolock -locker slock -time 5 &
+xautolock -locker slock -time 5 &
 
 # numlock on
-maybe numlockx
+numlockx
 
 # start window manager
 slstatus >/dev/null 2>&1 &
