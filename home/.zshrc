@@ -109,11 +109,11 @@ alias less="${PAGER}"
 alias zless="${PAGER}"
 
 # git PS1
-[ -f /usr/share/git/completion/git-prompt.sh ] && . /usr/share/git/completion/git-prompt.sh
-if haz __git_ps1; then
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWSTASHSTATE=true
 	export GIT_PS1_SHOWUNTRACKEDFILES=true
+	. /usr/share/git/completion/git-prompt.sh
 else
 	function __git_ps1() { : }
 fi
