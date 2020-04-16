@@ -4,15 +4,14 @@
 #
 # Invoke from a makefile e.g.
 # ctags:
-#	gentags $(SRC) $(CSRC)
+#	generate-ctags-c $(SRC) $(CFLAGS)
 
 # https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
 cc -M "$@" \
 	| sed -e 's/[\\ ]/\n/g'  \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
-	> ctag.filenames
-wc -l ctag.filenames
+	> /tmp/generate-ctags-c.files
 
 # only a few system headers and project files will be C
 OPTS="--languages=C,C++"
@@ -26,7 +25,7 @@ OPTS="${OPTS} --fields=+S"
 # signatures
 OPTS="${OPTS} --extras=+q"
 
-CMD="ctags -L ctag.filenames ${OPTS}"
+CMD="ctags -L /tmp/generate-ctags-c.files ${OPTS}"
 
 echo "${CMD}"
 ${CMD}
