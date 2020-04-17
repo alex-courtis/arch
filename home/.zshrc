@@ -53,6 +53,9 @@ bindkey -v
 bindkey -M viins "${terminfo[kdch1]}" delete-char
 bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
+# reverse completion
+bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+
 # search up to cursor
 bindkey -M viins "^J" history-beginning-search-forward
 bindkey -M viins "^K" history-beginning-search-backward
