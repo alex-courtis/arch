@@ -105,8 +105,6 @@ alias diffp="diff -Naur"
 alias pt='pstree -Tap -C age'
 alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
 alias colours='msgcat --color=test'
-alias less="${PAGER}"
-alias zless="${PAGER}"
 
 # git PS1
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
