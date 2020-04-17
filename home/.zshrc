@@ -39,7 +39,8 @@ typeset -U path
 # ensure that these are at the very end of the path, to prevent clobbering of system utils e.g. xpath, nvm
 [[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
-# boot the zsh completion system
+# zsh completion
+zstyle ':completion:*:*:*:*:*' menu select
 autoload -Uz compinit
 compinit
 
