@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # run all system xinitrc shell scripts
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
@@ -19,7 +19,9 @@ xlayoutdisplay
 dex -a -v
 
 # slock the screen after 5 mins
-xautolock -locker slock -time 5 &
+if [ $(whence xautolock) -a $(whence slock) ]; then
+	xautolock -locker slock -time 5 &
+fi
 
 # numlock on
 numlockx
