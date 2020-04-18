@@ -62,6 +62,24 @@ githubShow ()
   doOpen "${base}/${context}"
 }
 
+gitlabShow ()
+{
+echo "1 ${1}"
+echo "2 ${2}"
+echo "3 ${3}"
+echo "4 ${4}"
+  slug="${1:?}"
+  case "${2:?}" in
+    branch) context="-/tree/${3:?}" ;;
+    commit) context="-/commit/${3:?}" ;;
+    file) context="-/blob/${3:?}/${4:?}" ;;
+    default) ;;
+    *) echo "No context format for gitlab '$2'" 1>&2 ;;
+  esac
+  base="https://gitlab.com/${slug}"
+  doOpen "${base}/${context}"
+}
+
 gitShow ()
 {
   # Try for a pushurl first, because this is the correct url when bitbucket server mirroring is in use
@@ -103,6 +121,14 @@ gitShow ()
     git@github.com:*)
       slug=${origin#git@github.com:}
       githubShow "${slug%.git}" "$@"
+      ;;
+    https://gitlab.com/*)
+      slug=${origin#https://gitlab.com/}
+      gitlabShow "${slug%.git}" "$@"
+      ;;
+    git@gitlab.com:*)
+      slug=${origin#git@gitlab.com:}
+      gitlabShow "${slug%.git}" "$@"
       ;;
     *)
       echo "Sorry, i don't know where to find ${origin}"
