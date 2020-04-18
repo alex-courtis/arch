@@ -114,7 +114,6 @@ alias colours='msgcat --color=test'
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWSTASHSTATE=true
-	export GIT_PS1_SHOWUNTRACKEDFILES=true
 	. /usr/share/git/completion/git-prompt.sh
 else
 	function __git_ps1() { : }
