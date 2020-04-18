@@ -532,12 +532,16 @@ blacklist nouveau
 
 ## Install Packages
 
-I'm liking [aura](https://github.com/aurapm/aura) to manage system and AUR packages.
+Use [pacaur](https://github.com/ajlende/dotbot-pacaur) to manage system and AUR packages.
 
 ```sh
 cd /tmp
-git clone https://aur.archlinux.org/aura-bin.git
-cd aura-bin
+git clone https://aur.archlinux.org/auracle-git.git
+cd auracle-git
+makepkg -sri
+cd ..
+git clone https://aur.archlinux.org/pacaur.git
+cd pacaur
 makepkg -sri
 ```
 
@@ -606,7 +610,7 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 #### AUR
 
-`aura -Ax ...`
+`pacaur -S ...`
 
 gron-bin
 qdirstat
