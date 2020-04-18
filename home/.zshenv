@@ -9,7 +9,7 @@ export VISUAL="vi"
 # better paging
 export PAGER="less"
 
-# case insensitive searching and colours
+# case insensitive searching and colours for man
 export LESS=-iR
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
