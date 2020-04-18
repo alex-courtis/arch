@@ -1,6 +1,4 @@
-# .zshenv is invoked when a login shell is started; zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append to the path
-typeset -U path
-[[ -d ~/bin ]] && path=(~/bin "$path[@]")
+path=(~/bin $path)
 
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
@@ -11,19 +9,13 @@ export PAGER="less"
 
 # case insensitive searching and colours for man
 export LESS=-iR
-export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
-export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink		red
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold		cyan
 export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
-export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video	yellow on blue
 export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
-export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline	green
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
-
-# keep this synced with 90-keyboard.conf, until X goes away
-export XKB_DEFAULT_LAYOUT="us"
-export XKB_DEFAULT_MODEL="pc105"
-export XKB_DEFAULT_VARIANT="dvp"
-export XKB_DEFAULT_OPTIONS="caps:backspace"
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -46,7 +38,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
-# XDG mime can look at a "desktop specific" alex-mimeinfo.list, useful for managing a very small set
+# XDG mime use the "desktop specific" alex-mimeinfo.list first
 export XDG_CURRENT_DESKTOP=alex
 
 # select host colour for prompts, tmux
