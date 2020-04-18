@@ -61,10 +61,6 @@ bindkey -M viins "^K" history-beginning-search-backward
 bindkey -M viins "^F" history-incremental-search-forward
 bindkey -M viins "^B" history-incremental-search-backward
 
-# remove some escape,something bindings for bash style _history-complete-*
-bindkey -M viins -r "^[/"
-bindkey -M viins -r "^[,"
-
 # not using any esc, something sequences so drop the timeout from 40 for better editing responsiveness
 KEYTIMEOUT=1
 
