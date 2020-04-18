@@ -1,10 +1,6 @@
-# shell agnostic function returns true if ${1} is a valid executable, function etc.
-function haz() {
-	return $(type "${1}" > /dev/null 2>&1)
-}
-
 # Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.
-# Manually invoke when attaching to an existing session; too expensive for precmd.
+# Too expensive for precmd.
+# Manually invoke when attaching to an existing session from a different terminal type.
 function updatetmuxterm() {
 	if [ -n "${TMUX}" ]; then
 		case $(tmux show-environment TERM 2>/dev/null) in
@@ -18,8 +14,9 @@ function updatetmuxterm() {
 	fi
 }
 
+
 # maybe run tmux
-if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
+if [ $(whence tmux) ] && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
 	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 
 	# replace this shell with a new login shell
@@ -29,32 +26,31 @@ if haz tmux && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME
 		exec tmux attach -t "${DETACHED}"
 	fi
 fi
-
-# calculate TERM once
 updatetmuxterm
 
-# zsh on arch will source /etc/profile and thus the scripts in /etc/profile.d for each login shell, some of which will append duplicates, hence we need to invoke this typeset to remove any dupes
+
+# remove duplicates coming from arch's /etc/profile.d
 typeset -U path
 
-# ensure that these are at the very end of the path, to prevent clobbering of system utils e.g. xpath, nvm
-[[ -d ~/src/atlassian-scripts ]] && path=("$path[@]" ~/src/atlassian-scripts/bin)
 
 # zsh completion
 zstyle ':completion:*:*:*:*:*' menu select
 autoload -Uz compinit
 compinit
 
+
 # moar history
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+
 
 # vim zle mode with proper deletes
 bindkey -v
 bindkey -M viins "${terminfo[kdch1]}" delete-char
 bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
-# reverse completion
+# shift tab
 bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
 
 # search up to cursor
@@ -65,12 +61,13 @@ bindkey -M viins "^K" history-beginning-search-backward
 bindkey -M viins "^F" history-incremental-search-forward
 bindkey -M viins "^B" history-incremental-search-backward
 
-# remove some escape,something bindings added by compinit
+# remove some escape,something bindings for bash style _history-complete-*
 bindkey -M viins -r "^[/"
 bindkey -M viins -r "^[,"
 
 # not using any esc, something sequences so drop the timeout from 40 for better editing responsiveness
 KEYTIMEOUT=1
+
 
 # vim beam/block cursor style; using the same VTE values as vim terminus plugin
 # block/nomal: 2
@@ -89,13 +86,45 @@ function updatecursor() {
 }
 zle -N zle-line-init updatecursor
 zle -N zle-keymap-select updatecursor
-
 function resetcursor() {
 	printf "\033[2 q"
 }
 zle -N zle-line-finish resetcursor
 
-# common aliases
+
+# git PS1
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+	export GIT_PS1_SHOWDIRTYSTATE=true
+	export GIT_PS1_SHOWSTASHSTATE=true
+	. /usr/share/git/completion/git-prompt.sh
+else
+	function __git_ps1() { : }
+fi
+
+
+# prompt:
+#   bg red background nonzero return code and newline
+#   bg host background coloured ":; " in black text
+PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
+PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
+
+
+# title:
+#   pwd and __git_ps1 (if present)
+#   "\e]0;" ESC xterm (title) code
+#   "\a"	BEL
+function precmd() {
+	print -Pn "\e]0;%~$(__git_ps1)\a"
+}
+
+
+# use the keychain wrapper to start ssh-agent if needed
+if [ $(whence keychain) ] && [ -f ~/.ssh/id_rsa ]; then
+	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
+fi
+
+
+# general aliases
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
@@ -110,28 +139,16 @@ alias pt='pstree -Tap -C age'
 alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
 alias colours='msgcat --color=test'
 
-# git PS1
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-	export GIT_PS1_SHOWDIRTYSTATE=true
-	export GIT_PS1_SHOWSTASHSTATE=true
-	. /usr/share/git/completion/git-prompt.sh
-else
-	function __git_ps1() { : }
-fi
 
-# prompt:
-#   bg red background nonzero return code and newline
-#   bg host background coloured ":; " in black text
-PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
-PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
+# music management aliases
+alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
+alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
+alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/music/"
+alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ \${HOME}/music.arch/"
+alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
+alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
+alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
 
-# title:
-#   pwd and __git_ps1 (if present)
-#   "\e]0;" ESC xterm (title) code
-#   "\a"	BEL
-function precmd() {
-	print -Pn "\e]0;%~$(__git_ps1)\a"
-}
 
 # user mount helpers
 function mnt() {
@@ -148,17 +165,3 @@ function umnt() {
 	fi
 	udisksctl unmount -b ${1}
 }
-
-# music management utilities
-alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
-alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
-alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/music/"
-alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music.arch/ \${HOME}/music.arch/"
-alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
-alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
-alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
-
-# use the keychain wrapper to start ssh-agent if needed
-if haz keychain && [ -f ~/.ssh/id_rsa ]; then
-	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
-fi
