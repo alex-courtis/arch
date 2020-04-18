@@ -16,8 +16,7 @@ endif
 
 set background=dark
 
-set listchars+=eol:¬
-set listchars+=tab:>·
+set listchars=trail:·,tab:>\ ,eol:¬
 
 " vim-gitgutter
 "
