@@ -69,7 +69,7 @@ KEYTIMEOUT=1
 # block/nomal: 2
 # underscore/replace: 4 (not yet...)
 # beam/insert: 6
-# mapping these to $terminfo is a task for another day
+# cannot find any terminfo entries for these, so hardcode
 function updatecursor() {
 	case ${KEYMAP} in
 		(vicmd)
