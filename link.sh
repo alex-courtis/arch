@@ -7,8 +7,6 @@
 
 ALEX_HOME="$(pwd)/home"
 
-ln -fsv "$(pwd)/.vim" "${HOME}"
-
 lsmod | grep i915 >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	I915="true"
@@ -55,3 +53,8 @@ for f in $(find "${ALEX_HOME}" -type f -or -type l); do
 done
 
 update-desktop-database ~/.local/share/applications
+
+mkdir -pv "${HOME}/.vim/pack/foo/start"
+for d in "$(pwd)/vim.pack.foo.start/"*; do
+	ln -fsv "${d}" "${HOME}/.vim/pack/foo/start"
+done

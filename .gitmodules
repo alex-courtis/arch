@@ -1,0 +1,6 @@
+[submodule "vim.pack.foo.start/gitgutter"]
+	path = vim.pack.foo.start/gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "vim.pack.foo.start/terminus"]
+	path = vim.pack.foo.start/terminus
+	url = https://github.com/wincent/terminus.git
