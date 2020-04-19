@@ -105,12 +105,9 @@ PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
 PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 
 
-# title:
-#   pwd and __git_ps1 (if present)
-#   "\e]0;" ESC xterm (title) code
-#   "\a"	BEL
+# title
 function precmd() {
-	print -Pn "\e]0;%~$(__git_ps1)\a"
+	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${terminfo[fsl]}"
 }
 
 
