@@ -7,8 +7,8 @@ export VISUAL="vi"
 # better paging
 export PAGER="less"
 
-# case insensitive searching and colours for man
-export LESS=-iR
+# case insensitive searching, colours and skip single screen
+export LESS=-iRF
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink		red
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold		cyan
 export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
