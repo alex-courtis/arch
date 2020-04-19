@@ -3,8 +3,26 @@
 # Intended for C projects. C++ is included to make sense of C/C++ system headers.
 #
 # Invoke from a makefile e.g.
-# ctags:
-#	generate-ctags-c $(SRC) $(CFLAGS)
+#  ctags:
+#  	generate-ctags-c $(SRC) $(CFLAGS)
+#
+# or directly e.g.
+#  generate-ctags-c *c *h *cpp -I /usr/include/libevdev-1.0
+
+function usage() {
+	cat << END_USAGE
+From a Makefile:
+	ctags:
+		generate-ctags-c \$(SRC) \$(CFLAGS)
+or direct:
+	generate-ctags-c *c *h *cpp -I /usr/include/libevdev-1.0
+END_USAGE
+}
+
+if [ $# -eq 0 ]; then
+	usage
+	exit 1
+fi
 
 # https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
 cc -M "$@" \
@@ -22,7 +40,7 @@ OPTS="${OPTS} --c++-kinds=+pl --c-kinds=+pl"
 # signatures
 OPTS="${OPTS} --fields=+S"
 
-# signatures
+# class qualifiers
 OPTS="${OPTS} --extras=+q"
 
 CMD="ctags -L /tmp/generate-ctags-c.files ${OPTS}"
