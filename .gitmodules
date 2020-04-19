@@ -4,3 +4,6 @@
 [submodule "vim.pack.foo.start/terminus"]
 	path = vim.pack.foo.start/terminus
 	url = https://github.com/wincent/terminus.git
+[submodule "vim.pack.foo.start/editorconfig"]
+	path = vim.pack.foo.start/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git

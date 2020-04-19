@@ -18,6 +18,7 @@ set background=dark
 
 set listchars=trail:·,tab:>\ ,eol:¬
 
+
 " vim-gitgutter
 "
 set updatetime=250
@@ -28,3 +29,9 @@ set signcolumn=yes
 highlight GitGutterAdd    ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
+
+
+" editorconfig
+"
+hi ColorColumn ctermbg=8
+let g:EditorConfig_max_line_indicator = "line"
