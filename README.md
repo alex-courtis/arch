@@ -582,7 +582,6 @@ the_silver_searcher
 tmux
 ttf-dejavu
 ttf-hack
-udisks2
 unzip
 xautolock
 xdg-utils

@@ -132,7 +132,6 @@ alias pt='pstree -Tap -C age'
 alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
 alias colours='msgcat --color=test'
 
-
 # music management aliases
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
 alias music.arch-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music.arch/ /net/lord/music.arch/"
@@ -142,22 +141,6 @@ alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
 alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
 
-
-# user mount helpers
-function mnt() {
-	if [ ${#} -ne 1 ]; then
-		echo "Usage: ${FUNCNAME} <block device>" >&2
-		return 1
-	fi
-	udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
-}
-function umnt() {
-	if [ ${#} -ne 1 ]; then
-		echo "Usage: ${FUNCNAME} <block device>" >&2
-		return 1
-	fi
-	udisksctl unmount -b ${1}
-}
 
 # add limited colour to man pages
 function man() {
