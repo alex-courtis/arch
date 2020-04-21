@@ -573,8 +573,7 @@ numlockx
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
-parcelliterc
-pasystray
+parcellite
 pavucontrol
 pwgen
 redshift
