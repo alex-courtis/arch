@@ -16,10 +16,10 @@ fi
 xlayoutdisplay
 
 # start all the autostart apps
-dex -a -v
+dapper --user-dir --system-dir --desktop alex
 
 # slock the screen after 5 mins
-if [ $(whence xautolock) -a $(whence slock) ]; then
+if [ "$(whence xautolock)" -a "$(whence slock)" ]; then
 	xautolock -locker slock -time 5 &
 fi
 

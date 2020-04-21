@@ -554,12 +554,10 @@ makepkg -sri
 alacritty
 autofs
 calc
-dex
 dmenu
 docker
 dunst
 efibootmgr
-facter
 firefox
 firefox-i18n-en-gb
 gpm
@@ -611,6 +609,7 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 `pacaur -S ...`
 
+dapper
 gron-bin
 qdirstat
 pulseaudio-ctl
