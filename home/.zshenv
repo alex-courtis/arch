@@ -10,9 +10,6 @@ export PAGER="less"
 # case insensitive searching, raw escape sequence passthrough, skip single screen
 export LESS=iRF
 
-# we only get 8 or 256 colour styling (selected based on $TERM) and they are both notvim
-export LESSOPEN="| source-highlight-esc.sh %s"
-
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
 
