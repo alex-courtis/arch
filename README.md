@@ -574,7 +574,6 @@ noto-fonts-extra
 parcellite
 pavucontrol
 pwgen
-redshift
 rsync
 scrot
 slock
@@ -611,8 +610,9 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 dapper
 gron-bin
-qdirstat
 pulseaudio-ctl
+qdirstat
+redshift
 xlayoutdisplay
 
 ### Laptops Like
@@ -645,9 +645,7 @@ Run:
 
 ### Redshift
 
-`redshift-gtk`
-
-Right click systray icon for autostart.
+`systemctl enable --user redshift`
 
 ## Ready To Go
 
