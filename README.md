@@ -611,8 +611,7 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 dapper
 gron-bin
 pulseaudio-ctl
-qdirstat
-redshift
+redshift-minimal
 xlayoutdisplay
 
 ### Laptops Like
