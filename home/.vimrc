@@ -4,19 +4,23 @@ runtime! defaults.vim
 " autoselect: visual selections go to * register: XA_SECONDARY
 set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
-set hlsearch
-
-set ignorecase
-set smartcase
-
 " use only the terminal's carefully selected ANSI colours
 if $TERM =~? "256color"
 	set t_Co=16
 endif
 
+set hlsearch
+set ignorecase
+set smartcase
+
 set background=dark
 
 set listchars=trail:·,tab:>\ ,eol:¬
+
+set number relativenumber
+highlight LineNrBelow ctermfg=8
+highlight LineNr ctermfg=15
+highlight LineNrAbove ctermfg=8
 
 
 " vim-gitgutter
@@ -33,5 +37,5 @@ highlight GitGutterDelete ctermfg=1
 
 " editorconfig
 "
-hi ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=8
 let g:EditorConfig_max_line_indicator = "line"
