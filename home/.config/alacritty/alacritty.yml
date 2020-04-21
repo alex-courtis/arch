@@ -2182,18 +2182,18 @@ schemes:
       red:     '#cd0000'
       green:   '#00cd00'
       yellow:  '#cdcd00'
-      blue:    '#0000cd'
+      blue:    '#0000ee'
       magenta: '#cd00cd'
       cyan:    '#00cdcd'
       white:   '#e5e5e5'
 
     # Bright colors
     bright:
-      black:   '#4d4d4d'
+      black:   '#7f7f7f'
       red:     '#ff0000'
       green:   '#00ff00'
       yellow:  '#ffff00'
-      blue:    '#0000ff'
+      blue:    '#5c5cff'
       magenta: '#ff00ff'
       cyan:    '#00ffff'
       white:   '#ffffff'
