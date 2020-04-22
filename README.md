@@ -545,7 +545,7 @@ cd pacaur
 makepkg -sri
 ```
 
-### Packages I Like
+### Arch Packages I Like
 
 #### Official
 
@@ -612,11 +612,14 @@ gron-bin
 pulseaudio-ctl
 redshift-minimal
 xlayoutdisplay
+yq2-bin
 
-### Laptops Like
+### Arch Packages Laptops Like
 
 libinput-gestures
 xorg-xbacklight
+
+### node Packages I like
 
 ## Build Desktop Environment
 

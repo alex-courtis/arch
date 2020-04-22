@@ -1,19 +1,22 @@
 #!/bin/sh
 
-# Intended for C projects. C++ is included to make sense of C/C++ system headers.
+# Generates tags for a C/C++ project and its includes.
+# 
+# Identifies all source and headers by invoking `cc -M` with all the supplied arguments,
+# then passing the results to ctags.
 #
 # Invoke from a makefile e.g.
 #  ctags:
 #  	generate-ctags-c $(SRC) $(CFLAGS)
 #
-# or directly e.g.
+# Or directly e.g.
 #  generate-ctags-c *c *h *cpp -I /usr/include/libevdev-1.0
 
 function usage() {
 	cat << END_USAGE
 From a Makefile:
 	ctags:
-		generate-ctags-c \$(SRC) \$(CFLAGS)
+		generate-ctags-c \$(SRC) \$(INC)
 or direct:
 	generate-ctags-c *c *h *cpp -I /usr/include/libevdev-1.0
 END_USAGE
@@ -25,13 +28,15 @@ if [ $# -eq 0 ]; then
 fi
 
 # https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
-cc -M "$@" \
+CMD_DEPS="cc -M $@"
+echo ${CMD_DEPS}
+${CMD_DEPS} \
 	| sed -e 's/[\\ ]/\n/g'  \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
 	> /tmp/generate-ctags-c.files
 
-# only a few system headers and project files will be C
+# only a few system headers will be C
 OPTS="--languages=C,C++"
 
 # prototypes
@@ -43,7 +48,8 @@ OPTS="${OPTS} --fields=+S"
 # class qualifiers
 OPTS="${OPTS} --extras=+q"
 
-CMD="ctags -L /tmp/generate-ctags-c.files ${OPTS}"
+CMD_CTAGS="ctags -L /tmp/generate-ctags-c.files ${OPTS}"
 
-echo "${CMD}"
-${CMD}
+echo "${CMD_CTAGS}"
+${CMD_CTAGS}
+
