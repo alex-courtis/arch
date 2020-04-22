@@ -7,3 +7,6 @@
 [submodule "vim.pack.foo.start/editorconfig"]
 	path = vim.pack.foo.start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim.pack.foo.start/xterm-color-table"]
+	path = vim.pack.foo.start/xterm-color-table
+	url = https://github.com/guns/xterm-color-table.vim.git

@@ -4,7 +4,8 @@ runtime! defaults.vim
 " autoselect: visual selections go to * register: XA_SECONDARY
 set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
-" use only the terminal's carefully selected ANSI colours
+" Use only the terminal's carefully selected ANSI colours for colour schemes.
+" I am still permitted to use colours outside of that range.
 if $TERM =~? "256color"
 	set t_Co=16
 endif
@@ -19,7 +20,6 @@ set listchars=trail:·,tab:>\ ,eol:¬
 
 set number relativenumber
 highlight LineNrBelow ctermfg=8
-highlight LineNr ctermfg=15
 highlight LineNrAbove ctermfg=8
 
 
@@ -35,6 +35,6 @@ highlight GitGutterDelete ctermfg=1
 
 " editorconfig
 "
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=234
 let g:EditorConfig_max_line_indicator = "line"
 
