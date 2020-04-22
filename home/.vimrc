@@ -27,8 +27,6 @@ highlight LineNrAbove ctermfg=8
 "
 set updatetime=250
 
-set signcolumn=yes
-
 " ansi colours to match git diff
 highlight GitGutterAdd    ctermfg=2
 highlight GitGutterChange ctermfg=3
@@ -39,3 +37,4 @@ highlight GitGutterDelete ctermfg=1
 "
 highlight ColorColumn ctermbg=8
 let g:EditorConfig_max_line_indicator = "line"
+
