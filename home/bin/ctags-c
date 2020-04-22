@@ -3,11 +3,11 @@
 # Generates tags for a C/C++ project and its includes.
 # 
 # Identifies all source and headers by invoking `cc -M` with all the supplied arguments,
-# then passing the results to ctags.
+# then passes the results to ctags for processing.
 #
 # Invoke from a makefile e.g.
 #  ctags:
-#  	generate-ctags-c $(SRC) $(CFLAGS)
+#  	generate-ctags-c $(SRC) $(CPPFLAGS)
 #
 # Or directly e.g.
 #  generate-ctags-c *c *h *cpp -I /usr/include/libevdev-1.0
@@ -34,7 +34,7 @@ ${CMD_DEPS} \
 	| sed -e 's/[\\ ]/\n/g'  \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
-	> /tmp/generate-ctags-c.files
+	> /tmp/ctags-c.files
 
 # only a few system headers will be C
 OPTS="--languages=C,C++"
@@ -48,7 +48,7 @@ OPTS="${OPTS} --fields=+S"
 # class qualifiers
 OPTS="${OPTS} --extras=+q"
 
-CMD_CTAGS="ctags -L /tmp/generate-ctags-c.files ${OPTS}"
+CMD_CTAGS="ctags -L /tmp/ctags-c.files ${OPTS}"
 
 echo "${CMD_CTAGS}"
 ${CMD_CTAGS}
