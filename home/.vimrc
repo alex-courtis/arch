@@ -38,3 +38,7 @@ highlight GitGutterDelete ctermfg=1
 highlight ColorColumn ctermbg=234
 let g:EditorConfig_max_line_indicator = "line"
 
+
+" xterm-color-table
+"
+let g:XtermColorTableDefaultOpen = 'edit'
