@@ -1,0 +1,45 @@
+! Blood Moon Colours
+
+! special
+*.foreground:   #c6c6c4
+*.background:   #10100e
+*.cursorColor:  #c6c6c4
+
+! black
+*.color0:       #10100e
+*.color8:       #696969
+
+! red
+*.color1:       #c40233
+*.color9:       #ff2400
+
+! green
+*.color2:       #009f6b
+*.color10:      #03c03c
+
+! yellow
+*.color3:       #ffd700
+*.color11:      #fdff00
+
+! blue
+*.color4:       #0087bd
+*.color12:      #007fff
+
+! magenta
+*.color5:       #9a4eae
+*.color13:      #ff1493
+
+! cyan
+*.color6:       #20b2aa
+*.color14:      #00cccc
+
+! white
+*.color7:       #c6c6c4
+*.color15:      #fffafa
+
+
+! xterm
+XTerm.termName: xterm-256color
+XTerm.vt100.faceName: Monospace
+XTerm.vt100.faceSize: 11
+XTerm.saveLines: 0
