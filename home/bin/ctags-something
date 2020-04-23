@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# Great idea: https://www.topbug.net/blog/2012/03/17/generate-ctags-files-for-c-slash-c-plus-plus-source-files-and-all-of-their-included-header-files/
+
+function usage() {
+	cat << END_USAGE
+Generates tags for a C/C++ project and its includes:
+  ctags-c
+  ctags-c++
+
+Identifies all source and headers by invoking cc/g++ with -M and the supplied arguments.
+ctags generates tags by processing all these files.
+
+Invoke from a makefile e.g.
+  ctags:
+    ctags-c \$(SRC) \$(CPPFLAGS)
+
+Or directly e.g.
+  ctags-c++ src/*cpp src/*h -I /usr/include/libevdev-1.0
+END_USAGE
+	exit 1
+}
+
+if [ $# -eq 0 ]; then
+	usage
+fi
+
+ARGS="${@}"
+case "$(basename ${0})" in
+	ctags-c)
+		COMPILER=cc
+		;;
+	ctags-c++)
+		COMPILER=g++
+		;;
+	*)
+		usage
+		;;
+esac
+
+CMD_DEPS="${COMPILER} -M ${ARGS}"
+echo ${CMD_DEPS}
+${CMD_DEPS} \
+	| sed -e 's/[\\ ]/\n/g'  \
+	| sed -e '/^$/d' \
+	| sed -e '/\.o:[ \t]*$/d' \
+	> /tmp/ctags-something.files
+
+# only a few system headers will be C
+OPTS="--languages=C,C++"
+
+# prototypes
+OPTS="${OPTS} --c++-kinds=+pl --c-kinds=+pl"
+
+# signatures
+OPTS="${OPTS} --fields=+S"
+
+# class qualifiers
+OPTS="${OPTS} --extras=+q"
+
+CMD_CTAGS="ctags -L /tmp/ctags-something.files ${OPTS}"
+echo "${CMD_CTAGS}"
+${CMD_CTAGS}
+
