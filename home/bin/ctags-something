@@ -44,6 +44,8 @@ ${CMD_DEPS} \
 	| sed -e 's/[\\ ]/\n/g'  \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
+	| sort \
+	| uniq \
 	> /tmp/ctags-something.files
 
 # only a few system headers will be C
