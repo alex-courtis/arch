@@ -1,7 +1,7 @@
 runtime! defaults.vim
 
-" unnamedplus: yank etc. uses the + register: XA_PRIMARY
-" autoselect: visual selections go to * register: XA_SECONDARY
+" unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
+" autoselect: visual selections go to * register, synced with XA_PRIMARY
 set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
 " Use only the terminal's carefully selected ANSI colours for colour schemes.
@@ -21,6 +21,8 @@ set listchars=trail:·,tab:>\ ,eol:¬
 set number relativenumber
 highlight LineNrBelow ctermfg=8
 highlight LineNrAbove ctermfg=8
+
+highlight MatchParen ctermbg=8
 
 
 " vim-gitgutter
