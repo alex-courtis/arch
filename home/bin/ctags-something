@@ -50,7 +50,7 @@ ${CMD_DEPS} \
 OPTS="--languages=C,C++"
 
 # prototypes
-OPTS="${OPTS} --c++-kinds=+pl --c-kinds=+pl"
+OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
 
 # signatures
 OPTS="${OPTS} --fields=+S"
