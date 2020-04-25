@@ -10,3 +10,6 @@
 [submodule "vim.pack.foo.start/xterm-color-table"]
 	path = vim.pack.foo.start/xterm-color-table
 	url = https://github.com/guns/xterm-color-table.vim.git
+[submodule "vim.pack.foo.start/tagbar"]
+	path = vim.pack.foo.start/tagbar
+	url = https://github.com/majutsushi/tagbar.git
