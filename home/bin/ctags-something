@@ -57,9 +57,6 @@ OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
 # signatures
 OPTS="${OPTS} --fields=+S"
 
-# class qualifiers
-OPTS="${OPTS} --extras=+q"
-
 CMD_CTAGS="ctags -L /tmp/ctags-something.files ${OPTS}"
 echo "${CMD_CTAGS}"
 ${CMD_CTAGS}
