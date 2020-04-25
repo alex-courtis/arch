@@ -24,10 +24,6 @@ highlight LineNrAbove ctermfg=8
 
 highlight MatchParen ctermbg=8
 
-nnoremap : q:i
-nnoremap / q/i
-nnoremap ? q?i
-
 
 " vim-gitgutter
 "
