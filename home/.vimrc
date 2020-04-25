@@ -4,19 +4,20 @@ runtime! defaults.vim
 " autoselect: visual selections go to * register, synced with XA_PRIMARY
 set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
-" Use only the terminal's carefully selected ANSI colours for colour schemes.
-" I am still permitted to use colours outside of that range.
-if $TERM =~? "256color"
-	set t_Co=16
-endif
-
 set hlsearch
 set ignorecase
 set smartcase
-
-set background=dark
+set nowrapscan
 
 set listchars=trail:·,tab:>\ ,eol:¬
+
+" Use only the terminal's carefully selected ANSI colours for colour schemes.
+" I am still permitted to use colours outside of that range.
+if &t_Co > 16
+	set t_Co=16
+endif
+
+set background=dark
 
 set number relativenumber
 highlight LineNrBelow ctermfg=8
@@ -40,7 +41,3 @@ highlight GitGutterDelete ctermfg=1
 highlight ColorColumn ctermbg=234
 let g:EditorConfig_max_line_indicator = "line"
 
-
-" xterm-color-table
-"
-let g:XtermColorTableDefaultOpen = 'edit'
