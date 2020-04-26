@@ -15,5 +15,5 @@ export LESS_TERMCAP_se=                # reset reverse video
 export LESS_TERMCAP_us=$'\E[3;32m'     # begin underline       italic + green
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-/usr/bin/man "$@"
+exec /usr/bin/man "$@"
 
