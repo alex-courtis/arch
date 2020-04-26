@@ -621,6 +621,8 @@ xorg-xbacklight
 
 ### node Packages I like
 
+`sudo npm install --global ...`
+
 ## Build Desktop Environment
 
 ### dwm and slstatus

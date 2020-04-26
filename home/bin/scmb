@@ -64,10 +64,6 @@ githubShow ()
 
 gitlabShow ()
 {
-echo "1 ${1}"
-echo "2 ${2}"
-echo "3 ${3}"
-echo "4 ${4}"
   slug="${1:?}"
   case "${2:?}" in
     branch) context="-/tree/${3:?}" ;;
