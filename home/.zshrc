@@ -4,7 +4,7 @@
 function updatetmuxterm() {
 	if [ -n "${TMUX}" ]; then
 		case $(tmux show-environment TERM 2>/dev/null) in
-			*256color)
+			*256color|*alacritty)
 				TERM="tmux-256color"
 				;;
 			*)
@@ -26,8 +26,13 @@ if [ $(whence tmux) ] && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! 
 		exec tmux attach -t "${DETACHED}"
 	fi
 fi
-updatetmuxterm
 
+if [ -n "${TMUX}" ]; then
+	updatetmuxterm
+elif [ "${TERM}" = "alacritty" ]; then
+	# when opening vim (not vi or nvim) the terminal sometimes freezes until it is resized
+	TERM=xterm-256color
+fi
 
 # remove duplicates coming from arch's /etc/profile.d
 typeset -U path
