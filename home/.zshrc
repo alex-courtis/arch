@@ -90,8 +90,9 @@ zle -N zle-line-finish resetcursor
 
 # git PS1
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-	export GIT_PS1_SHOWDIRTYSTATE=true
-	export GIT_PS1_SHOWSTASHSTATE=true
+	GIT_PS1_SHOWDIRTYSTATE="true"
+	GIT_PS1_SHOWSTASHSTATE="true"
+	GIT_PS1_SHOWUPSTREAM="auto"
 	. /usr/share/git/completion/git-prompt.sh
 else
 	function __git_ps1() { : }
