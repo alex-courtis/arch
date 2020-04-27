@@ -30,8 +30,8 @@ fi
 if [ -n "${TMUX}" ]; then
 	updatetmuxterm
 elif [ "${TERM}" = "alacritty" ]; then
-	# when opening vim (not vi or nvim) the terminal sometimes freezes until it is resized; st has more capabilites than xterm
-	TERM=st-256color
+	# when opening vim (not vi or nvim) the terminal sometimes freezes until it is resized
+	TERM=xterm-256color
 fi
 
 # remove duplicates coming from arch's /etc/profile.d
