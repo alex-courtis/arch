@@ -30,7 +30,8 @@ fi
 if [ -n "${TMUX}" ]; then
 	updatetmuxterm
 elif [ "${TERM}" = "alacritty" ]; then
-	# when opening vim (not vi or nvim) the terminal sometimes freezes until it is resized
+	# When opening vim (not vi or nvim) the terminal sometimes freezes until it is resized.
+	# This happens only when the terminal is named alacritty, as evidenced when copying xterm-256color over alacritty, or moving alacritty over xterm-256color.
 	TERM=xterm-256color
 fi
 
