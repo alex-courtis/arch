@@ -110,9 +110,9 @@ fi
 #   host background "!tmux"
 #   host background ":;"
 if [ -z "${TMUX}" ]; then
-	NOTMUX="%K{${HOST_COLOUR}}!tmux%k "
+	NOTMUX="%K{${HOST_COLOUR}}!tmux%k"$'\n'
 fi
-PS1="%F{black}%(?..%K{red}%?%k )${NOTMUX}%K{${HOST_COLOUR}}:;%k%f "
+PS1="%F{black}%(?..%K{red}%?%k"$'\n'")${NOTMUX}%K{${HOST_COLOUR}}:;%k%f "
 PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 unset NOTMUX
 
