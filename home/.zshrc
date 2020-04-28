@@ -106,10 +106,15 @@ fi
 
 
 # prompt:
-#   bg red background nonzero return code and newline
-#   bg host background coloured ":; " in black text
-PS1="%(?..%F{black}%K{red}%?%k%f"$'\n'")%F{black}%K{${HOST_COLOUR}}:;%k%f "
+#   red background nonzero return code
+#   host background "!tmux"
+#   host background ":;"
+if [ -z "${TMUX}" ]; then
+	NOTMUX="%K{${HOST_COLOUR}}!tmux%k "
+fi
+PS1="%F{black}%(?..%K{red}%?%k )${NOTMUX}%K{${HOST_COLOUR}}:;%k%f "
 PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
+unset NOTMUX
 
 
 # title
