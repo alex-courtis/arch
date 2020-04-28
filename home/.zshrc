@@ -142,6 +142,7 @@ alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
 alias diffp="diff -Naur"
 alias pt='pstree -Tap -C age'
 alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
+alias agh='ag --hidden'
 
 # music management aliases
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"
