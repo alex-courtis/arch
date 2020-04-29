@@ -104,18 +104,13 @@ else
 	function __git_ps1() { : }
 fi
 
-
-# prompt:
-#   red background nonzero return code
-#   host background "!tmux"
-#   host background ":;"
+# prompts
 if [ -z "${TMUX}" ]; then
-	NOTMUX="%K{${HOST_COLOUR}}!tmux%k"$'\n'
+	NOTMUX=" -tmux "
 fi
-PS1="%F{black}%(?..%K{red}%?%k"$'\n'")${NOTMUX}%K{${HOST_COLOUR}}:;%k%f "
+PS1="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
 PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 unset NOTMUX
-
 
 # title
 function precmd() {
