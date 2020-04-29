@@ -14,25 +14,28 @@ function updatetmuxterm() {
 	fi
 }
 
-
-# maybe run tmux
-if [ $(whence tmux) ] && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
+# replace this shell with tmux, attaching to detached if present
+function tm() {
 	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
-
-	# replace this shell with a new login shell
 	if [ -z "${DETACHED}" ]; then
 		exec tmux
 	else
 		exec tmux attach -t "${DETACHED}"
 	fi
+}
+
+
+# maybe run tmux
+if [ $(whence tmux) ] && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
+	tm
 fi
 
 if [ -n "${TMUX}" ]; then
 	updatetmuxterm
-elif [ "${TERM}" = "alacritty" ]; then
+#elif [ "${TERM}" = "alacritty" ]; then
 	# When opening vim (not vi or nvim) the terminal sometimes freezes until it is resized.
 	# This happens only when the terminal is named alacritty, as evidenced when copying xterm-256color over alacritty, or moving alacritty over xterm-256color.
-	TERM=xterm-256color
+	#TERM=xterm-256color
 fi
 
 # remove duplicates coming from arch's /etc/profile.d
