@@ -352,12 +352,12 @@ draw_bold_text_with_bright_colors: false
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-debug:
+#debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
 
   # Keep the log file after quitting Alacritty.
-  persistent_logging: true
+  #persistent_logging: false
 
   # Log level
   #
@@ -368,13 +368,13 @@ debug:
   #   - Info
   #   - Debug
   #   - Trace
-  log_level: Debug
+  #log_level: Warn
 
   # Print all received window events.
-  print_events: false
+  #print_events: false
 
   # Record all characters and escape sequences as test data.
-  ref_test: true
+  #ref_test: false
 
 #mouse:
   # Click settings
@@ -741,7 +741,7 @@ schemes:
   bloodmoon: &bloodmoon
     # Default colors
     primary:
-      background: '#20200E'
+      background: '#10100E'
       foreground: '#C6C6C4'
 
     # Cursor colors
