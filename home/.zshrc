@@ -16,26 +16,32 @@ function updatetmuxterm() {
 
 # replace this shell with tmux, attaching to detached if present
 function tm() {
-	DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
-	if [ -z "${DETACHED}" ]; then
-		exec tmux
-	else
-		exec tmux attach -t "${DETACHED}"
+	if [ $(whence tmux) -a -z "${TMUX}" ]; then
+		DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
+		if [ -z "${DETACHED}" ]; then
+			exec tmux
+		else
+			exec tmux attach -t "${DETACHED}"
+		fi
 	fi
 }
 
 
-# maybe run tmux
-if [ $(whence tmux) ] && [ -z "${TMUX}" ] && [ -f "${HOME}/.tmux.conf" ] && [ ! -f "${HOME}/notmux" ] ; then
+# maybe exec tmux
+if [ ! -f "${HOME}/notmux" ] ; then
 	tm
 fi
 
 if [ -n "${TMUX}" ]; then
 	updatetmuxterm
 elif [ "${TERM}" = "alacritty" ]; then
-	# When opening vim (not vi or nvim) the terminal sometimes freezes until it is resized.
-	# This happens only when the terminal is named alacritty, as evidenced when copying xterm-256color over alacritty, or moving alacritty over xterm-256color.
-	TERM=xterm-256color
+	# When opening vim with gitgutter, the terminal nondeterministically freezes until it is resized.
+	# gitgutter seems to freeze around its asynchronous change detection, however nondeterministic things are nondeterministic.
+	# This freezing remains until the X session is terminated.
+	# Copying /usr/share/terminfo/a/alacritty to /usr/share/terminfo/x/xterm-alacritty and using that TERM or specifying a different TERM in alacritty.yaml makes the behaviour apparently stop.
+	# The term needs to have xterm, screen or tmux in its name.
+	# Next: live with this workaround or dig into Alacritty and look at how it handles the TERM variable.
+	TERM="xterm-alacritty"
 fi
 
 # remove duplicates coming from arch's /etc/profile.d
@@ -122,7 +128,7 @@ function precmd() {
 
 
 # use the keychain wrapper to start ssh-agent if needed
-if [ $(whence keychain) ] && [ -f ~/.ssh/id_rsa ]; then
+if [ $(whence keychain) -a -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
 
@@ -138,8 +144,8 @@ alias diffc="diff --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
 alias diffp="diff -Naur"
-alias pt='pstree -Tap -C age'
-alias wpt='watch -t -n 0.5 -c pstree -TapU -C age'
+alias pt='pstree -TapU -C age'
+alias ptw='watch -t -n 0.5 -c pstree -TapU -C age'
 alias agh='ag --hidden'
 
 # music management aliases
