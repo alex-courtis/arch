@@ -31,17 +31,8 @@ function tm() {
 if [ ! -f "${HOME}/notmux" ] ; then
 	tm
 fi
-
 if [ -n "${TMUX}" ]; then
 	updatetmuxterm
-elif [ "${TERM}" = "alacritty" ]; then
-	# When opening vim with gitgutter, the terminal nondeterministically freezes until it is resized.
-	# gitgutter seems to freeze around its asynchronous change detection, however nondeterministic things are nondeterministic.
-	# This freezing remains until the X session is terminated.
-	# Copying /usr/share/terminfo/a/alacritty to /usr/share/terminfo/x/xterm-alacritty and using that TERM or specifying a different TERM in alacritty.yaml makes the behaviour apparently stop.
-	# The term needs to have xterm, screen or tmux in its name.
-	# Next: live with this workaround or dig into Alacritty and look at how it handles the TERM variable.
-	TERM="xterm-alacritty"
 fi
 
 # remove duplicates coming from arch's /etc/profile.d

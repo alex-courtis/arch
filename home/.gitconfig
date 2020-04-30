@@ -1,6 +1,5 @@
 [alias]
-	d = diff
-	ds = diff --staged
+	diffs = diff --staged
 	co = checkout
 	gup = smart-pull
 	gm = smart-merge

@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Execute a terminal session with an interactive shell and run vim with the arguments supplied.
+# Open a term that runs vim with the arguments supplied.
 # Useful for xdg-open and open-in-your-editor browser extensions.
 
-TMUX= term -e zsh --interactive -c "vim $*" &
+term -e vim "$@" &
 

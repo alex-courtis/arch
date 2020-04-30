@@ -3,7 +3,7 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
@@ -11,6 +11,15 @@
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
+  #
+  # When opening vim with gitgutter, outside tmux, the terminal nondeterministically freezes until it is resized.
+  # gitgutter seems to freeze around its asynchronous change detection, however nondeterministic things are nondeterministic.
+  # This freezing remains until the X session is terminated.
+  # Copyied /usr/share/terminfo/a/alacritty to /usr/share/terminfo/x/xterm-alacritty.
+  # Using that terminfo here or by exporting TERM make the problem go away.
+  # Experiment shows the term needs to have xterm, screen or tmux in its name.
+  # Next: live with this workaround or dig into Alacritty and look at how it handles the TERM variable.
+  TERM: xterm-alacritty
 
 #window:
   # Window dimensions (changes require restart)
