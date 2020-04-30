@@ -2212,57 +2212,59 @@ schemes:
       white:   '#ffffff'
 
 # appealing
+#colors: *argonaut
 #colors: *ayudark
-#colors: *base16defaultdark
-colors: *bloodmoon
+#colors: *bloodmoon
 #colors: *campbell
-#colors: *hyper
-#colors: *kitty
+#colors: *darkside
+#colors: *irblack
+#colors: *itermdefault
+#colors: *kdebreeze
+colors: *kitty
 #colors: *molokaidark
-#colors: *pencildark
 #colors: *sourcerer
 #colors: *tango
 #colors: *tangoish
-#colors: *tender
 #colors: *terminalapp
-#colors: *tomorrownight
 #colors: *wombat
 #colors: *xterm
+#colors: *ubuntu
 
 # not actually the same as default, has white switched for grey
+#colors: *tomorrownight
 #colors: *tomorrownightbright
 
-# eye bleach
+# lacks distinct normal/bright
 #colors: *afterglow
-#colors: *argonaut
-#colors: *kdebreeze
+#colors: *base16defaultdark
+#colors: *hyper
+#colors: *monokaidark
+#colors: *monokaipro
+#colors: *monokaisoda
+#colors: *newmoon
+#colors: *nord
+#colors: *oceanicnext
+#colors: *onedark
+#colors: *oxide
+#colors: *seabird
+#colors: *snazzy
+#colors: *pencildark
+#colors: *tender
+
+# eye bleach
 #colors: *cobalt2
-#colors: *darkside
 #colors: *darktooth
 #colors: *dracula
 #colors: *gruvboxlight
 #colors: *gruvboxdark
 #colors: *hybrid
 #colors: *iceberg
-#colors: *irblack
-#colors: *itermdefault
 #colors: *jellybeans
 #colors: *material
-#colors: *monokaidark
-#colors: *monokaipro
-#colors: *monokaisoda
-#colors: *newmoon
-#colors: *nord
 #colors: *nova
-#colors: *oceanicnext
-#colors: *onedark
-#colors: *oxide
 #colors: *pencillite
-#colors: *seabird
 #colors: *seoul256
-#colors: *snazzy
 #colors: *solarizedlight
 #colors: *solarizeddark
 #colors: *taerminal
 #colors: *terminalappbasic
-#colors: *ubuntu
