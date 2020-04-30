@@ -608,6 +608,7 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 `pacaur -S ...`
 
 dapper
+drive-bin
 gron-bin
 pulseaudio-ctl
 redshift-minimal

@@ -138,6 +138,9 @@ alias diffp="diff -Naur"
 alias pt='pstree -TapU -C age'
 alias ptw='watch -t -n 0.5 -c pstree -TapU -C age'
 alias agh='ag --hidden'
+alias todo='todo.sh'
+alias vidone='vi ~/.gdrive/todo/done.txt'
+alias vitodo='vi ~/.gdrive/todo/todo.txt'
 
 # music management aliases
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/music/ /net/lord/music/"

@@ -1,9 +1,12 @@
 [alias]
-	diffs = diff --staged
+	d = diff
+	dn = diff --name-only
+	ds = diff --staged
 	co = checkout
 	gup = smart-pull
 	gm = smart-merge
 	gl = smart-log
+	s = status
 [user]
 	name = Alexander Courtis
 	email = acourtis@atlassian.com
