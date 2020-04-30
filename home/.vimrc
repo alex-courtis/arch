@@ -11,15 +11,19 @@ set nowrapscan
 
 set listchars=trail:·,tab:>\ ,eol:¬
 
+set formatoptions+=j
+
+set laststatus=2
+
+set number relativenumber
+
 " Use only the terminal's carefully selected ANSI colours for colour schemes.
 " I am still permitted to use colours outside of that range.
 if &t_Co > 16
 	set t_Co=16
 endif
-
 set background=dark
 
-set number relativenumber
 highlight LineNrBelow ctermfg=8
 highlight LineNrAbove ctermfg=8
 
