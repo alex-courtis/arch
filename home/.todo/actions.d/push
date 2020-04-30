@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+action=$1
+shift
+mode=$1
+
+function usage {
+	echo "  $(basename $0)"
+	echo "    push to google drive from $TODO_DIR"
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+cd "$TODO_DIR"
+
+drive push
+
