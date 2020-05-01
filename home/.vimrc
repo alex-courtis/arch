@@ -17,7 +17,7 @@ set laststatus=2
 
 set number relativenumber
 
-" Use only the terminal's carefully selected ANSI colours for colour schemes.
+" Use only the terminal's carefully selected ANSI colours for syntax hl.
 " I am still permitted to use colours outside of that range.
 if &t_Co > 16
 	set t_Co=16
@@ -43,5 +43,10 @@ highlight GitGutterDelete ctermfg=1
 " editorconfig
 "
 highlight ColorColumn ctermbg=234
-let g:EditorConfig_max_line_indicator = "line"
+let g:EditorConfig_max_line_indicator = 'line'
+
+
+" xterm-color-table
+"
+let g:XtermColorTableDefaultOpen = 'edit'
 
