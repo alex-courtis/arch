@@ -1,0 +1,7 @@
+#!/bin/sh
+
+THEMES=("bloodmoon" "campbell" "itermdefault" "molokaidark" "kitty" "ubuntu" "xterm")
+THEME="${THEMES[$(( $RANDOM % 7 ))]}"
+CFG="${HOME}/alacritty.${THEME}.yml"
+
+ALACRITTY_THEME="${THEME}" /usr/bin/alacritty --config-file="${CFG}" &

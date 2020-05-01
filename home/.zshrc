@@ -114,7 +114,7 @@ unset NOTMUX
 
 # title
 function precmd() {
-	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${terminfo[fsl]}"
+	print -Pn "${terminfo[tsl]}%~$(__git_ps1) ${ALACRITTY_THEME}${terminfo[fsl]}"
 }
 
 
