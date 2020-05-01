@@ -2210,7 +2210,6 @@ schemes:
 #colors: *kdebreeze
 colors: *kitty
 #colors: *molokaidark
-#colors: *sourcerer
 #colors: *tango
 #colors: *tangoish
 #colors: *terminalapp
@@ -2221,6 +2220,9 @@ colors: *kitty
 # not actually the same as default, has white switched for grey
 #colors: *tomorrownight
 #colors: *tomorrownightbright
+
+# needs vim colour tuning
+#colors: *sourcerer
 
 # lacks distinct normal/bright
 #colors: *afterglow
