@@ -5,7 +5,7 @@ shift
 mode=$1
 
 function usage {
-	echo "  $(basename $0)"
+	echo "  $(basename $0) [drive options ...]"
 	echo "    push to google drive from $TODO_DIR"
 	echo ""
 	exit
@@ -15,5 +15,9 @@ function usage {
 
 cd "$TODO_DIR"
 
-drive push
+DT="$(date '+%Y%m%d_%H%M')"
+cp "todo.txt" "todo.${DT}.beforepush.txt"
+cp "done.txt" "done.${DT}.beforepush.txt"
+cp "archive.txt" "archive.${DT}.beforepush.txt"
 
+drive push "$@"
