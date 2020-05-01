@@ -20,4 +20,4 @@ cp "todo.txt" "todo.${DT}.beforepull.txt"
 cp "done.txt" "done.${DT}.beforepull.txt"
 cp "archive.txt" "archive.${DT}.beforepull.txt"
 
-drive pull -no-clobber "$@"
+drive pull "$@"
