@@ -1,5 +1,6 @@
 TODOTXT_DATE_ON_ADD=1
 TODOTXT_AUTO_ARCHIVE=0
+TODOTXT_VERBOSE=1 # activates confirmation prompts
 
 # === EDIT FILE LOCATIONS BELOW ===
 

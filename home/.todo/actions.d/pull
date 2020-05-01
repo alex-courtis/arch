@@ -5,8 +5,8 @@ shift
 mode=$1
 
 function usage {
-	echo "  $(basename $0) [drive options ...]"
-	echo "    pull from google drive to $TODO_DIR"
+	echo "    $(basename $0) [drive options ...]"
+	echo "      pull from google drive to $TODO_DIR"
 	echo ""
 	exit
 }
