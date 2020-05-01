@@ -4,6 +4,7 @@
 *.foreground:   #c6c6c4
 *.background:   #10100e
 *.cursorColor:  #c6c6c4
+*.rcursorColor: #10100e
 
 ! black
 *.color0:       #10100e
@@ -37,6 +38,19 @@
 *.color7:       #c6c6c4
 *.color15:      #fffafa
 
+
+! st
+st.font: Monospace:size=11:antialias=true:autohint=true
+st.termname: st-256color
+st.shell: /bin/sh
+st.xfps: 120
+st.actionfps: 30
+st.blinktimeout: 800
+st.bellvolume: 0
+st.tabspaces: 8
+st.borderpx: 0
+st.cwscale: 1.0
+st.chscale: 1.0
 
 ! xterm
 XTerm.termName: xterm-256color
