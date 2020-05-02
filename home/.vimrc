@@ -33,6 +33,7 @@ highlight LineNrAbove ctermfg=8
 
 highlight MatchParen ctermbg=8
 
+cmap Q q
 cmap W w
 
 
@@ -56,3 +57,7 @@ let g:EditorConfig_max_line_indicator = 'exceeding'
 "
 let g:XtermColorTableDefaultOpen = 'edit'
 
+
+" airline
+"
+let g:airline_powerline_fonts = 1

@@ -13,3 +13,6 @@
 [submodule "vim.pack.foo.start/tagbar"]
 	path = vim.pack.foo.start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim.pack.foo.start/airline"]
+	path = vim.pack.foo.start/airline
+	url = git@github.com:vim-airline/vim-airline.git
