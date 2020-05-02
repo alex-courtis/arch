@@ -78,9 +78,8 @@ else
 fi
 CFG="/tmp/alacritty.${THEME}.yml"
 
-sed -e "s/^colors: \*.*$/colors: \*${THEME}/g" \
-	~/.config/alacritty/alacritty.yml \
-	> "${CFG}"
+cp ~/.config/alacritty/alacritty.yml "${CFG}"
+echo "colors: *${THEME}" >> "${CFG}"
 
 ALACRITTY_THEME="${THEME}" \
 	/usr/bin/alacritty \
