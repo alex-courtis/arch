@@ -50,14 +50,14 @@ highlight GitGutterDelete ctermfg=1
 " editorconfig
 "
 highlight ColorColumn ctermbg=3
-let g:EditorConfig_max_line_indicator = 'exceeding'
+let g:EditorConfig_max_line_indicator="exceeding"
 
 
 " xterm-color-table
 "
-let g:XtermColorTableDefaultOpen = 'edit'
+let g:XtermColorTableDefaultOpen="edit"
 
 
 " airline
 "
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts=1
