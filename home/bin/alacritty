@@ -1,0 +1,77 @@
+#!/bin/zsh
+
+THEMES=(
+	# appealing
+	"argonaut"
+	"ayudark"
+	"bloodmoon"
+	"campbell"
+	"darkside"
+	"irblack"
+	"itermdefault"
+	"kdebreeze"
+	"kitty"
+	"molokaidark"
+	"tango"
+	"tangoish"
+	"terminalapp"
+	"wombat"
+	"xterm"
+	"ubuntu"
+
+	# not actually the same as default, has white switched for grey
+	"tomorrownight"
+	"tomorrownightbright"
+
+	# needs vim colour tuning
+	"sourcerer"
+
+	# lacks distinct normal/bright
+	"afterglow"
+	"base16defaultdark"
+	"hyper"
+	"monokaidark"
+	"monokaipro"
+	"monokaisoda"
+	"newmoon"
+	"nord"
+	"oceanicnext"
+	"onedark"
+	"oxide"
+	"seabird"
+	"snazzy"
+	"pencildark"
+	"tender"
+
+	# eye bleach
+	"cobalt2"
+	"darktooth"
+	"dracula"
+	"gruvboxlight"
+	"gruvboxdark"
+	"hybrid"
+	"iceberg"
+	"jellybeans"
+	"material"
+	"nova"
+	"pencillite"
+	"seoul256"
+	"solarizedlight"
+	"solarizeddark"
+	"taerminal"
+	"terminalappbasic"
+)
+THEME="${THEMES[$(( ( $RANDOM % ${#THEMES} ) + 1 ))]}"
+CFG="/tmp/alacritty.${THEME}.yml"
+
+sed -e "s/^colors: \*.*$/colors: \*${THEME}/g" \
+	~/.config/alacritty/alacritty.yml \
+	> "${CFG}"
+
+ALACRITTY_THEME="${THEME}" \
+	/usr/bin/alacritty \
+	--config-file="${CFG}" \
+	--no-live-config-reload \
+	"$@" \
+	&
+
