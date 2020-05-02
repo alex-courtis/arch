@@ -15,11 +15,6 @@ set formatoptions+=j
 
 set laststatus=2
 
-let &titlestring="VIM"
-if ($ALACRITTY_THEME != "")
-	let &titlestring.=" {" . $ALACRITTY_THEME . "}"
-endif
-
 set number relativenumber
 
 " ANSI colours only; more colours can still be explicitly selected.
@@ -61,3 +56,7 @@ let g:XtermColorTableDefaultOpen="edit"
 " airline
 "
 let g:airline_powerline_fonts=1
+if ($ALACRITTY_THEME != "")
+	let g:airline_section_y="{" . $ALACRITTY_THEME . "}"
+endif
+

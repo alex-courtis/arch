@@ -22,7 +22,6 @@ THEMES=(
 	"iceberg"
 	"irblack"
 	"kdebreeze"
-	"material"
 	"sourcerer"
 	"tangoish"
 	"pencildark"
@@ -49,9 +48,10 @@ THEMES=(
 )
 
 BAD_THEMES=(
-	# ugly
+	# just ugly
 	"jellybeans"
 	"ubuntu"
+	"material"
 
 	# not actually the same as default, has white switched for very dark grey
 	"tomorrownight"
