@@ -1,67 +1,75 @@
 #!/bin/zsh
 
 THEMES=(
-	# appealing
 	"argonaut"
-	"ayudark"
 	"bloodmoon"
 	"campbell"
-	"darkside"
-	"irblack"
+	"darktooth"
+	"hybrid"
 	"itermdefault"
-	"kdebreeze"
+	"jellybeans"
 	"kitty"
-	"molokaidark"
+	"seoul256"
+	"taerminal"
 	"tango"
-	"tangoish"
 	"terminalapp"
 	"wombat"
 	"xterm"
 	"ubuntu"
 
-	# not actually the same as default, has white switched for grey
-	"tomorrownight"
-	"tomorrownightbright"
-
-	# needs vim colour tuning
+	# not ansi
+	"ayudark"
+	"cobalt2"
+	"darkside"
+	"gruvboxdark"
+	"iceberg"
+	"irblack"
+	"kdebreeze"
+	"material"
+	"solarizeddark"
 	"sourcerer"
+	"tangoish"
+	"pencildark"
 
 	# lacks distinct normal/bright
 	"afterglow"
 	"base16defaultdark"
+	"dracula"
 	"hyper"
-	"monokaidark"
-	"monokaipro"
-	"monokaisoda"
 	"newmoon"
 	"nord"
 	"oceanicnext"
 	"onedark"
 	"oxide"
-	"seabird"
 	"snazzy"
-	"pencildark"
 	"tender"
 
-	# eye bleach
-	"cobalt2"
-	"darktooth"
-	"dracula"
-	"gruvboxlight"
-	"gruvboxdark"
-	"hybrid"
-	"iceberg"
-	"jellybeans"
-	"material"
+	# not ansi, lacks distinct normal/bright
+	"molokaidark"
+	"monokaidark"
+	"monokaipro"
+	"monokaisoda"
 	"nova"
+
+	# not actually the same as default, has white switched for very dark grey
+	"tomorrownight"
+	"tomorrownightbright"
+
+	# light
+	"seabird"
+	"gruvboxlight"
 	"pencillite"
-	"seoul256"
 	"solarizedlight"
-	"solarizeddark"
-	"taerminal"
 	"terminalappbasic"
 )
-THEME="${THEMES[$(( ( $RANDOM % ${#THEMES} ) + 1 ))]}"
+
+if [ "${1}" = "--theme" ]; then
+	THEME=${2}
+	shift
+	shift
+else
+	THEME="${THEMES[$(( ( $RANDOM % ${#THEMES} ) + 1 ))]}"
+fi
 CFG="/tmp/alacritty.${THEME}.yml"
 
 sed -e "s/^colors: \*.*$/colors: \*${THEME}/g" \
