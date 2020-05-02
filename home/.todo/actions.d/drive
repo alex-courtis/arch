@@ -19,7 +19,7 @@ cd "${TODO_DIR}"
 
 dt="$(date '+%Y%m%d_%H%M')"
 
-for prefix in "archive" "done" "todo"; do
+for prefix in "done" "todo"; do
 	cp -v "${prefix}.txt" "${prefix}.${dt}.txt.pre-${arg}"
 done
 
