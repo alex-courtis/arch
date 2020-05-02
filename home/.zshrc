@@ -109,7 +109,9 @@ if [ -z "${TMUX}" ]; then
 	NOTMUX=" -tmux "
 fi
 PROMPT="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
-RPROMPT="%F{${HOST_COLOUR}}${ALACRITTY_THEME}%f"
+if [ -n "${ALACRITTY_THEME}" ]; then
+	RPROMPT="%F{${HOST_COLOUR}}{${ALACRITTY_THEME}}%f"
+fi
 PROMPT2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 unset NOTMUX
 

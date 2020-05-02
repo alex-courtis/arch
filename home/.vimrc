@@ -15,6 +15,11 @@ set formatoptions+=j
 
 set laststatus=2
 
+let &titlestring="VIM"
+if ($ALACRITTY_THEME != "")
+	let &titlestring.=" {" . $ALACRITTY_THEME . "}"
+endif
+
 set number relativenumber
 
 " Use only the terminal's carefully selected ANSI colours for syntax hl.
