@@ -50,7 +50,9 @@ THEMES=(
 	"monokaipro"
 	"monokaisoda"
 	"nova"
+)
 
+BAD_THEMES=(
 	# not actually the same as default, has white switched for very dark grey
 	"tomorrownight"
 	"tomorrownightbright"

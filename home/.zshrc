@@ -108,13 +108,14 @@ fi
 if [ -z "${TMUX}" ]; then
 	NOTMUX=" -tmux "
 fi
-PS1="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
-PS2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
+PROMPT="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
+RPROMPT="%F{${HOST_COLOUR}}${ALACRITTY_THEME}%f"
+PROMPT2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 unset NOTMUX
 
 # title
 function precmd() {
-	print -Pn "${terminfo[tsl]}%~$(__git_ps1) \{${ALACRITTY_THEME}\}${terminfo[fsl]}"
+	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${terminfo[fsl]}"
 }
 
 
@@ -150,5 +151,3 @@ alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/
 alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
 alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
-
-colours
