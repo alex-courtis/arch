@@ -7,15 +7,12 @@ THEMES=(
 	"darktooth"
 	"hybrid"
 	"itermdefault"
-	"jellybeans"
 	"kitty"
-	"seoul256"
 	"taerminal"
 	"tango"
 	"terminalapp"
 	"wombat"
 	"xterm"
-	"ubuntu"
 
 	# not ansi
 	"ayudark"
@@ -52,6 +49,10 @@ THEMES=(
 )
 
 BAD_THEMES=(
+	# ugly
+	"jellybeans"
+	"ubuntu"
+
 	# not actually the same as default, has white switched for very dark grey
 	"tomorrownight"
 	"tomorrownightbright"
@@ -64,6 +65,7 @@ BAD_THEMES=(
 	"terminalappbasic"
 	
 	# not ansi
+	"seoul256"
 	"solarizeddark"
 )
 

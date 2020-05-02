@@ -22,8 +22,7 @@ endif
 
 set number relativenumber
 
-" Use only the terminal's carefully selected ANSI colours for syntax hl.
-" I am still permitted to use colours outside of that range.
+" ANSI colours only; more colours can still be explicitly selected.
 if &t_Co > 16
 	set t_Co=16
 endif
@@ -49,8 +48,8 @@ highlight GitGutterDelete ctermfg=1
 
 " editorconfig
 "
-highlight ColorColumn ctermbg=234
-let g:EditorConfig_max_line_indicator = 'line'
+highlight ColorColumn ctermbg=3
+let g:EditorConfig_max_line_indicator = 'exceeding'
 
 
 " xterm-color-table
