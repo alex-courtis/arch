@@ -63,7 +63,7 @@ BAD_THEMES=(
 	"pencillite"
 	"solarizedlight"
 	"terminalappbasic"
-	
+
 	# not ansi
 	"seoul256"
 	"solarizeddark"
