@@ -26,7 +26,6 @@ THEMES=(
 	"irblack"
 	"kdebreeze"
 	"material"
-	"solarizeddark"
 	"sourcerer"
 	"tangoish"
 	"pencildark"
@@ -63,6 +62,9 @@ BAD_THEMES=(
 	"pencillite"
 	"solarizedlight"
 	"terminalappbasic"
+	
+	# not ansi
+	"solarizeddark"
 )
 
 if [ "${1}" = "--theme" ]; then

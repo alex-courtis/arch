@@ -153,3 +153,5 @@ alias music.arch-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/
 alias music-home-to-android="adb-sync --delete \${HOME}/music/ /sdcard/Music"
 alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
+
+colours
