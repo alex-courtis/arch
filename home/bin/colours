@@ -1,0 +1,67 @@
+#!/bin/sh
+
+rgb() {
+	# printf "\033[48;2;%d;%d;%dm #%02x%02x%02x  \033[m" "$1" "$2" "$3" "$1" "$2" "$3"
+	printf "\033[48;2;%d;%d;%dm          \033[m" "$1" "$2" "$3"
+}
+
+ansi() {
+	for i in $(seq $1 $(( $1 + 7))); do
+		printf "\033[%d;%dm%-10s\033[m" "$2" "$i" "$3"
+	done
+	printf "\n"
+}
+
+# dwm
+rgb 34 34 34
+rgb 68 68 68
+rgb 187 187 187
+rgb 238 238 238
+rgb 0 85 119
+printf "\n\n"
+
+# xterm
+rgb 0 0 0
+rgb 205 0 0
+rgb 0 205 0
+rgb 205 205 0
+rgb 0 0 238
+rgb 205 0 205
+rgb 0 205 205
+rgb 229 229 229
+printf "\n"
+rgb 127 127 127
+rgb 255 0 0
+rgb 0 255 0
+rgb 255 255 0
+rgb 92 92 255
+rgb 255 0 255
+rgb 0 255 255
+rgb 255 255 255
+printf "\n\n"
+
+# ansi
+ansi 40 0 ""
+ansi 100 0 ""
+ansi 30 0 "normal"
+ansi 90 0 "normal"
+ansi 30 1 "bold"
+ansi 90 1 "bold"
+ansi 30 2 "faint"
+ansi 90 2 "faint"
+ansi 30 3 "italic"
+ansi 90 3 "italic"
+if [ "${1}" != "-f" ]; then
+	exit
+fi
+ansi 30 4 "underline"
+ansi 90 4 "underline"
+ansi 30 5 "s. blink"
+ansi 90 5 "s. blink"
+ansi 30 6 "f. blink"
+ansi 90 6 "f. blink"
+ansi 30 9 "cross"
+ansi 90 9 "cross"
+ansi 30 7 "reverse"
+ansi 90 7 "reverse"
+
