@@ -1,12 +1,11 @@
 TODOTXT_DATE_ON_ADD=1
-TODOTXT_AUTO_ARCHIVE=0
 TODOTXT_VERBOSE=1 # activates confirmation prompts
 
 # === EDIT FILE LOCATIONS BELOW ===
 
 # Your todo.txt directory (this should be an absolute path)
 #export TODO_DIR="/Users/gina/Documents/todo"
-export TODO_DIR="${HOME}/.gdrive/todo"
+export TODO_DIR="${HOME}/.todo/todotxt"
 
 # Your todo/done/report.txt locations
 export TODO_FILE="$TODO_DIR/todo.txt"

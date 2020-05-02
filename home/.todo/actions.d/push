@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# https://github.com/todotxt/todo.txt-cli/wiki/Todo.sh-Add-on-Directory
+# https://github.com/pyvelepor/todo_distributed/blob/62e1e66181f4216cfc1fb2a16d080dbfb57dd403/push
+
+action=$1
+
+function usage {
+	echo "  $(basename $0)"
+	echo "    Pushes all changes at $TODO_DIR to a remote repository."
+	echo "    Changes are always pushed to origin master."
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+cd "$TODO_DIR"
+git push -u origin master 

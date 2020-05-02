@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# https://github.com/todotxt/todo.txt-cli/wiki/Todo.sh-Add-on-Directory
+# https://github.com/FND/todo.txt-cli/blob/40a40a4c0117122c19f85cfa50393a7a1335e9a5/commit
+
+action=$1
+shift
+mode=$1
+
+function usage {
+	echo "  $(basename $0) [-v]"
+	echo "    Record all changes in Git repository located at $TODO_DIR."
+	echo "    If -v argument is provided, only a preview will be shown."
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+$TODO_FULL_SH archive
+
+cd "$TODO_DIR"
+git diff
+if [ "$mode" != "-v" ]; then
+	git commit -a $mode -m "$(hostname): $(date -Iseconds)"
+fi

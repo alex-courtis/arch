@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# https://github.com/todotxt/todo.txt-cli/wiki/Todo.sh-Add-on-Directory
+# https://github.com/pyvelepor/todo_distributed/blob/62e1e66181f4216cfc1fb2a16d080dbfb57dd403/pull
+
+action=$1
+
+function usage {
+	echo "  $(basename $0)"
+	echo "    Pull changes into git repository located at $TODO_DIR."
+	echo "    Always pulls from origin/master into local master branch."
+	echo ""
+	exit
+}
+
+[ "$action" = "usage" ] && usage
+
+cd "$TODO_DIR"
+git fetch origin
+git merge origin/master
