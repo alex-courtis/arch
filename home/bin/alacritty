@@ -22,7 +22,6 @@ THEMES=(
 	"iceberg"
 	"irblack"
 	"kdebreeze"
-	"sourcerer"
 	"tangoish"
 	"pencildark"
 
@@ -67,6 +66,9 @@ BAD_THEMES=(
 	# not ansi
 	"seoul256"
 	"solarizeddark"
+
+	# some colours lack contrast with others
+	"sourcerer"
 )
 
 if [ "${1}" = "--theme" ]; then
