@@ -31,23 +31,12 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
-# select host colour for prompts, tmux
-export HOST_COLOUR
-if [ "${USER}" = "root" ]; then
-	HOST_COLOUR="red"
-else
-	case "$(hostname)" in
-	emperor*)
-		HOST_COLOUR="yellow"
-		;;
-	gigantor*)
-		HOST_COLOUR="blue"
-		;;
-	lord*)
-		HOST_COLOUR="magenta"
-		;;
-	* )
-		HOST_COLOUR="cyan"
-		;;
-	esac
-fi
+# colours for use by prompts, tmux
+export DWM_NOR_FG="#bbbbbb"
+export DWM_NOR_BG="#222222"
+export DWM_SEL_FG="#eeeeee"
+export DWM_SEL_BG="#005577"
+export WARN_FG="black"
+export WARN_BG="yellow"
+export ERR_FG="black"
+export ERR_BG="red"

@@ -22,7 +22,6 @@ THEMES=(
 	"irblack"
 	"kdebreeze"
 	"tangoish"
-	"pencildark"
 
 	# lacks distinct normal/bright
 	"afterglow"
@@ -71,6 +70,7 @@ BAD_THEMES=(
 
 	# some colours lack contrast with others
 	"sourcerer"
+	"pencildark"
 )
 
 if [ "${1}" = "--theme" ]; then

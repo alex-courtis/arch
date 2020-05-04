@@ -28,9 +28,6 @@ highlight LineNrAbove ctermfg=8
 
 highlight MatchParen ctermbg=8
 
-cmap Q q
-cmap W w
-
 
 " vim-gitgutter
 "

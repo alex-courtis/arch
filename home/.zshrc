@@ -106,13 +106,13 @@ fi
 
 # prompts
 if [ -z "${TMUX}" ]; then
-	NOTMUX=" -tmux "
+	NOTMUX="%F{${WARN_FG}}%K{${WARN_BG}}!tmux%k%f"
 fi
-PROMPT="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
+PROMPT="%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}}:%k%f%(?..%F{${ERR_FG}}%K{${ERR_BG}}%?%k%f)${NOTMUX}%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}};%k%f "
 if [ -n "${ALACRITTY_THEME}" ]; then
 	THEME_INDICATOR=" {${ALACRITTY_THEME}}"
 fi
-PROMPT2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
+PROMPT2="%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}}%_%k%f "
 unset NOTMUX
 
 # title
