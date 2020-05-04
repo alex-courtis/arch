@@ -37,9 +37,9 @@ cmap W w
 set updatetime=250
 
 " ansi colours to match git diff
-highlight GitGutterAdd    ctermfg=2
-highlight GitGutterChange ctermfg=3
-highlight GitGutterDelete ctermfg=1
+highlight GitGutterAdd    ctermfg=10 ctermbg=8
+highlight GitGutterChange ctermfg=11 ctermbg=8
+highlight GitGutterDelete ctermfg=9 ctermbg=8
 
 
 " editorconfig

@@ -10,7 +10,6 @@ THEMES=(
 	"kitty"
 	"taerminal"
 	"tango"
-	"terminalapp"
 	"wombat"
 	"xterm"
 
@@ -47,6 +46,9 @@ THEMES=(
 )
 
 BAD_THEMES=(
+	# eyestrain
+	"terminalapp"
+
 	# just ugly
 	"jellybeans"
 	"ubuntu"
