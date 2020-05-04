@@ -593,10 +593,6 @@ xorg-xrandr
 xsel
 zsh-completions
 
-`gtk2` is not required for Jetbrains products, however as at 2019/03 it allows it to draw using the actual DPI of the monitor.
-
-`python-xdg` and `python-xdg` are optional redshift requirements, needed for the gtk systray app.
-
 Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 #### AUR
@@ -619,6 +615,8 @@ xorg-xbacklight
 ### node Packages I like
 
 `sudo npm install --global ...`
+
+withexeditorhost
 
 ## Build Desktop Environment
 
