@@ -110,14 +110,14 @@ if [ -z "${TMUX}" ]; then
 fi
 PROMPT="%F{black}%K{${HOST_COLOUR}}:%k%(?..%K{red} %? %k)%K{${HOST_COLOUR}}${NOTMUX};%k%f "
 if [ -n "${ALACRITTY_THEME}" ]; then
-	RPROMPT="%F{${HOST_COLOUR}}{${ALACRITTY_THEME}}%f"
+	THEME_INDICATOR=" {${ALACRITTY_THEME}}"
 fi
 PROMPT2="%F{black}%K{${HOST_COLOUR}}%_%k%f "
 unset NOTMUX
 
 # title
 function precmd() {
-	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${terminfo[fsl]}"
+	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${THEME_INDICATOR}${terminfo[fsl]}"
 }
 
 

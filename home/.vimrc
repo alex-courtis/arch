@@ -57,6 +57,8 @@ let g:XtermColorTableDefaultOpen="edit"
 "
 let g:airline_powerline_fonts=1
 if ($ALACRITTY_THEME != "")
-	let g:airline_section_y="{" . $ALACRITTY_THEME . "}"
+	let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
+else
+	let &titlestring="%F %m%r"
 endif
 
