@@ -27,6 +27,23 @@ function tm() {
 }
 
 
+# dwm colours for reference only
+C_D_GRAY1="#222222"
+C_D_GRAY2="#444444"
+C_D_GRAY3="#bbbbbb"
+C_D_GRAY4="#eeeeee"
+C_D_CYAN="#005577"
+
+# zsh colours
+C_Z_O="%k%f%b"
+C_Z_E="%F{black}%K{red}"
+C_Z_W="%F{black}%K{yellow}"
+C_Z_N="%F{${C_D_GRAY4}}%K{${C_D_CYAN}}"
+
+# tmux colours
+export C_T_N="fg=${C_D_GRAY4},bg=${C_D_CYAN}"
+
+
 # maybe exec tmux
 if [ ! -f "${HOME}/notmux" ] ; then
 	tm
@@ -107,11 +124,11 @@ fi
 # prompts
 PR_STA="${C_Z_N}:${C_Z_O}"
 PR_ERR="%(?..${C_Z_E} %? ${C_Z_O})"
-PR_END="${C_Z_N};${C_Z_O} "
 if [ -z "${TMUX}" ]; then
 	PR_WAR="${C_Z_W} -tm ${C_Z_O}"
 fi
-PS1="${PR_STA}${PR_ERR}${PR_WAR}${PR_END}"
+PR_END="${C_Z_N};${C_Z_O}"
+PS1="${PR_STA}${PR_WAR}${PR_ERR}${PR_END} "
 PS2="${C_Z_N}%_>${C_Z_O} "
 PS3="${C_Z_N}?#${PS3}${C_Z_O} "
 PS4="${C_Z_N}+%N:%i>${C_Z_O} "
