@@ -124,26 +124,39 @@ else
 fi
 
 # prompts
+setopt -o promptsubst
 PR_STA="${C_Z_N}:${C_Z_O}"
-PR_ERR="%(?..${C_Z_E} %? ${C_Z_O})"
+PR_ERR= # dynamically set by precmd
 if [ -z "${TMUX}" ]; then
 	PR_WAR="${C_Z_W} -tm ${C_Z_O}"
 fi
 PR_END="${C_Z_N};${C_Z_O}"
-PS1="${PR_STA}${PR_WAR}${PR_ERR}${PR_END} "
+PS1="${PR_STA}${PR_WAR}\${PR_ERR}${PR_END} "
 PS2="${C_Z_N}%_>${C_Z_O} "
 PS3="${C_Z_N}?#${PS3}${C_Z_O} "
 PS4="${C_Z_N}+%N:%i>${C_Z_O} "
-unset PR_STA PR_ERR PR_WAR PR_END
+unset PR_STA PR_WAR PR_END
 
-# title
-if [ -n "${ALACRITTY_THEME}" ]; then
-	THEME_INDICATOR=" {${ALACRITTY_THEME}}"
-fi
 function precmd() {
-	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${THEME_INDICATOR}${terminfo[fsl]}"
-}
+	# set PR_ERR only if the last execution failed; ignore ^C or empty executions
+	rc=${?}
+	if [ -z "${PRE_EXECD}" -o "${rc}" -eq 0 ]; then
+		PR_ERR=
+	else
+		PR_ERR="${C_Z_E} ${rc} ${C_Z_O}"
+	fi
+	PRE_EXECD=
 
+	# terminal title
+	if [ -n "${ALACRITTY_THEME}" ]; then
+		print -Pn "${terminfo[tsl]}%~$(__git_ps1) {${ALACRITTY_THEME}}${terminfo[fsl]}"
+	else
+		print -Pn "${terminfo[tsl]}%~$(__git_ps1)${terminfo[fsl]}"
+	fi
+}
+function preexec() {
+	PRE_EXECD="oui"
+}
 
 # use the keychain wrapper to start ssh-agent if needed
 if [ $(whence keychain) -a -f ~/.ssh/id_rsa ]; then
