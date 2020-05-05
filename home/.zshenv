@@ -31,12 +31,19 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
-# colours for use by prompts, tmux
-export DWM_NOR_FG="#bbbbbb"
-export DWM_NOR_BG="#222222"
-export DWM_SEL_FG="#eeeeee"
-export DWM_SEL_BG="#005577"
-export WARN_FG="black"
-export WARN_BG="yellow"
-export ERR_FG="black"
-export ERR_BG="red"
+# dwm colours
+C_D_GRAY1="#222222"
+C_D_GRAY2="#444444"
+C_D_GRAY3="#bbbbbb"
+C_D_GRAY4="#eeeeee"
+C_D_CYAN="#005577"
+
+# zsh
+C_Z_O="%k%f"
+C_Z_E="%F{${C_D_GRAY4}}%K{red}"
+C_Z_W="%F{${C_D_GRAY4}}%K{magenta}"
+C_Z_N="%F{${C_D_GRAY4}}%K{${C_D_CYAN}}"
+
+# tmux
+export C_T_N="fg=${C_D_GRAY4},bg=${C_D_CYAN}"
+

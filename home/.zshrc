@@ -105,17 +105,22 @@ else
 fi
 
 # prompts
+PR_STA="${C_Z_N}:${C_Z_O}"
+PR_ERR="%(?..${C_Z_E} %? ${C_Z_O})"
+PR_END="${C_Z_N};${C_Z_O} "
 if [ -z "${TMUX}" ]; then
-	NOTMUX="%F{${WARN_FG}}%K{${WARN_BG}}!tmux%k%f"
+	PR_WAR="${C_Z_W} -tm ${C_Z_O}"
 fi
-PROMPT="%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}}:%k%f%(?..%F{${ERR_FG}}%K{${ERR_BG}}%?%k%f)${NOTMUX}%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}};%k%f "
+PS1="${PR_STA}${PR_ERR}${PR_WAR}${PR_END}"
+PS2="${C_Z_N}%_>${C_Z_O} "
+PS3="${C_Z_N}?#${PS3}${C_Z_O} "
+PS4="${C_Z_N}+%N:%i>${C_Z_O} "
+unset PR_STA PR_ERR PR_WAR PR_END
+
+# title
 if [ -n "${ALACRITTY_THEME}" ]; then
 	THEME_INDICATOR=" {${ALACRITTY_THEME}}"
 fi
-PROMPT2="%F{${DWM_SEL_FG}}%K{${DWM_SEL_BG}}%_%k%f "
-unset NOTMUX
-
-# title
 function precmd() {
 	print -Pn "${terminfo[tsl]}%~$(__git_ps1)${THEME_INDICATOR}${terminfo[fsl]}"
 }
