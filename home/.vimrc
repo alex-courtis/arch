@@ -17,8 +17,6 @@ set laststatus=2
 
 set number relativenumber
 
-:au FocusLost * silent! wa
-
 " ANSI colours only; more colours can still be explicitly selected.
 if &t_Co > 16
 	set t_Co=16

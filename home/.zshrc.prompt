@@ -31,8 +31,8 @@ function precmd() {
 		PR_THEME=" {${ALACRITTY_THEME}}"
 	fi
 
-	# terminal title
-	print -Pn "${terminfo[tsl]}%~${git_ps1}${PR_THEME}${terminfo[fsl]}"
+	# no terminfo references as they are not reliable e.g. xterm missing fsl
+	print -Pn "\E]0;%~${git_ps1}${PR_THEME}"
 }
 function preexec() {
 	PRE_EXECD="oui"
