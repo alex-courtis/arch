@@ -1147,9 +1147,10 @@ schemes:
       background: '#000000'
       foreground: '#ffffff'
 
-    cursor:
-      text: '#ffffff'
-      cursor: '#ffffff'
+    ## we need the reverse cursor's contrast
+    #cursor:
+    #  text: '#ffffff'
+    #  cursor: '#ffffff'
 
     # Normal colors
     normal:
