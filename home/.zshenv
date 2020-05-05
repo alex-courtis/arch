@@ -30,3 +30,19 @@ export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+
+# moar history
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+
+# dwm colours
+COL_DWM_GRAY1="#222222"
+COL_DWM_GRAY2="#444444"
+COL_DWM_GRAY3="#bbbbbb"
+COL_DWM_GRAY4="#eeeeee"
+COL_DWM_CYAN="#005577"
+
+# tmux colours
+export COL_TMUX_NORM="fg=${COL_DWM_GRAY4},bg=${COL_DWM_CYAN}"
+
