@@ -36,9 +36,10 @@ highlight MatchParen ctermbg=8
 set updatetime=250
 
 " ansi colours to match git diff
-highlight GitGutterAdd    ctermfg=10 ctermbg=8
-highlight GitGutterChange ctermfg=11 ctermbg=8
-highlight GitGutterDelete ctermfg=9 ctermbg=8
+highlight SignColumn      ctermbg=NONE
+highlight GitGutterAdd    ctermbg=NONE ctermfg=2
+highlight GitGutterChange ctermbg=NONE ctermfg=3
+highlight GitGutterDelete ctermbg=NONE ctermfg=1
 
 
 " editorconfig

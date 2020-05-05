@@ -1,0 +1,41 @@
+# vim zle mode
+bindkey -v
+
+# not using any esc-something sequences so drop the timeout from 40 for better editing responsiveness
+KEYTIMEOUT=1
+
+# with proper deletes
+bindkey -M viins "${terminfo[kdch1]}" delete-char
+bindkey -M vicmd "${terminfo[kdch1]}" delete-char
+
+# shift tab
+bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+
+# search up to cursor
+bindkey -M viins "^J" history-beginning-search-forward
+bindkey -M viins "^K" history-beginning-search-backward
+
+# incremental search which uses a limited set of regular bindings, overridden by the (empty) isearch map
+bindkey -M viins "^F" history-incremental-search-forward
+bindkey -M viins "^B" history-incremental-search-backward
+
+# vim cursor style; using the same VTE values as vim terminus plugin for these nonstandard extensions
+# normal: block: 2
+# replace: underscore: 4 (not yet in ZLE...)
+# insert: beam: 6
+function updatecursor() {
+	case ${KEYMAP} in
+		(vicmd)
+			printf "\033[2 q"
+			;;
+		(*)
+			printf "\033[6 q"
+			;;
+	esac
+}
+zle -N zle-line-init updatecursor
+zle -N zle-keymap-select updatecursor
+function resetcursor() {
+	printf "\033[2 q"
+}
+zle -N zle-line-finish resetcursor

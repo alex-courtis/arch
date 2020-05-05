@@ -1,0 +1,49 @@
+setopt -o promptsubst
+
+COL_OFF="%k%f"
+COL_NOR="%F{${COL_DWM_GRAY4}}%K{${COL_DWM_CYAN}}"
+COL_WAR="%F{black}%K{yellow}"
+COL_ERR="%F{black}%K{red}"
+
+PS1="${COL_NOR}:${COL_WAR}\${PR_WAR}${COL_ERR}\${PR_ERR}${COL_NOR};${COL_OFF} "
+PS2="${COL_NOR}${PS2}${COL_OFF} "
+PS3="${COL_NOR}${PS3}${COL_OFF} "
+PS4="${COL_NOR}${PS4}${COL_OFF} "
+
+function precmd() {
+	rc=${?}
+	git_ps1="$(__git_ps1)"
+
+	PR_ERR=
+	PR_WAR=
+	PR_THEME=
+
+	# set PR_ERR only if the last execution failed; ignore ^C or empty executions
+	if [ -n "${PRE_EXECD}" -a "${rc}" -ne 0 ]; then
+		PR_ERR=" ${rc} "
+	fi
+	PRE_EXECD=
+
+	if [ -z "${TMUX}" ]; then
+		PR_WAR=" -tm "
+	fi
+	if [ -n "${ALACRITTY_THEME}" ]; then
+		PR_THEME=" {${ALACRITTY_THEME}}"
+	fi
+
+	# terminal title
+	print -Pn "${terminfo[tsl]}%~${git_ps1}${PR_THEME}${terminfo[fsl]}"
+}
+function preexec() {
+	PRE_EXECD="oui"
+}
+
+# git PS1
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+	GIT_PS1_SHOWDIRTYSTATE="true"
+	GIT_PS1_SHOWSTASHSTATE="true"
+	GIT_PS1_SHOWUPSTREAM="auto"
+	. /usr/share/git/completion/git-prompt.sh
+else
+	function __git_ps1() { : }
+fi

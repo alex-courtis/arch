@@ -1,0 +1,8 @@
+autoload -Uz compinit
+compinit
+
+eval $(dircolors)
+
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+
