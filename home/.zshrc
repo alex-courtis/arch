@@ -57,9 +57,11 @@ typeset -U path
 
 
 # zsh completion
-zstyle ':completion:*:*:*:*:*' menu select
 autoload -Uz compinit
 compinit
+eval $(dircolors)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
 
 
 # moar history
