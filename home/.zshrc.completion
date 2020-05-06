@@ -1,8 +1,13 @@
 autoload -Uz compinit
 compinit
 
+# sets better defaults for ls
 eval $(dircolors)
-
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# always a menu
 zstyle ':completion:*' menu select
+
+# treat aliases like they are a first class command
+setopt completealiases
 
