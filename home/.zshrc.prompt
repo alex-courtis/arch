@@ -2,8 +2,8 @@ setopt -o promptsubst
 
 COL_OFF="%k%f"
 COL_NOR="%F{${COL_DWM_GRAY4}}%K{${COL_DWM_CYAN}}"
-COL_WAR="%F{black}%K{yellow}"
-COL_ERR="%F{black}%K{red}"
+COL_WAR="%F{${COL_DWM_GRAY1}}%K{yellow}"
+COL_ERR="%F{${COL_DWM_GRAY1}}%K{red}"
 
 PS1="${COL_NOR}:${COL_WAR}\${PR_WAR}${COL_ERR}\${PR_ERR}${COL_NOR};${COL_OFF} "
 PS2="${COL_NOR}${PS2}${COL_OFF} "
@@ -24,8 +24,11 @@ function precmd() {
 	fi
 	PRE_EXECD=
 
+	if [ "${USER}" = "root" ]; then
+		PR_ERR="${PR_ERR} root "
+	fi
 	if [ -z "${TMUX}" ]; then
-		PR_WAR=" -tm "
+		PR_WAR="${PR_WAR} -tm "
 	fi
 	if [ -n "${ALACRITTY_THEME}" ]; then
 		PR_THEME=" {${ALACRITTY_THEME}}"
