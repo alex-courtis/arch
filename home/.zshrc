@@ -2,6 +2,7 @@ source "${HOME}/.zshrc.tmux"
 source "${HOME}/.zshrc.completion"
 source "${HOME}/.zshrc.zle"
 source "${HOME}/.zshrc.prompt"
+source "${HOME}/.zshrc.func"
 source "${HOME}/.zshrc.alias"
 
 # remove duplicates coming from arch's /etc/profile.d
