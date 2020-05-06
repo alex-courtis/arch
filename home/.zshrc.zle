@@ -8,8 +8,7 @@ KEYTIMEOUT=1
 bindkey -M viins "${terminfo[kdch1]}" delete-char
 bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
-# rebinding tab from expand-or-complete squishes the annoying
-# "zsh: do you wish to see all 168 possibilities (57 lines)?" messages
+# get to the menu with tab/TAB, skipping the unuseful prompts and keystrokes
 bindkey -M viins "${terminfo[ht]}" menu-expand-or-complete
 bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
 
