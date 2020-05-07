@@ -19,7 +19,7 @@ cfg="/tmp/alacritty.${theme}.yml"
 cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" \
 	> "${cfg}"
 
-ALACRITTY_theme="${theme}" \
+ALACRITTY_THEME="${theme}" \
 	/usr/bin/alacritty \
 	--config-file="${cfg}" \
 	--no-live-config-reload \
