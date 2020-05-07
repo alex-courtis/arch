@@ -1,5 +1,16 @@
 #!/bin/zsh
 
+banned=(
+	# light
+	"gruvboxlight"
+	"pencillight"
+	"seagull"
+	"solarizedlight"
+
+	# lacks contrast
+	"tangoish"
+)
+
 base="${HOME}/.config/alacritty"
 
 if [ "${1}" = "--theme" -o "${1}" = "-t" ]; then
@@ -9,7 +20,10 @@ if [ "${1}" = "--theme" -o "${1}" = "-t" ]; then
 else
 	themes=()
 	for f in "${base}/themes/"*yml; do
-		themes+=${$(basename "${f}")/.yml/}
+		theme="${$(basename ${f})/.yml/}"
+		if [ "${banned[(ie)${theme}]}" -gt "${#banned}" ]; then
+			themes+=${theme}
+		fi
 	done
 	theme="${themes[$(( ( $RANDOM % ${#themes} ) + 1 ))]}"
 fi

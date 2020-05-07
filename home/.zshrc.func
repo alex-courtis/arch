@@ -13,9 +13,10 @@ function mnt() {
 }
 
 function umnt() {
+	cd
 	if [ ! -f /tmp/lastmntd ]; then
 		echo "/tmp/lastmntd inexistent; pumount manually"
 		return 1
 	fi
-	pumount $(cat /tmp/lastmntd) && rm /tmp/lastmntd
+	sync && pumount $(cat /tmp/lastmntd) && rm /tmp/lastmntd
 }
