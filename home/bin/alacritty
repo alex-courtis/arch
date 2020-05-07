@@ -1,93 +1,27 @@
 #!/bin/zsh
 
-THEMES=(
-	"argonaut"
-	"bloodmoon"
-	"campbell"
-	"darktooth"
-	"hybrid"
-	"itermdefault"
-	"kitty"
-	"taerminal"
-	"tango"
-	"wombat"
-	"xterm"
+base="${HOME}/.config/alacritty"
 
-	# not ansi
-	"ayudark"
-	"cobalt2"
-	"darkside"
-	"gruvboxdark"
-	"iceberg"
-	"irblack"
-	"kdebreeze"
-	"tangoish"
-
-	# lacks distinct normal/bright
-	"afterglow"
-	"base16defaultdark"
-	"dracula"
-	"hyper"
-	"newmoon"
-	"nord"
-	"oceanicnext"
-	"onedark"
-	"oxide"
-	"snazzy"
-	"tender"
-
-	# not ansi, lacks distinct normal/bright
-	"molokaidark"
-	"monokaidark"
-	"monokaipro"
-	"monokaisoda"
-	"nova"
-)
-
-BAD_THEMES=(
-	# eyestrain
-	"terminalapp"
-
-	# just ugly
-	"jellybeans"
-	"ubuntu"
-	"material"
-
-	# not actually the same as default, has white switched for very dark grey
-	"tomorrownight"
-	"tomorrownightbright"
-
-	# light
-	"seabird"
-	"gruvboxlight"
-	"pencillite"
-	"solarizedlight"
-	"terminalappbasic"
-
-	# not ansi
-	"seoul256"
-	"solarizeddark"
-
-	# some colours lack contrast with others
-	"sourcerer"
-	"pencildark"
-)
-
-if [ "${1}" = "--theme" ]; then
-	THEME=${2}
+if [ "${1}" = "--theme" -o "${1}" = "-t" ]; then
+	theme="${2}"
 	shift
 	shift
 else
-	THEME="${THEMES[$(( ( $RANDOM % ${#THEMES} ) + 1 ))]}"
+	themes=()
+	for f in "${base}/themes/"*yml; do
+		themes+=${$(basename "${f}")/.yml/}
+	done
+	theme="${themes[$(( ( $RANDOM % ${#themes} ) + 1 ))]}"
 fi
-CFG="/tmp/alacritty.${THEME}.yml"
 
-cp ~/.config/alacritty/alacritty.yml "${CFG}"
-echo "colors: *${THEME}" >> "${CFG}"
+cfg="/tmp/alacritty.${theme}.yml"
 
-ALACRITTY_THEME="${THEME}" \
+cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" \
+	> "${cfg}"
+
+ALACRITTY_theme="${theme}" \
 	/usr/bin/alacritty \
-	--config-file="${CFG}" \
+	--config-file="${cfg}" \
 	--no-live-config-reload \
 	"$@" \
 	&

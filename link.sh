@@ -43,6 +43,9 @@ for f in $(find "${ALEX_HOME}" -type f -or -type l); do
 	if [ "${TARGET_FILE}" = "20-nvidia.conf" -a "${NVIDIA}" = "false" ]; then
 		SKIP="true"
 	fi
+	if [ "${TARGET_DIR}" = "${HOME}/.config/alacritty/themes" ]; then
+		SKIP="true"
+	fi
 
 	if [ ${SKIP} = "false" ]; then
 		if [ ! -d ${TARGET_DIR} ]; then
@@ -58,3 +61,5 @@ mkdir -pv "${HOME}/.vim/pack/foo/start"
 for d in "$(pwd)/vim.pack.foo.start/"*; do
 	ln -fsv "${d}" "${HOME}/.vim/pack/foo/start"
 done
+
+ln -fsv "${ALEX_HOME}/.config/alacritty/themes" "${HOME}/.config/alacritty"
