@@ -18,6 +18,8 @@ alias agh="ag --hidden"
 alias pt="pstree -TapU -C age"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 
+alias d="cd ~/.dotfiles"
+
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
@@ -32,3 +34,4 @@ alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}
 # bash style targets that cannot play well with complete_aliases
 alias todo="todo.sh"
 compdef todo="todo.sh"
+

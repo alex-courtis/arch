@@ -9,6 +9,9 @@ banned=(
 
 	# lacks contrast
 	"tangoish"
+
+	# ugly
+	"ubuntu"
 )
 
 base="${HOME}/.config/alacritty"

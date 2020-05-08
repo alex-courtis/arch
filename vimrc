@@ -13,8 +13,6 @@ set listchars=trail:·,tab:>\ ,eol:¬
 
 set formatoptions+=j
 
-set laststatus=2
-
 set number relativenumber
 
 " ANSI colours only; more colours can still be explicitly selected.
@@ -26,7 +24,7 @@ set background=dark
 highlight LineNrBelow ctermfg=8
 highlight LineNrAbove ctermfg=8
 
-highlight MatchParen ctermbg=8
+highlight MatchParen  ctermbg=8
 
 
 " vim-gitgutter
@@ -53,19 +51,17 @@ let g:XtermColorTableDefaultOpen="edit"
 
 " airline
 "
+set noshowmode
+
 let g:airline_powerline_fonts=1
-if ($ALACRITTY_THEME != "")
-	let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
-else
-	let &titlestring="%F %m%r"
-endif
+
+let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#tagbar#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#wrap("",0)}'
+let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
+let g:airline_section_z = '%#__accent_bold#%3l/%L%#__restore__# :%3v'
 
 
 " vundle at the end, so it picks up customisations from above e.g. t_Co
 "
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
@@ -77,5 +73,4 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'wincent/terminus'
 
 call vundle#end()
-filetype plugin indent on
 
