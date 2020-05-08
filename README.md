@@ -1,8 +1,18 @@
-I use Arch Linux and [suckless](http://suckless.org/) is my "desktop environment", using the [dwm](http://dwm.suckless.org/) window manager.
+# What Is This Repo?
 
-Arch installation instructions and user configuration for desktop, laptop and embedded usage.
+My [dotfiles](http://dotfiles.github.io), managed by [rcm](https://github.com/thoughtbot/rcm).
 
-My tools/configurations:
+Documentation for a smooth [Arch Linux](https://www.archlinux.org/) installation for a variety of use cases including desktop, laptop and embedded.
+
+Also some Arch Linux to make your life easier.
+
+# "Desktop Environment"
+
+There is no DE, just a console login which starts X11.
+
+[suckless](http://suckless.org/) makes up most of the environment, centred around the [dwm](http://dwm.suckless.org/) window manager.
+
+Configurations:
 * [dwm](https://github.com/alex-courtis/dwm/)
 * [slstatus](https://github.com/alex-courtis/slstatus/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
@@ -18,7 +28,7 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 
 ## Usage
 
-See [rcm](https://github.com/thoughtbot/rcm) for details on dotfile management.
+See [rcm](https://github.com/thoughtbot/rcm) for day to day operations.
 
 # Note To Users
 
