@@ -27,9 +27,9 @@ highlight LineNrAbove ctermfg=8
 highlight MatchParen  ctermbg=8
 
 if ($ALACRITTY_THEME != "")
-       let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
+	let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
 else
-       let &titlestring="%F %m%r"
+	let &titlestring="%F %m%r"
 endif
 
 
@@ -63,11 +63,10 @@ let g:airline_powerline_fonts=1
 
 let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#tagbar#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#wrap("",0)}'
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
-let g:airline_section_z = '%#__accent_bold#%3l/%L%#__restore__# :%3v'
+let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'
 
 
 " vundle at the end, so it picks up customisations from above e.g. t_Co
-"
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
