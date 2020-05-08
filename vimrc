@@ -46,7 +46,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-obsession'
 Plugin 'vim-airline/vim-airline'
 Plugin 'wincent/terminus'
 call vundle#end()
@@ -69,18 +68,13 @@ highlight ColorColumn ctermbg=3
 let g:EditorConfig_max_line_indicator="exceeding"
 
 
-" xterm-color-table
-"
-let g:XtermColorTableDefaultOpen="edit"
-
-
 " airline
 "
 set noshowmode
 
 let g:airline_powerline_fonts=1
 
-let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#tagbar#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#wrap("",0)}'
-let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
-let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'
+let g:airline_section_x = airline#section#create_right(['bookmark', 'tagbar', 'vista', 'gutentags', 'grepper'])
+let g:airline_section_y = airline#section#create_right(['filetype'])
+let g:airline_section_z = airline#section#create(['windowswap', 'obsession', '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'])
 

@@ -19,6 +19,7 @@ alias pt="pstree -TapU -C age"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 
 alias d="cd ~/.dotfiles"
+alias s="cd ~/s"
 
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"

@@ -3,15 +3,18 @@
 banned=(
 	# light
 	#"gruvboxlight"
-	#"pencillight"
+	"pencillight"
 	#"seagull"
 	#"solarizedlight"
 
-	# lacks contrast
+	# colours indistinguishable from background
 	"tangoish"
 
 	# ugly
 	"ubuntu"
+
+	# washed out
+	"nova"
 )
 
 base="${HOME}/.config/alacritty"
