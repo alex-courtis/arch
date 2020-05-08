@@ -33,6 +33,21 @@ else
 endif
 
 
+" plugins now, so that changes such as t_Co are taken into account
+"
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'airblade/vim-gitgutter'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-obsession'
+Plugin 'vim-airline/vim-airline'
+Plugin 'wincent/terminus'
+call vundle#end()
+
+
 " vim-gitgutter
 "
 set updatetime=250
@@ -64,18 +79,4 @@ let g:airline_powerline_fonts=1
 let g:airline_section_x = '%{airline#util#prepend("",0)}%{airline#util#prepend(airline#extensions#tagbar#currenttag(),0)}%{airline#util#prepend("",0)}%{airline#util#wrap("",0)}'
 let g:airline_section_y = '%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'
-
-
-" vundle at the end, so it picks up customisations from above e.g. t_Co
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'airblade/vim-gitgutter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'guns/xterm-color-table.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-airline/vim-airline'
-Plugin 'wincent/terminus'
-
-call vundle#end()
 
