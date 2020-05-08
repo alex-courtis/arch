@@ -7,8 +7,6 @@ My tools/configurations:
 * [slstatus](https://github.com/alex-courtis/slstatus/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
-![xmonad screenshot](/ss.png?raw=true "xmonad in action!")
-
 # Usage
 
 ## Install
@@ -30,4 +28,4 @@ If you wish to use these dotfiles, it is advisable to fork this repository. I fr
 
 ## [Arch Top Tips From Alex](doc/arch-tips.md)
 
-## [Arch Installation](doc/arch-installation.md)
+## [Arch Installation](doc/arch-install.md)
