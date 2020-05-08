@@ -60,3 +60,22 @@ else
 	let &titlestring="%F %m%r"
 endif
 
+
+" vundle at the end, so it picks up customisations from above e.g. t_Co
+"
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'airblade/vim-gitgutter'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-airline/vim-airline'
+Plugin 'wincent/terminus'
+
+call vundle#end()
+filetype plugin indent on
+

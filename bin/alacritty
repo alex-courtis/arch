@@ -2,10 +2,10 @@
 
 banned=(
 	# light
-	"gruvboxlight"
-	"pencillight"
-	"seagull"
-	"solarizedlight"
+	#"gruvboxlight"
+	#"pencillight"
+	#"seagull"
+	#"solarizedlight"
 
 	# lacks contrast
 	"tangoish"

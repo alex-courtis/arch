@@ -496,6 +496,7 @@ drive-bin
 gron-bin
 pulseaudio-ctl
 redshift-minimal
+vundle-git
 xlayoutdisplay
 yq2-bin
 
