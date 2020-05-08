@@ -19,7 +19,11 @@ set number relativenumber
 if &t_Co > 16
 	set t_Co=16
 endif
-set background=dark
+if $ALACRITTY_THEME =~ "light"
+	set background=light
+else
+	set background=dark
+endif
 
 highlight LineNrBelow ctermfg=8
 highlight LineNrAbove ctermfg=8
