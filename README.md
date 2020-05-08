@@ -6,6 +6,10 @@ Documentation for a smooth [Arch Linux](https://www.archlinux.org/) installation
 
 Also some Arch Linux to make your life easier.
 
+# Note To Users
+
+If you wish to use these dotfiles, it is advisable to fork this repository. I frequently make large changes that may break your environmont.
+
 # "Desktop Environment"
 
 There is no DE, just a console login which starts X11.
@@ -17,25 +21,18 @@ Configurations:
 * [slstatus](https://github.com/alex-courtis/slstatus/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
-# Usage
-
-## Install
+# Install
 
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
-## Usage
-
 See [rcm](https://github.com/thoughtbot/rcm) for day to day operations.
-
-# Note To Users
-
-If you wish to use these dotfiles, it is advisable to fork this repository. I frequently make large and breaking changes.
 
 # Documentation
 
 ## [Arch Top Tips From Alex](doc/arch-tips.md)
 
 ## [Arch Installation](doc/arch-install.md)
+
