@@ -26,6 +26,12 @@ highlight LineNrAbove ctermfg=8
 
 highlight MatchParen  ctermbg=8
 
+if ($ALACRITTY_THEME != "")
+       let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
+else
+       let &titlestring="%F %m%r"
+endif
+
 
 " vim-gitgutter
 "
