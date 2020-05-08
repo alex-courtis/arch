@@ -1,0 +1,3 @@
+EXCLUDES="git"
+UNDOTTED="bin"
+SYMLINK_DIRS="config/alacritty/themes"
