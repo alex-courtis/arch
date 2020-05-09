@@ -1,7 +1,8 @@
 colors:
+  # AMC replaced the terrible green/black with tangoish values
   primary:
-    background: '#000000'
-    foreground: '#00ff00'
+    background: '#2e3436'
+    foreground: '#eeeeec'
   normal:
     black:   '#2e3436'
     red:     '#cc0000'

@@ -16,10 +16,10 @@ set formatoptions+=j
 set number relativenumber
 
 " ANSI colours only; more colours can still be explicitly selected.
-if &t_Co > 16
+if &t_Co > 16 && !&diff
 	set t_Co=16
 endif
-if $ALACRITTY_THEME =~ "light" || $ALACRITTY_THEME =~ "terminalappbasic" 
+if $TERMINAL_BACKGROUND =~ "light"
 	set background=light
 else
 	set background=dark
@@ -30,8 +30,8 @@ highlight LineNrAbove ctermfg=8
 
 highlight MatchParen  ctermbg=8
 
-if ($ALACRITTY_THEME != "")
-	let &titlestring="%F %m%r {" . $ALACRITTY_THEME . "}"
+if ($TERMINAL_THEME != "")
+	let &titlestring="%F %m%r {" . $TERMINAL_THEME . "}"
 else
 	let &titlestring="%F %m%r"
 endif

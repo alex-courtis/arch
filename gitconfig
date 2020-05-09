@@ -13,7 +13,7 @@
 	st = status
 [user]
 	name = Alexander Courtis
-	email = acourtis@atlassian.com
+	email = alex@courtis.org
 [core]
 	excludesfile = ~/.gitignore
 [push]
@@ -26,3 +26,5 @@
 	#renameLimit = 9999
 #[diff]
 	#renameLimit = 9999
+[merge]
+	tool = vimdiff

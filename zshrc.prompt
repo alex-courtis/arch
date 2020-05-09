@@ -30,8 +30,8 @@ function precmd() {
 	if [ -z "${TMUX}" ]; then
 		PR_WAR="${PR_WAR} -tm "
 	fi
-	if [ -n "${ALACRITTY_THEME}" ]; then
-		PR_THEME=" {${ALACRITTY_THEME}}"
+	if [ -n "${TERMINAL_THEME}" ]; then
+		PR_THEME=" {${TERMINAL_THEME}}"
 	fi
 
 	# no terminfo references as they are not reliable e.g. xterm missing fsl

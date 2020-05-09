@@ -1,20 +1,26 @@
 #!/bin/zsh
 
 banned=(
-	# light
-	#"gruvboxlight"
-	"pencillight"
-	#"seagull"
-	#"solarizedlight"
-
 	# colours indistinguishable from background
+	"material"
 	"tangoish"
+	"darktooth"
+	"sourcerer"
 
 	# ugly
 	"ubuntu"
 
 	# washed out
 	"nova"
+)
+
+light=(
+	"gruvboxlight"
+	"onelight"
+	"pencillight"
+	"seagull"
+	"solarizedlight"
+	"terminalappbasic"
 )
 
 base="${HOME}/.config/alacritty"
@@ -27,11 +33,17 @@ else
 	themes=()
 	for f in "${base}/themes/"*yml; do
 		theme="${$(basename ${f})/.yml/}"
-		if [ "${banned[(ie)${theme}]}" -gt "${#banned}" ]; then
+		if [ -z "${banned[(re)${theme}]}" ]; then
 			themes+=${theme}
 		fi
 	done
 	theme="${themes[$(( ( $RANDOM % ${#themes} ) + 1 ))]}"
+fi
+
+if [ -n "${light[(re)${theme}]}" ]; then
+	background="light"
+else
+	background="dark"
 fi
 
 cfg="/tmp/alacritty.${theme}.yml"
@@ -39,10 +51,11 @@ cfg="/tmp/alacritty.${theme}.yml"
 cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" \
 	> "${cfg}"
 
-ALACRITTY_THEME="${theme}" \
+TMUX= \
+TERMINAL_THEME="${theme}" \
+TERMINAL_BACKGROUND="${background}" \
 	/usr/bin/alacritty \
 	--config-file="${cfg}" \
-	--no-live-config-reload \
 	"$@" \
 	&
 
