@@ -7,6 +7,8 @@
 	gup = smart-pull
 	gm = smart-merge
 	gl = smart-log
+	mti = mergetool --tool idea
+	mtv = mergetool --tool vimdiff
 	sh = show
 	shn = show --name-only
 	s = status
@@ -26,5 +28,7 @@
 	#renameLimit = 9999
 #[diff]
 	#renameLimit = 9999
-[merge]
-	tool = vimdiff
+[mergetool "idea"]
+	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > ideamerge.log 2>&1
+	trustExitCode = true
+
