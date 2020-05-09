@@ -19,7 +19,7 @@ set number relativenumber
 if &t_Co > 16
 	set t_Co=16
 endif
-if $ALACRITTY_THEME =~ "light"
+if $ALACRITTY_THEME =~ "light" || $ALACRITTY_THEME =~ "terminalappbasic" 
 	set background=light
 else
 	set background=dark
@@ -74,7 +74,7 @@ set noshowmode
 
 let g:airline_powerline_fonts=1
 
-let g:airline_section_x = airline#section#create_right(['bookmark', 'tagbar', 'vista', 'gutentags', 'grepper'])
-let g:airline_section_y = airline#section#create_right(['filetype'])
-let g:airline_section_z = airline#section#create(['windowswap', 'obsession', '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'])
+let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
+let g:airline_section_y = '%{airline#parts#filetype()}'
+let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__#/%L %3P'
 
