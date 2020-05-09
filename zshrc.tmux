@@ -11,8 +11,7 @@ function tm() {
 }
 
 # Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.
-# Too expensive for precmd.
-# Manually invoke when attaching to an existing session from a different terminal type.
+# Propagate info about the terminal.
 function updatetmuxterm() {
 	if [ -n "${TMUX}" ]; then
 		case $(tmux show-environment TERM 2>/dev/null) in
@@ -23,6 +22,8 @@ function updatetmuxterm() {
 				TERM="tmux"
 				;;
 		esac
+		eval $(tmux show-environment -s TERMINAL_BACKGROUND)
+		eval $(tmux show-environment -s TERMINAL_THEME)
 	fi
 }
 

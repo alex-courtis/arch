@@ -39,6 +39,7 @@ function precmd() {
 }
 function preexec() {
 	PRE_EXECD="oui"
+	updatetmuxterm
 }
 
 # git PS1
