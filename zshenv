@@ -43,6 +43,15 @@ COL_DWM_GRAY3="#bbbbbb"
 COL_DWM_GRAY4="#eeeeee"
 COL_DWM_CYAN="#005577"
 
-# tmux colours
-export COL_TMUX_NORM="fg=${COL_DWM_GRAY4},bg=${COL_DWM_CYAN}"
+# shell and tmux colours
+COL_ZSH_OFF="%k%f"
+COL_ZSH_WAR="%F{${COL_DWM_GRAY1}}%K{yellow}"
+COL_ZSH_ERR="%F{${COL_DWM_GRAY1}}%K{red}"
+if [ "$(hostname)" = "lord" ]; then
+	COL_ZSH_NOR="%F{black}%K{green}"
+	export COL_TMUX_NORM="fg=black,bg=green"
+else
+	COL_ZSH_NOR="%F{${COL_DWM_GRAY4}}%K{${COL_DWM_CYAN}}"
+	export COL_TMUX_NORM="fg=${COL_DWM_GRAY4},bg=${COL_DWM_CYAN}"
+fi
 
