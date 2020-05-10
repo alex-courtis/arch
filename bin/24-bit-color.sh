@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# https://github.com/alacritty/alacritty/issues/109
+
 #
 #   This file echoes a bunch of 24-bit color codes
 #   to the terminal to demonstrate its functionality.
@@ -53,45 +56,45 @@ rainbowColor()
     fi
 }
 
-for i in `seq 0 127`; do
+for i in `seq 0 1 127`; do
     setBackgroundColor $i 0 0
     echo -en " "
 done
 resetOutput
-for i in `seq 255 128`; do
+for i in `seq 255 -1 128`; do
     setBackgroundColor $i 0 0
     echo -en " "
 done
 resetOutput
 
-for i in `seq 0 127`; do
+for i in `seq 0 1 127`; do
     setBackgroundColor 0 $i 0
     echo -n " "
 done
 resetOutput
-for i in `seq 255 128`; do
+for i in `seq 255 -1 128`; do
     setBackgroundColor 0 $i 0
     echo -n " "
 done
 resetOutput
 
-for i in `seq 0 127`; do
+for i in `seq 0 1 127`; do
     setBackgroundColor 0 0 $i
     echo -n " "
 done
 resetOutput
-for i in `seq 255 128`; do
+for i in `seq 255 -1 128`; do
     setBackgroundColor 0 0 $i
     echo -n " "
 done
 resetOutput
 
-for i in `seq 0 127`; do
+for i in `seq 0 1 127`; do
     setBackgroundColor `rainbowColor $i`
     echo -n " "
 done
 resetOutput
-for i in `seq 255 128`; do
+for i in `seq 255 -1 128`; do
     setBackgroundColor `rainbowColor $i`
     echo -n " "
 done
