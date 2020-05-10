@@ -2,9 +2,10 @@ colors:
   primary:
     background: '#000000'
     foreground: '#ffffff'
-  cursor:
-    text: '#ffffff'
-    cursor: '#ffffff'
+  # AMC removed as you cannot see what the cursor is on
+  #cursor:
+  #  text: '#ffffff'
+  #  cursor: '#ffffff'
   normal:
     black:   '#4e4e4e'
     red:     '#ff6c60'

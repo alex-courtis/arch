@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+awesome=(
+	"bloodmoon"
+	"cobalt2"
+	"itermdefault"
+	"irblack"
+)
+
 banned=(
 	# colours indistinguishable from background
 	"material"

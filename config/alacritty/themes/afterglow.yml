@@ -4,8 +4,8 @@ colors:
     foreground: '#d6d6d6'
     dim_foreground:    '#dbdbdb'
     bright_foreground: '#d9d9d9'
-    dim_background:    '#202020' # not sure
-    bright_background: '#3a3a3a' # not sure
+    dim_background:    '#202020'
+    bright_background: '#3a3a3a'
   cursor:
     text:   '#2c2c2c'
     cursor: '#d9d9d9'
