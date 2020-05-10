@@ -468,6 +468,7 @@ rsync
 scrot
 slock
 sysstat
+terminus-font
 the_silver_searcher
 tmux
 ttf-dejavu
@@ -492,9 +493,10 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 `pacaur -S ...`
 
 dapper
-drive-bin
 gron-bin
+pmount
 pulseaudio-ctl
+rcm
 redshift-minimal
 vundle-git
 xlayoutdisplay
