@@ -9,7 +9,7 @@ bindkey -M viins "${terminfo[kdch1]}" delete-char
 bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
 # shift tab for reverse menu only; tab is still set to expand-or-complete
-bindkey -M viins "${terminfo[kcbt]}" reverse-menu-complete
+bindkey -M viins "^[[Z" reverse-menu-complete
 
 # search up to cursor
 bindkey -M viins "^J" history-beginning-search-forward
