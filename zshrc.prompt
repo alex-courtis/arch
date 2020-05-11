@@ -30,8 +30,8 @@ function precmd() {
 	# no terminfo references as they are not reliable e.g. xterm missing fsl
 	print -Pn "\E]0;%~${git_ps1}${PR_THEME}"
 
-	# clear ^C for use by zle clearbuffer
-	stty intr undef
+	# clear ^C for use by zle clearbuffer, leaving ^E for emergencies, PS2 etc
+	stty intr 
 }
 function preexec() {
 	PRE_EXECD="oui"
