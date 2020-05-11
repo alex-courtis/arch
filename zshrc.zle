@@ -20,19 +20,19 @@ bindkey -M viins "^F" history-incremental-search-forward
 bindkey -M viins "^B" history-incremental-search-backward
 
 # vim cursor style; using the same VTE values as vim terminus plugin for these nonstandard extensions
-# normal: block: 2
-# replace: underscore: 4
-# insert: beam: 6
+CUR_BLOCK="\033[2 q"
+CUR_UNDERSCORE="\033[4 q"
+CUR_BEAM="\033[6 q"
 function updatecursor() {
 	case ${KEYMAP} in
 		(vicmd)
-			printf "\033[2 q"
+			printf "${CUR_BLOCK}"
 			;;
 		(*)
 			if [[ "${ZLE_STATE}" =~ "overwrite" ]]; then
-				printf "\033[4 q"
+				printf "${CUR_UNDERSCORE}"
 			else
-				printf "\033[6 q"
+				printf "${CUR_BEAM}"
 			fi
 			;;
 	esac
@@ -40,7 +40,15 @@ function updatecursor() {
 zle -N zle-line-init updatecursor
 zle -N zle-keymap-select updatecursor
 function resetcursor() {
-	printf "\033[2 q"
+	printf "${CUR_BLOCK}"
 }
 zle -N zle-line-finish resetcursor
+
+# clear the current buffer on ^C, which is attached/unattached to INTR during preexec/precmd
+function clearbuffer() {
+	BUFFER=""
+}
+zle -N clearbuffer
+bindkey -M viins "^C" clearbuffer
+bindkey -M vicmd "^C" clearbuffer
 

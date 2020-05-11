@@ -29,10 +29,16 @@ function precmd() {
 
 	# no terminfo references as they are not reliable e.g. xterm missing fsl
 	print -Pn "\E]0;%~${git_ps1}${PR_THEME}"
+
+	# clear ^C for use by zle clearbuffer
+	stty intr undef
 }
 function preexec() {
 	PRE_EXECD="oui"
 	updatetmuxterm
+
+	# restore ^C for whatever we execute
+	stty intr 
 }
 
 # git PS1
