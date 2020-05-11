@@ -47,7 +47,10 @@ COL_DWM_CYAN="#005577"
 COL_ZSH_OFF="%k%f"
 COL_ZSH_WAR="%F{${COL_DWM_GRAY1}}%K{yellow}"
 COL_ZSH_ERR="%F{${COL_DWM_GRAY1}}%K{red}"
-if [ "$(hostname)" = "lord" ]; then
+if [ "${USER}" = "root" ]; then
+	COL_ZSH_NOR="%F{black}%K{magenta}"
+	export COL_TMUX_NORM="fg=black,bg=magenta"
+elif [ -n "${SSH_CONNECTION}" ]; then
 	COL_ZSH_NOR="%F{black}%K{green}"
 	export COL_TMUX_NORM="fg=black,bg=green"
 else

@@ -19,12 +19,10 @@ function precmd() {
 	fi
 	PRE_EXECD=
 
-	if [ "${USER}" = "root" ]; then
-		PR_ERR="${PR_ERR} root "
-	fi
 	if [ -z "${TMUX}" ]; then
 		PR_WAR="${PR_WAR} -tm "
 	fi
+
 	if [ -n "${TERMINAL_THEME}" ]; then
 		PR_THEME=" {${TERMINAL_THEME}}"
 	fi
