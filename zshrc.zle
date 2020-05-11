@@ -21,7 +21,7 @@ bindkey -M viins "^B" history-incremental-search-backward
 
 # vim cursor style; using the same VTE values as vim terminus plugin for these nonstandard extensions
 # normal: block: 2
-# replace: underscore: 4 (not yet in ZLE...)
+# replace: underscore: 4
 # insert: beam: 6
 function updatecursor() {
 	case ${KEYMAP} in
@@ -29,7 +29,11 @@ function updatecursor() {
 			printf "\033[2 q"
 			;;
 		(*)
-			printf "\033[6 q"
+			if [[ "${ZLE_STATE}" =~ "overwrite" ]]; then
+				printf "\033[4 q"
+			else
+				printf "\033[6 q"
+			fi
 			;;
 	esac
 }
