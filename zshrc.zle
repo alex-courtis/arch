@@ -49,6 +49,6 @@ function clearbuffer() {
 	BUFFER=""
 }
 zle -N clearbuffer
-#bindkey -M viins "^C" clearbuffer
-#bindkey -M vicmd "^C" clearbuffer
+bindkey -M viins "^C" clearbuffer
+bindkey -M vicmd "^C" clearbuffer
 
