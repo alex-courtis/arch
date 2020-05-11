@@ -51,6 +51,14 @@ ansi_block() {
 	printf "\n"
 }
 
+# dwm
+rgb_block 34 34 34
+rgb_block 68 68 68
+rgb_block 187 187 187
+rgb_block 238 238 238
+rgb_block 0 85 119
+printf "\n\n"
+
 if [ "${1}" = "-f" ]; then
 
 	# red spectrum
@@ -99,14 +107,6 @@ else
 	done
 	printf "\n\n"
 fi
-
-# dwm
-rgb_block 34 34 34
-rgb_block 68 68 68
-rgb_block 187 187 187
-rgb_block 238 238 238
-rgb_block 0 85 119
-printf "\n\n"
 
 # xterm
 rgb_block 0 0 0
