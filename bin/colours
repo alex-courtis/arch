@@ -83,17 +83,22 @@ if [ "${1}" = "-f" ]; then
 	done
 	printf "\n\n"
 
+	# rainbow spectrum
+	for i in $(seq 0 1 127); do
+		rgb_cell $(rainbow_color $i)
+	done
+	printf "\n"
+	for i in $(seq 255 -1 128); do
+		rgb_cell $(rainbow_color $i)
+	done
+	printf "\n\n"
+else
+	# truncated rainbow spectrum
+	for i in $(seq 0 1 79); do
+		rgb_cell $(rainbow_color $i)
+	done
+	printf "\n\n"
 fi
-
-# rainbow spectrum
-for i in $(seq 0 1 127); do
-	rgb_cell $(rainbow_color $i)
-done
-printf "\n"
-for i in $(seq 255 -1 128); do
-	rgb_cell $(rainbow_color $i)
-done
-printf "\n\n"
 
 # dwm
 rgb_block 34 34 34
