@@ -44,11 +44,11 @@ function resetcursor() {
 }
 zle -N zle-line-finish resetcursor
 
-# clear the current buffer on ^C, which is attached/unattached to INTR during preexec/precmd
-function clearbuffer() {
-	BUFFER=""
+# abort the current buffer on ^C, which is detached from INTR during precmd
+function abortbuffer() {
+	print -Pn "${COL_ZSH_NOR}^C${COL_ZSH_OFF}"
+	zle send-break
 }
-zle -N clearbuffer
-bindkey -M viins "^C" clearbuffer
-bindkey -M vicmd "^C" clearbuffer
-
+zle -N abortbuffer
+bindkey -M viins "^C" abortbuffer
+bindkey -M vicmd "^C" abortbuffer
