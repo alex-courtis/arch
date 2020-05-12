@@ -10,6 +10,7 @@ awesome=(
 banned=(
 	# colours indistinguishable from background
 	"material"
+	"tango"
 	"tangoish"
 	"darktooth"
 	"sourcerer"
@@ -19,6 +20,14 @@ banned=(
 
 	# washed out
 	"nova"
+
+	# light
+	"gruvboxlight"
+	"onelight"
+	"pencillight"
+	"seagull"
+	"solarizedlight"
+	"terminalappbasic"
 )
 
 light=(
