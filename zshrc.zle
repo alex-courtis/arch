@@ -46,7 +46,6 @@ zle -N zle-line-finish resetcursor
 
 # abort on ^C, which detached from stty intr between precmd and preexec
 function abort-buffer() {
-	echo "ab" >> /tmp/zle.log
 	print -Pn "${COL_ZSH_NOR}^C${COL_ZSH_OFF}"
 	zle send-break
 }
