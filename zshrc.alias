@@ -22,7 +22,6 @@ alias su="su -w TERMINAL_BACKGROUND,TERMINAL_THEME"
 
 alias c="cd ~/.config"
 alias d="cd ~/.dotfiles"
-alias l="cd ~/.local/share"
 alias s="cd ~/src"
 
 alias vidone="vi ~/.todo/todotxt/done.txt"

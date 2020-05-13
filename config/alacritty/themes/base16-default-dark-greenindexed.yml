@@ -1,0 +1,278 @@
+# Base16 Default Dark - alacritty color config
+# Chris Kempson (http://chriskempson.com)
+colors:
+  # Default colors
+  primary:
+    background: '0x181818'
+    foreground: '0xd8d8d8'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x181818'
+    cursor: '0xd8d8d8'
+
+  # Normal colors
+  normal:
+    black:   '0x181818'
+    red:     '0xab4642'
+    green:   '0xa1b56c'
+    yellow:  '0xf7ca88'
+    blue:    '0x7cafc2'
+    magenta: '0xba8baf'
+    cyan:    '0x86c1b9'
+    white:   '0xd8d8d8'
+
+  # Bright colors
+  bright:
+    black:   '0x585858'
+    red:     '0xdc9656'
+    green:   '0x282828'
+    yellow:  '0x383838'
+    blue:    '0xb8b8b8'
+    magenta: '0xe8e8e8'
+    cyan:    '0xa16946'
+    white:   '0xf8f8f8'
+
+  indexed_colors:
+    - { index: 16, color: '0x00ff00' }
+    - { index: 17, color: '0x00ff00' }
+    - { index: 18, color: '0x00ff00' }
+    - { index: 19, color: '0x00ff00' }
+    - { index: 20, color: '0x00ff00' }
+    - { index: 21, color: '0x00ff00' }
+    - { index: 22, color: '0x00ff00' }
+    - { index: 23, color: '0x00ff00' }
+    - { index: 24, color: '0x00ff00' }
+    - { index: 25, color: '0x00ff00' }
+    - { index: 26, color: '0x00ff00' }
+    - { index: 27, color: '0x00ff00' }
+    - { index: 28, color: '0x00ff00' }
+    - { index: 29, color: '0x00ff00' }
+    - { index: 30, color: '0x00ff00' }
+    - { index: 31, color: '0x00ff00' }
+    - { index: 32, color: '0x00ff00' }
+    - { index: 33, color: '0x00ff00' }
+    - { index: 34, color: '0x00ff00' }
+    - { index: 35, color: '0x00ff00' }
+    - { index: 36, color: '0x00ff00' }
+    - { index: 37, color: '0x00ff00' }
+    - { index: 38, color: '0x00ff00' }
+    - { index: 39, color: '0x00ff00' }
+    - { index: 40, color: '0x00ff00' }
+    - { index: 41, color: '0x00ff00' }
+    - { index: 42, color: '0x00ff00' }
+    - { index: 43, color: '0x00ff00' }
+    - { index: 44, color: '0x00ff00' }
+    - { index: 45, color: '0x00ff00' }
+    - { index: 46, color: '0x00ff00' }
+    - { index: 47, color: '0x00ff00' }
+    - { index: 48, color: '0x00ff00' }
+    - { index: 49, color: '0x00ff00' }
+    - { index: 50, color: '0x00ff00' }
+    - { index: 51, color: '0x00ff00' }
+    - { index: 52, color: '0x00ff00' }
+    - { index: 53, color: '0x00ff00' }
+    - { index: 54, color: '0x00ff00' }
+    - { index: 55, color: '0x00ff00' }
+    - { index: 56, color: '0x00ff00' }
+    - { index: 57, color: '0x00ff00' }
+    - { index: 58, color: '0x00ff00' }
+    - { index: 59, color: '0x00ff00' }
+    - { index: 60, color: '0x00ff00' }
+    - { index: 61, color: '0x00ff00' }
+    - { index: 62, color: '0x00ff00' }
+    - { index: 63, color: '0x00ff00' }
+    - { index: 64, color: '0x00ff00' }
+    - { index: 65, color: '0x00ff00' }
+    - { index: 66, color: '0x00ff00' }
+    - { index: 67, color: '0x00ff00' }
+    - { index: 68, color: '0x00ff00' }
+    - { index: 69, color: '0x00ff00' }
+    - { index: 70, color: '0x00ff00' }
+    - { index: 71, color: '0x00ff00' }
+    - { index: 72, color: '0x00ff00' }
+    - { index: 73, color: '0x00ff00' }
+    - { index: 74, color: '0x00ff00' }
+    - { index: 75, color: '0x00ff00' }
+    - { index: 76, color: '0x00ff00' }
+    - { index: 77, color: '0x00ff00' }
+    - { index: 78, color: '0x00ff00' }
+    - { index: 79, color: '0x00ff00' }
+    - { index: 80, color: '0x00ff00' }
+    - { index: 81, color: '0x00ff00' }
+    - { index: 82, color: '0x00ff00' }
+    - { index: 83, color: '0x00ff00' }
+    - { index: 84, color: '0x00ff00' }
+    - { index: 85, color: '0x00ff00' }
+    - { index: 86, color: '0x00ff00' }
+    - { index: 87, color: '0x00ff00' }
+    - { index: 88, color: '0x00ff00' }
+    - { index: 89, color: '0x00ff00' }
+    - { index: 90, color: '0x00ff00' }
+    - { index: 91, color: '0x00ff00' }
+    - { index: 92, color: '0x00ff00' }
+    - { index: 93, color: '0x00ff00' }
+    - { index: 94, color: '0x00ff00' }
+    - { index: 95, color: '0x00ff00' }
+    - { index: 96, color: '0x00ff00' }
+    - { index: 97, color: '0x00ff00' }
+    - { index: 98, color: '0x00ff00' }
+    - { index: 99, color: '0x00ff00' }
+    - { index: 100, color: '0x00ff00' }
+    - { index: 101, color: '0x00ff00' }
+    - { index: 102, color: '0x00ff00' }
+    - { index: 103, color: '0x00ff00' }
+    - { index: 104, color: '0x00ff00' }
+    - { index: 105, color: '0x00ff00' }
+    - { index: 106, color: '0x00ff00' }
+    - { index: 107, color: '0x00ff00' }
+    - { index: 108, color: '0x00ff00' }
+    - { index: 109, color: '0x00ff00' }
+    - { index: 110, color: '0x00ff00' }
+    - { index: 111, color: '0x00ff00' }
+    - { index: 112, color: '0x00ff00' }
+    - { index: 113, color: '0x00ff00' }
+    - { index: 114, color: '0x00ff00' }
+    - { index: 115, color: '0x00ff00' }
+    - { index: 116, color: '0x00ff00' }
+    - { index: 117, color: '0x00ff00' }
+    - { index: 118, color: '0x00ff00' }
+    - { index: 119, color: '0x00ff00' }
+    - { index: 120, color: '0x00ff00' }
+    - { index: 121, color: '0x00ff00' }
+    - { index: 122, color: '0x00ff00' }
+    - { index: 123, color: '0x00ff00' }
+    - { index: 124, color: '0x00ff00' }
+    - { index: 125, color: '0x00ff00' }
+    - { index: 126, color: '0x00ff00' }
+    - { index: 127, color: '0x00ff00' }
+    - { index: 128, color: '0x00ff00' }
+    - { index: 129, color: '0x00ff00' }
+    - { index: 130, color: '0x00ff00' }
+    - { index: 131, color: '0x00ff00' }
+    - { index: 132, color: '0x00ff00' }
+    - { index: 133, color: '0x00ff00' }
+    - { index: 134, color: '0x00ff00' }
+    - { index: 135, color: '0x00ff00' }
+    - { index: 136, color: '0x00ff00' }
+    - { index: 137, color: '0x00ff00' }
+    - { index: 138, color: '0x00ff00' }
+    - { index: 139, color: '0x00ff00' }
+    - { index: 140, color: '0x00ff00' }
+    - { index: 141, color: '0x00ff00' }
+    - { index: 142, color: '0x00ff00' }
+    - { index: 143, color: '0x00ff00' }
+    - { index: 144, color: '0x00ff00' }
+    - { index: 145, color: '0x00ff00' }
+    - { index: 146, color: '0x00ff00' }
+    - { index: 147, color: '0x00ff00' }
+    - { index: 148, color: '0x00ff00' }
+    - { index: 149, color: '0x00ff00' }
+    - { index: 150, color: '0x00ff00' }
+    - { index: 151, color: '0x00ff00' }
+    - { index: 152, color: '0x00ff00' }
+    - { index: 153, color: '0x00ff00' }
+    - { index: 154, color: '0x00ff00' }
+    - { index: 155, color: '0x00ff00' }
+    - { index: 156, color: '0x00ff00' }
+    - { index: 157, color: '0x00ff00' }
+    - { index: 158, color: '0x00ff00' }
+    - { index: 159, color: '0x00ff00' }
+    - { index: 160, color: '0x00ff00' }
+    - { index: 161, color: '0x00ff00' }
+    - { index: 162, color: '0x00ff00' }
+    - { index: 163, color: '0x00ff00' }
+    - { index: 164, color: '0x00ff00' }
+    - { index: 165, color: '0x00ff00' }
+    - { index: 166, color: '0x00ff00' }
+    - { index: 167, color: '0x00ff00' }
+    - { index: 168, color: '0x00ff00' }
+    - { index: 169, color: '0x00ff00' }
+    - { index: 170, color: '0x00ff00' }
+    - { index: 171, color: '0x00ff00' }
+    - { index: 172, color: '0x00ff00' }
+    - { index: 173, color: '0x00ff00' }
+    - { index: 174, color: '0x00ff00' }
+    - { index: 175, color: '0x00ff00' }
+    - { index: 176, color: '0x00ff00' }
+    - { index: 177, color: '0x00ff00' }
+    - { index: 178, color: '0x00ff00' }
+    - { index: 179, color: '0x00ff00' }
+    - { index: 180, color: '0x00ff00' }
+    - { index: 181, color: '0x00ff00' }
+    - { index: 182, color: '0x00ff00' }
+    - { index: 183, color: '0x00ff00' }
+    - { index: 184, color: '0x00ff00' }
+    - { index: 185, color: '0x00ff00' }
+    - { index: 186, color: '0x00ff00' }
+    - { index: 187, color: '0x00ff00' }
+    - { index: 188, color: '0x00ff00' }
+    - { index: 189, color: '0x00ff00' }
+    - { index: 190, color: '0x00ff00' }
+    - { index: 191, color: '0x00ff00' }
+    - { index: 192, color: '0x00ff00' }
+    - { index: 193, color: '0x00ff00' }
+    - { index: 194, color: '0x00ff00' }
+    - { index: 195, color: '0x00ff00' }
+    - { index: 196, color: '0x00ff00' }
+    - { index: 197, color: '0x00ff00' }
+    - { index: 198, color: '0x00ff00' }
+    - { index: 199, color: '0x00ff00' }
+    - { index: 200, color: '0x00ff00' }
+    - { index: 201, color: '0x00ff00' }
+    - { index: 202, color: '0x00ff00' }
+    - { index: 203, color: '0x00ff00' }
+    - { index: 204, color: '0x00ff00' }
+    - { index: 205, color: '0x00ff00' }
+    - { index: 206, color: '0x00ff00' }
+    - { index: 207, color: '0x00ff00' }
+    - { index: 208, color: '0x00ff00' }
+    - { index: 209, color: '0x00ff00' }
+    - { index: 210, color: '0x00ff00' }
+    - { index: 211, color: '0x00ff00' }
+    - { index: 212, color: '0x00ff00' }
+    - { index: 213, color: '0x00ff00' }
+    - { index: 214, color: '0x00ff00' }
+    - { index: 215, color: '0x00ff00' }
+    - { index: 216, color: '0x00ff00' }
+    - { index: 217, color: '0x00ff00' }
+    - { index: 218, color: '0x00ff00' }
+    - { index: 219, color: '0x00ff00' }
+    - { index: 220, color: '0x00ff00' }
+    - { index: 221, color: '0x00ff00' }
+    - { index: 222, color: '0x00ff00' }
+    - { index: 223, color: '0x00ff00' }
+    - { index: 224, color: '0x00ff00' }
+    - { index: 225, color: '0x00ff00' }
+    - { index: 226, color: '0x00ff00' }
+    - { index: 227, color: '0x00ff00' }
+    - { index: 228, color: '0x00ff00' }
+    - { index: 229, color: '0x00ff00' }
+    - { index: 230, color: '0x00ff00' }
+    - { index: 231, color: '0x00ff00' }
+    - { index: 232, color: '0x00ff00' }
+    - { index: 233, color: '0x00ff00' }
+    - { index: 234, color: '0x00ff00' }
+    - { index: 235, color: '0x00ff00' }
+    - { index: 236, color: '0x00ff00' }
+    - { index: 237, color: '0x00ff00' }
+    - { index: 238, color: '0x00ff00' }
+    - { index: 239, color: '0x00ff00' }
+    - { index: 240, color: '0x00ff00' }
+    - { index: 241, color: '0x00ff00' }
+    - { index: 242, color: '0x00ff00' }
+    - { index: 243, color: '0x00ff00' }
+    - { index: 244, color: '0x00ff00' }
+    - { index: 245, color: '0x00ff00' }
+    - { index: 246, color: '0x00ff00' }
+    - { index: 247, color: '0x00ff00' }
+    - { index: 248, color: '0x00ff00' }
+    - { index: 249, color: '0x00ff00' }
+    - { index: 250, color: '0x00ff00' }
+    - { index: 251, color: '0x00ff00' }
+    - { index: 252, color: '0x00ff00' }
+    - { index: 253, color: '0x00ff00' }
+    - { index: 254, color: '0x00ff00' }
+    - { index: 255, color: '0x00ff00' }
+
+draw_bold_text_with_bright_colors: false
