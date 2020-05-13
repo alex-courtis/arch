@@ -24,6 +24,12 @@ set background=
 let &titlestring='%f %m%r ' . $TERMINAL_THEME
 
 
+" bindings
+"
+map <F8> :NERDTreeToggle<CR>
+map <F9> :TagbarToggle<CR>
+
+
 " plugins now, so that changes such as t_Co are taken into account
 "
 call vundle#begin()
@@ -33,6 +39,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
