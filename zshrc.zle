@@ -24,7 +24,7 @@ CUR_BLOCK="\033[2 q"
 CUR_UNDERSCORE="\033[4 q"
 CUR_BEAM="\033[6 q"
 function updatecursor() {
-	case ${KEYMAP} in
+	case "${KEYMAP}" in
 		(vicmd)
 			printf "${CUR_BLOCK}"
 			;;
@@ -44,11 +44,16 @@ function resetcursor() {
 }
 zle -N zle-line-finish resetcursor
 
-# abort the current buffer on ^C, which is detached from INTR during precmd
-function abortbuffer() {
+# abort on ^C, which detached from stty intr between precmd and preexec
+function abort-buffer() {
+	echo "ab" >> /tmp/zle.log
 	print -Pn "${COL_ZSH_NOR}^C${COL_ZSH_OFF}"
 	zle send-break
 }
-zle -N abortbuffer
-bindkey -M viins "^C" abortbuffer
-bindkey -M vicmd "^C" abortbuffer
+zle -N abort-buffer
+bindkey -M viins "^C" abort-buffer
+bindkey -M vicmd "^C" abort-buffer
+
+# explicitly define this behaviour which was implicitly gained vi stty intr
+bindkey -M command "^C" send-break
+
