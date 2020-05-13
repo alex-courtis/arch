@@ -21,11 +21,7 @@ if &t_Co > 16 && !&diff
 endif
 set background=
 
-if ($TERMINAL_THEME != "")
-	let &titlestring="%f %m%r {" . $TERMINAL_THEME . "}"
-else
-	let &titlestring="%f %m%r"
-endif
+let &titlestring='%f %m%r ' . $TERMINAL_THEME
 
 
 " plugins now, so that changes such as t_Co are taken into account
@@ -38,16 +34,14 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
 call vundle#end()
 
 
-" Base16 scheme doesn't alter the 16 ANSI terminal colours, only the syntax
-" highlighting group mappings to ANSI colours.
-" It does, however, implicitly load the matching airline theme which maps
-" the airline colours back to ANSI.
+" Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
 "
 colorscheme base16-default-dark
 
@@ -56,17 +50,10 @@ colorscheme base16-default-dark
 "
 set updatetime=250
 
-" ansi colours to match git diff
-"highlight SignColumn      ctermbg=NONE
-"highlight GitGutterAdd    ctermbg=NONE ctermfg=2
-"highlight GitGutterChange ctermbg=NONE ctermfg=3
-"highlight GitGutterDelete ctermbg=NONE ctermfg=1
-
 
 " editorconfig
 "
-highlight ColorColumn ctermbg=3
-let g:EditorConfig_max_line_indicator="exceeding"
+let g:EditorConfig_max_line_indicator='fill'
 
 
 " airline
