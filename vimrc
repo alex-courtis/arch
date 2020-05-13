@@ -35,11 +35,11 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
-Plugin 'dawikur/base16-vim-airline-themes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
 call vundle#end()
 
@@ -72,6 +72,10 @@ let g:EditorConfig_max_line_indicator="exceeding"
 " airline
 "
 set noshowmode
+
+" Defines no colours, just maps airline to the ANSI 16.
+" There are a couple of remaining airline highlights to hunt down, but they might just not be themeable.
+let g:airline_theme='base16_vim'
 
 let g:airline_powerline_fonts=1
 
