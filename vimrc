@@ -68,11 +68,11 @@ let g:EditorConfig_max_line_indicator='fill'
 "
 set noshowmode
 
-" Defines no colours, just maps airline to the ANSI 16.
-" There are a couple of remaining airline highlights to hunt down, but they might just not be themeable.
-let g:airline_theme='base16_vim'
+" Just maps airline to the ANSI 16.
+" base16-vim-airline-themes doesn't colour the whole of airline.
+let g:airline_theme='base16'
 
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let g:airline_section_y = '%{airline#parts#filetype()}'
