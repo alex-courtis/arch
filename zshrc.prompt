@@ -24,7 +24,7 @@ function precmd() {
 	fi
 
 	if [ -n "${TERMINAL_THEME}" ]; then
-		PR_THEME=" ${TERMINAL_THEME}"
+		PR_THEME="  {${TERMINAL_THEME}}"
 	fi
 
 	# no terminfo references as they are not reliable e.g. xterm missing fsl

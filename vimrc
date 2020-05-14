@@ -21,15 +21,19 @@ if &t_Co > 16 && !&diff
 endif
 set background=
 
-let &titlestring='%f %m%r ' . $TERMINAL_THEME
+if !empty($TERMINAL_THEME)
+	let &titlestring='%f %m%r {' . $TERMINAL_THEME . '}'
+else
+	let &titlestring='%f %m%r'
+endif
 
 
 " bindings
 "
-nmap <F5>	:NERDTreeToggle<CR>
-nmap <F7>	<Plug>(GitGutterNextHunk)
-nmap <S-F7>	<Plug>(GitGutterPrevHunk)
-nmap <F8>	:TagbarToggle<CR>
+nmap <F5> :NERDTreeToggle<CR>
+nmap <F6> <Plug>(GitGutterNextHunk)
+nmap <F7> <Plug>(GitGutterPrevHunk)
+nmap <F8> :TagbarToggle<CR>
 
 " plugins now, so that changes such as t_Co are taken into account
 "
@@ -71,8 +75,6 @@ set noshowmode
 " Just maps airline to the ANSI 16.
 " base16-vim-airline-themes doesn't colour the whole of airline.
 let g:airline_theme='base16'
-
-let g:airline_powerline_fonts=0
 
 let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let g:airline_section_y = '%{airline#parts#filetype()}'
