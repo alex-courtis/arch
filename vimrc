@@ -31,8 +31,8 @@ endif
 " bindings
 "
 nmap <F5> :NERDTreeToggle<CR>
-nmap <F6> <Plug>(GitGutterNextHunk)
-nmap <F7> <Plug>(GitGutterPrevHunk)
+nmap <F6> <Plug>(GitGutterPrevHunk)
+nmap <F7> <Plug>(GitGutterNextHunk)
 nmap <F8> :TagbarToggle<CR>
 
 " plugins now, so that changes such as t_Co are taken into account
@@ -54,6 +54,7 @@ call vundle#end()
 
 
 " Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
+" This also selects the base16 vim-airline-theme
 "
 colorscheme base16-default-dark
 
@@ -72,9 +73,7 @@ let g:EditorConfig_max_line_indicator='fill'
 "
 set noshowmode
 
-" Just maps airline to the ANSI 16.
-" base16-vim-airline-themes doesn't colour the whole of airline.
-let g:airline_theme='base16'
+let g:airline_powerline_fonts = 1
 
 let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let g:airline_section_y = '%{airline#parts#filetype()}'
