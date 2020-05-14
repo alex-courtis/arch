@@ -78,8 +78,10 @@
 [kp-/]>[\]
 [R]>[O]
 [L]>[P]
+[lctrl]>[tab]
 [delete]>[escape]
 [kp-delete]>[escape]
+[rctrl]>[delete]
 [kp0]>[space]
 [D]>[H]
 [kp-D]>[H]
@@ -101,6 +103,4 @@
 [kp-rshift]>[`]
 [V]>[.]
 [Z]>[/]
-[lctrl]>[tab]
-[rctrl]>[delete]
-{cbrack}>{-shift}{kp-insert}{+shift}
+{cbrack}>{-lshift}{kp-insert}{+lshift}
