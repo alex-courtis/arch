@@ -26,9 +26,10 @@ let &titlestring='%f %m%r ' . $TERMINAL_THEME
 
 " bindings
 "
+nmap <F7> <Plug>(GitGutterPrevHunk)
+nmap <F10> <Plug>(GitGutterNextHunk)
 map <F8> :NERDTreeToggle<CR>
 map <F9> :TagbarToggle<CR>
-
 
 " plugins now, so that changes such as t_Co are taken into account
 "
