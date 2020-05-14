@@ -44,19 +44,6 @@
 *color14:      base0F
 *color15:      base07
 
-! st
-st.font: Monospace:size=11:antialias=true:autohint=true
-st.termname: st-256color
-st.shell: /bin/sh
-st.xfps: 120
-st.actionfps: 30
-st.blinktimeout: 800
-st.bellvolume: 0
-st.tabspaces: 8
-st.borderpx: 0
-st.cwscale: 1.0
-st.chscale: 1.0
-
 ! xterm
 XTerm.termName: xterm-256color
 XTerm.vt100.faceName: Monospace
