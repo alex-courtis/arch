@@ -1,65 +1,32 @@
 #!/bin/zsh
 
-awesome=(
-	"bloodmoon"
-	"cobalt2"
-	"itermdefault"
-	"irblack"
-)
-
-banned=(
-	# colours indistinguishable from background
-	"material"
-	"tango"
-	"tangoish"
-	"darktooth"
-	"sourcerer"
-
-	# ugly
-	"ubuntu"
-
-	# washed out
-	"nova"
-
-	# light
-	"gruvboxlight"
-	"onelight"
-	"pencillight"
-	"seagull"
-	"solarizedlight"
-	"terminalappbasic"
-)
-
-light=(
-	"gruvboxlight"
-	"onelight"
-	"pencillight"
-	"seagull"
-	"solarizedlight"
-	"terminalappbasic"
-)
-
 base="${HOME}/.config/alacritty"
 
-if [ "${1}" = "--theme" -o "${1}" = "-t" ]; then
+themes=()
+for f in "${base}/themes/"*yml; do
+	theme="${$(basename ${f})/.yml/}"
+	if [ -z "${banned[(re)${theme}]}" ]; then
+		themes+=${theme}
+	fi
+done
+
+if [ "${1}" = "--theme" ]; then
 	theme="${2}"
 	shift
 	shift
 else
-	themes=()
-	for f in "${base}/themes/"*yml; do
-		theme="${$(basename ${f})/.yml/}"
-		if [ -z "${banned[(re)${theme}]}" ]; then
-			themes+=${theme}
-		fi
-	done
-	theme="${themes[$(( ( $RANDOM % ${#themes} ) + 1 ))]}"
-fi
-
-if [ -n "${light[(re)${theme}]}" ]; then
-	background="light"
-else
-	background="dark"
+	if [ -f /tmp/alac.last.theme ]; then
+		read i < /tmp/alac.last.theme
+	else
+		i=1
+	fi
+	theme="${themes[${i}]}"
+	if [ -z "${theme}" ]; then
+		i=1
+		theme="${themes[${i}]}"
+	fi
+	i=$i+1
+	printf "%d" ${i} > /tmp/alac.last.theme
 fi
 
 cfg="/tmp/alacritty.${theme}.yml"
@@ -69,8 +36,7 @@ cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" "${base}/indexed-green
 	> "${cfg}"
 
 TMUX= \
-TERMINAL_THEME="${theme}" \
-TERMINAL_BACKGROUND="${background}" \
+	TERMINAL_THEME="${theme}" \
 	/usr/bin/alacritty \
 	--config-file="${cfg}" \
 	"$@" \

@@ -2,7 +2,11 @@ runtime! defaults.vim
 
 " unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
 " autoselect: visual selections go to * register, synced with XA_PRIMARY
-set clipboard=unnamedplus,autoselect,exclude:cons\|linux
+if has('nvim')
+	set clipboard+=unnamedplus
+else
+	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
+endif
 
 set hlsearch
 set ignorecase
@@ -27,12 +31,38 @@ else
 	let &titlestring='%f %m%r'
 endif
 
+" works for xterm, st, tmux, alacritty with TERM=st-256color
+execute 'set <xF1>=[1;*P'
+execute 'set <xF2>=[1;*Q'
+execute 'set <xF3>=[1;*R'
+execute 'set <xF4>=[1;*S'
+execute 'set  <F5>=[15;*~'
+execute 'set  <F6>=[17;*~'
+execute 'set  <F7>=[18;*~'
+execute 'set  <F8>=[19;*~'
+execute 'set  <F9>=[20;*~'
+execute 'set <F10>=[21;*~'
+execute 'set <F11>=[23;*~'
+execute 'set <F12>=[24;*~'
 
 " bindings
 "
-nmap <F5> :NERDTreeToggle<CR>
-nmap <F6> <Plug>(GitGutterPrevHunk)
+nmap <C-F1> <Plug>(GitGutterPrevHunk)
+nmap <S-F1> <Plug>(GitGutterPrevHunk)
+nmap <A-F1> <Plug>(GitGutterPrevHunk)
+nmap <F1> <Plug>(GitGutterNextHunk)
+
+nmap <C-F4> <Plug>(GitGutterPrevHunk)
+nmap <S-F4> <Plug>(GitGutterPrevHunk)
+nmap <A-F4> <Plug>(GitGutterPrevHunk)
+nmap <F4> <Plug>(GitGutterNextHunk)
+
+nmap <C-F7> <Plug>(GitGutterPrevHunk)
+nmap <S-F7> <Plug>(GitGutterPrevHunk)
+nmap <A-F7> <Plug>(GitGutterPrevHunk)
 nmap <F7> <Plug>(GitGutterNextHunk)
+
+nmap <F5> :NERDTreeToggle<CR>
 nmap <F8> :TagbarToggle<CR>
 
 " plugins now, so that changes such as t_Co are taken into account
