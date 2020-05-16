@@ -47,6 +47,19 @@ execute 'set <F12>=[24;*~'
 
 " bindings
 "
+"
+cmap	<C-j>	<Down>
+cmap	<C-k>	<Up>
+
+map 	; 	:
+map 	q; 	q:
+map 	@; 	@:
+map 	<C-w>; 	<C-w>:
+
+nmap 	<F5> 	:NERDTreeToggle<CR>
+nmap 	<F8> 	:TagbarToggle<CR>
+
+
 nmap <C-F1> <Plug>(GitGutterPrevHunk)
 nmap <S-F1> <Plug>(GitGutterPrevHunk)
 nmap <A-F1> <Plug>(GitGutterPrevHunk)
@@ -61,12 +74,6 @@ nmap <C-F7> <Plug>(GitGutterPrevHunk)
 nmap <S-F7> <Plug>(GitGutterPrevHunk)
 nmap <A-F7> <Plug>(GitGutterPrevHunk)
 nmap <F7> <Plug>(GitGutterNextHunk)
-
-nmap <F5> :NERDTreeToggle<CR>
-nmap <F8> :TagbarToggle<CR>
-
-cmap <C-J> <Down>
-cmap <C-K> <Up>
 
 " plugins now, so that changes such as t_Co are taken into account
 "
