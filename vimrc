@@ -68,9 +68,6 @@ nmap <F8> :TagbarToggle<CR>
 cmap <C-J> <Down>
 cmap <C-K> <Up>
 
-cmap Q q
-cmap W w
-
 " plugins now, so that changes such as t_Co are taken into account
 "
 call vundle#begin()
