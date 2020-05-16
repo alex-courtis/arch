@@ -60,6 +60,27 @@ nmap 	<F5> 	:NERDTreeToggle<CR>
 nmap 	<F8> 	:TagbarToggle<CR>
 
 
+" Automatically set to sgr by terminus when running under tmux.
+" The side affect is whether vim can handle shifted/modified F1-F4.
+if $TERM =~ 'alacritty' || $TERM =~ 'st-'
+	set ttymouse=sgr
+endif
+" alacritty NULL
+" alacritty+tmux 'xterm'
+" alacritty+terminus NULL
+" alacritty+tmux+terminus 'sgr'
+"
+" st 'xterm'
+" st+terminus 'xterm'  --  not the expected result
+" st+tmux 'xterm'
+" st+tmux+terminus 'sgr'
+"
+" xterm 'sgr'
+" xterm+terminus 'sgr'
+" xterm+tmux 'xterm'
+" xterm+tmux+terminus 'sgr'
+
+
 nmap <C-F1> <Plug>(GitGutterPrevHunk)
 nmap <S-F1> <Plug>(GitGutterPrevHunk)
 nmap <A-F1> <Plug>(GitGutterPrevHunk)
