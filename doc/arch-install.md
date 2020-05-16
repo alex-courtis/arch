@@ -507,12 +507,6 @@ yq2-bin
 libinput-gestures
 xorg-xbacklight
 
-### node Packages I like
-
-`sudo npm install --global ...`
-
-withexeditorhost
-
 ## Build Desktop Environment
 
 ### dwm and slstatus
