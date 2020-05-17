@@ -31,7 +31,15 @@ else
 	let &titlestring='%f %m%r (' . $TERM . ')'
 endif
 
-" works for xterm, st, tmux, alacritty with TERM=st-256color
+" alacritty, st, xterm and tmux all talk sgr
+" terminus automatically sets it when under tmux
+" vim hardcodes st to 'xterm' and xterm to 'sgr'
+" sgr is desirable as one of its side effects is the ability to handle modified F1-F4
+if $TERM =~ 'alacritty' || $TERM =~ 'st-'
+	set ttymouse=sgr
+endif
+
+" vim needs to be told explicitly listen for modified function keys
 execute 'set <xF1>=[1;*P'
 execute 'set <xF2>=[1;*Q'
 execute 'set <xF3>=[1;*R'
@@ -46,8 +54,6 @@ execute 'set <F11>=[23;*~'
 execute 'set <F12>=[24;*~'
 
 " bindings
-"
-"
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
@@ -56,45 +62,10 @@ map 	q; 	q:
 map 	@; 	@:
 map 	<C-w>; 	<C-w>:
 
-nmap 	<F5> 	:NERDTreeToggle<CR>
-nmap 	<F8> 	:TagbarToggle<CR>
-
-
-" Automatically set to sgr by terminus when running under tmux.
-" The side affect is whether vim can handle shifted/modified F1-F4.
-if $TERM =~ 'alacritty' || $TERM =~ 'st-'
-	set ttymouse=sgr
-endif
-" alacritty NULL
-" alacritty+tmux 'xterm'
-" alacritty+terminus NULL
-" alacritty+tmux+terminus 'sgr'
-"
-" st 'xterm'
-" st+terminus 'xterm'  --  not the expected result
-" st+tmux 'xterm'
-" st+tmux+terminus 'sgr'
-"
-" xterm 'sgr'
-" xterm+terminus 'sgr'
-" xterm+tmux 'xterm'
-" xterm+tmux+terminus 'sgr'
-
-
-nmap <C-F1> <Plug>(GitGutterPrevHunk)
-nmap <S-F1> <Plug>(GitGutterPrevHunk)
-nmap <A-F1> <Plug>(GitGutterPrevHunk)
-nmap <F1> <Plug>(GitGutterNextHunk)
-
-nmap <C-F4> <Plug>(GitGutterPrevHunk)
-nmap <S-F4> <Plug>(GitGutterPrevHunk)
-nmap <A-F4> <Plug>(GitGutterPrevHunk)
-nmap <F4> <Plug>(GitGutterNextHunk)
-
-nmap <C-F7> <Plug>(GitGutterPrevHunk)
-nmap <S-F7> <Plug>(GitGutterPrevHunk)
-nmap <A-F7> <Plug>(GitGutterPrevHunk)
-nmap <F7> <Plug>(GitGutterNextHunk)
+nmap	<F5>	:NERDTreeToggle<CR>
+nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
+nmap	<F7>	<Plug>(GitGutterNextHunk)
+nmap	<F8>	:TagbarToggle<CR>
 
 " plugins now, so that changes such as t_Co are taken into account
 "
