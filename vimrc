@@ -82,6 +82,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 
 
