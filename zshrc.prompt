@@ -22,7 +22,7 @@ function precmd() {
 	if [ -n "${TMUX}" ]; then
 		TI_INF="${TI_INF} ($(tmux show-environment TERM | cut -d '=' -f2)) "
 	else
-		TI_INF="${TI_INF} (${TERM})"
+		TI_INF="${TI_INF} (${TERM}) "
 		PR_WAR="${PR_WAR} -tm "
 	fi
 

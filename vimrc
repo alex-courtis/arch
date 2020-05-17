@@ -26,9 +26,9 @@ endif
 set background=
 
 if !empty($TERMINAL_THEME)
-	let &titlestring='%f %m%r {' . $TERMINAL_THEME . '}'
+	let &titlestring='%f %m%r (' . $TERM . ') {' . $TERMINAL_THEME . '}'
 else
-	let &titlestring='%f %m%r'
+	let &titlestring='%f %m%r (' . $TERM . ')'
 endif
 
 " works for xterm, st, tmux, alacritty with TERM=st-256color
