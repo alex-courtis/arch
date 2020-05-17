@@ -29,10 +29,9 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    #geometry = "300x5-30+20"
 
-    # 38 pixels is the size of an 11 pt dwm/dmenu bar
-    geometry = "900x5-38-38"
+    # 37 pixels is the size of an 11 pt dwm/dmenu bar at 192dpi
+    geometry = "900x5-37-37"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -89,7 +88,6 @@
 
     ### Text ###
 
-    #font = Monospace 8
     font = Monospace 11
 
     # The spacing between lines.  If the height is smaller than the
@@ -416,3 +414,23 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+# https://github.com/khamer/base16-dunst/
+#
+frame_color = "#d8d8d8"
+separator_color = "#d8d8d8"
+
+[base16_low]
+    msg_urgency = low
+    background = "#282828"
+    foreground = "#585858"
+
+[base16_normal]
+    msg_urgency = normal
+    background = "#383838"
+    foreground = "#d8d8d8"
+
+[base16_critical]
+    msg_urgency = critical
+    background = "#ab4642"
+    foreground = "#e8e8e8"

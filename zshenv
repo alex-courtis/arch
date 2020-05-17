@@ -54,3 +54,15 @@ else
 	export COL_TMUX_NORM="fg=${COL_DWM_GRAY4},bg=${COL_DWM_CYAN}"
 fi
 
+case "${HOST}" in
+	tinygod)
+		export MAKEFLAGS="-j64"
+		;;
+	emperor)
+		export MAKEFLAGS="-j32"
+		;;
+	*)
+		TERM="tmux"
+		;;
+esac
+
