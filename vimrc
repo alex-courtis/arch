@@ -67,6 +67,9 @@ nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<F8>	:TagbarToggle<CR>
 
+nmap		<Plug>NERDCommenterToggle
+
+
 " plugins now, so that changes such as t_Co are taken into account
 "
 call vundle#begin()
@@ -78,7 +81,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdcommenter'
+Plugin 'preservim/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
