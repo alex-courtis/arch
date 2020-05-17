@@ -62,7 +62,7 @@ case "${HOST}" in
 		export MAKEFLAGS="-j32"
 		;;
 	*)
-		TERM="tmux"
+		export MAKEFLAGS="-j8"
 		;;
 esac
 

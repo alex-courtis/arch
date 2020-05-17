@@ -1,1 +1,6 @@
 set editorcmd term -e vim
+
+bind c tabclose
+bind d scrollpage 0.5
+bind u scrollpage -0.5
+
