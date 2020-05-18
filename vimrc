@@ -39,7 +39,9 @@ if $TERM =~ 'alacritty' || $TERM =~ 'st-'
 	set ttymouse=sgr
 endif
 
+
 " vim needs to be told explicitly listen for modified function keys
+"
 execute 'set <xF1>=[1;*P'
 execute 'set <xF2>=[1;*Q'
 execute 'set <xF3>=[1;*R'
@@ -53,7 +55,9 @@ execute 'set <F10>=[21;*~'
 execute 'set <F11>=[23;*~'
 execute 'set <F12>=[24;*~'
 
+
 " bindings
+"
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
@@ -67,10 +71,42 @@ nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<F8>	:TagbarToggle<CR>
 
-nmap		<Plug>NERDCommenterToggle
+nmap		<Plug>NERDCommenterToggle <Down>
+xmap		<Plug>NERDCommenterToggle
 
 
-" plugins now, so that changes such as t_Co are taken into account
+
+" airline
+"
+set noshowmode
+
+let g:airline_powerline_fonts=1
+
+let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
+let g:airline_section_y = '%{airline#parts#filetype()}'
+let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
+
+
+" editorconfig
+"
+let g:EditorConfig_max_line_indicator='fill'
+
+
+" nerdcommenter
+"
+let g:NERDCreateDefaultMappings=0
+let g:NERDToggleCheckAllLines=1
+let g:NERDDefaultAlign='both'
+let g:NERDSpaceDelims=1
+let g:NERDRemoveExtraSpaces=1
+
+
+" vim-gitgutter
+"
+set updatetime=250
+
+
+" plugins as late as possible
 "
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -92,27 +128,5 @@ call vundle#end()
 
 " Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
 " This also selects the base16 vim-airline-theme
-"
 colorscheme base16-default-dark
-
-
-" vim-gitgutter
-"
-set updatetime=250
-
-
-" editorconfig
-"
-let g:EditorConfig_max_line_indicator='fill'
-
-
-" airline
-"
-set noshowmode
-
-let g:airline_powerline_fonts = 1
-
-let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
-let g:airline_section_y = '%{airline#parts#filetype()}'
-let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 
