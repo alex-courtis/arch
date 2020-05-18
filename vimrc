@@ -66,7 +66,7 @@ map 	q; 	q:
 map 	@; 	@:
 map 	<C-w>; 	<C-w>:
 
-nmap	<F5>	:NERDTreeToggle<CR>
+nmap	<F5>	:NERDTreeToggleVCS<CR>
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<F8>	:TagbarToggle<CR>
@@ -80,25 +80,30 @@ xmap		<Plug>NERDCommenterToggle
 "
 set noshowmode
 
-let g:airline_powerline_fonts=1
+let airline_powerline_fonts=1
 
-let g:airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
-let g:airline_section_y = '%{airline#parts#filetype()}'
-let g:airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
+let airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
+let airline_section_y = '%{airline#parts#filetype()}'
+let airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 
 
 " editorconfig
 "
-let g:EditorConfig_max_line_indicator='fill'
+let EditorConfig_max_line_indicator='fill'
 
 
 " nerdcommenter
 "
-let g:NERDCreateDefaultMappings=0
-let g:NERDToggleCheckAllLines=1
-let g:NERDDefaultAlign='both'
-let g:NERDSpaceDelims=1
-let g:NERDRemoveExtraSpaces=1
+let NERDCreateDefaultMappings=0
+let NERDToggleCheckAllLines=1
+let NERDDefaultAlign='both'
+let NERDSpaceDelims=1
+let NERDRemoveExtraSpaces=1
+
+
+" nerdtree
+"
+let NERDTreeMinimalUI=1
 
 
 " vim-gitgutter
