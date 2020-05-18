@@ -61,10 +61,13 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
-map 	; 	:
-map 	q; 	q:
-map 	@; 	@:
-map 	<C-w>; 	<C-w>:
+nmap 	; 	:
+nmap 	q; 	q:
+nmap 	@; 	@:
+nmap 	<C-w>; 	<C-w>:
+
+"nmap	<C-E>	available
+"nmap	<C-Y>	available
 
 nmap	<F5>	:NERDTreeToggleVCS<CR>
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
@@ -104,6 +107,11 @@ let NERDRemoveExtraSpaces=1
 " nerdtree
 "
 let NERDTreeMinimalUI=1
+
+
+" tagbar
+"
+let g:tagbar_compact = 1
 
 
 " vim-gitgutter
