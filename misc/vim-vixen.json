@@ -76,5 +76,6 @@
     "colorscheme": "system"
   },
   "blacklist": [
+    "mail.google.com"
   ]
 }
