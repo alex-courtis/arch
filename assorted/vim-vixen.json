@@ -12,22 +12,19 @@
     "a": { "type": "command.show.addbookmark", "alter": true },
     "k": { "type": "scroll.vertically", "count": -1 },
     "j": { "type": "scroll.vertically", "count": 1 },
-    "h": { "type": "scroll.horizonally", "count": -1 },
-    "l": { "type": "scroll.horizonally", "count": 1 },
+    "u": { "type": "scroll.pages", "count": -0.5 },
+    "d": { "type": "scroll.pages", "count": 0.5 },
     "<C-U>": { "type": "scroll.pages", "count": -0.5 },
     "<C-D>": { "type": "scroll.pages", "count": 0.5 },
-    "<C-B>": { "type": "scroll.pages", "count": -1 },
-    "<C-F>": { "type": "scroll.pages", "count": 1 },
     "gg": { "type": "scroll.top" },
     "G": { "type": "scroll.bottom" },
     "$": { "type": "scroll.end" },
-    "d": { "type": "tabs.close" },
-    "D": { "type": "tabs.close", "select": "left" },
-    "x$": { "type": "tabs.close.right" },
-    "!d": { "type": "tabs.close.force" },
-    "u": { "type": "tabs.reopen" },
-    "K": { "type": "tabs.prev" },
-    "J": { "type": "tabs.next" },
+    "x": { "type": "tabs.close" },
+    "X": { "type": "tabs.close", "select": "left" },
+    "!x": { "type": "tabs.close.force" },
+    "<C-R>": { "type": "tabs.reopen" },
+    "h": { "type": "tabs.prev" },
+    "l": { "type": "tabs.next" },
     "gT": { "type": "tabs.prev" },
     "gt": { "type": "tabs.next" },
     "g0": { "type": "tabs.first" },
@@ -64,14 +61,12 @@
     "<S-Esc>": { "type": "addon.toggle.enabled" }
   },
   "search": {
-    "default": "google",
+    "default": "duck",
     "engines": {
       "google": "https://google.com/search?q={}",
-      "yahoo": "https://search.yahoo.com/search?p={}",
       "bing": "https://www.bing.com/search?q={}",
-      "duckduckgo": "https://duckduckgo.com/?q={}",
-      "twitter": "https://twitter.com/search?q={}",
-      "wikipedia": "https://en.wikipedia.org/w/index.php?search={}"
+      "duck": "https://duckduckgo.com/?q={}",
+      "wikip": "https://en.wikipedia.org/w/index.php?search={}"
     }
   },
   "properties": {
