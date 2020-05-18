@@ -484,6 +484,7 @@ xorg-server
 xorg-xinit
 xorg-xrandr
 xsel
+yq
 zsh-completions
 
 Enable gpm: `systemctl add-wants getty.target gpm.service`
@@ -500,7 +501,6 @@ rcm
 redshift-minimal
 vundle-git
 xlayoutdisplay
-yq2-bin
 
 ### Arch Packages Laptops Like
 

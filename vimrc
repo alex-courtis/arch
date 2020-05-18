@@ -67,7 +67,7 @@ nmap 	@; 	@:
 nmap 	<C-w>; 	<C-w>:
 
 "nmap	<C-E>	available
-"nmap	<C-Y>	available
+nmap	<C-Y>	:nohl<CR>
 
 nmap	<F5>	:NERDTreeToggleVCS<CR>
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
