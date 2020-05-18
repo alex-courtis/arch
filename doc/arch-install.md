@@ -450,7 +450,6 @@ dmenu
 efibootmgr
 firefox
 firefox-i18n-en-gb
-firefox-tridactyl
 gpm
 hunspell-en_AU
 hunspell-en_GB
@@ -495,7 +494,6 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 dapper
 gron-bin
-firefox-tridactyl-native
 pmount
 pulseaudio-ctl
 rcm
