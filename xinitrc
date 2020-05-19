@@ -13,7 +13,8 @@ if [ -r ${HOME}/.Xresources ]; then
 fi
 
 # setup displays before we start any applications
-xlayoutdisplay
+#xlayoutdisplay
+echo "Xft.dpi: $(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; s/x.*$//g')" | xrdb -merge
 
 # start all the autostart apps
 dapper --user-dir --system-dir --desktop alex
