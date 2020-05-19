@@ -26,9 +26,9 @@ endif
 set background=
 
 if !empty($TERMINAL_THEME)
-	let &titlestring='%f %m%r (' . $TERM . ') {' . $TERMINAL_THEME . '}'
+	let &titlestring='%f %m%r {' . $TERMINAL_THEME . '}'
 else
-	let &titlestring='%f %m%r (' . $TERM . ')'
+	let &titlestring='%f %m%r'
 endif
 
 " alacritty, st, xterm and tmux all talk sgr
