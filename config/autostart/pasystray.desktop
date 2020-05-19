@@ -3,7 +3,7 @@ Version=1.0
 Name=PulseAudio System Tray
 GenericName=
 Comment=An Applet for PulseAudio
-Exec=pasystray --volume-max=100 --volume-inc=5 --no-icon-tooltip --notify=all
+Exec=pasystray --volume-max=100 --volume-inc=5 --no-icon-tooltip --notify=none
 Icon=pasystray
 StartupNotify=true
 Type=Application

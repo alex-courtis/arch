@@ -461,6 +461,7 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 parcellite
+pasystray
 pavucontrol
 pwgen
 rsync
@@ -516,14 +517,6 @@ Clone the following:
 
 Run for each:
 `make && sudo make install`
-
-### Less Intrusive pasystray
-
-Clone:
-* `git@github.com:christophgysin/pasystray.git`
-
-Run:
-`./bootstrap.sh --disable-avahi --disable-x11 --disable-appindicator && make && sudo make install`
 
 ### libinput-gestures
 
