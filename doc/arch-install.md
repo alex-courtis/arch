@@ -446,10 +446,9 @@ makepkg -sri
 alacritty
 autofs
 calc
+chromium
 dmenu
 efibootmgr
-firefox
-firefox-i18n-en-gb
 gpm
 hunspell-en_AU
 hunspell-en_GB
