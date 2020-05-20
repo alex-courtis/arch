@@ -14,7 +14,9 @@ fi
 
 # setup displays before we start any applications
 xlayoutdisplay
-#echo "Xft.dpi: $(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; s/x.*$//g')" | xrdb -merge
+if [ "$(whence nvidiasetup)" ]; then
+	nvidiasetup
+fi
 
 # start all the autostart apps
 dapper --user-dir --system-dir --desktop alex

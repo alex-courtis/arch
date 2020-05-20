@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# We use a shell script instead of .nvidia-settings-rc as that method will not assighn CurrentMetaMode without an explicitly specified display.
+
+# applies to individual windows
+nvidia-settings --assign ShowVRRVisualIndicator=1
+nvidia-settings --assign ShowGraphicsVisualIndicator=1
+
+# pipeline applies to the whole desktop
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+
