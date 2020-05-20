@@ -61,10 +61,10 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
-nmap 	; 	:
-nmap 	q; 	q:
-nmap 	@; 	@:
-nmap 	<C-w>; 	<C-w>:
+map 	; 	:
+map 	q; 	q:
+map 	@; 	@:
+map 	<C-w>; 	<C-w>:
 
 "nmap	<C-E>	available
 nmap	<C-Y>	:nohl<CR>
