@@ -3,8 +3,8 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		2)
-			export GPU_ROLE="gaming"
-			;&
+			xinit /usr/bin/steam -- :1 "vt${XDG_VTNR}"
+			;;
 		1)
 			# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
 			lsmod | grep ^nvidia > /dev/null 2>&1

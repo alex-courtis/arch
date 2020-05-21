@@ -9,10 +9,6 @@ echo "Xft.dpi: $(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; 
 nvidia-settings --assign ShowVRRVisualIndicator=0
 nvidia-settings --assign ShowGraphicsVisualIndicator=0
 
-if [ "${GPU_ROLE}" == "gaming" ]; then
-	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {AllowGSYNCCompatible=On}"
-else
-	# pipeline applies to the whole X server
-	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
-fi
+# pipeline applies to the whole X server and will mess up any gl/vk games
+nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
 
