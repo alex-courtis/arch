@@ -12,7 +12,7 @@ nvidia-settings --assign ShowGraphicsVisualIndicator=0
 if [ "${GPU_ROLE}" == "gaming" ]; then
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {AllowGSYNCCompatible=On}"
 else
-	# pipeline applies to the whole X server
+	# pipeline applies to the whole X server and will mess with games
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
 fi
 
