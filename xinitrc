@@ -13,9 +13,10 @@ if [ -r ${HOME}/.Xresources ]; then
 fi
 
 # setup displays before we start any applications
-xlayoutdisplay
 if [ "$(whence nvidiasetup)" ]; then
 	nvidiasetup
+else
+	xlayoutdisplay
 fi
 
 # start all the autostart apps

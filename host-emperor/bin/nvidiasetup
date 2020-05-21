@@ -2,9 +2,12 @@
 
 # We use a shell script instead of .nvidia-settings-rc as that method will not assighn CurrentMetaMode without an explicitly specified display.
 
+# nvidia is able to calculate the dpi correctly
+echo "Xft.dpi: $(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; s/x.*$//g')" | xrdb -merge
+
 # applies to individual windows
-nvidia-settings --assign ShowVRRVisualIndicator=1
-nvidia-settings --assign ShowGraphicsVisualIndicator=1
+nvidia-settings --assign ShowVRRVisualIndicator=0
+nvidia-settings --assign ShowGraphicsVisualIndicator=0
 
 # pipeline applies to the whole desktop
 nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
