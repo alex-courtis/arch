@@ -13,8 +13,8 @@ if [ -r ${HOME}/.Xresources ]; then
 fi
 
 # setup displays before we start any applications
-if [ "$(whence nvidiasetup)" ]; then
-	nvidiasetup
+if [ "$(whence nvidia-init)" ]; then
+	nvidia-init
 else
 	xlayoutdisplay
 fi
