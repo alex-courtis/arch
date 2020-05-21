@@ -11,11 +11,15 @@ for i in $(seq 1 1 16); do
 	bg=$(( $fg + 10 ))
 
 	printf "\033[%dmbase%s\033[m" "${fg}" "${nam[i]}"
-	printf "\033[%dm%12s\033[m" "${bg}"
+	printf "\033[%dm%12s\033[m  " "${bg}"
 
-	printf "\033[38;2;%d;%d;%dm base%s\033[m" "${defr[$i]}" "${defg[$i]}" "${defb[$i]}" "${nam[$i]}"
+	printf "\033[48;2;%d;%d;%dm  " "${defr[1]}" "${defg[1]}" "${defb[1]}"
+	printf "\033[38;2;%d;%d;%dmbase%s\033[m" "${defr[$i]}" "${defg[$i]}" "${defb[$i]}" "${nam[$i]}"
 	printf "\033[48;2;%d;%d;%dm%12s\033[m" "${defr[$i]}" "${defg[$i]}" "${defb[$i]}"
+	printf "\033[48;2;%d;%d;%dm  \033[m" "${defr[1]}" "${defg[1]}" "${defb[1]}"
 
 	printf "\n"
 done
+
+printf "%20s\033[48;2;%d;%d;%dm%22s\033[m\n" "" "${defr[1]}" "${defg[1]}" "${defb[1]}" ""
 
