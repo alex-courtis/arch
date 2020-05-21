@@ -13,7 +13,5 @@ if [ $(whence keychain) -a -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
 
-if [ ! -f "/tmp/colours.out" ]; then
-	colours > "/tmp/colours.out"
-fi
-cat "/tmp/colours.out"
+colours-base16
+
