@@ -61,21 +61,25 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
-map 	; 	:
-map 	q; 	q:
-map 	@; 	@:
-map 	<C-w>; 	<C-w>:
+noremap 	; 	:
+noremap 	q; 	q:
+noremap 	@; 	@:
+noremap 	<C-w>; 	<C-w>:
 
-"nmap	<C-E>	available
-nmap	<C-Y>	:nohl<CR>
+		"<C-E>	available
+nnoremap	<C-Y>	:nohl<CR>
 
-nmap	<F5>	:NERDTreeToggleVCS<CR>
-nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
-nmap	<F7>	<Plug>(GitGutterNextHunk)
-nmap	<F8>	:TagbarToggle<CR>
+nnoremap	<F5>	:NERDTreeToggleVCS<CR>
 
-nmap		<Plug>NERDCommenterToggle <Down>
-xmap		<Plug>NERDCommenterToggle
+nnoremap	<F6>	:ToggleBufExplorer<CR>
+
+nnoremap	<S-F7>	<Plug>(GitGutterPrevHunk)
+nnoremap	<Tab>	<Plug>(GitGutterNextHunk)
+
+nnoremap	<F8>	:TagbarToggle<CR>
+
+nnoremap		<Plug>NERDCommenterToggle <Down>
+xnoremap		<Plug>NERDCommenterToggle
 
 
 
@@ -89,6 +93,11 @@ let airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y = '%{airline#parts#filetype()}'
 let airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 
+
+" bufexplorer
+"
+let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerDetailedHelp=1
 
 " editorconfig
 "
