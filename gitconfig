@@ -9,6 +9,7 @@
 	gl = smart-log
 	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
+	rs = restore --staged
 	sh = show
 	shn = show --name-only
 	s = status
