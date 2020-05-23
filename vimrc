@@ -61,28 +61,28 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
-noremap 	; 	:
-noremap 	q; 	q:
-noremap 	@; 	@:
-noremap 	<C-w>; 	<C-w>:
+nmap 	; 	:
+nmap 	q; 	q:
+nmap 	@; 	@:
+nmap 	<C-w>; 	<C-w>:
 
-nnoremap	<C-Y>	:nohl<CR>
+nmap	<C-Y>	:nohl<CR>
 
-nnoremap	<F5>	:NERDTreeFind<CR>
-nnoremap	<S-F5>	:NERDTreeClose<CR>
+nmap	<F5>	:NERDTreeFocus<CR>
+nmap	<S-F5>	:NERDTreeClose<CR>
 
-nnoremap	<F6>	:b #<CR>
+nmap	<F6>	:b #<CR>
 set wildcharm=<S-F6>
-nnoremap	<S-F6>	:b <S-F6>
+nmap	<S-F6>	:b <S-F6>
 
-nnoremap	<F7>	<Plug>(GitGutterNextHunk)
-nnoremap	<S-F7>	<Plug>(GitGutterPrevHunk)
+nmap	<F7>	<Plug>(GitGutterNextHunk)
+nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
 
-nnoremap	<F8>	:TagbarOpen fj<CR>
-nnoremap	<S-F8>	:TagbarClose<CR>
+nmap	<F8>	:TagbarOpen fj<CR>
+nmap	<S-F8>	:TagbarClose<CR>
 
-nnoremap		<Plug>NERDCommenterToggle <Down>
-xnoremap		<Plug>NERDCommenterToggle
+nmap		<Plug>NERDCommenterToggle <Down>
+xmap		<Plug>NERDCommenterToggle
 
 
 
