@@ -131,6 +131,7 @@ set updatetime=250
 
 " plugins as late as possible
 "
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
