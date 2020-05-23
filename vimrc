@@ -66,15 +66,16 @@ noremap 	q; 	q:
 noremap 	@; 	@:
 noremap 	<C-w>; 	<C-w>:
 
-		"<C-E>	available
 nnoremap	<C-Y>	:nohl<CR>
 
 nnoremap	<F5>	:NERDTreeToggleVCS<CR>
 
-nnoremap	<F6>	:ToggleBufExplorer<CR>
+set wildcharm=<S-F6>
+nnoremap	<S-F6>	:b <S-F6>
+nnoremap	<F6>	:b #<CR>
 
 nnoremap	<S-F7>	<Plug>(GitGutterPrevHunk)
-nnoremap	<Tab>	<Plug>(GitGutterNextHunk)
+nnoremap	<F7>	<Plug>(GitGutterNextHunk)
 
 nnoremap	<F8>	:TagbarToggle<CR>
 
@@ -93,11 +94,6 @@ let airline_section_x = '%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y = '%{airline#parts#filetype()}'
 let airline_section_z = '%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 
-
-" bufexplorer
-"
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerDetailedHelp=1
 
 " editorconfig
 "
@@ -137,7 +133,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
-Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
