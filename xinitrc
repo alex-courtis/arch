@@ -20,7 +20,7 @@ else
 fi
 
 # start all the autostart apps
-dapper --user-dir --system-dir --desktop alex
+dapper --user-dir --system-dir --desktop alex >/dev/null 2>&1
 
 # slock the screen after 5 mins
 if [ "$(whence xautolock)" -a "$(whence slock)" ]; then
@@ -32,4 +32,4 @@ numlockx
 
 # start window manager
 slstatus >/dev/null 2>&1 &
-exec dwm >/dev/null 2>&1
+exec dwm >/dev/null

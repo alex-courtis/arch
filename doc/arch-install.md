@@ -517,14 +517,6 @@ Clone the following:
 Run for each:
 `make && sudo make install`
 
-### Less Intrusive pasystray
-
-Clone:
-* `git@github.com:christophgysin/pasystray.git`
-
-Run:
-`./bootstrap.sh --disable-avahi --disable-appindicator --disable-notify && make && sudo make install`
-
 ### libinput-gestures
 
 `libinput-gestures-setup autostart`
