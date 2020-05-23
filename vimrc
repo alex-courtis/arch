@@ -13,6 +13,9 @@ set ignorecase
 set smartcase
 set nowrapscan
 
+set autoread
+set autowrite
+
 set listchars=trail:·,tab:>\ ,eol:¬
 
 set formatoptions+=j
