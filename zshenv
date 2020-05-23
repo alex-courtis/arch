@@ -32,26 +32,19 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# dwm colours
-COL_DWM_GRAY1="#222222"
-COL_DWM_GRAY2="#444444"
-COL_DWM_GRAY3="#bbbbbb"
-COL_DWM_GRAY4="#eeeeee"
-COL_DWM_CYAN="#005577"
-
 # shell and tmux colours
 COL_ZSH_OFF="%k%f"
-COL_ZSH_WAR="%F{${COL_DWM_GRAY1}}%K{yellow}"
-COL_ZSH_ERR="%F{${COL_DWM_GRAY1}}%K{red}"
+COL_ZSH_WAR="%F{black}%K{yellow}"
+COL_ZSH_ERR="%F{black}%K{red}"
 if [ "${USER}" = "root" ]; then
-	COL_ZSH_NOR="%F{black}%K{magenta}"
-	export COL_TMUX_NORM="fg=black,bg=magenta"
+	COL_ZSH_NOR="%F{black}%K{red}"
+	export COL_TMUX_NORM="fg=black,bg=red"
 elif [ -n "${SSH_CONNECTION}" ]; then
-	COL_ZSH_NOR="%F{black}%K{green}"
+	COL_ZSH_NOR="%F{black}%K{magenta}"
 	export COL_TMUX_NORM="fg=black,bg=green"
 else
-	COL_ZSH_NOR="%F{${COL_DWM_GRAY4}}%K{${COL_DWM_CYAN}}"
-	export COL_TMUX_NORM="fg=${COL_DWM_GRAY4},bg=${COL_DWM_CYAN}"
+	COL_ZSH_NOR="%F{black}%K{green}"
+	export COL_TMUX_NORM="fg=black,bg=green"
 fi
 
 case "${HOST}" in

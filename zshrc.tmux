@@ -31,7 +31,3 @@ if [ ! -f "${HOME}/notmux" ] ; then
 	tm
 fi
 
-# update TERM for tmux
-if [ -n "${TMUX}" ]; then
-	updatetmuxterm
-fi
