@@ -68,16 +68,18 @@ noremap 	<C-w>; 	<C-w>:
 
 nnoremap	<C-Y>	:nohl<CR>
 
-nnoremap	<F5>	:NERDTreeToggleVCS<CR>
+nnoremap	<F5>	:NERDTreeFind<CR>
+nnoremap	<S-F5>	:NERDTreeClose<CR>
 
+nnoremap	<F6>	:b #<CR>
 set wildcharm=<S-F6>
 nnoremap	<S-F6>	:b <S-F6>
-nnoremap	<F6>	:b #<CR>
 
-nnoremap	<S-F7>	<Plug>(GitGutterPrevHunk)
 nnoremap	<F7>	<Plug>(GitGutterNextHunk)
+nnoremap	<S-F7>	<Plug>(GitGutterPrevHunk)
 
-nnoremap	<F8>	:TagbarToggle<CR>
+nnoremap	<F8>	:TagbarOpen fj<CR>
+nnoremap	<S-F8>	:TagbarClose<CR>
 
 nnoremap		<Plug>NERDCommenterToggle <Down>
 xnoremap		<Plug>NERDCommenterToggle
@@ -116,7 +118,7 @@ let NERDTreeMinimalUI=1
 
 " tagbar
 "
-let g:tagbar_compact = 1
+let g:tagbar_compact=1
 
 
 " vim-gitgutter
