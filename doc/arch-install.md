@@ -472,6 +472,7 @@ the_silver_searcher
 tmux
 ttf-dejavu
 ttf-hack
+udisks2
 unzip
 xautolock
 xdg-utils
@@ -494,7 +495,6 @@ Enable gpm: `systemctl add-wants getty.target gpm.service`
 
 dapper
 gron-bin
-pmount
 pulseaudio-ctl
 rcm
 redshift-minimal

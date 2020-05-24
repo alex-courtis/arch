@@ -1,22 +1,15 @@
 function mnt() {
-	if [ ! -b "${1}" ]; then
-		echo "'${1}' is inexistent"
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${FUNCNAME} <block device>" >&2
 		return 1
 	fi
-	pmount --sync "${1}"
-	if [ "${?}" -eq 0 ]; then
-		dir="$(findmnt -n -o TARGET ${1})"
-		echo "${dir}"
-		echo "${dir}" > /tmp/lastmntd
-		cd "${dir}"
-	fi
+	udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
 }
 
 function umnt() {
-	cd
-	if [ ! -f /tmp/lastmntd ]; then
-		echo "/tmp/lastmntd inexistent; pumount manually"
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${FUNCNAME} <block device>" >&2
 		return 1
 	fi
-	sync && pumount $(cat /tmp/lastmntd) && rm /tmp/lastmntd
+	udisksctl unmount -b ${1}
 }
