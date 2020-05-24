@@ -73,9 +73,9 @@ nmap	<C-Y>	:nohl<CR>
 
 nmap	<F5>	:NERDTreeFind<CR>
 
-nmap	<F6>	:b #<CR>
-set wildcharm=<S-F6>
-nmap	<S-F6>	:b <S-F6>
+set wildcharm=<F6>
+nmap	<F6>	:b <F6>
+nmap	<S-F6>	:b #<CR>
 
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
