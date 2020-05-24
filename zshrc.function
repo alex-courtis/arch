@@ -3,13 +3,22 @@ function mnt() {
 		echo "Usage: ${FUNCNAME} <block device>" >&2
 		return 1
 	fi
-	udisksctl mount -b ${1} && cd "$(findmnt -n -o TARGET ${1})"
+	udisksctl mount -b "${1}"
+	echo "${1}" > /tmp/lastmntd
+	cd "$(findmnt -n -o TARGET ${1})"
 }
 
 function umnt() {
-	if [ ${#} -ne 1 ]; then
-		echo "Usage: ${FUNCNAME} <block device>" >&2
+	if [ ${#} -gt 1 ]; then
+		echo "Usage: ${FUNCNAME} [block device]" >&2
 		return 1
 	fi
-	udisksctl unmount -b ${1}
+	sync
+	cd
+	if [ -f /tmp/lastmntd ]; then
+		udisksctl unmount -b "$(cat /tmp/lastmntd)"
+	else
+		udisksctl unmount -b "${1}"
+	fi
 }
+
