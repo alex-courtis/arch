@@ -3,7 +3,7 @@
 base="${HOME}/.config/alacritty"
 
 themes=()
-for f in "${base}/themes/"*yml; do
+for f in $(ls "${base}/themes"); do
 	theme="${$(basename ${f})/.yml/}"
 	if [ -z "${banned[(re)${theme}]}" ]; then
 		themes+=${theme}
