@@ -22,6 +22,8 @@ set formatoptions+=j
 
 set number relativenumber
 
+set wildmode=longest,full
+
 " unadjusted ANSI base16 colours only
 if &t_Co > 16 && !&diff
 	set t_Co=16
