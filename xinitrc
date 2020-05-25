@@ -30,6 +30,9 @@ fi
 # numlock on
 numlockx
 
+# new theme for this session
+rm -f /tmp/alac.session.random.theme
+
 # start window manager
 slstatus >/dev/null 2>&1 &
-exec dwm >/dev/null
+exec dwm >/dev/null 2>&1

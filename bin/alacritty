@@ -1,32 +1,27 @@
 #!/bin/zsh
 
-base="${HOME}/.config/alacritty"
+default="base16-default-dark"
 
-themes=()
-for f in $(ls "${base}/themes"); do
-	theme="${$(basename ${f})/.yml/}"
-	if [ -z "${banned[(re)${theme}]}" ]; then
-		themes+=${theme}
-	fi
-done
+base="${HOME}/.config/alacritty"
 
 if [ "${1}" = "--theme" ]; then
 	theme="${2}"
 	shift
 	shift
+elif [ "$(( $RANDOM % 2 ))" -eq 1 ]; then
+	theme="${default}"
+elif [ -f /tmp/alac.session.random.theme ]; then
+	read theme < /tmp/alac.session.random.theme
 else
-	if [ -f /tmp/alac.last.theme ]; then
-		read i < /tmp/alac.last.theme
-	else
-		i=1
-	fi
-	theme="${themes[${i}]}"
-	if [ -z "${theme}" ]; then
-		i=1
-		theme="${themes[${i}]}"
-	fi
-	i=$i+1
-	printf "%d" ${i} > /tmp/alac.last.theme
+	themes=()
+	for f in $(ls "${base}/themes"); do
+		theme="${$(basename ${f})/.yml/}"
+		if [ "${theme}" != "${default}" ]; then
+			themes+="${theme}"
+		fi
+	done
+	theme="${themes[$(( ( $RANDOM % ${#themes} ) + 1 ))]}"
+	printf "%s" "${theme}" > /tmp/alac.session.random.theme
 fi
 
 cfg="/tmp/alacritty.${theme}.yml"
