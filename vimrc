@@ -73,7 +73,7 @@ nmap 	<C-w>; 	<C-w>:
 
 nmap	<C-Y>	:nohl<CR>
 
-nmap	<F5>	:NERDTreeFind<CR>
+nmap	<F5>	:NERDTreeFocus<CR>
 
 set wildcharm=<F6>
 nmap	<F6>	:b <F6>
@@ -82,7 +82,7 @@ nmap	<S-F6>	:b #<CR>
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
 
-nmap	<F8>	:TagbarOpenAutoClose<CR>
+nmap	<F8>	:TagbarOpen fj<CR>
 
 nmap		<Plug>NERDCommenterToggle <Down>
 xmap		<Plug>NERDCommenterToggle
@@ -117,7 +117,7 @@ let NERDRemoveExtraSpaces=1
 " nerdtree
 "
 let NERDTreeMinimalUI=1
-let NERDTreeQuitOnOpen=1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
 " tagbar
