@@ -460,6 +460,7 @@ numlockx
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
+pacman-contrib
 parcellite
 pavucontrol
 pwgen
@@ -498,7 +499,6 @@ gron-bin
 pulseaudio-ctl
 rcm
 redshift-minimal
-vundle-git
 xlayoutdisplay
 
 ### Arch Packages Laptops Like
