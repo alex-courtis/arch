@@ -499,6 +499,7 @@ gron-bin
 pulseaudio-ctl
 rcm
 redshift-minimal
+todotxt
 xlayoutdisplay
 
 ### Arch Packages Laptops Like
