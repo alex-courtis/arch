@@ -26,7 +26,7 @@ fi
 
 cfg="/tmp/alacritty.${theme}.yml"
 
-cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" "${base}/indexed-green.yml" | \
+cat "${base}/alacritty.yml" "${base}/themes/${theme}.yml" | \
 	grep -v "draw_bold_text_with_bright_colors" \
 	> "${cfg}"
 
