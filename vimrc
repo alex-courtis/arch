@@ -9,7 +9,6 @@ else
 endif
 
 set hlsearch
-set ignorecase
 set smartcase
 set nowrapscan
 
@@ -66,12 +65,14 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
+imap	<C-@>	<C-x><C-o>
+
 nmap 	; 	:
 nmap 	q; 	q:
 nmap 	@; 	@:
 nmap 	<C-w>; 	<C-w>:
 
-nmap	<C-Y>	:nohl<CR>
+nmap	<C-y>	:nohl<CR>
 
 nmap	<F5>	:NERDTreeFocus<CR>
 
@@ -87,6 +88,13 @@ nmap	<F8>	:TagbarOpen fj<CR>
 nmap		<Plug>NERDCommenterToggle <Down>
 xmap		<Plug>NERDCommenterToggle
 
+
+" completion
+"   ignorecase can upset longest, clearing the match text
+" todo: c complete struct members
+"
+set completeopt=menuone,preview,longest
+autocmd CompleteDone * pclose
 
 
 " airline

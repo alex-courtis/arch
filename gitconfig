@@ -12,7 +12,6 @@
 	rs = restore --staged
 	sh = show
 	shn = show --name-only
-	s = status
 	st = status
 [user]
 	name = Alexander Courtis
