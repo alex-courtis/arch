@@ -46,7 +46,7 @@ zle -N zle-line-finish resetcursor
 
 # abort on ^C, which detached from stty intr between precmd and preexec
 function abort-buffer() {
-	print -Pn "${COL_ZSH_NOR}^C${COL_ZSH_OFF}"
+	BUFFER="${BUFFER}"
 	zle send-break
 }
 zle -N abort-buffer

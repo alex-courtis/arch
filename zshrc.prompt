@@ -9,15 +9,17 @@ function precmd() {
 	rc=${?}
 	git_ps1="$(__git_ps1)"
 
+	updatetmuxterm
+
 	PR_ERR=
 	PR_WAR=
 	TI_INF=
 
 	# set PR_ERR only if the last execution failed; ignore ^C or empty executions
-	if [ -n "${PRE_EXECD}" -a "${rc}" -ne 0 ]; then
+	if [ "${PRE_EXECD}" = "true" -a "${rc}" -ne 0 ]; then
 		PR_ERR=" ${rc} "
 	fi
-	PRE_EXECD=
+	PRE_EXECD="false"
 
 	if [ -z "${TMUX}" ]; then
 		PR_WAR="${PR_WAR} -tm "
@@ -34,8 +36,7 @@ function precmd() {
 	stty intr undef
 }
 function preexec() {
-	PRE_EXECD="oui"
-	updatetmuxterm
+	PRE_EXECD="true"
 
 	# restore ^C for whatever we execute
 	stty intr 
