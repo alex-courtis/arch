@@ -8,8 +8,10 @@ else
 	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 endif
 
-set hlsearch
+set ignorecase
 set smartcase
+
+set hlsearch
 set nowrapscan
 
 set autoread
@@ -21,6 +23,7 @@ set formatoptions+=j
 
 set number relativenumber
 
+" longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
 " unadjusted ANSI base16 colours only
@@ -65,7 +68,7 @@ execute 'set <F12>=[24;*~'
 cmap	<C-j>	<Down>
 cmap	<C-k>	<Up>
 
-imap	<C-@>	<C-x><C-o>
+imap	<expr>	<C-@>	DoOmniComplete()
 
 nmap 	; 	:
 nmap 	q; 	q:
@@ -90,11 +93,17 @@ xmap		<Plug>NERDCommenterToggle
 
 
 " completion
-"   ignorecase can upset longest, clearing the match text
-" todo: c complete struct members
 "
 set completeopt=menuone,preview,longest
-autocmd CompleteDone * pclose
+
+" turn off ignore case, as mixed case matches result in longest length 0
+function! DoOmniComplete()
+	set noignorecase
+	return "\<C-x>\<C-o>"
+endfunction
+
+" turn on ignore case and close the preview
+autocmd CompleteDone * set ignorecase | pclose
 
 
 " airline
