@@ -63,24 +63,29 @@ execute 'set <F11>=[23;*~'
 execute 'set <F12>=[24;*~'
 
 
-" bindings
+" mappings - vim specific
 "
-cmap	<C-j>	<Down>
-cmap	<C-k>	<Up>
+nno 	; 	:
+vno 	; 	:
+nno 	q; 	q:
+vno 	q; 	q:
+nno 	@; 	@:
+vno 	@; 	@:
+nno 	<C-w>; 	<C-w>:
 
-imap	<expr>	<C-@>	DoOmniComplete()
-
-nmap 	; 	:
-nmap 	q; 	q:
-nmap 	@; 	@:
-nmap 	<C-w>; 	<C-w>:
-
-nmap	<silent>	<Leader>ta	:TagbarToggle<CR>
-nmap	<silent>	<Leader>tr	:NERDTreeToggle<CR>
 nno	<silent>	<Leader>b	:BufExplorer<CR>
+nno	<silent>	<Leader>ta	:TagbarToggle<CR>
+nno	<silent>	<Leader>tr	:NERDTreeToggle<CR>
+nno	<silent>	<Leader>h	:nohl<CR>
 
-nmap	<F5>	:b #<CR>
-nmap	<F6>	:nohl<CR>
+" mappings - common
+"
+nno	<F5>	:b #<CR>
+
+cno	<C-j>	<Down>
+cno	<C-k>	<Up>
+
+ino	<expr>	<C-@>	DoOmniComplete()
 
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
