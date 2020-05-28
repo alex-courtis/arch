@@ -1,3 +1,11 @@
+# clear these colours for regular ls usage as they are not as nice as the defaults
+eval $(dircolors)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+unset LS_COLORS
+
+# menu customised below
+zstyle ':completion:*' menu select
+
 # vim zle mode
 bindkey -v
 
@@ -10,6 +18,15 @@ bindkey -M vicmd "${terminfo[kdch1]}" delete-char
 
 # shift tab for reverse menu only; tab is still set to expand-or-complete
 bindkey -M viins "^[[Z" reverse-menu-complete
+
+# completes the current and tries to complete again; useful for multi level directories
+bindkey -M menuselect "/" accept-and-infer-next-history
+
+# easy navigation
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # search up to cursor
 bindkey -M viins "^J" history-beginning-search-forward
