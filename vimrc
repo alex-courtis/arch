@@ -75,18 +75,15 @@ nmap 	q; 	q:
 nmap 	@; 	@:
 nmap 	<C-w>; 	<C-w>:
 
-nmap	<C-y>	:nohl<CR>
+nmap	<silent>	<Leader>ta	:TagbarToggle<CR>
+nmap	<silent>	<Leader>tr	:NERDTreeToggle<CR>
+nno	<silent>	<Leader>b	:BufExplorer<CR>
 
-nmap	<F5>	:NERDTreeFocus<CR>
-
-set wildcharm=<F6>
-nmap	<F6>	:b <F6>
-nmap	<S-F6>	:b #<CR>
+nmap	<F5>	:b #<CR>
+nmap	<F6>	:nohl<CR>
 
 nmap	<F7>	<Plug>(GitGutterNextHunk)
 nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
-
-nmap	<F8>	:TagbarOpen fj<CR>
 
 nmap		<Plug>NERDCommenterToggle <Down>
 xmap		<Plug>NERDCommenterToggle
@@ -115,6 +112,12 @@ let airline_powerline_fonts=1
 let airline_section_x='%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y='%{airline#parts#filetype()}'
 let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
+
+
+" bufexplorer
+"
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerDisableDefaultKeyMapping=1
 
 
 " editorconfig
@@ -157,6 +160,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'guns/xterm-color-table.vim'
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
