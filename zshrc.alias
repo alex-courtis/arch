@@ -37,8 +37,11 @@ alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/music"
 
 alias bl1="cd && cd .local/share/Steam/steamapps/compatdata/8980/pfx/drive_c/users/steamuser/My\ Documents/My\ Games/Borderlands"
+alias bl1a="bl1 && tar cvf /net/lord/save/bl1/\$(date +%Y%m%d_%H%M).tar *"
 alias bl3="cd && cd .local/share/Steam/steamapps/compatdata/397540/pfx/drive_c/users/steamuser/My\ Documents/My\ Games/Borderlands\ 3"
 alias bl3a="bl3 && tar cvf /net/lord/save/bl3/\$(date +%Y%m%d_%H%M).tar *"
+alias pb2="cd && cd .local/share/Steam/steamapps/compatdata/1062160/pfx/drive_c/users/steamuser/Documents/Dry\ Cactus/Poly\ Bridge\ 2"
+alias pb2a="pb2 && tar cvf /net/lord/save/pb2/\$(date +%Y%m%d_%H%M).tar *"
 
 # bash style targets that cannot play well with complete_aliases
 alias todo="todo.sh"
