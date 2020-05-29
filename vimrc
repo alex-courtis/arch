@@ -85,8 +85,6 @@ nno	<silent>	<Leader>i	:nohlsearch<CR>
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
 
-ino	<expr>	<C-@>	BeginOmniComplete()
-
 nmap		<F7>	<Plug>(GitGutterNextHunk)
 nmap		<S-F7>	<Plug>(GitGutterPrevHunk)
 
@@ -95,17 +93,43 @@ xmap			<Plug>NERDCommenterToggle
 
 
 " completion
+"   inspired by https://vim.fandom.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 "
-set completeopt=menuone,preview,longest
+set completeopt=menuone,longest
+
+ino	<expr>	<C-@>	BeginOmniComplete()
+ino	<expr>	<CR>	OmniMaybeSelectFirstAndAccept()
+ino	<expr>	<Tab>	pumvisible() ? "\<C-n>" : "\<Tab>"
+ino	<expr>	<S-Tab>	pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+autocmd CompleteDone * call EndOmniComplete()
 
 " turn off ignore case, as mixed case matches result in longest length 0
 function! BeginOmniComplete()
 	set noignorecase
+	let w:OmniCompleting=1
 	return "\<C-x>\<C-o>"
 endfunction
 
-" turn on ignore case and close the preview
-autocmd CompleteDone * set ignorecase | pclose
+" turn on ignore case
+function! EndOmniComplete()
+	set ignorecase
+	let w:OmniCompleting=0
+endfunction
+
+function! OmniMaybeSelectFirstAndAccept()
+	if exists('w:OmniCompleting') && w:OmniCompleting && pumvisible()
+		let ci=complete_info()
+		if !empty(ci) && !empty(ci.items)
+			if ci.selected == -1
+				return "\<C-n>\<C-y>"
+			else
+				return "\<C-y>"
+			endif
+		endif
+	endif
+	return "\<CR>"
+endfunction
 
 
 " airline
