@@ -72,6 +72,7 @@ vno 	q; 	q:
 nno 	@; 	@:
 vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
+vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>b	:BufExplorer<CR>
 nno	<silent>	<Leader>ta	:TagbarToggle<CR>
@@ -80,18 +81,18 @@ nno	<silent>	<Leader>h	:nohl<CR>
 
 " mappings - common
 "
-nno	<F5>	:b #<CR>
+nno		<F5>	:b #<CR>
 
-cno	<C-j>	<Down>
-cno	<C-k>	<Up>
+cno		<C-j>	<Down>
+cno		<C-k>	<Up>
 
-ino	<expr>	<C-@>	DoOmniComplete()
+ino	<expr>	<C-@>	BeginOmniComplete()
 
-nmap	<F7>	<Plug>(GitGutterNextHunk)
-nmap	<S-F7>	<Plug>(GitGutterPrevHunk)
+nmap		<F7>	<Plug>(GitGutterNextHunk)
+nmap		<S-F7>	<Plug>(GitGutterPrevHunk)
 
-nmap		<Plug>NERDCommenterToggle <Down>
-xmap		<Plug>NERDCommenterToggle
+nmap			<Plug>NERDCommenterToggle <Down>
+xmap			<Plug>NERDCommenterToggle
 
 
 " completion
@@ -99,7 +100,7 @@ xmap		<Plug>NERDCommenterToggle
 set completeopt=menuone,preview,longest
 
 " turn off ignore case, as mixed case matches result in longest length 0
-function! DoOmniComplete()
+function! BeginOmniComplete()
 	set noignorecase
 	return "\<C-x>\<C-o>"
 endfunction
