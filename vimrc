@@ -74,10 +74,10 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
-nno	<silent>	<Leader>b	:BufExplorer<CR>
-nno	<silent>	<Leader>ta	:TagbarToggle<CR>
-nno	<silent>	<Leader>tr	:NERDTreeToggle<CR>
-nno	<silent>	<Leader>h	:nohl<CR>
+nno	<silent>	<Leader>o	:NERDTreeToggle<CR>
+nno	<silent>	<Leader>e	:BufExplorer<CR>
+nno	<silent>	<Leader>u	:TagbarToggle<CR>
+nno	<silent>	<Leader>i	:nohlsearch<CR>
 
 " mappings - common
 "
