@@ -74,6 +74,7 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
+nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>o	:NERDTreeToggle<CR>
 nno	<silent>	<Leader>e	:BufExplorer<CR>
 nno	<silent>	<Leader>u	:TagbarToggle<CR>
@@ -81,8 +82,6 @@ nno	<silent>	<Leader>i	:nohlsearch<CR>
 
 " mappings - common
 "
-nno		<F5>	:b #<CR>
-
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
 
