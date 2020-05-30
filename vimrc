@@ -90,13 +90,13 @@ nno	<silent>	<Leader>e	:BufExplorer<CR>
 nno	<silent>	<Leader>u	:TagbarToggle<CR>
 nno	<silent>	<Leader>i	:nohlsearch<CR>
 
+nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
+nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
+
 " mappings - common
 "
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
-
-nmap		<F7>	<Plug>(GitGutterNextHunk)
-nmap		<S-F7>	<Plug>(GitGutterPrevHunk)
 
 nmap			<Plug>NERDCommenterToggle <Down>
 xmap			<Plug>NERDCommenterToggle
