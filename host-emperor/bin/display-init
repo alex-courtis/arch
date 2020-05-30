@@ -1,14 +1,13 @@
-#!/bin/sh
-
 set -o pipefail
 
 xg32vq_sha="88922ccf7dc7e2cbecb06220d7b4befea30598b35a7b20e13e389dd967585e55  -"
 edid_sha=$(xrandr --verbose | grep -A16 "EDID:" | sha256sum)
-if [ "$?" -eq 0 ] && [ "${edid_sha}" == "${xg32vq_sha}" ]; then
+if [ "$?" -eq 0 ] && [ "${edid_sha}" = "${xg32vq_sha}" ]; then
 
 	# this monitor displays text very poorly so increase DPI and sit further back
-	echo "XG32VQ detected, forcing 120 DPI:"
+	echo "XG32VQ detected"
 	xlayoutdisplay --dpi 120
+	export DWM_UNDERSCAN_PX=2
 else
 
 	# nvidia is able to calculate the dpi correctly
@@ -26,3 +25,4 @@ else
 	# nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
 fi
 
+set -o nopipefail

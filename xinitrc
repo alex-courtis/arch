@@ -14,7 +14,7 @@ fi
 
 # setup displays before we start any applications
 if [ "$(whence display-init)" ]; then
-	display-init
+	. display-init
 else
 	xlayoutdisplay
 fi
