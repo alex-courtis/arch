@@ -61,6 +61,18 @@ execute 'set <F11>=[23;*~'
 execute 'set <F12>=[24;*~'
 
 
+" don't modify the scroll amounts
+"
+no 	<S-ScrollWheelDown>	<ScrollWheelDown>
+no 	<S-ScrollWheelUp>	<ScrollWheelUp>
+no 	<S-ScrollWheelLeft>	<ScrollWheelLeft>
+no 	<S-ScrollWheelRight>	<ScrollWheelRight>
+no 	<C-ScrollWheelDown>	<ScrollWheelDown>
+no 	<C-ScrollWheelUp>	<ScrollWheelUp>
+no 	<C-ScrollWheelLeft>	<ScrollWheelLeft>
+no 	<C-ScrollWheelRight>	<ScrollWheelRight>
+
+
 " mappings - vim specific
 "
 nno 	; 	:
@@ -126,7 +138,7 @@ let NERDRemoveExtraSpaces=1
 let NERDTreeMinimalUI=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree 
+" inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree
 function! SyncNERDTree()
 
 	if !exists("t:NERDTreeBufName") || (bufwinnr(t:NERDTreeBufName) == -1)
