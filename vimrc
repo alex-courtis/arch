@@ -126,6 +126,28 @@ let NERDRemoveExtraSpaces=1
 let NERDTreeMinimalUI=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree 
+function! SyncNERDTree()
+
+	if !exists("t:NERDTreeBufName") || (bufwinnr(t:NERDTreeBufName) == -1)
+		return
+	endif
+
+	" buflisted is not set until after enter, hence we manually test for known nobuflisted
+	if exists('&buflisted') && !&buflisted ||
+				\ strlen(bufname()) == 0 ||
+				\ &diff ||
+				\ exists('t:tagbar_buf_name') && bufname() == t:tagbar_buf_name ||
+				\ exists('t:NERDTreeBufName') && bufname() == t:NERDTreeBufName ||
+				\ bufname() == '[BufExplorer]'
+		return
+	endif
+
+	NERDTreeFind
+	wincmd p
+endfunction
+autocmd BufEnter * call SyncNERDTree()
+
 
 " tagbar
 "
@@ -161,27 +183,3 @@ call vundle#end()
 " Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
 " This also selects the base16 vim-airline-theme
 colorscheme base16-default-dark
-
-" inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree 
-function! SyncNERDTree()
-
-	if !exists("t:NERDTreeBufName") || (bufwinnr(t:NERDTreeBufName) == -1)
-		return
-	endif
-
-	" buflisted is not set until after enter, hence we manually test for known nobuflisted
-	if exists('&buflisted') && !&buflisted ||
-				\ strlen(bufname()) == 0 ||
-				\ &diff ||
-				\ exists('t:tagbar_buf_name') && bufname() == t:tagbar_buf_name ||
-				\ exists('t:NERDTreeBufName') && bufname() == t:NERDTreeBufName ||
-				\ bufname() == '[BufExplorer]'
-		return
-	endif
-
-	NERDTreeFind
-	wincmd p
-endfunction
-
-autocmd BufEnter * call SyncNERDTree()
-
