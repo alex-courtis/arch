@@ -3,6 +3,8 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		1)
+			;&
+		2)
 			# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
 			lsmod | grep ^nvidia > /dev/null 2>&1
 			if [ $? -eq 0 ]; then
