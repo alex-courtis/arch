@@ -3,29 +3,29 @@
 "
 set completeopt=menuone,longest
 
-ino	<expr>	<C-@>		OmniBegin()
-ino	<expr>	<C-x><C-o>	OmniBegin()
-ino	<expr>	<CR>		OmniMaybeSelectFirstAndAccept()
+ino	<expr>	<C-@>		completion#OmniBegin()
+ino	<expr>	<C-x><C-o>	completion#OmniBegin()
+ino	<expr>	<CR>		completion#MaybeSelectFirstAndAccept()
 ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
 ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-autocmd CompleteDone * call OmniEnd()
+autocmd CompleteDone * call completion#OmniEnd()
 
 " turn off ignore case, as mixed case matches result in longest length 0
-function! OmniBegin()
+function! completion#OmniBegin()
 	set noignorecase
-	let w:OmniCompleting=1
+	let w:completing=1
 	return "\<C-x>\<C-o>"
 endfunction
 
 " turn on ignore case
-function! OmniEnd()
+function! completion#OmniEnd()
 	set ignorecase
-	let w:OmniCompleting=0
+	let w:completing=0
 endfunction
 
-function! OmniMaybeSelectFirstAndAccept()
-	if exists('w:OmniCompleting') && w:OmniCompleting && pumvisible()
+function! completion#MaybeSelectFirstAndAccept()
+	if exists('w:completing') && w:completing && pumvisible()
 		let ci=complete_info()
 		if !empty(ci) && !empty(ci.items)
 			if ci.selected == -1
