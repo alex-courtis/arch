@@ -21,8 +21,6 @@ set listchars=trail:·,tab:>\ ,eol:¬
 
 set formatoptions+=j
 
-set number relativenumber
-
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
