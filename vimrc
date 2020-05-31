@@ -44,6 +44,10 @@ if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
 	set ttymouse=sgr
 endif
 
+" jump to the last edited location
+if has('nvim')
+	autocmd BufEnter * execute "normal `\""
+endif
 
 " vim needs to be told explicitly listen for modified function keys
 "
