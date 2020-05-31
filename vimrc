@@ -40,7 +40,7 @@ endif
 " terminus automatically sets it when under tmux
 " vim hardcodes st to 'xterm' and xterm to 'sgr'
 " sgr is desirable as one of its side effects is the ability to handle modified F1-F4
-if $TERM =~ 'alacritty' || $TERM =~ 'st-'
+if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
 	set ttymouse=sgr
 endif
 

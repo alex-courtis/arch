@@ -3,7 +3,11 @@
 "
 set completeopt=menuone,longest
 
-ino	<expr>	<C-@>		completion#OmniBegin()
+if has('nvim')
+	ino	<expr>	<C-Space>	completion#OmniBegin()
+else
+	ino	<expr>	<C-@>		completion#OmniBegin()
+endif
 ino	<expr>	<C-x><C-o>	completion#OmniBegin()
 ino	<expr>	<CR>		completion#MaybeSelectFirstAndAccept()
 ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
