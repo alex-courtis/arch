@@ -23,6 +23,7 @@ set formatoptions+=j
 
 set number relativenumber
 
+" does not function well under vim
 if has('nvim')
 	set cursorline
 endif
@@ -48,11 +49,6 @@ endif
 " sgr is desirable as one of its side effects is the ability to handle modified F1-F4
 if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
 	set ttymouse=sgr
-endif
-
-" jump to the last edited location
-if has('nvim')
-	autocmd BufEnter * execute "normal `\""
 endif
 
 " vim needs to be told explicitly listen for modified function keys
@@ -95,7 +91,7 @@ nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
-nno	<silent>	<Leader>o	:NERDTreeToggle<CR>
+nno	<silent>	<Leader>o	:call NERDTreeToggleMaybeFind()<CR>
 nno	<silent>	<Leader>e	:BufExplorer<CR>
 nno	<silent>	<Leader>u	:TagbarToggle<CR>
 nno	<silent>	<Leader>i	:nohlsearch<CR>
@@ -149,14 +145,15 @@ let NERDTreeMinimalUI=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree
-function! SyncNERDTree()
+function! NERDTreeIsOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
 
-	if !exists("t:NERDTreeBufName") || (bufwinnr(t:NERDTreeBufName) == -1)
-		return
-	endif
+function! NERDTreeSync()
 
 	" buflisted is not set until after enter, hence we manually test for known nobuflisted
-	if exists('&buflisted') && !&buflisted ||
+	if !NERDTreeIsOpen() ||
+				\ exists('&buflisted') && !&buflisted ||
 				\ strlen(bufname()) == 0 ||
 				\ &diff ||
 				\ exists('t:tagbar_buf_name') && bufname() == t:tagbar_buf_name ||
@@ -168,7 +165,15 @@ function! SyncNERDTree()
 	NERDTreeFind
 	wincmd p
 endfunction
-autocmd BufEnter * call SyncNERDTree()
+autocmd BufEnter * call NERDTreeSync()
+
+function! NERDTreeToggleMaybeFind()
+	if NERDTreeIsOpen() || exists('&buflisted') && !&buflisted
+		NERDTreeToggle
+	else
+		NERDTreeFind
+	endif
+endfunction
 
 
 " tagbar
