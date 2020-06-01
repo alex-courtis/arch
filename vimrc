@@ -23,10 +23,7 @@ set formatoptions+=j
 
 set number relativenumber
 
-" does not function well under vim
-if has('nvim')
-	set cursorline
-endif
+set cursorline
 
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
@@ -211,6 +208,7 @@ call vundle#end()
 " This also selects the base16 vim-airline-theme
 colorscheme base16-default-dark
 
+" nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
 	highlight LineNr ctermfg=7
 	highlight LineNrAbove term=underline ctermfg=8 ctermbg=10
