@@ -23,6 +23,10 @@ set formatoptions+=j
 
 set number relativenumber
 
+if has('nvim')
+	set cursorline
+endif
+
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
@@ -201,3 +205,11 @@ call vundle#end()
 " Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
 " This also selects the base16 vim-airline-theme
 colorscheme base16-default-dark
+
+if !has('nvim')
+	highlight LineNr ctermfg=7
+	highlight LineNrAbove term=underline ctermfg=8 ctermbg=10
+	highlight LineNrBelow term=underline ctermfg=8 ctermbg=10
+	highlight CursorLineNr cterm=NONE ctermfg=7
+endif
+
