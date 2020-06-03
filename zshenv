@@ -45,7 +45,7 @@ if [ "${USER}" = "root" ]; then
 	export COL_TMUX_NORM="fg=black,bg=red"
 elif [ -n "${SSH_CONNECTION}" ]; then
 	COL_ZSH_NOR="%F{black}%K{magenta}"
-	export COL_TMUX_NORM="fg=black,bg=green"
+	export COL_TMUX_NORM="fg=black,bg=magenta"
 else
 	COL_ZSH_NOR="%F{black}%K{green}"
 	export COL_TMUX_NORM="fg=black,bg=green"
