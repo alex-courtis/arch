@@ -31,3 +31,9 @@ if [ ! -f "${HOME}/notmux" ] ; then
 	tm
 fi
 
+# style tmux
+if [ -n "${TMUX}" ]; then
+	tmux set status-style "${COL_TMUX_NORM}"
+	tmux set-window-option mode-style "${COL_TMUX_NORM}"
+fi
+
