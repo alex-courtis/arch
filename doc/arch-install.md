@@ -140,8 +140,6 @@ Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
 `pacstrap -i /mnt base base-devel`
 
-I choose `systemd-resolvconf`.
-
 ## Setup /etc/fstab
 
 `genfstab -U /mnt >> /mnt/etc/fstab`
@@ -169,9 +167,28 @@ UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            
 
 `arch-chroot /mnt /bin/bash`
 
-## btrfs filesystem drivers
+## Packages Needed For Installation
 
-`pacman -S btrfs-progs`
+`pacman -S
+btrfs-progs
+git
+linux-firmware
+networkmanager
+openssh
+pkgfile
+sudo 
+efibootmgr
+vim
+wget
+zsh
+`
+
+Link vi and others to vim:
+```sh
+ln -s /usr/bin/vim /usr/local/bin/ex
+ln -s /usr/bin/vim /usr/local/bin/vi
+ln -s /usr/bin/vim /usr/local/bin/view
+```
 
 ## Locale And Time
 
@@ -192,23 +209,11 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 ## Install And Enable Basic Networking
 
 ```sh
-pacman -S openssh networkmanager
 systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
 ## Users
-
-```sh
-pacman -S zsh gvim sudo
-```
-
-Link vi and others to vim:
-```sh
-ln -s /usr/bin/vim /usr/local/bin/ex
-ln -s /usr/bin/vim /usr/local/bin/vi
-ln -s /usr/bin/vim /usr/local/bin/view
-```
 
 Invoke `visudo` and uncomment the following:
 
@@ -307,7 +312,6 @@ FONT=ter-v32n
 ## Create The EFISTUB
 
 ```sh
-pacman -S efibootmgr
 efibootstub /dev/nvme0n1 1
 ```
 
@@ -337,10 +341,9 @@ options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev
 
 ## Reboot
 
-First, install some useful packages to get you going:
+Populate the pacman cache first.
 
 ```sh
-pacman -S git wget pkgfile
 pkgfile --update
 ```
 
