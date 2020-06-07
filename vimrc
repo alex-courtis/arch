@@ -88,7 +88,7 @@ nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
-nno	<silent>	<Leader>o	:call NERDTreeToggleMaybeFind()<CR>
+nno	<silent>	<Leader>o	:call NERDTreeToggleNoFocus()<CR>
 nno	<silent>	<Leader>e	:BufExplorer<CR>
 nno	<silent>	<Leader>u	:TagbarToggle<CR>
 nno	<silent>	<Leader>i	:nohlsearch<CR>
@@ -164,12 +164,11 @@ function! NERDTreeSync()
 endfunction
 autocmd BufEnter * call NERDTreeSync()
 
-function! NERDTreeToggleMaybeFind()
-	if NERDTreeIsOpen() || exists('&buflisted') && !&buflisted
-		NERDTreeToggle
-	else
-		NERDTreeFind
-	endif
+function! NERDTreeToggleNoFocus()
+
+	" will cause a NERDTreeSync
+	NERDTreeToggle
+	wincmd p
 endfunction
 
 
