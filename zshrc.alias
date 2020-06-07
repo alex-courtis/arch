@@ -8,6 +8,8 @@ alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
 alias rgrepc="find . -type f -print0 | xargs -0 grep --color=always"
+alias rzgrep="find . -type f -print0 | xargs -0 zgrep --color=auto"
+alias rzgrepc="find . -type f -print0 | xargs -0 zgrep --color=always"
 
 alias diff="diff --color=auto"
 alias diffc="diff --color=always"
