@@ -212,19 +212,19 @@ Update the boot image configuration: `/etc/mkinitcpio.conf`
 Add hooks:
 ```
 HOOKS=(
-	consolefont
-	keymap
-	base
-	udev
-	autodetect
-	modconf
-	block
-	filesystems
-	keyboard
-	fsck
-	resume
-	usr
-	shutdown
+    consolefont
+    keymap
+    base
+    udev
+    autodetect
+    modconf
+    block
+    filesystems
+    keyboard
+    fsck
+    resume
+    usr
+    shutdown
 )
 ```
 
@@ -333,7 +333,10 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 pacman-contrib
+pasystray
+pavucontrol
 parcellite
+pulseaudio-alsa
 pwgen
 rsync
 scrot
@@ -415,19 +418,17 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 Firmware:
 `pacaur -S sof-firmware`
 
-The device does not automatically register as the alsa default. Force it via kernel module config `/etc/modprobe.d/sof_hda_dsp.conf`:
-```
-options sof_hda_dsp index=0
-```
-
-The device resets its volume every reboot.
-
-Unmute and set volume via `alsamixer`.
-
-Poke the `alsa-state.service` into action:
+The device resets its volume every reboot, so poke the `alsa-state.service` into action:
 ```
 sudo mkdir /etc/alsa
 sudo touch /etc/alsa/state-daemon.conf
+```
+
+At time of writing, the device isn't automatically picked up by pulseaudio, so we need to force it via `/etc/pulse/default.pa`:
+```  
+load-module module-alsa-sink device=hw:0,0 channels=4
+load-module module-alsa-source device=hw:0,6 channels=4
+
 ```
 
 ## Video Drivers
