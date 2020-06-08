@@ -1,10 +1,12 @@
 # What Is This Repo?
 
-My [dotfiles](http://dotfiles.github.io), managed by [rcm](https://github.com/thoughtbot/rcm).
+My [dotfiles](http://dotfiles.github.io), managed by [rcm](https://github.com/thoughtbot/rcm), as well as some documentation.
 
-Documentation for a smooth [Arch Linux](https://www.archlinux.org/) installation for a variety of use cases including desktop, laptop and embedded.
+# Documentation
 
-Also some Arch Linux to make your life easier.
+[Arch Top Tips From Alex](doc/arch-tips.md)
+
+[Arch Installation](doc/arch-install.md)
 
 # Note To Users
 
@@ -21,7 +23,7 @@ Configurations:
 * [slstatus](https://github.com/alex-courtis/slstatus/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
-# Install
+# Dotfiles Installation
 
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
@@ -30,9 +32,4 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 
 See [rcm](https://github.com/thoughtbot/rcm) for day to day operations.
 
-# Documentation
-
-## [Arch Top Tips From Alex](doc/arch-tips.md)
-
-## [Arch Installation](doc/arch-install.md)
 

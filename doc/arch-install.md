@@ -1,51 +1,44 @@
 # Arch Installation
 
+This is very much the copy and paste guide to installation.
+
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
-## Boot
+## Preparation
 
-### x86_64
+### Boot
 
-Create a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
-
-### Raspberry PI ARM
-
-* prepare a [Raspberry PI SD card](https://archlinuxarm.org/)
-* insert card and boot the device
-* ssh or login via console as `alarm/alarm`
-* `su - ` with default password `root`
-* skip to [Locale And Time](#locale-and-time)
-
-## Wireless Connectivity
+Boot a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
 You can use `wifi-menu` to connect to a secured network, temporarily.
 
-## Start SSHD for easier installation from a remote system
+### Keymap
+
+`loadkeys dvorak-programmer`
+
+### Start SSHD for easier installation from a remote system
 
 ```sh
 passwd
 systemctl start sshd
 ip addr
 ```
-
 Connect from a remote machine
 
 `ssh root@some.ip.address`
 
-## Update the system clock
+## Filesystems
 
-`timedatectl set-ntp true`
-
-## GPT Partitioning: [LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+### Partitions
 
 Find your destination disk with `lsblk -f`
 
-Wipe everything e.g.
+Wipe everything
 ```sh
 wipefs --all /dev/nvme0n1
 ```
 
-Create partitions e.g.
+Create partitions, with swap size matching physical RAM
 ```sh
 parted /dev/nvme0n1
 ```
@@ -54,93 +47,71 @@ mktable GPT
 mkpart ESP fat32 1MiB 513MiB
 set 1 boot on
 name 1 boot
-mkpart primary 513MiB 100%
-name 2 luks
+mkpart primary 513MiB 33281MiB
+name 2 swap
+mkpart primary 33281MiB 100%
+name 3 btrfs
 quit
 ```
 
-## Fat32 Boot
+### Fat32 Boot
 
 ```sh
 mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 ```
 
-## Software RAID
-
-Optional, if multiple devices available.
-
-mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2
-
-Use /dev/md0 as the device for LUKS.
-
-## LVM on LUKS
+### Swap
 
 ```sh
-cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
-cryptsetup open /dev/nvme0n1p2 cryptlvm
-pvcreate /dev/mapper/cryptlvm
-vgcreate vg1 /dev/mapper/cryptlvm
+mkswap /dev/nvme0n1p2 -L swap
+swapon /dev/nvme0n1p2
 ```
 
-### Swap Volume
-
-TODO: linux 5.0+ allows btrfs swap files
-
-Same size as physical RAM.
+### Btrfs Root and Subvolumes
 
 ```sh
-lvcreate -L 16G vg1 -n swap
-mkswap /dev/vg1/swap -L swap
-swapon /dev/vg1/swap
+mkfs.btrfs /dev/nvme0n1p3 -L btrfs
 ```
 
-### BTRFS Volume
-
 ```sh
-lvcreate -l 100%FREE vg1 -n btrfs
-mkfs.btrfs /dev/vg1/btrfs -L btrfs
-```
-
-## BTRFS Subvolumes
-
-```sh
-mount /dev/vg1/btrfs /mnt
+mount /dev/nvme0n1p3 /mnt
 btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
+btrfs subvolume create ...
 umount /mnt
 ```
 
-## Mount All Filesystems
+### Mount All
 
 ```sh
-mount /dev/vg1/btrfs /mnt -o subvol=/@root
+mount /dev/nvme0n1p3 /mnt -o subvol=/@root
 mkdir -p /mnt/home /mnt/boot
-mount /dev/vg1/btrfs /mnt/home -o subvol=/@home
+mount /dev/nvme0n1p3 /mnt/home -o subvol=/@home
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
 `lsblk -f` should show something like this:
 ```
-NAME               FSTYPE      LABEL       UUID                                   MOUNTPOINT
-loop0              squashfs                                                       /run/archiso/sfs/airootfs
-sda                iso9660     ARCH_201805 2018-05-01-05-08-12-00
-├─sda1             iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
-└─sda2             vfat        ARCHISO_EFI 6116-EC41
+NAME        FSTYPE   FSVER LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+loop0       squashfs 4.0                                                          0   100% /run/archiso/sfs/airootfs
+sda         iso9660        ARCH_202006 2020-06-01-09-52-35-00
+├─sda1      iso9660        ARCH_202006 2020-06-01-09-52-35-00                     0   100% /run/archiso/bootmnt
+└─sda2      vfat     FAT16 ARCHISO_EFI FB44-50CD
 nvme0n1
-├─nvme0n1p1        vfat        boot        3906-F913                              /mnt/boot
-└─nvme0n1p2        crypto_LUKS             b874fabd-ae06-485e-b858-6532cec92d3c
-  └─cryptlvm       LVM2_member             k2icwX-dJ1i-lLpk-hBiz-8SP8-dg1X-Fdqh0T
-    ├─vg1-swap     swap        swap        ede007f9-f560-4044-82ca-acf0fbb6824e   [SWAP]
-    └─vg1-btrfs    btrfs       root        031a2b85-c701-4f2c-bf32-f86d222391ae   /mnt/home
+├─nvme0n1p1 vfat     FAT32 boot        226B-B351                               511M     0% /mnt/boot
+├─nvme0n1p2 swap     1     swap        872db85f-9279-472b-ae4e-eee08d01796a
+└─nvme0n1p3 btrfs          btrfs       4eb9de2a-5c04-4914-931d-081bbf9b8713    222G     0% /mnt/home
 ```
 
-## Bootstrap System
+## Installation
+
+### Bootstrap
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
-`pacstrap -i /mnt base base-devel`
+`pacstrap -i /mnt base base-devel linux linux-firmware`
 
-## Setup /etc/fstab
+### Setup /etc/fstab
 
 `genfstab -U /mnt >> /mnt/etc/fstab`
 
@@ -150,38 +121,29 @@ Modify `/home` and `/boot` for second fsck by setting to 2.
 
 `/mnt/etc/fstab` should look something like:
 ```
-# /dev/mapper/vg1-btrfs LABEL=btrfs
-UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /               btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@root,subvol=@root   0 1
-
-# /dev/mapper/vg1-btrfs LABEL=btrfs
-UUID=031a2b85-c701-4f2c-bf32-f86d222391ae       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=258,subvol=/@home,subvol=@home   0 2
+# /dev/nvme0n1p3 LABEL=btrfs
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvolid=256,subvol=/@root,subvol=@root     0 1
 
 # /dev/nvme0n1p1 LABEL=boot
-UUID=3906-F913          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro     0 2
+UUID=226B-B351          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
 
-# /dev/mapper/vg1-swap LABEL=swap
-UUID=ede007f9-f560-4044-82ca-acf0fbb6824e       none            swap            defaults    0 0
+# /dev/nvme0n1p3 LABEL=btrfs
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@home,subvol=@home     0 2
+
+# /dev/nvme0n1p2 LABEL=swap
+UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            defaults        0 0
 ```
 
-## Chroot
+### Chroot
 
 `arch-chroot /mnt /bin/bash`
 
-## Packages Needed For Installation
+### Packages Needed For Installation
 
-`pacman -S
-btrfs-progs
-git
-linux-firmware
-networkmanager
-openssh
-pkgfile
-sudo 
-efibootmgr
-vim
-wget
-zsh
-`
+`pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh`
+
+Populate the package cache:
+`pkgfile --update`
 
 Link vi and others to vim:
 ```sh
@@ -190,9 +152,9 @@ ln -s /usr/bin/vim /usr/local/bin/vi
 ln -s /usr/bin/vim /usr/local/bin/view
 ```
 
-## Locale And Time
+### Locale And Time
 
-Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too many things expect it :sigh:.
+Uncomment your desired UTF8 locale in `/etc/locale.gen`. Also `en_US` as too many things expect it :sigh:.
 
 `locale-gen`
 
@@ -202,16 +164,28 @@ Uncomment your desired locale in `/etc/locale.gen`. Also `en_US.UTF-8` as too ma
 
 `hwclock --systohc --utc`
 
-## Update pacman Packages And Installations To Current
+### Update pacman Packages And Installations To Current
 
 `pacman -Suy`
 
-## Install And Enable Basic Networking
+### Install And Enable Basic Networking
 
 ```sh
 systemctl enable sshd
 systemctl enable NetworkManager
 ```
+
+### Nonstardard Keymap
+
+Add the following to `/etc/vconsole.conf`
+```
+KEYMAP=dvorak-programmer
+```
+
+### Microcode
+
+Install the CPU microcode for amd or intel:
+`pacman -S amd-ucode`
 
 ## Users
 
@@ -229,95 +203,36 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
-## EFISTUB Preparation
+## Booting
 
-I'm bored with boot loaders and UEFI just doesn't need them. Simply point the EFI boot entry to the ESP, along with the kernel arguments.
-
-Copy `bin/efibootstub` from this repository into `/usr/local/bin`
-
-Determine the UUID of the your crypto_LUKS volume. Note that it's the raw device, not the crypto volume itself. e.g.
-
-`blkid -s UUID -o value /dev/nvme0n1p2`
-
-Create kernel command line in `/boot/kargs` e.g.
-```
-initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
-```
-
-If using Dell 5520, it's necessary to disable PCIe Active State Power Management as per (https://www.thomas-krenn.com/en/wiki/PCIe_Bus_Error_Status_00001100).
-
-Append to `/boot/kargs`:
-```
-pcie_aspm=off
-```
-
-## Create initrd and kernel
+### Create Boot Image
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-Add an encrypt hook and move the keyboard configration before it, so that we can type the passphrase.
-
-Add lvm2 before filessystems so that we may open the volumes.
-
-Add resume hook after filesystems.
-
-Add usr and shutdown hooks so that the root filesystem may be retained during shutdown and cleanly unmounted.
-
-Add consolefont and keymap after base, so that the disk encryption password may be entered sanely.
-
-If using software raid, add mdadm_udev before encrypt.
-
-```sh
-HOOKS=(base consolefont keymap udev autodetect modconf block keyboard mdadm_udev encrypt lvm2 filesystems resume fsck usr shutdown)
+Add hooks:
+```
+HOOKS=(
+	consolefont
+	keymap
+	base
+	udev
+	autodetect
+	modconf
+	block
+	filesystems
+	keyboard
+	fsck
+	resume
+	usr
+	shutdown
+)
 ```
 
 (Re)generate the boot image:
 
 `pacman -S linux`
 
-## AMD CPU Microcode
-
-Install AMD CPU microcode updater: `pacman -S amd-ucode`
-
-Prepend `initrd=\amd-ucode.img ` to `/boot/kargs`.
-
-## Intel CPU Microcode
-
-Install Intel CPU microcode updater: `pacman -S intel-ucode`
-
-Prepend `initrd=\intel-ucode.img ` to `/boot/kargs`.
-
-## Nonstardard Keymap
-
-Add the following to `/etc/vconsole.conf`
-
-```
-KEYMAP=dvorak-programmer
-```
-
-## Larger Console Fonts
-
-In the case of a laptop with high resolution, it is necessary to increase the font size when using virtual consoles.
-
-```
-pacman -S terminus-font
-```
-
-Add the following to `/etc/vconsole.conf`
-
-```
-FONT=ter-v32n
-```
-
-## Create The EFISTUB
-
-```sh
-efibootstub /dev/nvme0n1 1
-```
-
-### Alternative: systemd-boot
-
-Some terribad UEFI implementations such as Dell 5520 don't want to boot directly from UEFI; they only seem to support booting from an .efi file, hence we use systemd-boot.
+### systemd-boot
 
 ```sh
 bootctl --path=/boot install
@@ -329,35 +244,42 @@ default arch
 timeout 1
 ```
 
-Add `/boot/loader/entries/arch.conf`, using `/boot/kargs` for options, with initrd moved up:
-
+Create `/boot/loader/entries/arch.conf`:
 ```
 title Arch Linux
 linux /vmlinuz-linux
-initrd /intel-ucode.img
+initrd /amd-ucode.img
 initrd /initramfs-linux.img
-options cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap pcie_aspm=off rw
+options root=UUID= resume=UUID= rootflags=subvol=/@root rw quiet
 ```
+Change amd to intel as needed.
 
-## Reboot
-
-Populate the pacman cache first.
-
+Inject the UUIDs of the root and swap partitions:
 ```sh
-pkgfile --update
+blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/arch.conf
+blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
+```
+Move them into their correct places: root and resume.
+
+### Reboot
+
+Cleanly reboot:
+```sh
+exit
+swapoff /dev/nvme0n1p2
+umount /mnt/home
+umount /mnt/boot
+umount /mnt
+reboot
 ```
 
-Exit chroot and reboot
+## Post Install
 
-## Remove Default User
+Log in as yourself.
 
-Any default users (with known passwords) should be removed e.g.
+### Set Hostname
 
-`userdel -r alarm`
-
-## Set Hostname
-
-Use `nmtui` to setup the system network connection.
+Use `sudo nmtui` to setup the system network connection.
 
 Apply the hostname e.g.:
 
@@ -367,19 +289,148 @@ Add the hostname to `/etc/hosts` first, as IPv4 local:
 
 `127.0.0.1	gigantor`
 
-## Enable NTP Sync
+### Enable NTP Sync
 
 `timedatectl set-ntp true`
 
 You can check this with: `timedatectl status`
 
-## Setup CLI User Environment
+### Install [pacaur](https://aur.archlinux.org/packages/pacaur/)
 
-Install your public/private keys under `~/.ssh`
+```sh
+cd /tmp
+git clone https://aur.archlinux.org/auracle-git.git
+cd auracle-git
+makepkg -sri
+cd ..
+git clone https://aur.archlinux.org/pacaur.git
+cd pacaur
+makepkg -sri
+```
 
-See [Usage](#usage)
+### Install Packages
 
-## Video Driver
+AUR packages are at the end.
+
+`pacaur -S
+alacritty
+alsa-utils
+autofs
+calc
+chromium
+dmenu
+efibootmgr
+gpm
+hunspell-en_AU
+hunspell-en_GB
+jq
+keychain
+man-db
+network-manager-applet
+nfs-utils
+numlockx
+noto-fonts
+noto-fonts-emoji
+noto-fonts-extra
+pacman-contrib
+parcellite
+pwgen
+rsync
+scrot
+slock
+sysstat
+terminus-font
+the_silver_searcher
+tmux
+ttf-dejavu
+ttf-hack
+udisks2
+unzip
+xautolock
+xdg-utils
+xmlstarlet
+xorg-fonts-100dpi
+xorg-fonts-75dpi
+xorg-fonts-misc
+xorg-server
+xorg-xbacklight
+xorg-xinit
+xorg-xrandr
+xsel
+yq
+zsh-completions
+dapper
+gron-bin
+libinput-gestures
+rcm
+redshift-minimal
+todotxt
+xlayoutdisplay
+`
+
+Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
+
+### Setup CLI User Environment
+
+Install your public/private keys into `~/.ssh`, from a remote machine:
+```sh
+scp -pr .ssh gigantor:/home/alex
+```
+
+```sh
+git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
+RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+```
+
+### Build Desktop Environment
+
+Window manager:
+```sh
+mkdir src
+cd src
+git clone git@github.com:alex-courtis/dwm.git
+cd dwm
+make && sudo make install
+cd ..
+git clone git@github.com:alex-courtis/slstatus.git
+cd slstatus
+make && sudo make install
+cd ..
+```
+
+Multitouch:
+`libinput-gestures-setup autostart`
+
+Redshift:
+`systemctl enable --user redshift`
+
+### Done
+
+Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/x.${USER}.log`, `dmesg --human` and any console errors for oddities.
+
+## Audio Drivers
+
+### Intel Corporation Device 02c8
+
+Firmware:
+`pacaur -S sof-firmware`
+
+The device does not automatically register as the alsa default. Force it via kernel module config `/etc/modprobe.d/sof_hda_dsp.conf`:
+```
+options sof_hda_dsp index=0
+```
+
+The device resets its volume every reboot.
+
+Unmute and set volume via `alsamixer`.
+
+Poke the `alsa-state.service` into action:
+```
+sudo mkdir /etc/alsa
+sudo touch /etc/alsa/state-daemon.conf
+```
+
+## Video Drivers
 
 ### Modern AMD
 
@@ -387,7 +438,7 @@ Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
 Install the X driver and (re)generate the boot image:
 
-`pacman -S xf86-video-amdgpu libva-mesa-driver linux`
+`pacaur -S xf86-video-amdgpu libva-mesa-driver linux`
 
 ### Intel Only (lightweight laptop)
 
@@ -425,114 +476,110 @@ Ban the nouveau module, which can block bbswitch, via `/etc/modprobe.d/blacklist
 blacklist nouveau
 ```
 
-## Install Packages
+## Encrypted Filesystems and RAID
 
-Use [pacaur](https://github.com/ajlende/dotbot-pacaur) to manage system and AUR packages.
+### Partitions
 
+Find your destination disk with `lsblk -f`
+
+Wipe everything
 ```sh
-cd /tmp
-git clone https://aur.archlinux.org/auracle-git.git
-cd auracle-git
-makepkg -sri
-cd ..
-git clone https://aur.archlinux.org/pacaur.git
-cd pacaur
-makepkg -sri
+wipefs --all /dev/nvme0n1
 ```
 
-### Arch Packages I Like
+Create partitions, with swap size matching physical RAM
+```sh
+parted /dev/nvme0n1
+```
+```
+mktable GPT
+mkpart ESP fat32 1MiB 513MiB
+set 1 boot on
+name 1 boot
+mkpart primary 513MiB 100%
+name 2 luks
+quit
+```
 
-#### Official
+### Fat32 Boot
 
-`pacman -S ...`
+```sh
+mkfs.vfat -n boot -F32 /dev/nvme0n1p1
+```
 
-alacritty
-autofs
-calc
-chromium
-dmenu
-efibootmgr
-gpm
-hunspell-en_AU
-hunspell-en_GB
-jq
-keychain
-network-manager-applet
-nfs-utils
-numlockx
-noto-fonts
-noto-fonts-emoji
-noto-fonts-extra
-pacman-contrib
-parcellite
-pavucontrol
-pwgen
-rsync
-scrot
-slock
-sysstat
-terminus-font
-the_silver_searcher
-tmux
-ttf-dejavu
-ttf-hack
-udisks2
-unzip
-xautolock
-xdg-utils
-xmlstarlet
-xorg-fonts-100dpi
-xorg-fonts-75dpi
-xorg-fonts-misc
-xorg-server
-xorg-xinit
-xorg-xrandr
-xsel
-yq
-zsh-completions
+## Software RAID
 
-Enable gpm: `systemctl add-wants getty.target gpm.service`
+Optional, if multiple devices available.
 
-#### AUR
+`mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2`
 
-`pacaur -S ...`
+Use `/dev/md0` as the device for LUKS.
 
-dapper
-gron-bin
-pulseaudio-ctl
-rcm
-redshift-minimal
-todotxt
-xlayoutdisplay
+## LVM on LUKS
 
-### Arch Packages Laptops Like
+```sh
+cryptsetup luksFormat --type luks2 /dev/nvme0n1p2
+cryptsetup open /dev/nvme0n1p2 cryptlvm
+pvcreate /dev/mapper/cryptlvm
+vgcreate vg1 /dev/mapper/cryptlvm
+```
 
-libinput-gestures
-xorg-xbacklight
+### Swap Volume
 
-## Build Desktop Environment
+TODO: linux 5.0+ allows btrfs swap files
 
-### dwm and slstatus
+Same size as physical RAM.
 
-Clone the following:
-* `git@github.com:alex-courtis/dwm.git`
-* `git@github.com:alex-courtis/slstatus.git`
+```sh
+lvcreate -L 32G vg1 -n swap
+mkswap /dev/vg1/swap -L swap
+swapon /dev/vg1/swap
+```
 
-Run for each:
-`make && sudo make install`
+### Btrfs Root and Subvolumes
 
-### libinput-gestures
+```sh
+lvcreate -l 100%FREE vg1 -n btrfs
+mkfs.btrfs /dev/vg1/btrfs -L btrfs
+```
 
-`libinput-gestures-setup autostart`
+```sh
+mount /dev/vg1/btrfs /mnt
+btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@home
+umount /mnt
+```
 
-### Redshift
+### Mount All
 
-`systemctl enable --user redshift`
+```sh
+mount /dev/vg1/btrfs /mnt -o subvol=/@root
+mkdir -p /mnt/home /mnt/boot
+mount /dev/vg1/btrfs /mnt/home -o subvol=/@home
+mount /dev/nvme0n1p1 /mnt/boot
+```
 
-## Ready To Go
+`lsblk -f` should show something like this:
+```
+NAME               FSTYPE      LABEL       UUID                                   MOUNTPOINT
+loop0              squashfs                                                       /run/archiso/sfs/airootfs
+sda                iso9660     ARCH_201805 2018-05-01-05-08-12-00
+├─sda1             iso9660     ARCH_201805 2018-05-01-05-08-12-00                 /run/archiso/bootmnt
+└─sda2             vfat        ARCHISO_EFI 6116-EC41
+nvme0n1
+├─nvme0n1p1        vfat        boot        3906-F913                              /mnt/boot
+└─nvme0n1p2        crypto_LUKS             b874fabd-ae06-485e-b858-6532cec92d3c
+  └─cryptlvm       LVM2_member             k2icwX-dJ1i-lLpk-hBiz-8SP8-dg1X-Fdqh0T
+    ├─vg1-swap     swap        swap        ede007f9-f560-4044-82ca-acf0fbb6824e   [SWAP]
+    └─vg1-btrfs    btrfs       root        031a2b85-c701-4f2c-bf32-f86d222391ae   /mnt/home
+```
 
-Reboot
+### cmdline
 
-Login at TTY1
+We need to tell the kernel how to load our encrypted filesystem:
 
-Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/x.${USER}.log`, `dmesg --human` and any console errors for oddities.
+```
+initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
+```
+
+The UUID is of the raw device `/dev/nvme0n1p2`
