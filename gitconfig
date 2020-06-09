@@ -29,6 +29,6 @@
 #[diff]
 	#renameLimit = 9999
 [mergetool "idea"]
-	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > ideamerge.log 2>&1
+	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
 	trustExitCode = true
 
