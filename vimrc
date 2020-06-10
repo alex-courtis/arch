@@ -112,7 +112,7 @@ set noshowmode
 let airline_section_x='%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y='%{airline#parts#filetype()}'
 let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
-let g:airline#extensions#whitespace#checks=['mixed-indent-file', 'trailing', 'conflicts']
+let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 
 " bufexplorer
 "
