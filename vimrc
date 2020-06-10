@@ -88,9 +88,9 @@ nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
-nno	<silent>	<Leader>o	:call NERDTreeToggleWithSync()<CR>
+nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>e	:BufExplorer<CR>
-nno	<silent>	<Leader>u	:TagbarToggle<CR>
+nno	<silent>	<Leader>u	:call TagbarSmartToggle()<CR>
 nno	<silent>	<Leader>i	:nohlsearch<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
@@ -144,31 +144,42 @@ function! NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
+function! NERDTreeIsFocussed()
+	return exists("t:NERDTreeBufName") && bufname() == t:NERDTreeBufName
+endfunction
+
+function NERDTreeCanFindBuf()
+	return (!exists('&buflisted') || &buflisted) &&
+				\ strlen(bufname()) != 0 &&
+				\ !&diff &&
+				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
+				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
+				\ bufname() != '[BufExplorer]'
+endfunction
+
 function! NERDTreeSync()
-
-	" buflisted is not set until after enter, hence we manually test for known nobuflisted
-	if !NERDTreeIsOpen() ||
-				\ exists('&buflisted') && !&buflisted ||
-				\ strlen(bufname()) == 0 ||
-				\ &diff ||
-				\ exists('t:tagbar_buf_name') && bufname() == t:tagbar_buf_name ||
-				\ exists('t:NERDTreeBufName') && bufname() == t:NERDTreeBufName ||
-				\ bufname() == '[BufExplorer]'
-		return
+	if NERDTreeIsOpen() && NERDTreeCanFindBuf()
+		NERDTreeFind
+		wincmd p
 	endif
-
-	NERDTreeFind
-	wincmd p
 endfunction
 autocmd BufEnter * call NERDTreeSync()
 
-function! NERDTreeToggleWithSync()
+function! NERDTreeSmartToggle()
 	if NERDTreeIsOpen()
-		NERDTreeClose
+		if NERDTreeIsFocussed()
+			NERDTreeClose
+		elseif NERDTreeCanFindBuf()
+			NERDTreeFind
+		else
+			NERDTreeFocus
+		endif
 	else
-		NERDTree
-		wincmd p
-		wincmd p
+		if NERDTreeCanFindBuf()
+			NERDTreeFind
+		else
+			NERDTree
+		endif
 	endif
 endfunction
 
@@ -176,6 +187,27 @@ endfunction
 " tagbar
 "
 let g:tagbar_compact=1
+
+function! TagbarIsOpen()
+	return exists("t:tagbar_buf_name") && (bufwinnr(t:tagbar_buf_name) != -1)
+endfunction
+
+function! TagbarIsFocussed()
+	return exists("t:tagbar_buf_name") && bufname() == t:tagbar_buf_name
+endfunction
+
+function! TagbarSmartToggle()
+	if TagbarIsOpen()
+		if TagbarIsFocussed()
+			TagbarClose
+		else
+			TagbarClose
+			TagbarOpen f
+		endif
+	else
+		TagbarOpen f
+	endif
+endfunction
 
 
 " vim-gitgutter
