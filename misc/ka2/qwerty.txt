@@ -61,9 +61,9 @@
 [rshift]>[`]
 [kp-rshift]>[`]
 {cbrack}>{-shift}{kp-insert}{+shift}
-[lctrl]>[lp-tab][t&h200][lctrl]
-[delete]>[escape][t&h200][lalt]
+[lctrl]>[lp-tab][t&h200][lalt]
+[delete]>[escape][t&h200][lctrl]
 [bspace]>[bspace][t&h200][lshift]
-[rctrl]>[delete][t&h200][rctrl]
-[enter]>[enter][t&h200][ralt]
+[rctrl]>[delete][t&h200][ralt]
+[enter]>[enter][t&h200][rctrl]
 [space]>[space][t&h200][rshift]
