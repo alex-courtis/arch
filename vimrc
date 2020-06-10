@@ -109,8 +109,6 @@ xmap			<Plug>NERDCommenterToggle
 "
 set noshowmode
 
-let airline_powerline_fonts=1
-
 let airline_section_x='%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y='%{airline#parts#filetype()}'
 let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
