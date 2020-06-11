@@ -16,6 +16,3 @@ if [ $(whence keychain) -a -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
 
-# colour check
-colours-base16
-
