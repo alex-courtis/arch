@@ -326,7 +326,7 @@ hunspell-en_GB
 jq
 keychain
 man-db
-network-manager-applet
+nm-connection-editor
 nfs-utils
 numlockx
 noto-fonts

@@ -4,9 +4,7 @@
 	ds = diff --staged
 	dsn = diff --staged --name-only
 	co = checkout
-	gup = smart-pull
-	gm = smart-merge
-	gl = smart-log
+	l = log --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset' --graph
 	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
 	rs = restore --staged
@@ -20,15 +18,18 @@
 	excludesfile = ~/.gitignore
 [push]
 	default = current
+[pull]
+	ff = only
 [color]
 	ui = auto
+
+[mergetool "idea"]
+	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
+	trustExitCode = true
 
 # only use these when attempting a particularly large operation
 #[merge]
 	#renameLimit = 9999
 #[diff]
 	#renameLimit = 9999
-[mergetool "idea"]
-	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
-	trustExitCode = true
 
