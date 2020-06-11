@@ -22,7 +22,6 @@ function updatetmuxterm() {
 				TERM="tmux"
 				;;
 		esac
-		eval $(tmux show-environment -s TERMINAL_THEME)
 	fi
 }
 

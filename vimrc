@@ -34,12 +34,6 @@ if &t_Co > 16 && !&diff
 endif
 set background=
 
-if !empty($TERMINAL_THEME)
-	let &titlestring='%f %m%r {' . $TERMINAL_THEME . '}'
-else
-	let &titlestring='%f %m%r'
-endif
-
 " alacritty, st, xterm and tmux all talk sgr
 " terminus automatically sets it when under tmux
 " vim hardcodes st to 'xterm' and xterm to 'sgr'
