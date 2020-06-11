@@ -6,7 +6,7 @@
 #   beet modify album:"Once More 'Round The Sun" title:"Once More ’Round The Sun" track:4 title="Once More 'Round The Sun"
 #
 # detect art in FLAC:
-#   metaflac --list music/Mastodon/Blood\ Mountain/01\ The\ Wolf\ Is\ Loose.flac | grep "type: 6 (PICTURE)"
+#   metaflac --list .music/Mastodon/Blood\ Mountain/01\ The\ Wolf\ Is\ Loose.flac | grep "type: 6 (PICTURE)"
 #
 # embed art:
 #   beet fetchart Blood Mountain
@@ -45,7 +45,7 @@ plugins:
   - embedart
   - permissions
 
-directory: ~/music
+directory: ~/.music
 library: ~/.config/beets/musiclibrary.db
 
 import:
