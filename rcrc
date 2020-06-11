@@ -1,3 +1,2 @@
-EXCLUDES="git doc misc README.md config/alacritty/themes_alacritty_wiki"
+EXCLUDES="git doc misc README.md"
 UNDOTTED="bin"
-SYMLINK_DIRS="config/alacritty/themes"
