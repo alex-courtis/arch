@@ -1,4 +1,0 @@
-- JOB: "intercept -g $DEVNODE | dual-function-keys -c /etc/dfk.home-row-modifiers.yaml | uinput -d $DEVNODE"
-  DEVICE:
-    NAME: "q.m.k HHKB mod Keyboard"
-

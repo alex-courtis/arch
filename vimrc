@@ -119,7 +119,7 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 
 " editorconfig
 "
-let EditorConfig_max_line_indicator='exceeding'
+let EditorConfig_max_line_indicator='line'
 
 
 " nerdcommenter
