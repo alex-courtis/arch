@@ -19,7 +19,7 @@
 [push]
 	default = current
 [pull]
-	ff = only
+	rebase = false
 [color]
 	ui = auto
 
