@@ -20,7 +20,7 @@ There is no DE, just a console login which starts X11.
 
 Configurations:
 * [dwm](https://github.com/alex-courtis/dwm/)
-* [s](https://github.com/alex-courtis/s/)
+* [st](https://github.com/alex-courtis/st/)
 * [slstatus](https://github.com/alex-courtis/slstatus/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
