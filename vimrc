@@ -90,6 +90,7 @@ nno	<silent>	<Leader>i	:nohlsearch<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
+nno	<silent>	<Leader>f	gg=G``
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>n	:tn<CR>
 
