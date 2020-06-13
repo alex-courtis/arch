@@ -15,7 +15,7 @@ set hlsearch
 set nowrapscan
 
 set autoread
-set autowrite
+set autowriteall
 
 set listchars=trail:·,tab:>\ ,eol:¬
 
