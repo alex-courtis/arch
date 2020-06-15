@@ -27,6 +27,12 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 
+# keep this synced with 90-keyboard.conf, until X goes away
+export XKB_DEFAULT_LAYOUT="us"
+export XKB_DEFAULT_MODEL="pc105"
+export XKB_DEFAULT_VARIANT="dvp"
+export XKB_DEFAULT_OPTIONS="caps:backspace"
+
 # don't minimise fullscreen SDL (i.e. most steam) when losing focus
 # they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
