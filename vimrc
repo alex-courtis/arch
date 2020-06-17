@@ -99,9 +99,6 @@ nno	<silent>	<Leader>n	:tn<CR>
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
 
-nmap			<Plug>NERDCommenterToggle <Down>
-xmap			<Plug>NERDCommenterToggle
-
 
 " airline
 "
@@ -125,11 +122,11 @@ let EditorConfig_max_line_indicator='line'
 
 " nerdcommenter
 "
-let NERDCreateDefaultMappings=0
 let NERDToggleCheckAllLines=1
-let NERDDefaultAlign='both'
+let NERDDefaultNesting=0
 let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
+let NERDTrimTrailingWhitespace=1
 
 
 " nerdtree
