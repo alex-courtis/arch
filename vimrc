@@ -109,6 +109,7 @@ let airline_section_y='%{airline#parts#filetype()}'
 let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 
+
 " bufexplorer
 "
 let g:bufExplorerDefaultHelp=0
@@ -254,9 +255,6 @@ colorscheme base16-default-dark
 
 " nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
-	highlight LineNr ctermfg=7
-	highlight LineNrAbove term=underline ctermfg=8 ctermbg=10
-	highlight LineNrBelow term=underline ctermfg=8 ctermbg=10
 	highlight CursorLineNr cterm=NONE ctermfg=7
 endif
 
