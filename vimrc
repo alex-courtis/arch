@@ -180,6 +180,22 @@ function! NERDTreeSmartToggle()
 endfunction
 
 
+" nerdtree-git-plugin
+"
+let g:NERDTreeIndicatorMapCustom = {
+			\ "Modified"  : "~",
+			\ "Staged"    : "+",
+			\ "Untracked" : "u",
+			\ "Renamed"   : "r",
+			\ "Unmerged"  : "*",
+			\ "Deleted"   : "-",
+			\ "Dirty"     : "d",
+			\ "Clean"     : "c",
+			\ 'Ignored'   : 'i',
+			\ "Unknown"   : "?"
+			\ }
+
+
 " tagbar
 "
 let g:tagbar_compact=1
