@@ -127,6 +127,7 @@ let NERDDefaultNesting=0
 let NERDSpaceDelims=1
 let NERDRemoveExtraSpaces=1
 let NERDTrimTrailingWhitespace=1
+let NERDUsePlaceHolders=0
 
 
 " nerdtree
