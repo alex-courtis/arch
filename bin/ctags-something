@@ -51,6 +51,9 @@ ${CMD_DEPS} \
 # only a few system headers will be C
 OPTS="--languages=C,C++"
 
+# prototypes
+OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
+
 # signatures
 OPTS="${OPTS} --fields=+S"
 
