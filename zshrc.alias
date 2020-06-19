@@ -20,11 +20,6 @@ alias agh="ag --hidden"
 alias pt="pstree -TapU -C age"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 
-alias c="cd ~/.config"
-alias d="cd ~/.dotfiles"
-alias h="cd ~/.local/share"
-alias s="cd ~/src"
-
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
@@ -36,6 +31,8 @@ alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}
 
 alias bl1="cd && cd .local/share/Steam/steamapps/compatdata/8980/pfx/drive_c/users/steamuser/My\ Documents/My\ Games/Borderlands"
 alias bl1a="bl1 && tar cvf /net/lord/save/bl1/\$(date +%Y%m%d_%H%M).tar *"
+alias bl2="cd && cd .local/share/Steam/steamapps/compatdata/49520/pfx/drive_c/users/steamuser/My\ Documents/My\ games/Borderlands\ 2"
+alias bl2a="bl2 && tar cvf /net/lord/save/bl2/\$(date +%Y%m%d_%H%M).tar *"
 alias bl3="cd && cd .local/share/Steam/steamapps/compatdata/397540/pfx/drive_c/users/steamuser/My\ Documents/My\ Games/Borderlands\ 3"
 alias bl3a="bl3 && tar cvf /net/lord/save/bl3/\$(date +%Y%m%d_%H%M).tar *"
 alias pb2="cd && cd .local/share/Steam/steamapps/compatdata/1062160/pfx/drive_c/users/steamuser/Documents/Dry\ Cactus/Poly\ Bridge\ 2"

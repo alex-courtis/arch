@@ -45,6 +45,7 @@ ${CMD_DEPS} \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
 	| sort \
+	| grep -v dwl.c \
 	| uniq \
 	> /tmp/ctags-something.files
 
@@ -61,3 +62,4 @@ CMD_CTAGS="ctags -L /tmp/ctags-something.files ${OPTS}"
 echo "${CMD_CTAGS}"
 ${CMD_CTAGS}
 
+ctags -a dwl.c --languages=C,C++ --fields=+S
