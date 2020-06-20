@@ -4,19 +4,21 @@
 
 function usage() {
 	cat << END_USAGE
-Generates tags for a C/C++ project and its includes:
+Generates tags for a C or C++ project and its includes:
   ctags-c
   ctags-c++
 
-Identifies all source and headers by invoking cc/g++ with -M and the supplied arguments.
+Identifies all includes by invoking cc/c++ with -M and the supplied arguments.
 ctags generates tags by processing all these files.
+
+Generates tags for all sources. Prototypes tags are only generated for includes.
 
 Invoke from a makefile e.g.
   ctags:
-    ctags-c \$(SRC) \$(CPPFLAGS)
+    ctags-c \$(CPPFLAGS) --project-src \$(SRC)
 
 Or directly e.g.
-  ctags-c++ src/*cpp src/*h -I /usr/include/libevdev-1.0
+  ctags-c++ -I /usr/include/libevdev-1.0 --project-src src/*cpp src/*h
 END_USAGE
 	exit 1
 }
@@ -25,39 +27,53 @@ if [ $# -eq 0 ]; then
 	usage
 fi
 
+# pick compiler based on invocation
 ARGS="${@}"
 case "$(basename ${0})" in
 	ctags-c)
 		COMPILER=cc
 		;;
 	ctags-c++)
-		COMPILER=g++
+		COMPILER=c++
 		;;
 	*)
 		usage
 		;;
 esac
 
-CMD_DEPS="${COMPILER} -M ${ARGS}"
-echo ${CMD_DEPS}
-${CMD_DEPS} \
+rm -f /tmp/$(basename ${0}).project
+rm -f /tmp/$(basename ${0}).include
+
+# separate compiler args and project files
+COMPILER_OPTS=""
+PROJECT_SRC_FOUND=0
+while [ -n "${1}" ]; do
+	if [ "${1}" = "--project-src" ]; then
+		PROJECT_SRC_FOUND=1
+	else
+		if [ "${PROJECT_SRC_FOUND}" -eq 1 ]; then
+			echo "${1}" >> /tmp/$(basename ${0}).project
+		else
+			COMPILER_OPTS="${COMPILER_OPTS} $1"
+		fi
+	fi
+	shift
+done
+if [ "${PROJECT_SRC_FOUND}" -eq 0 ]; then
+	usage
+fi
+
+# build the includes list
+${COMPILER} -M ${COMPILER_OPTS} $(cat /tmp/$(basename ${0}).project) \
 	| sed -e 's/[\\ ]/\n/g'  \
 	| sed -e '/^$/d' \
 	| sed -e '/\.o:[ \t]*$/d' \
 	| sort \
 	| uniq \
-	> /tmp/ctags-something.files
+	| grep -v -f /tmp/$(basename ${0}).project \
+	> /tmp/$(basename ${0}).includes
 
-# only a few system headers will be C
-OPTS="--languages=C,C++"
-
-# prototypes
-OPTS="${OPTS} --c++-kinds=+p --c-kinds=+p"
-
-# signatures
-OPTS="${OPTS} --fields=+S"
-
-CMD_CTAGS="ctags -L /tmp/ctags-something.files ${OPTS}"
-echo "${CMD_CTAGS}"
-${CMD_CTAGS}
+# always generate with C++ as most system headers are c++
+ctags    --languages=C,C++ --fields=+S --c++-kinds=+p --c-kinds=+p -L /tmp/$(basename ${0}).includes
+ctags -a --languages=C,C++ --fields=+S                             -L /tmp/$(basename ${0}).project 
 
