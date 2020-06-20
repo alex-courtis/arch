@@ -121,16 +121,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let EditorConfig_max_line_indicator='line'
 
 
-" nerdcommenter
-"
-let NERDToggleCheckAllLines=1
-let NERDDefaultNesting=0
-let NERDSpaceDelims=1
-let NERDRemoveExtraSpaces=1
-let NERDTrimTrailingWhitespace=1
-let NERDUsePlaceHolders=0
-
-
 " nerdtree
 "
 let NERDTreeMinimalUI=1
@@ -242,6 +232,7 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
+Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
