@@ -85,14 +85,14 @@ nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>e	:BufExplorer<CR>
 nno	<silent>	<Leader>u	:call TagbarSmartToggle()<CR>
-nno	<silent>	<Leader>i	:nohlsearch<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
+
 nno	<silent>	<Leader>t	<C-]>
-nno	<silent>	<Leader>n	:tn<CR>
+nno	<silent>	<Leader>s	:nohlsearch<CR>
 
 " mappings - common
 "
