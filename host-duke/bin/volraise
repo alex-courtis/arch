@@ -1,4 +1,4 @@
 #!/bin/sh
 
-amixer -c 0 set Master 3db+
+amixer -c 0 set Master '10%+'
 
