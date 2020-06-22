@@ -83,7 +83,7 @@ vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
-nno	<silent>	<Leader>e	:BufExplorer<CR>
+nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 nno	<silent>	<Leader>u	:call TagbarSmartToggle()<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
@@ -93,6 +93,8 @@ nno	<silent>	<Leader>f	gg=G``
 
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>s	:nohlsearch<CR>
+
+nno	<silent>	<Leader><Space>	<C-w>w
 
 " mappings - common
 "
