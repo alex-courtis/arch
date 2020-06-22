@@ -43,7 +43,6 @@ if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
 endif
 
 " vim needs to be told explicitly listen for modified function keys
-"
 execute 'set <xF1>=[1;*P'
 execute 'set <xF2>=[1;*Q'
 execute 'set <xF3>=[1;*R'
@@ -58,8 +57,7 @@ execute 'set <F11>=[23;*~'
 execute 'set <F12>=[24;*~'
 
 
-" don't modify the scroll amounts
-"
+" don't modify the scroll amounts with modifiers
 no 	<S-ScrollWheelDown>	<ScrollWheelDown>
 no 	<S-ScrollWheelUp>	<ScrollWheelUp>
 no 	<S-ScrollWheelLeft>	<ScrollWheelLeft>
@@ -70,7 +68,7 @@ no 	<C-ScrollWheelLeft>	<ScrollWheelLeft>
 no 	<C-ScrollWheelRight>	<ScrollWheelRight>
 
 
-" mappings - vim specific
+" mappings
 "
 nno 	; 	:
 vno 	; 	:
@@ -96,10 +94,61 @@ nno	<silent>	<Leader>s	:nohlsearch<CR>
 
 nno	<silent>	<Leader><Space>	<C-w>w
 
-" mappings - common
-"
+" common
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
+"
+" mappings
+
+
+" omnicompletion
+"   inspired by https://vim.fandom.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+"
+set completeopt=menuone,longest
+
+if has('nvim')
+	ino	<expr>	<C-Space>	OmniBegin()
+else
+	ino	<expr>	<C-@>		OmniBegin()
+endif
+ino	<expr>	<C-n>		OmniNext()
+ino	<expr>	<C-x><C-o>	OmniBegin()
+ino	<expr>	<CR>		OmniMaybeSelectFirstAndAccept()
+ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
+ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+autocmd CompleteDone * call OmniEnd()
+
+" turn off ignore case, as mixed case matches result in longest length 0
+function! OmniBegin()
+	set noignorecase
+	return "\<C-x>\<C-o>\<C-n>"
+endfunction
+
+function! OmniNext()
+	return "\<C-n>\<C-n>"
+endfunction
+
+" turn on ignore case
+function! OmniEnd()
+	set ignorecase
+endfunction
+
+function! OmniMaybeSelectFirstAndAccept()
+	if pumvisible()
+		let ci=complete_info()
+		if !empty(ci) && !empty(ci.items)
+			if ci.selected == -1
+				return "\<C-n>\<C-y>"
+			else
+				return "\<C-y>"
+			endif
+		endif
+	endif
+	return "\<CR>"
+endfunction
+"
+" omnicompletion
 
 
 " airline
@@ -110,17 +159,23 @@ let airline_section_x='%{airline#extensions#tagbar#currenttag()}'
 let airline_section_y='%{airline#parts#filetype()}'
 let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
+"
+" airline
 
 
 " bufexplorer
 "
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
+"
+" bufexplorer
 
 
 " editorconfig
 "
 let EditorConfig_max_line_indicator='line'
+"
+" editorconfig
 
 
 " nerdtree
@@ -171,6 +226,8 @@ function! NERDTreeSmartToggle()
 		endif
 	endif
 endfunction
+"
+" nerdtree
 
 
 " nerdtree-git-plugin
@@ -187,6 +244,8 @@ let g:NERDTreeIndicatorMapCustom = {
 			\ 'Ignored'   : 'i',
 			\ "Unknown"   : "?"
 			\ }
+"
+" nerdtree-git-plugin
 
 
 " tagbar
@@ -213,11 +272,15 @@ function! TagbarSmartToggle()
 		TagbarOpen f
 	endif
 endfunction
+"
+" tagbar
 
 
 " vim-gitgutter
 "
 set updatetime=250
+"
+" vim-gitgutter
 
 
 " plugins as late as possible
@@ -239,6 +302,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
+"
+" plugins
 
 
 " Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
