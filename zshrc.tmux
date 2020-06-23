@@ -11,7 +11,6 @@ function tm() {
 }
 
 # Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.
-# Propagate info about the terminal.
 function updatetmuxterm() {
 	if [ -n "${TMUX}" ]; then
 		case $(tmux show-environment TERM 2>/dev/null) in
@@ -33,6 +32,7 @@ fi
 # style tmux
 if [ -n "${TMUX}" ]; then
 	tmux set status-style "${COL_TMUX_NORM}"
+	tmux set message-style "${COL_TMUX_NORM}"
 	tmux set-window-option mode-style "${COL_TMUX_NORM}"
 fi
 
