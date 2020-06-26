@@ -212,7 +212,6 @@ Update the boot image configuration: `/etc/mkinitcpio.conf`
 Add hooks:
 ```
 HOOKS=(
-    consolefont
     keymap
     base
     udev
