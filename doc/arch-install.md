@@ -442,6 +442,8 @@ Install the X driver and (re)generate the boot image:
 
 ### Intel Only (lightweight laptop)
 
+KMS will automatically be used.
+
 `pacman -S xf86-video-intel libva-intel-driver`
 
 ### Nvidia Only (desktop)
@@ -456,7 +458,7 @@ I don't need the nvidia discrete GPU for a work laptop, so completely disable it
 
 If the discrete GPU is needed, optimus/prime may be used to enable it on demand.
 
-`pacman -S xf86-video-intel libva-intel-driver bbswitch`
+`pacman -S bbswitch`
 
 Load the bbswitch module via `/etc/modules-load.d/bbswitch.conf`:
 
