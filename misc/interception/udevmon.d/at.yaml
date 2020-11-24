@@ -1,4 +1,0 @@
-- JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
-  DEVICE:
-    NAME: "AT Translated Set 2 keyboard"
-
