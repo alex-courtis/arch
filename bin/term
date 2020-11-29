@@ -1,1 +1,7 @@
-/usr/local/bin/st
+#!/bin/sh
+
+# new term should not inherit TMUX, so that it starts its own session
+TMUX=
+
+st
+
