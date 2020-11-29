@@ -13,7 +13,6 @@ function precmd() {
 
 	PR_ERR=
 	PR_WAR=
-	TI_INF=
 
 	# set PR_ERR only if the last execution failed; ignore ^C or empty executions
 	if [ "${PRE_EXECD}" = "true" -a "${rc}" -ne 0 ]; then
@@ -25,12 +24,8 @@ function precmd() {
 		PR_WAR="${PR_WAR} -tm "
 	fi
 
-	if [ -n "${TERMINAL_THEME}" ]; then
-		TI_INF="${TI_INF} {${TERMINAL_THEME}}"
-	fi
-
 	# no terminfo references as they are not reliable e.g. xterm missing fsl
-	print -Pn "\E]0;%~${git_ps1}${TI_INF}"
+	print -Pn "\E]0;%~${git_ps1}"
 
 	# clear ^C for use by zle abort-buffer
 	stty intr undef
