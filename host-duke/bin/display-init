@@ -2,5 +2,14 @@
 
 set -o pipefail
 
-xlayoutdisplay
+xg32vq_sha="798db246da03a991290d86185d30b6d6030fcf8c42952138cbcd1f3a303ce7d3  -"
+edid_sha=$(xrandr --verbose | grep -A16 "EDID:" | sha256sum)
+if [ "$?" -eq 0 ] && [ "${edid_sha}" = "${xg32vq_sha}" ]; then
+
+	# this monitor displays text very poorly so increase DPI and sit further back
+	echo "XG32VQ detected"
+	xlayoutdisplay --dpi 120
+else
+	xlayoutdisplay
+fi
 
