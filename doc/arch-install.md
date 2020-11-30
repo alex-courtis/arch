@@ -322,6 +322,7 @@ efibootmgr
 gpm
 hunspell-en_AU
 hunspell-en_GB
+inetutils
 jq
 keychain
 man-db
