@@ -1,6 +1,5 @@
-! Base16 Default Dark
-! Scheme: Chris Kempson (http://chriskempson.com)
-
+! extended base16-default-dark from https://github.com/chriskempson/base16-shell
+! bright colour variants created by multiplying LCh by 1.25 in GIMP
 #define base00 #181818
 #define base01 #282828
 #define base02 #383838
@@ -10,12 +9,18 @@
 #define base06 #e8e8e8
 #define base07 #f8f8f8
 #define base08 #ab4642
+#define base08b #cb635c
 #define base09 #dc9656
 #define base0A #f7ca88
+#define base0Ab #ffffc1
 #define base0B #a1b56c
+#define base0Bb #d2e69a
 #define base0C #86c1b9
+#define base0Cb #b9f5ed
 #define base0D #7cafc2
+#define base0Db #abdef2
 #define base0E #ba8baf
+#define base0Eb #e7b6db
 #define base0F #a16946
 
 *foreground:   base05
@@ -24,7 +29,7 @@
 #else
 *background:   base00
 #endif
-*cursorColor:  base05
+*cursorColor:  base06
 
 *color0:       base00
 *color1:       base08
@@ -36,13 +41,21 @@
 *color7:       base05
 
 *color8:       base03
-*color9:       base09
-*color10:      base01
-*color11:      base02
-*color12:      base04
-*color13:      base06
-*color14:      base0F
+*color9:       base08b
+*color10:      base0Bb
+*color11:      base0Ab
+*color12:      base0Db
+*color13:      base0Eb
+*color14:      base0Cb
 *color15:      base07
+
+! these are not read by xterm when it starts
+! man page states "Resources past color15 are available as a compile-time option"
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06
 
 ! xterm
 XTerm.termName: xterm-256color

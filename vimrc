@@ -28,10 +28,7 @@ set cursorline
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
-" unadjusted ANSI base16 colours only
-if &t_Co > 16 && !&diff
-	set t_Co=16
-endif
+" let the colorscheme set the (default light) background
 set background=
 
 " alacritty, st, xterm and tmux all talk sgr
@@ -283,6 +280,17 @@ set updatetime=250
 " vim-gitgutter
 
 
+" base16-vim
+"
+if (&t_Co >= 255)
+	" base16 schemes use the bonus colours 17-21
+	" see https://github.com/chriskempson/base16-shell
+	let base16colorspace=256
+endif
+"
+" base16-vim
+
+
 " plugins as late as possible
 "
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -292,7 +300,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'guns/xterm-color-table.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdtree'
