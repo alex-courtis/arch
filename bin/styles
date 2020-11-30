@@ -1,0 +1,30 @@
+#!/bin/sh
+
+ansi_block() {
+	for i in $(seq $1 $(( $1 + 7))); do
+		printf "\033[%d;%dm%-10s\033[m" "$2" "$i" "$3"
+	done
+	printf "\n"
+}
+
+ansi_block 30 0 "normal"
+ansi_block 90 0 "normal"
+ansi_block 30 1 "bold"
+ansi_block 90 1 "bold"
+ansi_block 30 2 "faint"
+ansi_block 90 2 "faint"
+ansi_block 30 3 "italic"
+ansi_block 90 3 "italic"
+ansi_block 30 4 "underline"
+ansi_block 90 4 "underline"
+ansi_block 30 5 "s. blink"
+ansi_block 90 5 "s. blink"
+ansi_block 30 6 "f. blink"
+ansi_block 90 6 "f. blink"
+ansi_block 30 7 "reverse"
+ansi_block 90 7 "reverse"
+ansi_block 30 8 "conceal"
+ansi_block 90 8 "conceal"
+ansi_block 30 9 "cross"
+ansi_block 90 9 "cross"
+
