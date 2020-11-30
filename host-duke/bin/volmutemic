@@ -1,4 +1,0 @@
-#!/bin/sh
-
-amixer -c 0 set Capture toggle
-
