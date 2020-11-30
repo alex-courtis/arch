@@ -2,9 +2,8 @@
 
 set -o pipefail
 
-xg32vq_sha="798db246da03a991290d86185d30b6d6030fcf8c42952138cbcd1f3a303ce7d3  -"
-edid_sha=$(xrandr --verbose | grep -A16 "EDID:" | sha256sum)
-if [ "$?" -eq 0 ] && [ "${edid_sha}" = "${xg32vq_sha}" ]; then
+xrandr --verbose | grep '203500b9892100001a5a8700a0a0a03b' > /dev/null
+if [ "$?" -eq 0 ]; then
 
 	# this monitor displays text very poorly so increase DPI and sit further back
 	echo "XG32VQ detected"
