@@ -89,7 +89,6 @@ nno	<silent>	<Leader>f	gg=G``
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
-nno	<silent>	<Leader><Space>	<C-w>w
 
 " common
 cno		<C-j>	<Down>
@@ -103,11 +102,9 @@ cno		<C-k>	<Up>
 "
 set completeopt=menuone,longest
 
-if has('nvim')
-	ino	<expr>	<C-Space>	OmniBegin()
-else
-	ino	<expr>	<C-@>		OmniBegin()
-endif
+" sometimes terminal sends C-Space as Nul, so map it
+ino	<expr>	<Nul>		OmniBegin()
+ino	<expr>	<C-Space>	OmniBegin()
 ino	<expr>	<C-n>		OmniNext()
 ino	<expr>	<C-x><C-o>	OmniBegin()
 ino	<expr>	<CR>		OmniMaybeSelectFirstAndAccept()
