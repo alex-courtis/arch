@@ -226,7 +226,7 @@ endfunction
 
 " nerdtree-git-plugin
 "
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
 			\ "Staged"    : "+",
 			\ "Untracked" : "u",
@@ -290,6 +290,7 @@ endif
 
 " plugins as late as possible
 "
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -306,6 +307,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
+filetype plugin indent on
 "
 " plugins
 
