@@ -10,7 +10,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 
 Boot a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-You can use `wifi-menu` to connect to a secured network, temporarily.
+You can use [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) to connect to a secured network, temporarily.
 
 ### Keymap
 
@@ -119,16 +119,18 @@ Modify `/` for first fsck by setting the last field to 1.
 
 Modify `/home` and `/boot` for second fsck by setting to 2.
 
+Remove the extraneous subvolid and subvol entries from the btrfs volumes.
+
 `/mnt/etc/fstab` should look something like:
 ```
 # /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvolid=256,subvol=/@root,subvol=@root     0 1
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvol=/@root     0 1
 
 # /dev/nvme0n1p1 LABEL=boot
 UUID=226B-B351          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
 
 # /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@home,subvol=@home     0 2
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvol=/@home     0 2
 
 # /dev/nvme0n1p2 LABEL=swap
 UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            defaults        0 0
@@ -175,11 +177,12 @@ systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
-### Nonstardard Keymap
+### Virtual Console Configuration
 
 Add the following to `/etc/vconsole.conf`
 ```
 KEYMAP=dvorak-programmer
+FONT=ter-v32n
 ```
 
 ### Microcode
@@ -209,7 +212,7 @@ passwd alex
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-Add hooks:
+Add hooks. It's fine to use multiple lines, which makes for easier change detection.
 ```
 HOOKS=(
     keymap
@@ -229,7 +232,9 @@ HOOKS=(
 
 (Re)generate the boot image:
 
-`pacman -S linux`
+```sh
+pacman -S linux
+```
 
 ### systemd-boot
 
@@ -371,6 +376,11 @@ todotxt
 xlayoutdisplay
 `
 
+Clean any unnecessary packages:
+```sh
+pacaur -Rns $(pacaur -Qdtq)
+```
+
 Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
 
 ### Setup CLI User Environment
@@ -385,27 +395,16 @@ git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
-### Build Desktop Environment
+### Desktop Environment
 
-Window manager:
-```sh
-mkdir src
-cd src
-git clone git@github.com:alex-courtis/dwm.git
-cd dwm
-make && sudo make install
-cd ..
-git clone git@github.com:alex-courtis/slstatus.git
-cd slstatus
-make && sudo make install
-cd ..
-```
+Choose a [Graphical user interface](https://wiki.archlinux.org/index.php/General_recommendations#Graphical_user_interface) that suits your needs.
 
-Multitouch:
-`libinput-gestures-setup autostart`
-
-Redshift:
-`systemctl enable --user redshift`
+I use mostly customised [suckless on X11](http://suckless.org/):
+- [dwm]
+- [st]
+- [slstatus]
+- Multitouch: `libinput-gestures-setup autostart`
+- Redshift: `systemctl enable --user redshift`
 
 ### Done
 
@@ -414,6 +413,10 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 ## Audio Drivers
 
 ### Intel Corporation Device 02c8
+
+```sh
+lspci | grep 02c8
+```
 
 Firmware:
 `pacaur -S sof-firmware`
@@ -586,3 +589,19 @@ initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3
 ```
 
 The UUID is of the raw device `/dev/nvme0n1p2`
+
+### Boot Hooks
+
+Install lvm:
+
+```sh
+pacman -S lvm2
+```
+
+Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
+
+Regenerate the boot image:
+
+```sh
+pacman -S linux
+```
