@@ -401,9 +401,9 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 Choose a [Graphical user interface](https://wiki.archlinux.org/index.php/General_recommendations#Graphical_user_interface) that suits your needs.
 
 I use mostly customised [suckless on X11](http://suckless.org/):
-- [dwm]
-- [st]
-- [slstatus]
+- [dwm](https://github.com/alex-courtis/dwm)
+- [st](https://github.com/alex-courtis/st)
+- [slstatus](https://github.com/alex-courtis/slstatus)
 - Multitouch: `libinput-gestures-setup autostart`
 - Redshift: `systemctl enable --user redshift`
 
