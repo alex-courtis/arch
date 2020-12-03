@@ -331,6 +331,7 @@ inetutils
 jq
 keychain
 man-db
+network-manager-applet
 nm-connection-editor
 nfs-utils
 numlockx
@@ -582,10 +583,10 @@ nvme0n1
 
 ### cmdline
 
-We need to tell the kernel how to load our encrypted filesystem:
+We need to tell the kernel how to load our encrypted filesystem. Edit `/boot/loader/entries/arch.conf`:
 
 ```
-initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
+options cryptdevice=UUID=deadbeef-c4de-4137-8bcc-4de91486a4de:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
 ```
 
 The UUID is of the raw device `/dev/nvme0n1p2`
