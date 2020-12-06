@@ -160,11 +160,6 @@ arch-chroot /mnt /bin/bash
 pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
 ```
 
-Populate the package cache:
-```sh
-pkgfile --update
-```
-
 Link vi and others to vim:
 ```sh
 ln -s /usr/bin/vim /usr/local/bin/ex
@@ -494,12 +489,18 @@ KMS will automatically be used.
 pacman -S xf86-video-intel libva-intel-driver
 ```
 
+### Note To Nvidia Users
+
+The Xorg .conf files are part of the dotfiles and thus live in `~/.config/X11/xorg.conf.d`. Nvidia drivers will not load them, insisting that they reside in `/etc/X11/xorg.conf.d`.
+
+As root manually link either the `xorg.conf.d` directory or the individual files.
+
 ### Nvidia Only (desktop)
 
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 ```sh
-pacman -S nvidia nvidia-settings
+pacman -S nvidia
 ```
 
 ### Nvidia + Intel (heavy laptop)
