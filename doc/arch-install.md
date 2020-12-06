@@ -459,28 +459,14 @@ Unfortunately, the nouveau drivers aren't feature complete or performant, so use
 
 ### Nvidia + Intel (heavy laptop)
 
-I don't need the nvidia discrete GPU for a work laptop, so completely disable it.
+[Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus) [Prime](https://wiki.archlinux.org/index.php/PRIME) will switch between the integrated Intel GPU and the discrete Nvidia one.
 
-If the discrete GPU is needed, optimus/prime may be used to enable it on demand.
+The discrete one will only be used automagically on demand when, say, launching a game.
 
-`pacman -S bbswitch`
+If the magic doesn't happen, use `prime-run` to launch the app.
 
-Load the bbswitch module via `/etc/modules-load.d/bbswitch.conf`:
-
-```
-bbswitch
-```
-
-Disable/enable the GPU on module load/unload via `/etc/modprobe.d/bbswitch.conf`:
-
-```
-options bbswitch load_state=0 unload_state=1
-```
-
-Ban the nouveau module, which can block bbswitch, via `/etc/modprobe.d/blacklisted.conf`:
-
-```
-blacklist nouveau
+```sh
+pacman -S nvidia nvidia-settings nvidia-prime
 ```
 
 ## Encrypted Filesystems and RAID
