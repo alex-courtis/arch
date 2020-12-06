@@ -458,7 +458,7 @@ lspci | grep 02c8
 ```
 
 Firmware:
-``sh
+```sh
 pacaur -S sof-firmware
 ```
 
@@ -472,7 +472,6 @@ At time of writing, the device isn't automatically picked up by pulseaudio, so w
 ```  
 load-module module-alsa-sink device=hw:0,0 channels=4
 load-module module-alsa-source device=hw:0,6 channels=4
-
 ```
 
 ## Video Drivers
