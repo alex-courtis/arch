@@ -14,7 +14,9 @@ You can use [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) to connect t
 
 ### Keymap
 
-`loadkeys dvorak-programmer`
+```sh
+loadkeys dvorak-programmer
+```
 
 ### Start SSHD for easier installation from a remote system
 
@@ -25,13 +27,19 @@ ip addr
 ```
 Connect from a remote machine
 
-`ssh root@some.ip.address`
+```sh
+ssh root@some.ip.address
+```
 
 ## Filesystems
 
 ### Partitions
 
-Find your destination disk with `lsblk -f`
+Find your destination disk:
+
+```sh
+lsblk -f
+```
 
 Wipe everything
 ```sh
@@ -109,11 +117,15 @@ nvme0n1
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
-`pacstrap -i /mnt base base-devel linux linux-firmware`
+```sh
+pacstrap -i /mnt base base-devel linux linux-firmware
+```
 
 ### Setup /etc/fstab
 
-`genfstab -U /mnt >> /mnt/etc/fstab`
+```sh
+genfstab -U /mnt >> /mnt/etc/fstab
+```
 
 Modify `/` for first fsck by setting the last field to 1.
 
@@ -138,14 +150,20 @@ UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            
 
 ### Chroot
 
-`arch-chroot /mnt /bin/bash`
+```sh
+arch-chroot /mnt /bin/bash
+```
 
 ### Packages Needed For Installation
 
-`pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh`
+```sh
+pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+```
 
 Populate the package cache:
-`pkgfile --update`
+```sh
+pkgfile --update
+```
 
 Link vi and others to vim:
 ```sh
@@ -158,17 +176,27 @@ ln -s /usr/bin/vim /usr/local/bin/view
 
 Uncomment your desired UTF8 locale in `/etc/locale.gen`. Also `en_US` as too many things expect it :sigh:.
 
-`locale-gen`
+```sh
+locale-gen
+```
 
-`echo LANG=en_AU.UTF-8 > /etc/locale.conf`
+```sh
+echo LANG=en_AU.UTF-8 > /etc/locale.conf
+```
 
-`ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime`
+```sh
+ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
+```
 
-`hwclock --systohc --utc`
+```sh
+hwclock --systohc --utc
+```
 
 ### Update pacman Packages And Installations To Current
 
-`pacman -Suy`
+```sh
+pacman -Suy
+```
 
 ### Install And Enable Basic Networking
 
@@ -188,7 +216,9 @@ FONT=ter-v32n
 ### Microcode
 
 Install the CPU microcode for amd or intel:
-`pacman -S amd-ucode`
+```sh
+pacman -S amd-ucode
+```
 
 ## Users
 
@@ -287,17 +317,25 @@ Use `sudo nmtui` to setup the system network connection.
 
 Apply the hostname e.g.:
 
-`hostnamectl set-hostname gigantor`
+```sh
+hostnamectl set-hostname gigantor`
 
 Add the hostname to `/etc/hosts` first, as IPv4 local:
 
-`127.0.0.1	gigantor`
+```
+127.0.0.1	gigantor
+```
 
 ### Enable NTP Sync
 
-`timedatectl set-ntp true`
+```sh
+timedatectl set-ntp true
+```
 
-You can check this with: `timedatectl status`
+You can check this with:
+```sh
+timedatectl status
+```
 
 ### Install [pacaur](https://aur.archlinux.org/packages/pacaur/)
 
@@ -420,7 +458,9 @@ lspci | grep 02c8
 ```
 
 Firmware:
-`pacaur -S sof-firmware`
+``sh
+pacaur -S sof-firmware
+```
 
 The device resets its volume every reboot, so poke the `alsa-state.service` into action:
 ```
@@ -443,19 +483,25 @@ Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
 Install the X driver and (re)generate the boot image:
 
-`pacaur -S xf86-video-amdgpu libva-mesa-driver linux`
+```sh
+pacaur -S xf86-video-amdgpu libva-mesa-driver linux
+```
 
 ### Intel Only (lightweight laptop)
 
 KMS will automatically be used.
 
-`pacman -S xf86-video-intel libva-intel-driver`
+```sh
+pacman -S xf86-video-intel libva-intel-driver
+```
 
 ### Nvidia Only (desktop)
 
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
-`pacman -S nvidia nvidia-settings`
+```sh
+pacman -S nvidia nvidia-settings
+```
 
 ### Nvidia + Intel (heavy laptop)
 
@@ -504,7 +550,9 @@ mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 
 Optional, if multiple devices available.
 
-`mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2`
+```sh
+mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2
+```
 
 Use `/dev/md0` as the device for LUKS.
 
