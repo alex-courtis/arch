@@ -157,7 +157,7 @@ arch-chroot /mnt /bin/bash
 ### Packages Needed For Installation
 
 ```sh
-pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+pacaur -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
 ```
 
 Link vi and others to vim:
@@ -187,10 +187,10 @@ ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 hwclock --systohc --utc
 ```
 
-### Update pacman Packages And Installations To Current
+### Update Packages And Installations To Current
 
 ```sh
-pacman -Suy
+pacaur -Suy
 ```
 
 ### Install And Enable Basic Networking
@@ -212,7 +212,7 @@ FONT=ter-v32n
 
 Install the CPU microcode for amd or intel:
 ```sh
-pacman -S amd-ucode
+pacaur -S amd-ucode
 ```
 
 ## Users
@@ -258,7 +258,7 @@ HOOKS=(
 (Re)generate the boot image:
 
 ```sh
-pacman -S linux
+pacaur -S linux
 ```
 
 ### systemd-boot
@@ -487,7 +487,7 @@ pacaur -S xf86-video-amdgpu libva-mesa-driver linux
 KMS will automatically be used.
 
 ```sh
-pacman -S xf86-video-intel libva-intel-driver
+pacaur -S xf86-video-intel libva-intel-driver
 ```
 
 ### Note To Nvidia Users
@@ -501,7 +501,7 @@ As root manually link either the `xorg.conf.d` directory or the individual files
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 ```sh
-pacman -S nvidia
+pacaur -S nvidia
 ```
 
 ### Nvidia + Intel (heavy laptop)
@@ -513,7 +513,7 @@ The discrete one will only be used automagically on demand when, say, launching 
 If the magic doesn't happen, use `prime-run` to launch the app.
 
 ```sh
-pacman -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
+pacaur -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
 ```
 
 ## Encrypted Filesystems and RAID
@@ -629,7 +629,7 @@ The UUID is of the raw device `/dev/nvme0n1p2`
 Install lvm:
 
 ```sh
-pacman -S lvm2
+pacaur -S lvm2
 ```
 
 Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
@@ -637,5 +637,5 @@ Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
 Regenerate the boot image:
 
 ```sh
-pacman -S linux
+pacaur -S linux
 ```
