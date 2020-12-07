@@ -513,7 +513,7 @@ The discrete one will only be used automagically on demand when, say, launching 
 If the magic doesn't happen, use `prime-run` to launch the app.
 
 ```sh
-pacman -S nvidia nvidia-settings nvidia-prime
+pacman -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
 ```
 
 ## Encrypted Filesystems and RAID
