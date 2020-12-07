@@ -10,11 +10,13 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 
 Boot a [bootable USB image](https://wiki.archlinux.org/index.php/USB_flash_installation_media)
 
-You can use `wifi-menu` to connect to a secured network, temporarily.
+You can use [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) to connect to a secured network, temporarily.
 
 ### Keymap
 
-`loadkeys dvorak-programmer`
+```sh
+loadkeys dvorak-programmer
+```
 
 ### Start SSHD for easier installation from a remote system
 
@@ -25,13 +27,19 @@ ip addr
 ```
 Connect from a remote machine
 
-`ssh root@some.ip.address`
+```sh
+ssh root@some.ip.address
+```
 
 ## Filesystems
 
 ### Partitions
 
-Find your destination disk with `lsblk -f`
+Find your destination disk:
+
+```sh
+lsblk -f
+```
 
 Wipe everything
 ```sh
@@ -109,26 +117,32 @@ nvme0n1
 
 Edit `/etc/pacman.d/mirrorlist` and put a local one on top
 
-`pacstrap -i /mnt base base-devel linux linux-firmware`
+```sh
+pacstrap -i /mnt base base-devel linux linux-firmware
+```
 
 ### Setup /etc/fstab
 
-`genfstab -U /mnt >> /mnt/etc/fstab`
+```sh
+genfstab -U /mnt >> /mnt/etc/fstab
+```
 
 Modify `/` for first fsck by setting the last field to 1.
 
 Modify `/home` and `/boot` for second fsck by setting to 2.
 
+Remove the extraneous subvolid and subvol entries from the btrfs volumes.
+
 `/mnt/etc/fstab` should look something like:
 ```
 # /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvolid=256,subvol=/@root,subvol=@root     0 1
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvol=/@root     0 1
 
 # /dev/nvme0n1p1 LABEL=boot
 UUID=226B-B351          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
 
 # /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvolid=257,subvol=/@home,subvol=@home     0 2
+UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvol=/@home     0 2
 
 # /dev/nvme0n1p2 LABEL=swap
 UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            defaults        0 0
@@ -136,14 +150,15 @@ UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            
 
 ### Chroot
 
-`arch-chroot /mnt /bin/bash`
+```sh
+arch-chroot /mnt /bin/bash
+```
 
 ### Packages Needed For Installation
 
-`pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh`
-
-Populate the package cache:
-`pkgfile --update`
+```sh
+pacaur -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+```
 
 Link vi and others to vim:
 ```sh
@@ -156,17 +171,27 @@ ln -s /usr/bin/vim /usr/local/bin/view
 
 Uncomment your desired UTF8 locale in `/etc/locale.gen`. Also `en_US` as too many things expect it :sigh:.
 
-`locale-gen`
+```sh
+locale-gen
+```
 
-`echo LANG=en_AU.UTF-8 > /etc/locale.conf`
+```sh
+echo LANG=en_AU.UTF-8 > /etc/locale.conf
+```
 
-`ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime`
+```sh
+ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
+```
 
-`hwclock --systohc --utc`
+```sh
+hwclock --systohc --utc
+```
 
-### Update pacman Packages And Installations To Current
+### Update Packages And Installations To Current
 
-`pacman -Suy`
+```sh
+pacaur -Suy
+```
 
 ### Install And Enable Basic Networking
 
@@ -175,17 +200,20 @@ systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
-### Nonstardard Keymap
+### Virtual Console Configuration
 
 Add the following to `/etc/vconsole.conf`
 ```
 KEYMAP=dvorak-programmer
+FONT=ter-v32n
 ```
 
 ### Microcode
 
 Install the CPU microcode for amd or intel:
-`pacman -S amd-ucode`
+```sh
+pacaur -S amd-ucode
+```
 
 ## Users
 
@@ -209,7 +237,7 @@ passwd alex
 
 Update the boot image configuration: `/etc/mkinitcpio.conf`
 
-Add hooks:
+Add hooks. It's fine to use multiple lines, which makes for easier change detection.
 ```
 HOOKS=(
     keymap
@@ -229,7 +257,9 @@ HOOKS=(
 
 (Re)generate the boot image:
 
-`pacman -S linux`
+```sh
+pacaur -S linux
+```
 
 ### systemd-boot
 
@@ -282,17 +312,26 @@ Use `sudo nmtui` to setup the system network connection.
 
 Apply the hostname e.g.:
 
-`hostnamectl set-hostname gigantor`
+```sh
+hostnamectl set-hostname gigantor
+```
 
 Add the hostname to `/etc/hosts` first, as IPv4 local:
 
-`127.0.0.1	gigantor`
+```
+127.0.0.1	gigantor
+```
 
 ### Enable NTP Sync
 
-`timedatectl set-ntp true`
+```sh
+timedatectl set-ntp true
+```
 
-You can check this with: `timedatectl status`
+You can check this with:
+```sh
+timedatectl status
+```
 
 ### Install [pacaur](https://aur.archlinux.org/packages/pacaur/)
 
@@ -322,9 +361,11 @@ efibootmgr
 gpm
 hunspell-en_AU
 hunspell-en_GB
+inetutils
 jq
 keychain
 man-db
+network-manager-applet
 nm-connection-editor
 nfs-utils
 numlockx
@@ -370,6 +411,11 @@ todotxt
 xlayoutdisplay
 `
 
+Clean any unnecessary packages:
+```sh
+pacaur -Rns $(pacaur -Qdtq)
+```
+
 Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
 
 ### Setup CLI User Environment
@@ -384,27 +430,16 @@ git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
-### Build Desktop Environment
+### Desktop Environment
 
-Window manager:
-```sh
-mkdir src
-cd src
-git clone git@github.com:alex-courtis/dwm.git
-cd dwm
-make && sudo make install
-cd ..
-git clone git@github.com:alex-courtis/slstatus.git
-cd slstatus
-make && sudo make install
-cd ..
-```
+Choose a [Graphical user interface](https://wiki.archlinux.org/index.php/General_recommendations#Graphical_user_interface) that suits your needs.
 
-Multitouch:
-`libinput-gestures-setup autostart`
-
-Redshift:
-`systemctl enable --user redshift`
+I use mostly customised [suckless on X11](http://suckless.org/):
+- [dwm](https://github.com/alex-courtis/dwm)
+- [st](https://github.com/alex-courtis/st)
+- [slstatus](https://github.com/alex-courtis/slstatus)
+- Multitouch: `libinput-gestures-setup autostart`
+- Redshift: `systemctl enable --user redshift`
 
 ### Done
 
@@ -414,8 +449,14 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 
 ### Intel Corporation Device 02c8
 
+```sh
+lspci | grep 02c8
+```
+
 Firmware:
-`pacaur -S sof-firmware`
+```sh
+pacaur -S sof-firmware
+```
 
 The device resets its volume every reboot, so poke the `alsa-state.service` into action:
 ```
@@ -427,7 +468,6 @@ At time of writing, the device isn't automatically picked up by pulseaudio, so w
 ```  
 load-module module-alsa-sink device=hw:0,0 channels=4
 load-module module-alsa-source device=hw:0,6 channels=4
-
 ```
 
 ## Video Drivers
@@ -438,44 +478,42 @@ Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
 Install the X driver and (re)generate the boot image:
 
-`pacaur -S xf86-video-amdgpu libva-mesa-driver linux`
+```sh
+pacaur -S xf86-video-amdgpu libva-mesa-driver linux
+```
 
 ### Intel Only (lightweight laptop)
 
 KMS will automatically be used.
 
-`pacman -S xf86-video-intel libva-intel-driver`
+```sh
+pacaur -S xf86-video-intel libva-intel-driver
+```
+
+### Note To Nvidia Users
+
+The Xorg .conf files are part of the dotfiles and thus live in `~/.config/X11/xorg.conf.d`. Nvidia drivers will not load them, insisting that they reside in `/etc/X11/xorg.conf.d`.
+
+As root manually link either the `xorg.conf.d` directory or the individual files.
 
 ### Nvidia Only (desktop)
 
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
-`pacman -S nvidia nvidia-settings`
+```sh
+pacaur -S nvidia
+```
 
 ### Nvidia + Intel (heavy laptop)
 
-I don't need the nvidia discrete GPU for a work laptop, so completely disable it.
+[Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus) [Prime](https://wiki.archlinux.org/index.php/PRIME) will switch between the integrated Intel GPU and the discrete Nvidia one.
 
-If the discrete GPU is needed, optimus/prime may be used to enable it on demand.
+The discrete one will only be used automagically on demand when, say, launching a game.
 
-`pacman -S bbswitch`
+If the magic doesn't happen, use `prime-run` to launch the app.
 
-Load the bbswitch module via `/etc/modules-load.d/bbswitch.conf`:
-
-```
-bbswitch
-```
-
-Disable/enable the GPU on module load/unload via `/etc/modprobe.d/bbswitch.conf`:
-
-```
-options bbswitch load_state=0 unload_state=1
-```
-
-Ban the nouveau module, which can block bbswitch, via `/etc/modprobe.d/blacklisted.conf`:
-
-```
-blacklist nouveau
+```sh
+pacaur -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
 ```
 
 ## Encrypted Filesystems and RAID
@@ -513,7 +551,9 @@ mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 
 Optional, if multiple devices available.
 
-`mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2`
+```sh
+mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gigantor /dev/md0 /dev/nvme0n1p2 /dev/nvme1n1p2 /dev/nvme2n1p2
+```
 
 Use `/dev/md0` as the device for LUKS.
 
@@ -527,8 +567,6 @@ vgcreate vg1 /dev/mapper/cryptlvm
 ```
 
 ### Swap Volume
-
-TODO: linux 5.0+ allows btrfs swap files
 
 Same size as physical RAM.
 
@@ -578,10 +616,26 @@ nvme0n1
 
 ### cmdline
 
-We need to tell the kernel how to load our encrypted filesystem:
+We need to tell the kernel how to load our encrypted filesystem. Edit `/boot/loader/entries/arch.conf`:
 
 ```
-initrd=\initramfs-linux.img cryptdevice=UUID=b874fabd-ae06-485e-b858-6532cec92d3c:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
+options cryptdevice=UUID=deadbeef-c4de-4137-8bcc-4de91486a4de:cryptlvm root=/dev/vg1/btrfs rootflags=subvol=/@root resume=/dev/vg1/swap rw quiet
 ```
 
 The UUID is of the raw device `/dev/nvme0n1p2`
+
+### Boot Hooks
+
+Install lvm:
+
+```sh
+pacaur -S lvm2
+```
+
+Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
+
+Regenerate the boot image:
+
+```sh
+pacaur -S linux
+```

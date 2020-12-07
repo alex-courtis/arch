@@ -44,9 +44,9 @@ rgb_block() {
 	printf "\033[48;2;%d;%d;%dm          \033[m" "$1" "$2" "$3"
 }
 
-ansi_block() {
-	for i in $(seq $1 $(( $1 + 7))); do
-		printf "\033[%d;%dm%-10s\033[m" "$2" "$i" "$3"
+ansi_256_block() {
+	for i in $(seq $1 $(( $1 + $2))); do
+		printf "\033[48;5;%dm%-10s\033[0m" "$i" ""
 	done
 	printf "\n"
 }
@@ -91,7 +91,8 @@ for i in $(seq 255 -1 128); do
 done
 printf "\n\n"
 
-# xterm
+
+echo "xterm defaults:"
 rgb_block 0 0 0
 rgb_block 205 0 0
 rgb_block 0 205 0
@@ -111,7 +112,8 @@ rgb_block 0 255 255
 rgb_block 255 255 255
 printf "\n\n"
 
-# base16-default-dark
+
+echo "base16-default-dark:"
 rgb_block 0x18 0x18 0x18
 rgb_block 0xab 0x46 0x42
 rgb_block 0xa1 0xb5 0x6c
@@ -131,27 +133,20 @@ rgb_block 0xa1 0x69 0x46
 rgb_block 0xf8 0xf8 0xf8
 printf "\n\n"
 
-# ansi
-ansi_block 40 0 ""
-ansi_block 100 0 ""
+
+echo "current ansi 256:"
+
+# base16
+ansi_256_block 0 7
+ansi_256_block 8 7
+
+# 216 cube, with base16 extensions at the start
+for i in $(seq 16 6 226); do
+	ansi_256_block $i 5
+done
+
+# greys
+for i in $(seq 232 8 248); do
+	ansi_256_block $i 7
+done
 printf "\n"
-ansi_block 30 0 "normal"
-ansi_block 90 0 "normal"
-ansi_block 30 1 "bold"
-ansi_block 90 1 "bold"
-ansi_block 30 2 "faint"
-ansi_block 90 2 "faint"
-ansi_block 30 3 "italic"
-ansi_block 90 3 "italic"
-ansi_block 30 4 "underline"
-ansi_block 90 4 "underline"
-ansi_block 30 5 "s. blink"
-ansi_block 90 5 "s. blink"
-ansi_block 30 6 "f. blink"
-ansi_block 90 6 "f. blink"
-ansi_block 30 7 "reverse"
-ansi_block 90 7 "reverse"
-ansi_block 30 8 "conceal"
-ansi_block 90 8 "conceal"
-ansi_block 30 9 "cross"
-ansi_block 90 9 "cross"

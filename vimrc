@@ -28,10 +28,7 @@ set cursorline
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
-" unadjusted ANSI base16 colours only
-if &t_Co > 16 && !&diff
-	set t_Co=16
-endif
+" let the colorscheme set the (default light) background
 set background=
 
 " alacritty, st, xterm and tmux all talk sgr
@@ -92,7 +89,6 @@ nno	<silent>	<Leader>f	gg=G``
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
-nno	<silent>	<Leader><Space>	<C-w>w
 
 " common
 cno		<C-j>	<Down>
@@ -106,11 +102,9 @@ cno		<C-k>	<Up>
 "
 set completeopt=menuone,longest
 
-if has('nvim')
-	ino	<expr>	<C-Space>	OmniBegin()
-else
-	ino	<expr>	<C-@>		OmniBegin()
-endif
+" sometimes terminal sends C-Space as Nul, so map it
+ino	<expr>	<Nul>		OmniBegin()
+ino	<expr>	<C-Space>	OmniBegin()
 ino	<expr>	<C-n>		OmniNext()
 ino	<expr>	<C-x><C-o>	OmniBegin()
 ino	<expr>	<CR>		OmniMaybeSelectFirstAndAccept()
@@ -232,7 +226,7 @@ endfunction
 
 " nerdtree-git-plugin
 "
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
 			\ "Staged"    : "+",
 			\ "Untracked" : "u",
@@ -283,8 +277,20 @@ set updatetime=250
 " vim-gitgutter
 
 
+" base16-vim
+"
+if (&t_Co >= 255)
+	" base16 schemes use the bonus colours 17-21
+	" see https://github.com/chriskempson/base16-shell
+	let base16colorspace=256
+endif
+"
+" base16-vim
+
+
 " plugins as late as possible
 "
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -292,7 +298,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'guns/xterm-color-table.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'preservim/nerdtree'
@@ -302,6 +307,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'wincent/terminus'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
+filetype plugin indent on
 "
 " plugins
 
