@@ -313,7 +313,8 @@ Use `sudo nmtui` to setup the system network connection.
 Apply the hostname e.g.:
 
 ```sh
-hostnamectl set-hostname gigantor`
+hostnamectl set-hostname gigantor
+```
 
 Add the hostname to `/etc/hosts` first, as IPv4 local:
 
