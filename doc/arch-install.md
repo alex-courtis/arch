@@ -494,7 +494,12 @@ pacaur -S xf86-video-intel libva-intel-driver
 
 The Xorg .conf files are part of the dotfiles and thus live in `~/.config/X11/xorg.conf.d`. Nvidia drivers will not load them, insisting that they reside in `/etc/X11/xorg.conf.d`.
 
-As root manually link either the `xorg.conf.d` directory or the individual files.
+```sh
+cd /etc/X11/xorg.conf.d
+ln -s ~/.config/X11/xorg.conf.d/* .
+```
+
+[KMS](https://wiki.archlinux.org/index.php/NVIDIA#DRM_kernel_mode_setting) seems to be a good idea for nvidia, for greater smoothness when switching resolutions.
 
 ### Nvidia Only (desktop)
 
