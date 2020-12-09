@@ -157,7 +157,7 @@ arch-chroot /mnt /bin/bash
 ### Packages Needed For Installation
 
 ```sh
-pacaur -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
 ```
 
 Link vi and others to vim:
@@ -190,7 +190,7 @@ hwclock --systohc --utc
 ### Update Packages And Installations To Current
 
 ```sh
-pacaur -Suy
+pacman -Suy
 ```
 
 ### Install And Enable Basic Networking
@@ -212,7 +212,7 @@ FONT=ter-v32n
 
 Install the CPU microcode for amd or intel:
 ```sh
-pacaur -S amd-ucode
+pacman -S amd-ucode
 ```
 
 ## Users
