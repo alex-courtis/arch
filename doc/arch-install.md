@@ -357,6 +357,7 @@ autofs
 calc
 chromium
 dmenu
+dnsutils
 efibootmgr
 gpm
 hunspell-en_AU
