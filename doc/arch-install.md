@@ -205,7 +205,7 @@ systemctl enable NetworkManager
 Add the following to `/etc/vconsole.conf`
 ```
 KEYMAP=dvorak-programmer
-FONT=ter-v32n
+FONT=ter-v16b
 ```
 
 ### Microcode
@@ -240,6 +240,7 @@ Update the boot image configuration: `/etc/mkinitcpio.conf`
 Add hooks. It's fine to use multiple lines, which makes for easier change detection.
 ```
 HOOKS=(
+    consolefont
     keymap
     base
     udev
@@ -500,7 +501,7 @@ cd /etc/X11/xorg.conf.d
 ln -s ~/.config/X11/xorg.conf.d/* .
 ```
 
-[KMS](https://wiki.archlinux.org/index.php/NVIDIA#DRM_kernel_mode_setting) seems to be a good idea for nvidia, for greater smoothness when switching resolutions.
+[KMS](https://wiki.archlinux.org/index.php/NVIDIA#DRM_kernel_mode_setting) is not great with the nvidia driver: I've had virtual console isses with "out of range" signals sent to the monitor.
 
 ### Nvidia Only (desktop)
 
