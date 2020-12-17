@@ -367,6 +367,7 @@ inetutils
 jq
 keychain
 man-db
+man-pages
 network-manager-applet
 nm-connection-editor
 nfs-utils
