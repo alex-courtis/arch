@@ -10,19 +10,6 @@ if [ "$?" -eq 0 ] && [ "${edid_sha}" = "${xg32vq_sha}" ]; then
 	echo "XG32VQ detected"
 	xlayoutdisplay --dpi 120
 else
-
-	# nvidia is able to calculate the dpi correctly
-	nvidia_dpi="$(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; s/x.*$//g')"
-	echo "using ${nvidia_dpi} DPI calculated by nvidia driver:"
-	echo "Xft.dpi: $(xdpyinfo | grep "resolution" | sed -e 's/^.*resolution: *//g ; s/x.*$//g')" | xrdb -merge
-
-	# We use a shell script instead of .nvidia-settings-rc as that method will not assign CurrentMetaMode without an explicitly specified display.
-
-	# applies to individual windows
-	# nvidia-settings --assign ShowVRRVisualIndicator=1
-	# nvidia-settings --assign ShowGraphicsVisualIndicator=1
-
-	# pipeline applies to the whole X server and will mess with games
-	# nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}"
+	xlayoutdisplay
 fi
 
