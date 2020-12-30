@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# set auto repeat here as xset values tend to be overridden at runtime
+exec /usr/bin/X \
+	-nolisten tcp \
+	-ardelay 400 \
+	-arinterval 20 \
+	"$@"
