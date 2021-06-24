@@ -409,7 +409,6 @@ dapper
 gron-bin
 libinput-gestures
 rcm
-redshift-minimal
 todotxt
 xlayoutdisplay
 `
@@ -442,7 +441,6 @@ I use mostly customised [suckless on X11](http://suckless.org/):
 - [st](https://github.com/alex-courtis/st)
 - [slstatus](https://github.com/alex-courtis/slstatus)
 - Multitouch: `libinput-gestures-setup autostart`
-- Redshift: `systemctl enable --user redshift`
 
 ### Done
 
