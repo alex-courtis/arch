@@ -512,6 +512,8 @@ pacaur -S nvidia
 
 ### Nvidia + Intel (heavy laptop)
 
+#### Switching GPUs
+
 [Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus) [Prime](https://wiki.archlinux.org/index.php/PRIME) will switch between the integrated Intel GPU and the discrete Nvidia one.
 
 The discrete one will only be used automagically on demand when, say, launching a game.
@@ -521,6 +523,25 @@ If the magic doesn't happen, use `prime-run` to launch the app.
 ```sh
 pacaur -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
 ```
+
+#### Turn Off Nvidia GPU
+
+Install `bbswitch`.
+
+Create `/etc/modprobe.d/bbswitch.conf`:
+
+```sh
+blacklist nouveau
+options bbswitch load_state=0 unload_state=1
+```
+
+Create `/etc/modules-load.d/bbswitch.conf`:
+
+```sh
+bbswitch
+```
+
+Rebuild initramfs and reboot.
 
 ## Encrypted Filesystems and RAID
 
