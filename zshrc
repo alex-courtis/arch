@@ -1,8 +1,5 @@
-zmodload zsh/complist
-autoload -Uz compinit
-compinit
-
 source "${HOME}/.zshrc.tmux"
+source "${HOME}/.zshrc.completion"
 source "${HOME}/.zshrc.zle"
 source "${HOME}/.zshrc.prompt"
 source "${HOME}/.zshrc.function"

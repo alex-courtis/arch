@@ -1,10 +1,4 @@
-# clear these colours for regular ls usage as they are not as nice as the defaults
-eval $(dircolors)
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-unset LS_COLORS
-
-# menu customised below
-zstyle ':completion:*' menu select
+zmodload zsh/complist
 
 # vim zle mode
 bindkey -v
