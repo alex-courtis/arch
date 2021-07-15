@@ -76,8 +76,6 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
-nno     <silent>        <Leader>q       :BD<cr>
-
 nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
@@ -87,6 +85,8 @@ nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
+
+nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>s	:nohlsearch<CR>
