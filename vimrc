@@ -76,6 +76,8 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
+nno     <silent>        <Leader>q       :BD<cr>
+
 nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
@@ -300,6 +302,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
+Plugin 'qpkorr/vim-bufkill'
 Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
