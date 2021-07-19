@@ -170,8 +170,10 @@ scrolling:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: false
 
-# Base16 Bright - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# extended base16-bright from https://github.com/chriskempson/base16-shell */
+# sync with .Xresources et al */
+
+# todo: add indexed colours https://github.com/aarowill/base16-alacritty/blob/master/templates/default-256.mustache
 colors:
   # Default colors
   primary:
@@ -183,7 +185,7 @@ colors:
     text: '0x000000'
     cursor: '0xe0e0e0'
 
-  # Normal colors
+  # normal
   normal:
     black:   '0x000000'
     red:     '0xfb0120'
@@ -194,16 +196,25 @@ colors:
     cyan:    '0x76c7b7'
     white:   '0xe0e0e0'
 
-  # Bright colors
+  # bright colour variants created by multiplying LCh by 1.25 in GIMP
   bright:
     black:   '0xb0b0b0'
-    red:     '0xfc6d24'
-    green:   '0x303030'
-    yellow:  '0x505050'
-    blue:    '0xd0d0d0'
-    magenta: '0xf5f5f5'
-    cyan:    '0xbe643c'
+    red:     '0xff4b3f'
+    green:   '0xd6fc8b'
+    yellow:  '0xffd765'
+    blue:    '0x9fe3ff'
+    magenta: '0xffadf1'
+    cyan:    '0xaafceb'
     white:   '0xffffff'
+
+  # extended, normally occupying the bright colour variants
+  indexed_colors:
+    - { index: 16, color: '0xfc6d24' }
+    - { index: 17, color: '0xbe643c' }
+    - { index: 18, color: '0x303030' }
+    - { index: 19, color: '0x505050' }
+    - { index: 20, color: '0xd0d0d0' }
+    - { index: 21, color: '0xf5f5f5' }
 
 # Visual Bell
 #
