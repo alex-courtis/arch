@@ -151,9 +151,11 @@ endfunction
 "
 set noshowmode
 
-let airline_section_x='%{airline#extensions#tagbar#currenttag()}'
+let g:airline#extensions#searchcount#enabled = 0
+
+let airline_section_x=''
 let airline_section_y='%{airline#parts#filetype()}'
-let airline_section_z='%3v %#__accent_bold#%3l%#__restore__# / %L %3P'
+let airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 "
 " airline
@@ -315,9 +317,8 @@ filetype plugin indent on
 " plugins
 
 
-" Does not change terminal colours, just the syntax to ANSI 16 colour mappings.
-" This also selects the base16 vim-airline-theme
-colorscheme base16-default-dark
+" also selects the base16 vim-airline-theme
+colorscheme base16-bright
 
 " nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
