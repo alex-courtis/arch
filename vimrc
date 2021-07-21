@@ -187,6 +187,7 @@ let g:NERDTreeDirArrowCollapsible = '-'
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
+" TODO: this breaks things horribly if a directory is specified on the command line
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | NERDTreeFind | wincmd p | endif
 
