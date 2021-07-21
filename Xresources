@@ -57,6 +57,7 @@
 
 ! these are not read by xterm when it starts
 ! man page states "Resources past color15 are available as a compile-time option"
+*color16:      base09
 *color17:      base0F
 *color18:      base01
 *color19:      base02
