@@ -183,13 +183,17 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
+autocmd StdinReadPre * let s:std_in=1
+
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
-" TODO: this breaks things horribly if a directory is specified on the command line
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | NERDTreeFind | wincmd p | endif
+autocmd VimEnter * if argc() > 0 && !isdirectory(argv()[0]) || exists("s:std_in") | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd VimEnter * if argc() > 0 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd p | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
