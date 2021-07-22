@@ -244,14 +244,15 @@ endfunction
 
 " nerdtree-git-plugin
 "
+let g:NERDTreeGitStatusDirDirtyOnly = 0
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
 			\ "Staged"    : "+",
 			\ "Untracked" : "u",
 			\ "Renamed"   : "r",
 			\ "Unmerged"  : "*",
-			\ "Deleted"   : "-",
-			\ "Dirty"     : "d",
+			\ "Deleted"   : "d",
+			\ "Dirty"     : "x",
 			\ "Clean"     : "c",
 			\ 'Ignored'   : 'i',
 			\ "Unknown"   : "?"
