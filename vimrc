@@ -194,7 +194,7 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 autocmd VimEnter * if argc() == 0 && exists('s:std_in') | NERDTree | wincmd p | endif
 
 " Start NERDTree when Vim starts with a file argument, moving the cursor to its window.
-autocmd VimEnter * if argc() > 1 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
+autocmd VimEnter * if argc() > 0 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd VimEnter * if argc() > 0 && isdirectory(argv()[0]) && !exists('s:std_in') |
