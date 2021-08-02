@@ -450,27 +450,15 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 
 ## Audio Drivers
 
-### Intel Corporation Device 02c8
+### Intel Corporation Comet Lake PCH-LP cAVS
 
 ```sh
-lspci | grep 02c8
+lspci | grep "Intel Corporation Comet Lake PCH-LP cAVS"
 ```
 
 Firmware:
 ```sh
 pacaur -S sof-firmware
-```
-
-The device resets its volume every reboot, so poke the `alsa-state.service` into action:
-```
-sudo mkdir /etc/alsa
-sudo touch /etc/alsa/state-daemon.conf
-```
-
-At time of writing, the device isn't automatically picked up by pulseaudio, so we need to force it via `/etc/pulse/default.pa`:
-```  
-load-module module-alsa-sink device=hw:0,0 channels=4
-load-module module-alsa-source device=hw:0,6 channels=4
 ```
 
 ## Video Drivers
