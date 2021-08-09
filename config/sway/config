@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -57,6 +57,21 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+input type:keyboard {
+    xkb_layout "us,us"
+    xkb_variant "dvp,"
+    xkb_options "caps:escape,grp:shift_caps_toggle"
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enable
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+}
 
 ### Key bindings
 #
