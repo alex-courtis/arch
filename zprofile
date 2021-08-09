@@ -15,6 +15,12 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 				startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" >"/tmp/x.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/x.${XDG_VTNR}.${USER}.stderr"
 			fi
 			;;
+		3)
+			sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/sway.${XDG_VTNR}.${USER}.stderr"
+			;;
+		4)
+			weston >"/tmp/weston.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/weston.${XDG_VTNR}.${USER}.stderr"
+			;;
 	esac
 fi
 
