@@ -4,6 +4,8 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+include base16-bright.config
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -223,10 +225,31 @@ bar {
     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background $base01
+	# green WTF
+        separator  $base0B
+        statusline $base05
+
+        #                   Border  BG      Text
+        focused_workspace   $base02 $base02 $base06
+        # green WTF
+        active_workspace    $base0B $base0B $base05
+        inactive_workspace  $base01 $base01 $base05
+        urgent_workspace    $base06 $base06 $base02
+        binding_mode        $base02 $base02 $base06
     }
 }
+
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base03 $base02 $base06 $base08 $base03
+# yellow WTF
+client.focused_inactive $base02 $base0C $base05 $base08 $base02
+client.unfocused        $base02 $base01 $base05 $base08 $base02
+# red WTF
+client.urgent           $base02 $base08 $base05 $base08 $base02
+# magenta WTF
+client.placeholder      $base02 $base0e $base05 $base08 $base02
+# green WTF
+client.background       $base0B
 
 include /etc/sway/config.d/*
