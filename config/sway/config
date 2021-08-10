@@ -242,8 +242,7 @@ bar {
 
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base03 $base02 $base06 $base08 $base03
-# yellow WTF
-client.focused_inactive $base02 $base0C $base05 $base08 $base02
+client.focused_inactive $base03 $base01 $base05 $base08 $base02
 client.unfocused        $base02 $base01 $base05 $base08 $base02
 # red WTF
 client.urgent           $base02 $base08 $base05 $base08 $base02
