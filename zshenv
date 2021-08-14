@@ -1,4 +1,4 @@
-path=(~/bin $path)
+path=(~/bin ~/.local/bin $path)
 
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
