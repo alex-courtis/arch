@@ -219,6 +219,7 @@ function NERDTreeCanFindBuf()
 				\ !&diff &&
 				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
 				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
+ 				\ bufname() != 'gitgutter://hunk-preview' &&
 				\ bufname() != '[BufExplorer]'
 endfunction
 
