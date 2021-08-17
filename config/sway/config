@@ -151,9 +151,9 @@ input type:pointer {
     bindsym $mod+b splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+n layout stacking
+    bindsym $mod+s layout stacking
     bindsym $mod+t layout tabbed
-    bindsym $mod+s layout toggle split
+    bindsym $mod+n layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+space fullscreen
@@ -212,7 +212,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command slstatus -s
 
     colors {
         background $base01
@@ -231,13 +231,13 @@ bar {
 }
 
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base03 $base02 $base06 $base08 $base03
-client.focused_inactive $base03 $base01 $base05 $base08 $base02
-client.unfocused        $base02 $base01 $base05 $base08 $base02
+client.focused          $base03 $base02 $base06 $base06 $base03
+client.focused_inactive $base03 $base01 $base05 $base05 $base02
+client.unfocused        $base02 $base01 $base05 $base05 $base02
 # red WTF
-client.urgent           $base02 $base08 $base05 $base08 $base02
+client.urgent           $base02 $base08 $base05 $base05 $base02
 # magenta WTF
-client.placeholder      $base02 $base0e $base05 $base08 $base02
+client.placeholder      $base02 $base0e $base05 $base05 $base02
 # green WTF
 client.background       $base0B
 
