@@ -302,6 +302,7 @@ endfunction
 " vim-gitgutter
 "
 set updatetime=250
+let g:gitgutter_close_preview_on_escape=1
 "
 " vim-gitgutter
 
