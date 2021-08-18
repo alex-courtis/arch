@@ -89,6 +89,9 @@ nno	<silent>	<Leader>f	gg=G``
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>t	<C-]>
+nno	<silent>	<Leader>n	:tn<cr>
+nno	<silent>	<Leader>p	:tp<cr>
+
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
 
