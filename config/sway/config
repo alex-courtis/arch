@@ -25,7 +25,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+exec swaybg --color '#000000'
+
 #
 # Example configuration:
 #
@@ -202,6 +204,21 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# Pango font used by sway and swaybar
+font Monospace 11
+
+# Very glad this is built in
+gaps inner 2
+smart_borders on
+smart_gaps on
+
+# normal hardcodes 2 pixels
+# borderpx and gappx at "1 point"
+#  emperor asus 32: 2
+#  duke: 4
+#  gigantor: ???
+default_border normal 2
 
 #
 # Status Bar:
