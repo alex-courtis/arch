@@ -248,6 +248,9 @@ function! NERDTreeSmartToggle()
 		endif
 	endif
 endfunction
+
+set wildignore+=*.o,*.class
+let NERDTreeRespectWildIgnore=1
 "
 " nerdtree
 
