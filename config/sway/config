@@ -83,7 +83,7 @@ input type:pointer {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -96,10 +96,10 @@ input type:pointer {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+Ctrl+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+Ctrl+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+Ctrl+q exec swaymsg exit
 #
 # Moving around:
 #
@@ -114,16 +114,16 @@ input type:pointer {
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    # Move the focused window with the same, but add Ctrl
+    bindsym $mod+Ctrl+$left move left
+    bindsym $mod+Ctrl+$down move down
+    bindsym $mod+Ctrl+$up move up
+    bindsym $mod+Ctrl+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym $mod+Ctrl+Left move left
+    bindsym $mod+Ctrl+Down move down
+    bindsym $mod+Ctrl+Up move up
+    bindsym $mod+Ctrl+Right move right
 #
 # Workspaces:
 #
@@ -159,7 +159,7 @@ input type:pointer {
     bindsym $mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+f floating toggle
+    bindsym $mod+Ctrl+f floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+f focus mode_toggle
@@ -173,7 +173,7 @@ input type:pointer {
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+Ctrl+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
