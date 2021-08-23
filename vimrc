@@ -78,11 +78,13 @@ vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
 
-nno	<silent>	<Leader>,	:NERDTreeFind<CR>
+nno	<silent>	<Leader>,	:NERDTreeFocus<CR>
 nno	<silent>	<Leader>o	:NERDTreeToggle<CR>:wincmd p<CR>
+nno	<silent>	<Leader>q	:NERDTreeFind<CR>:wincmd p<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
+nno	<silent>	<Leader>p	:TagbarOpen fj<CR>
 nno	<silent>	<Leader>u	:TagbarToggle<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
@@ -96,7 +98,6 @@ nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>n	:tn<cr>
-nno	<silent>	<Leader>p	:tp<cr>
 
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
