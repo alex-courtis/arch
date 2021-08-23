@@ -94,6 +94,7 @@ nno	<silent>	<Leader>p	:tp<cr>
 
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
+nno	<silent>	<Leader>m	:make<CR>
 
 " common
 cno		<C-j>	<Down>
