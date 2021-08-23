@@ -79,7 +79,7 @@ vno 	<C-w>; 	<C-w>:
 nno	<silent>	<Leader>a	:b #<CR>
 
 nno	<silent>	<Leader>,	:NERDTreeFind<CR>
-nno	<silent>	<Leader>o	:NERDTreeToggle<CR>:wincmd p<CR>
+nno	<silent>	<Leader>o	:NERDTreeToggle<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
@@ -238,6 +238,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " tagbar
 "
 let g:tagbar_compact=1
+let g:tagbar_autofocus=1
 "
 " tagbar
 
