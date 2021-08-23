@@ -91,6 +91,8 @@ nno	<silent>	<Leader>f	gg=G``
 
 nno     <silent>        <Leader>d       :BD<cr>
 
+nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
+
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>n	:tn<cr>
 nno	<silent>	<Leader>p	:tp<cr>
