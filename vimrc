@@ -77,9 +77,12 @@ nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
+
 nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
+
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
-nno	<silent>	<Leader>u	:call TagbarSmartToggle()<CR>
+
+nno	<silent>	<Leader>u	:TagbarToggle<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
@@ -281,27 +284,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " tagbar
 "
 let g:tagbar_compact=1
-
-function! TagbarIsOpen()
-	return exists("t:tagbar_buf_name") && (bufwinnr(t:tagbar_buf_name) != -1)
-endfunction
-
-function! TagbarIsFocussed()
-	return exists("t:tagbar_buf_name") && bufname() == t:tagbar_buf_name
-endfunction
-
-function! TagbarSmartToggle()
-	if TagbarIsOpen()
-		if TagbarIsFocussed()
-			TagbarClose
-		else
-			TagbarClose
-			TagbarOpen f
-		endif
-	else
-		TagbarOpen f
-	endif
-endfunction
 "
 " tagbar
 
