@@ -78,7 +78,8 @@ vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
 
-nno	<silent>	<Leader>o	:call NERDTreeSmartToggle()<CR>
+nno	<silent>	<Leader>,	:NERDTreeFind<CR>
+nno	<silent>	<Leader>o	:NERDTreeToggle<CR>:wincmd p<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
@@ -192,74 +193,25 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
+set wildignore+=*.o,*.class
+let NERDTreeRespectWildIgnore=1
+
 autocmd StdinReadPre * let s:std_in=1
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 " Fails ungracefully if there are more files to edit
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Start NERDTree when Vim is started without file arguments.
+" Start NERDTree when Vim is started without any arguments or stdin.
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-autocmd VimEnter * if argc() == 0 && exists('s:std_in') | NERDTree | wincmd p | endif
 
-" Start NERDTree when Vim starts with a file argument, moving the cursor to its window.
-autocmd VimEnter * if argc() > 0 && !isdirectory(argv()[0]) && !exists("s:std_in") | NERDTree | wincmd p | NERDTreeFind | wincmd p | endif
-
-" Start NERDTree when Vim starts with a directory argument.
-autocmd VimEnter * if argc() > 0 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd p | endif
+" Start NERDTree when Vim starts with single directory argument and focus it.
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" inspired by https://stackoverflow.com/questions/7692233/nerdtree-reveal-file-in-tree
-function! NERDTreeIsOpen()
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-function! NERDTreeIsFocussed()
-	return exists("t:NERDTreeBufName") && bufname() == t:NERDTreeBufName
-endfunction
-
-function NERDTreeCanFindBuf()
-	return (!exists('&buflisted') || &buflisted) &&
-				\ strlen(bufname()) != 0 &&
-				\ !&diff &&
-				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
-				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
- 				\ bufname() != 'gitgutter://hunk-preview' &&
-				\ bufname() != '[BufExplorer]'
-endfunction
-
-function! NERDTreeSync()
-	if NERDTreeIsOpen() && NERDTreeCanFindBuf()
-		NERDTreeFind
-		wincmd p
-	endif
-endfunction
-autocmd BufEnter * call NERDTreeSync()
-
-function! NERDTreeSmartToggle()
-	if NERDTreeIsOpen()
-		if NERDTreeIsFocussed()
-			NERDTreeClose
-		elseif NERDTreeCanFindBuf()
-			NERDTreeFind
-		else
-			NERDTreeFocus
-		endif
-	else
-		if NERDTreeCanFindBuf()
-			NERDTreeFind
-		else
-			NERDTree
-		endif
-	endif
-endfunction
-
-set wildignore+=*.o,*.class
-let NERDTreeRespectWildIgnore=1
 "
 " nerdtree
 
