@@ -78,14 +78,15 @@ vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
 
-nno	<silent>	<Leader>,	:NERDTreeFocus<CR>
-nno	<silent>	<Leader>o	:NERDTreeToggle<CR>:wincmd p<CR>
-nno	<silent>	<Leader>q	:NERDTreeFind<CR>:wincmd p<CR>
+nno	<silent>	<Leader>,	:call NERDTreeSmartToggle()<CR>
+nno	<silent>	<Leader>o	:call NERDTreeSmartFocus()<CR>
+nno	<silent>	<Leader>q	:NERDTreeCWD<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
-nno	<silent>	<Leader>p	:TagbarOpen fj<CR>
-nno	<silent>	<Leader>u	:TagbarToggle<CR>
+" TODO do not allow from nerdtree as is messes up the windows
+nno	<silent>	<Leader>p	:TagbarToggle<CR>
+nno	<silent>	<Leader>u	:TagbarOpen fj<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
@@ -213,6 +214,27 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+function! NERDTreeIsOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+function NERDTreeSmartToggle()
+	if NERDTreeIsOpen()
+		NERDTreeClose
+	else
+		NERDTree
+		wincmd p
+	endif
+endfunction
+
+function NERDTreeSmartFocus()
+	if strlen(&buftype) == 0
+		NERDTreeFind
+	else
+		NERDTreeFocus
+	endif
+endfunction
 "
 " nerdtree
 
