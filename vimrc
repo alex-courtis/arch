@@ -88,8 +88,8 @@ nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 nno	<silent>	<Leader>p	:TagbarToggle<CR>
 nno	<silent>	<Leader>u	:TagbarOpen fj<CR>
 
-nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
-nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
+nmap	<silent>	<Leader>hj	<Plug>(GitGutterNextHunk)
+nmap	<silent>	<Leader>hk	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
 
@@ -97,8 +97,10 @@ nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 
+nno	<silent>	<Leader>c	:call settagstack(win_getid(), {'items' : []})<CR>
+nno	<silent>	<Leader>r	:tp<CR>
 nno	<silent>	<Leader>t	<C-]>
-nno	<silent>	<Leader>n	:tn<cr>
+nno	<silent>	<Leader>n	:tn<CR>
 
 nno	<silent>	<Leader>s	:nohlsearch<CR>
 
