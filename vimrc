@@ -164,7 +164,8 @@ endfunction
 " quickfix
 "
 let ef_cmocha = "[   LINE   ] --- %f:%l:%m"
-let &errorformat= ef_cmocha . "," . &errorformat
+let ef_make = "make: *** [%f:%l:%m"
+let &errorformat= ef_cmocha . "," . ef_make . "," . &errorformat
 "
 " quickfix
 
