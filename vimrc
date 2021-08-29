@@ -163,7 +163,7 @@ endfunction
 
 " quickfix
 "
-let ef_cmocha = "\[   LINE   \] --- %f:%l:%m"
+let ef_cmocha = "[   LINE   ] --- %f:%l:%m"
 let &errorformat= ef_cmocha . "," . &errorformat
 "
 " quickfix
