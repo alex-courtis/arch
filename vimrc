@@ -89,7 +89,7 @@ nno	<silent>	<Leader>a	:b #<CR>
 
 nno	<silent>	<Leader>,	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartFocus()<CR>
-nno	<silent>	<Leader>q	:NERDTreeCWD<CR>
+nno	<silent>	<Leader>q	:NERDTreeFind<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
@@ -239,6 +239,21 @@ function! NERDTreeIsOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
+" listed buffer
+" 'normal' buffer (buftype empty)
+" buffers with a name
+" not a known plugin which is yet set the above
+function NERDTreeFindableBuf()
+	return
+				\ &buflisted &&
+				\ strlen(&buftype) == 0 &&
+				\ strlen(bufname()) != 0 &&
+				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
+				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
+ 				\ bufname() != 'gitgutter://hunk-preview' &&
+				\ bufname() != '[BufExplorer]'
+endfunction
+
 function NERDTreeSmartToggle()
 	if NERDTreeIsOpen()
 		NERDTreeClose
@@ -248,13 +263,32 @@ function NERDTreeSmartToggle()
 	endif
 endfunction
 
-function NERDTreeSmartFocus()
-	if strlen(&buftype) == 0
+" only findable files under cwd
+function NERDTreeSmartFind()
+	if bufname()[0] != "/" && NERDTreeFindableBuf()
 		NERDTreeFind
+		return 1
 	else
-		NERDTreeFocus
+		return 0
 	endif
 endfunction
+
+function NERDTreeSmartFocus()
+	if NERDTreeIsOpen()
+		NERDTreeFocus
+	else
+		if !NERDTreeSmartFind()
+			NERDTree
+		endif
+	endif
+endfunction
+
+function NERDTreeSmartSync()
+	if NERDTreeIsOpen() && NERDTreeSmartFind()
+		wincmd p
+	endif
+endfunction
+autocmd BufEnter * call NERDTreeSmartSync()
 "
 " nerdtree
 
