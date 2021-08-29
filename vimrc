@@ -88,8 +88,8 @@ nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 nno	<silent>	<Leader>p	:TagbarToggle<CR>
 nno	<silent>	<Leader>u	:TagbarOpen fj<CR>
 
-nmap	<silent>	<Leader>hj	<Plug>(GitGutterNextHunk)
-nmap	<silent>	<Leader>hk	<Plug>(GitGutterPrevHunk)
+nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
+nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
 
@@ -159,6 +159,14 @@ function! OmniMaybeSelectFirstAndAccept()
 endfunction
 "
 " omnicompletion
+
+
+" quickfix
+"
+let ef_cmocha = "\[   LINE   \] --- %f:%l:%m"
+let &errorformat= ef_cmocha . "," . &errorformat
+"
+" quickfix
 
 
 " airline
