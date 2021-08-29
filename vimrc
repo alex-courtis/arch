@@ -65,6 +65,15 @@ no 	<C-ScrollWheelLeft>	<ScrollWheelLeft>
 no 	<C-ScrollWheelRight>	<ScrollWheelRight>
 
 
+" debugging
+"
+function AMCLog(msg)
+	call system("echo \"" . a:msg . "\" >> /tmp/vim.amc.log")
+endfunction
+"
+" debugging
+
+
 " mappings
 "
 nno 	; 	:
