@@ -89,7 +89,7 @@ nno	<silent>	<Leader>a	:b #<CR>
 
 nno	<silent>	<Leader>,	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartFocus()<CR>
-nno	<silent>	<Leader>q	:NERDTreeFind<CR>
+nno	<silent>	<Leader>q	:call NERDTreeSmartFind()<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
@@ -254,6 +254,18 @@ function NERDTreeFindableBuf()
 				\ bufname() != '[BufExplorer]'
 endfunction
 
+" only findable files under cwd
+function NERDTreeReveal()
+	if bufname()[0] != "/" && NERDTreeFindableBuf()
+		NERDTreeCWD
+		wincmd p
+		NERDTreeFind
+		return 1
+	else
+		return 0
+	endif
+endfunction
+
 function NERDTreeSmartToggle()
 	if NERDTreeIsOpen()
 		NERDTreeClose
@@ -263,32 +275,27 @@ function NERDTreeSmartToggle()
 	endif
 endfunction
 
-" only findable files under cwd
-function NERDTreeSmartFind()
-	if bufname()[0] != "/" && NERDTreeFindableBuf()
-		NERDTreeFind
-		return 1
-	else
-		return 0
-	endif
-endfunction
-
 function NERDTreeSmartFocus()
 	if NERDTreeIsOpen()
 		NERDTreeFocus
-	else
-		if !NERDTreeSmartFind()
-			NERDTree
-		endif
+	elseif !NERDTreeReveal()
+		NERDTree
 	endif
 endfunction
 
-function NERDTreeSmartSync()
-	if NERDTreeIsOpen() && NERDTreeSmartFind()
+function NERDTreeSmartFind()
+	if NERDTreeFindableBuf()
+		NERDTreeFind
 		wincmd p
 	endif
 endfunction
-autocmd BufEnter * call NERDTreeSmartSync()
+
+function NERDTreeSync()
+	if NERDTreeIsOpen() && NERDTreeReveal()
+		wincmd p
+	endif
+endfunction
+autocmd BufEnter * call NERDTreeSync()
 "
 " nerdtree
 
