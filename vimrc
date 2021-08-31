@@ -242,12 +242,14 @@ endfunction
 " listed buffer
 " 'normal' buffer (buftype empty)
 " buffers with a name
+" readable file
 " not a known plugin which is yet set the above
 function NERDTreeFindableBuf()
 	return
 				\ &buflisted &&
 				\ strlen(&buftype) == 0 &&
 				\ strlen(bufname()) != 0 &&
+				\ filereadable(bufname()) &&
 				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
 				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
  				\ bufname() != 'gitgutter://hunk-preview' &&
@@ -256,10 +258,10 @@ endfunction
 
 " only findable files under cwd
 function NERDTreeReveal()
+	let bname=bufname()
 	if bufname()[0] != "/" && NERDTreeFindableBuf()
 		NERDTreeCWD
-		wincmd p
-		NERDTreeFind
+		execute "NERDTreeFind " . bname
 		return 1
 	else
 		return 0
@@ -267,33 +269,54 @@ function NERDTreeReveal()
 endfunction
 
 function NERDTreeSmartToggle()
+	let eiprev=&ei
+	let &ei="BufEnter," . eiprev
+
 	if NERDTreeIsOpen()
 		NERDTreeClose
+	elseif NERDTreeReveal()
+		wincmd p
 	else
 		NERDTree
 		wincmd p
 	endif
+
+	let &ei=eiprev
 endfunction
 
 function NERDTreeSmartFocus()
+	let eiprev=&ei
+	let &ei="BufEnter," . eiprev
+
 	if NERDTreeIsOpen()
 		NERDTreeFocus
 	elseif !NERDTreeReveal()
 		NERDTree
 	endif
+
+	let &ei=eiprev
 endfunction
 
 function NERDTreeSmartFind()
+	let eiprev=&ei
+	let &ei="BufEnter," . eiprev
+
 	if NERDTreeFindableBuf()
 		NERDTreeFind
-		wincmd p
 	endif
+
+	let &ei=eiprev
 endfunction
 
 function NERDTreeSync()
+	let eiprev=&ei
+	let &ei="BufEnter," . eiprev
+
 	if NERDTreeIsOpen() && NERDTreeReveal()
 		wincmd p
 	endif
+
+	let &ei=eiprev
 endfunction
 autocmd BufEnter * call NERDTreeSync()
 "
