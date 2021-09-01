@@ -235,44 +235,47 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-function! NERDTreeIsOpen()
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
 " listed buffer
 " 'normal' buffer (buftype empty)
-" buffers with a name
 " readable file
-" not a known plugin which is yet set the above
 function NERDTreeFindableBuf()
 	return
 				\ &buflisted &&
 				\ strlen(&buftype) == 0 &&
-				\ strlen(bufname()) != 0 &&
-				\ filereadable(bufname()) &&
-				\ (!exists('t:tagbar_buf_name') || bufname() != t:tagbar_buf_name) &&
-				\ (!exists('t:NERDTreeBufName') || bufname() != t:NERDTreeBufName) &&
- 				\ bufname() != 'gitgutter://hunk-preview' &&
-				\ bufname() != '[BufExplorer]'
+				\ filereadable(bufname())
 endfunction
 
-" only findable files under cwd
+" select a findable under cwd
+" others clear the selection if we are rooted at cwd
+" must have BufEnter events temporarily disabled
 function NERDTreeReveal()
-	let bname=bufname()
-	if bufname()[0] != "/" && NERDTreeFindableBuf()
+	let l:bname = bufname()
+	if l:bname[0] != "/" && NERDTreeFindableBuf()
 		NERDTreeCWD
-		execute "NERDTreeFind " . bname
+		execute "NERDTreeFind " . l:bname
 		return 1
 	else
+		if !exists('b:NERDTree')
+			NERDTreeFocus
+
+			let l:cwdp = g:NERDTreePath.New(getcwd())
+			if b:NERDTree.root.path.equals(l:cwdp)
+				call b:NERDTree.render()
+				call b:NERDTree.root.putCursorHere(0, 0)
+			endif
+
+			wincmd p
+		endif
+
 		return 0
 	endif
 endfunction
 
 function NERDTreeSmartToggle()
-	let eiprev=&ei
-	let &ei="BufEnter," . eiprev
+	let l:eiprev=&ei
+	let &ei="BufEnter," . l:eiprev
 
-	if NERDTreeIsOpen()
+	if g:NERDTree.IsOpen()
 		NERDTreeClose
 	elseif NERDTreeReveal()
 		wincmd p
@@ -281,42 +284,42 @@ function NERDTreeSmartToggle()
 		wincmd p
 	endif
 
-	let &ei=eiprev
+	let &ei=l:eiprev
 endfunction
 
 function NERDTreeSmartFocus()
-	let eiprev=&ei
-	let &ei="BufEnter," . eiprev
+	let l:eiprev=&ei
+	let &ei="BufEnter," . l:eiprev
 
-	if NERDTreeIsOpen()
+	if g:NERDTree.IsOpen()
 		NERDTreeFocus
 	elseif !NERDTreeReveal()
 		NERDTree
 	endif
 
-	let &ei=eiprev
+	let &ei=l:eiprev
 endfunction
 
 function NERDTreeSmartFind()
-	let eiprev=&ei
+	let l:eiprev=&ei
 	let &ei="BufEnter," . eiprev
 
 	if NERDTreeFindableBuf()
 		NERDTreeFind
 	endif
 
-	let &ei=eiprev
+	let &ei=l:eiprev
 endfunction
 
 function NERDTreeSync()
-	let eiprev=&ei
+	let l:eiprev=&ei
 	let &ei="BufEnter," . eiprev
 
-	if NERDTreeIsOpen() && NERDTreeReveal()
+	if g:NERDTree.IsOpen() && NERDTreeReveal()
 		wincmd p
 	endif
 
-	let &ei=eiprev
+	let &ei=l:eiprev
 endfunction
 autocmd BufEnter * call NERDTreeSync()
 "
