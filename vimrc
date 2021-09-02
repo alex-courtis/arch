@@ -245,30 +245,29 @@ function NERDTreeFindableBuf()
 				\ filereadable(bufname())
 endfunction
 
-" select a findable under cwd
-" others clear the selection if we are rooted at cwd
+" file under cwd: cd and find it, leave focus in tree, return 1
+" other file: if tree at cwd, clear selection, return 0
+" other buf: do nothing, return 0
 " must have BufEnter events temporarily disabled
 function NERDTreeReveal()
-	let l:bname = bufname()
-	if l:bname[0] != "/" && NERDTreeFindableBuf()
-		NERDTreeCWD
-		execute "NERDTreeFind " . l:bname
-		return 1
-	else
-		if !exists('b:NERDTree')
+	if NERDTreeFindableBuf()
+		let l:bname = bufname()
+		if l:bname[0] != "/"
+			NERDTreeCWD
+			execute "NERDTreeFind " . l:bname
+			return 1
+		else
 			NERDTreeFocus
-
 			let l:cwdp = g:NERDTreePath.New(getcwd())
 			if b:NERDTree.root.path.equals(l:cwdp)
 				call b:NERDTree.render()
 				call b:NERDTree.root.putCursorHere(0, 0)
 			endif
-
 			wincmd p
+			return 0
 		endif
-
-		return 0
 	endif
+	return 0
 endfunction
 
 function NERDTreeSmartToggle()
