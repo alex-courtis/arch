@@ -95,9 +95,8 @@ nno	<silent>	<Leader>q	:call NERDTreeSmartFind()<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
-" TODO do not allow from nerdtree as is messes up the windows
-nno	<silent>	<Leader>p	:TagbarToggle<CR>
-nno	<silent>	<Leader>u	:TagbarOpen fj<CR>
+nno	<silent>	<Leader>p	:call TagbarSafeToggle()<CR>
+nno	<silent>	<Leader>u	:call TagbarSafeFocus()<CR>
 
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
@@ -349,6 +348,24 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " tagbar
 "
 let g:tagbar_compact=1
+
+function TagbarSafeToggle()
+	" don't attempt to open from within NERDTree lest the windows all get messed up
+	if bufname('%') =~ 'NERD_tree_\d\+' && winnr('$') > 1
+		execute "normal! \<C-W>w"
+	endif
+
+	TagbarToggle
+endfunction
+
+function TagbarSafeFocus()
+	" don't attempt to open from within NERDTree lest the windows all get messed up
+	if bufname('%') =~ 'NERD_tree_\d\+' && winnr('$') > 1
+		execute "normal! \<C-W>w"
+	endif
+
+	TagbarOpen fj
+endfunction
 "
 " tagbar
 
