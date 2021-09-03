@@ -31,6 +31,8 @@ set wildmode=longest:full,full
 " let the colorscheme set the (default light) background
 set background=
 
+set undofile
+
 " alacritty, st, xterm and tmux all talk sgr
 " terminus automatically sets it when under tmux
 " vim hardcodes st to 'xterm' and xterm to 'sgr'
