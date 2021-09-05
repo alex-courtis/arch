@@ -131,6 +131,8 @@ cno		<C-k>	<Up>
 
 " grep
 "
+cabbrev ag grep!
+
 let &grepprg="ag --nogroup --nocolor"
 
 function QuickFixToggle()
