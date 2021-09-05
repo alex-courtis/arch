@@ -95,11 +95,17 @@ nno	<silent>	<Leader>q	:call NERDTreeSmartFind()<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 
-nno	<silent>	<Leader>p	:call TagbarSafeToggle()<CR>
-nno	<silent>	<Leader>u	:call TagbarSafeFocus()<CR>
+nmap	<silent>	<Leader>p	:call QuickFixToggle()<CR>
+nmap	<silent>	<Leader>u	:copen<CR>
 
-nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
-nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
+nno	<silent>	<Leader>y	:call TagbarSafeToggle()<CR>
+nno	<silent>	<Leader>i	:call TagbarSafeFocus()<CR>
+
+nno	<silent>	<Leader>j	:cn<CR>
+nno	<silent>	<Leader>k	:cp<CR>
+
+nmap	<silent>	<Leader>hj	<Plug>(GitGutterNextHunk)
+nmap	<silent>	<Leader>hk	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
 
@@ -121,6 +127,22 @@ cno		<C-j>	<Down>
 cno		<C-k>	<Up>
 "
 " mappings
+
+
+" grep
+"
+let &grepprg="ag --nogroup --nocolor"
+
+function QuickFixToggle()
+	if getqflist({'winid' : 1}).winid
+		:cclose
+	else
+		:copen
+		wincmd p
+	endif
+endfunction
+"
+" grep
 
 
 " omnicompletion
