@@ -180,6 +180,21 @@ let &errorformat= ef_cmocha . "," . ef_make . "," . &errorformat
 " quickfix
 
 
+" expression register auto
+"
+" insert the results of an external command	:r !grep struct src/*.c
+" insert the results of a vim expression	"=getbufvar("%", "&filetype")<C-M>p
+" insert the results of a vim command		"=Exec("set!")<C-M>p
+function Exec(command)
+    redir =>output
+    silent exec a:command
+    redir END
+    return output
+endfunction
+"
+" expression register auto
+
+
 " airline
 "
 set noshowmode
