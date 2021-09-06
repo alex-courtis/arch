@@ -98,8 +98,7 @@ nno	<silent>	<Leader>Q	:cp<CR>
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nmap	<silent>	<Leader>p	:call QuickFixToggle()<CR>
-nmap	<silent>	<Leader>u	:copen<CR>
+nmap	<silent>	<Leader>u	:call QuickFixFocusToggle()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>y	:call TagbarSafeToggle()<CR>
@@ -133,15 +132,6 @@ command -bar -n=* AG silent grep! <args> | redraw! | cwindow
 cabbrev ag AG
 
 let &grepprg="ag --nogroup --nocolor"
-
-function QuickFixToggle()
-	if getqflist({'winid' : 1}).winid
-		:cclose
-	else
-		:copen
-		wincmd p
-	endif
-endfunction
 "
 " grep
 
@@ -206,6 +196,14 @@ endfunction
 let ef_cmocha = "[   LINE   ] --- %f:%l:%m"
 let ef_make = "make: *** [%f:%l:%m"
 let &errorformat= ef_cmocha . "," . ef_make . "," . &errorformat
+
+function QuickFixFocusToggle()
+	if &buftype == "quickfix"
+		:cclose
+	else
+		:copen
+	endif
+endfunction
 "
 " quickfix
 
