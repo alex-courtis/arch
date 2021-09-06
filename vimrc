@@ -92,35 +92,33 @@ nno	<silent>	<Leader>a	:b #<CR>
 nno	<silent>	<Leader>,	:call NERDTreeSmartToggle()<CR>
 nno	<silent>	<Leader>o	:call NERDTreeSmartFocus()<CR>
 nno	<silent>	<Leader>q	:call NERDTreeSmartFind()<CR>
+nno	<silent>	<Leader>q	:cn<CR>
+nno	<silent>	<Leader>Q	:cp<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
+nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nmap	<silent>	<Leader>p	:call QuickFixToggle()<CR>
 nmap	<silent>	<Leader>u	:copen<CR>
+nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>y	:call TagbarSafeToggle()<CR>
 nno	<silent>	<Leader>i	:call TagbarSafeFocus()<CR>
 
-nno	<silent>	<Leader>j	:cn<CR>
-nno	<silent>	<Leader>k	:cp<CR>
-
-nmap	<silent>	<Leader>hj	<Plug>(GitGutterNextHunk)
-nmap	<silent>	<Leader>hk	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>f	gg=G``
-
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
+nno	<silent>	<Leader>m	:MAKE<CR>
+nno	<silent>	<Leader>M	:MAKE clean<CR>
 
-nno	<silent>	<Leader>c	:call settagstack(win_getid(), {'items' : []})<CR>
-nno	<silent>	<Leader>r	:tp<CR>
+nno	<silent>	<Leader>c	:nohlsearch<CR>
 nno	<silent>	<Leader>t	<C-]>
+nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+
 nno	<silent>	<Leader>n	:tn<CR>
-
-nno	<silent>	<Leader>s	:nohlsearch<CR>
-
-nno	<silent>	<Leader>m	:make<CR>
+nno	<silent>	<Leader>N	:tp<CR>
 
 " common
 cno		<C-j>	<Down>
@@ -131,7 +129,8 @@ cno		<C-k>	<Up>
 
 " grep
 "
-cabbrev ag grep!
+command -bar -n=* AG silent grep! <args> | redraw! | cwindow
+cabbrev ag AG
 
 let &grepprg="ag --nogroup --nocolor"
 
@@ -145,6 +144,13 @@ function QuickFixToggle()
 endfunction
 "
 " grep
+
+
+" make
+"
+command -bar -n=* MAKE :make <args> | :cwindow
+"
+" make
 
 
 " omnicompletion
