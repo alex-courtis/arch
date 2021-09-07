@@ -89,35 +89,36 @@ vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>a	:b #<CR>
 
-nno	<silent>	<Leader>,	:call NERDTreeSmartToggle()<CR>
-nno	<silent>	<Leader>o	:call NERDTreeSmartFocus()<CR>
-nno	<silent>	<Leader>q	:call NERDTreeSmartFind()<CR>
-nno	<silent>	<Leader>q	:cn<CR>
-nno	<silent>	<Leader>Q	:cp<CR>
+nno	<silent>	<Leader>,	:call NERDTreeSmartFind()<CR>
+nno	<silent>	<Leader>oo	:call NERDTreeSmartFocus()<CR>
+nno	<silent>	<Leader>o	:NERDTreeClose<CR>
+nno	<silent>	<Leader>qq	:cn<CR>
+nno	<silent>	<Leader>q	:cp<CR>
 
 nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nmap	<silent>	<Leader>u	:call QuickFixFocusToggle()<CR>
+nmap	<silent>	<Leader>uu	:copen<CR>
+nmap	<silent>	<Leader>u	:cclose<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nno	<silent>	<Leader>y	:call TagbarSafeToggle()<CR>
-nno	<silent>	<Leader>i	:call TagbarSafeFocus()<CR>
+nno	<silent>	<Leader>ii	:call TagbarSafeFocus()<CR>
+nno	<silent>	<Leader>i	:TagbarClose<CR>
 
 
 nno	<silent>	<Leader>f	gg=G``
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nno	<silent>	<Leader>m	:call AMCMake("")<CR>
-nno	<silent>	<Leader>M	:call AMCMake("clean")<CR>
+nno	<silent>	<Leader>mm	:call AMCMake("")<CR>
+nno	<silent>	<Leader>m	:call AMCMake("clean")<CR>
 
 nno	<silent>	<Leader>c	:nohlsearch<CR>
-nno	<silent>	<Leader>t	<C-]>
-nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nno	<silent>	<Leader>tt	<C-]>
+nno	<silent>	<Leader>t	:call settagstack(win_getid(), {'items' : []})<CR>
 
-nno	<silent>	<Leader>n	:tn<CR>
-nno	<silent>	<Leader>N	:tp<CR>
+nno	<silent>	<Leader>nn	:tn<CR>
+nno	<silent>	<Leader>n	:tp<CR>
 nno			<Leader>r	:%s/
 
 " common
@@ -132,7 +133,7 @@ cno		<C-k>	<Up>
 command -bar -n=* AG silent grep! <args> | redraw! | cwindow
 cabbrev ag AG
 
-let &grepprg="ag --nogroup --nocolor"
+set grepprg=ag\ --nogroup\ --nocolor
 "
 " grep
 
@@ -280,11 +281,11 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Start NERDTree when Vim starts with single directory argument and focus it.
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
+			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+			\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " listed buffer
 " 'normal' buffer (buftype empty)
@@ -319,22 +320,6 @@ function NERDTreeReveal()
 		endif
 	endif
 	return 0
-endfunction
-
-function NERDTreeSmartToggle()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . l:eiprev
-
-	if g:NERDTree.IsOpen()
-		NERDTreeClose
-	elseif NERDTreeReveal()
-		wincmd p
-	else
-		NERDTree
-		wincmd p
-	endif
-
-	let &ei=l:eiprev
 endfunction
 
 function NERDTreeSmartFocus()
@@ -399,13 +384,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 "
 let g:tagbar_compact=1
 
-function TagbarSafeToggle()
+function TagbarSafeFocus()
 	" don't attempt to open from within NERDTree lest the windows all get messed up
 	if bufname('%') =~ 'NERD_tree_\d\+' && winnr('$') > 1
 		execute "normal! \<C-W>w"
 	endif
 
-	TagbarToggle
+	TagbarOpen fj
 endfunction
 
 function TagbarSafeFocus()
