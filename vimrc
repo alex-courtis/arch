@@ -87,19 +87,18 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
-nno	<silent>	<Leader>a	:b #<CR>
+nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
+nno	<silent>	<Leader>aa	:call NERDTreeSmartFocus()<CR>
+nno	<silent>	<Leader>a	:NERDTreeClose<CR>
 
-nno	<silent>	<Leader>,	:call NERDTreeSmartFind()<CR>
-nno	<silent>	<Leader>oo	:call NERDTreeSmartFocus()<CR>
-nno	<silent>	<Leader>o	:NERDTreeClose<CR>
-nno	<silent>	<Leader>qq	:cn<CR>
-nno	<silent>	<Leader>q	:cp<CR>
+nno	<silent>	<Leader>o	:ToggleBufExplorer<CR>
+nmap	<silent>	<Leader>qq	:copen<CR>
+nmap	<silent>	<Leader>q	:cclose<CR>
 
-nno	<silent>	<Leader>e	:ToggleBufExplorer<CR>
+nno	<silent>	<Leader>e	:call MoveToFirstNormalWin()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nmap	<silent>	<Leader>uu	:copen<CR>
-nmap	<silent>	<Leader>u	:cclose<CR>
+nno	<silent>	<Leader>u	:b #<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nno	<silent>	<Leader>ii	:call TagbarSafeFocus()<CR>
