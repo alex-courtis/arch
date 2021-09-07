@@ -91,11 +91,13 @@ nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
 nno	<silent>	<Leader>aa	:call NERDTreeSmartFocus()<CR>
 nno	<silent>	<Leader>a	:NERDTreeClose<CR>
 
+nmap	<silent>	<Leader>,,	:call MoveToFirstWin("help")<CR>
+nmap	<silent>	<Leader>,	:helpclose<CR>
 nno	<silent>	<Leader>o	:ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>qq	:copen<CR>
 nmap	<silent>	<Leader>q	:cclose<CR>
 
-nno	<silent>	<Leader>e	:call MoveToFirstNormalWin()<CR>
+nno	<silent>	<Leader>e	:call MoveToFirstWin("")<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nno	<silent>	<Leader>u	:b #<CR>
@@ -232,11 +234,9 @@ endfunction
 
 " conveniences
 "
-function MoveToFirstNormalWin()
+function MoveToFirstWin(bt)
 	for l:wn in range(1, winnr("$"))
-		let l:bn = winbufnr(l:wn)
-		let l:bt = getbufvar(l:bn, "&buftype")
-		if strlen(l:bt) == 0
+		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
 			execute l:wn . " wincmd w"
 			return
 		endif
