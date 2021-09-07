@@ -231,6 +231,22 @@ endfunction
 " expression register auto
 
 
+" conveniences
+"
+function MoveToFirstNormalWin()
+	for l:wn in range(1, winnr("$"))
+		let l:bn = winbufnr(l:wn)
+		let l:bt = getbufvar(l:bn, "&buftype")
+		if strlen(l:bt) == 0
+			execute l:wn . " wincmd w"
+			return
+		endif
+	endfor
+endfunction
+"
+" conveniences
+
+
 " airline
 "
 set noshowmode
