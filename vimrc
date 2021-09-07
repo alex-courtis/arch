@@ -109,8 +109,8 @@ nno	<silent>	<Leader>f	gg=G``
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nno	<silent>	<Leader>m	:MAKE<CR>
-nno	<silent>	<Leader>M	:MAKE clean<CR>
+nno	<silent>	<Leader>m	:call AMCMake("")<CR>
+nno	<silent>	<Leader>M	:call AMCMake("clean")<CR>
 
 nno	<silent>	<Leader>c	:nohlsearch<CR>
 nno	<silent>	<Leader>t	<C-]>
@@ -118,6 +118,7 @@ nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 
 nno	<silent>	<Leader>n	:tn<CR>
 nno	<silent>	<Leader>N	:tp<CR>
+nno			<Leader>r	:%s/
 
 " common
 cno		<C-j>	<Down>
@@ -138,7 +139,13 @@ let &grepprg="ag --nogroup --nocolor"
 
 " make
 "
-command -bar -n=* MAKE :make <args> | :cwindow
+function AMCMake(args)
+	:execute "make " . a:args
+	:cwindow
+	if &buftype == "quickfix"
+		wincmd p
+	endif
+endfunction
 "
 " make
 
@@ -214,10 +221,10 @@ endfunction
 " insert the results of a vim expression	"=getbufvar("%", "&filetype")<C-M>p
 " insert the results of a vim command		"=Exec("set!")<C-M>p
 function Exec(command)
-    redir =>output
-    silent exec a:command
-    redir END
-    return output
+	redir =>output
+	silent exec a:command
+	redir END
+	return output
 endfunction
 "
 " expression register auto
