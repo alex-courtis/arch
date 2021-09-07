@@ -140,8 +140,8 @@ let &grepprg="ag --nogroup --nocolor"
 " make
 "
 function AMCMake(args)
-	:execute "make " . a:args
-	:cwindow
+	execute "make " . a:args
+	cwindow
 	if &buftype == "quickfix"
 		wincmd p
 	endif
