@@ -91,28 +91,30 @@ nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
 nno	<silent>	<Leader>aa	:call NERDTreeSmartFocus()<CR>
 nno	<silent>	<Leader>a	:NERDTreeClose<CR>
 
-nmap	<silent>	<Leader>,,	:call MoveToFirstWin("help")<CR>
+nmap	<silent>	<Leader>,,	:GoHelp<CR>
 nmap	<silent>	<Leader>,	:helpclose<CR>
-nno	<silent>	<Leader>o	:ToggleBufExplorer<CR>
-nmap	<silent>	<Leader>qq	:copen<CR>
+nno	<silent>	<Leader>o	:GoHome<CR>
+nmap	<silent>	<Leader>qq	:GoHome <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>q	:cclose<CR>
 
-nno	<silent>	<Leader>e	:call MoveToFirstWin("")<CR>
+nno	<silent>	<Leader>.	:cn<CR>
+nno	<silent>	<Leader>e	:call BufExplorerOpen()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
+nno	<silent>	<Leader>p	:cp<CR>
 nno	<silent>	<Leader>u	:b #<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nno	<silent>	<Leader>ii	:call TagbarSafeFocus()<CR>
 nno	<silent>	<Leader>i	:TagbarClose<CR>
+nno	<silent>	<Leader>ii	:GoHome <Bar> TagbarOpen fj<CR>
 
 
 nno	<silent>	<Leader>f	gg=G``
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nno	<silent>	<Leader>mm	:call AMCMake("")<CR>
-nno	<silent>	<Leader>m	:call AMCMake("clean")<CR>
+nno	<silent>	<Leader>mm	:call Make("")<CR>
+nno	<silent>	<Leader>m	:call Make("clean")<CR>
 
 nno	<silent>	<Leader>c	:nohlsearch<CR>
 nno	<silent>	<Leader>tt	<C-]>
@@ -131,7 +133,7 @@ cno		<C-k>	<Up>
 
 " grep
 "
-command -bar -n=* AG silent grep! <args> | redraw! | cwindow
+command -bar -n=* AG silent grep! <args> | GoHome | belowright cwindow | redraw!
 cabbrev ag AG
 
 set grepprg=ag\ --nogroup\ --nocolor
@@ -141,9 +143,10 @@ set grepprg=ag\ --nogroup\ --nocolor
 
 " make
 "
-function AMCMake(args)
+function Make(args)
+	GoHome
 	execute "make " . a:args
-	cwindow
+	belowright cwindow
 	if &buftype == "quickfix"
 		wincmd p
 	endif
@@ -202,17 +205,9 @@ endfunction
 
 " quickfix
 "
-let ef_cmocha = "[   LINE   ] --- %f:%l:%m"
-let ef_make = "make: *** [%f:%l:%m"
-let &errorformat= ef_cmocha . "," . ef_make . "," . &errorformat
-
-function QuickFixFocusToggle()
-	if &buftype == "quickfix"
-		:cclose
-	else
-		:copen
-	endif
-endfunction
+let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m"
+let s:ef_make = "make: *** [%f:%l:%m"
+let &errorformat= s:ef_cmocha . "," . s:ef_make . "," . &errorformat
 "
 " quickfix
 
@@ -232,9 +227,14 @@ endfunction
 " expression register auto
 
 
-" conveniences
+" window conveniences
 "
-function MoveToFirstWin(bt)
+function GoToWinWithBufType(bt)
+
+	if &buftype == a:bt
+		return
+	endif
+
 	for l:wn in range(1, winnr("$"))
 		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
 			execute l:wn . " wincmd w"
@@ -242,8 +242,11 @@ function MoveToFirstWin(bt)
 		endif
 	endfor
 endfunction
+
+command -bar GoHome call GoToWinWithBufType("")
+command -bar GoHelp call GoToWinWithBufType("help")
 "
-" conveniences
+" window conveniences
 
 
 " airline
@@ -264,6 +267,14 @@ let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 "
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
+
+function BufExplorerOpen()
+	" It can handle moving to an already open BE window, but not being opened inside its own buffer.
+	if &filetype != "bufexplorer"
+		GoHome
+		BufExplorer
+	endif
+endfunction
 "
 " bufexplorer
 
@@ -287,20 +298,12 @@ let NERDTreeRespectWildIgnore=1
 
 autocmd StdinReadPre * let s:std_in=1
 
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-" Fails ungracefully if there are more files to edit
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
 " Start NERDTree when Vim is started without any arguments or stdin.
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Start NERDTree when Vim starts with single directory argument and focus it.
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
 			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-			\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " listed buffer
 " 'normal' buffer (buftype empty)
@@ -398,24 +401,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " tagbar
 "
 let g:tagbar_compact=1
-
-function TagbarSafeFocus()
-	" don't attempt to open from within NERDTree lest the windows all get messed up
-	if bufname('%') =~ 'NERD_tree_\d\+' && winnr('$') > 1
-		execute "normal! \<C-W>w"
-	endif
-
-	TagbarOpen fj
-endfunction
-
-function TagbarSafeFocus()
-	" don't attempt to open from within NERDTree lest the windows all get messed up
-	if bufname('%') =~ 'NERD_tree_\d\+' && winnr('$') > 1
-		execute "normal! \<C-W>w"
-	endif
-
-	TagbarOpen fj
-endfunction
 "
 " tagbar
 
