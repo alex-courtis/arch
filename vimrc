@@ -88,40 +88,40 @@ nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
 nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
-nno	<silent>	<Leader>aa	:call NERDTreeSmartFocus()<CR>
-nno	<silent>	<Leader>a	:NERDTreeClose<CR>
+nno	<silent>	<Leader>a	:call NERDTreeSmartFocus()<CR>
+nno	<silent>	<Leader>A	:NERDTreeClose<CR>
 
-nmap	<silent>	<Leader>,,	:GoHelp<CR>
-nmap	<silent>	<Leader>,	:helpclose<CR>
+nmap	<silent>	<Leader>,	:GoHelp<CR>
+nmap	<silent>	<Leader><	:helpclose<CR>
 nno	<silent>	<Leader>o	:GoHome<CR>
-nmap	<silent>	<Leader>qq	:GoHome <Bar> belowright copen<CR>
-nmap	<silent>	<Leader>q	:cclose<CR>
+nmap	<silent>	<Leader>q	:GoHome <Bar> belowright copen<CR>
+nmap	<silent>	<Leader>Q	:cclose<CR>
 
-nno	<silent>	<Leader>.	:cn<CR>
-nno	<silent>	<Leader>e	:call BufExplorerOpen()<CR>
+nno	<silent>	<Leader>.	:cnext<CR>
+nno	<silent>	<Leader>e	:GoHome <Bar> ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nno	<silent>	<Leader>p	:cp<CR>
-nno	<silent>	<Leader>u	:b #<CR>
+nno	<silent>	<Leader>p	:cprev<CR>
+nno	<silent>	<Leader>u	:b#<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nno	<silent>	<Leader>i	:TagbarClose<CR>
-nno	<silent>	<Leader>ii	:GoHome <Bar> TagbarOpen fj<CR>
+nno	<silent>	<Leader>i	:GoHome <Bar> TagbarOpen fj<CR>
+nno	<silent>	<Leader>I	:TagbarClose<CR>
 
 
 nno	<silent>	<Leader>f	gg=G``
 nno     <silent>        <Leader>d       :BD<cr>
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nno	<silent>	<Leader>mm	:call Make("")<CR>
-nno	<silent>	<Leader>m	:call Make("clean")<CR>
+nno	<silent>	<Leader>m	:make<CR>
+nno	<silent>	<Leader>M	:make clean<CR>
 
 nno	<silent>	<Leader>c	:nohlsearch<CR>
-nno	<silent>	<Leader>tt	<C-]>
-nno	<silent>	<Leader>t	:call settagstack(win_getid(), {'items' : []})<CR>
+nno	<silent>	<Leader>t	<C-]>
+nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 
-nno	<silent>	<Leader>nn	:tn<CR>
-nno	<silent>	<Leader>n	:tp<CR>
+nno	<silent>	<Leader>n	:tn<CR>
+nno	<silent>	<Leader>N	:tp<CR>
 nno			<Leader>r	:%s/
 
 " common
@@ -133,26 +133,11 @@ cno		<C-k>	<Up>
 
 " grep
 "
-command -bar -n=* AG silent grep! <args> | GoHome | belowright cwindow | redraw!
-cabbrev ag AG
-
 set grepprg=ag\ --nogroup\ --nocolor
+
+cabbrev ag silent grep!
 "
 " grep
-
-
-" make
-"
-function Make(args)
-	GoHome
-	execute "make " . a:args
-	belowright cwindow
-	if &buftype == "quickfix"
-		wincmd p
-	endif
-endfunction
-"
-" make
 
 
 " omnicompletion
@@ -205,9 +190,12 @@ endfunction
 
 " quickfix
 "
-let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m"
-let s:ef_make = "make: *** [%f:%l:%m"
-let &errorformat= s:ef_cmocha . "," . s:ef_make . "," . &errorformat
+let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
+let s:ef_make = "make: *** [%f:%l:%m,"
+let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
+
+" jumping to the first match happens after this
+autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow | redraw!
 "
 " quickfix
 
@@ -255,9 +243,9 @@ set noshowmode
 
 let g:airline#extensions#searchcount#enabled = 0
 
-let airline_section_x=''
-let airline_section_y='%{airline#parts#filetype()}'
-let airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
+let g:airline_section_x='%{airline#extensions#tagbar#currenttag()}'
+let g:airline_section_y='%{airline#parts#filetype()}'
+let g:airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 "
 " airline
@@ -267,14 +255,6 @@ let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 "
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
-
-function BufExplorerOpen()
-	" It can handle moving to an already open BE window, but not being opened inside its own buffer.
-	if &filetype != "bufexplorer"
-		GoHome
-		BufExplorer
-	endif
-endfunction
 "
 " bufexplorer
 
