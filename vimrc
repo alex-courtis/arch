@@ -1,5 +1,8 @@
 runtime! defaults.vim
 
+" TODO move to ~/.config/nvim/init.vim, ~/.local/share/nvim and ~/.config/nvim
+" TODO split this file
+
 " unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
 " autoselect: visual selections go to * register, synced with XA_PRIMARY
 if has('nvim')
@@ -41,31 +44,6 @@ set undofile
 if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
 	set ttymouse=sgr
 endif
-
-" vim needs to be told explicitly listen for modified function keys
-execute 'set <xF1>=[1;*P'
-execute 'set <xF2>=[1;*Q'
-execute 'set <xF3>=[1;*R'
-execute 'set <xF4>=[1;*S'
-execute 'set  <F5>=[15;*~'
-execute 'set  <F6>=[17;*~'
-execute 'set  <F7>=[18;*~'
-execute 'set  <F8>=[19;*~'
-execute 'set  <F9>=[20;*~'
-execute 'set <F10>=[21;*~'
-execute 'set <F11>=[23;*~'
-execute 'set <F12>=[24;*~'
-
-
-" don't modify the scroll amounts with modifiers
-no 	<S-ScrollWheelDown>	<ScrollWheelDown>
-no 	<S-ScrollWheelUp>	<ScrollWheelUp>
-no 	<S-ScrollWheelLeft>	<ScrollWheelLeft>
-no 	<S-ScrollWheelRight>	<ScrollWheelRight>
-no 	<C-ScrollWheelDown>	<ScrollWheelDown>
-no 	<C-ScrollWheelUp>	<ScrollWheelUp>
-no 	<C-ScrollWheelLeft>	<ScrollWheelLeft>
-no 	<C-ScrollWheelRight>	<ScrollWheelRight>
 
 
 " debugging
@@ -113,7 +91,11 @@ nno	<silent>	<Leader>I	:TagbarClose<CR>
 
 
 nno	<silent>	<Leader>f	gg=G``
-nno     <silent>        <Leader>d       :BD<cr>
+if has('nvim')
+	nno <silent>    <Leader>d       :bd<cr>
+else
+	nno <silent>    <Leader>d       :BD<cr>
+endif
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 nno	<silent>	<Leader>m	:make<CR>
@@ -249,8 +231,7 @@ set noshowmode
 
 let g:airline#extensions#searchcount#enabled = 0
 
-let g:airline_section_x='%{airline#extensions#tagbar#currenttag()}'
-let g:airline_section_y='%{airline#parts#filetype()}'
+let g:airline_section_y='w%{winnr()} b%{bufnr()}'
 let g:airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 "
@@ -393,6 +374,7 @@ let g:tagbar_compact=1
 
 " vim-gitgutter
 "
+" TODO the preview window needs some tweaking on nvim
 set updatetime=250
 let g:gitgutter_close_preview_on_escape=1
 "
@@ -422,15 +404,15 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
-Plugin 'qpkorr/vim-bufkill'
 Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 if !has('nvim')
+	Plugin 'qpkorr/vim-bufkill'
 	Plugin 'wincent/terminus'
 endif
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 filetype plugin indent on
 "
@@ -443,7 +425,7 @@ colorscheme base16-bright
 " nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
 	highlight CursorLineNr cterm=NONE ctermfg=7
-	" TODO different line colour to status line, number
+	" TODO different line colour to status line, number e.g.
 	" highlight CursorLine ctermbg=242
 endif
 
