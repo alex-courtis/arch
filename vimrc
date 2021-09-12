@@ -108,7 +108,6 @@ nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 nno	<silent>	<Leader>n	:tn<CR>
 nno	<silent>	<Leader>N	:tp<CR>
 nno			<Leader>r	:%s/
-" TODO \j \k inside nerdtree
 
 " common
 cno		<C-j>	<Down>
@@ -348,7 +347,11 @@ autocmd BufEnter * call NERDTreeSync()
 
 " nerdtree-git-plugin
 "
+let g:NERDTreeGitStatusMapPrevHunk = "<Leader>k"
+let g:NERDTreeGitStatusMapNextHunk = "<Leader>j"
+
 let g:NERDTreeGitStatusDirDirtyOnly = 0
+
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
 			\ "Staged"    : "+",
