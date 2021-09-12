@@ -3,7 +3,8 @@ runtime! defaults.vim
 " unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
 " autoselect: visual selections go to * register, synced with XA_PRIMARY
 if has('nvim')
-	set clipboard+=unnamedplus
+	set clipboard=unnamedplus
+	set mouse=a
 else
 	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 endif
@@ -93,6 +94,8 @@ nno	<silent>	<Leader>A	:NERDTreeClose<CR>
 
 nmap	<silent>	<Leader>,	:GoHelp<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
+" TODO O closes all but one
+" TODO o shifts to next normal window if we are already in one
 nno	<silent>	<Leader>o	:GoHome<CR>
 nmap	<silent>	<Leader>q	:GoHome <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
@@ -123,6 +126,7 @@ nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 nno	<silent>	<Leader>n	:tn<CR>
 nno	<silent>	<Leader>N	:tp<CR>
 nno			<Leader>r	:%s/
+" TODO \j \k inside nerdtree
 
 " common
 cno		<C-j>	<Down>
@@ -135,6 +139,8 @@ cno		<C-k>	<Up>
 "
 set grepprg=ag\ --nogroup\ --nocolor
 
+" TODO put the search term into @/
+" TODO maybe strip grepprg from w:quickfix_title
 cabbrev ag silent grep!
 "
 " grep
@@ -421,7 +427,9 @@ Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'wincent/terminus'
+if !has('nvim')
+	Plugin 'wincent/terminus'
+endif
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 call vundle#end()
 filetype plugin indent on
@@ -435,5 +443,7 @@ colorscheme base16-bright
 " nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
 	highlight CursorLineNr cterm=NONE ctermfg=7
+	" TODO different line colour to status line, number
+	" highlight CursorLine ctermbg=242
 endif
 

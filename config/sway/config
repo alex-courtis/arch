@@ -227,6 +227,8 @@ default_border normal 2
 bar {
     position top
 
+    # swaybar_command waybar
+
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command slstatus -s
@@ -257,5 +259,8 @@ client.urgent           $base02 $base08 $base05 $base05 $base02
 client.placeholder      $base02 $base0e $base05 $base05 $base02
 # green WTF
 client.background       $base0B
+
+# exec kanshi
+output 'Unknown ASUS XG32V 0x0000CF52' scale 1.25
 
 include /etc/sway/config.d/*
