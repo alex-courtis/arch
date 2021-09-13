@@ -171,7 +171,7 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
 
 " jumping to the first match happens after this
-autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow | redraw!
+autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow
 "
 " quickfix
 
