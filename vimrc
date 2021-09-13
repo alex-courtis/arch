@@ -1,13 +1,9 @@
 runtime! defaults.vim
 
-" TODO move to ~/.config/nvim/init.vim, ~/.local/share/nvim and ~/.config/nvim
-" TODO split this file
-
 " unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
 " autoselect: visual selections go to * register, synced with XA_PRIMARY
 if has('nvim')
 	set clipboard=unnamedplus
-	set mouse=a
 else
 	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 endif
@@ -28,6 +24,8 @@ set formatoptions+=j
 set number relativenumber
 
 set cursorline
+
+set mouse=a
 
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
@@ -72,8 +70,6 @@ nno	<silent>	<Leader>A	:NERDTreeClose<CR>
 
 nmap	<silent>	<Leader>,	:GoHelp<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
-" TODO O closes all but one
-" TODO o shifts to next normal window if we are already in one
 nno	<silent>	<Leader>o	:GoHome<CR>
 nmap	<silent>	<Leader>q	:GoHome <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
@@ -91,11 +87,6 @@ nno	<silent>	<Leader>I	:TagbarClose<CR>
 
 
 nno	<silent>	<Leader>f	gg=G``
-if has('nvim')
-	nno <silent>    <Leader>d       :bd<cr>
-else
-	nno <silent>    <Leader>d       :BD<cr>
-endif
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 nno	<silent>	<Leader>m	:make<CR>
@@ -120,8 +111,6 @@ cno		<C-k>	<Up>
 "
 set grepprg=ag\ --nogroup\ --nocolor
 
-" TODO put the search term into @/
-" TODO maybe strip grepprg from w:quickfix_title
 cabbrev ag silent grep!
 "
 " grep
@@ -377,7 +366,6 @@ let g:tagbar_compact=1
 
 " vim-gitgutter
 "
-" TODO the preview window needs some tweaking on nvim
 set updatetime=250
 let g:gitgutter_close_preview_on_escape=1
 "
@@ -413,7 +401,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 if !has('nvim')
-	Plugin 'qpkorr/vim-bufkill'
 	Plugin 'wincent/terminus'
 endif
 call vundle#end()
@@ -428,7 +415,5 @@ colorscheme base16-bright
 " nvim does some more processing after this and sets things up well, apparently based on colorscheme
 if !has('nvim')
 	highlight CursorLineNr cterm=NONE ctermfg=7
-	" TODO different line colour to status line, number e.g.
-	" highlight CursorLine ctermbg=242
 endif
 
