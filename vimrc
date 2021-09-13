@@ -367,7 +367,8 @@ let g:tagbar_compact=1
 " vim-gitgutter
 "
 set updatetime=250
-let g:gitgutter_close_preview_on_escape=1
+let g:gitgutter_close_preview_on_escape = 1
+let g:gitgutter_preview_win_floating = 0
 "
 " vim-gitgutter
 
