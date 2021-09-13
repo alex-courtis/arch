@@ -23,7 +23,8 @@ set formatoptions+=j
 
 set number relativenumber
 
-set cursorline
+" let's try no cursorline for a while
+" set cursorline
 
 set mouse=a
 
@@ -417,4 +418,7 @@ colorscheme base16-bright
 if !has('nvim')
 	highlight CursorLineNr cterm=NONE ctermfg=7
 endif
+
+" lighter cursor line
+highlight CursorLine ctermbg=19
 
