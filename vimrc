@@ -1,25 +1,12 @@
-runtime! defaults.vim
-
-" unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
-" autoselect: visual selections go to * register, synced with XA_PRIMARY
-if has('nvim')
-	set clipboard=unnamedplus
-else
-	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
-endif
+" unnamedplus: yank etc. uses the + register, synced with X or wayland clipboard
+set clipboard=unnamedplus
 
 set ignorecase
 set smartcase
 
-set hlsearch
 set nowrapscan
 
-set autoread
 set autowriteall
-
-set listchars=trail:·,tab:>\ ,eol:¬
-
-set formatoptions+=j
 
 set number relativenumber
 
@@ -31,17 +18,31 @@ set mouse=a
 " longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
 
-" let the colorscheme set the (default light) background
-set background=
-
 set undofile
 
-" alacritty, st, xterm and tmux all talk sgr
-" terminus automatically sets it when under tmux
-" vim hardcodes st to 'xterm' and xterm to 'sgr'
-" sgr is desirable as one of its side effects is the ability to handle modified F1-F4
-if !has('nvim') && ($TERM =~ 'alacritty' || $TERM =~ 'st-')
-	set ttymouse=sgr
+if !has('nvim')
+	syntax on
+
+	" unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
+	" autoselect: visual selections go to * register, synced with XA_PRIMARY
+	set clipboard=unnamedplus,autoselect,exclude:cons\|linux
+
+	" these are nvim defaults
+	set autoread
+	set formatoptions+=j
+	set hlsearch
+	set listchars=trail:·,tab:>\ ,eol:¬
+
+	" alacritty, st, xterm and tmux all talk sgr
+	" terminus automatically sets it when under tmux
+	" vim hardcodes st to 'xterm' and xterm to 'sgr'
+	" sgr is desirable as one of its side effects is the ability to handle modified F1-F4
+	if ($TERM =~ 'alacritty' || $TERM =~ 'st-')
+		set ttymouse=sgr
+	endif
+
+	" let the colorscheme set the (default light) background
+	set background=
 endif
 
 
