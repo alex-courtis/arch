@@ -84,6 +84,30 @@ cno		<C-k>	<Up>
 " mappings
 
 
+" appearance
+"
+let colors_name = "base16-bright"
+
+if (&t_Co >= 255)
+	" base16 schemes use the bonus colours 17-21
+	" see https://github.com/chriskempson/base16-shell
+	let base16colorspace=256
+endif
+
+function ColorSchemeCust()
+
+	" lighter
+	highlight CursorLine ctermbg=19
+
+	" less obnoxious hlsearch
+	highlight Search ctermbg=8
+endfunction
+autocmd ColorScheme * call ColorSchemeCust()
+
+"
+" appearance
+
+
 " grep
 "
 set grepprg=ag\ --nogroup\ --nocolor
@@ -350,17 +374,6 @@ let g:gitgutter_preview_win_floating = 0
 " vim-gitgutter
 
 
-" base16-vim
-"
-if (&t_Co >= 255)
-	" base16 schemes use the bonus colours 17-21
-	" see https://github.com/chriskempson/base16-shell
-	let base16colorspace=256
-endif
-"
-" base16-vim
-
-
 " plugins as late as possible
 "
 filetype off
@@ -385,11 +398,4 @@ call vundle#end()
 filetype plugin indent on
 "
 " plugins
-
-
-" also selects the base16 vim-airline-theme
-colorscheme base16-bright
-
-" lighter cursor line
-highlight CursorLine ctermbg=19
 

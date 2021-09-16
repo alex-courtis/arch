@@ -26,5 +26,11 @@ source ~/.config/nvim/init.vim
 
 
 " this is undesirably underlined
-highlight CursorLineNr cterm=NONE ctermfg=7
+function ColorSchemeCustVim()
+	highlight CursorLineNr cterm=NONE ctermfg=7
+endfunction
+autocmd ColorScheme * call ColorSchemeCustVim()
+
+" nvim automatically does this
+execute "colorscheme " . colors_name
 
