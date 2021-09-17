@@ -10,8 +10,7 @@ set autowriteall
 
 set number relativenumber
 
-" let's try no cursorline for a while
-" set cursorline
+set cursorline
 
 set mouse=a
 
@@ -20,6 +19,7 @@ set wildmode=longest:full,full
 
 set undofile
 
+set scrolloff=3
 
 " debugging
 "
@@ -96,11 +96,12 @@ endif
 
 function ColorSchemeCust()
 
-	" lighter
-	highlight CursorLine ctermbg=19
+	" #1c1c1c is about half of base01 #303030
+	highlight CursorLine ctermbg=234
 
 	" less obnoxious hlsearch
 	highlight Search ctermbg=8
+	highlight IncSearch ctermbg=15
 endfunction
 autocmd ColorScheme * call ColorSchemeCust()
 
