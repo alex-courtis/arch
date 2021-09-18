@@ -41,6 +41,11 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
+
+nor	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+ino	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+
+
 nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
 nno	<silent>	<Leader>a	:call NERDTreeSmartFocus()<CR>
 nno	<silent>	<Leader>A	:NERDTreeClose<CR>
@@ -69,7 +74,6 @@ nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 nno	<silent>	<Leader>m	:make<CR>
 nno	<silent>	<Leader>M	:make clean<CR>
 
-nno	<silent>	<Leader>c	:nohlsearch<CR>
 nno	<silent>	<Leader>t	<C-]>
 nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 
