@@ -64,8 +64,8 @@ nor	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 ino	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
 
-nno	<silent>	<Leader>;	:call NERDTreeSmartFind()<CR>
-nno	<silent>	<Leader>a	:call NERDTreeSmartFocus()<CR>
+nno	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
+nno	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nno	<silent>	<Leader>A	:NERDTreeClose<CR>
 
 nmap	<silent>	<Leader>,	:GoHelp<CR>
@@ -152,10 +152,8 @@ autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow
 
 " expression register auto
 "
-" insert the results of an external command	:r !grep struct src/*.c
-" insert the results of a vim expression	"=getbufvar("%", "&filetype")<C-M>p
-" insert the results of a vim command		"=Exec("set!")<C-M>p
-function Exec(command)
+" insert the results of a vim command e.g. "=Exe("set all")<C-M>p
+function! Exe(command)
 	redir =>output
 	silent exec a:command
 	redir END
@@ -240,6 +238,19 @@ let g:gitgutter_preview_win_floating = 0
 " vim-gitgutter
 
 
-runtime! nerdtree.vim
-runtime! omnicomplete.vim
+" omnicompletion
+"
+set completeopt=menuone,longest
 
+" sometimes terminal sends C-Space as Nul, so map it
+ino	<expr>	<Nul>		amc#omni#begin()
+ino	<expr>	<C-Space>	amc#omni#begin()
+ino	<expr>	<C-n>		amc#omni#next()
+ino	<expr>	<C-x><C-o>	amc#omni#begin()
+ino	<expr>	<CR>		amc#omni#maybeSelectFirstAndAccept()
+ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
+ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+autocmd CompleteDone * call amc#omni#end()
+"
+" omnicompletion

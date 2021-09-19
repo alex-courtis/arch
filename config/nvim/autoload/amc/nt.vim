@@ -1,26 +1,7 @@
-" nerdtree
-"
-let NERDTreeMinimalUI=1
-
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-
-set wildignore+=*.o,*.class
-let NERDTreeRespectWildIgnore=1
-
-autocmd StdinReadPre * let s:std_in=1
-
-" Start NERDTree when Vim is started without any arguments or stdin.
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" Start NERDTree when Vim starts with single directory argument and focus it.
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
-
 " listed buffer
 " 'normal' buffer (buftype empty)
 " readable file
-function NERDTreeFindableBuf()
+function amc#nt#findableBuf()
 	return
 				\ &buflisted &&
 				\ strlen(&buftype) == 0 &&
@@ -31,8 +12,8 @@ endfunction
 " other file: if tree at cwd, clear selection, return 0
 " other buf: do nothing, return 0
 " must have BufEnter events temporarily disabled
-function NERDTreeReveal()
-	if NERDTreeFindableBuf()
+function amc#nt#reveal()
+	if amc#nt#findableBuf()
 		let l:bname = bufname()
 		if l:bname[0] != "/"
 			NERDTreeCWD
@@ -52,41 +33,37 @@ function NERDTreeReveal()
 	return 0
 endfunction
 
-function NERDTreeSmartFocus()
+function amc#nt#smartFocus()
 	let l:eiprev=&ei
 	let &ei="BufEnter," . l:eiprev
 
 	if g:NERDTree.IsOpen()
 		NERDTreeFocus
-	elseif !NERDTreeReveal()
+	elseif !amc#nt#reveal()
 		NERDTree
 	endif
 
 	let &ei=l:eiprev
 endfunction
 
-function NERDTreeSmartFind()
+function amc#nt#smartFind()
 	let l:eiprev=&ei
 	let &ei="BufEnter," . eiprev
 
-	if NERDTreeFindableBuf()
+	if amc#nt#findableBuf()
 		NERDTreeFind
 	endif
 
 	let &ei=l:eiprev
 endfunction
 
-function NERDTreeSync()
+function amc#nt#sync()
 	let l:eiprev=&ei
 	let &ei="BufEnter," . eiprev
 
-	if g:NERDTree.IsOpen() && NERDTreeReveal()
+	if g:NERDTree.IsOpen() && amc#nt#reveal()
 		wincmd p
 	endif
 
 	let &ei=l:eiprev
 endfunction
-autocmd BufEnter * call NERDTreeSync()
-"
-" nerdtree
-
