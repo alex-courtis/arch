@@ -25,6 +25,9 @@ set background=
 source ~/.config/nvim/init.vim
 
 
+" vim cannot handle this
+nunmap <Esc>
+
 " this is undesirably underlined
 function ColorSchemeCustVim()
 	highlight CursorLineNr cterm=NONE ctermfg=7
