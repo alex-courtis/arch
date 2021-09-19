@@ -3,7 +3,8 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			;&
+			sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/sway.${XDG_VTNR}.${USER}.stderr"
+			;;
 		2)
 			# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
 			lsmod | grep ^nvidia > /dev/null 2>&1
@@ -16,9 +17,6 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			fi
 			;;
 		3)
-			sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/sway.${XDG_VTNR}.${USER}.stderr"
-			;;
-		4)
 			weston >"/tmp/weston.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/weston.${XDG_VTNR}.${USER}.stderr"
 			;;
 	esac
