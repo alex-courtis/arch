@@ -61,10 +61,13 @@ exec swaybg --color '#000000'
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+
+# man xkeyboard-config
 input type:keyboard {
+    xkb_model "pc105"
     xkb_layout "us,us"
     xkb_variant "dvp,"
-    xkb_options "caps:escape,grp:shift_caps_toggle"
+    xkb_options "caps:escape,grp:win_space_toggle"
 }
 
 input type:touchpad {
@@ -76,6 +79,8 @@ input type:pointer {
     accel_profile flat
     pointer_accel 0
 }
+
+input * xkb_numlock enable
 
 ### Key bindings
 #
