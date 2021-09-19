@@ -48,6 +48,7 @@ ino	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 nno	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nno	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nno	<silent>	<Leader>A	:NERDTreeClose<CR>
+nno	<silent>	<Leader>'	:call amc#closeOtherWin()<CR>
 
 nmap	<silent>	<Leader>,	:GoHelp<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
@@ -123,6 +124,12 @@ function! Exe(command)
 	redir END
 	return output
 endfunction
+
+" from vim
+autocmd BufReadPost *
+			\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+			\ |   exe "normal! g`\""
+			\ | endif
 
 " airline
 set noshowmode
