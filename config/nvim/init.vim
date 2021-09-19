@@ -1,12 +1,3 @@
-" debugging
-"
-function AMCLog(msg)
-	call system("echo \"" . a:msg . "\" >> /tmp/vim.amc.log")
-endfunction
-"
-" debugging
-
-
 " vundle
 "
 filetype off
@@ -124,13 +115,7 @@ if (&t_Co >= 255)
 	" see https://github.com/chriskempson/base16-shell
 	let base16colorspace=256
 endif
-
-function ColorSchemeCust()
-
-	" sets the function name to match the rest of the line
-	highlight default link TagbarHighlight CursorLine
-endfunction
-autocmd ColorScheme * call ColorSchemeCust()
+autocmd ColorScheme * call amc#colours()
 
 "
 " appearance
@@ -151,54 +136,6 @@ set grepprg=ag\ --nogroup\ --nocolor
 cabbrev ag silent grep!
 "
 " grep
-
-
-" omnicompletion
-"   inspired by https://vim.fandom.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-"
-set completeopt=menuone,longest
-
-" sometimes terminal sends C-Space as Nul, so map it
-ino	<expr>	<Nul>		OmniBegin()
-ino	<expr>	<C-Space>	OmniBegin()
-ino	<expr>	<C-n>		OmniNext()
-ino	<expr>	<C-x><C-o>	OmniBegin()
-ino	<expr>	<CR>		OmniMaybeSelectFirstAndAccept()
-ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
-ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-autocmd CompleteDone * call OmniEnd()
-
-" turn off ignore case, as mixed case matches result in longest length 0
-function! OmniBegin()
-	set noignorecase
-	return "\<C-x>\<C-o>\<C-n>"
-endfunction
-
-function! OmniNext()
-	return "\<C-n>\<C-n>"
-endfunction
-
-" turn on ignore case
-function! OmniEnd()
-	set ignorecase
-endfunction
-
-function! OmniMaybeSelectFirstAndAccept()
-	if pumvisible()
-		let ci=complete_info()
-		if !empty(ci) && !empty(ci.items)
-			if ci.selected == -1
-				return "\<C-n>\<C-y>"
-			else
-				return "\<C-y>"
-			endif
-		endif
-	endif
-	return "\<CR>"
-endfunction
-"
-" omnicompletion
 
 
 " quickfix
@@ -230,22 +167,8 @@ endfunction
 
 " window conveniences
 "
-function GoToWinWithBufType(bt)
-
-	if &buftype == a:bt
-		return
-	endif
-
-	for l:wn in range(1, winnr("$"))
-		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
-			execute l:wn . " wincmd w"
-			return
-		endif
-	endfor
-endfunction
-
-command -bar GoHome call GoToWinWithBufType("")
-command -bar GoHelp call GoToWinWithBufType("help")
+command -bar GoHome call amc#goToWinWithBufType("")
+command -bar GoHelp call amc#goToWinWithBufType("help")
 "
 " window conveniences
 
@@ -276,99 +199,6 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let EditorConfig_max_line_indicator='line'
 "
 " editorconfig
-
-
-" nerdtree
-"
-let NERDTreeMinimalUI=1
-
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-
-set wildignore+=*.o,*.class
-let NERDTreeRespectWildIgnore=1
-
-autocmd StdinReadPre * let s:std_in=1
-
-" Start NERDTree when Vim is started without any arguments or stdin.
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" Start NERDTree when Vim starts with single directory argument and focus it.
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-			\ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | execute 'NERDTreeFocus' | endif
-
-" listed buffer
-" 'normal' buffer (buftype empty)
-" readable file
-function NERDTreeFindableBuf()
-	return
-				\ &buflisted &&
-				\ strlen(&buftype) == 0 &&
-				\ filereadable(bufname())
-endfunction
-
-" file under cwd: cd and find it, leave focus in tree, return 1
-" other file: if tree at cwd, clear selection, return 0
-" other buf: do nothing, return 0
-" must have BufEnter events temporarily disabled
-function NERDTreeReveal()
-	if NERDTreeFindableBuf()
-		let l:bname = bufname()
-		if l:bname[0] != "/"
-			NERDTreeCWD
-			execute "NERDTreeFind " . l:bname
-			return 1
-		else
-			NERDTreeFocus
-			let l:cwdp = g:NERDTreePath.New(getcwd())
-			if b:NERDTree.root.path.equals(l:cwdp)
-				call b:NERDTree.render()
-				call b:NERDTree.root.putCursorHere(0, 0)
-			endif
-			wincmd p
-			return 0
-		endif
-	endif
-	return 0
-endfunction
-
-function NERDTreeSmartFocus()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . l:eiprev
-
-	if g:NERDTree.IsOpen()
-		NERDTreeFocus
-	elseif !NERDTreeReveal()
-		NERDTree
-	endif
-
-	let &ei=l:eiprev
-endfunction
-
-function NERDTreeSmartFind()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . eiprev
-
-	if NERDTreeFindableBuf()
-		NERDTreeFind
-	endif
-
-	let &ei=l:eiprev
-endfunction
-
-function NERDTreeSync()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . eiprev
-
-	if g:NERDTree.IsOpen() && NERDTreeReveal()
-		wincmd p
-	endif
-
-	let &ei=l:eiprev
-endfunction
-autocmd BufEnter * call NERDTreeSync()
-"
-" nerdtree
 
 
 " nerdtree-git-plugin
@@ -408,4 +238,8 @@ let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
 "
 " vim-gitgutter
+
+
+runtime! nerdtree.vim
+runtime! omnicomplete.vim
 
