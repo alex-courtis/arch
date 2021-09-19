@@ -100,12 +100,8 @@ endif
 
 function ColorSchemeCust()
 
-	" #1c1c1c is about half of base01 #303030
-	highlight CursorLine ctermbg=234
-
-	" less obnoxious hlsearch
-	highlight Search ctermbg=8
-	highlight IncSearch ctermbg=15
+	" sets the function name to match the rest of the line
+	highlight default link TagbarHighlight CursorLine
 endfunction
 autocmd ColorScheme * call ColorSchemeCust()
 
