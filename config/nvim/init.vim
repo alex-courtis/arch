@@ -1,3 +1,38 @@
+" debugging
+"
+function AMCLog(msg)
+	call system("echo \"" . a:msg . "\" >> /tmp/vim.amc.log")
+endfunction
+"
+" debugging
+
+
+" vundle
+"
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'airblade/vim-gitgutter'
+Plugin 'chriskempson/base16-vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'majutsushi/tagbar'
+Plugin 'preservim/nerdtree'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+if !has('nvim')
+	Plugin 'wincent/terminus'
+endif
+call vundle#end()
+filetype plugin indent on
+"
+" vundle
+
+
 " unnamedplus: yank etc. uses the + register, synced with X or wayland clipboard
 set clipboard=unnamedplus
 
@@ -20,14 +55,6 @@ set wildmode=longest:full,full
 set undofile
 
 set scrolloff=3
-
-" debugging
-"
-function AMCLog(msg)
-	call system("echo \"" . a:msg . "\" >> /tmp/vim.amc.log")
-endfunction
-"
-" debugging
 
 
 " mappings
@@ -107,6 +134,14 @@ autocmd ColorScheme * call ColorSchemeCust()
 
 "
 " appearance
+
+
+" commenting
+"
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+"
+" commenting
 
 
 " grep
@@ -373,30 +408,4 @@ let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
 "
 " vim-gitgutter
-
-
-" plugins as late as possible
-"
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'airblade/vim-gitgutter'
-Plugin 'chriskempson/base16-vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'majutsushi/tagbar'
-Plugin 'preservim/nerdtree'
-Plugin 'tpope/vim-commentary'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-if !has('nvim')
-	Plugin 'wincent/terminus'
-endif
-call vundle#end()
-filetype plugin indent on
-"
-" plugins
 
