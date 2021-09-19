@@ -22,11 +22,15 @@ endif
 set background=
 
 
-source ~/.config/nvim/init.vim
+let &rtp.="," . $XDG_CONFIG_HOME . "/nvim"
+runtime init.vim
 
 
 " vim cannot handle this
 nunmap <Esc>
+
+" sometimes terminal sends C-Space as Nul, so map it
+ino	<expr>	<Nul>		amc#omni#begin()
 
 " this is undesirably underlined
 function ColorSchemeCustVim()

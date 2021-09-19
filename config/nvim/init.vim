@@ -1,5 +1,3 @@
-" vundle
-"
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -20,36 +18,21 @@ if !has('nvim')
 endif
 call vundle#end()
 filetype plugin indent on
-"
-" vundle
 
 
-" unnamedplus: yank etc. uses the + register, synced with X or wayland clipboard
 set clipboard=unnamedplus
-
 set ignorecase
 set smartcase
-
 set nowrapscan
-
 set autowriteall
-
 set number relativenumber
-
 set cursorline
-
 set mouse=a
-
-" longest:full is necessary as :help does not obey longest
 set wildmode=longest:full,full
-
 set undofile
-
 set scrolloff=3
 
 
-" mappings
-"
 nno 	; 	:
 vno 	; 	:
 nno 	q; 	q:
@@ -59,10 +42,8 @@ vno 	@; 	@:
 nno 	<C-w>; 	<C-w>:
 vno 	<C-w>; 	<C-w>:
 
-
 nor	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 ino	<silent>	<Esc>		<Esc>:nohlsearch<CR>
-
 
 nno	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nno	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
@@ -85,7 +66,6 @@ nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 nno	<silent>	<Leader>i	:GoHome <Bar> TagbarOpen fj<CR>
 nno	<silent>	<Leader>I	:TagbarClose<CR>
 
-
 nno	<silent>	<Leader>f	gg=G``
 
 nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
@@ -99,59 +79,43 @@ nno	<silent>	<Leader>n	:tn<CR>
 nno	<silent>	<Leader>N	:tp<CR>
 nno			<Leader>r	:%s/
 
-" common
 cno		<C-j>	<Down>
 cno		<C-k>	<Up>
-"
-" mappings
 
 
 " appearance
-"
 let colors_name = "base16-bright"
-
-if (&t_Co >= 255)
-	" base16 schemes use the bonus colours 17-21
-	" see https://github.com/chriskempson/base16-shell
-	let base16colorspace=256
-endif
+let base16colorspace=256
 autocmd ColorScheme * call amc#colours()
 
-"
-" appearance
-
+" commands
+command -bar GoHome call amc#goToWinWithBufType("")
+command -bar GoHelp call amc#goToWinWithBufType("help")
 
 " commenting
-"
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
-"
-" commenting
-
 
 " grep
-"
 set grepprg=ag\ --nogroup\ --nocolor
-
 cabbrev ag silent grep!
-"
-" grep
-
 
 " quickfix
-"
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
-
-" jumping to the first match happens after this
 autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow
-"
-" quickfix
 
+" omnicompletion
+set completeopt=menuone,longest
+ino	<expr>	<C-Space>	amc#omni#begin()
+ino	<expr>	<C-n>		amc#omni#next()
+ino	<expr>	<C-x><C-o>	amc#omni#begin()
+ino	<expr>	<CR>		amc#omni#maybeSelectFirstAndAccept()
+ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
+ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
+autocmd CompleteDone * call amc#omni#end()
 
-" expression register auto
-"
 " insert the results of a vim command e.g. "=Exe("set all")<C-M>p
 function! Exe(command)
 	redir =>output
@@ -159,53 +123,25 @@ function! Exe(command)
 	redir END
 	return output
 endfunction
-"
-" expression register auto
-
-
-" window conveniences
-"
-command -bar GoHome call amc#goToWinWithBufType("")
-command -bar GoHelp call amc#goToWinWithBufType("help")
-"
-" window conveniences
-
 
 " airline
-"
 set noshowmode
-
 let g:airline#extensions#searchcount#enabled = 0
-
 let g:airline_section_y='w%{winnr()} b%{bufnr()}'
 let g:airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
-"
-" airline
-
 
 " bufexplorer
-"
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
-"
-" bufexplorer
-
 
 " editorconfig
-"
 let EditorConfig_max_line_indicator='line'
-"
-" editorconfig
-
 
 " nerdtree-git-plugin
-"
 let g:NERDTreeGitStatusMapPrevHunk = "<Leader>k"
 let g:NERDTreeGitStatusMapNextHunk = "<Leader>j"
-
 let g:NERDTreeGitStatusDirDirtyOnly = 0
-
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
 			\ "Staged"    : "+",
@@ -218,39 +154,12 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ 'Ignored'   : 'i',
 			\ "Unknown"   : "?"
 			\ }
-"
-" nerdtree-git-plugin
-
 
 " tagbar
-"
 let g:tagbar_compact=1
-"
-" tagbar
-
 
 " vim-gitgutter
-"
 set updatetime=250
 let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
-"
-" vim-gitgutter
 
-
-" omnicompletion
-"
-set completeopt=menuone,longest
-
-" sometimes terminal sends C-Space as Nul, so map it
-ino	<expr>	<Nul>		amc#omni#begin()
-ino	<expr>	<C-Space>	amc#omni#begin()
-ino	<expr>	<C-n>		amc#omni#next()
-ino	<expr>	<C-x><C-o>	amc#omni#begin()
-ino	<expr>	<CR>		amc#omni#maybeSelectFirstAndAccept()
-ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
-ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-autocmd CompleteDone * call amc#omni#end()
-"
-" omnicompletion
