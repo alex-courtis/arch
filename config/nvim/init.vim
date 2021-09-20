@@ -50,21 +50,21 @@ nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
 nmap	<silent>	<Leader>'	:call amc#closeOtherWin()<CR>
 
-nmap	<silent>	<Leader>,	:GoHelp<CR>
+nmap	<silent>	<Leader>,	:call amc#goHelp()<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
-nmap	<silent>	<Leader>o	:call amc#firstOrNext("")<CR>
-nmap	<silent>	<Leader>q	:GoHome <Bar> belowright copen<CR>
+nmap	<silent>	<Leader>o	:call amc#goHomeOrNext()<CR>
+nmap	<silent>	<Leader>q	:call amc#goHome() <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
 
 nmap	<silent>	<Leader>.	:cnext<CR>
-nmap	<silent>	<Leader>e	:GoHome <Bar> ToggleBufExplorer<CR>
+nmap	<silent>	<Leader>e	:call amc#goHome() <Bar> ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nmap	<silent>	<Leader>p	:cprev<CR>
 nmap	<silent>	<Leader>u	:b#<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nmap	<silent>	<Leader>i	:GoHome <Bar> TagbarOpen fj<CR>
+nmap	<silent>	<Leader>i	:call amc#goHome() <Bar> TagbarOpen fj<CR>
 nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
 nmap	<silent>	<Leader>f	gg=G``
@@ -94,10 +94,6 @@ let colors_name = "base16-bright"
 let base16colorspace=256
 autocmd ColorScheme * call amc#colours()
 
-" commands
-command -bar GoHome call amc#goToWinWithBufType("")
-command -bar GoHelp call amc#goToWinWithBufType("help")
-
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
@@ -112,7 +108,7 @@ cabbrev ag silent grep!
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
-autocmd QuickfixCmdPost * GoHome | cclose | belowright cwindow
+autocmd QuickfixCmdPost * call amc#goHome() | cclose | belowright cwindow
 
 " omnicompletion
 set completeopt=menuone,longest
