@@ -1,6 +1,6 @@
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+let &rtp .= "," . $XDG_DATA_HOME . "/nvim/vundle/Vundle.vim"
+call vundle#begin($XDG_DATA_HOME . "/nvim/vundle")
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
@@ -33,55 +33,60 @@ set undofile
 set scrolloff=3
 
 
-nno 	; 	:
-vno 	; 	:
-nno 	q; 	q:
-vno 	q; 	q:
-nno 	@; 	@:
-vno 	@; 	@:
-nno 	<C-w>; 	<C-w>:
-vno 	<C-w>; 	<C-w>:
+nmap 	; 	:
+vmap 	; 	:
+nmap 	q; 	q:
+vmap 	q; 	q:
+nmap 	@; 	@:
+vmap 	@; 	@:
+nmap 	<C-w>; 	<C-w>:
+vmap 	<C-w>; 	<C-w>:
 
-nor	<silent>	<Esc>		<Esc>:nohlsearch<CR>
-ino	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+nmap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
-nno	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
-nno	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
-nno	<silent>	<Leader>A	:NERDTreeClose<CR>
-nno	<silent>	<Leader>'	:call amc#closeOtherWin()<CR>
+nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
+nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
+nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
+nmap	<silent>	<Leader>'	:call amc#closeOtherWin()<CR>
 
 nmap	<silent>	<Leader>,	:GoHelp<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
-nno	<silent>	<Leader>o	:GoHome<CR>
+nmap	<silent>	<Leader>o	:call amc#firstOrNext("")<CR>
 nmap	<silent>	<Leader>q	:GoHome <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
 
-nno	<silent>	<Leader>.	:cnext<CR>
-nno	<silent>	<Leader>e	:GoHome <Bar> ToggleBufExplorer<CR>
+nmap	<silent>	<Leader>.	:cnext<CR>
+nmap	<silent>	<Leader>e	:GoHome <Bar> ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nno	<silent>	<Leader>p	:cprev<CR>
-nno	<silent>	<Leader>u	:b#<CR>
+nmap	<silent>	<Leader>p	:cprev<CR>
+nmap	<silent>	<Leader>u	:b#<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nno	<silent>	<Leader>i	:GoHome <Bar> TagbarOpen fj<CR>
-nno	<silent>	<Leader>I	:TagbarClose<CR>
+nmap	<silent>	<Leader>i	:GoHome <Bar> TagbarOpen fj<CR>
+nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
-nno	<silent>	<Leader>f	gg=G``
+nmap	<silent>	<Leader>f	gg=G``
 
-nno	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nno	<silent>	<Leader>m	:make<CR>
-nno	<silent>	<Leader>M	:make clean<CR>
+nmap	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
+nmap	<silent>	<Leader>m	:make<CR>
+nmap	<silent>	<Leader>M	:make clean<CR>
 
-nno	<silent>	<Leader>t	<C-]>
-nno	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
+nmap	<silent>	<Leader>cc	<Plug>CommentaryLine
+omap	<silent>	<Leader>c	<Plug>Commentary
+nmap	<silent>	<Leader>c	<Plug>Commentary
+xmap	<silent>	<Leader>c	<Plug>Commentary
+nmap	<silent>	<Leader>t	<C-]>
+nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 
-nno	<silent>	<Leader>n	:tn<CR>
-nno	<silent>	<Leader>N	:tp<CR>
-nno			<Leader>r	:%s/
+nmap	<silent>	<Leader>n	:tn<CR>
+nmap	<silent>	<Leader>N	:tp<CR>
+nmap			<Leader>r	:%s/
 
-cno		<C-j>	<Down>
-cno		<C-k>	<Up>
+cmap		<C-j>	<Down>
+cmap		<C-k>	<Up>
 
 
 " appearance
@@ -93,9 +98,11 @@ autocmd ColorScheme * call amc#colours()
 command -bar GoHome call amc#goToWinWithBufType("")
 command -bar GoHelp call amc#goToWinWithBufType("help")
 
-" commenting
+" vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
+" stop the plugin from creating the default mappings
+nmap	gc	<NOP>
 
 " grep
 set grepprg=ag\ --nogroup\ --nocolor

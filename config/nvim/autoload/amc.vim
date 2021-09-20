@@ -29,3 +29,17 @@ function! amc#closeOtherWin()
 	endfor
 endfunction
 
+function! amc#firstOrNext(bt)
+	if &buftype != a:bt
+		call amc#goToWinWithBufType(a:bt)
+	else
+		call amc#log("")
+		for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr())
+			if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
+				execute l:wn . " wincmd w"
+				return
+			endif
+		endfor
+	endif
+endfunction
+
