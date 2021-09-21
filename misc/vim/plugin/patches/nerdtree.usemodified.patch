@@ -1,0 +1,39 @@
+From 5254256f06b670362b3d5faf4c6f3427fcc092d1 Mon Sep 17 00:00:00 2001
+From: Alexander Courtis <alex@courtis.org>
+Date: Tue, 21 Sep 2021 19:31:17 +1000
+Subject: [PATCH] use windows with modified buffers providing autowriteall is
+ set
+
+---
+ lib/nerdtree/opener.vim | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/lib/nerdtree/opener.vim b/lib/nerdtree/opener.vim
+index 27993ac..b8898b9 100644
+--- a/lib/nerdtree/opener.vim
++++ b/lib/nerdtree/opener.vim
+@@ -55,9 +55,10 @@ function! s:Opener._firstUsableWindow()
+     let i = 1
+     while i <= winnr('$')
+         let bnum = winbufnr(i)
++        " AMC window is usable if modified but autowriteall
+         if bnum !=# -1 && getbufvar(bnum, '&buftype') ==# ''
+                     \ && !getwinvar(i, '&previewwindow')
+-                    \ && (!getbufvar(bnum, '&modified') || &hidden)
++                    \ && (!getbufvar(bnum, '&modified') || &autowriteall || &hidden)
+             return i
+         endif
+ 
+@@ -121,7 +122,8 @@ function! s:Opener._isWindowUsable(winnumber)
+         return 1
+     endif
+ 
+-    return !modified || self._bufInWindows(winbufnr(a:winnumber)) >= 2
++    " AMC window is usable if modified but autowriteall
++    return !modified || &autowriteall || self._bufInWindows(winbufnr(a:winnumber)) >= 2
+ endfunction
+ 
+ " FUNCTION: Opener.New(path, opts) {{{1
+-- 
+2.33.0
+

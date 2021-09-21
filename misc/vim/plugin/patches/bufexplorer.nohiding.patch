@@ -1,0 +1,31 @@
+From c04b9a7950ba6b09feab387931fa3b02daecbdab Mon Sep 17 00:00:00 2001
+From: Alexander Courtis <alex@courtis.org>
+Date: Tue, 21 Sep 2021 19:26:42 +1000
+Subject: [PATCH] after switching do not hide previous if autowriteall is set
+
+---
+ plugin/bufexplorer.vim | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/plugin/bufexplorer.vim b/plugin/bufexplorer.vim
+index 6a7ef4f..574ac2a 100644
+--- a/plugin/bufexplorer.vim
++++ b/plugin/bufexplorer.vim
+@@ -456,7 +456,13 @@ function! BufExplorer()
+     if !exists("b:displayMode") || b:displayMode != "winmanager"
+         " Do not use keepalt when opening bufexplorer to allow the buffer that
+         " we are leaving to become the new alternate buffer
+-        execute "silent keepjumps hide edit".name
++	" AMC do not hide the originating buffer as it will stay hidden.
++	" This was added in 7.3.0 for unknown reasons.
++	if &autowriteall
++	    execute "silent keepjumps edit".name
++	else
++	    execute "silent keepjumps hide edit".name
++	endif
+     endif
+ 
+     call s:DisplayBufferList()
+-- 
+2.33.0
+
