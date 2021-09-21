@@ -13,6 +13,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Yohannfra/Vim-Goto-Header'
 if !has('nvim')
 	Plugin 'wincent/terminus'
 endif
@@ -85,9 +86,13 @@ xmap	<silent>	<F12>c		<Plug>Commentary
 nmap	<silent>	<F12>t		<C-]>
 nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
 
+nmap			<F12>r		:%s/
 nmap	<silent>	<F12>n		:tn<CR>
 nmap	<silent>	<F12>N		:tp<CR>
-nmap			<F12>r		:%s/
+
+nmap	<silent>	<F12>s		:GotoHeaderSwitch<CR>
+
+nmap	<silent>	<F12>-		:GotoHeader<CR>
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
@@ -151,6 +156,10 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 
 " editorconfig
 let EditorConfig_max_line_indicator='line'
+
+" Goto-Header
+let g:goto_header_associate_cpp_h = 1
+let g:goto_header_includes_dirs = [".", "/usr/include"]
 
 " nerdtree-git-plugin
 let g:NERDTreeGitStatusMapPrevHunk = "<Leader>k"
