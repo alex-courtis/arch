@@ -67,23 +67,27 @@ nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 nmap	<silent>	<Leader>i	:call amc#goHome() <Bar> TagbarOpen fj<CR>
 nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
-nmap	<silent>	<Leader>f	gg=G``
+nmap	<silent>	<F12>f		gg=G``
 
-nmap	<silent>	<Leader>hc	:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nmap	<silent>	<Leader>m	:make<CR>
-nmap	<silent>	<Leader>M	:make clean<CR>
+nmap	<silent>	<F12>hc		:call gitgutter#hunk#close_hunk_preview_window()<CR>
+nmap	<silent>	<F12>hp		<Plug>(GitGutterPreviewHunk)
+nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
+nmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
+xmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
+nmap	<silent>	<F12>m		:make<CR>
+nmap	<silent>	<F12>M		:make clean<CR>
 
-nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
-nmap	<silent>	<Leader>cc	<Plug>CommentaryLine
-omap	<silent>	<Leader>c	<Plug>Commentary
-nmap	<silent>	<Leader>c	<Plug>Commentary
-xmap	<silent>	<Leader>c	<Plug>Commentary
-nmap	<silent>	<Leader>t	<C-]>
-nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nmap	<silent>	<F12>cu		<Plug>Commentary<Plug>Commentary
+nmap	<silent>	<F12>cc		<Plug>CommentaryLine
+omap	<silent>	<F12>c		<Plug>Commentary
+nmap	<silent>	<F12>c		<Plug>Commentary
+xmap	<silent>	<F12>c		<Plug>Commentary
+nmap	<silent>	<F12>t		<C-]>
+nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
 
-nmap	<silent>	<Leader>n	:tn<CR>
-nmap	<silent>	<Leader>N	:tp<CR>
-nmap			<Leader>r	:%s/
+nmap	<silent>	<F12>n		:tn<CR>
+nmap	<silent>	<F12>N		:tp<CR>
+nmap			<F12>r		:%s/
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
