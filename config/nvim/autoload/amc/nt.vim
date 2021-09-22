@@ -15,7 +15,7 @@ endfunction
 function amc#nt#reveal()
 	if amc#nt#findableBuf()
 		let l:bname = bufname()
-		if l:bname[0] != "/"
+		if l:bname[0] != "/" && match(l:bname, "\\.\\.") != 0
 			NERDTreeCWD
 			execute "NERDTreeFind " . l:bname
 			return 1
