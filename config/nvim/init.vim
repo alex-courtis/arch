@@ -70,6 +70,7 @@ nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
 nmap	<silent>	<F12>f		gg=G``
 
+nmap	<silent>	<F12>g		:ag <cword><CR>
 nmap	<silent>	<F12>hc		:call gitgutter#hunk#close_hunk_preview_window()<CR>
 nmap	<silent>	<F12>hp		<Plug>(GitGutterPreviewHunk)
 nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
