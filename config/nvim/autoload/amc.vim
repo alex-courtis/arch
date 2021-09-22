@@ -7,18 +7,26 @@ function! amc#colours()
 endfunction
 
 function! amc#goHome()
-	call amc#goFirstWin("")
+	call amc#goBufType("")
 endfunction
 
 function! amc#goHelp()
-	call amc#goFirstWin("help")
+	call amc#goBufType("help")
 endfunction
 
-function! amc#goFirstWin(bt)
+function! amc#goBufType(bt)
 	if &buftype == a:bt
 		return
 	endif
 
+	" previous if buf type
+	let l:pwn = winnr('#')
+	if l:pwn && getbufvar(winbufnr(l:pwn), "&buftype") == a:bt
+		execute l:pwn . " wincmd w"
+		return
+	endif
+
+	" first available
 	for l:wn in range(1, winnr("$"))
 		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
 			execute l:wn . " wincmd w"
@@ -27,7 +35,7 @@ function! amc#goFirstWin(bt)
 	endfor
 endfunction
 
-function! amc#closeOtherWin()
+function! amc#closeAll()
 	let l:cwn = winnr()
 
 	for l:wn in range(winnr("$"), 1, -1)
@@ -43,6 +51,7 @@ function! amc#goHomeOrNext()
 		return
 	endif
 
+	" search up from this window then start at 0
 	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
 		if getbufvar(winbufnr(l:wn), "&buftype") == ""
 			execute l:wn . " wincmd w"

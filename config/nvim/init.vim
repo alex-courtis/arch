@@ -49,7 +49,7 @@ imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
-nmap	<silent>	<Leader>'	:call amc#closeOtherWin()<CR>
+nmap	<silent>	<Leader>'	:call amc#closeAll()<CR>
 
 nmap	<silent>	<Leader>,	:call amc#goHelp()<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
