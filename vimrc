@@ -8,6 +8,7 @@ set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 set autoread
 set formatoptions+=j
 set hlsearch
+set showcmd
 set listchars=trail:·,tab:>\ ,eol:¬
 
 " alacritty, st, xterm and tmux all talk sgr
