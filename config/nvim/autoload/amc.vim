@@ -7,8 +7,6 @@ function! amc#colours()
 	highlight default link TagbarHighlight CursorLine
 endfunction
 
-" TODO # lingers on the deleted buffer
-" TODO use bufexplorer's LRU instead of the fallback bn
 function! amc#delBuf()
 	" forcing is here for the case of a new buffer with unsaved changes
 	call amc#log("delBuf ")
@@ -64,9 +62,36 @@ endfunction
 
 function! amc#safeBHash()
 	let l:abn = bufnr("#")
-	if getbufvar(l:abn, "&buftype") == "" && buflisted(l:abn)
-		b #
+	if l:abn == -1 || getbufvar(l:abn, "&buftype") != "" || !buflisted(l:abn)
+		return
 	endif
+
+	if bufname() == "" && &modified
+		return
+	endif
+
+	b #
+endfunction
+
+
+function! amc#safeBufExplorer()
+	call amc#goBufName("[BufExplorer]")
+	if bufname() == "[BufExplorer]"
+		return
+	endif
+
+	call amc#goHome()
+
+	if bufname() == "" && &modified
+		return
+	endif
+
+	for l:bn in range(1, bufnr("$"))
+		if getbufvar(l:bn, "&buftype") == "" && buflisted(l:bn) && bufname(l:bn) != ""
+			BufExplorer
+			return
+		endif
+	endfor
 endfunction
 
 
@@ -93,6 +118,19 @@ function! amc#goBufType(bt)
 	" first available
 	for l:wn in range(1, winnr("$"))
 		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
+			execute l:wn . " wincmd w"
+			return
+		endif
+	endfor
+endfunction
+
+function! amc#goBufName(bn)
+	if bufname() == a:bn
+		return
+	endif
+
+	for l:wn in range(1, winnr("$"))
+		if bufname(winbufnr(l:wn)) == a:bn
 			execute l:wn . " wincmd w"
 			return
 		endif

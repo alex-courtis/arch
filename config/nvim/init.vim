@@ -58,7 +58,7 @@ nmap	<silent>	<Leader>q	:call amc#goHome() <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
 
 nmap	<silent>	<Leader>.	:cnext<CR>
-nmap	<silent>	<Leader>e	:call amc#goHome() <Bar> ToggleBufExplorer<CR>
+nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nmap	<silent>	<Leader>p	:cprev<CR>
