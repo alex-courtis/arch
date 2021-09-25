@@ -62,7 +62,7 @@ nmap	<silent>	<Leader>e	:call amc#goHome() <Bar> ToggleBufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nmap	<silent>	<Leader>p	:cprev<CR>
-nmap	<silent>	<Leader>u	:b#<CR>
+nmap	<silent>	<Leader>u	:call amc#safeBHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 nmap	<silent>	<Leader>i	:call amc#goHome() <Bar> TagbarOpen fj<CR>
