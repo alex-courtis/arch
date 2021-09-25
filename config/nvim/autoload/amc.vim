@@ -7,6 +7,7 @@ function! amc#colours()
 	highlight default link TagbarHighlight CursorLine
 endfunction
 
+
 function! amc#delBuf()
 	" forcing is here for the case of a new buffer with unsaved changes
 	call amc#log("delBuf ")
@@ -160,5 +161,16 @@ function! amc#goHomeOrNext()
 			return
 		endif
 	endfor
+endfunction
+
+
+function! amc#vsel()
+	try
+		let l:zprev = @z
+		normal! gv"zy
+		return @z
+	finally
+		let @z = l:zprev
+	endtry
 endfunction
 
