@@ -49,12 +49,12 @@ imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
-nmap	<silent>	<Leader>'	:call amc#closeAll()<CR>
+nmap	<silent>	<Leader>'	:call amc#win#closeAll()<CR>
 
-nmap	<silent>	<Leader>,	:call amc#goHelp()<CR>
+nmap	<silent>	<Leader>,	:call amc#win#goHelp()<CR>
 nmap	<silent>	<Leader><	:helpclose<CR>
-nmap	<silent>	<Leader>o	:call amc#goHomeOrNext()<CR>
-nmap	<silent>	<Leader>q	:call amc#goHome() <Bar> belowright copen<CR>
+nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
+nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
 
 nmap	<silent>	<Leader>.	:cnext<CR>
@@ -62,14 +62,14 @@ nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
 nmap	<silent>	<Leader>p	:cprev<CR>
-nmap	<silent>	<Leader>u	:call amc#safeBHash()<CR>
+nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
-nmap	<silent>	<Leader>i	:call amc#goHome() <Bar> TagbarOpen fj<CR>
+nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
 nmap	<silent>	<F12>f		gg=G``
-nmap	<silent>	<F12>d		:call amc#delBuf()<CR>
+nmap	<silent>	<F12>d		:call amc#buf#del()<CR>
 
 nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
 vmap			<F12>g		:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
@@ -121,7 +121,7 @@ cabbrev ag silent grep!
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
-autocmd QuickfixCmdPost * call amc#goHome() | cclose | belowright cwindow
+autocmd QuickfixCmdPost * call amc#win#goHome() | cclose | belowright cwindow
 
 " omnicompletion
 set completeopt=menuone,longest

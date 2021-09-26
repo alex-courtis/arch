@@ -67,3 +67,4 @@ function amc#nt#sync()
 
 	let &ei=l:eiprev
 endfunction
+
