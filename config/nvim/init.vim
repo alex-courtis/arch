@@ -72,7 +72,7 @@ nmap	<silent>	<F12>f		gg=G``
 nmap	<silent>	<F12>d		:call amc#delBuf()<CR>
 
 nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
-vmap			<F12>g		:<C-u>ag "<C-r>=amc#vsel()<CR>"
+vmap			<F12>g		:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nmap	<silent>	<F12>hc		:call gitgutter#hunk#close_hunk_preview_window()<CR>
 nmap	<silent>	<F12>hp		<Plug>(GitGutterPreviewHunk)
 nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
@@ -90,7 +90,7 @@ nmap	<silent>	<F12>t		<C-]>
 nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
 
 nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
-vmap			<F12>r		:<C-u>%s/<C-r>=amc#vsel()<CR>/
+vmap			<F12>r		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 nmap	<silent>	<F12>n		:tn<CR>
 nmap	<silent>	<F12>N		:tp<CR>
 

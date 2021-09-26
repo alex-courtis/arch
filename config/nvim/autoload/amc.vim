@@ -164,11 +164,11 @@ function! amc#goHomeOrNext()
 endfunction
 
 
-function! amc#vsel()
+function! amc#vselFirstLine()
 	try
 		let l:zprev = @z
 		normal! gv"zy
-		return @z
+		return substitute(@z, "\n.*", "", "g")
 	finally
 		let @z = l:zprev
 	endtry
