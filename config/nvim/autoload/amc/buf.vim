@@ -28,23 +28,30 @@ function! amc#buf#del()
 	if l:abn != l:cbn && l:abn != -1 && buflisted(l:abn) && l:abt == ""
 		call amc#log(" b! #")
 		execute "b! #"
-		call amc#log(" -> " . bufnr() . " '" . bufname() . "'")
+		call amc#log(" -> " . bufnr() . " '" . bufname() . "' buftype='" . &buftype . "' buflisted=" . &buflisted)
 	else
 		call amc#log(" bn!")
 		execute "bn!"
-		call amc#log(" -> " . bufnr() . " '" . bufname() . "'")
+		call amc#log(" -> " . bufnr() . " '" . bufname() . "' buftype='" . &buftype . "' buflisted=" . &buflisted)
+
+		if !&buflisted || &buftype != ""
+			call amc#log(" b! " . l:cbn)
+			execute "b!" . l:cbn
+			call amc#log(" -> " . bufnr() . " '" . bufname() . "' buftype='" . &buftype . "' buflisted=" . &buflisted)
+		endif
 	endif
 
 	if bufnr() == l:cbn
 		call amc#log(" enew!")
 		execute "enew!"
-		call amc#log(" -> " . bufnr() . " '" . bufname() . "'")
+		call amc#log(" -> " . bufnr() . " '" . bufname() . "' buftype='" . &buftype . "' buflisted=" . &buflisted)
 	endif
 
 	if getbufvar(l:cbn, "&buflisted")
+		" TODO this sometimes deletes the new and sends us to a bad place e.g. quickfix
 		call amc#log(" bd! " . l:cbn . " " . bufname(l:cbn))
 		execute "bd! " . l:cbn
-		call amc#log(" -> " . bufnr() . " '" . bufname() . "'")
+		call amc#log(" -> " . bufnr() . " '" . bufname() . "' buftype='" . &buftype . "' buflisted=" . &buflisted)
 	endif
 
 	call amc#log("")
