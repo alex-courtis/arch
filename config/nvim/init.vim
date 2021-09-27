@@ -68,7 +68,8 @@ nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nmap	<silent>	<Leader>I	:TagbarClose<CR>
 
-nmap	<silent>	<F12>f		gg=G``
+nmap			<F12>f		:/<C-r>=expand("<cword>")<CR>
+vmap			<F12>f		:<C-u>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<F12>d		:call amc#buf#del()<CR>
 
 nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
@@ -90,7 +91,9 @@ nmap	<silent>	<F12>t		<C-]>
 nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
 
 nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
+nmap			<F12>R		:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
 vmap			<F12>r		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
+vmap			<F12>R		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<F12>n		:tn<CR>
 nmap	<silent>	<F12>N		:tp<CR>
 
