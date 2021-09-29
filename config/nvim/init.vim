@@ -98,6 +98,7 @@ nmap	<silent>	<F12>n		:tn<CR>
 nmap	<silent>	<F12>N		:tp<CR>
 
 nmap	<silent>	<F12>s		:GotoHeaderSwitch<CR>
+nmap	<silent>	<F12>z		gg=G``
 
 nmap	<silent>	<F12>-		:GotoHeader<CR>
 
