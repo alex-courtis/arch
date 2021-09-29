@@ -43,6 +43,8 @@ vmap 	@; 	@:
 nmap 	<C-w>; 	<C-w>:
 vmap 	<C-w>; 	<C-w>:
 
+map	Y	y$
+
 nmap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
@@ -65,12 +67,15 @@ nmap	<silent>	<Leader>p	:cprev<CR>
 nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
+" y
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nmap	<silent>	<Leader>I	:TagbarClose<CR>
+" x
 
 nmap			<F12>f		:/<C-r>=expand("<cword>")<CR>
 vmap			<F12>f		:<C-u>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<F12>d		:call amc#buf#del()<CR>
+" b
 
 nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
 vmap			<F12>g		:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
@@ -89,6 +94,7 @@ nmap	<silent>	<F12>c		<Plug>Commentary
 xmap	<silent>	<F12>c		<Plug>Commentary
 nmap	<silent>	<F12>t		<C-]>
 nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
+" w
 
 nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
 nmap			<F12>R		:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
@@ -96,11 +102,16 @@ vmap			<F12>r		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<F12>R		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<F12>n		:tn<CR>
 nmap	<silent>	<F12>N		:tp<CR>
+nmap	<silent>	<F12>v		o<Left><Right><Esc>p
+nmap	<silent>	<F12>V		O<Left><Right><Esc>p
 
+" l
 nmap	<silent>	<F12>s		:GotoHeaderSwitch<CR>
 nmap	<silent>	<F12>z		gg=G``
 
+" /
 nmap	<silent>	<F12>-		:GotoHeader<CR>
+" \
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
