@@ -129,14 +129,25 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 nmap	gc	<NOP>
 
 " grep
-set grepprg=ag\ --nogroup\ --nocolor
+set grepprg=ag\ --vimgrep
+set grepformat=%f:%l:%c:%m
 cabbrev ag silent grep!
 
 " quickfix
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
-autocmd QuickfixCmdPost * call amc#win#goHome() | cclose | belowright cwindow
+function QFP()
+	call amc#win#goHome() | cclose | belowright cwindow
+	" TODO grep only
+	let l:pattern = getqflist({"title" : 0}).title
+	let l:pattern = substitute(l:pattern, ':\s*' . &grepprg . '\s*', "", "")
+	let l:pattern = substitute(l:pattern, '\s*$', "", "")
+	" TODO strip quotes if present
+	" TODO strip flags
+	let @/ = l:pattern
+endfunction
+autocmd QuickfixCmdPost * call QFP()
 
 " omnicompletion
 set completeopt=menuone,longest
