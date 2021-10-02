@@ -59,11 +59,11 @@ nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen<CR>
 nmap	<silent>	<Leader>Q	:cclose<CR>
 
-nmap	<silent>	<Leader>.	:cnext<CR>
+nmap	<silent>	<Leader>.	:cnext <Bar> if exists("g:amc#grepping") && g:amc#grepping <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 
-nmap	<silent>	<Leader>p	:cprev<CR>
+nmap	<silent>	<Leader>p	:cprev <Bar> if exists("g:amc#grepping") && g:amc#grepping <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
@@ -137,17 +137,7 @@ cabbrev ag silent grep!
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
-function QFP()
-	call amc#win#goHome() | cclose | belowright cwindow
-	" TODO grep only
-	let l:pattern = getqflist({"title" : 0}).title
-	let l:pattern = substitute(l:pattern, ':\s*' . &grepprg . '\s*', "", "")
-	let l:pattern = substitute(l:pattern, '\s*$', "", "")
-	" TODO strip quotes if present
-	" TODO strip flags
-	let @/ = l:pattern
-endfunction
-autocmd QuickfixCmdPost * call QFP()
+autocmd QuickfixCmdPost * call amc#qfPost()
 
 " omnicompletion
 set completeopt=menuone,longest
