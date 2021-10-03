@@ -130,7 +130,7 @@ nmap	gc	<NOP>
 
 " grep
 set grepprg=ag\ --vimgrep
-set grepformat=%f:%l:%c:%m
+let &grepformat="%f:%l:%c:%m, %f"
 cabbrev ag silent grep!
 
 " quickfix
