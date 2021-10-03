@@ -51,9 +51,8 @@ function! amc#qfPost()
 	if g:amc#grepping
 		let l:pattern = substitute(l:title, ':\s*' . &grepprg . '\s*', "", "")
 		let l:pattern = substitute(l:pattern, '-\S\+', "", "g")
-		let l:pattern = substitute(l:pattern, "'", '"', "g")
-		let l:pattern = substitute(l:pattern, '"\s*$', "", "")
-		let l:pattern = substitute(l:pattern, '^\s*"', "", "")
+		let l:pattern = substitute(l:pattern, '^\s*[''"]', "", "")
+		let l:pattern = substitute(l:pattern, '["'']\s*$', "", "")
 		let @/ = l:pattern
 	endif
 endfunction
