@@ -52,15 +52,3 @@ else
 	export COL_TMUX_NORM="fg=black,bg=green"
 fi
 
-case "${HOST}" in
-	tinygod)
-		export MAKEFLAGS="-j64"
-		;;
-	emperor)
-		export MAKEFLAGS="-j32"
-		;;
-	*)
-		export MAKEFLAGS="-j8"
-		;;
-esac
-
