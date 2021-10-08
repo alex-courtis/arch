@@ -85,7 +85,7 @@ nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
 xmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
 nmap	<silent>	<F12>m		:make<CR>
-nmap	<silent>	<F12>M		:make clean<CR>
+nmap	<silent>	<F12>M		:make clean all<CR>
 
 nmap	<silent>	<F12>cu		<Plug>Commentary<Plug>Commentary
 nmap	<silent>	<F12>cc		<Plug>CommentaryLine
