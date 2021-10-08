@@ -1,5 +1,5 @@
 function! amc#log(msg)
-	call system("echo \"" . a:msg . "\" >> /tmp/vim.amc.log")
+	call system("echo \"" . a:msg . "\" >> /tmp/vim." . $USER . ".log")
 endfunction
 
 

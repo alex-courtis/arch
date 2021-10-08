@@ -23,7 +23,7 @@ endif
 set background=
 
 
-let &rtp.="," . $XDG_CONFIG_HOME . "/nvim"
+let &rtp.=",~/.config/nvim"
 runtime init.vim
 
 

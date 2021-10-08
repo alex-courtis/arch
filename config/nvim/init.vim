@@ -1,6 +1,6 @@
 filetype off
-let &rtp .= "," . $XDG_DATA_HOME . "/nvim/vundle/Vundle.vim"
-call vundle#begin($XDG_DATA_HOME . "/nvim/vundle")
+let &rtp .= ",~/.local/share/nvim/vundle/Vundle.vim"
+call vundle#begin("~/.local/share/nvim/vundle")
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
