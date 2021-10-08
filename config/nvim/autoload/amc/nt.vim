@@ -1,3 +1,38 @@
+function amc#nt#stdinReadPre()
+	let g:amc#nt#stdin = 1
+endfunction
+
+" from the nerdtree readme, but much less cryptic
+function amc#nt#vimEnter()
+	if g:amc#nt#stdin
+		return
+	endif
+
+	if argc() == 0
+
+		" open if nothing specified
+		NERDTree
+
+	elseif argc() == 1 && isdirectory(argv()[0])
+
+		" change to and open the one and only directory
+		execute "NERDTree " . argv()[0]
+		wincmd p
+		enew
+		execute "cd " . argv()[0]
+		execute "NERDTreeFocus"
+
+	elseif argc() > 1
+
+		" bomb out if any other directory specified
+		for l:i in range(0, argc() - 1)
+			if isdirectory(argv()[i - 1])
+				exit!
+			endif
+		endfor
+	endif
+endfunction
+
 " listed buffer
 " 'normal' buffer (buftype empty)
 " readable file

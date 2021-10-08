@@ -182,6 +182,17 @@ let EditorConfig_max_line_indicator='line'
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
 
+" nerdtree
+set wildignore+=*.o,*.class
+let NERDTreeRespectWildIgnore = 1
+let NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let g:amc#nt#stdin = 0
+autocmd StdinReadPre * call amc#nt#stdinReadPre()
+autocmd VimEnter * call amc#nt#vimEnter()
+autocmd BufEnter * call amc#nt#sync()
+
 " nerdtree-git-plugin
 let g:NERDTreeGitStatusMapPrevHunk = "<Leader>k"
 let g:NERDTreeGitStatusMapNextHunk = "<Leader>j"
