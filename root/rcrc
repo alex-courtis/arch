@@ -1,0 +1,6 @@
+# cd && RCRC=".dotfiles/root/rcrc" HOME= rcup -v
+
+DOTFILES_DIRS=".dotfiles/root"
+EXCLUDES="rcrc"
+UNDOTTED="etc"
+

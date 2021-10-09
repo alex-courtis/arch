@@ -1,2 +1,2 @@
-EXCLUDES="git doc misc README.md"
+EXCLUDES="git doc root misc README.md"
 UNDOTTED="bin"

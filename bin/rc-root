@@ -1,0 +1,29 @@
+#!/bin/sh
+
+ARGS="${@}"
+case "$(basename ${0})" in
+	rcup-root)
+		CMD=rcup
+		;;
+	rcdn-root)
+		CMD=rcdn
+		;;
+	lsrc-root)
+		CMD=lsrc
+		;;
+	mkrc-root)
+		CMD=mkrc
+		;;
+	*)
+		echo "use rcup-root, rcdn-root, lsrc-root or mkrc-root"
+		exit 1
+		;;
+esac
+
+cd
+
+export RCRC=".dotfiles/root/rcrc"
+export HOME=
+
+${CMD} $*
+
