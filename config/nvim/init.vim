@@ -94,7 +94,7 @@ nmap	<silent>	<F12>c		<Plug>Commentary
 xmap	<silent>	<F12>c		<Plug>Commentary
 nmap	<silent>	<F12>t		<C-]>
 nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
-" w
+nmap	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
 
 nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
 nmap			<F12>R		:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
