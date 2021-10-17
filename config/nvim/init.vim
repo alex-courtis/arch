@@ -89,14 +89,15 @@ omap	<silent>	<F12>c		<Plug>Commentary
 nmap	<silent>	<F12>c		<Plug>Commentary
 xmap	<silent>	<F12>c		<Plug>Commentary
 nmap	<silent>	<F12>t		<C-]>
+nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
 nmap	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
 
 nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
 nmap			<F12>R		:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
 vmap			<F12>r		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<F12>R		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<F12>nn		:tn<CR>
-nmap	<silent>	<F12>n		:tp<CR>
+nmap	<silent>	<F12>n		:tn<CR>
+nmap	<silent>	<F12>N		:tp<CR>
 nmap	<silent>	<F12>v		o<Left><Right><Esc>p
 nmap	<silent>	<F12>V		O<Left><Right><Esc>p
 
@@ -106,12 +107,11 @@ nmap	<silent>	<F12>z		gg=G``
 
 " /
 nmap	<silent>	<F12>-		:GotoHeader<CR>
+" \
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
 
-nnor	<silent>	<C-t><C-t>	<C-t>
-nnor	<silent>	<C-t>		:call settagstack(win_getid(), {'items' : []})<CR>
 
 " appearance
 let colors_name = "base16-bright"
@@ -225,6 +225,4 @@ set updatetime=250
 let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
 let g:gitgutter_preview_win_location = 'belowright'
-
-autocmd BufEnter * call amc#win#updateMruEnter()
 
