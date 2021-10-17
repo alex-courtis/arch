@@ -65,3 +65,39 @@ function! amc#win#openFocusGitPreview()
 	endif
 endfunction
 
+function! amc#win#updateMruEnter()
+	if !exists('w:amcMru')
+		let w:amcMru = []
+	endif
+	if !exists('w:amcMruPointer')
+		let w:amcMruPointer = 0
+	endif
+
+	let l:wn = winnr()
+	let l:bn = bufnr()
+	let l:bname = bufname()
+
+	if &buftype != "" || !&buflisted || (l:bname != "" && !filereadable(l:bname))
+		return
+	endif
+
+	let l:bi = index(w:amcMru, l:bn)
+	if (l:bi >= 0)
+		call remove(w:amcMru, l:bi)
+	endif
+	call add(w:amcMru, l:bn)
+	call amc#log("w" . l:wn . " " . string(w:amcMru))
+endfunction
+
+function! amc#win#updateMruLeave()
+	" TODO maybe clean remove if the buffer has become unlisted etc.
+endfunction
+
+function! amc#win#backMru()
+	call amc#log("backMru")
+endfunction
+
+function! amc#win#forwardMru()
+	call amc#log("forwardMru")
+endfunction
+
