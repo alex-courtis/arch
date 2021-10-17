@@ -11,11 +11,13 @@ set hlsearch
 set showcmd
 set listchars=trail:·,tab:>\ ,eol:¬
 
-" alacritty, st, xterm and tmux all talk sgr
-" terminus automatically sets it when under tmux
-" vim hardcodes st to 'xterm' and xterm to 'sgr'
-" sgr is desirable as one of its side effects is the ability to handle modified F1-F4
-if ($TERM =~ 'alacritty' || $TERM =~ 'st-')
+" default $TERM -> ttymouse, possibly via terminfo database
+" st -> xterm
+" st-256color -> xterm
+" tmux -> xterm
+" xterm -> sgr
+" xterm-256color -> sgr
+if ($TERM =~ 'alacritty' || $TERM =~ 'st' || $TERM =~ 'tmux')
 	set ttymouse=sgr
 endif
 
