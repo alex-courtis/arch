@@ -57,3 +57,11 @@ function! amc#win#goHomeOrNext()
 	endfor
 endfunction
 
+function! amc#win#openFocusGitPreview()
+	if gitgutter#hunk#is_preview_window_open()
+		call amc#win#goBufName('gitgutter://hunk-preview')
+	else
+		GitGutterPreviewHunk
+	endif
+endfunction
+

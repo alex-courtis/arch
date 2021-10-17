@@ -51,14 +51,12 @@ imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
 nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
-nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
 nmap	<silent>	<Leader>'	:call amc#win#closeAll()<CR>
 
 nmap	<silent>	<Leader>,	:call amc#win#goHome() <Bar> aboveleft copen<CR>
 nmap	<silent>	<Leader><	:cclose<CR>
 nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
-nmap	<silent>	<Leader>q	<Plug>(GitGutterPreviewHunk)
-nmap	<silent>	<Leader>Q	:call gitgutter#hunk#close_hunk_preview_window()<CR>
+nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
 
 nmap	<silent>	<Leader>.	:cnext <Bar> if g:amc#grepping <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
@@ -70,7 +68,6 @@ nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 
 " y
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
-nmap	<silent>	<Leader>I	:TagbarClose<CR>
 " x
 
 nmap			<F12>f		:/<C-r>=expand("<cword>")<CR>
@@ -121,12 +118,6 @@ let colors_name = "base16-bright"
 let base16colorspace=256
 autocmd ColorScheme * call amc#colours()
 
-" vim-commentary
-autocmd FileType c setlocal commentstring=//\ %s
-autocmd FileType cpp setlocal commentstring=//\ %s
-" stop the plugin from creating the default mappings
-nmap	gc	<NOP>
-
 " grep
 set grepprg=ag\ --vimgrep
 let &grepformat="%f:%l:%c:%m, %f"
@@ -138,6 +129,7 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
 let g:amc#grepping = 0
 autocmd QuickfixCmdPost * call amc#qfPost()
+autocmd FileType qf nmap <buffer> <Esc> :q<CR>
 
 " omnicompletion
 set completeopt=menuone,longest
@@ -166,6 +158,10 @@ autocmd BufReadPost *
 " autosave
 autocmd FocusLost * silent! :w
 
+" help
+autocmd FileType help nmap <buffer> <Esc> :q<CR>
+
+
 " airline
 set noshowmode
 let g:airline#extensions#searchcount#enabled = 0
@@ -191,6 +187,7 @@ let NERDTreeRespectWildIgnore = 1
 let NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeMapQuit = '<Esc>'
 let g:amc#nt#stdin = 0
 autocmd StdinReadPre * call amc#nt#stdinReadPre()
 autocmd VimEnter * call amc#nt#vimEnter()
@@ -215,6 +212,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 " tagbar
 let g:tagbar_compact=1
+let tagbar_map_close = '<Esc>'
+
+" vim-commentary
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+" stop the plugin from creating the default mappings
+nmap	gc	<NOP>
 
 " vim-gitgutter
 set updatetime=250
