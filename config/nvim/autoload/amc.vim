@@ -42,7 +42,7 @@ endfunction
 function! amc#qfPost()
 	call amc#win#goHome()
 	cclose
-	belowright cwindow
+	aboveleft cwindow
 
 	let l:title = getqflist({"title" : 0}).title
 	let l:size = getqflist({"size" : 0}).size

@@ -20,7 +20,7 @@ ORDER:
 # Auto scale may be overridden for each display.
 SCALE:
   - NAME_DESC: 'ASUS XG32V'
-    SCALE: 1.5
+    SCALE: 1.25
 
 
 # Laptop displays usually start with eDP e.g. eDP-1. This may be overridden if

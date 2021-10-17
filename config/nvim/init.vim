@@ -54,11 +54,11 @@ nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nmap	<silent>	<Leader>A	:NERDTreeClose<CR>
 nmap	<silent>	<Leader>'	:call amc#win#closeAll()<CR>
 
-nmap	<silent>	<Leader>,	:call amc#win#goHelp()<CR>
-nmap	<silent>	<Leader><	:helpclose<CR>
+nmap	<silent>	<Leader>,	:call amc#win#goHome() <Bar> aboveleft copen<CR>
+nmap	<silent>	<Leader><	:cclose<CR>
 nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
-nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen<CR>
-nmap	<silent>	<Leader>Q	:cclose<CR>
+nmap	<silent>	<Leader>q	<Plug>(GitGutterPreviewHunk)
+nmap	<silent>	<Leader>Q	:call gitgutter#hunk#close_hunk_preview_window()<CR>
 
 nmap	<silent>	<Leader>.	:cnext <Bar> if g:amc#grepping <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
@@ -80,8 +80,6 @@ nmap	<silent>	<F12>d		:call amc#buf#del()<CR>
 
 nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
 vmap			<F12>g		:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
-nmap	<silent>	<F12>hc		:call gitgutter#hunk#close_hunk_preview_window()<CR>
-nmap	<silent>	<F12>hp		<Plug>(GitGutterPreviewHunk)
 nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
 xmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
@@ -222,4 +220,5 @@ let g:tagbar_compact=1
 set updatetime=250
 let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
+let g:gitgutter_preview_win_location = 'belowright'
 

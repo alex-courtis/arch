@@ -1,26 +1,18 @@
 function! amc#win#goHome()
-	call amc#win#goBufType("")
-endfunction
-
-function! amc#win#goHelp()
-	call amc#win#goBufType("help")
-endfunction
-
-function! amc#win#goBufType(bt)
-	if &buftype == a:bt
+	if &buftype == ""
 		return
 	endif
 
-	" previous if buf type
+	" previous
 	let l:pwn = winnr('#')
-	if l:pwn && getbufvar(winbufnr(l:pwn), "&buftype") == a:bt
+	if l:pwn && getbufvar(winbufnr(l:pwn), "&buftype") == ""
 		execute l:pwn . " wincmd w"
 		return
 	endif
 
 	" first available
 	for l:wn in range(1, winnr("$"))
-		if getbufvar(winbufnr(l:wn), "&buftype") == a:bt
+		if getbufvar(winbufnr(l:wn), "&buftype") == ""
 			execute l:wn . " wincmd w"
 			return
 		endif
