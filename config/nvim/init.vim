@@ -35,14 +35,14 @@ set undofile
 set scrolloff=3
 
 
-nmap 	; 	:
-vmap 	; 	:
-nmap 	q; 	q:
-vmap 	q; 	q:
-nmap 	@; 	@:
-vmap 	@; 	@:
-nmap 	<C-w>; 	<C-w>:
-vmap 	<C-w>; 	<C-w>:
+nmap	;	:
+vmap	;	:
+nmap	q;	q:
+vmap	q;	q:
+nmap	@;	@:
+vmap	@;	@:
+nmap	<C-w>; 	<C-w>:
+vmap	<C-w>; 	<C-w>:
 
 map	Y	y$
 
@@ -171,7 +171,8 @@ autocmd FocusLost * silent! :w
 " airline
 set noshowmode
 let g:airline#extensions#searchcount#enabled = 0
-let g:airline_section_y='w%{winnr()} b%{bufnr()}'
+let g:airline_section_x=''
+let g:airline_section_y='%{airline#util#wrap(airline#parts#filetype(),0)}'
 let g:airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 
