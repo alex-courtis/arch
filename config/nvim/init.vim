@@ -165,6 +165,9 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
+" autosave
+autocmd FocusLost * silent! :w
+
 " airline
 set noshowmode
 let g:airline#extensions#searchcount#enabled = 0
