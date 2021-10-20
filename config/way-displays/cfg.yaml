@@ -4,7 +4,7 @@
 
 # The default left to right order is simply the order in which the displays are
 # discovered.
-# Define this own.
+# Define your own.
 ORDER:
   #- 'DP-2'
   #- 'monitor description'
@@ -26,4 +26,8 @@ SCALE:
 # Laptop displays usually start with eDP e.g. eDP-1. This may be overridden if
 # your laptop is different.
 #LAPTOP_DISPLAY_PREFIX: 'eDP'
+
+
+# One of: ERROR, WARNING, INFO (default), DEBUG
+#LOG_THRESHOLD: DEBUG
 
