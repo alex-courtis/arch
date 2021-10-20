@@ -3,6 +3,6 @@
 if [ -f Makefile.dev ]; then
 	/usr/bin/make -f Makefile.dev ${@}
 else
-	/usr/bin/make ${0}
+	/usr/bin/make ${@}
 fi
 
