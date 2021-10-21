@@ -24,6 +24,7 @@ function precmd() {
 		PR_WAR="${PR_WAR} -tm "
 	fi
 
+	# sync this with the expensive termtitle script
 	# no terminfo references as they are not reliable e.g. xterm missing fsl
 	print -Pn "\E]0;%~${git_ps1}"
 
@@ -39,9 +40,9 @@ function preexec() {
 
 # git PS1
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-	GIT_PS1_SHOWDIRTYSTATE="true"
-	GIT_PS1_SHOWSTASHSTATE="true"
-	GIT_PS1_SHOWUPSTREAM="auto"
+	export GIT_PS1_SHOWDIRTYSTATE="true"
+	export GIT_PS1_SHOWSTASHSTATE="true"
+	export GIT_PS1_SHOWUPSTREAM="auto"
 	. /usr/share/git/completion/git-prompt.sh
 else
 	function __git_ps1() { : }
