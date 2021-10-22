@@ -163,9 +163,9 @@ autocmd FileType help nmap <buffer> <Esc> :q<CR>
 
 " terminal title
 set title
-autocmd BufWritePost	* let &titlestring = system('. termtitle')
-autocmd FocusGained	* let &titlestring = system('. termtitle')
-autocmd VimEnter	* let &titlestring = system('. termtitle')
+autocmd BufWritePost	* let &titlestring = system('printtermtitle')
+autocmd FocusGained	* let &titlestring = system('printtermtitle')
+autocmd VimEnter	* let &titlestring = system('printtermtitle')
 
 " airline
 set noshowmode

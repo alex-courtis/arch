@@ -7,7 +7,6 @@ PS4="${COL_ZSH_NOR}${PS4}${COL_ZSH_OFF} "
 
 function precmd() {
 	rc=${?}
-	git_ps1="$(__git_ps1)"
 
 	updatetmuxterm
 
@@ -24,9 +23,10 @@ function precmd() {
 		PR_WAR="${PR_WAR} -tm "
 	fi
 
-	# sync this with the expensive termtitle script
 	# no terminfo references as they are not reliable e.g. xterm missing fsl
-	print -Pn "\E]0;%~${git_ps1}"
+	print -n "\E]0;"
+	printtermtitle
+	print -n ""
 
 	# clear ^C for use by zle abort-buffer
 	stty intr undef
@@ -38,12 +38,3 @@ function preexec() {
 	stty intr 
 }
 
-# git PS1
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-	export GIT_PS1_SHOWDIRTYSTATE="true"
-	export GIT_PS1_SHOWSTASHSTATE="true"
-	export GIT_PS1_SHOWUPSTREAM="auto"
-	. /usr/share/git/completion/git-prompt.sh
-else
-	function __git_ps1() { : }
-fi
