@@ -1,0 +1,16 @@
+export BASE00="#000000" # Default Background
+export BASE01="#303030" # Lighter Background (Used for status bars)
+export BASE02="#505050" # Selection Background
+export BASE03="#b0b0b0" # Comments, Invisibles, Line Highlighting
+export BASE04="#d0d0d0" # Dark Foreground (Used for status bars)
+export BASE05="#e0e0e0" # Default Foreground, Caret, Delimiters, Operators
+export BASE06="#f5f5f5" # Light Foreground (Not often used)
+export BASE07="#ffffff" # Light Background (Not often used)
+export BASE08="#fb0120" # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+export BASE09="#fc6d24" # Integers, Boolean, Constants, XML Attributes, Markup Link Url
+export BASE0A="#fda331" # Classes, Markup Bold, Search Text Background
+export BASE0B="#a1c659" # Strings, Inherited Class, Markup Code, Diff Inserted
+export BASE0C="#76c7b7" # Support, Regular Expressions, Escape Characters, Markup Quotes
+export BASE0D="#6fb3d2" # Functions, Methods, Attribute IDs, Headings
+export BASE0E="#d381c3" # Keywords, Storage, Selector, Markup Italic, Diff Changed
+export BASE0F="#be643c" # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
