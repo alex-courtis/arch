@@ -26,7 +26,6 @@ set $menu bmr | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-exec swaybg --color '#000000'
 
 #
 # Example configuration:
@@ -81,8 +80,6 @@ input type:pointer {
     accel_profile flat
     pointer_accel 0
 }
-
-input * xkb_numlock enable
 
 ### Key bindings
 #
@@ -215,18 +212,6 @@ bindsym $mod+r mode "resize"
 # Pango font used by sway and swaybar
 font Monospace 11
 
-# Very glad this is built in
-gaps inner 2
-smart_borders on
-smart_gaps on
-
-# normal hardcodes 2 pixels
-# borderpx and gappx at "1 point"
-#  emperor asus 32: 2
-#  duke: 4
-#  gigantor: ???
-default_border normal 2
-
 #
 # Status Bar:
 #
@@ -234,37 +219,37 @@ default_border normal 2
 bar {
     position top
 
-    # swaybar_command waybar
-
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
     status_command slstatus -s
 
     colors {
         background $base01
-	# green WTF
-        separator  $base0B
+        separator  $base06
         statusline $base05
 
         #                   Border  BG      Text
         focused_workspace   $base02 $base02 $base06
-        # green WTF
-        active_workspace    $base0B $base0B $base05
+        active_workspace    $base01 $base01 $base05
         inactive_workspace  $base01 $base01 $base05
         urgent_workspace    $base06 $base06 $base02
         binding_mode        $base02 $base02 $base06
     }
 }
 
+#
+# Colours and appearance:
+#
+default_border normal 1
+
+output * background $base01 solid_color
+
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base03 $base02 $base06 $base06 $base03
-client.focused_inactive $base03 $base01 $base05 $base05 $base02
-client.unfocused        $base02 $base01 $base05 $base05 $base02
-# red WTF
-client.urgent           $base02 $base08 $base05 $base05 $base02
-# magenta WTF
-client.placeholder      $base02 $base0e $base05 $base05 $base02
-# green WTF
-client.background       $base0B
+client.focused          $base02 $base02 $base05 $base02 $base02
+client.focused_inactive $base01 $base01 $base05 $base01 $base01
+client.unfocused        $base01 $base01 $base04 $base01 $base01
+client.urgent           $base02 $base02 $base05 $base02 $base02
+client.placeholder      $base01 $base01 $base04 $base01 $base01
+client.background       $base00
 
 include /etc/sway/config.d/*
