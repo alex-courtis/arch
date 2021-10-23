@@ -1,0 +1,20 @@
+# terminal title, sometimes invoked by nonlogin shells such as vim's
+function printtermtitle() {
+
+	# lazy load __git_ps1
+	if ! type __git_ps1 > /dev/null 2>&1; then
+		if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+			GIT_PS1_SHOWDIRTYSTATE="true"
+			GIT_PS1_SHOWSTASHSTATE="true"
+			GIT_PS1_SHOWUPSTREAM="auto"
+			. /usr/share/git/completion/git-prompt.sh
+		else
+			function __git_ps1() { : }
+		fi
+	fi
+
+	# don't include __git_ps1 in the print lest it be prompt substituted
+	print -Pn "%~"
+	__git_ps1
+}
+

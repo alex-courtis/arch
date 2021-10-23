@@ -1,3 +1,5 @@
+source "${HOME}/.zshenv.function"
+
 path=(~/bin ~/.local/bin $path)
 
 # vi everywhere, symlinked to vim
@@ -50,21 +52,5 @@ elif [ -n "${SSH_CONNECTION}" ]; then
 else
 	COL_ZSH_NOR="%F{black}%K{green}"
 	export COL_TMUX_NORM="fg=black,bg=green"
-fi
-
-# terminal title, using__git_ps1, sometimes invoked by nonlogin shells
-function printtermtitle() {
-	print -Pn "%~"
-	__git_ps1
-}
-if ! type __git_ps1 > /dev/null; then
-	if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-		export GIT_PS1_SHOWDIRTYSTATE="true"
-		export GIT_PS1_SHOWSTASHSTATE="true"
-		export GIT_PS1_SHOWUPSTREAM="auto"
-		. /usr/share/git/completion/git-prompt.sh
-	else
-		function __git_ps1() { : }
-	fi
 fi
 
