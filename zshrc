@@ -1,9 +1,9 @@
-source "${HOME}/.zshrc.tmux"
-source "${HOME}/.zshrc.completion"
-source "${HOME}/.zshrc.zle"
-source "${HOME}/.zshrc.prompt"
-source "${HOME}/.zshrc.function"
-source "${HOME}/.zshrc.alias"
+source "${HOME}/.zsh/zshrc.tmux"
+source "${HOME}/.zsh/zshrc.completion"
+source "${HOME}/.zsh/zshrc.zle"
+source "${HOME}/.zsh/zshrc.prompt"
+source "${HOME}/.zsh/zshrc.function"
+source "${HOME}/.zsh/zshrc.alias"
 
 # remove duplicates coming from arch's /etc/profile.d
 typeset -U path

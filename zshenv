@@ -1,4 +1,4 @@
-source "${HOME}/.zshenv.function"
+source "${HOME}/.zsh/zshenv.function"
 
 path=(~/bin ~/.local/bin $path)
 
