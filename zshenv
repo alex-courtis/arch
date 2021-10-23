@@ -1,3 +1,4 @@
+source "${HOME}/.zsh/zshenv.base16-bright"
 source "${HOME}/.zsh/zshenv.function"
 
 path=(~/bin ~/.local/bin $path)

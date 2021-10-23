@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+bemenu-run \
+	--ignorecase \
+	--prompt ":;" \
+	--fn "monospace 11" \
+	--list 20 \
+	--sb "#FFFF00" --sf "#FFFFFF" \
+	--tb "${BASE01}" --tf "${BASE05}" \
+	--fb "${BASE01}" --ff "${BASE05}" \
+	--nb "${BASE01}" --nf "${BASE05}" \
+	--hb "${BASE02}" --hf "${BASE06}"
+
