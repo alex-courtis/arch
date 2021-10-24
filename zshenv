@@ -55,3 +55,15 @@ else
 	export COL_TMUX_NORM="fg=black,bg=green"
 fi
 
+# customise various bemenu invocations
+export BEMENU_OPTS="--ignorecase \
+	--prompt ':;' \
+	--fn 'monospace 11' \
+	--list 10 \
+	--wrap \
+	--sb '#FFFF00' --sf '#FFFFFF' \
+	--tb '${BASE0B}' --tf '${BASE00}' \
+	--fb '${BASE01}' --ff '${BASE05}' \
+	--nb '${BASE01}' --nf '${BASE05}' \
+	--hb '${BASE02}' --hf '${BASE05}'"
+
