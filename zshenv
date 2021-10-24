@@ -63,7 +63,7 @@ export BEMENU_OPTS="--ignorecase \
 	--wrap \
 	--sb '#FFFF00' --sf '#FFFFFF' \
 	--tb '${BASE0B}' --tf '${BASE00}' \
-	--fb '${BASE01}' --ff '${BASE05}' \
-	--nb '${BASE01}' --nf '${BASE05}' \
-	--hb '${BASE02}' --hf '${BASE05}'"
+	--fb '${BASE01}' --ff '${BASE04}' \
+	--nb '${BASE01}' --nf '${BASE04}' \
+	--hb '${BASE02}' --hf '${BASE06}'"
 

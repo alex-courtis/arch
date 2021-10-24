@@ -230,15 +230,15 @@ bar {
 
     colors {
         background $base01
-        separator  $base05
-        statusline $base05
+        separator  $base04
+        statusline $base04
 
         #                   Border  BG      Text
-        focused_workspace   $base02 $base02 $base05
-        active_workspace    $base01 $base01 $base05
-        inactive_workspace  $base01 $base01 $base05
-        urgent_workspace    $base03 $base02 $base05
-        binding_mode        $base02 $base02 $base05
+        focused_workspace   $base02 $base02 $base06
+        active_workspace    $base01 $base01 $base04
+        inactive_workspace  $base01 $base01 $base04
+        urgent_workspace    $base03 $base02 $base06
+        binding_mode        $base02 $base02 $base06
     }
 }
 
@@ -255,11 +255,11 @@ default_border normal 1
 # output * background $base00 solid_color
 
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base02 $base02 $base05 $base02 $base02
-client.focused_inactive $base02 $base01 $base05 $base01 $base01
-client.unfocused        $base02 $base01 $base05 $base01 $base01
-client.urgent           $base03 $base02 $base05 $base03 $base03
-client.placeholder      $base02 $base01 $base05 $base01 $base01
+client.focused          $base02 $base02 $base06 $base02 $base02
+client.focused_inactive $base02 $base01 $base04 $base01 $base01
+client.unfocused        $base02 $base01 $base04 $base01 $base01
+client.urgent           $base03 $base02 $base06 $base03 $base03
+client.placeholder      $base02 $base01 $base04 $base01 $base01
 client.background       $base00
 
 include /etc/sway/config.d/*
