@@ -99,6 +99,9 @@ input type:pointer {
     bindsym $mod+x exec $menu
     bindsym $mod+Ctrl+x exec $menu-app
 
+    # Poke wifi
+    bindsym $mod+Shift+Ctrl+w wificonnect
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

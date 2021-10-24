@@ -1,0 +1,4 @@
+#!/bin/sh
+
+nmcli device connect wlp59s0
+
