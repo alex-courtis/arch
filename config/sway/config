@@ -225,31 +225,36 @@ bar {
 
     colors {
         background $base01
-        separator  $base06
+        separator  $base05
         statusline $base05
 
         #                   Border  BG      Text
-        focused_workspace   $base02 $base02 $base06
+        focused_workspace   $base02 $base02 $base05
         active_workspace    $base01 $base01 $base05
         inactive_workspace  $base01 $base01 $base05
-        urgent_workspace    $base06 $base06 $base02
-        binding_mode        $base02 $base02 $base06
+        urgent_workspace    $base03 $base02 $base05
+        binding_mode        $base02 $base02 $base05
     }
 }
 
 #
 # Colours and appearance:
 #
+gaps inner 1
+gaps outer -1
+smart_gaps on
+smart_borders on
 default_border normal 1
 
-output * background $base01 solid_color
+# hacked sway to use #000000 as the desktop render "clear_color" instead of #404040
+# output * background $base00 solid_color
 
 # Property Name         Border  BG      Text    Indicator Child Border
 client.focused          $base02 $base02 $base05 $base02 $base02
-client.focused_inactive $base01 $base01 $base05 $base01 $base01
-client.unfocused        $base01 $base01 $base04 $base01 $base01
-client.urgent           $base02 $base02 $base05 $base02 $base02
-client.placeholder      $base01 $base01 $base04 $base01 $base01
+client.focused_inactive $base02 $base01 $base05 $base01 $base01
+client.unfocused        $base02 $base01 $base05 $base01 $base01
+client.urgent           $base03 $base02 $base05 $base03 $base03
+client.placeholder      $base02 $base01 $base05 $base01 $base01
 client.background       $base00
 
 include /etc/sway/config.d/*
