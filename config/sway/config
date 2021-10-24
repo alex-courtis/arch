@@ -100,7 +100,7 @@ input type:pointer {
     bindsym $mod+Ctrl+x exec $menu-app
 
     # Poke wifi
-    bindsym $mod+Shift+Ctrl+w wificonnect
+    bindsym $mod+Shift+Ctrl+w exec wificonnect
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
