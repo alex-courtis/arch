@@ -89,12 +89,15 @@ input type:pointer {
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Start a browser
+    bindsym $mod+Ctrl+Return exec browser
+
     # Kill focused window
-    bindsym $mod+q kill
+    bindsym $mod+d kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
-    bindsym $mod+Ctrl+d exec $menu-app
+    bindsym $mod+x exec $menu
+    bindsym $mod+Ctrl+x exec $menu-app
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -167,7 +170,7 @@ input type:pointer {
     bindsym $mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Ctrl+f floating toggle
+    bindsym $mod+Ctrl+space floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+f focus mode_toggle
