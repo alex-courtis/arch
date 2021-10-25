@@ -3,24 +3,24 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.log" 2>&1
+			exec sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.log" 2>&1
 			;;
 		2)
 			# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
 			lsmod | grep ^nvidia > /dev/null 2>&1
 			if [ $? -eq 0 ]; then
 				# nvidia does not allow; manually symlink .config/X11/xorg.conf.d/* to /etc/X11/xorg.conf.d
-				startx >"/tmp/x.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/x.${XDG_VTNR}.${USER}.stderr"
+				exec startx >"/tmp/x.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/x.${XDG_VTNR}.${USER}.stderr"
 			else
 				# other drivers do e.g. nouveau, i915
-				startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" >"/tmp/x.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/x.${XDG_VTNR}.${USER}.stderr"
+				exec startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" >"/tmp/x.${XDG_VTNR}.${USER}.stdout" 2> "/tmp/x.${XDG_VTNR}.${USER}.stderr"
 			fi
 			;;
 		3)
-			weston >"/tmp/weston.${XDG_VTNR}.${USER}.log" 2>&1
+			exec weston >"/tmp/weston.${XDG_VTNR}.${USER}.log" 2>&1
 			;;
 		4)
-			tinywl -s alacritty >"/tmp/tinywl.${XDG_VTNR}.${USER}.log" 2>&1
+			exec tinywl -s alacritty >"/tmp/tinywl.${XDG_VTNR}.${USER}.log" 2>&1
 			;;
 	esac
 fi
