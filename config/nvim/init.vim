@@ -32,7 +32,6 @@ set cursorline
 set mouse=a
 set wildmode=longest:full,full
 set undofile
-set scrolloff=3
 
 
 nmap	;	:
