@@ -24,9 +24,11 @@ function updatetmuxterm() {
 	fi
 }
 
-# maybe exec tmux
+# one shot skipping execution of tmux
 if [ ! -f "${HOME}/notmux" ] ; then
 	tm
+else
+	rm ${HOME}/notmux
 fi
 
 # style tmux
