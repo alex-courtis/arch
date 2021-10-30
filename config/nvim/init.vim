@@ -225,7 +225,7 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 nmap	gc	<NOP>
 
 " vim-gitgutter
-set updatetime=250
+set updatetime=100
 let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
 let g:gitgutter_preview_win_location = 'belowright'
