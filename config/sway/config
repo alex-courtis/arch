@@ -15,13 +15,6 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-set $term alacritty
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu bemenu-run | xargs swaymsg exec --
-set $menu-app menjar | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -87,7 +80,7 @@ input type:pointer {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $mod+Return exec alacritty
 
     # Start a browser
     bindsym $mod+Ctrl+Return exec browser
@@ -96,8 +89,8 @@ input type:pointer {
     bindsym $mod+d kill
 
     # Start your launcher
-    bindsym $mod+x exec $menu
-    bindsym $mod+Ctrl+x exec $menu-app
+    bindsym $mod+x exec bemenu-run | xargs swaymsg exec --
+    bindsym $mod+Ctrl+x exec menjar | xargs swaymsg exec --
 
     # Poke wifi
     bindsym $mod+Shift+Ctrl+w exec wificonnect
@@ -216,6 +209,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#
+# Misc:
+#
+bindsym F12 exec wl-paste --primary --no-newline | xargs wtype --
 
 # Pango font used by sway and swaybar
 font Monospace 11
