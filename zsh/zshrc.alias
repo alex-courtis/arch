@@ -13,9 +13,14 @@ alias rzgrepc="find . -type f -print0 | xargs -0 zgrep --color=always"
 
 alias diff="diff --color=auto"
 alias diffc="diff --color=always"
-alias diffp="diff -Naur"
+alias udiff="diff --unified"
+alias udiffc="diffc --unified"
+alias uudiff="diff --unified=10000"
+alias uudiffc="diffc --unified=10000"
+alias pdiff="diff -Naur"
 
 alias agh="ag --hidden"
+alias agu="ag --unrestricted"
 
 alias pt="pstree -TapU -C age"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
