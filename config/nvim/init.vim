@@ -69,43 +69,43 @@ nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 " x
 
-nmap			<F12>f		:/<C-r>=expand("<cword>")<CR>
-vmap			<F12>f		:<C-u>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<F12>d		:call amc#buf#del()<CR>
+nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
+vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
+nmap	<silent>	<Leader>d	:call amc#buf#del()<CR>
 " b
 
-nmap			<F12>g		:ag <C-r>=expand("<cword>")<CR>
-vmap			<F12>g		:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
-nmap	<silent>	<F12>hu		<Plug>(GitGutterUndoHunk)
-nmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
-xmap	<silent>	<F12>hs		<Plug>(GitGutterStageHunk)
-nmap	<silent>	<F12>m		:make<CR>
-nmap	<silent>	<F12>M		:make clean all<CR>
+nmap			<Leader>g	:ag <C-r>=expand("<cword>")<CR>
+vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
+nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
+nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
+xmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
+nmap	<silent>	<Leader>m	:make<CR>
+nmap	<silent>	<Leader>M	:make clean all<CR>
 
-nmap	<silent>	<F12>cu		<Plug>Commentary<Plug>Commentary
-nmap	<silent>	<F12>cc		<Plug>CommentaryLine
-omap	<silent>	<F12>c		<Plug>Commentary
-nmap	<silent>	<F12>c		<Plug>Commentary
-xmap	<silent>	<F12>c		<Plug>Commentary
-nmap	<silent>	<F12>t		<C-]>
-nmap	<silent>	<F12>T		:call settagstack(win_getid(), {'items' : []})<CR>
-nmap	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
+nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
+nmap	<silent>	<Leader>cc	<Plug>CommentaryLine
+omap	<silent>	<Leader>c	<Plug>Commentary
+nmap	<silent>	<Leader>c	<Plug>Commentary
+xmap	<silent>	<Leader>c	<Plug>Commentary
+nmap	<silent>	<Leader>t	<C-]>
+nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nmap	<silent>	<Leader>w	viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<Leader>w")<CR>
 
-nmap			<F12>r		:%s/<C-r>=expand("<cword>")<CR>/
-nmap			<F12>R		:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
-vmap			<F12>r		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
-vmap			<F12>R		:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<F12>n		:tn<CR>
-nmap	<silent>	<F12>N		:tp<CR>
-nmap	<silent>	<F12>v		o<Left><Right><Esc>p
-nmap	<silent>	<F12>V		O<Left><Right><Esc>p
+nmap			<Leader>r	:%s/<C-r>=expand("<cword>")<CR>/
+nmap			<Leader>R	:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
+vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
+vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
+nmap	<silent>	<Leader>n	:tn<CR>
+nmap	<silent>	<Leader>N	:tp<CR>
+nmap	<silent>	<Leader>v	o<Left><Right><Esc>p
+nmap	<silent>	<Leader>V	O<Left><Right><Esc>p
 
 " l
-nmap	<silent>	<F12>s		:GotoHeaderSwitch<CR>
-nmap	<silent>	<F12>z		gg=G``
+nmap	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
+nmap	<silent>	<Leader>z	gg=G``
 
 " /
-nmap	<silent>	<F12>-		:GotoHeader<CR>
+nmap	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
 cmap		<C-j>	<Down>
