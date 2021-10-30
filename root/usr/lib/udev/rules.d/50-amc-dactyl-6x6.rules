@@ -1,0 +1,5 @@
+# sourced from qmk_firmware/util/udev/50-qmk.rules
+
+### ATmega32U4
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", TAG+="uaccess"
+

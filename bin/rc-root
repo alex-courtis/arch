@@ -3,7 +3,8 @@
 ARGS="${@}"
 case "$(basename ${0})" in
 	rcup-root)
-		CMD=rcup
+		# always copy, not link
+		CMD="rcup -C"
 		;;
 	rcdn-root)
 		CMD=rcdn

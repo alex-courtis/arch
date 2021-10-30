@@ -2,5 +2,5 @@
 
 DOTFILES_DIRS=".dotfiles/root"
 EXCLUDES="rcrc"
-UNDOTTED="etc"
+UNDOTTED="etc usr"
 
