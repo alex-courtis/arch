@@ -210,11 +210,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Misc:
-#
-bindsym F12 exec wl-paste --primary --no-newline | xargs wtype --
-
 # Pango font used by sway and swaybar
 font Monospace 11
 
