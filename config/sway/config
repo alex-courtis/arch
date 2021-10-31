@@ -263,4 +263,6 @@ client.urgent           $base03 $base02 $base06 $base03 $base03
 client.placeholder      $base02 $base01 $base04 $base01 $base01
 client.background       $base00
 
+for_window [shell="xwayland"] title_format "%title (%shell)"
+
 include /etc/sway/config.d/*
