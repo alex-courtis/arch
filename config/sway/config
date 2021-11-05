@@ -141,11 +141,11 @@ input type:pointer {
     bindsym $mod+u workspace number 4
     bindsym $mod+i workspace number 5
     # Move focused container to workspace
-    bindsym $mod+semicolon move container to workspace number 1
-    bindsym $mod+comma move container to workspace number 2
-    bindsym $mod+period move container to workspace number 3
-    bindsym $mod+p move container to workspace number 4
-    bindsym $mod+y move container to workspace number 5
+    bindsym $mod+Ctrl+a move container to workspace number 1
+    bindsym $mod+Ctrl+o move container to workspace number 2
+    bindsym $mod+Ctrl+e move container to workspace number 3
+    bindsym $mod+Ctrl+u move container to workspace number 4
+    bindsym $mod+Ctrl+i move container to workspace number 5
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
