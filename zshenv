@@ -10,8 +10,8 @@ export VISUAL="vi"
 # better paging
 export PAGER="less"
 
-# case insensitive searching, raw escape sequence passthrough, skip single screen
-export LESS=iRF
+# case insensitive searching, raw escape sequence passthrough
+export LESS=iR
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
