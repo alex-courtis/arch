@@ -3,25 +3,25 @@
 cfg_linky="${HOME}/.config/way-displays/cfg.yaml"
 cfg_file=$(readlink -f "${cfg_linky}")
 if [ ! -f "${cfg_file}" ]; then
-	echo "${0}: could not resolve linky ${cfg_linky}" 1>&2
+	echo "${0}: could not resolve config ${cfg_linky}, exiting" 1>&2
 	exit 1
 fi
 
 new_file="/tmp/cfg.yaml"
 
-grep "AUTO_SCALE: TRUE" ${cfg_file} 2>&1 > /dev/null
+grep -i "AUTO_SCALE: TRUE" ${cfg_file} 2>&1 > /dev/null
 if [ ${?} -eq 0 ]; then
-	sed -e 's/AUTO_SCALE: TRUE/AUTO_SCALE: FALSE/g' ${cfg_file} > ${new_file}
+	sed -e 's/AUTO_SCALE: TRUE/AUTO_SCALE: FALSE/gI' "${cfg_file}" > "${new_file}"
 	echo "${0}: disabling"
 fi
 
-grep "AUTO_SCALE: FALSE" ${cfg_file} 2>&1 > /dev/null
+grep -i "AUTO_SCALE: FALSE" "${cfg_file}" 2>&1 > /dev/null
 if [ ${?} -eq 0 ]; then
-	sed -e 's/AUTO_SCALE: FALSE/AUTO_SCALE: TRUE/g' ${cfg_file} > ${new_file}
+	sed -e 's/AUTO_SCALE: FALSE/AUTO_SCALE: TRUE/gI' "${cfg_file}" > "${new_file}"
 	echo "${0}: enabling"
 fi
 
 if [ -f "${new_file}" ]; then
-	mv ${new_file} ${cfg_file}
+	mv "${new_file}" "${cfg_file}"
 fi
 
