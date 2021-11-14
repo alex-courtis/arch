@@ -95,6 +95,9 @@ input type:pointer {
     # Poke wifi
     bindsym $mod+Shift+Ctrl+w exec wificonnect
 
+    # toggle scaling
+    bindsym $mod+Shift+Ctrl+S exec togglescaling
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
