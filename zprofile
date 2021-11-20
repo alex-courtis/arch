@@ -3,7 +3,7 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			exec sway -d >"/tmp/sway.${XDG_VTNR}.${USER}.log" 2>&1
+			exec sway >"/tmp/sway.${XDG_VTNR}.${USER}.log" 2>&1
 			;;
 		2)
 			# according to man 5 xorg.conf an absolute directory should not be usable for a non root user
