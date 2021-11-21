@@ -10,6 +10,7 @@ function starttmux() {
 	fi
 }
 
+# If this is taking too long, throttle the checks. This will suit the use case of ssh to a remote existing session.
 function updatetmuxenv() {
 	if [ -n "${TMUX}" ]; then
 		# Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.

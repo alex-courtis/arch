@@ -16,7 +16,6 @@ function updatecolours() {
 	fi
 
 	if [ "${prev_nor}" != "${COL_ZSH_NOR}" ]; then
-		echo "updating tmux colours"
 		tmux set status-style "${COL_TMUX}"
 		tmux set message-style "${COL_TMUX}"
 		tmux set-window-option mode-style "${COL_TMUX}"
