@@ -14,7 +14,6 @@ function! amc#updatetitlestring()
 	else
 		let &titlestring = system('printtermtitle')
 	endif
-	call amc#log(bufname() . " titlestring = '" . &titlestring . "'")
 endfunction
 
 
