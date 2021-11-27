@@ -8,6 +8,16 @@ function! amc#colours()
 endfunction
 
 
+function! amc#updatetitlestring()
+	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
+		let &titlestring = system('printtermtitle') . ' %f%m'
+	else
+		let &titlestring = system('printtermtitle')
+	endif
+	call amc#log(bufname() . " titlestring = '" . &titlestring . "'")
+endfunction
+
+
 function! amc#safeBufExplorer()
 	call amc#win#goBufName("[BufExplorer]")
 	if bufname() == "[BufExplorer]"

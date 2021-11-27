@@ -78,6 +78,7 @@ function amc#nt#smartFocus()
 		NERDTree
 	endif
 
+	call amc#updatetitlestring()
 	let &ei=l:eiprev
 endfunction
 
@@ -89,6 +90,7 @@ function amc#nt#smartFind()
 		NERDTreeFind
 	endif
 
+	call amc#updatetitlestring()
 	let &ei=l:eiprev
 endfunction
 
