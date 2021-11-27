@@ -55,9 +55,13 @@ function! amc#updateAgPattern()
 
 	if g:amc#aging
 		let l:pattern = substitute(l:title, ':\s*' . &grepprg . '\s*', "", "")
-		let l:pattern = substitute(l:pattern, '-\S\+', "", "g")
-		let l:pattern = substitute(l:pattern, '^\s*[''"]', "", "")
-		let l:pattern = substitute(l:pattern, '["'']\s*$', "", "")
+		let l:pattern = substitute(l:pattern, '-\S\+\s*', "", "g")
+		if match(l:pattern, '^.\{-}[''"]') >= 0
+			let l:pattern = substitute(l:pattern, '^.\{-}[''"]', "", "")
+			let l:pattern = substitute(l:pattern, '["''].*$', "", "")
+		else
+			let l:pattern = substitute(l:pattern, '\s\+\S*$', "", "")
+		endif
 		let @/ = l:pattern
 	endif
 endfunction
