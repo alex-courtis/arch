@@ -48,21 +48,23 @@ function! amc#vselFirstLine()
 	endtry
 endfunction
 
-function! amc#qfPost()
-	call amc#win#goHome()
-	cclose
-	aboveleft cwindow
-
+function! amc#updateAgPattern()
 	let l:title = getqflist({"title" : 0}).title
 	let l:size = getqflist({"size" : 0}).size
-	let g:amc#grepping = l:size > 0 && match(l:title, ':\s*' . &grepprg . '\s*') >= 0
+	let g:amc#aging = l:size > 0 && match(l:title, ':\s*' . &grepprg . '\s*') >= 0
 
-	if g:amc#grepping
+	if g:amc#aging
 		let l:pattern = substitute(l:title, ':\s*' . &grepprg . '\s*', "", "")
 		let l:pattern = substitute(l:pattern, '-\S\+', "", "g")
 		let l:pattern = substitute(l:pattern, '^\s*[''"]', "", "")
 		let l:pattern = substitute(l:pattern, '["'']\s*$', "", "")
 		let @/ = l:pattern
 	endif
+endfunction
+
+function! amc#qfPost()
+	call amc#win#goHome()
+	cclose
+	aboveleft cwindow
 endfunction
 
