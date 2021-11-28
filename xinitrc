@@ -29,8 +29,16 @@ fi
 numlockx
 
 # start window manager
-# slstatus &
-# exec dwm
-xsetroot -solid "#000000"
-exec i3
+case "${X_WM}" in
+	"dwm")
+		slstatus &
+		exec dwm
+		;;
+	"i3")
+		xsetroot -solid "#000000"
+		exec i3
+		;;
+	*)
+		print "unknown wm ${X_WM}" 1>&2
+esac
 

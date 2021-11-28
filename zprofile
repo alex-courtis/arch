@@ -6,12 +6,15 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			exec startwm sway
 			;;
 		2)
-			exec startwm x
+			exec startwm x i3
 			;;
 		3)
-			exec startwm weston
+			exec startwm x dwm
 			;;
 		4)
+			exec startwm weston
+			;;
+		5)
 			exec startwm tinywl
 			;;
 	esac

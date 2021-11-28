@@ -2,6 +2,7 @@ include ~/.config/sway/appearance.config
 include ~/.config/sway/keys.config
 
 
+# borders
 default_border normal 1
 hide_edge_borders smart
 

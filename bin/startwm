@@ -12,6 +12,7 @@ case "${1}" in
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	"x")
+		export X_WM="${2}"
 		lsmod | grep ^nvidia > /dev/null 2>&1
 		if [ $? -eq 0 ]; then
 			# nvidia does not allow; manually symlink .config/X11/xorg.conf.d/* to /etc/X11/xorg.conf.d
