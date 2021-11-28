@@ -80,17 +80,18 @@ input type:pointer {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec alacritty
+    bindsym $mod+Return exec exec alacritty > /dev/null 2>&1
 
     # Start a browser
-    bindsym $mod+Ctrl+Return exec browser
+    bindsym $mod+Ctrl+Return exec exec browser > /dev/null 2>&1
 
     # Kill focused window
     bindsym $mod+d kill
 
     # Start your launcher
-    bindsym $mod+x exec bemenu-run | xargs swaymsg exec --
-    bindsym $mod+Ctrl+x exec menjar | xargs swaymsg exec --
+    # bemenu-run redirects forked process to /dev/null
+    bindsym $mod+x exec bemenu-run
+    bindsym $mod+Ctrl+x exec exec $(menjar) > /dev/null 2>&1
 
     # Poke wifi
     bindsym $mod+Shift+Ctrl+w exec wificonnect
