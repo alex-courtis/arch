@@ -2,6 +2,11 @@ include ~/.config/sway/appearance.config
 include ~/.config/sway/keys.config
 
 
+# keys
+bindsym Mod1+x      exec dmenu_run                          -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0
+bindsym Mod1+Ctrl+x exec j4-dmenu-desktop "--dmenu=dmenu -i -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0"
+
+
 # borders
 default_border normal 1
 hide_edge_borders smart

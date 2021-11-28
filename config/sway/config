@@ -6,6 +6,11 @@ include keys.config
 tiling_drag disable
 
 
+# keys
+bindsym $mod1+x exec bemenu-run
+bindsym $mod2+x exec exec $(menjar) > /dev/null 2>&1
+
+
 # startup
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
