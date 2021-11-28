@@ -1,10 +1,16 @@
-include base16-bright.config
+include appearance.config
 include keys.config
 
 
+# mouse
+tiling_drag disable
+
+
+# startup
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
 
+# input
 input type:keyboard {
     xkb_model "pc105"
     xkb_layout "us,us"
@@ -21,38 +27,14 @@ input type:pointer {
 }
 
 
+# decorations
 for_window [shell="xwayland"] title_format "%title (%shell)"
 
 
+# gaps
 gaps inner 1
 gaps outer -1
 smart_gaps on
 smart_borders on
 default_border normal 1
-
-
-font Monospace 11
-bar {
-    position top
-    status_command slstatus -s
-    colors {
-        background $base01
-        separator  $base04
-        statusline $base04
-
-        #                   Border  BG      Text
-        focused_workspace   $base02 $base02 $base06
-        active_workspace    $base01 $base01 $base04
-        inactive_workspace  $base01 $base01 $base04
-        urgent_workspace    $base03 $base02 $base06
-        binding_mode        $base02 $base02 $base06
-    }
-}
-#                       Border  BG      Text    Indicat Child Border
-client.focused          $base02 $base02 $base06 $base02 $base02
-client.focused_inactive $base02 $base01 $base04 $base01 $base01
-client.unfocused        $base02 $base01 $base04 $base01 $base01
-client.urgent           $base03 $base02 $base06 $base03 $base03
-client.placeholder      $base02 $base01 $base04 $base01 $base01
-client.background       $base00
 

@@ -29,5 +29,8 @@ fi
 numlockx
 
 # start window manager
-slstatus >/dev/null 2>&1 &
-exec dwm >/dev/null 2>&1
+# slstatus &
+# exec dwm
+xsetroot -solid "#000000"
+exec i3
+

@@ -7,6 +7,9 @@ path=(~/bin ~/.local/bin $path)
 export EDITOR="vi"
 export VISUAL="vi"
 
+# terminal preference
+export TERMINAL="alacritty"
+
 # better paging
 export PAGER="less"
 
