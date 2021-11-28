@@ -170,13 +170,19 @@ input type:pointer {
     bindsym $mod+space fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Ctrl+space floating toggle
+    bindsym $mod+escape floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+f focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+apostrophe focus parent
+
+    bindsym $mod+q focus child
+
+    tiling_drag disable
+
+    bindsym --whole-window $mod+button2 floating toggle
 #
 # Scratchpad:
 #
