@@ -1,14 +1,15 @@
 #!/bin/zsh
 
 LOG_FILTER_CMD="grep --line-buffered -v -E '\
-Could not resolve keysym|\
-libinput.*your system is too slow|\
+ould not resolve keysym|\
+your system is too slow|\
+ouch jump detected and discarded|\
 nknown libinput event\
 '"
 
 case "${1}" in
 	"sway")
-		sway \
+		sway -V \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	"x")
