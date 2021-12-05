@@ -35,12 +35,3 @@ nunmap <Esc>
 " sometimes terminal sends C-Space as Nul, so map it
 ino	<expr>	<Nul>		amc#omni#begin()
 
-" this is undesirably underlined
-function ColorSchemeCustVim()
-	highlight CursorLineNr cterm=NONE ctermfg=7
-endfunction
-autocmd ColorScheme * call ColorSchemeCustVim()
-
-" nvim automatically does this
-execute "colorscheme " . colors_name
-

@@ -4,6 +4,7 @@ endfunction
 
 
 function! amc#colours()
+	highlight CursorLineNr cterm=NONE ctermfg=7
 	highlight default link TagbarHighlight CursorLine
 endfunction
 

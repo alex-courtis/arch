@@ -113,9 +113,9 @@ cmap		<C-k>	<Up>
 
 
 " appearance
-let colors_name = "base16-bright"
 let base16colorspace=256
 autocmd ColorScheme * call amc#colours()
+colorscheme base16-bright
 
 " grep
 set grepprg=ag\ --vimgrep
