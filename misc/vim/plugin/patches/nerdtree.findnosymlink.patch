@@ -1,6 +1,6 @@
-From 4556633badc37f95a788fd302873ca7a52fb31a5 Mon Sep 17 00:00:00 2001
+From 1b20dc0e651335c0ccb07e677e83c5d3fdbbc1c4 Mon Sep 17 00:00:00 2001
 From: Alexander Courtis <alex@courtis.org>
-Date: Sat, 27 Nov 2021 12:06:39 +1100
+Date: Sun, 5 Dec 2021 11:27:39 +1100
 Subject: [PATCH] AMC do not resolve symlinks when finding
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] AMC do not resolve symlinks when finding
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/autoload/nerdtree/ui_glue.vim b/autoload/nerdtree/ui_glue.vim
-index fc22f21..79584e6 100644
+index fc22f21..4ce308e 100644
 --- a/autoload/nerdtree/ui_glue.vim
 +++ b/autoload/nerdtree/ui_glue.vim
 @@ -308,7 +308,8 @@ function! s:findAndRevealPath(pathStr) abort
@@ -17,10 +17,10 @@ index fc22f21..79584e6 100644
      try
 -        let l:pathStr = g:NERDTreePath.Resolve(l:pathStr)
 +        " AMC please do not resolve symlinks
-+        " let l:pathStr = g:NERDTreePath.Resolve(l:pathStr)
++        let l:pathStr = simplify(l:pathStr)
          let l:pathObj = g:NERDTreePath.New(l:pathStr)
      catch /^NERDTree.InvalidArgumentsError/
          call nerdtree#echoWarning('invalid path')
 -- 
-2.34.0
+2.34.1
 
