@@ -1,4 +1,4 @@
 #!/bin/sh
 
-amixer set Master toggle
+pactl set-sink-mute @DEFAULT_SINK@ toggle
 

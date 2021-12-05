@@ -1,4 +1,4 @@
 #!/bin/sh
 
-amixer set Capture toggle
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
