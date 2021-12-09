@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if [ -f Makefile.dev ]; then
+if [ -f amc/Makefile ]; then
+	/usr/bin/make -f amc/Makefile "${@}"
+elif [ -f Makefile.dev ]; then
 	/usr/bin/make -f Makefile.dev "${@}"
 else
 	/usr/bin/make "${@}"

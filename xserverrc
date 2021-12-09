@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # set auto repeat here as xset values tend to be overridden at runtime
+# delay default 660ms
+# repeat default 50/sec
 exec /usr/bin/X \
 	-nolisten tcp \
 	-ardelay 400 \

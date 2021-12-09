@@ -4,13 +4,14 @@ endfunction
 
 
 function! amc#colours()
+	highlight CursorLineNr cterm=NONE ctermfg=7
 	highlight default link TagbarHighlight CursorLine
 endfunction
 
 
 function! amc#updatetitlestring()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
-		let &titlestring = system('printtermtitle') . ' %f%m'
+		let &titlestring = system('printtermtitle') . ' %t%m'
 	else
 		let &titlestring = system('printtermtitle')
 	endif

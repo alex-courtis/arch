@@ -353,7 +353,6 @@ AUR packages are at the end.
 
 `pacaur -S
 alacritty
-alsa-utils
 autofs
 calc
 chromium
@@ -376,10 +375,8 @@ noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 pacman-contrib
-pasystray
 pavucontrol
 parcellite
-pulseaudio-alsa
 pwgen
 rsync
 scrot
