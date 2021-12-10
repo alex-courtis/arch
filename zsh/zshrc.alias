@@ -29,8 +29,6 @@ alias d="cd ~/.dotfiles"
 
 alias o="xdg-open"
 
-alias lcd="coredumpctl gdb $(coredumpctl -1 | grep present | awk '{ print $5 }')"
-
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 

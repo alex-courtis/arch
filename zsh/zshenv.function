@@ -18,3 +18,11 @@ function printtermtitle() {
 	__git_ps1
 }
 
+# latest systemd core
+function lcd() {
+	pid=$(coredumpctl -1 | grep present | awk '{ print $5 }')
+	if [ -n "${pid}" ]; then
+		coredumpctl gdb "${pid}"
+	fi
+}
+
