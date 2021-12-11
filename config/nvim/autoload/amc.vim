@@ -11,7 +11,7 @@ endfunction
 
 function! amc#updatetitlestring()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
-		let &titlestring = system('printtermtitle') . ' %t%m'
+		let &titlestring = system('printtermtitle') . ' %m'
 	else
 		let &titlestring = system('printtermtitle')
 	endif
