@@ -159,7 +159,7 @@ autocmd BufReadPost *
 autocmd FocusLost * silent! :w
 
 " help
-autocmd FileType help nmap <buffer> <Esc> :q<CR>
+" autocmd FileType help nmap <buffer> <Esc> :q<CR>
 
 " terminal title
 set title

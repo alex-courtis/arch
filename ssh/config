@@ -1,0 +1,8 @@
+Host aur.archlinux.org
+  IdentityFile ~/.ssh/id_rsa.aur
+  User aur
+
+Host *
+  # lemonade
+  RemoteForward 2489 127.0.0.1:2489
+
