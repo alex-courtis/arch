@@ -49,8 +49,14 @@ endfunction
 " must have BufEnter events temporarily disabled
 function amc#nt#reveal()
 	if amc#nt#findableBuf()
-		let l:bname = bufname()
-		if l:bname[0] != "/" && match(l:bname, "\\.\\.") != 0
+
+		" strip leading CWD for absolutely pathed files
+		let l:bname = substitute(bufname(), "^" . getcwd() . "/", "", "")
+
+		if l:bname[0] != "/" && match(l:bname, "^\\.\\.") != 0
+
+			" leading ./ confuses nerdtree
+			let l:bname = substitute(l:bname, "^\\./", "", "")
 			NERDTreeCWD
 			execute "NERDTreeFind " . l:bname
 			return 1
