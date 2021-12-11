@@ -29,8 +29,9 @@ let &rtp.=",~/.config/nvim"
 runtime init.vim
 
 
-" vim cannot handle this
+" vim cannot handle these escape mappings
 nunmap <Esc>
+let g:NERDTreeMapQuit = 'q'
 
 " sometimes terminal sends C-Space as Nul, so map it
 ino	<expr>	<Nul>		amc#omni#begin()
