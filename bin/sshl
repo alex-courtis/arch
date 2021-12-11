@@ -4,7 +4,7 @@
 # start on port 259${XDG_VTNR} to uniquely identify and prevent starting
 # pass that port to ssh command instead of using ~/.ssh
 # this may then be renamed to sshl as startup issues will go away
-lemonade server --port=2489 --allow="127.0.0.1" & >/dev/null 2>&1
+lemonade server --port=2489 --allow="127.0.0.1,::1" >/dev/null 2>&1 &
 
 ssh "${@}"
 
