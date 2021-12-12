@@ -1,9 +1,5 @@
 syntax on
 
-" unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
-" autoselect: visual selections go to * register, synced with XA_PRIMARY
-set clipboard=unnamedplus,autoselect,exclude:cons\|linux
-
 " these are nvim defaults
 set autoread
 set formatoptions+=j
@@ -28,6 +24,10 @@ set background=
 let &rtp.=",~/.config/nvim"
 runtime init.vim
 
+
+" unnamedplus: yank etc. uses the + register, synced with XA_CLIPBOARD
+" autoselect: visual selections go to * register, synced with XA_PRIMARY
+set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 
 " vim cannot handle these escape mappings
 nunmap <Esc>
