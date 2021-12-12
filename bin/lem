@@ -1,0 +1,40 @@
+#!/bin/sh
+
+if [ "${#}" -ne 1 ]; then
+	echo "usage: $(basename ${0}) <host | -k | -s>"
+	exit 1
+fi
+
+# use default remote and local port so that we do not need to reconfigure nvim
+PORT_REMOTE=2489
+PORT_LOCAL=2489
+SSH_ARGS="-f -N -R ${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
+
+case "${1}" in
+	"-k")
+		pkill -e -f "lemonade server"
+		pkill -e -f "ssh.*${SSH_ARGS}"
+		exit 0
+		;;
+	"-s")
+		pgrep -a -f "lemonade server"
+		pgrep -a -f "ssh.*${SSH_ARGS}"
+		exit 0
+		;;
+	*)
+		if [ $(pgrep -c -f "lemonade server") -eq 0 ]; then
+			lemonade server --port=${PORT_LOCAL} --allow="127.0.0.1,::1" --log-level=2 \
+				> /tmp/lemonade.log 2>&1 &
+		fi
+
+		CMD_SSH="ssh ${1} ${SSH_ARGS}"
+		NUM_SSH=$(pgrep -c -f "${CMD_SSH}")
+		if [ "${NUM_SSH}" -eq 0 ]; then
+			${CMD_SSH}
+		elif [ "${NUM_SSH}" -gt 1 ]; then
+			pkill -e -f "${CMD_SSH}"
+			${CMD_SSH}
+		fi
+		;;
+esac
+
