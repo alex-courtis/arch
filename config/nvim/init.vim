@@ -111,6 +111,9 @@ nmap	<silent>	<Leader>-	:GotoHeader<CR>
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
 
+" hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
+vmap <LeftRelease> "*ygv
+
 
 " appearance
 let base16colorspace=256
