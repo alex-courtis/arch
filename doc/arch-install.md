@@ -160,13 +160,6 @@ arch-chroot /mnt /bin/bash
 pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
 ```
 
-Link vi and others to vim:
-```sh
-ln -s /usr/bin/vim /usr/local/bin/ex
-ln -s /usr/bin/vim /usr/local/bin/vi
-ln -s /usr/bin/vim /usr/local/bin/view
-```
-
 ### Locale And Time
 
 Uncomment your desired UTF8 locale in `/etc/locale.gen`. Also `en_US` as too many things expect it :sigh:.
@@ -354,33 +347,36 @@ AUR packages are at the end.
 `pacaur -S
 alacritty
 autofs
+bemenu-wayland
 calc
-chromium
 dmenu
 dnsutils
 efibootmgr
 gpm
 hunspell-en_AU
 hunspell-en_GB
+i3-wm
 inetutils
+interception-dual-function-keys
 jq
 keychain
 man-db
 man-pages
-network-manager-applet
+neovim
 nm-connection-editor
 nfs-utils
-numlockx
 noto-fonts
 noto-fonts-emoji
 noto-fonts-extra
 pacman-contrib
 pavucontrol
-parcellite
 pwgen
 rsync
 scrot
 slock
+sway
+swayidle
+swaylock
 sysstat
 terminus-font
 the_silver_searcher
@@ -389,6 +385,7 @@ ttf-dejavu
 ttf-hack
 udisks2
 unzip
+wl-clipboard
 xautolock
 xdg-utils
 xmlstarlet
@@ -404,10 +401,12 @@ yq
 zsh-completions
 dapper
 gron-bin
+lemonade-git
 libinput-gestures
 rcm
 redshift-minimal
 todotxt
+way-displays
 xlayoutdisplay
 `
 
