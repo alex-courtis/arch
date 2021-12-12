@@ -13,6 +13,12 @@ bindsym $mod2+x exec exec $(menjar) > /dev/null 2>&1
 
 # startup
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
+exec swayidle -w -d \
+	timeout 180 'swaylock -f -c ${BASE01}' \
+	timeout 300 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep 'swaylock -f -c ${BASE01}' \
+	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
 
 # input
