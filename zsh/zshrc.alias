@@ -19,6 +19,8 @@ alias uudiff="diff --unified=10000"
 alias uudiffc="diffc --unified=10000"
 alias pdiff="diff -Naur"
 
+alias tailf="tail -n 0 -F"
+
 alias agh="ag --hidden"
 alias agu="ag --unrestricted"
 
