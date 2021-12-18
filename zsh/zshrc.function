@@ -1,30 +1,3 @@
-function updatecolours() {
-	prev_nor="${COL_ZSH_NOR}"
-
-	COL_ZSH_OFF="%k%f"
-	COL_ZSH_WAR="%F{black}%K{yellow}"
-	COL_ZSH_ERR="%F{black}%K{red}"
-	if [ "${USER}" = "root" ]; then
-		COL_ZSH_NOR="%F{black}%K{red}"
-		export COL_TMUX="fg=black,bg=red"
-	elif [ -n "${SSH_CONNECTION}" ]; then
-		COL_ZSH_NOR="%F{black}%K{magenta}"
-		export COL_TMUX="fg=black,bg=magenta"
-	else
-		COL_ZSH_NOR="%F{black}%K{green}"
-		export COL_TMUX="fg=black,bg=green"
-	fi
-
-	if [ "${prev_nor}" != "${COL_ZSH_NOR}" ]; then
-		echo "updating tmux colours"
-		tmux set status-style "${COL_TMUX}"
-		tmux set message-style "${COL_TMUX}"
-		tmux set-window-option mode-style "${COL_TMUX}"
-	fi
-
-	unset prev_nor
-}
-
 function mnt() {
 	if [ ${#} -ne 1 ]; then
 		echo "Usage: ${FUNCNAME} <block device>" >&2

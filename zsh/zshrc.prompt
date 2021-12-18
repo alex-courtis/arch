@@ -1,14 +1,14 @@
 setopt -o promptsubst
 
-PS1="\${COL_ZSH_NOR}:\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
-PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "
-PS3="\${COL_ZSH_NOR}${PS3}\${COL_ZSH_OFF} "
-PS4="\${COL_ZSH_NOR}${PS4}\${COL_ZSH_OFF} "
+PS1="${COL_ZSH_NOR}:${COL_ZSH_WAR}\${PR_WAR}${COL_ZSH_ERR}\${PR_ERR}${COL_ZSH_NOR};${COL_ZSH_OFF} "
+PS2="${COL_ZSH_NOR}${PS2}${COL_ZSH_OFF} "
+PS3="${COL_ZSH_NOR}${PS3}${COL_ZSH_OFF} "
+PS4="${COL_ZSH_NOR}${PS4}${COL_ZSH_OFF} "
 
 function precmd() {
 	rc=${?}
 
-	updatetmuxenv
+	updatetmuxterm
 
 	PR_ERR=
 	PR_WAR=
