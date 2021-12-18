@@ -32,6 +32,8 @@ alias d="cd ~/.dotfiles"
 
 alias o="xdg-open"
 
+alias ssh="TERM=\$(underlyingterm) ssh"
+
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 

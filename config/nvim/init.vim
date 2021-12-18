@@ -116,9 +116,13 @@ vmap <LeftRelease> "*ygv
 
 
 " appearance
-let base16colorspace=256
-autocmd ColorScheme * call amc#colours()
-colorscheme base16-bright
+if match(system('underlyingterm'), 'st-256color\|alacritty') >= 0
+	let base16colorspace=256
+	autocmd ColorScheme * call amc#colours()
+	colorscheme base16-bright
+else
+	set background=dark
+endif
 
 " grep
 set grepprg=ag\ --vimgrep
