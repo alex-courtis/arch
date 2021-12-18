@@ -11,12 +11,6 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 		3)
 			exec startwm x dwm
 			;;
-		4)
-			exec startwm weston
-			;;
-		5)
-			exec startwm tinywl
-			;;
 	esac
 fi
 
