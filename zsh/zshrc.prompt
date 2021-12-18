@@ -8,8 +8,6 @@ PS4="${COL_ZSH_NOR}${PS4}${COL_ZSH_OFF} "
 function precmd() {
 	rc=${?}
 
-	updatetmuxterm
-
 	PR_ERR=
 	PR_WAR=
 

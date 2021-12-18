@@ -10,20 +10,6 @@ function tm() {
 	fi
 }
 
-# Set a TERM appropriate for tmux, based on the "real terminal" that TMUX propagates.
-function updatetmuxterm() {
-	if [ -n "${TMUX}" ]; then
-		case $(tmux show-environment TERM 2>/dev/null) in
-			*256color|*alacritty)
-				TERM="tmux-256color"
-				;;
-			*)
-				TERM="tmux"
-				;;
-		esac
-	fi
-}
-
 # one shot skipping execution of tmux
 if [ ! -f "${HOME}/notmux" ] ; then
 	tm
