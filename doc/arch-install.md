@@ -407,6 +407,7 @@ libinput-gestures
 rcm
 redshift-minimal
 todotxt
+vundle-git
 way-displays
 xlayoutdisplay
 `

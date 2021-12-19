@@ -1,8 +1,5 @@
 filetype off
-let &rtp .= ",~/.local/share/nvim/vundle/Vundle.vim"
 call vundle#begin("~/.local/share/nvim/vundle")
-Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
