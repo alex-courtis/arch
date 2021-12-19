@@ -356,6 +356,7 @@ gpm
 hunspell-en_AU
 hunspell-en_GB
 i3-wm
+fd
 inetutils
 interception-dual-function-keys
 jq

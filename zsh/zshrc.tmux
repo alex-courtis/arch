@@ -1,5 +1,5 @@
-# replace this shell with tmux, attaching to detached if present
-function tm() {
+# maybe execute tmux, attaching to detached if present
+if [ ! -f "${HOME}/notmux" ] ; then
 	if [ $(whence tmux) -a -z "${TMUX}" ]; then
 		DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 		if [ -z "${DETACHED}" ]; then
@@ -8,19 +8,25 @@ function tm() {
 			exec tmux attach -t "${DETACHED}"
 		fi
 	fi
-}
-
-# one shot skipping execution of tmux
-if [ ! -f "${HOME}/notmux" ] ; then
-	tm
 else
 	rm ${HOME}/notmux
 fi
 
-# style tmux
-if [ -n "${TMUX}" ]; then
-	tmux set status-style "${COL_TMUX_NORM}"
-	tmux set message-style "${COL_TMUX_NORM}"
-	tmux set-window-option mode-style "${COL_TMUX_NORM}"
-fi
+# update SSH_CONNECTION from tmux env
+function updatetmuxssh() {
+	if [ -n "${TMUX}" ]; then
+		eval $(tmux show-environment -s SSH_CONNECTION)
+	fi
+}
+
+# apply COL_TMUX to the session, only on change
+COL_TMUX_PREV=""
+function updatetmuxcolours() {
+	if [ -n "${TMUX}" -a "${COL_TMUX}" != "${COL_TMUX_PREV}" ]; then
+		tmux set status-style "${COL_TMUX}"
+		tmux set message-style "${COL_TMUX}"
+		tmux set-window-option mode-style "${COL_TMUX}"
+		COL_TMUX_PREV="${COL_TMUX}"
+	fi
+}
 

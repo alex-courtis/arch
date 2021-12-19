@@ -43,21 +43,6 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
-# shell and tmux colours
-COL_ZSH_OFF="%k%f"
-COL_ZSH_WAR="%F{black}%K{yellow}"
-COL_ZSH_ERR="%F{black}%K{red}"
-if [ "${USER}" = "root" ]; then
-	COL_ZSH_NOR="%F{black}%K{red}"
-	export COL_TMUX_NORM="fg=black,bg=red"
-elif [ -n "${SSH_CONNECTION}" ]; then
-	COL_ZSH_NOR="%F{black}%K{magenta}"
-	export COL_TMUX_NORM="fg=black,bg=magenta"
-else
-	COL_ZSH_NOR="%F{black}%K{green}"
-	export COL_TMUX_NORM="fg=black,bg=green"
-fi
-
 # customise various bemenu invocations
 export BEMENU_OPTS="--ignorecase \
 	--prompt ':;' \
