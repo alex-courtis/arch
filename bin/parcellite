@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# no tray icon please
-/usr/bin/parcellite -n

@@ -14,12 +14,12 @@ bindsym $mod3+l exec swaylock -f -c ${BASE01} > /dev/null 2>&1
 
 # startup
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
-exec swayidle -w \
-	timeout 180  'swaylock -f -c ${BASE01}' \
-	before-sleep 'swaylock -f -c ${BASE01}' \
-	timeout 300  'swaymsg "output * dpms off"' \
-	resume       'swaymsg "output * dpms on"' \
-	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
+# exec swayidle -w \
+# 	timeout 180  'swaylock -f -c ${BASE01}' \
+# 	before-sleep 'swaylock -f -c ${BASE01}' \
+# 	timeout 300  'swaymsg "output * dpms off"' \
+# 	resume       'swaymsg "output * dpms on"' \
+# 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
 
 # input
@@ -51,4 +51,22 @@ gaps outer -1
 smart_gaps on
 smart_borders on
 default_border normal 1
+
+
+# output HDMI-A-1 mode 1920x1080
+# output HDMI-A-1 scale 1
+# output HDMI-A-1 transform 90
+# output HDMI-A-1 position 2560 0
+# output HDMI-A-1 transform flipped-180
+
+# output eDP-1 mode 2560x1440
+# output eDP-1 scale 1
+# output eDP-1 transform 0
+# output eDP-1 position 0 0
+# output eDP-1 transform flipped
+
+bindsym $mod3+m mirror HDMI-A-1 eDP-1 WLR_MIRROR_CENTER 10 0 1720 880
+
+
+bindsym $mod3+t output HDMI-A-1 toggle
 
