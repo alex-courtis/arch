@@ -12,20 +12,6 @@ case "${1}" in
 		sway -V \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
-	"pointer")
-		cd ~/wlr-test
-		. ./env.sh
-		# valgrind --leak-check=full --gen-suppressions=all --suppressions=ext.supp \
-		pointer \
-			> "/tmp/pointer.log" 2>&1
-		;;
-	"sway-test")
-		cd ~/wlr-test
-		. ./env.sh
-		# valgrind --leak-check=full --gen-suppressions=all --suppressions=all.supp \
-			sway -V \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
-		;;
 	"x")
 		export X_WM="${2}"
 		lsmod | grep ^nvidia > /dev/null 2>&1

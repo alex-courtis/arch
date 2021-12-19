@@ -1,4 +1,4 @@
-# terminal title
+# terminal title, sometimes invoked by nonlogin shells such as vim's
 function printtermtitle() {
 
 	# lazy load __git_ps1
@@ -13,12 +13,8 @@ function printtermtitle() {
 		fi
 	fi
 
-	if [ -n "${SSH_CONNECTION}" ]; then
-		print "${HOST}  "
-	fi
-
 	# don't include __git_ps1 in the print lest it be prompt substituted
-	print -Pn "%~ "
+	print -Pn "%~"
 	__git_ps1
 }
 
@@ -27,17 +23,6 @@ function lcd() {
 	pid=$(coredumpctl -1 | grep present | awk '{ print $5 }')
 	if [ -n "${pid}" ]; then
 		coredumpctl gdb "${pid}"
-	fi
-}
-
-# make override with specially placed Makefiles
-function make() {
-	if [ -f amc/Makefile ]; then
-		/usr/bin/make -f amc/Makefile "${@}"
-	elif [ -f Makefile.dev ]; then
-		/usr/bin/make -f Makefile.dev "${@}"
-	else
-		/usr/bin/make "${@}"
 	fi
 }
 
