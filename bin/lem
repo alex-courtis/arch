@@ -24,7 +24,13 @@ case "${1}" in
 	*)
 		if [ $(pgrep -c -f "lemonade server") -eq 0 ]; then
 			lemonade server --port=${PORT_LOCAL} --allow="127.0.0.1,::1" --log-level=2 \
-				> /tmp/lemonade.log 2>&1 &
+				> /tmp/lemonade.log 2>&1 & LEM_RC=$!
+			wait ${LEM_RC}
+			if [ "${LEM_RC}" -ne 0 ]; then
+				cat /tmp/lemonade.log
+				pkill -e -f "ssh.*${SSH_ARGS}"
+				exit 1
+			fi
 		fi
 
 		CMD_SSH="ssh ${1} ${SSH_ARGS}"

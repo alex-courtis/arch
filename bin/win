@@ -1,7 +1,0 @@
-#!/bin/sh
-
-BOOT_NUM=$(efibootmgr | grep "Windows Boot Manager" | head -n 1 | sed -E "s/^Boot([[:xdigit:]]*)\* .*$/\1/g")
-
-sudo efibootmgr -n ${BOOT_NUM}
-
-sudo systemctl reboot
