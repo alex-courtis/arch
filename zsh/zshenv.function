@@ -1,4 +1,4 @@
-# terminal title, sometimes invoked by nonlogin shells such as vim's
+# terminal title
 function printtermtitle() {
 
 	# lazy load __git_ps1
@@ -13,8 +13,12 @@ function printtermtitle() {
 		fi
 	fi
 
+	if [ -n "${SSH_CONNECTION}" ]; then
+		print "${HOST}  "
+	fi
+
 	# don't include __git_ps1 in the print lest it be prompt substituted
-	print -Pn "%~"
+	print -Pn "%~ "
 	__git_ps1
 }
 
