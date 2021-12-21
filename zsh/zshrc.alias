@@ -33,6 +33,8 @@ alias d="cd ~/.dotfiles"
 alias o="xdg-open"
 
 alias ssh="TERM=\$(underlyingterm) ssh"
+alias su="TERM=\$(underlyingterm) su"
+alias sudo="TERM=\$(underlyingterm) sudo"
 
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
