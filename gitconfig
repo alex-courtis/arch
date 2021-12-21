@@ -4,7 +4,7 @@
 	ds = diff --staged
 	dsn = diff --staged --name-only
 	co = checkout
-	l = log --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset' --graph
+	l = log --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(white) %C(green)%an  %C(cyan)%ah%C(reset)' --graph
 	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
 	rs = restore --staged
