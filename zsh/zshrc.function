@@ -32,18 +32,6 @@ function vimdiff() {
 	vi -d $@
 }
 
-function uefi() {
-	sudo systemctl reboot --firmware-setup
-}
-
-function win() {
-	local BOOT_NUM=$(efibootmgr | grep "Windows Boot Manager" | head -n 1 | sed -E "s/^Boot([[:xdigit:]]*)\* .*$/\1/g")
-
-	sudo efibootmgr -n ${BOOT_NUM}
-
-	sudo systemctl reboot
-}
-
 function mnt() {
 	if [ ${#} -ne 1 ]; then
 		echo "Usage: ${FUNCNAME} <block device>" >&2
