@@ -45,9 +45,12 @@ map	Y	y$
 nmap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
+" begin left
+let mapleader="\<Space>"
+
 nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
-nmap	<silent>	<Leader>'	:call amc#win#closeAll()<CR>
+nmap	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 
 nmap	<silent>	<Leader>,	:call amc#win#goHome() <Bar> aboveleft copen<CR>
 nmap	<silent>	<Leader><	:cclose<CR>
@@ -57,14 +60,20 @@ nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
 nmap	<silent>	<Leader>.	:cnext <Bar> if g:amc#aging <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
+let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
 nmap	<silent>	<Leader>p	:cprev <Bar> if g:amc#aging <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
+let	g:NERDTreeGitStatusMapPrevHunk = "<Space>k"
 
 " y
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 " x
+" end left
+
+" begin right
+let mapleader="\<BS>"
 
 nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
 vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
@@ -104,6 +113,9 @@ nmap	<silent>	<Leader>z	gg=G``
 " /
 nmap	<silent>	<Leader>-	:GotoHeader<CR>
 " \
+
+unlet mapleader
+" end right
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
@@ -204,8 +216,6 @@ autocmd VimEnter * call amc#nt#vimEnter()
 autocmd BufEnter * call amc#nt#sync()
 
 " nerdtree-git-plugin
-let g:NERDTreeGitStatusMapPrevHunk = "<Leader>k"
-let g:NERDTreeGitStatusMapNextHunk = "<Leader>j"
 let g:NERDTreeGitStatusDirDirtyOnly = 0
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 			\ "Modified"  : "~",
@@ -222,7 +232,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 " tagbar
 let g:tagbar_compact=1
-let tagbar_map_close = '<Esc>'
+let tagbar_map_close='<Esc>'
+let tagbar_map_showproto=''
 
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
