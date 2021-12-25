@@ -188,6 +188,9 @@ autocmd VimEnter	* call amc#updateTitleString()
 " find
 autocmd VimEnter	* call amc#setPathCwd()
 
+" tags search down only
+set tags=**/tags
+
 " airline
 set noshowmode
 let g:airline#extensions#searchcount#enabled = 0
