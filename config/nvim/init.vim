@@ -71,6 +71,8 @@ let	g:NERDTreeGitStatusMapPrevHunk = "<Space>k"
 " y
 nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 " x
+
+nmap	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
 
 " begin right
@@ -114,6 +116,8 @@ nmap	<silent>	<Leader>z	gg=G``
 " /
 nmap	<silent>	<Leader>-	:GotoHeader<CR>
 " \
+
+nmap	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
 
 unlet mapleader
 " end right
@@ -190,6 +194,9 @@ autocmd VimEnter	* call amc#setPathCwd()
 
 " tags search down only
 set tags=**/tags
+
+" mru
+autocmd BufEnter * call amc#mru#bufEnter()
 
 " airline
 set noshowmode
