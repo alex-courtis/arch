@@ -14,16 +14,8 @@ case "${1}" in
 		;;
 	"x")
 		export X_WM="${2}"
-		lsmod | grep ^nvidia > /dev/null 2>&1
-		if [ $? -eq 0 ]; then
-			# nvidia does not allow; manually symlink .config/X11/xorg.conf.d/* to /etc/X11/xorg.conf.d
-			startx \
-				> >(eval "${LOG_FILTER_CMD}" > "/tmp/x.${XDG_VTNR}.${USER}.log") 2>&1
-		else
-			# other drivers do e.g. nouveau, i915
-			startx -- -configdir "${HOME}/.config/X11/xorg.conf.d" \
-				> >(eval "${LOG_FILTER_CMD}" > "/tmp/x.${XDG_VTNR}.${USER}.log") 2>&1
-		fi
+		startx \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${X_WM}.x.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	"weston")
 		weston \

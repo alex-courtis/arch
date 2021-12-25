@@ -35,7 +35,6 @@ case "${X_WM}" in
 		exec dwm
 		;;
 	"i3")
-		xsetroot -solid "#000000"
 		exec i3
 		;;
 	*)
