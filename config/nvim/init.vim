@@ -180,10 +180,13 @@ autocmd FocusLost * silent! :w
 
 " terminal title
 set title
-autocmd BufEnter	* call amc#updatetitlestring()
-autocmd BufWritePost	* call amc#updatetitlestring()
-autocmd FocusGained	* call amc#updatetitlestring()
-autocmd VimEnter	* call amc#updatetitlestring()
+autocmd BufEnter	* call amc#updateTitleString()
+autocmd BufWritePost	* call amc#updateTitleString()
+autocmd FocusGained	* call amc#updateTitleString()
+autocmd VimEnter	* call amc#updateTitleString()
+
+" find
+autocmd VimEnter	* call amc#setPathCwd()
 
 " airline
 set noshowmode

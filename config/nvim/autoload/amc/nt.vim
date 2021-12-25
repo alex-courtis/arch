@@ -21,6 +21,7 @@ function amc#nt#vimEnter()
 		enew
 		execute "cd " . argv()[0]
 		execute "NERDTreeFocus"
+		call amc#setPathCwd()
 
 	elseif argc() > 1
 
@@ -80,7 +81,7 @@ function amc#nt#smartFocus()
 		NERDTree
 	endif
 
-	call amc#updatetitlestring()
+	call amc#updateTitleString()
 	let &ei=l:eiprev
 endfunction
 
@@ -92,7 +93,7 @@ function amc#nt#smartFind()
 		NERDTreeFind
 	endif
 
-	call amc#updatetitlestring()
+	call amc#updateTitleString()
 	let &ei=l:eiprev
 endfunction
 

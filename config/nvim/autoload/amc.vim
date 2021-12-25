@@ -9,7 +9,7 @@ function! amc#colours()
 endfunction
 
 
-function! amc#updatetitlestring()
+function! amc#updateTitleString()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
 		let &titlestring = system('printtermtitle') . ' %m'
 	else
@@ -71,5 +71,9 @@ function! amc#qfPost()
 	call amc#win#goHome()
 	cclose
 	aboveleft cwindow
+endfunction
+
+function! amc#setPathCwd()
+	let &path = getcwd() . "/**"
 endfunction
 
