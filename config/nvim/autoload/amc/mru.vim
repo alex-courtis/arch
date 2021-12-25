@@ -7,8 +7,6 @@ function! amc#mru#bufEnter()
 	let l:bname = bufname()
 
 	if &buftype != "" || !&buflisted || (l:bname != "" && !filereadable(l:bname))
-		call amc#log("be returning early")
-		echo "be returning early"
 		return
 	endif
 
@@ -25,7 +23,7 @@ function! amc#mru#bufEnter()
 endfunction
 
 function! amc#mru#back()
-	if w:mrup < 1
+	if !exists('w:mru') || w:mrup < 1
 		return
 	endif
 
@@ -34,7 +32,7 @@ function! amc#mru#back()
 endfunction
 
 function! amc#mru#forward()
-	if w:mrup + 1 >= len(w:mru)
+	if !exists('w:mru') || w:mrup + 1 >= len(w:mru)
 		return
 	endif
 
