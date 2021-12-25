@@ -51,6 +51,7 @@ let mapleader="\<Space>"
 nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 nmap	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
+nmap	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
 nmap	<silent>	<Leader>,	:call amc#win#goHome() <Bar> aboveleft copen<CR>
 nmap	<silent>	<Leader><	:cclose<CR>

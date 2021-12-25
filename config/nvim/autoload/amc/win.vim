@@ -32,9 +32,70 @@ function! amc#win#goBufName(bn)
 	endfor
 endfunction
 
+function! amc#win#winForBufType(type)
+	for l:wn in range(1, winnr("$"))
+		let l:bnum = winbufnr(l:wn)
+		let l:btype = getbufvar(l:bnum, "&buftype")
+		if match(l:btype, a:type) != -1
+			return l:wn
+		endif
+	endfor
+	return 0
+endfunction
+
+function! amc#win#winForBufName(name)
+	for l:wn in range(1, winnr("$"))
+		let l:bnum = winbufnr(l:wn)
+		let l:bname = bufname(l:bnum)
+		if match(l:bname, a:name) != -1
+			return l:wn
+		endif
+	endfor
+	return 0
+endfunction
+
+function! amc#win#closeInc()
+	let l:wn = amc#win#winForBufName("gitgutter://hunk-preview")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:wn = amc#win#winForBufType("quickfix")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:wn = amc#win#winForBufName("NERD_tree_")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:wn = amc#win#winForBufName("__Tagbar__")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:wn = amc#win#winForBufType("help")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:cwn = winnr()
+	for l:wn in range(winnr("$"), 1, -1)
+		if l:wn != l:cwn
+			execute l:wn . " wincmd c"
+			return
+		endif
+	endfor
+endfunction
+
 function! amc#win#closeAll()
 	let l:cwn = winnr()
-
 	for l:wn in range(winnr("$"), 1, -1)
 		if l:wn != l:cwn
 			execute l:wn . " wincmd c"
