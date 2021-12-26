@@ -1,3 +1,10 @@
+function! amc#mru#specialBuf()
+	let l:bn = bufnr()
+	let l:bname = bufname()
+
+	return &buftype != "" || !&buflisted || (l:bname != "" && !filereadable(l:bname))
+endfunction
+
 function! amc#mru#prn(msg)
 	let l:buf = a:msg . " [ "
 	for l:i in w:amcMru
@@ -35,21 +42,19 @@ function! amc#mru#prn(msg)
 endfunction
 
 function! amc#mru#bufEnter()
+	if amc#mru#specialBuf()
+		return
+	endif
+
 	if !exists("w:amcMru")
 		let w:amcMru = []
 		let w:amcMruWin = []
 		let w:amcMruWinP = 0
 	endif
 
-	let l:bn = bufnr()
-	let l:bname = bufname()
-
-	if &buftype != "" || !&buflisted || (l:bname != "" && !filereadable(l:bname))
-		return
-	endif
-
 	call amc#mru#prn("enter")
 
+	let l:bn = bufnr()
 	let l:bwi = index(w:amcMruWin, l:bn)
 	if l:bwi == w:amcMruWinP - 1 || l:bwi == w:amcMruWinP + 1
 		" update the window pointer
@@ -71,6 +76,10 @@ function! amc#mru#bufEnter()
 endfunction
 
 function! amc#mru#back()
+	if amc#mru#specialBuf()
+		return
+	endif
+
 	call amc#mru#prn("back ")
 
 	if len(w:amcMru) < 2
@@ -93,6 +102,10 @@ function! amc#mru#back()
 endfunction
 
 function! amc#mru#forward()
+	if amc#mru#specialBuf()
+		return
+	endif
+
 	call amc#mru#prn("forw ")
 
 	if empty(w:amcMruWin)
