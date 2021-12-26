@@ -146,7 +146,8 @@ cabbrev ag silent grep!
 " quickfix
 let s:ef_cmocha = "[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
-let &errorformat = s:ef_cmocha . s:ef_make . &errorformat
+let s:ef_cargo = "\\ %#--> %f:%l:%c,"
+let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 let g:amc#aging = 0
 autocmd QuickfixCmdPost * call amc#qfPost()
 autocmd FileType qf nmap <buffer> <Esc> :q<CR>
@@ -177,6 +178,7 @@ autocmd BufReadPost *
 			\ | endif
 
 " autosave
+autocmd BufLeave * silent! :w
 autocmd FocusLost * silent! :w
 
 " help
