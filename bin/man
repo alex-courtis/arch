@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# add limited colour to man pages
+
+# appears unused
+export LESS_TERMCAP_mb=$'\E[0;31m'     # begin blink           red
+
+export LESS_TERMCAP_md=$'\E[1;34m'     # begin bold            bold + blue
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+
+export LESS_TERMCAP_so=                # begin reverse video   no change
+export LESS_TERMCAP_se=                # reset reverse video
+
+# man 1 indicates that what was underlined should have been italic
+export LESS_TERMCAP_us=$'\E[3;32m'     # begin underline       italic + green
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+/usr/bin/man "$@"
+
+unset LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_so LESS_TERMCAP_se LESS_TERMCAP_us LESS_TERMCAP_ue
+
