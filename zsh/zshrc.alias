@@ -36,10 +36,10 @@ alias o="xdg-open"
 alias ssh="TERM=\$(underlyingterm) ssh"
 alias su="TERM=\$(underlyingterm) su"
 
-alias lsrc-root="sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
+alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
 # COPY_ALWAYS does not work
-alias rcup-root="sudo HOME= RCRC=.dotfiles/root/rcrc rcup -C"
-alias rcdn-root="sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
+alias rcup-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcup -C"
+alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 
 alias sudo="TERM=\$(underlyingterm) sudo"
 
