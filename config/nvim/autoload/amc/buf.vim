@@ -64,10 +64,6 @@ function! amc#buf#safeHash()
 		return
 	endif
 
-	if bufname() == "" && &modified
-		return
-	endif
-
-	b #
+	b! #
 endfunction
 

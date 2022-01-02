@@ -212,6 +212,7 @@ let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 " bufexplorer
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
+let g:bufExplorerShowNoName=1
 
 " editorconfig
 let EditorConfig_max_line_indicator='line'
