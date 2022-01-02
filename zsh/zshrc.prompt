@@ -1,6 +1,6 @@
 setopt -o promptsubst
 
-PS1="\${COL_ZSH_NOR}:\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
+PS1="\${COL_ZSH_NOR}:\${STR_PROMPT}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
 PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "
 PS3="\${COL_ZSH_NOR}${PS3}\${COL_ZSH_OFF} "
 PS4="\${COL_ZSH_NOR}${PS4}\${COL_ZSH_OFF} "
@@ -14,19 +14,32 @@ function periodic() {
 }
 
 function updatecolours() {
+	STR_PROMPT=""
+	local COL_PROMPT=""
+	if [ "${USER}" = "root" ]; then
+		COL_PROMPT="red"
+		STR_PROMPT=" ${HOST} "
+	elif [ -n "${SSH_CONNECTION}" ]; then
+		case "${HOST}" in
+			(gigantor)
+				COL_PROMPT="magenta"
+				;;
+			(duke)
+				COL_PROMPT="blue"
+				;;
+			(*)
+				COL_PROMPT="white"
+				;;
+		esac
+		STR_PROMPT=" ${HOST} "
+	else
+		COL_PROMPT="green"
+	fi
 	COL_ZSH_OFF="%k%f"
+	COL_ZSH_NOR="%F{black}%K{${COL_PROMPT}}"
 	COL_ZSH_WAR="%F{black}%K{yellow}"
 	COL_ZSH_ERR="%F{black}%K{red}"
-	if [ "${USER}" = "root" ]; then
-		COL_ZSH_NOR="%F{black}%K{red}"
-		COL_TMUX="fg=black,bg=red"
-	elif [ -n "${SSH_CONNECTION}" ]; then
-		COL_ZSH_NOR="%F{black}%K{magenta}"
-		COL_TMUX="fg=black,bg=magenta"
-	else
-		COL_ZSH_NOR="%F{black}%K{green}"
-		COL_TMUX="fg=black,bg=green"
-	fi
+	COL_TMUX="fg=black,bg=${COL_PROMPT}"
 }
 
 function precmd() {

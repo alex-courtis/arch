@@ -15,10 +15,6 @@ function printtermtitle() {
 		fi
 	fi
 
-	if [ -n "${SSH_CONNECTION}" ]; then
-		print "${HOST}  "
-	fi
-
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~ "
 	__git_ps1
