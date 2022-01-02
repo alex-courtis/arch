@@ -1,5 +1,21 @@
+let g:log = 0
+let s:first = 0
 function! amc#log(msg)
-	call system("echo \"" . a:msg . "\" >> /tmp/vim." . $USER . ".log")
+	if !g:log
+		return
+	endif
+	if !s:first
+		call system("echo ---------------- >> /tmp/vim." . $USER . ".log")
+		let s:first = 1
+	endif
+	call system("echo \'" . substitute(a:msg, "'", "'\"'\"\'", "g") . "\' >> /tmp/vim." . $USER . ".log")
+endfunction
+
+
+function! amc#sourceIfExists(file)
+	if filereadable(expand(a:file))
+		exe 'source' a:file
+	endif
 endfunction
 
 
