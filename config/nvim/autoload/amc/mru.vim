@@ -88,26 +88,25 @@ function! amc#mru#prn(msg)
 	endfor
 endfunction
 
-function! amc#mru#isSpecialBuf()
-	let l:bn = bufnr()
-	let l:bname = bufname()
-
-	return &buftype != "" || !&buflisted || (l:bname != "" && !filereadable(l:bname))
-endfunction
-
-function! amc#mru#bufEnter()
-	if amc#mru#isSpecialBuf()
-		return
-	endif
-
+" can't do this in WinNew as it is not called for first window, and VimEnter happens after first BufEnter
+function! amc#mru#initMru()
 	if !exists("w:amcMru")
 		let w:amcMru = []
 		let w:amcMruWin = []
 		let w:amcMruWinP = 0
 	endif
+endfunction
+
+function! amc#mru#bufEnter()
+	call amc#mru#initMru()
 
 	let l:bn = bufnr()
 	let l:bwi = index(w:amcMruWin, l:bn)
+
+	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
+		return
+	endif
+
 	if l:bwi == w:amcMruWinP - 1 || l:bwi == w:amcMruWinP + 1
 		" update the window pointer
 		let w:amcMruWinP = l:bwi
@@ -128,7 +127,9 @@ function! amc#mru#bufEnter()
 endfunction
 
 function! amc#mru#back()
-	if amc#mru#isSpecialBuf()
+	call amc#mru#initMru()
+
+	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
 		return
 	endif
 
@@ -152,7 +153,9 @@ function! amc#mru#back()
 endfunction
 
 function! amc#mru#forward()
-	if amc#mru#isSpecialBuf()
+	call amc#mru#initMru()
+
+	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
 		return
 	endif
 

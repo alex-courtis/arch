@@ -34,22 +34,12 @@ function amc#nt#vimEnter()
 	endif
 endfunction
 
-" listed buffer
-" 'normal' buffer (buftype empty)
-" readable file
-function amc#nt#findableBuf()
-	return
-				\ &buflisted &&
-				\ strlen(&buftype) == 0 &&
-				\ filereadable(bufname())
-endfunction
-
 " file under cwd: cd and find it, leave focus in tree, return 1
 " other file: if tree at cwd, clear selection, return 0
 " other buf: do nothing, return 0
 " must have BufEnter events temporarily disabled
 function amc#nt#reveal()
-	if amc#nt#findableBuf()
+	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		let l:bpath = expand("%:p")
 		let l:cwdpre = "^" . getcwd() . "/"
 
@@ -89,7 +79,7 @@ function amc#nt#smartFind()
 	let l:eiprev=&ei
 	let &ei="BufEnter," . eiprev
 
-	if amc#nt#findableBuf()
+	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		NERDTreeFind
 	endif
 

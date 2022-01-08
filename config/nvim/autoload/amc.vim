@@ -42,16 +42,11 @@ function! amc#safeBufExplorer()
 
 	call amc#win#goHome()
 
-	if bufname() == "" && &modified
+	let l:flavour = amc#buf#flavour(bufnr())
+	if l:flavour == g:amc#buf#ORDINARY_HAS_FILE || l:flavour == g:amc#buf#ORDINARY_NO_FILE
+		BufExplorer
 		return
 	endif
-
-	for l:bn in range(1, bufnr("$"))
-		if getbufvar(l:bn, "&buftype") == "" && buflisted(l:bn) && bufname(l:bn) != ""
-			BufExplorer
-			return
-		endif
-	endfor
 endfunction
 
 
