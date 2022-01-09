@@ -12,7 +12,6 @@ function amc#nt#vimEnter()
 
 		" open if nothing specified
 		NERDTree
-		wincmd p
 
 	elseif argc() == 1 && isdirectory(argv()[0])
 
@@ -21,6 +20,7 @@ function amc#nt#vimEnter()
 		wincmd p
 		enew
 		execute "cd " . argv()[0]
+		execute "NERDTreeFocus"
 		call amc#setPathCwd()
 
 	elseif argc() > 1
