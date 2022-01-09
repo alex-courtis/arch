@@ -9,6 +9,10 @@ function! amc#mru#stripPad(line)
 endfunction
 
 function! amc#mru#prn(msg)
+	if !g:amcLog
+		return
+	endif
+
 	redir => l:buffers
 	silent buffers!
 	redir END
@@ -88,26 +92,21 @@ function! amc#mru#prn(msg)
 	endfor
 endfunction
 
-" can't do this in WinNew as it is not called for first window, and VimEnter happens after first BufEnter
-function! amc#mru#initMru()
+" idempotent
+function! amc#mru#update()
 	if !exists("w:amcMru")
 		let w:amcMru = []
 		let w:amcMruWin = []
 		let w:amcMruWinP = 0
 	endif
-endfunction
-
-function! amc#mru#bufEnter()
-	call amc#mru#initMru()
 
 	let l:bn = bufnr()
-	let l:bwi = index(w:amcMruWin, l:bn)
-
 	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
-		return
+		return 0
 	endif
 
-	if l:bwi == w:amcMruWinP - 1 || l:bwi == w:amcMruWinP + 1
+	let l:bwi = index(w:amcMruWin, l:bn)
+	if l:bwi != -1 && l:bwi >= w:amcMruWinP - 1 && l:bwi <= w:amcMruWinP + 1
 		" update the window pointer
 		let w:amcMruWinP = l:bwi
 	else
@@ -116,28 +115,31 @@ function! amc#mru#bufEnter()
 		let w:amcMruWinP = 0
 	endif
 
-	" update the real MRU
+	" update the MRU
 	let l:bi = index(w:amcMru, l:bn)
 	if l:bi >= 0
 		call remove(w:amcMru, l:bi)
 	endif
 	call add(w:amcMru, l:bn)
 
-	call amc#mru#prn("mru: enter")
+	return 1
+endfunction
+
+function! amc#mru#bufLeave()
+	if !amc#mru#update()
+		return
+	endif
+	call amc#mru#prn("mru: leave")
 endfunction
 
 function! amc#mru#back()
-	call amc#mru#initMru()
-
-	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
+	if !amc#mru#update()
 		return
 	endif
 
 	if len(w:amcMru) < 2
 		return
 	endif
-
-	call amc#log("mru: back")
 
 	if empty(w:amcMruWin)
 		let w:amcMruWin = copy(w:amcMru)
@@ -148,14 +150,15 @@ function! amc#mru#back()
 		return
 	endif
 
-	" bufEnter will update the pointer
+	call amc#mru#prn("mru: back")
+
+	" update will update the pointer on demand
+	call amc#log("mru: back opening " . w:amcMruWin[w:amcMruWinP - 1] . " WinP=" . w:amcMruWinP)
 	exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
 endfunction
 
 function! amc#mru#forward()
-	call amc#mru#initMru()
-
-	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
+	if !amc#mru#update()
 		return
 	endif
 
@@ -167,9 +170,9 @@ function! amc#mru#forward()
 		return
 	endif
 
-	call amc#log("mru: forw")
+	call amc#mru#prn("mru: forw")
 
-	" bufEnter will update the pointer
+	" update will update the pointer on demand
 	exec "b!" . w:amcMruWin[w:amcMruWinP + 1]
 endfunction
 

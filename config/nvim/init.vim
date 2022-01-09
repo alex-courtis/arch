@@ -199,7 +199,7 @@ autocmd VimEnter	* call amc#setPathCwd()
 set tags=**/tags
 
 " mru
-autocmd BufEnter * call amc#mru#bufEnter()
+autocmd BufLeave * call amc#mru#bufLeave()
 
 " airline
 set noshowmode

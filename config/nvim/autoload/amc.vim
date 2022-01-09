@@ -1,7 +1,7 @@
-let g:log = 0
+let g:amcLog = 0
 let s:first = 0
 function! amc#log(msg)
-	if !g:log
+	if !g:amcLog
 		return
 	endif
 	if !s:first
