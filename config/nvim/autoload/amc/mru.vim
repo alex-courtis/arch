@@ -152,8 +152,7 @@ function! amc#mru#back()
 
 	call amc#mru#prn("mru: back")
 
-	" update will update the pointer on demand
-	call amc#log("mru: back opening " . w:amcMruWin[w:amcMruWinP - 1] . " WinP=" . w:amcMruWinP)
+	" update will deal with the pointer on demand
 	exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
 endfunction
 
@@ -172,7 +171,28 @@ function! amc#mru#forward()
 
 	call amc#mru#prn("mru: forw")
 
-	" update will update the pointer on demand
+	" update will deal with the pointer on demand
 	exec "b!" . w:amcMruWin[w:amcMruWinP + 1]
+endfunction
+
+function! amc#mru#winRemove(bn)
+	if !amc#mru#update()
+		return
+	endif
+
+	call amc#mru#prn("mru: remove")
+
+	let l:bwi = index(w:amcMruWin, a:bn)
+	if empty(w:amcMruWin) || len(w:amcMru) < 3 || l:bwi == 0
+		let w:amcMruWin = []
+		let w:amcMruWinP = 0
+		exec "b!#"
+	else
+		" update will deal with the pointer on demand
+		exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
+		if l:bwi >= 0
+			call remove(w:amcMruWin, l:bwi)
+		endif
+	endif
 endfunction
 

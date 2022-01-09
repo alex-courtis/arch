@@ -7,5 +7,4 @@ build/
 tags
 *.swp
 .copy*
-amc
 local.vim

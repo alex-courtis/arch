@@ -81,7 +81,7 @@ let mapleader="\<BS>"
 
 nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
 vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<Leader>d	:call amc#buf#del()<CR>
+nmap	<silent>	<Leader>d	:call amc#mru#winRemove(bufnr())<CR>
 " b
 
 nmap			<Leader>g	:ag <C-r>=expand("<cword>")<CR>
@@ -271,4 +271,4 @@ let g:gitgutter_preview_win_location = 'belowright'
 
 " local overrides
 call amc#sourceIfExists("local.vim")
-
+call amc#sourceIfExists("amc/local.vim")
