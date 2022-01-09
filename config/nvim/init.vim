@@ -201,6 +201,9 @@ set tags=**/tags
 " mru
 autocmd BufLeave * call amc#mru#bufLeave()
 
+" stay away from special windows
+autocmd BufEnter * call amc#win#moveFromSpecial()
+
 " airline
 set noshowmode
 let g:airline#extensions#searchcount#enabled = 0

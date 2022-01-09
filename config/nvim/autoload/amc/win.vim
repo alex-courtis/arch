@@ -126,3 +126,13 @@ function! amc#win#openFocusGitPreview()
 	endif
 endfunction
 
+function! amc#win#moveFromSpecial()
+	let l:bn = bufnr("%")
+	let l:abn = bufnr("#")
+	if l:bn != -1 && l:abn != -1 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && amc#buf#flavour("#") == g:amc#buf#SPECIAL
+		b#
+		call amc#win#goHome()
+		exec "b" . l:bn
+	endif
+endfunction
+
