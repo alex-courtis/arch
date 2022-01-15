@@ -81,7 +81,7 @@ let mapleader="\<BS>"
 
 nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
 vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<Leader>d	:call amc#mru#winRemove(bufnr())<CR>
+nmap	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 " b
 
 nmap			<Leader>g	:ag <C-r>=expand("<cword>")<CR>
