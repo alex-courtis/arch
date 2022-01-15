@@ -1,7 +1,9 @@
 [alias]
 	d = diff
+	ud = diff --unified=10000
 	dn = diff --name-only
 	ds = diff --staged
+	uds = diff --staged --unified=10000
 	dsn = diff --staged --name-only
 	co = checkout
 	l = log --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(white) %C(green)%an  %C(cyan)%ah%C(reset)' --graph
