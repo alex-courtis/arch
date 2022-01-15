@@ -134,9 +134,9 @@ function! amc#win#moveFromSpecial()
 	if !exists('w:amcWasSpecial')
 		return
 	endif
-	
+
 	let l:bn = bufnr("%")
-	if w:amcWasSpecial && l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL
+	if w:amcWasSpecial && l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && bufname("#") != "[BufExplorer]"
 		if bufnr("#") >= 0
 			b#
 		else
