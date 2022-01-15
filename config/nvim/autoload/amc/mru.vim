@@ -1,4 +1,6 @@
-let g:amcLogMru = 0
+if !exists('g:amcLogMru')
+	let g:amcLogMru = 0
+endif
 
 let s:colWidth = 28
 let s:colPad = " || "
@@ -241,6 +243,19 @@ function! amc#mru#winRemove()
 		exec "b!" . w:amcMru[0]
 	else
 		" no other buffers, do nothing
+	endif
+endfunction
+
+function! amc#mru#winNew()
+	let l:pwn = winnr("#")
+
+	let l:amcMru = getwinvar(l:pwn, "amcMru")
+	let l:amcMruWin = getwinvar(l:pwn, "amcMruWin")
+	let l:amcMruWinP = getwinvar(l:pwn, "amcMruWinP")
+	if len(l:amcMru)
+		let w:amcMru = deepcopy(l:amcMru)
+		let w:amcMruWin = deepcopy(l:amcMruWin)
+		let w:amcMruWinP = l:amcMruWinP
 	endif
 endfunction
 

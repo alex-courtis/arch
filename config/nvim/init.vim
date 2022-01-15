@@ -205,6 +205,7 @@ set tags=**/tags
 
 " mru
 autocmd BufLeave * call amc#mru#bufLeave()
+autocmd WinNew * call amc#mru#winNew()
 
 " stay away from special windows
 autocmd BufLeave * call amc#win#updateSpecial()

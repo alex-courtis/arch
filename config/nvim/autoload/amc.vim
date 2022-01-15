@@ -1,4 +1,7 @@
-let g:amcLog = 0
+if !exists('g:amcLog')
+	let g:amcLog = 0
+endif
+
 let s:first = 0
 function! amc#log(msg)
 	if !g:amcLog
