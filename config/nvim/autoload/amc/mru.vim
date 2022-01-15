@@ -118,7 +118,19 @@ function! amc#mru#update()
 		return 0
 	endif
 
-	" TODO AMC deal with inexistent buffer e.g. bw
+	" clear wiped buffers
+	for l:i in w:amcMru
+		if bufnr(l:i) < 0
+			let l:bi = index(w:amcMru, l:i)
+			if l:bi >= 0
+				call remove(w:amcMru, l:bi)
+			endif
+			let l:bi = index(w:amcMruWin, l:i)
+			if l:bi >= 0
+				call remove(w:amcMruWin, l:bi)
+			endif
+		endif
+	endfor
 
 	let l:bwi = index(w:amcMruWin, l:bn)
 	if l:bwi != -1 && l:bwi >= w:amcMruWinP - 1 && l:bwi <= w:amcMruWinP + 1

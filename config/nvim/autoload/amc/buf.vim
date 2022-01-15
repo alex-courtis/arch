@@ -31,6 +31,9 @@ function! amc#buf#safeHash()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
 		return
 	endif
+	if bufnr("#") < 0
+		return
+	endif
 	if amc#buf#flavour(bufnr("#")) == g:amc#buf#SPECIAL
 		return
 	endif
