@@ -198,6 +198,7 @@ autocmd FocusGained	* call amc#updateTitleString()
 autocmd VimEnter	* call amc#updateTitleString()
 
 " find
+cabbrev f find
 autocmd VimEnter	* call amc#setPathCwd()
 
 " tags search down only
@@ -207,6 +208,7 @@ set tags=**/tags
 autocmd BufLeave * call amc#mru#bufLeave()
 
 " stay away from special windows
+autocmd BufLeave * call amc#win#updateSpecial()
 autocmd BufEnter * call amc#win#moveFromSpecial()
 
 " airline

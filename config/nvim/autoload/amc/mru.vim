@@ -1,3 +1,5 @@
+let g:amcLogMru = 0
+
 let s:colWidth = 28
 let s:colPad = " || "
 let s:colEmpty = repeat(" ", s:colWidth)
@@ -9,7 +11,7 @@ function! amc#mru#stripPad(line)
 endfunction
 
 function! amc#mru#prn(msg)
-	if !g:amcLog
+	if !g:amcLogMru || !g:amcLog
 		return
 	endif
 

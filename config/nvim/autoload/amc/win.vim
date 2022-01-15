@@ -126,11 +126,23 @@ function! amc#win#openFocusGitPreview()
 	endif
 endfunction
 
+function! amc#win#updateSpecial()
+	let w:amcWasSpecial = bufnr("%") != -1 && amc#buf#flavour("%") == g:amc#buf#SPECIAL
+endfunction
+
 function! amc#win#moveFromSpecial()
+	if !exists('w:amcWasSpecial')
+		return
+	endif
+	
 	let l:bn = bufnr("%")
-	let l:abn = bufnr("#")
-	if l:bn != -1 && l:abn != -1 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && amc#buf#flavour("#") == g:amc#buf#SPECIAL
-		b#
+	if w:amcWasSpecial && l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL
+		if bufnr("#") >= 0
+			b#
+		else
+			" some specials like quickfix wipe themselves after leaving
+			wincmd c
+		endif
 		call amc#win#goHome()
 		exec "b" . l:bn
 	endif
