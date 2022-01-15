@@ -144,16 +144,15 @@ set grepprg=ag\ --vimgrep
 let &grepformat="%f:%l:%c:%m, %f"
 cabbrev ag silent grep!
 
-" quickfix
+" errorformat
 let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
-let s:ef_ignore  = "%-G%.%#[DEBUG]%.%#,"
-let s:ef_ignore .= "%-G%.%#[INFO]%.%#,"
-let s:ef_ignore .= "%-G%.%#[ERROR]%.%#,"
-let s:ef_ignore .= "%-G%.%#MALLOC_PERTURB_=%.%#,"
-let s:ef_ignore .= "%-GLog of Meson test suite run%.%#,"
-let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . s:ef_ignore . &errorformat
+let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
+" too many false positives
+let &errorformat = substitute(&errorformat, ",%f:%l:%m,", ",", "")
+
+" quickfix
 let g:amc#aging = 0
 autocmd QuickfixCmdPost * call amc#qfPost()
 autocmd FileType qf nmap <buffer> <Esc> :q<CR>
