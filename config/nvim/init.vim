@@ -262,6 +262,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:tagbar_compact=1
 let tagbar_map_close='<Esc>'
 let tagbar_map_showproto=''
+let g:tagbar_silent = 1
 
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
