@@ -6,6 +6,7 @@ set formatoptions+=j
 set hlsearch
 set showcmd
 set listchars=trail:·,tab:>\ ,eol:¬
+map	Y	y$
 
 " default $TERM -> ttymouse, possibly via terminfo database
 " st -> xterm

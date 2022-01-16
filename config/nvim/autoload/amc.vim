@@ -1,15 +1,11 @@
-if !exists('g:amcLog')
-	let g:amcLog = 0
-endif
-
-let s:first = 0
+let s:firstLogLine = 0
 function! amc#log(msg)
 	if !g:amcLog
 		return
 	endif
-	if !s:first
+	if !s:firstLogLine
 		call system("echo ---------------- >> /tmp/vim." . $USER . ".log")
-		let s:first = 1
+		let s:firstLogLine = 1
 	endif
 	call system("echo \'" . substitute(a:msg, "'", "'\"'\"\'", "g") . "\' >> /tmp/vim." . $USER . ".log")
 endfunction

@@ -1,7 +1,3 @@
-if !exists('g:amcLogMru')
-	let g:amcLogMru = 0
-endif
-
 let s:colWidth = 28
 let s:colPad = " || "
 let s:colEmpty = repeat(" ", s:colWidth)

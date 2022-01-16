@@ -41,8 +41,6 @@ vmap	@;	@:
 nmap	<C-w>; 	<C-w>:
 vmap	<C-w>; 	<C-w>:
 
-map	Y	y$
-
 nmap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
@@ -155,7 +153,6 @@ let &errorformat = substitute(&errorformat, ",%f:%l:%m,", ",", "")
 " quickfix
 let g:amc#aging = 0
 autocmd QuickfixCmdPost * call amc#qfPost()
-autocmd FileType qf nmap <buffer> <Esc> :q<CR>
 autocmd FileType qf call amc#updateAgPattern()
 
 " omnicompletion
@@ -185,9 +182,6 @@ autocmd BufReadPost *
 " autosave
 autocmd BufLeave * silent! :w
 autocmd FocusLost * silent! :w
-
-" help
-" autocmd FileType help nmap <buffer> <Esc> :q<CR>
 
 " terminal title
 set title
@@ -280,3 +274,7 @@ let g:gitgutter_preview_win_location = 'belowright'
 " local overrides
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
+
+let g:amcLog = 0
+let g:amcLogMru = 0
+
