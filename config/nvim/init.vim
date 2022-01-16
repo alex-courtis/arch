@@ -57,12 +57,12 @@ nmap	<silent>	<Leader><	:cclose<CR>
 nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
 
-nmap	<silent>	<Leader>.	:cnext <Bar> if g:amc#aging <Bar> set hlsearch <Bar> endif<CR>
-nmap	<silent>	<Leader>e	:call amc#safeBufExplorer()<CR>
+nmap	<silent>	<Leader>.	:cnext <Bar> call amc#qf#updateAgPattern() <Bar> if g:amc#qf#aging <Bar> set hlsearch <Bar> endif<CR>
+nmap	<silent>	<Leader>e	:call amc#buf#safeBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
-nmap	<silent>	<Leader>p	:cprev <Bar> if g:amc#aging <Bar> set hlsearch <Bar> endif<CR>
+nmap	<silent>	<Leader>p	:cprev <Bar> call amc#qf#updateAgPattern() <Bar> if g:amc#qf#aging <Bar> set hlsearch <Bar> endif<CR>
 nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 let	g:NERDTreeGitStatusMapPrevHunk = "<Space>k"
@@ -137,9 +137,10 @@ else
 	set background=dark
 endif
 
-" grep
-set grepprg=ag\ --vimgrep
+" ag
+set grepprg=ag\ --vimgrep\ --debug
 let &grepformat="%f:%l:%c:%m, %f"
+let &grepformat="DE%o: %m,%f:%l:%c:%m,%f"
 cabbrev ag silent grep!
 
 " errorformat
@@ -151,9 +152,9 @@ let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 let &errorformat = substitute(&errorformat, ",%f:%l:%m,", ",", "")
 
 " quickfix
-let g:amc#aging = 0
-autocmd QuickfixCmdPost * call amc#qfPost()
-autocmd FileType qf call amc#updateAgPattern()
+let g:amc#qf#aging = 0
+autocmd QuickfixCmdPost * call amc#qf#cmdPost()
+autocmd FileType qf call amc#qf#updateAging()
 
 " omnicompletion
 set completeopt=menuone,longest

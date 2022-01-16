@@ -33,22 +33,6 @@ function! amc#updateTitleString()
 endfunction
 
 
-function! amc#safeBufExplorer()
-	call amc#win#goBufName("[BufExplorer]")
-	if bufname() == "[BufExplorer]"
-		return
-	endif
-
-	call amc#win#goHome()
-
-	let l:flavour = amc#buf#flavour(bufnr())
-	if l:flavour == g:amc#buf#ORDINARY_HAS_FILE || l:flavour == g:amc#buf#ORDINARY_NO_FILE
-		BufExplorer
-		return
-	endif
-endfunction
-
-
 function! amc#vselFirstLine()
 	try
 		let l:zprev = @z
@@ -59,29 +43,6 @@ function! amc#vselFirstLine()
 	endtry
 endfunction
 
-function! amc#updateAgPattern()
-	let l:title = getqflist({"title" : 0}).title
-	let l:size = getqflist({"size" : 0}).size
-	let g:amc#aging = l:size > 0 && match(l:title, ':\s*' . &grepprg . '\s*') >= 0
-
-	if g:amc#aging
-		let l:pattern = substitute(l:title, ':\s*' . &grepprg . '\s*', "", "")
-		let l:pattern = substitute(l:pattern, '-\S\+\s*', "", "g")
-		if match(l:pattern, '^.\{-}[''"]') >= 0
-			let l:pattern = substitute(l:pattern, '^.\{-}[''"]', "", "")
-			let l:pattern = substitute(l:pattern, '["''].*$', "", "")
-		else
-			let l:pattern = substitute(l:pattern, '\s\+\S*$', "", "")
-		endif
-		let @/ = l:pattern
-	endif
-endfunction
-
-function! amc#qfPost()
-	call amc#win#goHome()
-	cclose
-	aboveleft cwindow
-endfunction
 
 function! amc#setPathCwd()
 	let &path = getcwd() . "/**"
