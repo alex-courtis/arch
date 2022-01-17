@@ -147,8 +147,6 @@ let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
-" too many false positives
-let &errorformat = substitute(&errorformat, ",%f:%l:%m,", ",", "")
 
 " quickfix
 autocmd QuickfixCmdPost * call amc#qf#cmdPost()
