@@ -105,8 +105,7 @@ vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<Leader>n	:tn<CR>
 nmap	<silent>	<Leader>N	:tp<CR>
-nmap	<silent>	<Leader>v	o<Left><Right><Esc>p
-nmap	<silent>	<Leader>V	O<Left><Right><Esc>p
+" v
 
 " l
 nmap	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
@@ -123,6 +122,9 @@ unlet mapleader
 
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
+
+" disable this until I learn to use CTRL-O
+map		<C-t>	<NOP>
 
 " hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 vmap <LeftRelease> "*ygv
@@ -147,6 +149,7 @@ let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
 let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
+
 
 " quickfix
 autocmd QuickfixCmdPost * call amc#qf#cmdPost()
@@ -177,8 +180,8 @@ autocmd BufReadPost *
 			\ | endif
 
 " autosave
-autocmd BufLeave * silent! :w
-autocmd FocusLost * silent! :w
+autocmd BufLeave * :update
+autocmd FocusLost * :update
 
 " terminal title
 set title
@@ -195,7 +198,7 @@ autocmd VimEnter	* call amc#setPathCwd()
 set tags=**/tags
 
 " mru
-autocmd BufLeave * call amc#mru#bufLeave()
+autocmd BufEnter * call amc#mru#bufEnter()
 autocmd WinNew * call amc#mru#winNew()
 
 " stay away from special windows

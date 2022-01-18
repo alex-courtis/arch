@@ -152,19 +152,16 @@ function! amc#mru#update()
 	return 1
 endfunction
 
-" auto update on leave rather than enter:
-" new special windows will be amc#buf#ORDINARY_NO_FILE on enter
-function! amc#mru#bufLeave()
+function! amc#mru#bufEnter()
 	call amc#mru#update()
-	call amc#mru#prn("mru: leave")
+	call amc#mru#prn("mru enter:  ")
 endfunction
 
 function! amc#mru#back()
-	if !amc#mru#update()
-		return
-	endif
+	call amc#mru#prn("mru: back")
+	let l:flavour = amc#buf#flavour(bufnr())
 
-	if len(w:amcMru) < 2
+	if len(w:amcMru) < 2 && l:flavour != g:amc#buf#SPECIAL
 		return
 	endif
 
@@ -173,20 +170,19 @@ function! amc#mru#back()
 		let w:amcMruWinP = len(w:amcMru) - 1
 	endif
 
+	if l:flavour == g:amc#buf#SPECIAL
+		let w:amcMruWinP += 1
+	endif
+
 	if w:amcMruWinP < 1
 		return
 	endif
 
-	call amc#mru#prn("mru: back")
-
-	" update will deal with the pointer on demand
 	exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
 endfunction
 
 function! amc#mru#forward()
-	if !amc#mru#update()
-		return
-	endif
+	call amc#mru#prn("mru: forw")
 
 	if empty(w:amcMruWin)
 		return
@@ -196,27 +192,18 @@ function! amc#mru#forward()
 		return
 	endif
 
-	call amc#mru#prn("mru: forw")
-
-	" update will deal with the pointer on demand
 	exec "b!" . w:amcMruWin[w:amcMruWinP + 1]
 endfunction
 
 function! amc#mru#winRemove()
-	if !amc#mru#update()
-		return
-	endif
-
 	call amc#mru#prn("mru: remove")
 
 	let l:bn = bufnr()
 	if len(w:amcMru) > 2
-		" new #
-		call amc#mru#back()
-		call amc#mru#back()
-
-		" new %
-		call amc#mru#forward()
+		if empty(w:amcMruWin)
+			let w:amcMruWin = copy(w:amcMru)
+			let w:amcMruWinP = len(w:amcMru) - 1
+		endif
 
 		" send to back of MRU win
 		let l:bi = index(w:amcMruWin, l:bn)
@@ -224,6 +211,8 @@ function! amc#mru#winRemove()
 			call remove(w:amcMruWin, l:bi)
 		endif
 		call insert(w:amcMruWin, l:bn)
+
+		" tell back to go to the replacement of the removed
 		let w:amcMruWinP += 1
 
 		" send to back of MRU
@@ -232,10 +221,16 @@ function! amc#mru#winRemove()
 			call remove(w:amcMru, l:bi)
 		endif
 		call insert(w:amcMru, l:bn)
+
+		" new #
+		call amc#mru#back()
+		call amc#mru#back()
+
+		" new %
+		call amc#mru#forward()
 	elseif len(w:amcMru) > 1
 
 		" swap to only other in MRU
-		call amc#log("b!" . w:amcMru[0])
 		exec "b!" . w:amcMru[0]
 	else
 		" no other buffers, do nothing
