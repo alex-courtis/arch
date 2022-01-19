@@ -39,6 +39,8 @@ endfunction
 " other buf: do nothing, return 0
 " must have BufEnter events temporarily disabled
 function amc#nt#reveal()
+	let l:moveToRoot = 0
+
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		let l:bpath = expand("%:p")
 		let l:cwdpre = "^" . getcwd() . "/"
@@ -48,15 +50,20 @@ function amc#nt#reveal()
 			execute "NERDTreeFind " . substitute(l:bpath, l:cwdpre, "", "")
 			return 1
 		else
-			NERDTreeFocus
-			let l:cwdnt = g:NERDTreePath.New(getcwd())
-			if b:NERDTree.root.path.equals(l:cwdnt)
-				call b:NERDTree.render()
-				call b:NERDTree.root.putCursorHere(0, 0)
-			endif
-			wincmd p
-			return 0
+			let l:moveToRoot = 1
 		endif
+	elseif amc#buf#flavour(bufnr()) != g:amc#buf#SPECIAL
+		let l:moveToRoot = 1
+	endif
+
+	if l:moveToRoot
+		NERDTreeFocus
+		let l:cwdnt = g:NERDTreePath.New(getcwd())
+		if b:NERDTree.root.path.equals(l:cwdnt)
+			call b:NERDTree.render()
+			call b:NERDTree.root.putCursorHere(0, 0)
+		endif
+		wincmd p
 	endif
 	return 0
 endfunction
