@@ -76,12 +76,12 @@ nmap	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " begin right
 let mapleader="\<BS>"
 
-nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
-vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
+" f
 nmap	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 " b
 
-nmap			<Leader>g	:ag <C-r>=expand("<cword>")<CR>
+nmap			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
+nmap			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
@@ -98,8 +98,8 @@ nmap	<silent>	<Leader>t	<C-]>
 nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 nmap	<silent>	<Leader>w	viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<Leader>w")<CR>
 
-nmap			<Leader>r	:%s/<C-r>=expand("<cword>")<CR>/
-nmap			<Leader>R	:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
+nmap			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
+nmap			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<Leader>n	:tn<CR>
