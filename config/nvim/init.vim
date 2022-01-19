@@ -57,7 +57,7 @@ nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
 
 nmap	<silent>	<Leader>.	:call amc#qf#setGrepPattern()<Bar>set hlsearch<Bar>cnext<CR>
-nmap	<silent>	<Leader>e	:call amc#buf#safeBufExplorer()<CR>
+nmap	<silent>	<Leader>e	:call amc#win#goHome() <Bar> BufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
@@ -178,7 +178,7 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" autowrite is not working for neovim: https://github.com/neovim/neovim/issues/17139
+" eager autowrite
 autocmd BufLeave * call amc#buf#autoWrite()
 autocmd FocusLost * call amc#buf#autoWrite()
 
