@@ -274,6 +274,6 @@ let g:gitgutter_preview_win_location = 'belowright'
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
 
-let g:amcLog = 1
-let g:amcLogMru = 1
+let g:amcLog = 0
+let g:amcLogMru = 0
 
