@@ -70,3 +70,9 @@ function! amc#buf#safeBufExplorer()
 	endif
 endfunction
 
+function! amc#buf#autoWrite()
+	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
+		update
+	endif
+endfunction
+

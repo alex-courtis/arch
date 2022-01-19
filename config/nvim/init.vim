@@ -24,7 +24,6 @@ set ignorecase
 set smartcase
 set nowrapscan
 set autowriteall
-set nohidden
 set number
 set cursorline
 set mouse=a
@@ -179,9 +178,9 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" autosave
-autocmd BufLeave * :update
-autocmd FocusLost * :update
+" autowrite is not working for neovim: https://github.com/neovim/neovim/issues/17139
+autocmd BufLeave * call amc#buf#autoWrite()
+autocmd FocusLost * call amc#buf#autoWrite()
 
 " terminal title
 set title
