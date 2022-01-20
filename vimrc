@@ -34,6 +34,3 @@ set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 nunmap <Esc>
 let g:NERDTreeMapQuit = 'q'
 
-" sometimes terminal sends C-Space as Nul, so map it
-ino	<expr>	<Nul>		amc#omni#begin()
-

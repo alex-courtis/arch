@@ -154,16 +154,6 @@ let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 autocmd QuickfixCmdPost * call amc#qf#cmdPost()
 autocmd FileType qf call amc#qf#setGrepPattern()
 
-" omnicompletion
-set completeopt=menuone,longest
-ino	<expr>	<C-Space>	amc#omni#begin()
-ino	<expr>	<C-n>		amc#omni#next()
-ino	<expr>	<C-x><C-o>	amc#omni#begin()
-ino	<expr>	<CR>		amc#omni#maybeSelectFirstAndAccept()
-ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
-ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd CompleteDone * call amc#omni#end()
-
 " insert the results of a vim command e.g. "=Exe("set all")<C-M>p
 function! Exe(command)
 	redir =>output
