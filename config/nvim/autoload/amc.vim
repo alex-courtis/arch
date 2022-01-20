@@ -23,6 +23,7 @@ function! amc#colours()
 	highlight default link TagbarHighlight CursorLine
 	highlight Search ctermfg=18 ctermbg=16
 	highlight IncSearch ctermfg=18 ctermbg=3
+        highlight def link bufExplorerHidBuf Operator
 endfunction
 
 

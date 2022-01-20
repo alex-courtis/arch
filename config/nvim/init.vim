@@ -24,7 +24,6 @@ set ignorecase
 set smartcase
 set nowrapscan
 set autowriteall
-set nohidden
 set number
 set cursorline
 set mouse=a
@@ -58,7 +57,7 @@ nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
 
 nmap	<silent>	<Leader>.	:call amc#qf#setGrepPattern()<Bar>set hlsearch<Bar>cnext<CR>
-nmap	<silent>	<Leader>e	:call amc#buf#safeBufExplorer()<CR>
+nmap	<silent>	<Leader>e	:call amc#win#goHome() <Bar> BufExplorer<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
@@ -77,12 +76,12 @@ nmap	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " begin right
 let mapleader="\<BS>"
 
-nmap			<Leader>f	:/<C-r>=expand("<cword>")<CR>
-vmap			<Leader>f	:<C-u>/<C-r>=amc#vselFirstLine()<CR>
+" f
 nmap	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 " b
 
-nmap			<Leader>g	:ag <C-r>=expand("<cword>")<CR>
+nmap			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
+nmap			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
@@ -99,8 +98,8 @@ nmap	<silent>	<Leader>t	<C-]>
 nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 nmap	<silent>	<Leader>w	viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<Leader>w")<CR>
 
-nmap			<Leader>r	:%s/<C-r>=expand("<cword>")<CR>/
-nmap			<Leader>R	:%s/<C-r>=expand("<cword>")<CR>/<C-r>=expand("<cword>")<CR>
+nmap			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
+nmap			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<Leader>n	:tn<CR>
@@ -155,16 +154,6 @@ let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 autocmd QuickfixCmdPost * call amc#qf#cmdPost()
 autocmd FileType qf call amc#qf#setGrepPattern()
 
-" omnicompletion
-set completeopt=menuone,longest
-ino	<expr>	<C-Space>	amc#omni#begin()
-ino	<expr>	<C-n>		amc#omni#next()
-ino	<expr>	<C-x><C-o>	amc#omni#begin()
-ino	<expr>	<CR>		amc#omni#maybeSelectFirstAndAccept()
-ino	<expr>	<Tab>		pumvisible() ? "\<C-n>" : "\<Tab>"
-ino	<expr>	<S-Tab>		pumvisible() ? "\<C-p>" : "\<S-Tab>"
-autocmd CompleteDone * call amc#omni#end()
-
 " insert the results of a vim command e.g. "=Exe("set all")<C-M>p
 function! Exe(command)
 	redir =>output
@@ -179,9 +168,9 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" autosave
-autocmd BufLeave * :update
-autocmd FocusLost * :update
+" eager autowrite
+autocmd BufLeave * call amc#buf#autoWrite()
+autocmd FocusLost * call amc#buf#autoWrite()
 
 " terminal title
 set title

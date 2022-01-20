@@ -55,18 +55,9 @@ function! amc#buf#safeHash()
 	b!#
 endfunction
 
-function! amc#buf#safeBufExplorer()
-	call amc#win#goBufName("[BufExplorer]")
-	if bufname() == "[BufExplorer]"
-		return
-	endif
-
-	call amc#win#goHome()
-
-	let l:flavour = amc#buf#flavour(bufnr())
-	if l:flavour == g:amc#buf#ORDINARY_HAS_FILE || l:flavour == g:amc#buf#ORDINARY_NO_FILE
-		BufExplorer
-		return
+function! amc#buf#autoWrite()
+	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
+		update
 	endif
 endfunction
 
