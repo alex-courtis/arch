@@ -86,8 +86,8 @@ vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
 xmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
-nmap	<silent>	<Leader>m	:make<CR>
-nmap	<silent>	<Leader>M	:make clean all<CR>
+nmap	<silent>	<Leader>m	:make <Bar> silent! cnext <CR>
+nmap	<silent>	<Leader>M	:make clean <Bar> silent! cnext <CR>
 
 nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
 nmap	<silent>	<Leader>cc	<Plug>CommentaryLine

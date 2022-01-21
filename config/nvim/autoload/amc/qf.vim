@@ -50,7 +50,6 @@ function! amc#qf#processMake()
 	endif
 
 	let l:itemNr = 0
-	let l:firstValid = 0
 	let l:filteredItems = []
 	for l:item in getqflist()
 		let l:itemNr += 1
@@ -59,8 +58,6 @@ function! amc#qf#processMake()
 
 		" kill the buffer and invalidate for file that does not exist
 		if l:item["valid"] && l:bufnr > 0 && !filereadable(l:bname)
-			call amc#log(l:bufnr . " '" . l:bname . "'")
-			call amc#log(" cleaning")
 			exec "bw" . l:bufnr
 			let l:item["text"] = l:bname . ":" . l:item["lnum"] . ":" . l:item["text"]
 			let l:item["bufnr"] = 0
@@ -69,21 +66,12 @@ function! amc#qf#processMake()
 			let l:item["valid"] = 0
 		endif
 
-		if l:item["valid"] && !l:firstValid
-			let l:firstValid = l:itemNr
-		endif
-
 		call add(l:filteredItems, l:item)
 	endfor
 	call setqflist(l:filteredItems, 'r')
 
 	" title is changed to ":setqflist()" after setting items
 	call setqflist([], 'r', {'title': l:title})
-
-	" auto-jump-to-first doesn't happen after setting items so force it
-	if l:firstValid
-		exec "cc" . l:firstValid
-	endif
 endfunction
 
 function! amc#qf#cmdPost()
