@@ -1,7 +1,24 @@
+function! amc#mru#initWinVars()
+	if !exists("w:amcMru")
+		let w:amcMru = []
+	endif
+	if !exists("w:amcMruWin")
+		let w:amcMruWin = []
+	endif
+	if !exists("w:amcMruWinP")
+		let w:amcMruWinP = -1
+	endif
+	if !exists("w:amcMruWinNew")
+		let w:amcMruWinNew = 0
+	endif
+endfunction
+
 function! amc#mru#prn(msg)
 	if !g:amcLogMru || !g:amcLog
 		return
 	endif
+
+	call amc#mru#initWinVars()
 
 	let l:bnCur = bufnr("%")
 	let l:bnAlt = bufnr("#")
@@ -55,14 +72,13 @@ endfunction
 
 " idempotent
 function! amc#mru#update()
-	if !exists("w:amcMru")
-		let w:amcMru = []
-		let w:amcMruWin = []
-		let w:amcMruWinP = 0
-	endif
+	call amc#mru#initWinVars()
 
 	let l:bn = bufnr()
 	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
+		let w:amcMru = []
+		let w:amcMruWin = []
+		let w:amcMruWinP = -1
 		return 0
 	endif
 
@@ -107,6 +123,9 @@ endfunction
 
 function! amc#mru#back()
 	call amc#log("mru: back")
+
+	call amc#mru#initWinVars()
+
 	let l:flavour = amc#buf#flavour(bufnr())
 
 	if len(w:amcMru) < 2 && l:flavour != g:amc#buf#SPECIAL
@@ -132,6 +151,8 @@ endfunction
 function! amc#mru#forward()
 	call amc#log("mru: forw")
 
+	call amc#mru#initWinVars()
+
 	if empty(w:amcMruWin)
 		return
 	endif
@@ -144,7 +165,7 @@ function! amc#mru#forward()
 endfunction
 
 function! amc#mru#winRemove()
-	call amc#log("mru: remove")
+	call amc#log("mru: remove " . winnr())
 
 	let l:bn = bufnr()
 	if len(w:amcMru) > 2
@@ -186,15 +207,19 @@ function! amc#mru#winRemove()
 endfunction
 
 function! amc#mru#winNew()
-	let l:pwn = winnr("#")
+	call amc#mru#initWinVars()
 
+	" optimistically clone from the old window; it will be cleared on special BufEnter
+	let l:pwn = winnr("#")
 	let l:amcMru = getwinvar(l:pwn, "amcMru")
 	let l:amcMruWin = getwinvar(l:pwn, "amcMruWin")
 	let l:amcMruWinP = getwinvar(l:pwn, "amcMruWinP")
 	if len(l:amcMru)
 		let w:amcMru = deepcopy(l:amcMru)
-		let w:amcMruWin = deepcopy(l:amcMruWin)
-		let w:amcMruWinP = l:amcMruWinP
+		if len(l:amcMruWin)
+			let w:amcMruWin = deepcopy(l:amcMruWin)
+			let w:amcMruWinP = l:amcMruWinP
+		endif
 	endif
 endfunction
 
