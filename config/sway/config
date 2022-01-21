@@ -9,7 +9,7 @@ tiling_drag disable
 # keys
 bindsym $mod1+x exec bemenu-run
 bindsym $mod2+x exec exec $(menjar) > /dev/null 2>&1
-bindsym $mod3+l exec swaylock -f -c ${BASE01} > /dev/null 2>&1
+bindsym $mod3+o exec swaylock -f -c ${BASE01} > /dev/null 2>&1
 bindsym $mod3+s exec yq -y -i 'if has("AUTO_SCALE") then .AUTO_SCALE |= not else .AUTO_SCALE = false end' ~/.config/way-displays/cfg.yaml
 
 
