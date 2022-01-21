@@ -6,6 +6,7 @@ let g:amc#buf#NO_NAME_MODIFIED = 5
 
 " on creation these do not have &buftype set at BufEnter
 let s:specialNames = [
+			\ 'NvimTree',
 			\ 'NERD_tree',
 			\ '\[BufExplorer\]',
 			\ '__Tagbar__',

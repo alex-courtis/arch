@@ -67,6 +67,12 @@ function! amc#win#closeInc()
 		return
 	endif
 
+	let l:wn = amc#win#winForBufName("NvimTree")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
 	let l:wn = amc#win#winForBufName("NERD_tree_")
 	if l:wn
 		execute l:wn . " wincmd c"

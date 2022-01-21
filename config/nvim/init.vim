@@ -5,14 +5,16 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
-Plugin 'preservim/nerdtree'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'Yohannfra/Vim-Goto-Header'
-if !has('nvim')
+if has('nvim')
+	Plugin 'kyazdani42/nvim-tree.lua'
+else
+	Plugin 'preservim/nerdtree'
+	Plugin 'Xuyuanp/nerdtree-git-plugin'
 	Plugin 'wincent/terminus'
 endif
 call vundle#end()
@@ -46,8 +48,12 @@ imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 " begin left
 let mapleader="\<Space>"
 
-nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
-nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
+if has('nvim')
+	nmap	<silent>	<Leader>a	:call amc#nvt#smartFocus()<CR>
+else
+	nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
+	nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
+endif
 nmap	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nmap	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
@@ -181,7 +187,6 @@ autocmd VimEnter	* call amc#updateTitleString()
 
 " find
 cabbrev f find
-autocmd VimEnter	* call amc#setPathCwd()
 
 " tags search down only
 set tags=**/tags
@@ -193,6 +198,10 @@ autocmd WinNew * call amc#mru#winNew()
 " stay away from special windows
 autocmd BufLeave * call amc#win#updateSpecial()
 autocmd BufEnter * call amc#win#moveFromSpecial()
+
+" directory handling
+autocmd VimEnter * call amc#startupCwd()
+autocmd DirChanged * call amc#updatePath()
 
 " airline
 set noshowmode
@@ -214,32 +223,39 @@ let EditorConfig_max_line_indicator='line'
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
 
-" nerdtree
-set wildignore+=*.o,*.class
-let NERDTreeRespectWildIgnore = 1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-let g:NERDTreeMapQuit = '<Esc>'
-let g:amc#nt#stdin = 0
-autocmd StdinReadPre * call amc#nt#stdinReadPre()
-autocmd VimEnter * call amc#nt#vimEnter()
-autocmd BufEnter * call amc#nt#sync()
+if has('nvim')
+	" nvimtree
+	call amc#nvt#setup()
+	autocmd BufEnter * call amc#nvt#bufEnter()
+	autocmd VimEnter * call amc#nvt#vimEnter()
+else
+	" nerdtree
+	set wildignore+=*.o,*.class
+	let NERDTreeRespectWildIgnore = 1
+	let NERDTreeMinimalUI = 1
+	let g:NERDTreeDirArrowExpandable = '+'
+	let g:NERDTreeDirArrowCollapsible = '-'
+	let g:NERDTreeMapQuit = '<Esc>'
+	let g:amc#nt#stdin = 0
+	autocmd StdinReadPre * call amc#nt#stdinReadPre()
+	autocmd VimEnter * call amc#nt#vimEnter()
+	autocmd BufEnter * call amc#nt#sync()
 
-" nerdtree-git-plugin
-let g:NERDTreeGitStatusDirDirtyOnly = 0
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-			\ "Modified"  : "~",
-			\ "Staged"    : "+",
-			\ "Untracked" : "u",
-			\ "Renamed"   : "r",
-			\ "Unmerged"  : "*",
-			\ "Deleted"   : "d",
-			\ "Dirty"     : "x",
-			\ "Clean"     : "c",
-			\ 'Ignored'   : 'i',
-			\ "Unknown"   : "?"
-			\ }
+	" nerdtree-git-plugin
+	let g:NERDTreeGitStatusDirDirtyOnly = 0
+	let g:NERDTreeGitStatusIndicatorMapCustom = {
+				\ "Modified"  : "~",
+				\ "Staged"    : "+",
+				\ "Untracked" : "u",
+				\ "Renamed"   : "r",
+				\ "Unmerged"  : "*",
+				\ "Deleted"   : "d",
+				\ "Dirty"     : "x",
+				\ "Clean"     : "c",
+				\ 'Ignored'   : 'i',
+				\ "Unknown"   : "?"
+				\ }
+endif
 
 " tagbar
 let g:tagbar_compact=1
@@ -264,6 +280,7 @@ let g:gitgutter_preview_win_location = 'belowright'
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
 
-let g:amcLog = 0
+
+let g:amcLog = 1
 let g:amcLogMru = 0
 
