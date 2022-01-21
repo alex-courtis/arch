@@ -1,16 +1,14 @@
-let s:colWidth = 28
-let s:colPad = " || "
-let s:colEmpty = repeat(" ", s:colWidth)
-function! amc#mru#stripPad(line)
-	let l:line = a:line
-	let l:line = l:line[0 : s:colWidth - 1]
-	let l:line .= repeat(" ", s:colWidth - len(l:line))
-	return l:line
-endfunction
-
 function! amc#mru#prn(msg)
 	if !g:amcLogMru || !g:amcLog
 		return
+	endif
+
+	let l:bnCur = bufnr("%")
+	let l:bnAlt = bufnr("#")
+	if len(w:amcMruWin) > 0
+		let l:bnPtr = w:amcMruWin[w:amcMruWinP]
+	else
+		let l:bnPtr = -1
 	endif
 
 	redir => l:buffers
@@ -21,88 +19,38 @@ function! amc#mru#prn(msg)
 		let l:stripped = l:line
 		let l:stripped = substitute(l:stripped, " *line.*", "", "g")
 		let l:stripped = substitute(l:stripped, '"', "", "g")
-		let l:stripped = amc#mru#stripPad(l:stripped)
 		call add(l:bufLines, l:stripped)
 	endfor
 
 	let l:mruLines = []
-	for l:i in w:amcMru
-		let l:line = l:i . " "
-		if l:i == bufnr("#")
-			let l:line .= "#"
-		else
-			let l:line .= " "
-		endif
-		if l:i == bufnr("%")
-			let l:line .= "%"
-		else
-			let l:line .= " "
-		endif
-		let l:line .= " "
-		let l:name = bufname(l:i)
-		if strlen(l:name) == 0
-			let l:name = "[No Name]"
-		endif
-		let l:line .= l:name
-		let l:line = amc#mru#stripPad(l:line)
+	for l:bn in w:amcMru
+		let l:bname = bufname(l:bn)
+		let l:line = printf("%2d %s %s",
+					\ l:bn,
+					\ l:bn == l:bnCur ? "%" : l:bn == l:bnAlt ? "#" : " ",
+					\ strlen(l:bname) == 0 ? "[No Name]" : l:bname)
 		call add(l:mruLines, l:line)
 	endfor
 
 	let l:winLines = []
-	for l:i in w:amcMruWin
-		let l:line = l:i . " "
-		if index(w:amcMruWin, l:i) == w:amcMruWinP
-			let l:line .= ">"
-		else
-			let l:line .= " "
-		endif
-		if l:i == bufnr("#")
-			let l:line .= "#"
-		else
-			let l:line .= " "
-		endif
-		if l:i == bufnr("%")
-			let l:line .= "%"
-		else
-			let l:line .= " "
-		endif
-		let l:line .= " "
-		let l:name = bufname(l:i)
-		if strlen(l:name) == 0
-			let l:name = "[No Name]"
-		endif
-		let l:line .= l:name
-		let l:line = amc#mru#stripPad(l:line)
+	for l:bn in w:amcMruWin
+		let l:bname = bufname(l:bn)
+		let l:line = printf("%2d %s%s %s",
+					\ l:bn,
+					\ l:bn == l:bnPtr ? ">" : " ",
+					\ l:bn == l:bnCur ? "%" : l:bn == l:bnAlt ? "#" : " ",
+					\ strlen(l:bname) == 0 ? "[No Name]" : l:bname)
 		call add(l:winLines, l:line)
 	endfor
 
-	call amc#log(a:msg)
+	let l:all = a:msg
 	for l:i in range(0, max([len(l:bufLines), len(l:mruLines), len(l:winLines)]) - 1)
-		let l:line = ""
-
-		if i < len(l:bufLines)
-			let l:line .= l:bufLines[i]
-		else
-			let l:line .= s:colEmpty
-		endif
-		let l:line .= s:colPad
-
-		if i < len(l:mruLines)
-			let l:line .= l:mruLines[i]
-		else
-			let l:line .= s:colEmpty
-		endif
-		let l:line .= s:colPad
-
-		if i < len(l:winLines)
-			let l:line .= l:winLines[i]
-		else
-			let l:line .= s:colEmpty
-		endif
-
-		let l:line = substitute(l:line, " *$", "", "g")
-		call amc#log(l:line)
+		let l:all .= printf("\n%-40.40s | %-36.36s | %.37s",
+					\ i < len(l:bufLines) ? l:bufLines[i] : "",
+					\ i < len(l:mruLines) ? l:mruLines[i] : "",
+					\ i < len(l:winLines) ? l:winLines[i] : "")
 	endfor
+	call amc#log(l:all)
 endfunction
 
 " idempotent
@@ -158,7 +106,7 @@ function! amc#mru#bufEnter()
 endfunction
 
 function! amc#mru#back()
-	call amc#mru#prn("mru: back")
+	call amc#log("mru: back")
 	let l:flavour = amc#buf#flavour(bufnr())
 
 	if len(w:amcMru) < 2 && l:flavour != g:amc#buf#SPECIAL
@@ -182,7 +130,7 @@ function! amc#mru#back()
 endfunction
 
 function! amc#mru#forward()
-	call amc#mru#prn("mru: forw")
+	call amc#log("mru: forw")
 
 	if empty(w:amcMruWin)
 		return
@@ -196,7 +144,7 @@ function! amc#mru#forward()
 endfunction
 
 function! amc#mru#winRemove()
-	call amc#mru#prn("mru: remove")
+	call amc#log("mru: remove")
 
 	let l:bn = bufnr()
 	if len(w:amcMru) > 2
