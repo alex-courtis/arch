@@ -8,13 +8,15 @@ function! amc#mru#initWinVars()
 	if !exists("w:amcMruWinP")
 		let w:amcMruWinP = -1
 	endif
-	if !exists("w:amcMruWinNew")
-		let w:amcMruWinNew = 0
-	endif
 endfunction
 
-function! amc#mru#prn(msg)
-	if !g:amcLogMru || !g:amcLog
+function! amc#mru#prn(msg, full)
+	if !g:amcLogMru
+		return
+	endif
+
+	if !a:full
+		call amc#log#_line(a:msg)
 		return
 	endif
 
@@ -67,7 +69,7 @@ function! amc#mru#prn(msg)
 					\ i < len(l:mruLines) ? l:mruLines[i] : "",
 					\ i < len(l:winLines) ? l:winLines[i] : "")
 	endfor
-	call amc#log(l:all)
+	call amc#log#_line(l:all)
 endfunction
 
 " idempotent
@@ -118,11 +120,11 @@ endfunction
 
 function! amc#mru#bufEnter()
 	call amc#mru#update()
-	call amc#mru#prn("mru enter:  ")
+	call amc#mru#prn("mru: enter", 1)
 endfunction
 
 function! amc#mru#back()
-	call amc#log("mru: back")
+	call amc#mru#prn("mru: back", 0)
 
 	call amc#mru#initWinVars()
 
@@ -149,7 +151,7 @@ function! amc#mru#back()
 endfunction
 
 function! amc#mru#forward()
-	call amc#log("mru: forw")
+	call amc#mru#prn("mru: forw", 0)
 
 	call amc#mru#initWinVars()
 
@@ -165,7 +167,7 @@ function! amc#mru#forward()
 endfunction
 
 function! amc#mru#winRemove()
-	call amc#log("mru: remove " . winnr())
+	call amc#mru#prn("mru: remove " . winnr(), 0)
 
 	let l:bn = bufnr()
 	if len(w:amcMru) > 2

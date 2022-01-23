@@ -135,6 +135,11 @@ map		<C-t>	<NOP>
 vmap <LeftRelease> "*ygv
 
 
+" log
+let g:amcLog = 0
+let g:amcLogMru = 0
+" call amc#log#startEventLogging()
+
 " appearance
 if match(system('underlyingterm'), 'st-256color\|alacritty') >= 0
 	let base16colorspace=256
@@ -174,9 +179,10 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" eager autowrite
+" automation to work around inconsistent hidden/autowrite behaviour
 autocmd BufLeave * call amc#buf#autoWrite()
 autocmd FocusLost * call amc#buf#autoWrite()
+autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 
 " terminal title
 set title
@@ -279,8 +285,4 @@ let g:gitgutter_preview_win_location = 'belowright'
 " local overrides
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
-
-
-let g:amcLog = 1
-let g:amcLogMru = 0
 

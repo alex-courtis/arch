@@ -1,16 +1,3 @@
-let s:firstLogLine = 0
-function! amc#log(msg)
-	if !g:amcLog
-		return
-	endif
-	if !s:firstLogLine
-		call system("echo ---------------- >> /tmp/vim." . $USER . ".log")
-		let s:firstLogLine = 1
-	endif
-	call system("echo \'" . substitute(a:msg, "'", "'\"'\"\'", "g") . "\' >> /tmp/vim." . $USER . ".log")
-endfunction
-
-
 function! amc#sourceIfExists(file)
 	if filereadable(expand(a:file))
 		exe 'source' a:file

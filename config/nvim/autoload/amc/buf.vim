@@ -13,7 +13,7 @@ let s:specialNames = [
 			\ 'gitgutter://hunk-preview',
 			\]
 
-function! amc#buf#flavour(buf)
+function amc#buf#flavour(buf)
 	let l:name = bufname(a:buf)
 
 	if strlen(getbufvar(a:buf, "&buftype")) != 0
@@ -42,7 +42,23 @@ function! amc#buf#flavour(buf)
 	endif
 endfunction
 
-function! amc#buf#safeHash()
+function amc#buf#flavourName(flavour)
+	if a:flavour == g:amc#buf#SPECIAL
+		return "SPECIAL"
+	elseif a:flavour == g:amc#buf#ORDINARY_HAS_FILE
+		return "ORDINARY_HAS_FILE"
+	elseif a:flavour == g:amc#buf#ORDINARY_NO_FILE
+		return "ORDINARY_NO_FILE"
+	elseif a:flavour == g:amc#buf#NO_NAME_NEW
+		return "NO_NAME_NEW"
+	elseif a:flavour == g:amc#buf#NO_NAME_MODIFIED
+		return "NO_NAME_MODIFIED"
+	else
+		return "unknown"
+	endif
+endfunction
+
+function amc#buf#safeHash()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
 		return
 	endif
@@ -56,9 +72,21 @@ function! amc#buf#safeHash()
 	b!#
 endfunction
 
-function! amc#buf#autoWrite()
+function amc#buf#autoWrite()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		update
+	endif
+endfunction
+
+" no name new buffers are not wiped when loading an existing buffer over them
+function amc#buf#wipeAltNoNameNew()
+	let l:bn = bufnr('%')
+	let l:bna = bufnr('#')
+	let l:bwna = bufwinnr(l:bna)
+	if l:bna != -1 && l:bn != l:bna && l:bwna == -1
+		if amc#buf#flavour(l:bna) == g:amc#buf#NO_NAME_NEW
+			execute "bw" . l:bna
+		endif
 	endif
 endfunction
 
