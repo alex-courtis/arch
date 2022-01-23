@@ -77,10 +77,15 @@ function! amc#mru#update()
 	call amc#mru#initWinVars()
 
 	let l:bn = bufnr()
+
+	" clear on any special but BufExplorer
 	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
-		let w:amcMru = []
-		let w:amcMruWin = []
-		let w:amcMruWinP = -1
+		if bufname() != "[BufExplorer]"
+			call amc#log#line("amc#mru#update clearing MRU for special")
+			let w:amcMru = []
+			let w:amcMruWin = []
+			let w:amcMruWinP = -1
+		endif
 		return 0
 	endif
 
@@ -170,6 +175,11 @@ function! amc#mru#winRemove()
 	call amc#mru#prn("mru: remove " . winnr(), 0)
 
 	let l:bn = bufnr()
+
+	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
+		return
+	endif
+
 	if len(w:amcMru) > 2
 		if empty(w:amcMruWin)
 			let w:amcMruWin = copy(w:amcMru)
@@ -217,6 +227,7 @@ function! amc#mru#winNew()
 	let l:amcMruWin = getwinvar(l:pwn, "amcMruWin")
 	let l:amcMruWinP = getwinvar(l:pwn, "amcMruWinP")
 	if len(l:amcMru)
+		call amc#log#line("amc#mru#winNew cloning MRU")
 		let w:amcMru = deepcopy(l:amcMru)
 		if len(l:amcMruWin)
 			let w:amcMruWin = deepcopy(l:amcMruWin)
