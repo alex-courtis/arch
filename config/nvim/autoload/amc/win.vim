@@ -136,17 +136,20 @@ function! amc#win#updateSpecial()
 	let w:amcWasSpecial = bufnr("%") != -1 && amc#buf#flavour("%") == g:amc#buf#SPECIAL
 endfunction
 
+" nvimtree handles this itself with a lot of thrashing; this short-circuits that
 function! amc#win#moveFromSpecial()
-	if !exists('w:amcWasSpecial')
+	if !exists('w:amcWasSpecial') || !w:amcWasSpecial
 		return
 	endif
 
 	let l:bn = bufnr("%")
-	if w:amcWasSpecial && l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && bufname("#") != "[BufExplorer]"
+	if l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && bufname("#") != "[BufExplorer]"
 		if bufnr("#") >= 0
+			call amc#log#line("amc#win#moveFromSpecial swapping to #")
 			b#
 		else
 			" some specials like quickfix wipe themselves after leaving
+			call amc#log#line("amc#win#moveFromSpecial closing")
 			wincmd c
 		endif
 		call amc#win#goHome()

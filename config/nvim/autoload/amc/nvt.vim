@@ -25,6 +25,7 @@ endfunction
 " only to workaround above bugs
 function amc#nvt#bufEnter()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
+		call amc#log#line("amc#nvt#bufEnter refreshing")
 		NvimTreeRefresh
 	endif
 endfunction
