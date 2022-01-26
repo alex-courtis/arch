@@ -181,9 +181,9 @@ autocmd BufReadPost *
 			\ | endif
 
 " automation to work around inconsistent hidden/autowrite behaviour
-autocmd BufLeave * call amc#buf#autoWrite()
-autocmd FocusLost * call amc#buf#autoWrite()
-autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
+" autocmd BufLeave * call amc#buf#autoWrite()
+" autocmd FocusLost * call amc#buf#autoWrite()
+" autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 
 " terminal title
 set title
@@ -199,12 +199,12 @@ cabbrev f find
 set tags=**/tags
 
 " mru
-autocmd BufEnter * call amc#mru#bufEnter()
-autocmd WinNew * call amc#mru#winNew()
+" autocmd BufEnter * call amc#mru#bufEnter()
+" autocmd WinNew * call amc#mru#winNew()
 
 " stay away from special windows
-autocmd BufLeave * call amc#win#updateSpecial()
-autocmd BufEnter * call amc#win#moveFromSpecial()
+" autocmd BufLeave * call amc#win#updateSpecial()
+" autocmd BufEnter * call amc#win#moveFromSpecial()
 
 " directory handling
 autocmd VimEnter * call amc#startupCwd()
@@ -237,8 +237,8 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 if has('nvim')
 	" nvimtree
 	call amc#nvt#setup()
-	autocmd BufEnter * call amc#nvt#bufEnter()
-	autocmd VimEnter * call amc#nvt#vimEnter()
+	" autocmd BufEnter * call amc#nvt#bufEnter()
+	" autocmd VimEnter * call amc#nvt#vimEnter()
 else
 	" nerdtree
 	set wildignore+=*.o,*.class

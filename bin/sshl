@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# use default remote and local port so that we do not need to reconfigure nvim
+PORT_REMOTE=2489
+PORT_LOCAL=2489
+LEM_SSH_ARGS="-f -N -R ${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
+CMD_SSH="ssh ${1} ${LEM_SSH_ARGS}"
+
+function kill_exit() {
+	pkill -e -f "lemonade server"
+	pkill -e -f "ssh.*${LEM_SSH_ARGS}"
+	exit 1
+}
+
+function print_exit() {
+	pgrep -a -f "lemonade server"
+	pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
+	exit 0
+}
+
+case "${1}" in
+	"-k")
+		kill_exit
+		;;
+	"-s")
+		print_exit
+		;;
+esac
+
+pgrep -a -f "lemonade server"
+if [ "${?}" -ne 0 ]; then
+	echo "starting server"
+	lemonade server --port=${PORT_LOCAL} --allow="127.0.0.1,::1" --log-level=2 > /tmp/lemonade.log 2>&1 &
+	pgrep -a -f "lemonade server"
+	if [ "${?}" -ne 0 ]; then
+		cat /tmp/lemonade.log
+		kill_exit
+	fi
+fi
+
+pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
+NUM_SSH=$(pgrep -c -f "${CMD_SSH}")
+if [ "${NUM_SSH}" -ne 1 ]; then
+	echo "starting ssh"
+	if [ "${NUM_SSH}" -gt 1 ]; then
+		pkill -e -f "${CMD_SSH}"
+	fi
+	${CMD_SSH}
+	if [ "${?}" -ne 0 ]; then
+		kill_exit
+	fi
+	pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
+fi
+
+ssh ${@}
+
