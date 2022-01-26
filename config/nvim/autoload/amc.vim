@@ -6,11 +6,13 @@ endfunction
 
 
 function! amc#colours()
-	highlight CursorLineNr cterm=NONE ctermfg=7
+	highlight CursorLineNr cterm=bold
 	highlight default link TagbarHighlight CursorLine
-	highlight Search ctermfg=18 ctermbg=16
-	highlight IncSearch ctermfg=18 ctermbg=3
         highlight def link bufExplorerHidBuf Operator
+
+	" swap these two
+	highlight Search ctermfg=18 ctermbg=16 guifg=#303030 guibg=#fc6d24
+	highlight IncSearch ctermfg=18 ctermbg=3 guifg=#303030 guibg=#fda331
 endfunction
 
 
