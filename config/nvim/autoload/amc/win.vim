@@ -32,6 +32,17 @@ function! amc#win#goBufName(bn)
 	endfor
 endfunction
 
+function! amc#win#winForFileType(type)
+	for l:wn in range(1, winnr("$"))
+		let l:bnum = winbufnr(l:wn)
+		let l:btype = getbufvar(l:bnum, "&filetype")
+		if match(l:btype, a:type) != -1
+			return l:wn
+		endif
+	endfor
+	return 0
+endfunction
+
 function! amc#win#winForBufType(type)
 	for l:wn in range(1, winnr("$"))
 		let l:bnum = winbufnr(l:wn)
@@ -62,6 +73,12 @@ function! amc#win#closeInc()
 	endif
 
 	let l:wn = amc#win#winForBufType("quickfix")
+	if l:wn
+		execute l:wn . " wincmd c"
+		return
+	endif
+
+	let l:wn = amc#win#winForFileType("fugitive")
 	if l:wn
 		execute l:wn . " wincmd c"
 		return
@@ -134,6 +151,7 @@ endfunction
 
 function! amc#win#updateSpecial()
 	let w:amcWasSpecial = bufnr("%") != -1 && amc#buf#flavour("%") == g:amc#buf#SPECIAL
+	let w:amcWasFugitive = &filetype == "fugitive"
 endfunction
 
 " nvimtree handles this itself with a lot of thrashing; this short-circuits that
@@ -143,13 +161,16 @@ function! amc#win#moveFromSpecial()
 	endif
 
 	let l:bn = bufnr("%")
+	let l:abn = bufnr("#")
 	if l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && bufname("#") != "[BufExplorer]"
-		if bufnr("#") >= 0
-			call amc#log#line("amc#win#moveFromSpecial swapping to #")
+		if exists('w:amcWasFugitive') && w:amcWasFugitive
+			" buffer is unusable until the window is closed
+			wincmd c
+		elseif l:abn >= 0
+			" expected situation
 			b#
 		else
 			" some specials like quickfix wipe themselves after leaving
-			call amc#log#line("amc#win#moveFromSpecial closing")
 			wincmd c
 		endif
 		call amc#win#goHome()

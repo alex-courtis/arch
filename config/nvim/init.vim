@@ -6,6 +6,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -211,10 +212,14 @@ autocmd DirChanged * call amc#updatePath()
 
 " airline
 set noshowmode
+let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#searchcount#enabled = 0
 let g:airline_section_x=''
-let g:airline_section_y='%{airline#util#wrap(airline#parts#filetype(),0)}'
-let g:airline_section_z='%2v %#__accent_bold#%3l%#__restore__#/%L'
+let g:airline_section_y = airline#section#create_right(['filetype'])
+call airline#parts#define('colnr', { 'raw': '%v', 'accent': 'none'})
+call airline#parts#define('linenr', { 'raw': '%l', 'accent': 'bold'})
+call airline#parts#define('maxlinenr', { 'raw': '/%L', 'accent': 'none'})
+let g:airline_section_z = airline#section#create(['colnr', g:airline_symbols.space, 'linenr', 'maxlinenr'])
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 
 " bufexplorer
@@ -274,6 +279,9 @@ autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
 " stop the plugin from creating the default mappings
 nmap	gc	<NOP>
+
+" vim-fugitive
+cabbrev git bel Git
 
 " vim-gitgutter
 set updatetime=100
