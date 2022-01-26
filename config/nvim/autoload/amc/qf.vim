@@ -58,7 +58,9 @@ function! amc#qf#processMake()
 
 		" kill the buffer and invalidate for file that does not exist
 		if l:item["valid"] && l:bufnr > 0 && !filereadable(l:bname)
-			exec "bw" . l:bufnr
+			if bufnr(l:bufnr) != -1
+				exec "bw" . l:bufnr
+			endif
 			let l:item["text"] = l:bname . ":" . l:item["lnum"] . ":" . l:item["text"]
 			let l:item["bufnr"] = 0
 			let l:item["col"] = 0
