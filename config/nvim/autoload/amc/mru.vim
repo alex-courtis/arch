@@ -11,7 +11,7 @@ function! amc#mru#initWinVars()
 endfunction
 
 function! amc#mru#prn(msg, full)
-	if !g:amcLogMru
+	if !exists('g:amcLogMru') || !g:amcLogMru
 		return
 	endif
 
@@ -79,7 +79,7 @@ function! amc#mru#update()
 	let l:bn = bufnr()
 
 	" clear on any special but BufExplorer
-	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
+	if amc#buf#isSpecial(l:bn)
 		if bufname() != "[BufExplorer]"
 			call amc#log#line("amc#mru#update clearing MRU for special")
 			let w:amcMru = []
@@ -133,9 +133,9 @@ function! amc#mru#back()
 
 	call amc#mru#initWinVars()
 
-	let l:flavour = amc#buf#flavour(bufnr())
+	let l:special = amc#buf#isSpecial(bufnr())
 
-	if len(w:amcMru) < 2 && l:flavour != g:amc#buf#SPECIAL
+	if len(w:amcMru) < 2 && l:special
 		return
 	endif
 
@@ -144,7 +144,7 @@ function! amc#mru#back()
 		let w:amcMruWinP = len(w:amcMru) - 1
 	endif
 
-	if l:flavour == g:amc#buf#SPECIAL
+	if l:special
 		let w:amcMruWinP += 1
 	endif
 
@@ -176,7 +176,7 @@ function! amc#mru#winRemove()
 
 	let l:bn = bufnr()
 
-	if amc#buf#flavour(l:bn) == g:amc#buf#SPECIAL
+	if amc#buf#isSpecial(l:bn)
 		return
 	endif
 

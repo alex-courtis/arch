@@ -1,22 +1,27 @@
 function! amc#win#goHome()
-	if &buftype == ""
+	if !amc#win#special()
 		return
 	endif
 
 	" previous
 	let l:pwn = winnr('#')
-	if l:pwn && getbufvar(winbufnr(l:pwn), "&buftype") == ""
+	if !getwinvar(l:pwn, "amcSpecial")
 		execute l:pwn . " wincmd w"
 		return
 	endif
 
 	" first available
 	for l:wn in range(1, winnr("$"))
-		if getbufvar(winbufnr(l:wn), "&buftype") == ""
+		if !getwinvar(l:wn, "amcSpecial")
 			execute l:wn . " wincmd w"
 			return
 		endif
 	endfor
+
+	" nuke the world and start over
+	call amc#log#line("amc#win#goHome nuking")
+	new
+	call amc#win#closeAll()
 endfunction
 
 function! amc#win#goBufName(bn)
@@ -32,82 +37,28 @@ function! amc#win#goBufName(bn)
 	endfor
 endfunction
 
-function! amc#win#winForFileType(type)
-	for l:wn in range(1, winnr("$"))
-		let l:bnum = winbufnr(l:wn)
-		let l:btype = getbufvar(l:bnum, "&filetype")
-		if match(l:btype, a:type) != -1
-			return l:wn
-		endif
-	endfor
-	return 0
-endfunction
-
-function! amc#win#winForBufType(type)
-	for l:wn in range(1, winnr("$"))
-		let l:bnum = winbufnr(l:wn)
-		let l:btype = getbufvar(l:bnum, "&buftype")
-		if match(l:btype, a:type) != -1
-			return l:wn
-		endif
-	endfor
-	return 0
-endfunction
-
-function! amc#win#winForBufName(name)
-	for l:wn in range(1, winnr("$"))
-		let l:bnum = winbufnr(l:wn)
-		let l:bname = bufname(l:bnum)
-		if match(l:bname, a:name) != -1
-			return l:wn
-		endif
-	endfor
-	return 0
-endfunction
-
 function! amc#win#closeInc()
-	let l:wn = amc#win#winForBufName("gitgutter://hunk-preview")
-	if l:wn
-		execute l:wn . " wincmd c"
+	let s:closeOrder = [ g:amc#buf#GIT_GUTTER, g:amc#buf#QUICK_FIX, g:amc#buf#FUGITIVE, g:amc#buf#NERD_TREE, g:amc#buf#NVIM_TREE, g:amc#buf#TAGBAR, g:amc#buf#HELP ]
+
+	" close lowest if present
+	let l:lsi = -1
+	let l:lsw = -1
+	for l:wn in range(1, winnr("$"))
+		let l:amcSpecial = getwinvar(l:wn, "amcSpecial")
+		if l:amcSpecial
+			let l:i = index(s:closeOrder, l:amcSpecial)
+			if l:lsi == -1 || l:i < l:lsi
+				let l:lsi = l:i
+				let l:lsw = l:wn
+			endif
+		endif
+	endfor
+	if l:lsw != -1
+		execute l:lsw . " wincmd c"
 		return
 	endif
 
-	let l:wn = amc#win#winForBufType("quickfix")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
-	let l:wn = amc#win#winForFileType("fugitive")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
-	let l:wn = amc#win#winForBufName("NvimTree")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
-	let l:wn = amc#win#winForBufName("NERD_tree_")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
-	let l:wn = amc#win#winForBufName("__Tagbar__")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
-	let l:wn = amc#win#winForBufType("help")
-	if l:wn
-		execute l:wn . " wincmd c"
-		return
-	endif
-
+	" close whatever is next
 	let l:cwn = winnr()
 	for l:wn in range(winnr("$"), 1, -1)
 		if l:wn != l:cwn
@@ -127,14 +78,14 @@ function! amc#win#closeAll()
 endfunction
 
 function! amc#win#goHomeOrNext()
-	if &buftype != ""
+	if amc#win#special()
 		call amc#win#goHome()
 		return
 	endif
 
 	" search up from this window then start at 0
 	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
-		if getbufvar(winbufnr(l:wn), "&buftype") == ""
+		if !getwinvar(l:wn, "amcSpecial")
 			execute l:wn . " wincmd w"
 			return
 		endif
@@ -149,32 +100,79 @@ function! amc#win#openFocusGitPreview()
 	endif
 endfunction
 
-function! amc#win#updateSpecial()
-	let w:amcWasSpecial = bufnr("%") != -1 && amc#buf#flavour("%") == g:amc#buf#SPECIAL
-	let w:amcWasFugitive = &filetype == "fugitive"
+function amc#win#special()
+	if !exists('w:amcSpecial')
+		let w:amcSpecial = 0
+	endif
+	return w:amcSpecial
 endfunction
 
-" nvimtree handles this itself with a lot of thrashing; this short-circuits that
-function! amc#win#moveFromSpecial()
-	if !exists('w:amcWasSpecial') || !w:amcWasSpecial
+" one shot mark the window as special via w:amcSpecial
+" except OTHER_SPECIAL will be overwritten by a known special
+" event ordering is inconsistent, hence this is called for many events
+function amc#win#markSpecial()
+	let l:bn = bufnr("%")
+	if l:bn == -1
 		return
 	endif
 
+	let l:curSpecial = amc#win#special()
+	if l:curSpecial && l:curSpecial != g:amc#buf#OTHER_SPECIAL
+		return
+	endif
+
+	let l:special = amc#buf#special(l:bn)
+	if !l:special || l:special == g:amc#buf#BUF_EXPLORER
+		return
+	endif
+
+	let w:amcSpecial = l:special
+	call amc#log#line("amc#win#markSpecial marking " . winnr() . " " . g:amc#buf#specialNames[w:amcSpecial])
+endfunction
+
+" nvimtree does this itself, however this method doesn't thrash around so much
+let s:ejectFrom = [ 
+			\ g:amc#buf#GIT,
+			\ g:amc#buf#GIT_GUTTER,
+			\ g:amc#buf#FUGITIVE,
+			\ g:amc#buf#HELP,
+			\ g:amc#buf#NERD_TREE, 
+			\ g:amc#buf#NVIM_TREE,
+			\ g:amc#buf#QUICK_FIX,
+			\ g:amc#buf#TAGBAR
+			\ ]
+function! amc#win#ejectFromSpecial()
 	let l:bn = bufnr("%")
 	let l:abn = bufnr("#")
-	if l:bn >= 0 && amc#buf#flavour("%") != g:amc#buf#SPECIAL && bufname("#") != "[BufExplorer]"
-		if exists('w:amcWasFugitive') && w:amcWasFugitive
-			" buffer is unusable until the window is closed
-			wincmd c
-		elseif l:abn >= 0
-			" expected situation
-			b#
-		else
-			" some specials like quickfix wipe themselves after leaving
-			wincmd c
+	if l:bn == -1
+		return
+	endif
+
+	if amc#win#special()
+		let l:special = amc#win#special()
+		if amc#buf#isSpecial(l:bn) != g:amc#buf#SPECIAL && index(s:ejectFrom, l:special) != -1
+			call amc#log#line("amc#win#ejectFromSpecial ejecting '" . bufname(l:bn) . "' from " . g:amc#buf#specialNames[l:special])
+			let l:pwn = winnr()
+			if l:abn != -1
+				b#
+			endif
+			call amc#win#goHome()
+			exec "b" . l:bn
+
+			if l:abn == -1
+				" close window when # wiped e.g. quickfix
+				if l:pwn != winnr()
+					call amc#log#line("amc#win#ejectFromSpecial closing")
+					execute l:pwn . " wincmd c"
+				endif
+			else
+				" wipe the leftover no longer special buffer that is no longer valid e.g. fugitive
+				if !amc#buf#isSpecial(l:abn) && bufnr(l:abn)
+					call amc#log#line("amc#win#ejectFromSpecial wiping '" . bufname(l:abn) . "'")
+					execute "bw".bufnr(l:abn)
+				endif
+			endif
 		endif
-		call amc#win#goHome()
-		exec "b" . l:bn
 	endif
 endfunction
 

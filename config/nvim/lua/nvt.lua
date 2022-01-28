@@ -13,13 +13,15 @@ vim.g.nvim_tree_window_picker_exclude = {
 	filetype = {
 		'diff',
 		'notify',
-		'packer'
+		'packer',
+		'fugitive',
+		'fugitiveblame',
 	},
 	buftype = {
 		'help',
 		'quickfix',
 		'nofile',
-		'terminal'
+		'terminal',
 	}
 }
 

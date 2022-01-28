@@ -203,8 +203,9 @@ autocmd BufEnter * call amc#mru#bufEnter()
 autocmd WinNew * call amc#mru#winNew()
 
 " stay away from special windows
-autocmd BufLeave * call amc#win#updateSpecial()
-autocmd BufEnter * call amc#win#moveFromSpecial()
+autocmd BufEnter * call amc#win#markSpecial()
+autocmd FileType * call amc#win#markSpecial()
+autocmd BufEnter * call amc#win#ejectFromSpecial()
 
 " directory handling
 autocmd VimEnter * call amc#startupCwd()
@@ -216,10 +217,10 @@ let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#searchcount#enabled = 0
 let g:airline_section_x=''
 let g:airline_section_y = airline#section#create_right(['filetype'])
-call airline#parts#define('colnr', { 'raw': '%v', 'accent': 'none'})
+call airline#parts#define('colnr', { 'raw': '%v ', 'accent': 'none'})
 call airline#parts#define('linenr', { 'raw': '%l', 'accent': 'bold'})
 call airline#parts#define('maxlinenr', { 'raw': '/%L', 'accent': 'none'})
-let g:airline_section_z = airline#section#create(['colnr', g:airline_symbols.space, 'linenr', 'maxlinenr'])
+let g:airline_section_z = airline#section#create(['colnr', 'linenr', 'maxlinenr'])
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 
 " bufexplorer
@@ -270,7 +271,6 @@ endif
 
 " tagbar
 let g:tagbar_compact=1
-let tagbar_map_close='<Esc>'
 let tagbar_map_showproto=''
 let g:tagbar_silent = 1
 
@@ -279,9 +279,6 @@ autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
 " stop the plugin from creating the default mappings
 nmap	gc	<NOP>
-
-" vim-fugitive
-cabbrev git bel Git
 
 " vim-gitgutter
 set updatetime=100

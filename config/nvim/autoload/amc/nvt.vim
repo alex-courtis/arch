@@ -1,6 +1,5 @@
 " nvim only
 
-" BUG: hidden shown when opening file in subdir via NvimTreeFindFile
 " BUG: many files highlighted when using update_focused_file
 
 function amc#nvt#setup()
@@ -17,15 +16,17 @@ function amc#nvt#setup()
 endfunction
 
 function amc#nvt#vimEnter()
-	if amc#buf#flavour(bufnr()) == g:amc#buf#NO_NAME_NEW
+	if amc#buf#isNoNameNew(bufnr())
 		NvimTreeOpen
+
+		" events aren't fired within VimEnter so manually clasify
+		call amc#win#markSpecial()
 	endif
 endfunction
 
 " only to workaround above bugs
 function amc#nvt#bufEnter()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
-		call amc#log#line("amc#nvt#bufEnter refreshing")
 		NvimTreeRefresh
 	endif
 endfunction

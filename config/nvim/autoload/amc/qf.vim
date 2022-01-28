@@ -81,6 +81,7 @@ function! amc#qf#cmdPost()
 	call amc#qf#processMake()
 	call amc#win#goHome()
 	cclose
+	redraw!
 	aboveleft cwindow 15
 endfunction
 

@@ -1,7 +1,7 @@
 " vim only
 
 function amc#nt#vimEnter()
-	if amc#buf#flavour(bufnr()) == g:amc#buf#NO_NAME_NEW
+	if amc#buf#isNoNameNew(bufnr())
 		NERDTreeFocus
 	endif
 endfunction
@@ -9,7 +9,6 @@ endfunction
 " file under cwd: cd and find it, leave focus in tree, return 1
 " other file: if tree at cwd, clear selection, return 0
 " other buf: do nothing, return 0
-" must have BufEnter events temporarily disabled
 function amc#nt#reveal()
 	let l:moveToRoot = 0
 
@@ -41,9 +40,6 @@ function amc#nt#reveal()
 endfunction
 
 function amc#nt#smartFocus()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . l:eiprev
-
 	if g:NERDTree.IsOpen()
 		NERDTreeFocus
 	elseif !amc#nt#reveal()
@@ -51,29 +47,19 @@ function amc#nt#smartFocus()
 	endif
 
 	call amc#updateTitleString()
-	let &ei=l:eiprev
 endfunction
 
 function amc#nt#smartFind()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . eiprev
-
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		NERDTreeFind
 	endif
 
 	call amc#updateTitleString()
-	let &ei=l:eiprev
 endfunction
 
 function amc#nt#sync()
-	let l:eiprev=&ei
-	let &ei="BufEnter," . eiprev
-
 	if g:NERDTree.IsOpen() && amc#nt#reveal()
 		wincmd p
 	endif
-
-	let &ei=l:eiprev
 endfunction
 

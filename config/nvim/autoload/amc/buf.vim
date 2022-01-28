@@ -3,30 +3,54 @@ let g:amc#buf#ORDINARY_HAS_FILE = 2
 let g:amc#buf#ORDINARY_NO_FILE = 3
 let g:amc#buf#NO_NAME_NEW = 4
 let g:amc#buf#NO_NAME_MODIFIED = 5
+let g:amc#buf#flavourNames = [
+			\ "NO_FLAVOUR",
+			\ "SPECIAL",
+			\ "ORDINARY_HAS_FILE",
+			\ "ORDINARY_NO_FILE",
+			\ "NO_NAME_NEW",
+			\ "NO_NAME_MODIFIED",
+			\]
 
-" on creation these do not have &buftype set at BufEnter
+let g:amc#buf#BUF_EXPLORER = 1
+let g:amc#buf#FUGITIVE = 2
+let g:amc#buf#GIT = 3
+let g:amc#buf#GIT_GUTTER = 4
+let g:amc#buf#HELP = 5
+let g:amc#buf#NERD_TREE = 6
+let g:amc#buf#NVIM_TREE = 7
+let g:amc#buf#QUICK_FIX = 8
+let g:amc#buf#TAGBAR = 9
+let g:amc#buf#OTHER_SPECIAL = 10
+let g:amc#buf#specialNames = [
+			\ "NO_SPECIAL",
+			\ "BUF_EXPLORER",
+			\ "FUGITIVE",
+			\ "GIT",
+			\ "GIT_GUTTER",
+			\ "HELP",
+			\ "NERD_TREE",
+			\ "NVIM_TREE",
+			\ "QUICK_FIX",
+			\ "TAGBAR",
+			\ "OTHER_SPECIAL",
+			\]
+
+" on creation some may not have &buftype set at BufEnter
 let s:specialNames = [
-			\ 'NvimTree',
 			\ 'NERD_tree',
 			\ '\[BufExplorer\]',
 			\ '__Tagbar__',
 			\ 'gitgutter://hunk-preview',
+			\ 'fugitive://',
 			\]
 
 function amc#buf#flavour(buf)
-	let l:name = bufname(a:buf)
-
-	if strlen(getbufvar(a:buf, "&buftype")) != 0
+	if amc#buf#isSpecial(a:buf)
 		return g:amc#buf#SPECIAL
 	endif
 
-	" do not match the list as l:name will be interpreted as a pattern
-	for l:specialName in s:specialNames
-		if match(l:name, l:specialName) == 0
-			return g:amc#buf#SPECIAL
-		endif
-	endfor
-
+	let l:name = bufname(a:buf)
 	if strlen(l:name) == 0
 		if getbufvar(a:buf, "&modified")
 			return g:amc#buf#NO_NAME_MODIFIED
@@ -42,30 +66,67 @@ function amc#buf#flavour(buf)
 	endif
 endfunction
 
-function amc#buf#flavourName(flavour)
-	if a:flavour == g:amc#buf#SPECIAL
-		return "SPECIAL"
-	elseif a:flavour == g:amc#buf#ORDINARY_HAS_FILE
-		return "ORDINARY_HAS_FILE"
-	elseif a:flavour == g:amc#buf#ORDINARY_NO_FILE
-		return "ORDINARY_NO_FILE"
-	elseif a:flavour == g:amc#buf#NO_NAME_NEW
-		return "NO_NAME_NEW"
-	elseif a:flavour == g:amc#buf#NO_NAME_MODIFIED
-		return "NO_NAME_MODIFIED"
-	else
-		return "unknown"
+function amc#buf#isNoNameNew(buf)
+	if amc#buf#isSpecial(a:buf)
+		return 0
 	endif
+
+	return strlen(bufname(a:buf)) == 0 && !getbufvar(a:buf, "&modified")
+endfunction
+
+function amc#buf#special(buf)
+	if !amc#buf#isSpecial(a:buf)
+		return 0
+	endif
+
+	let l:name = bufname(a:buf)
+
+	if l:name =~# '\[BufExplorer\]'
+		return g:amc#buf#BUF_EXPLORER
+	elseif getbufvar(a:buf, "&filetype") =~# '^git'
+		return g:amc#buf#GIT
+	elseif l:name =~# 'gitgutter://hunk-preview'
+		return g:amc#buf#GIT_GUTTER
+	elseif getbufvar(a:buf, "&filetype") =~# '^fugitive' || l:name =~# '^fugitive://'
+		return g:amc#buf#FUGITIVE 
+	elseif getbufvar(a:buf, "&buftype") == "help"
+		return g:amc#buf#HELP
+	elseif l:name =~# 'NERD_tree'
+		return g:amc#buf#NERD_TREE 
+	elseif l:name =~# 'NvimTree'
+		return g:amc#buf#NVIM_TREE 
+	elseif getbufvar(a:buf, "&buftype") == "quickfix"
+		return g:amc#buf#QUICK_FIX
+	elseif l:name =~# '__Tagbar__'
+		return g:amc#buf#TAGBAR
+	endif
+
+	return g:amc#buf#OTHER_SPECIAL
+endfunction
+
+function amc#buf#isSpecial(buf)
+	let l:name = bufname(a:buf)
+
+	if strlen(getbufvar(a:buf, "&buftype")) != 0
+		return g:amc#buf#SPECIAL
+	endif
+
+	" do not match the list as l:name will be interpreted as a pattern
+	for l:specialName in s:specialNames
+		if match(l:name, l:specialName) == 0
+			return g:amc#buf#SPECIAL
+		endif
+	endfor
 endfunction
 
 function amc#buf#safeHash()
-	if amc#buf#flavour(bufnr()) == g:amc#buf#SPECIAL
+	if amc#buf#isSpecial(bufnr("%"))
 		return
 	endif
 	if bufnr("#") < 0
 		return
 	endif
-	if amc#buf#flavour(bufnr("#")) == g:amc#buf#SPECIAL
+	if amc#buf#isSpecial(bufnr("#"))
 		return
 	endif
 
@@ -73,7 +134,7 @@ function amc#buf#safeHash()
 endfunction
 
 function amc#buf#autoWrite()
-	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
+	if amc#buf#flavour(bufnr("%")) == g:amc#buf#ORDINARY_HAS_FILE
 		update
 	endif
 endfunction
@@ -84,7 +145,7 @@ function amc#buf#wipeAltNoNameNew()
 	let l:bna = bufnr('#')
 	let l:bwna = bufwinnr(l:bna)
 	if l:bna != -1 && l:bn != l:bna && l:bwna == -1
-		if amc#buf#flavour(l:bna) == g:amc#buf#NO_NAME_NEW
+		if amc#buf#isNoNameNew(l:bna)
 			call amc#log#line("amc#buf#wipeAltNoNameNew wiping " . l:bna)
 			execute "bw" . l:bna
 		endif
