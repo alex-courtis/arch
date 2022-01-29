@@ -129,9 +129,6 @@ unlet mapleader
 cmap		<C-j>	<Down>
 cmap		<C-k>	<Up>
 
-" disable this until I learn to use CTRL-O
-map		<C-t>	<NOP>
-
 " hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 vmap <LeftRelease> "*ygv
 

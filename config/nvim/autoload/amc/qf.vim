@@ -1,8 +1,8 @@
 " update @/ with the grep query, if present
 function! amc#qf#setGrepPattern()
-	let l:context = getqflist({"context" : 0}).context
-	if strlen(l:context) > 0
-		let @/ = l:context
+	let l:context = getqflist({"context" : 0})["context"]
+	if type(l:context) == v:t_dict && has_key(l:context, "grepPattern")
+		let @/ = l:context["grepPattern"]
 	endif
 endfunction
 
@@ -35,7 +35,7 @@ function! amc#qf#processGrep()
 
 	" use query as the context
 	if !l:error && strlen(l:query) > 0
-		call setqflist([], 'r', {'context': l:query})
+		call setqflist([], 'r', { 'context': { 'grepPattern' : l:query } })
 		call amc#qf#setGrepPattern()
 	endif
 
@@ -81,7 +81,6 @@ function! amc#qf#cmdPost()
 	call amc#qf#processMake()
 	call amc#win#goHome()
 	cclose
-	redraw!
 	aboveleft cwindow 15
 endfunction
 
