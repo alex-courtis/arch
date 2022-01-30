@@ -1,12 +1,12 @@
 " update @/ with the grep query, if present
-function! amc#qf#setGrepPattern()
+function amc#qf#setGrepPattern()
 	let l:context = getqflist({"context" : 0})["context"]
 	if type(l:context) == v:t_dict && has_key(l:context, "grepPattern")
 		let @/ = l:context["grepPattern"]
 	endif
 endfunction
 
-function! amc#qf#processGrep()
+function amc#qf#processGrep()
 	let l:title = getqflist({"title" : 0}).title
 	if match(l:title, ':\s*' . &grepprg . '\s*') < 0
 		return
@@ -43,7 +43,7 @@ function! amc#qf#processGrep()
 	call setqflist([], 'r', {'title': l:title})
 endfunction
 
-function! amc#qf#processMake()
+function amc#qf#processMake()
 	let l:title = getqflist({"title" : 0}).title
 	if match(l:title, ':\s*' . &makeprg . '\s*') < 0
 		return
@@ -76,7 +76,7 @@ function! amc#qf#processMake()
 	call setqflist([], 'r', {'title': l:title})
 endfunction
 
-function! amc#qf#cmdPost()
+function amc#qf#cmdPost()
 	call amc#qf#processGrep()
 	call amc#qf#processMake()
 	call amc#win#goHome()

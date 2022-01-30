@@ -1,5 +1,5 @@
 let s:firstLogLine = 1
-function! amc#log#_line(msg)
+function amc#log#_line(msg)
 	if s:firstLogLine
 		call system("echo ---------------- >> /tmp/vim." . $USER . ".log")
 		let s:firstLogLine = 0

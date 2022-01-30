@@ -1,4 +1,4 @@
-function! amc#mru#initWinVars()
+function amc#mru#initWinVars()
 	if !exists("w:amcMru")
 		let w:amcMru = []
 	endif
@@ -10,7 +10,7 @@ function! amc#mru#initWinVars()
 	endif
 endfunction
 
-function! amc#mru#prn(msg, full)
+function amc#mru#prn(msg, full)
 	if !exists('g:amcLogMru') || !g:amcLogMru
 		return
 	endif
@@ -73,19 +73,22 @@ function! amc#mru#prn(msg, full)
 endfunction
 
 " idempotent
-function! amc#mru#update()
+function amc#mru#update()
 	call amc#mru#initWinVars()
 
 	let l:bn = bufnr()
 
 	" clear on any special but BufExplorer
-	if amc#buf#isSpecial(l:bn)
-		if bufname() != "[BufExplorer]"
+	if exists('w:amcSpecial') && w:amcSpecial
+		if w:amcSpecial == g:amc#buf#BUF_EXPLORER
+			call amc#log#line("amc#mru#update ignoring BUF_EXPLORER")
+		else
 			call amc#log#line("amc#mru#update clearing MRU for special")
 			let w:amcMru = []
 			let w:amcMruWin = []
 			let w:amcMruWinP = -1
 		endif
+		call amc#mru#prn("mru: update special", 1)
 		return 0
 	endif
 
@@ -94,10 +97,12 @@ function! amc#mru#update()
 		if bufnr(l:i) < 0
 			let l:bi = index(w:amcMru, l:i)
 			if l:bi >= 0
+				call amc#log#line("amc#mru#update removing from Mru")
 				call remove(w:amcMru, l:bi)
 			endif
 			let l:bi = index(w:amcMruWin, l:i)
 			if l:bi >= 0
+				call amc#log#line("amc#mru#update removing from MruWin")
 				call remove(w:amcMruWin, l:bi)
 			endif
 		endif
@@ -120,15 +125,11 @@ function! amc#mru#update()
 	endif
 	call add(w:amcMru, l:bn)
 
+	call amc#mru#prn("mru: update", 1)
 	return 1
 endfunction
 
-function! amc#mru#bufEnter()
-	call amc#mru#update()
-	call amc#mru#prn("mru: enter", 1)
-endfunction
-
-function! amc#mru#back()
+function amc#mru#back()
 	call amc#mru#prn("mru: back", 0)
 
 	call amc#mru#initWinVars()
@@ -155,7 +156,7 @@ function! amc#mru#back()
 	exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
 endfunction
 
-function! amc#mru#forward()
+function amc#mru#forward()
 	call amc#mru#prn("mru: forw", 0)
 
 	call amc#mru#initWinVars()
@@ -171,7 +172,7 @@ function! amc#mru#forward()
 	exec "b!" . w:amcMruWin[w:amcMruWinP + 1]
 endfunction
 
-function! amc#mru#winRemove()
+function amc#mru#winRemove()
 	call amc#mru#prn("mru: remove " . winnr(), 0)
 
 	let l:bn = bufnr()
@@ -218,7 +219,7 @@ function! amc#mru#winRemove()
 	endif
 endfunction
 
-function! amc#mru#winNew()
+function amc#mru#winNew()
 	call amc#mru#initWinVars()
 
 	" optimistically clone from the old window; it will be cleared on special BufEnter

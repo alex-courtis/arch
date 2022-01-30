@@ -1,6 +1,6 @@
 " vim only
 
-function amc#nt#vimEnter()
+function amc#nt#startup()
 	if amc#buf#isNoNameNew(bufnr())
 		NERDTreeFocus
 	endif
@@ -23,7 +23,7 @@ function amc#nt#reveal()
 		else
 			let l:moveToRoot = 1
 		endif
-	elseif amc#buf#flavour(bufnr()) != g:amc#buf#SPECIAL
+	elseif !amc#buf#isSpecial(bufnr())
 		let l:moveToRoot = 1
 	endif
 

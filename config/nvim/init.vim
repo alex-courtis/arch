@@ -32,6 +32,7 @@ set cursorline
 set mouse=a
 set wildmode=longest:full,full
 set undofile
+set title
 
 
 nmap	;	:
@@ -133,11 +134,6 @@ cmap		<C-k>	<Up>
 vmap <LeftRelease> "*ygv
 
 
-" log
-let g:amcLog = 0
-let g:amcLogMru = 0
-" call amc#log#startEventLogging()
-
 " appearance
 if match(system('underlyingterm'), 'st-256color\|alacritty') >= 0
 	let base16colorspace=256
@@ -158,55 +154,25 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 
-
-" quickfix
-autocmd QuickfixCmdPost * call amc#qf#cmdPost()
-autocmd FileType qf call amc#qf#setGrepPattern()
-
 " insert the results of a vim command e.g. "=Exe("set all")<C-M>p
-function! Exe(command)
+function Exe(command)
 	redir =>output
 	silent exec a:command
 	redir END
 	return output
 endfunction
 
-" from vim
+" default only in vim: return to last edit point
 autocmd BufReadPost *
 			\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
 			\ |   exe "normal! g`\""
 			\ | endif
-
-" automation to work around inconsistent hidden/autowrite behaviour
-autocmd BufLeave * call amc#buf#autoWrite()
-autocmd FocusLost * call amc#buf#autoWrite()
-autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
-
-" terminal title
-set title
-autocmd BufEnter	* call amc#updateTitleString()
-autocmd BufWritePost	* call amc#updateTitleString()
-autocmd FocusGained	* call amc#updateTitleString()
-autocmd VimEnter	* call amc#updateTitleString()
 
 " find
 cabbrev f find
 
 " tags search down only
 set tags=**/tags
-
-" mru
-autocmd BufEnter * call amc#mru#bufEnter()
-autocmd WinNew * call amc#mru#winNew()
-
-" stay away from special windows
-autocmd BufEnter * call amc#win#markSpecial()
-autocmd FileType * call amc#win#markSpecial()
-autocmd BufEnter * call amc#win#ejectFromSpecial()
-
-" directory handling
-autocmd VimEnter * call amc#startupCwd()
-autocmd DirChanged global call amc#updatePath()
 
 " airline
 set noshowmode
@@ -235,8 +201,6 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 if has('nvim')
 	" nvimtree
 	call amc#nvt#setup()
-	autocmd BufEnter * call amc#nvt#bufEnter()
-	autocmd VimEnter * call amc#nvt#vimEnter()
 else
 	" nerdtree
 	set wildignore+=*.o,*.class
@@ -245,10 +209,6 @@ else
 	let g:NERDTreeDirArrowExpandable = '+'
 	let g:NERDTreeDirArrowCollapsible = '-'
 	let g:NERDTreeMapQuit = '<Esc>'
-	let g:amc#nt#stdin = 0
-	autocmd StdinReadPre * call amc#nt#stdinReadPre()
-	autocmd VimEnter * call amc#nt#vimEnter()
-	autocmd BufEnter * call amc#nt#sync()
 
 	" nerdtree-git-plugin
 	let g:NERDTreeGitStatusDirDirtyOnly = 0
@@ -287,4 +247,37 @@ let g:gitgutter_preview_win_location = 'belowright'
 " local overrides
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
+	
+" event order matters
+autocmd BufEnter * call amc#win#markSpecial()
+autocmd BufEnter * call amc#win#ejectFromSpecial()
+autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
+autocmd BufEnter * call amc#mru#update()
+autocmd BufEnter * call amc#updateTitleString()
+if has('nvim')
+	autocmd BufEnter * call amc#nvt#sync()
+else
+	autocmd BufEnter * call amc#nt#sync()
+end
+autocmd BufLeave * call amc#buf#autoWrite()
+autocmd BufWritePost * call amc#updateTitleString()
+autocmd DirChanged global call amc#updatePath()
+autocmd FileType * call amc#win#markSpecial()
+autocmd FileType qf call amc#qf#setGrepPattern()
+autocmd FocusGained * call amc#updateTitleString()
+autocmd FocusLost * call amc#buf#autoWrite()
+autocmd QuickfixCmdPost * call amc#qf#cmdPost()
+autocmd VimEnter * call amc#startupCwd()
+autocmd VimEnter * call amc#updateTitleString()
+if has('nvim')
+	autocmd VimEnter * call amc#nvt#startup()
+else
+	autocmd VimEnter * call amc#nt#startup()
+endif
+autocmd WinNew * call amc#mru#winNew()
+
+" log
+" let g:amcLog = 1
+" let g:amcLogMru = 1
+" call amc#log#startEventLogging()
 

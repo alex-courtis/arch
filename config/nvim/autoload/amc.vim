@@ -1,4 +1,4 @@
-function! amc#sourceIfExists(file)
+function amc#sourceIfExists(file)
 	if filereadable(expand(a:file))
 		exe 'source' a:file
 	endif
@@ -12,7 +12,7 @@ function amc#colourString(group)
 	return substitute(l:cs, ".*xxx *", "", "")
 endfunction
 
-function! amc#colours()
+function amc#colours()
 	highlight CursorLineNr cterm=bold
 	highlight default link TagbarHighlight CursorLine
         highlight default link bufExplorerHidBuf Operator
@@ -26,7 +26,7 @@ function! amc#colours()
 endfunction
 
 
-function! amc#updateTitleString()
+function amc#updateTitleString()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
 		let &titlestring = system('printtermtitle') . ' %m'
 	else
@@ -35,7 +35,7 @@ function! amc#updateTitleString()
 endfunction
 
 
-function! amc#vselFirstLine()
+function amc#vselFirstLine()
 	try
 		let l:zprev = @z
 		normal! gv"zy

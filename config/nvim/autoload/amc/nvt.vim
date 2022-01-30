@@ -30,7 +30,7 @@ function amc#nvt#setup()
 	lua require 'nvt'
 endfunction
 
-function amc#nvt#vimEnter()
+function amc#nvt#startup()
 	if amc#buf#isNoNameNew(bufnr())
 		NvimTreeOpen
 
@@ -40,7 +40,7 @@ function amc#nvt#vimEnter()
 endfunction
 
 " only to workaround above bugs
-function amc#nvt#bufEnter()
+function amc#nvt#sync()
 	if amc#buf#flavour(bufnr()) == g:amc#buf#ORDINARY_HAS_FILE
 		NvimTreeRefresh
 	endif

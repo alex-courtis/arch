@@ -1,4 +1,4 @@
-function! amc#win#goHome()
+function amc#win#goHome()
 	if !amc#win#special()
 		return
 	endif
@@ -24,7 +24,7 @@ function! amc#win#goHome()
 	call amc#win#closeAll()
 endfunction
 
-function! amc#win#goBufName(bn)
+function amc#win#goBufName(bn)
 	if bufname() == a:bn
 		return
 	endif
@@ -37,8 +37,16 @@ function! amc#win#goBufName(bn)
 	endfor
 endfunction
 
-function! amc#win#closeInc()
-	let s:closeOrder = [ g:amc#buf#GIT_GUTTER, g:amc#buf#QUICK_FIX, g:amc#buf#FUGITIVE, g:amc#buf#NERD_TREE, g:amc#buf#NVIM_TREE, g:amc#buf#TAGBAR, g:amc#buf#HELP ]
+let s:closeOrder = [ 
+			\ g:amc#buf#GIT_GUTTER, 
+			\ g:amc#buf#QUICK_FIX, 
+			\ g:amc#buf#FUGITIVE, 
+			\ g:amc#buf#NERD_TREE, 
+			\ g:amc#buf#NVIM_TREE, 
+			\ g:amc#buf#TAGBAR, 
+			\ g:amc#buf#HELP 
+			\ ]
+function amc#win#closeInc()
 
 	" close lowest if present
 	let l:lsi = -1
@@ -68,7 +76,7 @@ function! amc#win#closeInc()
 	endfor
 endfunction
 
-function! amc#win#closeAll()
+function amc#win#closeAll()
 	let l:cwn = winnr()
 	for l:wn in range(winnr("$"), 1, -1)
 		if l:wn != l:cwn
@@ -77,7 +85,7 @@ function! amc#win#closeAll()
 	endfor
 endfunction
 
-function! amc#win#goHomeOrNext()
+function amc#win#goHomeOrNext()
 	if amc#win#special()
 		call amc#win#goHome()
 		return
@@ -92,7 +100,7 @@ function! amc#win#goHomeOrNext()
 	endfor
 endfunction
 
-function! amc#win#openFocusGitPreview()
+function amc#win#openFocusGitPreview()
 	if gitgutter#hunk#is_preview_window_open()
 		call amc#win#goBufName('gitgutter://hunk-preview')
 	else
@@ -141,7 +149,7 @@ let s:ejectFrom = [
 			\ g:amc#buf#QUICK_FIX,
 			\ g:amc#buf#TAGBAR
 			\ ]
-function! amc#win#ejectFromSpecial()
+function amc#win#ejectFromSpecial()
 	let l:bn = bufnr("%")
 	let l:abn = bufnr("#")
 	if l:bn == -1
