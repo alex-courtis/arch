@@ -68,6 +68,7 @@ tree.setup {
 				{ key = "g?",                           action = "toggle_help" },
 
 				{ key = "d",                            action = "cd" },
+				{ key = "O",                            action = "close_node" },
 				{ key = "x",                            action = "remove" },
 				{ key = "t",                            action = "cut" },
 				{ key = "<Space>k",                     action = "prev_git_item" },

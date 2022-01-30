@@ -72,7 +72,6 @@ function amc#mru#prn(msg, full)
 	call amc#log#_line(l:all)
 endfunction
 
-" idempotent
 function amc#mru#update()
 	call amc#mru#initWinVars()
 
@@ -80,16 +79,26 @@ function amc#mru#update()
 
 	" clear on any special but BufExplorer
 	if exists('w:amcSpecial') && w:amcSpecial
-		if w:amcSpecial == g:amc#buf#BUF_EXPLORER
-			call amc#log#line("amc#mru#update ignoring BUF_EXPLORER")
-		else
-			call amc#log#line("amc#mru#update clearing MRU for special")
+		let l:special = w:amcSpecial
+	else
+		let l:special = amc#buf#special(l:bn)
+	endif
+	if l:special
+		if l:special != g:amc#buf#BUF_EXPLORER
+			call amc#log#line("mru: update cleared special " . g:amc#buf#specialNames[l:special])
 			let w:amcMru = []
 			let w:amcMruWin = []
 			let w:amcMruWinP = -1
 		endif
-		call amc#mru#prn("mru: update special", 1)
+		call amc#mru#prn("mru: updated special", 1)
 		return 0
+	endif
+
+	" clear window when not traversing
+	if w:amcMruWinP != index(w:amcMruWin, l:bn)
+		call amc#log#line("amc#mru#update not traversing MruWin, clearing")
+		let w:amcMruWin = []
+		let w:amcMruWinP = -1
 	endif
 
 	" clear wiped buffers
@@ -97,25 +106,23 @@ function amc#mru#update()
 		if bufnr(l:i) < 0
 			let l:bi = index(w:amcMru, l:i)
 			if l:bi >= 0
-				call amc#log#line("amc#mru#update removing from Mru")
+				call amc#log#line("amc#mru#update removing wiped " . l:i . " from Mru")
 				call remove(w:amcMru, l:bi)
 			endif
 			let l:bi = index(w:amcMruWin, l:i)
 			if l:bi >= 0
-				call amc#log#line("amc#mru#update removing from MruWin")
+				call amc#log#line("amc#mru#update removing wiped " . l:i . " from MruWin")
 				call remove(w:amcMruWin, l:bi)
+				let w:amcMruWinP -= 1
 			endif
 		endif
 	endfor
 
-	let l:bwi = index(w:amcMruWin, l:bn)
-	if l:bwi != -1 && l:bwi >= w:amcMruWinP - 1 && l:bwi <= w:amcMruWinP + 1
-		" update the window pointer
-		let w:amcMruWinP = l:bwi
-	else
-		" clear window as not traversing
+	" window needs multiple entries
+	if len(w:amcMruWin) < 2
+		call amc#log#line("amc#mru#update clearing empty MruWin")
 		let w:amcMruWin = []
-		let w:amcMruWinP = 0
+		let w:amcMruWinP = -1
 	endif
 
 	" send to front of MRU
@@ -125,12 +132,12 @@ function amc#mru#update()
 	endif
 	call add(w:amcMru, l:bn)
 
-	call amc#mru#prn("mru: update", 1)
+	call amc#mru#prn("mru: updated", 1)
 	return 1
 endfunction
 
 function amc#mru#back()
-	call amc#mru#prn("mru: back", 0)
+	call amc#log#line("mru: back")
 
 	call amc#mru#initWinVars()
 
@@ -153,11 +160,12 @@ function amc#mru#back()
 		return
 	endif
 
-	exec "b!" . w:amcMruWin[w:amcMruWinP - 1]
+	let w:amcMruWinP -= 1
+	exec "b!" . w:amcMruWin[w:amcMruWinP]
 endfunction
 
 function amc#mru#forward()
-	call amc#mru#prn("mru: forw", 0)
+	call amc#log#line("mru: forw")
 
 	call amc#mru#initWinVars()
 
@@ -169,40 +177,26 @@ function amc#mru#forward()
 		return
 	endif
 
-	exec "b!" . w:amcMruWin[w:amcMruWinP + 1]
+	let w:amcMruWinP += 1
+	exec "b!" . w:amcMruWin[w:amcMruWinP]
 endfunction
 
 function amc#mru#winRemove()
-	call amc#mru#prn("mru: remove " . winnr(), 0)
-
 	let l:bn = bufnr()
+
+	call amc#log#line("mru: remove " . l:bn)
 
 	if amc#buf#isSpecial(l:bn)
 		return
 	endif
 
 	if len(w:amcMru) > 2
-		if empty(w:amcMruWin)
-			let w:amcMruWin = copy(w:amcMru)
-			let w:amcMruWinP = len(w:amcMru) - 1
+		if !empty(w:amcMruWin) && len(w:amcMruWin) > 2
+			if index(w:amcMruWin, l:bn) < 2
+				echo "mru remove: too close to start of mruWin, doing nothing"
+				return
+			endif
 		endif
-
-		" send to back of MRU win
-		let l:bi = index(w:amcMruWin, l:bn)
-		if l:bi >= 0
-			call remove(w:amcMruWin, l:bi)
-		endif
-		call insert(w:amcMruWin, l:bn)
-
-		" tell back to go to the replacement of the removed
-		let w:amcMruWinP += 1
-
-		" send to back of MRU
-		let l:bi = index(w:amcMru, l:bn)
-		if l:bi >= 0
-			call remove(w:amcMru, l:bi)
-		endif
-		call insert(w:amcMru, l:bn)
 
 		" new #
 		call amc#mru#back()
@@ -210,19 +204,30 @@ function amc#mru#winRemove()
 
 		" new %
 		call amc#mru#forward()
-	elseif len(w:amcMru) > 1
 
-		" swap to only other in MRU
-		exec "b!" . w:amcMru[0]
+		" send to back of mru
+		let l:bi = index(w:amcMru, l:bn)
+		if l:bi >= 0
+			call remove(w:amcMru, l:bi)
+		endif
+		call insert(w:amcMru, l:bn)
+
+		" remove from win
+		let l:bi = index(w:amcMruWin, l:bn)
+		if l:bi >= 0
+			call remove(w:amcMruWin, l:bi)
+		endif
+
+		call amc#mru#prn("mru: removed", 1)
 	else
-		" no other buffers, do nothing
+		echo "mru remove: <2 other buffers, doing nothing"
 	endif
 endfunction
 
 function amc#mru#winNew()
 	call amc#mru#initWinVars()
 
-	" optimistically clone from the old window; it will be cleared on special BufEnter
+	" optimistically clone from the old window; it will be cleared on update
 	let l:pwn = winnr("#")
 	let l:amcMru = getwinvar(l:pwn, "amcMru")
 	let l:amcMruWin = getwinvar(l:pwn, "amcMruWin")

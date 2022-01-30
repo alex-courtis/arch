@@ -16,6 +16,8 @@
 " cd to another subdir
 " edit file
 "   no change
+"
+" FEATURE: update_focused_file.ignore_list for all
 
 function amc#nvt#setup()
 	set termguicolors
