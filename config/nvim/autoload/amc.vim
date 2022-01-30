@@ -5,14 +5,24 @@ function! amc#sourceIfExists(file)
 endfunction
 
 
+function amc#colourString(group)
+	redir => l:cs
+	execute "silent highlight " . a:group
+	redir END
+	return substitute(l:cs, ".*xxx *", "", "")
+endfunction
+
 function! amc#colours()
 	highlight CursorLineNr cterm=bold
 	highlight default link TagbarHighlight CursorLine
-        highlight def link bufExplorerHidBuf Operator
+        highlight default link bufExplorerHidBuf Operator
+	highlight default link NvimTreeWindowPicker IncSearch
 
 	" swap these two
-	highlight Search ctermfg=18 ctermbg=16 guifg=#303030 guibg=#fc6d24
-	highlight IncSearch ctermfg=18 ctermbg=3 guifg=#303030 guibg=#fda331
+	let l:Search = amc#colourString("Search")
+	let l:IncSearch = amc#colourString("IncSearch")
+	execute "highlight IncSearch " . l:Search
+	execute "highlight Search " . l:IncSearch
 endfunction
 
 

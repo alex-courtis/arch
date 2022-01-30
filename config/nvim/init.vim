@@ -206,7 +206,7 @@ autocmd BufEnter * call amc#win#ejectFromSpecial()
 
 " directory handling
 autocmd VimEnter * call amc#startupCwd()
-autocmd DirChanged * call amc#updatePath()
+autocmd DirChanged global call amc#updatePath()
 
 " airline
 set noshowmode

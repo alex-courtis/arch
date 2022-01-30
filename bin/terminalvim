@@ -3,5 +3,7 @@
 # Open a term that runs vim with the arguments supplied.
 # Useful for xdg-open and open-in-your-editor browser extensions.
 
-term -e vim "$@" &
+unset VIM
+unset VIMRUNTIME
+term -e vi "$@" aoeu &
 
