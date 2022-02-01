@@ -104,7 +104,9 @@ nmap	<silent>	<Leader>c	<Plug>Commentary
 xmap	<silent>	<Leader>c	<Plug>Commentary
 nmap	<silent>	<Leader>t	<C-]>
 nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
-nmap	<silent>	<Leader>w	viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<Leader>w")<CR>
+" vim-repeat doesn't seem to be able to handle a <BS> mapping
+nmap	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
+nmap	<silent>	<Leader>w	<F12>w
 
 nmap			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nmap			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
