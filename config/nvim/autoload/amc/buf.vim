@@ -150,7 +150,7 @@ function amc#buf#safeHash()
 endfunction
 
 function amc#buf#autoWrite()
-	if amc#buf#flavour(bufnr("%")) == g:amc#buf#ORDINARY_HAS_FILE
+	if !&readonly && amc#buf#flavour(bufnr("%")) == g:amc#buf#ORDINARY_HAS_FILE
 		update
 	endif
 endfunction
