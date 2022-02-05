@@ -156,13 +156,8 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 
-" insert the results of a vim command e.g. "=Exe("set all")<C-M>p
-function Exe(command)
-	redir =>output
-	silent exec a:command
-	redir END
-	return output
-endfunction
+" copy the results of a silent command
+command -nargs=* C redir @" | silent <args> | redir end | let @+ = @"
 
 " default only in vim: return to last edit point
 autocmd BufReadPost *
