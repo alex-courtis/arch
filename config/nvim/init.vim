@@ -156,8 +156,8 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 
-" copy the results of a silent command
-command -nargs=* C redir @" | silent <args> | redir end | let @+ = @"
+" put the results of a silent command
+command -nargs=+ P redir @z | silent <args> | redir end | put z
 
 " default only in vim: return to last edit point
 autocmd BufReadPost *
@@ -167,6 +167,9 @@ autocmd BufReadPost *
 
 " find
 cabbrev f find
+" unused command kept here for reference
+" command -nargs=1 -complete=file_in_path F call amc#win#goHome() | find <args>
+" cabbrev f F
 
 " tags search down only
 set tags=**/tags
