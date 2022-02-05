@@ -3,6 +3,7 @@ let g:amc#buf#ORDINARY_HAS_FILE = 2
 let g:amc#buf#ORDINARY_NO_FILE = 3
 let g:amc#buf#NO_NAME_NEW = 4
 let g:amc#buf#NO_NAME_MODIFIED = 5
+let g:amc#buf#MAN = 6
 let g:amc#buf#flavourNames = [
 			\ "NO_FLAVOUR",
 			\ "SPECIAL",
@@ -10,6 +11,7 @@ let g:amc#buf#flavourNames = [
 			\ "ORDINARY_NO_FILE",
 			\ "NO_NAME_NEW",
 			\ "NO_NAME_MODIFIED",
+			\ "MAN",
 			\]
 
 let g:amc#buf#BUF_EXPLORER = 1
@@ -44,6 +46,9 @@ let s:specialNames = [
 			\ 'gitgutter://hunk-preview',
 			\ 'fugitive://',
 			\]
+let s:notSpecialNames = [
+			\ 'man://',
+			\]
 
 function amc#buf#flavour(buf)
 	if amc#buf#isSpecial(a:buf)
@@ -58,7 +63,9 @@ function amc#buf#flavour(buf)
 			return g:amc#buf#NO_NAME_NEW
 		endif
 	else
-		if filereadable(l:name)
+		if l:name =~# '^man://' || getbufvar(a:buf, "&filetype") == "man"
+			return g:amc#buf#MAN
+		elseif filereadable(l:name)
 			return g:amc#buf#ORDINARY_HAS_FILE
 		else
 			return g:amc#buf#ORDINARY_NO_FILE
@@ -88,13 +95,13 @@ function amc#buf#special(buf)
 	elseif l:name =~# 'gitgutter://hunk-preview'
 		return g:amc#buf#GIT_GUTTER
 	elseif getbufvar(a:buf, "&filetype") =~# '^fugitive' || l:name =~# '^fugitive://'
-		return g:amc#buf#FUGITIVE 
+		return g:amc#buf#FUGITIVE
 	elseif getbufvar(a:buf, "&buftype") == "help"
 		return g:amc#buf#HELP
 	elseif l:name =~# 'NERD_tree'
-		return g:amc#buf#NERD_TREE 
+		return g:amc#buf#NERD_TREE
 	elseif l:name =~# 'NvimTree'
-		return g:amc#buf#NVIM_TREE 
+		return g:amc#buf#NVIM_TREE
 	elseif getbufvar(a:buf, "&buftype") == "quickfix"
 		return g:amc#buf#QUICK_FIX
 	elseif l:name =~# '__Tagbar__'
@@ -107,6 +114,13 @@ endfunction
 function amc#buf#isSpecial(buf)
 	let l:name = bufname(a:buf)
 
+	" do not match the list as l:name will be interpreted as a pattern
+	for l:notSpecialName in s:notSpecialNames
+		if match(l:name, l:notSpecialName) == 0
+			return 0
+		endif
+	endfor
+
 	if strlen(getbufvar(a:buf, "&buftype")) != 0
 		return g:amc#buf#SPECIAL
 	endif
@@ -117,6 +131,8 @@ function amc#buf#isSpecial(buf)
 			return g:amc#buf#SPECIAL
 		endif
 	endfor
+
+	return 0
 endfunction
 
 function amc#buf#safeHash()

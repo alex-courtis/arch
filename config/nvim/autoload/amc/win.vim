@@ -156,8 +156,8 @@ function amc#win#ejectFromSpecial()
 		return
 	endif
 
-	if amc#win#special()
-		let l:special = amc#win#special()
+	let l:special = amc#win#special()
+	if l:special
 		if amc#buf#isSpecial(l:bn) != g:amc#buf#SPECIAL && index(s:ejectFrom, l:special) != -1
 			call amc#log#line("amc#win#ejectFromSpecial ejecting '" . bufname(l:bn) . "' from " . g:amc#buf#specialNames[l:special])
 			let l:pwn = winnr()

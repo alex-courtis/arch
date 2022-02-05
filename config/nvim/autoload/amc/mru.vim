@@ -78,9 +78,8 @@ function amc#mru#update()
 	let l:bn = bufnr()
 
 	" clear on any special but BufExplorer
-	if exists('w:amcSpecial') && w:amcSpecial
-		let l:special = w:amcSpecial
-	else
+	let l:special = amc#win#special()
+	if !l:special
 		let l:special = amc#buf#special(l:bn)
 	endif
 	if l:special
