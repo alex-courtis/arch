@@ -4,6 +4,7 @@ let g:amc#buf#ORDINARY_NO_FILE = 3
 let g:amc#buf#NO_NAME_NEW = 4
 let g:amc#buf#NO_NAME_MODIFIED = 5
 let g:amc#buf#MAN = 6
+let g:amc#buf#SCRATCH = 7
 let g:amc#buf#flavourNames = [
 			\ "NO_FLAVOUR",
 			\ "SPECIAL",
@@ -12,6 +13,7 @@ let g:amc#buf#flavourNames = [
 			\ "NO_NAME_NEW",
 			\ "NO_NAME_MODIFIED",
 			\ "MAN",
+			\ "SCRATCH",
 			\]
 
 let g:amc#buf#BUF_EXPLORER = 1
@@ -73,8 +75,19 @@ function amc#buf#flavour(buf)
 	endif
 endfunction
 
+function amc#buf#isScratch(buf)
+	return strlen(bufname(a:buf)) == 0 &&
+				\ getbufvar(a:buf, "&buftype") == "nofile" &&
+				\ getbufvar(a:buf, "&bufhidden") == "hide" &&
+				\ !getbufvar(a:buf, "&swapfile")
+endfunction
+
 function amc#buf#isNoNameNew(buf)
 	if amc#buf#isSpecial(a:buf)
+		return 0
+	endif
+
+	if amc#buf#isScratch(a:buf)
 		return 0
 	endif
 
@@ -120,6 +133,10 @@ function amc#buf#isSpecial(buf)
 			return 0
 		endif
 	endfor
+
+	if amc#buf#isScratch(a:buf)
+		return 0
+	endif
 
 	if strlen(getbufvar(a:buf, "&buftype")) != 0
 		return g:amc#buf#SPECIAL

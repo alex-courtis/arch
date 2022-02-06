@@ -162,8 +162,8 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 
-" put the results of a silent command
-command -nargs=+ P redir @z | silent <args> | redir end | put z
+" put the results of a silent command in a new scratch
+command -nargs=+ S enew | setlocal buftype=nofile | setlocal bufhidden=hide | setlocal noswapfile | redir @z | silent <args> | redir end | put z
 
 " default only in vim: return to last edit point
 autocmd BufReadPost *
