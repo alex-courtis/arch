@@ -149,7 +149,8 @@ endif
 " grep
 set grepprg=ag\ --vimgrep\ --debug
 let &grepformat="ERR: %m,DEBUG: Query is %o,%-GDEBUG:%.%#,%f:%l:%c:%m,%f"
-cabbrev ag silent grep!
+command -nargs=+ AG silent grep! <args> <Bar> set hlsearch
+cabbrev ag AG
 
 " errorformat
 let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
@@ -267,7 +268,7 @@ autocmd FileType * call amc#win#markSpecial()
 autocmd FileType qf call amc#qf#setGrepPattern()
 autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * call amc#buf#autoWrite()
-" autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
+autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
 if has('nvim')

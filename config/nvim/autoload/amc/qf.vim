@@ -12,18 +12,12 @@ function amc#qf#processGrep()
 	let l:validItemNr = 0
 	let l:filteredItems = []
 	let l:query = ""
-	let l:error = 0
 	for l:item in getqflist()
 
 		" query is the only module; remove from list
 		if strlen(l:item["module"]) > 0
 			let l:query = l:item["module"]
 			continue
-		endif
-
-		" any error
-		if match(l:item["text"], "Error ") >= 0
-			let l:error = 1
 		endif
 
 		" everything else is real, including errors
@@ -37,7 +31,7 @@ function amc#qf#processGrep()
 	call setqflist(l:filteredItems, 'r')
 
 	" use query as the context
-	if !l:error && strlen(l:query) > 0
+	if strlen(l:query) > 0
 		call setqflist([], 'r', { 'context': { 'grepPattern' : l:query } })
 		call amc#qf#setGrepPattern()
 	endif
