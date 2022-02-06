@@ -63,6 +63,7 @@ nmap	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 nmap	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
 nmap	<silent>	<Leader><	:cclose<CR>
 nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
+nmap	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
 nmap	<silent>	<Leader>.	:call amc#qf#setGrepPattern()<Bar>set hlsearch<Bar>cnext<CR>

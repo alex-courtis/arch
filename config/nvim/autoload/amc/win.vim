@@ -1,22 +1,21 @@
 function amc#win#goHome()
-	if !amc#win#special()
-		return
-	endif
 
-	" previous
-	let l:pwn = winnr('#')
-	if !getwinvar(l:pwn, "amcSpecial")
-		execute l:pwn . " wincmd w"
-		return
-	endif
-
-	" first available
-	for l:wn in range(1, winnr("$"))
+	" topleftest nonspecial
+	let [ l:lowestRow, l:lowestCol, l:topLeftWn ] = [ 0, 0, 0 ]
+	for l:wn in range(winnr("$"), 1, -1)
 		if !getwinvar(l:wn, "amcSpecial")
-			execute l:wn . " wincmd w"
-			return
+			let [ l:row, l:col ] = win_screenpos(l:wn)
+			if (!l:lowestRow || !l:lowestCol) ||
+						\ l:row == l:lowestRow && l:col < l:lowestCol ||
+						\ l:row < l:lowestRow && l:col == l:lowestCol
+				let [ l:lowestRow, l:lowesCol, l:topLeftWn ] = [ l:row, l:col, l:wn ]
+			endif
 		endif
 	endfor
+	if l:topLeftWn
+		execute l:topLeftWn . " wincmd w"
+		return
+	endif
 
 	" nuke the world and start over
 	call amc#log#line("amc#win#goHome nuking")
