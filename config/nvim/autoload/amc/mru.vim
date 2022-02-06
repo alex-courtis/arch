@@ -100,17 +100,17 @@ function amc#mru#update()
 		let w:amcMruWinP = -1
 	endif
 
-	" clear wiped buffers
+	" clear wiped / deleted buffers
 	for l:i in w:amcMru
-		if bufnr(l:i) < 0
+		if bufnr(l:i) < 0 || !getbufvar(l:i, "&buflisted")
 			let l:bi = index(w:amcMru, l:i)
 			if l:bi >= 0
-				call amc#log#line("amc#mru#update removing wiped " . l:i . " from Mru")
+				call amc#log#line("amc#mru#update removing wiped / deleted " . l:i . " from Mru")
 				call remove(w:amcMru, l:bi)
 			endif
 			let l:bi = index(w:amcMruWin, l:i)
 			if l:bi >= 0
-				call amc#log#line("amc#mru#update removing wiped " . l:i . " from MruWin")
+				call amc#log#line("amc#mru#update removing wiped / deleted " . l:i . " from MruWin")
 				call remove(w:amcMruWin, l:bi)
 				let w:amcMruWinP -= 1
 			endif
@@ -119,7 +119,9 @@ function amc#mru#update()
 
 	" window needs multiple entries
 	if len(w:amcMruWin) < 2
-		call amc#log#line("amc#mru#update clearing empty MruWin")
+		if len(w:amcMruWin) != 0
+			call amc#log#line("amc#mru#update clearing < 2 MruWin")
+		endif
 		let w:amcMruWin = []
 		let w:amcMruWinP = -1
 	endif
@@ -204,12 +206,11 @@ function amc#mru#winRemove()
 		" new %
 		call amc#mru#forward()
 
-		" send to back of mru
+		" remove from mru
 		let l:bi = index(w:amcMru, l:bn)
 		if l:bi >= 0
 			call remove(w:amcMru, l:bi)
 		endif
-		call insert(w:amcMru, l:bn)
 
 		" remove from win
 		let l:bi = index(w:amcMruWin, l:bn)
