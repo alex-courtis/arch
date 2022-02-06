@@ -8,10 +8,8 @@ endfunction
 
 function amc#qf#processGrep()
 	let l:title = getqflist({"title" : 0}).title
-	if match(l:title, ':\s*' . &grepprg . '\s*') < 0
-		return
-	endif
-
+	let l:firstValid = 0
+	let l:validItemNr = 0
 	let l:filteredItems = []
 	let l:query = ""
 	let l:error = 0
@@ -30,6 +28,11 @@ function amc#qf#processGrep()
 
 		" everything else is real, including errors
 		call add(l:filteredItems, l:item)
+
+		let l:validItemNr += 1
+		if !l:firstValid
+			let l:firstValid = l:validItemNr
+		endif
 	endfor
 	call setqflist(l:filteredItems, 'r')
 
@@ -41,14 +44,16 @@ function amc#qf#processGrep()
 
 	" title is changed to ":setqflist()" after setting items
 	call setqflist([], 'r', {'title': l:title})
+
+	return l:firstValid
 endfunction
 
 function amc#qf#processMake()
 	let l:title = getqflist({"title" : 0}).title
-	if match(l:title, ':\s*' . &makeprg . '\s*') < 0
-		return
-	endif
+	let l:all = getqflist({'all' : 1})
+	let l:all['items'] = []
 
+	let l:firstValid = 0
 	let l:itemNr = 0
 	let l:filteredItems = []
 	for l:item in getqflist()
@@ -69,18 +74,35 @@ function amc#qf#processMake()
 		endif
 
 		call add(l:filteredItems, l:item)
+
+		if l:item["valid"] && !l:firstValid
+			let l:firstValid = l:itemNr
+		endif
 	endfor
 	call setqflist(l:filteredItems, 'r')
 
 	" title is changed to ":setqflist()" after setting items
 	call setqflist([], 'r', {'title': l:title})
+
+	return l:firstValid
 endfunction
 
 function amc#qf#cmdPost()
-	call amc#qf#processGrep()
-	call amc#qf#processMake()
+	let l:firstValid = 0
+
+	let l:title = getqflist({"title" : 0}).title
+	if match(l:title, ':\s*' . &makeprg . '\s*') >= 0
+		let l:firstValid = amc#qf#processMake()
+	elseif match(l:title, ':\s*' . &grepprg . '\s*') >= 0
+		let l:firstValid = amc#qf#processGrep()
+	endif
+
 	call amc#win#goHome()
 	cclose
-	aboveleft cwindow 15
+	belowright cwindow 15
+
+	if l:firstValid
+		execute "cc" . l:firstValid
+	endif
 endfunction
 

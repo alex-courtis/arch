@@ -33,6 +33,7 @@ set mouse=a
 set wildmode=longest:full,full
 set undofile
 set title
+set switchbuf=useopen,uselast
 
 
 nmap	;	:
@@ -59,10 +60,10 @@ endif
 nmap	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nmap	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nmap	<silent>	<Leader>,	:call amc#win#goHome() <Bar> aboveleft copen<CR>
+nmap	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
 nmap	<silent>	<Leader><	:cclose<CR>
 nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
-nmap	<silent>	<Leader>q	:call amc#win#openFocusGitPreview()<CR>
+nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
 nmap	<silent>	<Leader>.	:call amc#qf#setGrepPattern()<Bar>set hlsearch<Bar>cnext<CR>
 nmap	<silent>	<Leader>e	:call amc#win#goHome() <Bar> BufExplorer<CR>
@@ -94,8 +95,8 @@ vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
 nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
 xmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
-nmap	<silent>	<Leader>m	:make <Bar> silent! cnext <CR>
-nmap	<silent>	<Leader>M	:make clean <Bar> silent! cnext <CR>
+nmap	<silent>	<Leader>m	:make <CR>
+nmap	<silent>	<Leader>M	:make clean <CR>
 
 nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
 nmap	<silent>	<Leader>cc	<Plug>CommentaryLine
@@ -241,13 +242,13 @@ nmap	gc	<NOP>
 set updatetime=100
 let g:gitgutter_close_preview_on_escape = 1
 let g:gitgutter_preview_win_floating = 0
-let g:gitgutter_preview_win_location = 'belowright'
+let g:gitgutter_preview_win_location = 'aboveleft'
 
 
 " local overrides
 call amc#sourceIfExists("local.vim")
 call amc#sourceIfExists("amc/local.vim")
-	
+
 " event order matters
 autocmd BufEnter * call amc#win#markSpecial()
 autocmd BufEnter * call amc#win#ejectFromSpecial()
@@ -266,7 +267,7 @@ autocmd FileType * call amc#win#markSpecial()
 autocmd FileType qf call amc#qf#setGrepPattern()
 autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * call amc#buf#autoWrite()
-autocmd QuickfixCmdPost * call amc#qf#cmdPost()
+" autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
 if has('nvim')
