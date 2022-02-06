@@ -115,7 +115,10 @@ vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nmap	<silent>	<Leader>n	:tn<CR>
 nmap	<silent>	<Leader>N	:tp<CR>
-" v
+nmap	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
+nmap	<silent>	<Leader>v	<F12>v
+nmap	<silent>	<F12>V		:call amc#linewiseIndent("P", "\<F12>V")<CR>
+nmap	<silent>	<Leader>V	<F12>V
 
 " l
 nmap	<silent>	<Leader>s	:GotoHeaderSwitch<CR>

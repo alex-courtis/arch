@@ -70,3 +70,12 @@ function amc#updatePath()
 	let &path = getcwd() . "/**"
 endfunction
 
+
+function amc#linewiseIndent(cmd, repeat)
+	let [l:body, l:type] = [getreg(v:register), getregtype(v:register)]
+	call setreg(v:register, l:body, 'l')
+	execute 'normal! ' . a:cmd . '=='
+	call setreg(v:register, l:body, l:type)
+	call repeat#set(a:repeat)
+endfunction
+
