@@ -74,7 +74,7 @@ endfunction
 function amc#linewiseIndent(cmd, repeat)
 	let [l:body, l:type] = [getreg(v:register), getregtype(v:register)]
 	call setreg(v:register, l:body, 'l')
-	execute 'normal! ' . a:cmd . '=='
+	execute 'normal! ' . a:cmd . "'[v']="
 	call setreg(v:register, l:body, l:type)
 	call repeat#set(a:repeat)
 endfunction
