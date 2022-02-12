@@ -57,6 +57,10 @@ function amc#buf#flavour(buf)
 		return g:amc#buf#SPECIAL
 	endif
 
+	if amc#buf#isScratch(a:buf)
+		return g:amc#buf#SCRATCH
+	endif
+
 	let l:name = bufname(a:buf)
 	if strlen(l:name) == 0
 		if getbufvar(a:buf, "&modified")

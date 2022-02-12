@@ -79,3 +79,18 @@ function amc#linewiseIndent(cmd, repeat)
 	call repeat#set(a:repeat)
 endfunction
 
+
+function! amc#airlineSpecialDetector(...)
+	let l:builder = a:1
+	let l:context = a:2
+
+	if !amc#buf#isSpecial(l:context.bufnr)
+		let l:special = getwinvar(l:context.winnr, "amcSpecial", 0)
+		if l:special
+			call l:builder.add_section_spaced('airline_error_bold', g:amc#buf#specialNames[l:special])
+		endif
+	endif
+
+	return 0
+endfunction
+
