@@ -30,7 +30,6 @@ set autowriteall
 set number
 set cursorline
 set mouse=a
-set wildmode=longest:full,full
 set undofile
 set title
 set switchbuf=useopen,uselast

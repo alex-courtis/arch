@@ -42,7 +42,7 @@ function amc#qf#processGrep()
 	return l:firstValid
 endfunction
 
-function amc#qf#filterResults()
+function amc#qf#processMake()
 	let l:title = getqflist({"title" : 0}).title
 	let l:all = getqflist({'all' : 1})
 	let l:all['items'] = []
@@ -83,18 +83,19 @@ endfunction
 
 function amc#qf#cmdPost()
 	let l:title = getqflist({"title" : 0}).title
+
+	let l:cc = 0
 	if match(l:title, ':\s*' . &grepprg . '\s*') >= 0
-		call amc#qf#processGrep()
+		let l:cc = amc#qf#processGrep()
+	elseif match(l:title, ':\s*' . &makeprg . '\s*') >= 0
+		let l:cc = amc#qf#processMake()
 	endif
 
-	let l:firstValid = amc#qf#filterResults()
-
 	call amc#win#goHome()
-	cclose
 	belowright cwindow 15
 
-	if l:firstValid
-		execute "cc" . l:firstValid
+	if l:cc > 0
+		execute "cc" . l:cc
 	endif
 endfunction
 

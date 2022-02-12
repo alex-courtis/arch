@@ -84,7 +84,6 @@ function amc#mru#update()
 	endif
 	if l:special
 		if l:special != g:amc#buf#BUF_EXPLORER
-			call amc#log#line("mru: update cleared special " . g:amc#buf#specialNames[l:special])
 			let w:amcMru = []
 			let w:amcMruWin = []
 			let w:amcMruWinP = -1
