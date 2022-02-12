@@ -33,7 +33,7 @@ function amc#nvt#setup()
 endfunction
 
 function amc#nvt#startup()
-	if amc#buf#isNoNameNew(bufnr())
+	if amc#buf#flavour(bufnr()) == g:amc#buf#NO_NAME_NEW
 		NvimTreeOpen
 
 		" events aren't fired within VimEnter so manually clasify

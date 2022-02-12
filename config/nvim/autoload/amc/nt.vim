@@ -1,7 +1,7 @@
 " vim only
 
 function amc#nt#startup()
-	if amc#buf#isNoNameNew(bufnr())
+	if amc#buf#flavour(bufnr()) == g:amc#buf#NO_NAME_NEW
 		NERDTreeFocus
 	endif
 endfunction

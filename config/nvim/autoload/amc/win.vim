@@ -85,7 +85,7 @@ function amc#win#closeAll()
 endfunction
 
 function amc#win#goHomeOrNext()
-	if amc#win#special()
+	if get(w:, 'amcSpecial', 0)
 		call amc#win#goHome()
 		return
 	endif
@@ -107,13 +107,6 @@ function amc#win#openFocusGitPreview()
 	endif
 endfunction
 
-function amc#win#special()
-	if !exists('w:amcSpecial')
-		let w:amcSpecial = 0
-	endif
-	return w:amcSpecial
-endfunction
-
 " one shot mark the window as special via w:amcSpecial
 " except OTHER_SPECIAL will be overwritten by a known special
 " event ordering is inconsistent, hence this is called for many events
@@ -123,7 +116,7 @@ function amc#win#markSpecial()
 		return
 	endif
 
-	let l:curSpecial = amc#win#special()
+	let l:curSpecial = get(w:, 'amcSpecial', 0)
 	if l:curSpecial && l:curSpecial != g:amc#buf#OTHER_SPECIAL
 		return
 	endif
@@ -155,7 +148,7 @@ function amc#win#ejectFromSpecial()
 		return
 	endif
 
-	let l:special = amc#win#special()
+	let l:special = get(w:, 'amcSpecial', 0)
 	if l:special
 		if amc#buf#isSpecial(l:bn) != g:amc#buf#SPECIAL && index(s:ejectFrom, l:special) != -1
 			call amc#log#line("amc#win#ejectFromSpecial ejecting '" . bufname(l:bn) . "' from " . g:amc#buf#specialNames[l:special])

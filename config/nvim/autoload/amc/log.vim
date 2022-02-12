@@ -31,8 +31,9 @@ function amc#log#winBuf(msg)
 		let l:descAlt = g:amc#buf#specialNames[amc#buf#special(l:bna)]
 	endif
 
-	if amc#win#special()
-		let l:winSpecialDesc = g:amc#buf#specialNames[amc#win#special()]
+	let l:special = get(w:, 'amcSpecial', 0)
+	if l:special
+		let l:winSpecialDesc = g:amc#buf#specialNames[l:special]
 	else
 		let l:winSpecialDesc = ""
 	endif
