@@ -1,14 +1,4 @@
 " nvim only
-
-" BUG: first open from local cwd changes root up but not local cwd, only for vim.g.nvim_tree_change_dir_global
-" open
-" cd to subdir
-"   local cwd is subdir
-" edit file
-"   tree changed back to global cwd, but local cwd is subdir
-" cd to another subdir
-" edit file
-"   no change
 "
 " FEATURE: update_focused_file.ignore_list for all
 

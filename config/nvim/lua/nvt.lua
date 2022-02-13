@@ -36,6 +36,7 @@ end
 tree.setup {
 	-- https://github.com/kyazdani42/nvim-tree.lua/issues/971
 	-- hijack_cursor = true,
+	-- https://github.com/kyazdani42/nvim-tree.lua/issues/974
 	update_cwd = true,
 	update_to_buf_dir = {
 		enable = false,
