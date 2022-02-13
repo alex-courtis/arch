@@ -12,8 +12,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yohannfra/Vim-Goto-Header'
 if has('nvim')
-	" https://github.com/kyazdani42/nvim-tree.lua/issues/966
-	Plugin 'kyazdani42/nvim-tree.lua.7fec0f6'
+	Plugin 'kyazdani42/nvim-tree.lua'
 else
 	Plugin 'preservim/nerdtree'
 	Plugin 'Xuyuanp/nerdtree-git-plugin'
