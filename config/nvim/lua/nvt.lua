@@ -34,7 +34,8 @@ local function cd_dot_cb(node)
 end
 
 tree.setup {
-	hijack_cursor = true,
+	-- https://github.com/kyazdani42/nvim-tree.lua/issues/971
+	-- hijack_cursor = true,
 	update_cwd = true,
 	update_to_buf_dir = {
 		enable = false,
@@ -71,6 +72,7 @@ tree.setup {
 				{ key = "O",                            action = "close_node" },
 				{ key = "x",                            action = "remove" },
 				{ key = "t",                            action = "cut" },
+				-- https://github.com/kyazdani42/nvim-tree.lua/issues/972
 				{ key = "<Space>k",                     action = "prev_git_item" },
 				{ key = "<Space>j",                     action = "next_git_item" },
 				{ key = "u",                            action = "dir_up" },
@@ -81,6 +83,7 @@ tree.setup {
 	},
 }
 
+-- https://github.com/kyazdani42/nvim-tree.lua/issues/973
 actions.custom_keypress_funcs = {
 	cd_dot = cd_dot_cb,
 }
