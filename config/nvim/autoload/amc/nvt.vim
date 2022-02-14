@@ -5,13 +5,6 @@
 function amc#nvt#setup()
 	set termguicolors
 
-	" does not work when set via lua vim.g.
-	let g:nvim_tree_show_icons = {
-				\ 'git': 1,
-				\ 'folders': 0,
-				\ 'files': 0,
-				\ 'folder_arrows': 0,
-				\ }
 	lua require 'nvt'
 endfunction
 

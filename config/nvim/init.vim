@@ -13,6 +13,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yohannfra/Vim-Goto-Header'
 if has('nvim')
 	Plugin 'kyazdani42/nvim-tree.lua'
+	Plugin 'kyazdani42/nvim-web-devicons'
 else
 	Plugin 'preservim/nerdtree'
 	Plugin 'Xuyuanp/nerdtree-git-plugin'
