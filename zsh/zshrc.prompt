@@ -28,7 +28,7 @@ function updatecolours() {
 				COL_PROMPT="blue"
 				;;
 			(*)
-				COL_PROMPT="white"
+				COL_PROMPT="cyan"
 				;;
 		esac
 		STR_PROMPT=" ${HOST} "
