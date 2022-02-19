@@ -3,6 +3,9 @@ function amc#qf#setGrepPattern()
 	let l:context = getqflist({"context" : 0})["context"]
 	if type(l:context) == v:t_dict && has_key(l:context, "grepPattern")
 		let @/ = l:context["grepPattern"]
+		return 1
+	else
+		return 0
 	endif
 endfunction
 
@@ -65,15 +68,19 @@ function amc#qf#processInexistent()
 		let l:bname = bufname(l:bufnr)
 
 		" kill the buffer and invalidate for file that does not exist
-		if (l:item["valid"] && l:bufnr > 0 && !filereadable(l:bname)) || (l:item["valid"] && l:bufnr == 0)
-			if l:bufnr && bufnr(l:bufnr) != -1
-				exec "bw" . l:bufnr
+		if l:item["valid"]
+			if l:bufnr > 0 && !filereadable(l:bname)
+				if bufnr(l:bufnr) != -1
+					exec "bw" . l:bufnr
+				endif
+				let l:item["text"] = l:bname . ":" . l:item["lnum"] . ":" . l:item["text"]
+				let l:item["bufnr"] = 0
+				let l:item["col"] = 0
+				let l:item["lnum"] = 0
+				let l:item["valid"] = 0
+			elseif l:bufnr == 0
+				let l:item["valid"] = 0
 			endif
-			let l:item["text"] = l:bname . ":" . l:item["lnum"] . ":" . l:item["text"]
-			let l:item["bufnr"] = 0
-			let l:item["col"] = 0
-			let l:item["lnum"] = 0
-			let l:item["valid"] = 0
 		endif
 
 		call add(l:filteredItems, l:item)
