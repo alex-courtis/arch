@@ -76,6 +76,9 @@ cabbrev f find
 " tags search down only
 set tags=**/tags
 
+" mru
+cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
+
 " airline
 set noshowmode
 let g:airline#extensions#branch#enabled = 0

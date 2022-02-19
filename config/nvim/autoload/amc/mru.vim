@@ -10,13 +10,8 @@ function amc#mru#initWinVars()
 	endif
 endfunction
 
-function amc#mru#prn(msg, full)
-	if !exists('g:amcLogMru') || !g:amcLogMru
-		return
-	endif
-
-	if !a:full
-		call amc#log#_line(a:msg)
+function amc#mru#prn(msg, echo)
+	if !a:echo && (!exists('g:amcLogMru') || !g:amcLogMru)
 		return
 	endif
 
@@ -43,7 +38,7 @@ function amc#mru#prn(msg, full)
 
 	let l:mruLines = []
 	for l:bn in w:amcMru
-		let l:bname = bufname(l:bn)
+		let l:bname = fnamemodify(bufname(l:bn), ":~")
 		let l:line = printf("%2d %s %s",
 					\ l:bn,
 					\ l:bn == l:bnCur ? "%" : l:bn == l:bnAlt ? "#" : " ",
@@ -53,7 +48,7 @@ function amc#mru#prn(msg, full)
 
 	let l:winLines = []
 	for l:bn in w:amcMruWin
-		let l:bname = bufname(l:bn)
+		let l:bname = fnamemodify(bufname(l:bn), ":~")
 		let l:line = printf("%2d %s%s %s",
 					\ l:bn,
 					\ l:bn == l:bnPtr ? ">" : " ",
@@ -69,7 +64,12 @@ function amc#mru#prn(msg, full)
 					\ i < len(l:mruLines) ? l:mruLines[i] : "",
 					\ i < len(l:winLines) ? l:winLines[i] : "")
 	endfor
-	call amc#log#_line(l:all)
+
+	if a:echo
+		echo l:all
+	else
+		call amc#log#_line(l:all)
+	endif
 endfunction
 
 function amc#mru#update()
@@ -88,7 +88,7 @@ function amc#mru#update()
 			let w:amcMruWin = []
 			let w:amcMruWinP = -1
 		endif
-		call amc#mru#prn("mru: updated special", 1)
+		call amc#mru#prn("mru: updated special", 0)
 		return 0
 	endif
 
@@ -132,7 +132,7 @@ function amc#mru#update()
 	endif
 	call add(w:amcMru, l:bn)
 
-	call amc#mru#prn("mru: updated", 1)
+	call amc#mru#prn("mru: updated", 0)
 	return 1
 endfunction
 
@@ -217,7 +217,7 @@ function amc#mru#winRemove()
 			call remove(w:amcMruWin, l:bi)
 		endif
 
-		call amc#mru#prn("mru: removed", 1)
+		call amc#mru#prn("mru: removed", 0)
 	else
 		echo "mru remove: <2 other buffers, doing nothing"
 	endif
