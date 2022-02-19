@@ -6,10 +6,12 @@ function amc#qf#setGrepPattern()
 	endif
 endfunction
 
+" 0 for no results, >0 for first valid, -1 for only invalid
 function amc#qf#processGrep()
 	let l:title = getqflist({"title" : 0}).title
 	let l:firstValid = 0
-	let l:validItemNr = 0
+	let l:firstInvalid = 0
+	let l:itemNr = 0
 	let l:filteredItems = []
 	let l:query = ""
 	for l:item in getqflist()
@@ -23,9 +25,12 @@ function amc#qf#processGrep()
 		" everything else is real, including errors
 		call add(l:filteredItems, l:item)
 
-		let l:validItemNr += 1
-		if !l:firstValid
-			let l:firstValid = l:validItemNr
+		let l:itemNr += 1
+		if !l:firstValid && l:item["valid"]
+			let l:firstValid = l:itemNr
+		endif
+		if !l:firstInvalid && !l:item["valid"]
+			let l:firstInvalid = l:itemNr
 		endif
 	endfor
 	call setqflist(l:filteredItems, 'r')
@@ -39,10 +44,14 @@ function amc#qf#processGrep()
 	" title is changed to ":setqflist()" after setting items
 	call setqflist([], 'r', {'title': l:title})
 
-	return l:firstValid
+	if l:firstInvalid && !l:firstValid
+		return -1
+	else
+		return l:firstValid
+	endif
 endfunction
 
-function amc#qf#processMake()
+function amc#qf#processInexistent()
 	let l:title = getqflist({"title" : 0}).title
 	let l:all = getqflist({'all' : 1})
 	let l:all['items'] = []
@@ -56,8 +65,8 @@ function amc#qf#processMake()
 		let l:bname = bufname(l:bufnr)
 
 		" kill the buffer and invalidate for file that does not exist
-		if l:item["valid"] && l:bufnr > 0 && !filereadable(l:bname)
-			if bufnr(l:bufnr) != -1
+		if (l:item["valid"] && l:bufnr > 0 && !filereadable(l:bname)) || (l:item["valid"] && l:bufnr == 0)
+			if l:bufnr && bufnr(l:bufnr) != -1
 				exec "bw" . l:bufnr
 			endif
 			let l:item["text"] = l:bname . ":" . l:item["lnum"] . ":" . l:item["text"]
@@ -86,13 +95,18 @@ function amc#qf#cmdPost()
 
 	let l:cc = 0
 	if match(l:title, ':\s*' . &grepprg . '\s*') >= 0
+		call amc#qf#processInexistent()
 		let l:cc = amc#qf#processGrep()
 	elseif match(l:title, ':\s*' . &makeprg . '\s*') >= 0
-		let l:cc = amc#qf#processMake()
+		let l:cc = amc#qf#processInexistent()
 	endif
 
 	call amc#win#goHome()
-	belowright cwindow 15
+	if l:cc == -1
+		belowright copen 15
+	else
+		belowright cwindow 15
+	endif
 
 	if l:cc > 0
 		execute "cc" . l:cc
