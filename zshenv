@@ -13,8 +13,9 @@ export TERMINAL="alacritty"
 # better paging
 export PAGER="less"
 
-# case insensitive searching, raw escape sequence passthrough
-export LESS=iR
+# git defaults + case insensitive searching
+# git won't apply its defaults if LESS is set so we have to
+export LESS=FRXi
 
 # tell old java apps that we're using a non-reparenting window manager
 export _JAVA_AWT_WM_NONREPARENTING=1
