@@ -1,6 +1,5 @@
 local tree = require'nvim-tree'
 local lib = require'nvim-tree.lib'
-local actions = require'nvim-tree.actions'
 
 -- g: will eventually move to setup
 vim.g.nvim_tree_change_dir_global = 0
@@ -46,7 +45,6 @@ local function cd_dot_cb(node)
 end
 
 tree.setup {
-	hijack_unnamed_buffer_when_opening = false,
 	-- https://github.com/kyazdani42/nvim-tree.lua/issues/972
 	-- hijack_cursor = true,
 	update_cwd = true,
@@ -58,46 +56,34 @@ tree.setup {
 		enable = true,
 	},
 	open_on_setup = true,
+	hijack_unnamed_buffer_when_opening = false,
 	view = {
 		mappings = {
-			custom_only = true,
 			list = {
-				{ key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
-				{ key = "<",                            action = "prev_sibling" },
-				{ key = ">",                            action = "next_sibling" },
-				{ key = "P",                            action = "parent_node" },
-				{ key = "K",                            action = "first_sibling" },
-				{ key = "J",                            action = "last_sibling" },
-				{ key = "I",                            action = "toggle_ignored" },
-				{ key = "H",                            action = "toggle_dotfiles" },
-				{ key = "R",                            action = "refresh" },
-				{ key = "a",                            action = "create" },
-				{ key = "r",                            action = "rename" },
-				{ key = "<C-r>",                        action = "full_rename" },
-				{ key = "c",                            action = "copy"},
-				{ key = "p",                            action = "paste" },
-				{ key = "y",                            action = "copy_name" },
-				{ key = "Y",                            action = "copy_path" },
-				{ key = "gy",                           action = "copy_absolute_path" },
-				{ key = "q",                            action = "close"},
-				{ key = "g?",                           action = "toggle_help" },
+				{ key = {"<2-RightMouse>", "<C-]>"},    action = nil },
+				{ key = "<C-v>",                        action = nil },
+				{ key = "<C-x>",                        action = nil },
+				{ key = "<C-t>",                        action = nil },
+				{ key = "<BS>",                         action = nil },
+				{ key = "<Tab>",                        action = nil },
+				{ key = "D",                            action = nil },
+				{ key = "[c",                           action = nil },
+				{ key = "]c",                           action = nil },
+				{ key = "-",                            action = nil },
+				{ key = "s",                            action = nil },
 
 				{ key = "d",                            action = "cd" },
 				{ key = "O",                            action = "close_node" },
 				{ key = "x",                            action = "remove" },
 				{ key = "t",                            action = "cut" },
+
 				{ key = "<Space>k",                     action = "prev_git_item" },
 				{ key = "<Space>j",                     action = "next_git_item" },
 				{ key = "u",                            action = "dir_up" },
 
-				{ key = ".",                            action = "cd_dot" },
+				{ key = ".",                            action = "cd_dot",		action_cb = cd_dot_cb, },
 			},
 		},
 	},
-}
-
--- https://github.com/kyazdani42/nvim-tree.lua/issues/973
-actions.custom_keypress_funcs = {
-	cd_dot = cd_dot_cb,
 }
 
