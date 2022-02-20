@@ -22,18 +22,18 @@ endif
 call vundle#end()
 filetype plugin indent on
 
-
-set clipboard=unnamedplus
-set ignorecase
-set smartcase
-set nowrapscan
 set autowriteall
-set number
+set clipboard=unnamedplus
 set cursorline
+set ignorecase
 set mouse=a
-set undofile
-set title
+set nowrapscan
+set number
+set smartcase
 set switchbuf=useopen,uselast
+set termguicolors
+set title
+set undofile
 
 runtime keys.vim
 
@@ -106,7 +106,7 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 
 if has('nvim')
 	" nvimtree
-	call amc#nvt#setup()
+	lua require 'nvt'
 else
 	" nerdtree
 	set wildignore+=*.o,*.class
@@ -160,9 +160,7 @@ autocmd BufEnter * call amc#win#ejectFromSpecial()
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#mru#update()
 autocmd BufEnter * call amc#updateTitleString()
-if has('nvim')
-	autocmd BufEnter * call amc#nvt#sync()
-else
+if !has('nvim')
 	autocmd BufEnter * call amc#nt#sync()
 end
 autocmd BufLeave * call amc#buf#autoWrite()
@@ -175,9 +173,7 @@ autocmd FocusLost * call amc#buf#autoWrite()
 autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
-if has('nvim')
-	autocmd VimEnter * call amc#nvt#startup()
-else
+if !has('nvim')
 	autocmd VimEnter * call amc#nt#startup()
 endif
 autocmd WinNew * call amc#mru#winNew()

@@ -46,9 +46,9 @@ local function cd_dot_cb(node)
 end
 
 tree.setup {
+	hijack_unnamed_buffer_when_opening = false,
 	-- https://github.com/kyazdani42/nvim-tree.lua/issues/972
 	-- hijack_cursor = true,
-	-- https://github.com/kyazdani42/nvim-tree.lua/issues/974
 	update_cwd = true,
 	update_to_buf_dir = {
 		enable = false,
@@ -57,6 +57,7 @@ tree.setup {
 	update_focused_file = {
 		enable = true,
 	},
+	open_on_setup = true,
 	view = {
 		mappings = {
 			custom_only = true,

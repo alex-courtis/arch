@@ -14,7 +14,7 @@ imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 let mapleader="\<Space>"
 
 if has('nvim')
-	nmap	<silent>	<Leader>a	:call amc#nvt#smartFocus()<CR>
+	nmap	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 else
 	nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 	nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
