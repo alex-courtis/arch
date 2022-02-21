@@ -60,17 +60,17 @@ tree.setup {
 	view = {
 		mappings = {
 			list = {
-				{ key = {"<2-RightMouse>", "<C-]>"},    action = nil },
-				{ key = "<C-v>",                        action = nil },
-				{ key = "<C-x>",                        action = nil },
-				{ key = "<C-t>",                        action = nil },
-				{ key = "<BS>",                         action = nil },
-				{ key = "<Tab>",                        action = nil },
-				{ key = "D",                            action = nil },
-				{ key = "[c",                           action = nil },
-				{ key = "]c",                           action = nil },
-				{ key = "-",                            action = nil },
-				{ key = "s",                            action = nil },
+				{ key = {"<2-RightMouse>", "<C-]>"},    action = "" },
+				{ key = "<C-v>",                        action = "" },
+				{ key = "<C-x>",                        action = "" },
+				{ key = "<C-t>",                        action = "" },
+				{ key = "<BS>",                         action = "" },
+				{ key = "<Tab>",                        action = "" },
+				{ key = "D",                            action = "" },
+				{ key = "[c",                           action = "" },
+				{ key = "]c",                           action = "" },
+				{ key = "-",                            action = "" },
+				{ key = "s",                            action = "" },
 
 				{ key = "d",                            action = "cd" },
 				{ key = "O",                            action = "close_node" },
