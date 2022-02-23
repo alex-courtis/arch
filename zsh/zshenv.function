@@ -36,8 +36,12 @@ function underlyingterm() {
 function make() {
 	if [ -f amc/Makefile ]; then
 		/usr/bin/make -f amc/Makefile "${@}"
+	elif [ -f amc/GNUmakefile ]; then
+		/usr/bin/make -f amc/GNUmakefile "${@}"
 	elif [ -f Makefile.dev ]; then
 		/usr/bin/make -f Makefile.dev "${@}"
+	elif [ -f GNUmakefile.dev ]; then
+		/usr/bin/make -f GNUmakefile.dev "${@}"
 	else
 		/usr/bin/make "${@}"
 	fi
