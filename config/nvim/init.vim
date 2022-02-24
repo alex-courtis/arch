@@ -106,6 +106,7 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 
 if has('nvim')
 	" nvimtree
+	let g:nvim_tree_show_icons = { 'git': 1, 'folders': 0, 'files': 1, 'folder_arrows': 0, }
 	lua require 'nvt'
 else
 	" nerdtree
