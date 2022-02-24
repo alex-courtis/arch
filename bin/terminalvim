@@ -5,5 +5,5 @@
 
 unset VIM
 unset VIMRUNTIME
-term -e vi "$@" aoeu &
+term -e vi ${@} &
 
