@@ -137,6 +137,7 @@ endif
 let g:tagbar_compact=1
 let tagbar_map_showproto=''
 let g:tagbar_silent = 1
+let g:tagbar_sort = 0
 
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
