@@ -4,23 +4,6 @@ local lib = require'nvim-tree.lib'
 -- g: will eventually move to setup
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_special_files = {}
-vim.g.nvim_tree_window_picker_chars = "aoeu"
-vim.g.nvim_tree_window_picker_exclude = {
-	filetype = {
-		'diff',
-		'notify',
-		'packer',
-		'fugitive',
-		'fugitiveblame',
-	},
-	buftype = {
-		'help',
-		'quickfix',
-		'nofile',
-		'terminal',
-	}
-}
-
 
 local function cd_dot_cb(node)
 	local global_cwd = vim.fn.getcwd(-1)
@@ -29,14 +12,21 @@ local function cd_dot_cb(node)
 end
 
 tree.setup {
-	-- https://github.com/kyazdani42/nvim-tree.lua/issues/972
-	-- hijack_cursor = true,
 	update_cwd = true,
 	update_focused_file = {
 		enable = true,
-		update_cwd = true,
 	},
 	open_on_setup = true,
+	actions = {
+		open_file = {
+			window_picker = {
+				chars = "aoeui",
+				exclude = {
+					filetype = { "qf", "notify", "diff", "fugitive", "fugitiveblame", "tagbar" },
+				}
+			}
+		}
+	},
 	view = {
 		mappings = {
 			list = {
