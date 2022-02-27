@@ -1,105 +1,112 @@
-nmap	;	:
-vmap	;	:
-nmap	q;	q:
-vmap	q;	q:
-nmap	@;	@:
-vmap	@;	@:
-nmap	<C-w>; 	<C-w>:
-vmap	<C-w>; 	<C-w>:
+nm	;	:
+vm	;	:
+nm	q;	q:
+vm	q;	q:
+nm	@;	@:
+vm	@;	@:
+nm	<C-w>; 	<C-w>:
+vm	<C-w>; 	<C-w>:
 
-nmap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
-imap	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+nn	cw	ciw
+nn	cfw	cw
+nn	dw	diw
+nn	dfw	dw
+nn	yw	yiw
+nn	yfw	yw
+
+nm	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
 " begin left
 let mapleader="\<Space>"
 
 if has('nvim')
-	nmap	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
-	nmap	<silent>	<Leader>A	:NvimTreeRefresh<CR>
+	nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
+	nm	<silent>	<Leader>A	:NvimTreeRefresh<CR>
 else
-	nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
-	nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
+	nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
+	nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 endif
-nmap	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
-nmap	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
+nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
+nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nmap	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
-nmap	<silent>	<Leader><	:cclose<CR>
-nmap	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
-nmap	<silent>	<Leader>O	:call amc#win#goHome()<CR>
-nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
+nm	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
+nm	<silent>	<Leader><	:cclose<CR>
+nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
+nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
+nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
-nmap	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
-nmap	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
-nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
+nm	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
+nm	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
+nm	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
-nmap	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
-nmap	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
-nmap	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
+nm	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
+nm	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
+nm	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
 let	g:NERDTreeGitStatusMapPrevHunk = "<Space>k"
 
 " y
-nmap	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
+nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 " x
 
-nmap	<silent>	<BS><BS>	:call amc#mru#back()<CR>
+nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
 
 " begin right
 let mapleader="\<BS>"
 
 " f
-nmap	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
+nm	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 " b
 
-nmap			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
-nmap			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
-vmap			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
-nmap	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
-nmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
-xmap	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
-nmap	<silent>	<Leader>m	:make <CR>
-nmap	<silent>	<Leader>M	:make clean <CR>
+nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
+nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
+vm			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
+nm	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
+nm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
+xm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
+nm	<silent>	<Leader>m	:make <CR>
+nm	<silent>	<Leader>M	:make clean <CR>
 
-nmap	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
-nmap	<silent>	<Leader>cc	<Plug>CommentaryLine
-omap	<silent>	<Leader>c	<Plug>Commentary
-nmap	<silent>	<Leader>c	<Plug>Commentary
-xmap	<silent>	<Leader>c	<Plug>Commentary
-nmap	<silent>	<Leader>t	<C-]>
-nmap	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nm	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
+nm	<silent>	<Leader>cc	<Plug>CommentaryLine
+om	<silent>	<Leader>c	<Plug>Commentary
+nm	<silent>	<Leader>c	<Plug>Commentary
+xm	<silent>	<Leader>c	<Plug>Commentary
+nm	<silent>	<Leader>t	<C-]>
+nm	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
 " vim-repeat doesn't seem to be able to handle a <BS> mapping
-nmap	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
-nmap	<silent>	<Leader>w	<F12>w
+nm	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
+nm	<silent>	<Leader>w	<F12>w
 
-nmap			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
-nmap			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
-vmap			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
-vmap			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
-nmap	<silent>	<Leader>n	:tn<CR>
-nmap	<silent>	<Leader>N	:tp<CR>
-nmap	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
-nmap	<silent>	<Leader>v	<F12>v
-nmap	<silent>	<F12>V		:call amc#linewiseIndent("P", "\<F12>V")<CR>
-nmap	<silent>	<Leader>V	<F12>V
+nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
+nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
+vm			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
+vm			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
+nm	<silent>	<Leader>n	:tn<CR>
+nm	<silent>	<Leader>N	:tp<CR>
+nm	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
+nm	<silent>	<Leader>v	<F12>v
+nm	<silent>	<F12>V		:call amc#linewiseIndent("P", "\<F12>V")<CR>
+nm	<silent>	<Leader>V	<F12>V
 
 " l
-nmap	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
-nmap	<silent>	<Leader>z	gg=G``
+nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
+nm	<silent>	<Leader>z	gg=G``
 
 " /
-nmap	<silent>	<Leader>-	:GotoHeader<CR>
+nm	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
-nmap	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
+nm	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
 
 unlet mapleader
 " end right
 
-cmap		<C-j>	<Down>
-cmap		<C-k>	<Up>
+cm		<C-j>	<Down>
+cm		<C-k>	<Up>
 
 " hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
-vmap <LeftRelease> "*ygv
+vm <LeftRelease> "*ygv
 
