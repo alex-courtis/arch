@@ -19,6 +19,7 @@ function amc#win#goHome()
 
 	" nuke the world and start over
 	call amc#log#line("amc#win#goHome nuking")
+	echom "amc#win#goHome nuking"
 	new
 	call amc#win#closeAll()
 endfunction
