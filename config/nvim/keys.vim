@@ -56,13 +56,14 @@ nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " begin right
 let mapleader="\<BS>"
 
-" f
+nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
+vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
 nm	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 " b
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
-vm			<Leader>g	:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
+vm			<Leader>g	<Esc>:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
 nm	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
 nm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
 xm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
@@ -82,8 +83,8 @@ nm	<silent>	<Leader>w	<F12>w
 
 nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
-vm			<Leader>r	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
-vm			<Leader>R	:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
+vm			<Leader>r	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
+vm			<Leader>R	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nm	<silent>	<Leader>n	:tn<CR>
 nm	<silent>	<Leader>N	:tp<CR>
 nm	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
