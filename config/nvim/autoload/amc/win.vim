@@ -68,14 +68,14 @@ function amc#win#goBufName(bn)
 	endfor
 endfunction
 
-let s:closeOrder = [ 
-			\ g:amc#buf#GIT_GUTTER, 
-			\ g:amc#buf#QUICK_FIX, 
-			\ g:amc#buf#FUGITIVE, 
-			\ g:amc#buf#HELP 
-			\ g:amc#buf#NERD_TREE, 
-			\ g:amc#buf#NVIM_TREE, 
-			\ g:amc#buf#TAGBAR, 
+let s:closeOrder = [
+			\ g:amc#buf#GIT_GUTTER,
+			\ g:amc#buf#QUICK_FIX,
+			\ g:amc#buf#FUGITIVE,
+			\ g:amc#buf#HELP,
+			\ g:amc#buf#NERD_TREE,
+			\ g:amc#buf#NVIM_TREE,
+			\ g:amc#buf#TAGBAR,
 			\ ]
 function amc#win#closeInc()
 
@@ -140,12 +140,12 @@ function amc#win#markSpecial()
 endfunction
 
 " nvimtree does this itself, however this method doesn't thrash around so much
-let s:ejectFrom = [ 
+let s:ejectFrom = [
 			\ g:amc#buf#GIT,
 			\ g:amc#buf#GIT_GUTTER,
 			\ g:amc#buf#FUGITIVE,
 			\ g:amc#buf#HELP,
-			\ g:amc#buf#NERD_TREE, 
+			\ g:amc#buf#NERD_TREE,
 			\ g:amc#buf#NVIM_TREE,
 			\ g:amc#buf#QUICK_FIX,
 			\ g:amc#buf#TAGBAR
