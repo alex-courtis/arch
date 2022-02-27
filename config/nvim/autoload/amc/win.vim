@@ -24,6 +24,37 @@ function amc#win#goHome()
 	call amc#win#closeAll()
 endfunction
 
+function amc#win#goHomeOrNext()
+	if get(w:, 'amcSpecial', 0)
+		call amc#win#goHome()
+		return
+	endif
+
+	" search up from this window then start at 0
+	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
+		if !getwinvar(l:wn, "amcSpecial")
+			execute l:wn . " wincmd w"
+			return
+		endif
+	endfor
+endfunction
+
+function amc#win#openBufExplorer()
+	if get(w:, 'amcSpecial', 0)
+		call amc#win#goHome()
+	endif
+
+	BufExplorer
+endfunction
+
+function amc#win#openFocusGitPreview()
+	if gitgutter#hunk#is_preview_window_open()
+		call amc#win#goBufName('gitgutter://hunk-preview')
+	else
+		GitGutterPreviewHunk
+	endif
+endfunction
+
 function amc#win#goBufName(bn)
 	if bufname() == a:bn
 		return
@@ -41,10 +72,10 @@ let s:closeOrder = [
 			\ g:amc#buf#GIT_GUTTER, 
 			\ g:amc#buf#QUICK_FIX, 
 			\ g:amc#buf#FUGITIVE, 
+			\ g:amc#buf#HELP 
 			\ g:amc#buf#NERD_TREE, 
 			\ g:amc#buf#NVIM_TREE, 
 			\ g:amc#buf#TAGBAR, 
-			\ g:amc#buf#HELP 
 			\ ]
 function amc#win#closeInc()
 
@@ -83,29 +114,6 @@ function amc#win#closeAll()
 			execute l:wn . " wincmd c"
 		endif
 	endfor
-endfunction
-
-function amc#win#goHomeOrNext()
-	if get(w:, 'amcSpecial', 0)
-		call amc#win#goHome()
-		return
-	endif
-
-	" search up from this window then start at 0
-	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
-		if !getwinvar(l:wn, "amcSpecial")
-			execute l:wn . " wincmd w"
-			return
-		endif
-	endfor
-endfunction
-
-function amc#win#openFocusGitPreview()
-	if gitgutter#hunk#is_preview_window_open()
-		call amc#win#goBufName('gitgutter://hunk-preview')
-	else
-		GitGutterPreviewHunk
-	endif
 endfunction
 
 " one shot mark the window as special via w:amcSpecial

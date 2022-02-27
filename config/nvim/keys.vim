@@ -30,7 +30,7 @@ nmap	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nmap	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
 nmap	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
-nmap	<silent>	<Leader>e	:call amc#win#goHome() <Bar> BufExplorer<CR>
+nmap	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
 nmap	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
 let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
 
