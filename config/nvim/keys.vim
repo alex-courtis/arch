@@ -7,10 +7,6 @@ vm	@;	@:
 nm	<C-w>; 	<C-w>:
 vm	<C-w>; 	<C-w>:
 
-nn	cw	ciw
-nn	cfw	cw
-nn	dw	diw
-nn	dfw	dw
 nn	yw	yiw
 nn	yfw	yw
 
