@@ -15,6 +15,7 @@ let mapleader="\<Space>"
 
 if has('nvim')
 	nmap	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
+	nmap	<silent>	<Leader>A	:NvimTreeRefresh<CR>
 else
 	nmap	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 	nmap	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
