@@ -152,10 +152,6 @@ let g:gitgutter_preview_win_floating = 0
 let g:gitgutter_preview_win_location = 'aboveleft'
 
 
-" local overrides
-call amc#sourceIfExists("local.vim")
-call amc#sourceIfExists("amc/local.vim")
-
 " event order matters
 autocmd BufEnter * call amc#win#markSpecial()
 autocmd BufEnter * call amc#win#ejectFromSpecial()
