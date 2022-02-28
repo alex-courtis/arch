@@ -1,9 +1,10 @@
-local tree = require'nvim-tree'
-local lib = require'nvim-tree.lib'
-
 -- g: will eventually move to setup
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_special_files = {}
+vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 1, folder_arrows = 0, }
+
+local tree = require'nvim-tree'
+local lib = require'nvim-tree.lib'
 
 local function cd_dot_cb(node)
 	local global_cwd = vim.fn.getcwd(-1)
