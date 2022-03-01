@@ -1,9 +1,10 @@
-local tree = require'nvim-tree'
-local lib = require'nvim-tree.lib'
-
 -- g: will eventually move to setup
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_special_files = {}
+vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 1, folder_arrows = 0, }
+
+local tree = require'nvim-tree'
+local lib = require'nvim-tree.lib'
 
 local function cd_dot_cb(node)
 	local global_cwd = vim.fn.getcwd(-1)
@@ -21,11 +22,6 @@ tree.setup {
 		open_file = {
 			window_picker = {
 				chars = "aoeui",
-				-- waiting on https://github.com/kyazdani42/nvim-tree.lua/pull/1027
-				exclude = {
-					filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
-					buftype  = { "nofile", "terminal", "help", },
-				}
 			}
 		}
 	},
