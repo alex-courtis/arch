@@ -22,11 +22,6 @@ tree.setup {
 		open_file = {
 			window_picker = {
 				chars = "aoeui",
-				-- waiting on https://github.com/kyazdani42/nvim-tree.lua/pull/1027
-				exclude = {
-					filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame", },
-					buftype  = { "nofile", "terminal", "help", },
-				}
 			}
 		}
 	},
