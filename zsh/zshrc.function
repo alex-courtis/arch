@@ -36,3 +36,8 @@ function umnt() {
 	fi
 }
 
+function smt() {
+	export SWAYSOCK=$(ls -tr ${XDG_RUNTIME_DIR}/sway-ipc*sock | tail -1)
+	swaymsg -t ${@}
+}
+
