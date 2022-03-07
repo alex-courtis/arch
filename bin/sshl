@@ -1,7 +1,4 @@
-#!/bin/zsh
-
-source "${HOME}/.zsh/zshrc.alias"
-source "${HOME}/.zsh/zshrc.function"
+#!/bin/sh
 
 # use default remote and local port so that we do not need to reconfigure nvim
 PORT_REMOTE=2489
