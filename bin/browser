@@ -1,1 +1,20 @@
-/usr/bin/google-chrome-stable
+#!/bin/sh
+
+set -o pipefail
+
+if [ -n "${1}" ]; then
+	browser="${1}"
+else
+	if [ "$(hostname)" = "gigantor" ]; then
+		browser=chromium
+	else
+		browser=google-chrome-stable
+	fi
+fi
+
+if [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
+	${browser} --enable-features=UseOzonePlatform --ozone-platform=wayland
+else
+	${browser}
+fi
+
