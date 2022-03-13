@@ -35,15 +35,49 @@ function underlyingterm() {
 # make override with specially placed Makefiles
 function make() {
 	if [ -f amc/Makefile ]; then
-		/usr/bin/make -f amc/Makefile "${@}"
+		$(whence -p make) -f amc/Makefile "${@}"
 	elif [ -f amc/GNUmakefile ]; then
-		/usr/bin/make -f amc/GNUmakefile "${@}"
+		$(whence -p make) -f amc/GNUmakefile "${@}"
 	elif [ -f Makefile.dev ]; then
-		/usr/bin/make -f Makefile.dev "${@}"
+		$(whence -p make) -f Makefile.dev "${@}"
 	elif [ -f GNUmakefile.dev ]; then
-		/usr/bin/make -f GNUmakefile.dev "${@}"
+		$(whence -p make) -f GNUmakefile.dev "${@}"
 	else
-		/usr/bin/make "${@}"
+		$(whence -p make) "${@}"
 	fi
+}
+
+function remote_env_setup() {
+	TERM_PREV="${TERM}"
+	TERM=$(underlyingterm)
+	if [ -n "${TMUX}" ]; then
+		tmux set prefix None
+	fi
+}
+
+function remote_env_teardown() {
+	if [ -n "${TMUX}" ]; then
+		tmux set -u prefix
+	fi
+	TERM="${TERM_PREV}"
+	unset TERM_PREV
+}
+
+function ssh() {
+	remote_env_setup
+	$(whence -p ssh) "${@}"
+	remote_env_teardown
+}
+
+function su() {
+	remote_env_setup
+	$(whence -p su) "${@}"
+	remote_env_teardown
+}
+
+function sudo() {
+	remote_env_setup
+	$(whence -p sudo) "${@}"
+	remote_env_teardown
 }
 
