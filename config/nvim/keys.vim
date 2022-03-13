@@ -107,3 +107,10 @@ cm		<C-k>	<Up>
 " hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 vm <LeftRelease> "*ygv
 
+" no way to remap fugitive and tpope will not add
+function s:fugitive_map()
+	nm <buffer>t =
+	nm <buffer>x X
+endfunction
+autocmd FileType fugitive call s:fugitive_map() 
+
