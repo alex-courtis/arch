@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # use default remote and local port so that we do not need to reconfigure nvim
 PORT_REMOTE=2489
@@ -52,5 +52,5 @@ if [ "${NUM_SSH}" -ne 1 ]; then
 	pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
 fi
 
-ssh ${@}
+TERM=$(underlyingterm) ssh ${@}
 
