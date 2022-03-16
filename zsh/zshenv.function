@@ -47,37 +47,3 @@ function make() {
 	fi
 }
 
-function remote_env_setup() {
-	TERM_PREV="${TERM}"
-	TERM=$(underlyingterm)
-	if [ -n "${TMUX}" ]; then
-		tmux set prefix None
-	fi
-}
-
-function remote_env_teardown() {
-	if [ -n "${TMUX}" ]; then
-		tmux set -u prefix
-	fi
-	TERM="${TERM_PREV}"
-	unset TERM_PREV
-}
-
-function ssh() {
-	remote_env_setup
-	$(whence -p ssh) "${@}"
-	remote_env_teardown
-}
-
-function su() {
-	remote_env_setup
-	$(whence -p su) "${@}"
-	remote_env_teardown
-}
-
-function sudo() {
-	remote_env_setup
-	$(whence -p sudo) "${@}"
-	remote_env_teardown
-}
-
