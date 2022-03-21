@@ -36,6 +36,11 @@ tree.setup {
       }
     }
   },
+  filters = {
+    custom = {
+      ".git",
+    },
+  },
   view = {
     mappings = {
       list = {
