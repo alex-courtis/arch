@@ -1,0 +1,4 @@
+#!/bin/sh
+
+grim -g "$(slurp)"
+

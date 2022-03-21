@@ -36,6 +36,97 @@ function umnt() {
 	fi
 }
 
+function remote_env_setup() {
+	TERM_PREV="${TERM}"
+	TERM=$(underlyingterm)
+	if [ -n "${TMUX}" ]; then
+		tmux set prefix None
+	fi
+}
+
+function remote_env_teardown() {
+	if [ -n "${TMUX}" ]; then
+		tmux set -u prefix
+	fi
+	TERM="${TERM_PREV}"
+	unset TERM_PREV
+}
+
+function ssh() {
+	remote_env_setup
+	$(whence -p ssh) "${@}"
+	remote_env_teardown
+}
+
+function su() {
+	remote_env_setup
+	$(whence -p su) "${@}"
+	remote_env_teardown
+}
+
+function sudo() {
+	remote_env_setup
+	$(whence -p sudo) "${@}"
+	remote_env_teardown
+}
+
+function sshl_kill() {
+	pkill -e -f "lemonade server"
+	pkill -e -f "ssh.*${1}"
+}
+
+function sshl_print() {
+	pgrep -a -f "lemonade server"
+	pgrep -a -f "ssh.*${1}"
+}
+
+function sshl() {
+	# use default remote and local port so that we do not need to reconfigure nvim
+	local PORT_REMOTE=2489
+	local PORT_LOCAL=2489
+	local LEM_SSH_ARGS="-f -N -R ${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
+
+	case "${1}" in
+		"-k")
+			sshl_kill "${LEM_SSH_ARGS}"
+			return 0
+			;;
+		"-s")
+			sshl_print "${LEM_SSH_ARGS}"
+			return 0
+			;;
+	esac
+
+	pgrep -a -f "lemonade server"
+	if [ "${?}" -ne 0 ]; then
+		echo "starting lemonade server"
+		lemonade server --port=${PORT_LOCAL} --allow="127.0.0.1,::1" --log-level=2 > /tmp/lemonade.log 2>&1 &!
+		pgrep -a -f "lemonade server"
+		if [ "${?}" -ne 0 ]; then
+			cat /tmp/lemonade.log
+			sshl_kill "${LEM_SSH_ARGS}"
+			return 1
+		fi
+	fi
+
+	pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
+	local NUM_SSH=$(pgrep -c -f "ssh.*${LEM_SSH_ARGS}")
+	if [ "${NUM_SSH}" -ne 1 ]; then
+		echo "starting ssh"
+		if [ "${NUM_SSH}" -gt 1 ]; then
+			pkill -e -f "ssh.*${LEM_SSH_ARGS}"
+		fi
+		eval "$(whence -p ssh) ${1} ${LEM_SSH_ARGS}"
+		if [ "${?}" -ne 0 ]; then
+			sshl_kill "${LEM_SSH_ARGS}"
+			return 1
+		fi
+		pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
+	fi
+
+	ssh ${@}
+}
+
 function smt() {
 	export SWAYSOCK=$(ls -tr ${XDG_RUNTIME_DIR}/sway-ipc*sock | tail -1)
 	swaymsg -t ${@}

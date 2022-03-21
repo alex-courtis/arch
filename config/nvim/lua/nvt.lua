@@ -15,7 +15,7 @@ end
 
 tree.setup {
   log = {
-    enable = true,
+    enable = false,
     truncate = true,
     types = {
       all = false,

@@ -1,5 +1,5 @@
-source ~/.vimrc
+set clipboard=ideaput
+set ideajoin
 
-set clipboard=ideaput,unnamedplus
+map ; :
 
-set smd
