@@ -18,8 +18,6 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 exec swayidle -w \
 	timeout 900  'swaylock -f -c ${BASE01}' \
 	before-sleep 'swaylock -f -c ${BASE01}' \
-	timeout 1200 'swaymsg "output * dpms off"' \
-	resume       'swaymsg "output * dpms on"' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
 
