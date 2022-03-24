@@ -94,3 +94,13 @@ function! amc#airlineSpecialDetector(...)
 	return 0
 endfunction
 
+
+function! amc#wipeMacros()
+	let l:regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"' 
+	let l:i = 0 
+	while (l:i < strlen(regs)) 
+		call setreg(l:regs[l:i], [])
+		let l:i += 1 
+	endwhile 
+endfunction
+
