@@ -17,8 +17,9 @@ im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 let mapleader="\<Space>"
 
 if has('nvim')
+	nm	<silent>	<Leader>;	:NvimTreeRefresh<CR>
 	nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
-	nm	<silent>	<Leader>A	:NvimTreeRefresh<CR>
+	nm	<silent>	<Leader>A	:NvimTreeCollapse<CR>
 else
 	nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 	nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
@@ -27,7 +28,6 @@ nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
 nm	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
-nm	<silent>	<Leader><	:cclose<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
