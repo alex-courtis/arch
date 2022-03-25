@@ -19,7 +19,6 @@ let g:amc#buf#flavourNames = [
 let g:amc#buf#BUF_EXPLORER = 1
 let g:amc#buf#FUGITIVE = 2
 let g:amc#buf#GIT = 3
-let g:amc#buf#GIT_GUTTER = 4
 let g:amc#buf#HELP = 5
 let g:amc#buf#NERD_TREE = 6
 let g:amc#buf#NVIM_TREE = 7
@@ -31,7 +30,6 @@ let g:amc#buf#specialNames = [
 			\ "BUF_EXPLORER",
 			\ "FUGITIVE",
 			\ "GIT",
-			\ "GIT_GUTTER",
 			\ "HELP",
 			\ "NERD_TREE",
 			\ "NVIM_TREE",
@@ -45,7 +43,6 @@ let s:specialNames = [
 			\ 'NERD_tree',
 			\ '\[BufExplorer\]',
 			\ '__Tagbar__',
-			\ 'gitgutter://hunk-preview',
 			\ 'fugitive://',
 			\]
 let s:notSpecialNames = [
@@ -97,8 +94,6 @@ function amc#buf#special(buf)
 		return g:amc#buf#BUF_EXPLORER
 	elseif getbufvar(a:buf, "&filetype") =~# '^git'
 		return g:amc#buf#GIT
-	elseif l:name =~# 'gitgutter://hunk-preview'
-		return g:amc#buf#GIT_GUTTER
 	elseif getbufvar(a:buf, "&filetype") =~# '^fugitive' || l:name =~# '^fugitive://'
 		return g:amc#buf#FUGITIVE
 	elseif getbufvar(a:buf, "&buftype") == "help"

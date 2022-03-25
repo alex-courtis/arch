@@ -47,14 +47,6 @@ function amc#win#openBufExplorer()
 	BufExplorer
 endfunction
 
-function amc#win#openFocusGitPreview()
-	if gitgutter#hunk#is_preview_window_open()
-		call amc#win#goBufName('gitgutter://hunk-preview')
-	else
-		GitGutterPreviewHunk
-	endif
-endfunction
-
 function amc#win#goBufName(bn)
 	if bufname() == a:bn
 		return
@@ -69,7 +61,6 @@ function amc#win#goBufName(bn)
 endfunction
 
 let s:closeOrder = [
-			\ g:amc#buf#GIT_GUTTER,
 			\ g:amc#buf#QUICK_FIX,
 			\ g:amc#buf#FUGITIVE,
 			\ g:amc#buf#HELP,
@@ -142,7 +133,6 @@ endfunction
 " nvimtree does this itself, however this method doesn't thrash around so much
 let s:ejectFrom = [
 			\ g:amc#buf#GIT,
-			\ g:amc#buf#GIT_GUTTER,
 			\ g:amc#buf#FUGITIVE,
 			\ g:amc#buf#HELP,
 			\ g:amc#buf#NERD_TREE,

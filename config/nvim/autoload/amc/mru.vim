@@ -192,46 +192,16 @@ function amc#mru#forward()
 	exec "b!" . w:amcMruWin[w:amcMruWinP]
 endfunction
 
-function amc#mru#winRemove()
-	let l:bn = bufnr()
+function amc#mru#clear()
+	call amc#log#line("mru: clear")
 
-	call amc#log#line("mru: remove " . l:bn)
+	call amc#mru#initWinVars()
 
-	if amc#buf#isSpecial(l:bn)
-		return
-	endif
+	let w:amcMru = []
+	let w:amcMruWin = []
+	let w:amcMruWinP = -1
 
-	if len(w:amcMru) > 2
-		if !empty(w:amcMruWin) && len(w:amcMruWin) > 2
-			if index(w:amcMruWin, l:bn) < 2
-				echo "mru remove: too close to start of mruWin, doing nothing"
-				return
-			endif
-		endif
-
-		" new #
-		call amc#mru#back()
-		call amc#mru#back()
-
-		" new %
-		call amc#mru#forward()
-
-		" remove from mru
-		let l:bi = index(w:amcMru, l:bn)
-		if l:bi >= 0
-			call remove(w:amcMru, l:bi)
-		endif
-
-		" remove from win
-		let l:bi = index(w:amcMruWin, l:bn)
-		if l:bi >= 0
-			call remove(w:amcMruWin, l:bi)
-		endif
-
-		call amc#mru#prn("mru: removed", 0)
-	else
-		echo "mru remove: <2 other buffers, doing nothing"
-	endif
+	call amc#mru#update()
 endfunction
 
 function amc#mru#winNew()

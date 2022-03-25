@@ -17,9 +17,9 @@ im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 let mapleader="\<Space>"
 
 if has('nvim')
-	nm	<silent>	<Leader>;	:NvimTreeRefresh<CR>
+	nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
 	nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
-	nm	<silent>	<Leader>A	:NvimTreeCollapse<CR>
+	nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 else
 	nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 	nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
@@ -27,7 +27,6 @@ endif
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nm	<silent>	<Leader>,	:call amc#win#openFocusGitPreview()<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
@@ -52,7 +51,7 @@ let mapleader="\<BS>"
 
 nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
 vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
-nm	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
+nm	<silent>	<Leader>d	:call amc#mru#clear()<CR>
 " b
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
