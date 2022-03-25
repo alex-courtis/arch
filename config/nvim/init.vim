@@ -108,7 +108,7 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 if has('nvim')
 	" nvimtree
 	lua require 'amc/gitsigns'
-	lua require 'nvt'
+	lua require 'amc/nvim-tree'
 else
 	" nerdtree
 	set wildignore+=*.o,*.class
