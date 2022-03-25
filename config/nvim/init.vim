@@ -58,7 +58,8 @@ let s:ef_make = "make: *** [%f:%l:%m,"
 let s:ef_cargo = "\\ %#--> %f:%l:%c,"
 let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 
-" put the results of a silent command in a new scratch
+" put the results of a silent command in " or new scratch
+command -nargs=+ C redir @" | silent <args> | redir end
 command -nargs=+ S enew | setlocal buftype=nofile | setlocal bufhidden=hide | setlocal noswapfile | redir @z | silent <args> | redir end | put z
 
 " default only in vim: return to last edit point
