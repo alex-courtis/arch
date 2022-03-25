@@ -34,13 +34,11 @@ nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
 nm	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
 nm	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
-nm	<silent>	<Leader>j	<Plug>(GitGutterNextHunk)
-let	g:NERDTreeGitStatusMapNextHunk = "<Space>j"
+" j gitsigns next
 
 nm	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 nm	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
-nm	<silent>	<Leader>k	<Plug>(GitGutterPrevHunk)
-let	g:NERDTreeGitStatusMapPrevHunk = "<Space>k"
+" k gitsigns prev
 
 " y
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
@@ -60,9 +58,7 @@ nm	<silent>	<Leader>d	:call amc#mru#winRemove()<CR>
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vm			<Leader>g	<Esc>:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
-nm	<silent>	<Leader>hu	<Plug>(GitGutterUndoHunk)
-nm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
-xm	<silent>	<Leader>hs	<Plug>(GitGutterStageHunk)
+" h gitsigns leader
 nm	<silent>	<Leader>m	:make <CR>
 nm	<silent>	<Leader>M	:make clean <CR>
 

@@ -1,6 +1,5 @@
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
-Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
@@ -12,6 +11,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yohannfra/Vim-Goto-Header'
 if has('nvim')
+	Plugin 'lewis6991/gitsigns.nvim'
 	Plugin 'kyazdani42/nvim-tree.lua'
 	Plugin 'kyazdani42/nvim-web-devicons'
 else
@@ -107,6 +107,7 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 
 if has('nvim')
 	" nvimtree
+	lua require 'amc/gitsigns'
 	lua require 'nvt'
 else
 	" nerdtree
@@ -144,12 +145,6 @@ autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
 " stop the plugin from creating the default mappings
 nmap	gc	<NOP>
-
-" vim-gitgutter
-set updatetime=100
-let g:gitgutter_close_preview_on_escape = 1
-let g:gitgutter_preview_win_floating = 0
-let g:gitgutter_preview_win_location = 'aboveleft'
 
 
 " event order matters
