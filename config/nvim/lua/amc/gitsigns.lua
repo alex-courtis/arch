@@ -35,10 +35,10 @@ require('gitsigns').setup{
 
     -- Actions
     map({'n', 'v'}, '<BS>hs', ':Gitsigns stage_hunk<CR>')
-    map({'n', 'v'}, '<BS>hr', ':Gitsigns reset_hunk<CR>')
+    map({'n', 'v'}, '<BS>hx', ':Gitsigns reset_hunk<CR>')
     map('n', '<BS>hS', gs.stage_buffer)
     map('n', '<BS>hu', gs.undo_stage_hunk)
-    map('n', '<BS>hR', gs.reset_buffer)
+    map('n', '<BS>hX', gs.reset_buffer)
     map('n', '<BS>hp', gs.preview_hunk)
     map('n', '<BS>hb', function() gs.blame_line{full=true} end)
     map('n', '<BS>hl', gs.toggle_current_line_blame)

@@ -141,6 +141,13 @@ function amc#mru#back()
 
 	call amc#mru#initWinVars()
 
+	let ts = gettagstack()
+	if ts.length > 0 && ts.curidx > ts.length
+		pop
+		echo "POP: " . fnamemodify(bufname(), ":t")
+		return
+	endif
+
 	let l:special = amc#buf#isSpecial(bufnr())
 
 	if len(w:amcMru) < 2 && l:special
@@ -160,6 +167,8 @@ function amc#mru#back()
 		return
 	endif
 
+	echo "BACK: " . fnamemodify(bufname(w:amcMruWin[w:amcMruWinP - 1]), ":t")
+
 	let w:amcMruWinP -= 1
 	exec "b!" . w:amcMruWin[w:amcMruWinP]
 endfunction
@@ -176,6 +185,8 @@ function amc#mru#forward()
 	if w:amcMruWinP > len(w:amcMruWin) - 2
 		return
 	endif
+
+	echo "FORWARD: " . fnamemodify(bufname(w:amcMruWin[w:amcMruWinP + 1]), ":t")
 
 	let w:amcMruWinP += 1
 	exec "b!" . w:amcMruWin[w:amcMruWinP]
