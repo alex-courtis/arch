@@ -137,6 +137,8 @@ function nvt-dev() {
 }
 
 function nvt-dev-init() {
+	rm /tmp/nvt-dev.lua
+	rm -rf /tmp/nvt-min
 	grep -A 1000 "VIMRUNTIME" ~/.local/share/nvim/vundle/nvim-tree.lua.dev/.github/ISSUE_TEMPLATE/bug_report.yml | grep -B 1000 "MODIFY NVIM-TREE SETTINGS THAT ARE _NECESSARY_ FOR REPRODUCING THE ISSUE" | sed -e 's/        //g' > /tmp/nvt-dev.lua
 	sed -i -e "s/kyazdani42\/nvim-tree\.lua/~\/.local\/share\/nvim\/vundle\/nvim-tree.lua.dev/g" /tmp/nvt-dev.lua
 	cat << EOF >> /tmp/nvt-dev.lua
@@ -156,7 +158,8 @@ _G.setup = function()
 end
 vim.api.nvim_set_keymap('n', ';', ':', {})
 vim.api.nvim_set_keymap('n', '<Space>a', ':NvimTreeOpen<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>A', ':NvimTreeRefresh<CR>', {})
+vim.api.nvim_set_keymap('n', '<Space>,', ':NvimTreeRefresh<CR>', {})
+vim.api.nvim_set_keymap('n', '<Space>o', ':wincmd p<CR>', {})
 EOF
 }
 
