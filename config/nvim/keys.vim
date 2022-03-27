@@ -33,15 +33,14 @@ nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
 nm	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
 nm	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
-" j gitsigns next
+nm	<silent>	<Leader>j	:Gitsigns next_hunk<CR>
 
 nm	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 nm	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
-" k gitsigns prev
+nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
 
 " y
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
-" x
 
 nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
@@ -57,7 +56,21 @@ nm	<silent>	<Leader>d	:call amc#mru#clear()<CR>
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vm			<Leader>g	<Esc>:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
-" h gitsigns leader
+om	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
+xm	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
+nm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
+vm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
+nm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
+vm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
+nm	<silent>	<Leader>hS	:Gitsigns stage_buffer<CR>
+nm	<silent>	<Leader>hu	:Gitsigns undo_stage_hunk<CR>
+nm	<silent>	<Leader>hX	:Gitsigns reset_buffer<CR>
+nm	<silent>	<Leader>hp	:Gitsigns preview_hunk<CR>
+nm	<silent>	<Leader>hb	:lua require"gitsigns".blame_line{full=true}<CR>
+nm	<silent>	<Leader>hl	:Gitsigns toggle_current_line_blame<CR>
+nm	<silent>	<Leader>hd	:Gitsigns diffthis<CR>
+nm	<silent>	<Leader>hD	:lua require"gitsigns".diffthis("~")<CR>
+nm	<silent>	<Leader>ht	:Gitsigns toggle_deleted<CR>
 nm	<silent>	<Leader>m	:make <CR>
 nm	<silent>	<Leader>M	:make clean <CR>
 
