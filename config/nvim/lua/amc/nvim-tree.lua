@@ -32,6 +32,7 @@ tree.setup {
   open_on_setup = true,
   actions = {
     open_file = {
+      resize_window = true,
       window_picker = {
         chars = "aoeui",
       }
