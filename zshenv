@@ -16,7 +16,10 @@ export PAGER="less"
 # git core.pager applies additional options
 export LESS=Ri
 
-# tell old java apps that we're using a non-reparenting window manager
+# tell intellij that we're using a non-reparenting window manager
+# maybe set suppress.focus.stealing=false custom setting
+# pin any badly behaved popups
+export _JAVA_AWT_NONREPARENTING=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # some java build systems seem to like having JAVA_HOME set
