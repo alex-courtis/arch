@@ -57,6 +57,9 @@ tree.setup {
         { key = "]c",                           action = "" }, -- next_git_item
         { key = "-",                            action = "" }, -- dir_up
         { key = "s",                            action = "" }, -- system_open
+        { key = "W",                            action = "" }, -- collapse_all
+        { key = "R",                            action = "" }, -- refresh
+        { key = "g?",                           action = "" }, -- toggle_help
 
         { key = "d",                            action = "cd" }, -- remove
         { key = "x",                            action = "remove" }, -- cut
@@ -66,7 +69,10 @@ tree.setup {
         { key = "<Space>j",                     action = "next_git_item" },
         { key = "u",                            action = "dir_up" },
         { key = "f",                            action = "run_file_command" },
-        { key = "z",                            action = "close_node" },
+        { key = "'",                            action = "close_node" },
+        { key = "\"",                           action = "collapse_all" },
+        { key = "A",                            action = "refresh" },
+        { key = "?",                            action = "toggle_help" },
 
         { key = ".",                            action = "cd_dot",		action_cb = cd_dot_cb, }, -- run_file_command
       },
