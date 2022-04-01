@@ -109,9 +109,13 @@ function! amc#clear()
 	call amc#mru#clear()
 
 	call settagstack(win_getid(), {'items' : []})
+endfunction
+
+function! amc#clearDelete()
+	call amc#clear()
 
 	for l:bn in range(1, bufnr("$"), 1)
-		if amc#buf#flavour(l:bn) == g:amc#buf#ORDINARY_HAS_FILE && getbufvar(l:bn, "&buflisted")
+		if l:bn != bufnr("%") && amc#buf#flavour(l:bn) == g:amc#buf#ORDINARY_HAS_FILE && getbufvar(l:bn, "&buflisted")
 			" amc#buf#autoWrite will update before delete
 			execute "bd!" . l:bn
 		endif

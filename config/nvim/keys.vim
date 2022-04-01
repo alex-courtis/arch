@@ -50,6 +50,7 @@ nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
 vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
 nm	<silent>	<Leader>d	:call amc#clear()<CR>
+nm	<silent>	<Leader>D	:call amc#clearDelete()<CR>
 " b
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
