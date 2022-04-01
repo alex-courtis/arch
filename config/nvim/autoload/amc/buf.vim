@@ -19,12 +19,12 @@ let g:amc#buf#flavourNames = [
 let g:amc#buf#BUF_EXPLORER = 1
 let g:amc#buf#FUGITIVE = 2
 let g:amc#buf#GIT = 3
-let g:amc#buf#HELP = 5
-let g:amc#buf#NERD_TREE = 6
-let g:amc#buf#NVIM_TREE = 7
-let g:amc#buf#QUICK_FIX = 8
-let g:amc#buf#TAGBAR = 9
-let g:amc#buf#OTHER_SPECIAL = 10
+let g:amc#buf#HELP = 4
+let g:amc#buf#NERD_TREE = 5
+let g:amc#buf#NVIM_TREE = 6
+let g:amc#buf#QUICK_FIX = 7
+let g:amc#buf#TAGBAR = 8
+let g:amc#buf#OTHER_SPECIAL = 9
 let g:amc#buf#specialNames = [
 			\ "NO_SPECIAL",
 			\ "BUF_EXPLORER",
