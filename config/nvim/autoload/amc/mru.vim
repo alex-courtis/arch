@@ -195,8 +195,6 @@ endfunction
 function amc#mru#clear()
 	call amc#log#line("mru: clear")
 
-	call amc#mru#initWinVars()
-
 	let w:amcMru = []
 	let w:amcMruWin = []
 	let w:amcMruWinP = -1

@@ -104,3 +104,17 @@ function! amc#wipeMacros()
 	endwhile 
 endfunction
 
+
+function! amc#clear()
+	call amc#mru#clear()
+
+	call settagstack(win_getid(), {'items' : []})
+
+	for l:bn in range(1, bufnr("$"), 1)
+		if amc#buf#flavour(l:bn) == g:amc#buf#ORDINARY_HAS_FILE && getbufvar(l:bn, "&buflisted")
+			" amc#buf#autoWrite will update before delete
+			execute "bd!" . l:bn
+		endif
+	endfor
+endfunction
+
