@@ -13,9 +13,10 @@ nn	yfw	yw
 nm	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
-" begin left
-let mapleader="\<Space>"
+for s:leader in [ "\<Space>", "\<BS>", ]
+let mapleader=s:leader
 
+" begin left
 if has('nvim')
 	nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
 	nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
@@ -46,8 +47,6 @@ nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
 
 " begin right
-let mapleader="\<BS>"
-
 nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
 vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
 nm	<silent>	<Leader>d	:call amc#mru#clear()<CR>
@@ -105,9 +104,8 @@ nm	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
 nm	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
-
-unlet mapleader
 " end right
+endfor
 
 cm		<C-j>	<Down>
 cm		<C-k>	<Up>
