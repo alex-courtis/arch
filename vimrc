@@ -34,3 +34,5 @@ set clipboard=unnamedplus,autoselect,exclude:cons\|linux
 nunmap <Esc>
 let g:NERDTreeMapQuit = 'q'
 
+set notermguicolors
+
