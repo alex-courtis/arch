@@ -141,18 +141,19 @@ function amc#mru#back()
 
 	call amc#mru#initWinVars()
 
+	let l:special = amc#buf#isSpecial(bufnr())
+
+	if len(w:amcMru) < 2 && l:special
+		return
+	endif
+
 	let ts = gettagstack()
 	if ts.length > 0 && ts.curidx > ts.length
 		pop
 		echo "POP: " . fnamemodify(bufname(), ":t")
 		return
 	endif
-
-	let l:special = amc#buf#isSpecial(bufnr())
-
-	if len(w:amcMru) < 2 && l:special
-		return
-	endif
+	call settagstack(win_getid(), {'items' : []})
 
 	if empty(w:amcMruWin)
 		let w:amcMruWin = copy(w:amcMru)

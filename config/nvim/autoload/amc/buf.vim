@@ -3,8 +3,7 @@ let g:amc#buf#ORDINARY_HAS_FILE = 2
 let g:amc#buf#ORDINARY_NO_FILE = 3
 let g:amc#buf#NO_NAME_NEW = 4
 let g:amc#buf#NO_NAME_MODIFIED = 5
-let g:amc#buf#MAN = 6
-let g:amc#buf#SCRATCH = 7
+let g:amc#buf#SCRATCH = 6
 let g:amc#buf#flavourNames = [
 			\ "NO_FLAVOUR",
 			\ "SPECIAL",
@@ -12,7 +11,6 @@ let g:amc#buf#flavourNames = [
 			\ "ORDINARY_NO_FILE",
 			\ "NO_NAME_NEW",
 			\ "NO_NAME_MODIFIED",
-			\ "MAN",
 			\ "SCRATCH",
 			\]
 
@@ -24,7 +22,8 @@ let g:amc#buf#NERD_TREE = 5
 let g:amc#buf#NVIM_TREE = 6
 let g:amc#buf#QUICK_FIX = 7
 let g:amc#buf#TAGBAR = 8
-let g:amc#buf#OTHER_SPECIAL = 9
+let g:amc#buf#MAN = 9
+let g:amc#buf#OTHER_SPECIAL = 10
 let g:amc#buf#specialNames = [
 			\ "NO_SPECIAL",
 			\ "BUF_EXPLORER",
@@ -35,6 +34,7 @@ let g:amc#buf#specialNames = [
 			\ "NVIM_TREE",
 			\ "QUICK_FIX",
 			\ "TAGBAR",
+			\ "MAN",
 			\ "OTHER_SPECIAL",
 			\]
 
@@ -44,8 +44,6 @@ let s:specialNames = [
 			\ '\[BufExplorer\]',
 			\ '__Tagbar__',
 			\ 'fugitive://',
-			\]
-let s:notSpecialNames = [
 			\ 'man://',
 			\]
 
@@ -66,9 +64,7 @@ function amc#buf#flavour(buf)
 			return g:amc#buf#NO_NAME_NEW
 		endif
 	else
-		if l:name =~# '^man://' || getbufvar(a:buf, "&filetype") == "man"
-			return g:amc#buf#MAN
-		elseif filereadable(l:name)
+		if filereadable(l:name)
 			return g:amc#buf#ORDINARY_HAS_FILE
 		else
 			return g:amc#buf#ORDINARY_NO_FILE
@@ -96,6 +92,8 @@ function amc#buf#special(buf)
 		return g:amc#buf#GIT
 	elseif getbufvar(a:buf, "&filetype") =~# '^fugitive' || l:name =~# '^fugitive://'
 		return g:amc#buf#FUGITIVE
+	elseif getbufvar(a:buf, "&filetype") =~# '^man' || l:name =~# '^man://'
+		return g:amc#buf#MAN
 	elseif getbufvar(a:buf, "&buftype") == "help"
 		return g:amc#buf#HELP
 	elseif l:name =~# 'NERD_tree'
@@ -113,13 +111,6 @@ endfunction
 
 function amc#buf#isSpecial(buf)
 	let l:name = bufname(a:buf)
-
-	" do not match the list as l:name will be interpreted as a pattern
-	for l:notSpecialName in s:notSpecialNames
-		if match(l:name, l:notSpecialName) == 0
-			return 0
-		endif
-	endfor
 
 	if amc#buf#isScratch(a:buf)
 		return 0

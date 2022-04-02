@@ -138,6 +138,7 @@ let s:ejectFrom = [
 			\ g:amc#buf#NERD_TREE,
 			\ g:amc#buf#NVIM_TREE,
 			\ g:amc#buf#QUICK_FIX,
+			\ g:amc#buf#MAN,
 			\ g:amc#buf#TAGBAR
 			\ ]
 function amc#win#ejectFromSpecial()
