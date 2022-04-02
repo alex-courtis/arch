@@ -79,8 +79,7 @@ nm	<silent>	<Leader>cc	<Plug>CommentaryLine
 om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
-nm	<silent>	<Leader>t	<C-]>
-nm	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+nm	<silent>	<Leader>t	:call settagstack(win_getid(), {'items' : []})<CR><C-]>
 " vim-repeat doesn't seem to be able to handle a <BS> mapping
 nm	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
 nm	<silent>	<Leader>w	<F12>w

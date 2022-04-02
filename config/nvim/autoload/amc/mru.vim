@@ -178,6 +178,8 @@ function amc#mru#forward()
 
 	call amc#mru#initWinVars()
 
+	call settagstack(win_getid(), {'items' : []})
+
 	if empty(w:amcMruWin)
 		return
 	endif
