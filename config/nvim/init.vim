@@ -168,6 +168,7 @@ autocmd VimEnter * call amc#updateTitleString()
 if !has('nvim')
 	autocmd VimEnter * call amc#nt#startup()
 endif
+autocmd WinClosed * call amc#win#wipeOnClosed()
 autocmd WinNew * call amc#mru#winNew()
 
 " log
