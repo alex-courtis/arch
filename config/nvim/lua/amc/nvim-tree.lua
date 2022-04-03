@@ -30,6 +30,7 @@ tree.setup {
     enable = true,
   },
   open_on_setup = true,
+  open_on_setup_file = true,
   actions = {
     open_file = {
       resize_window = true,
@@ -44,6 +45,9 @@ tree.setup {
     },
   },
   view = {
+    indent_markers = {
+      enable = true,
+    },
     mappings = {
       list = {
         { key = {"<2-RightMouse>", "<C-]>"},    action = "" }, -- cd
