@@ -43,10 +43,10 @@ function amc#log#winBuf(msg)
 	let l:ft = getbufvar(l:bn, "&filetype")
 	let l:fta = getbufvar(l:bna, "&filetype")
 
-	let l:fmt = "%-12.12s %3s %-17.17s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s '%s'"
-	call amc#log#_line(printf(l:fmt, a:msg, "w" . winnr(), l:winSpecialDesc, l:desc, "%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
+	let l:fmt = "%-12.12s %3s %4s %-17.17s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s '%s'"
+	call amc#log#_line(printf(l:fmt, a:msg, "w" . winnr(), win_getid(), l:winSpecialDesc, l:desc, "%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
 	if l:bna != -1
-		call amc#log#_line(printf(l:fmt, "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
+		call amc#log#_line(printf(l:fmt, "", "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
 	endif
 endfunction
 
