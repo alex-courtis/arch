@@ -3,7 +3,11 @@
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			exec startwm sway
+			if [ "$(hostname)" = "emperor" ]; then
+				exec startwm x i3
+			else
+				exec startwm sway
+			fi
 			;;
 		2)
 			exec startwm x i3
