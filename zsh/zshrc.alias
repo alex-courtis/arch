@@ -29,6 +29,7 @@ alias ptl="pt | less"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 
 alias d="cd ~/.dotfiles"
+alias j="cd ~/src/jira"
 alias s="cd ~/src"
 
 alias o="xdg-open"

@@ -1,4 +1,4 @@
-set clipboard=ideaput
+set clipboard+=unnamed
 set ideajoin
 
 map ; :
