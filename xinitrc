@@ -28,11 +28,6 @@ fi
 # numlock on
 numlockx
 
-# xbox wireless controller
-if [ "$(whence xow)" ]; then
-	xow > /tmp/xow.log 2>&1 &
-fi
-
 # start window manager
 case "${X_WM}" in
 	"dwm")
