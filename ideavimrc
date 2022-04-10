@@ -1,5 +1,33 @@
+Plug 'tpope/vim-commentary'
+
 set clipboard+=unnamed
 set ideajoin
+set nowrapscan
+set ignorecase
+set smartcase
 
 map ; :
+
+nn	yw	yiw
+nn	yfw	yw
+
+" idea does not like setting mapleader to <BS>
+
+nm <BS><BS> <Action>(Back)
+nm <Space><Space> <Action>(Forward)
+
+nm <Space>j <Action>(VcsShowNextChangeMarker)
+
+nm <Space>k <Action>(VcsShowPrevChangeMarker)
+
+nm <BS>g  <Action>(FindUsages)
+nm <BS>m  <Action>(CompileFile)
+nm <BS>M  <Action>(CompileDirty)
+
+nm <BS>c  <Plug>(CommentMotion)
+nm <BS>cc <Plug>(CommentLine)
+vm <BS>c  <Plug>(CommentMotionV)
+nm <BS>t  <Action>(GotoDeclaration)
+
+nm <BS>z  <Action>(ReformatCode)
 
