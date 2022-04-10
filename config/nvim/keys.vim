@@ -51,7 +51,7 @@ nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
 vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
 nm	<silent>	<Leader>d	:call amc#clear()<CR>
 nm	<silent>	<Leader>D	:call amc#clearDelete()<CR>
-" b
+nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
