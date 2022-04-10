@@ -10,15 +10,9 @@ Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yohannfra/Vim-Goto-Header'
-if has('nvim')
-	Plugin 'lewis6991/gitsigns.nvim'
-	Plugin 'kyazdani42/nvim-tree.lua'
-	Plugin 'kyazdani42/nvim-web-devicons'
-else
-	Plugin 'preservim/nerdtree'
-	Plugin 'Xuyuanp/nerdtree-git-plugin'
-	Plugin 'wincent/terminus'
-endif
+Plugin 'lewis6991/gitsigns.nvim'
+Plugin 'kyazdani42/nvim-tree.lua'
+Plugin 'kyazdani42/nvim-web-devicons'
 call vundle#end()
 filetype plugin indent on
 
@@ -106,31 +100,7 @@ let g:goto_header_includes_dirs = [".", "/usr/include"]
 
 if has('nvim')
 	" nvimtree
-	lua require 'amc/gitsigns'
 	lua require 'amc/nvim-tree'
-else
-	" nerdtree
-	set wildignore+=*.o,*.class
-	let NERDTreeRespectWildIgnore = 1
-	let NERDTreeMinimalUI = 1
-	let g:NERDTreeDirArrowExpandable = '+'
-	let g:NERDTreeDirArrowCollapsible = '-'
-	let g:NERDTreeMapQuit = '<Esc>'
-
-	" nerdtree-git-plugin
-	let g:NERDTreeGitStatusDirDirtyOnly = 0
-	let g:NERDTreeGitStatusIndicatorMapCustom = {
-				\ "Modified"  : "~",
-				\ "Staged"    : "+",
-				\ "Untracked" : "u",
-				\ "Renamed"   : "r",
-				\ "Unmerged"  : "*",
-				\ "Deleted"   : "d",
-				\ "Dirty"     : "x",
-				\ "Clean"     : "c",
-				\ 'Ignored'   : 'i',
-				\ "Unknown"   : "?"
-				\ }
 endif
 
 " tagbar
@@ -152,9 +122,6 @@ autocmd BufEnter * call amc#win#ejectFromSpecial()
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#mru#update()
 autocmd BufEnter * call amc#updateTitleString()
-if !has('nvim')
-	autocmd BufEnter * call amc#nt#sync()
-end
 autocmd BufLeave * ++nested call amc#buf#autoWrite()
 autocmd BufWritePost * call amc#updateTitleString()
 autocmd DirChanged global call amc#updatePath()
@@ -165,9 +132,6 @@ autocmd FocusLost * ++nested call amc#buf#autoWrite()
 autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
-if !has('nvim')
-	autocmd VimEnter * call amc#nt#startup()
-endif
 autocmd WinClosed * call amc#win#wipeOnClosed()
 autocmd WinNew * call amc#mru#winNew()
 

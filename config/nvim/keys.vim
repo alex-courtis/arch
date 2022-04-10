@@ -17,14 +17,9 @@ for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
 
 " begin left
-if has('nvim')
-	nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
-	nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
-	nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
-else
-	nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
-	nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
-endif
+nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
+nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
+nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
