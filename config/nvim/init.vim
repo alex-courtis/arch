@@ -73,6 +73,12 @@ set tags=**/tags
 " mru
 cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 
+" start neovim only plugins
+if has('nvim')
+	lua require 'amc/gitsigns'
+	lua require 'amc/nvim-tree'
+endif
+
 " airline
 set noshowmode
 let g:airline#extensions#branch#enabled = 0
@@ -97,11 +103,6 @@ let EditorConfig_max_line_indicator='line'
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
-
-if has('nvim')
-	" nvimtree
-	lua require 'amc/nvim-tree'
-endif
 
 " tagbar
 let g:tagbar_compact=1
