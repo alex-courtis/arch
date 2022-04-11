@@ -16,6 +16,8 @@ nn	yfw	yw
 nm <BS><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 
+nm <Space>; <Action>(CollapseAll)
+
 nm <Space>j <Action>(VcsShowNextChangeMarker)
 
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
