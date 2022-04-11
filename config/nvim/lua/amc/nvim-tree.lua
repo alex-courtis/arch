@@ -2,7 +2,6 @@
 vim.g.nvim_tree_group_empty = 1
 vim.g.nvim_tree_special_files = {}
 vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 1, folder_arrows = 0, }
-vim.g.nvim_tree_indent_markers = 1
 
 local tree = require'nvim-tree'
 local lib = require'nvim-tree.lib'
@@ -42,6 +41,11 @@ tree.setup {
   filters = {
     custom = {
       "^.git$",
+    },
+  },
+  renderer = {
+    indent_markers = {
+      enable = true,
     },
   },
   view = {
