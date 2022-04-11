@@ -22,34 +22,6 @@ PKGEXT='.pkg.tar'
 SRCEXT='.src.tar'
 ```
 
-## Enable Multi-CPU Compilation
-
-We have multi CPU/thread processors nowadays. Invoke your c compiler with the `-j` option when building packages. Such quick AUR source package updates.
-
-`vi /etc/makepkg.conf`
-
-(my tinygod)
-
-```sh
-#########################################################################
-# ARCHITECTURE, COMPILE FLAGS
-#########################################################################
-#
-CARCH="x86_64"
-CHOST="x86_64-pc-linux-gnu"
-
-#-- Compiler and Linker Flags
-CPPFLAGS="-D_FORTIFY_SOURCE=2"
-CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt"
-CXXFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fno-plt"
-LDFLAGS="-Wl,-O1,--sort-common,--as-needed,-z,relro,-z,now"
-#-- Make Flags: change this for DistCC/SMP systems
-MAKEFLAGS="-j64"
-#-- Debugging flags
-DEBUG_CFLAGS="-g -fvar-tracking-assignments"
-DEBUG_CXXFLAGS="-g -fvar-tracking-assignments"
-```
-
 ## Don't Build Fallback Kernel Image
 
 We live on the stable edge in Arch land; I've _never_ had to boot to a "default options" kernel image. Remove it for reduced complexity and a little bit of kernel update speed.

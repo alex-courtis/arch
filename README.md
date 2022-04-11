@@ -14,19 +14,28 @@ If you wish to use these dotfiles, it is advisable to fork this repository. I fr
 
 # "Desktop Environment"
 
-There is no DE, just a console login which starts X11.
+There is no DE, just a console login which starts sway or X11, depending on `$XDG_VTNR`
 
-[suckless](http://suckless.org/) makes up most of the environment, centred around the [dwm](http://dwm.suckless.org/) window manager.
-
-Configurations:
-* [dwm](https://github.com/alex-courtis/dwm/)
 * [slstatus](https://github.com/alex-courtis/slstatus/)
+
+## 1 - sway
+
+* [way-displays](https://github.com/alex-courtis/way-displays/)
+
+## 2 - i3
+
+When only an nvidia card is available.
+
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 
 # Dotfiles Installation
 
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
+RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+rcup-root
+su -
+ln -s /home/alex/.dotfiles .
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
