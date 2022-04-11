@@ -2,3 +2,6 @@ Host aur.archlinux.org
   IdentityFile ~/.ssh/id_rsa.aur
   User aur
 
+Host gigantor.courtis.org gigantor
+  User acourtis
+
