@@ -8,8 +8,8 @@ set smartcase
 
 map ; :
 
-nn	yw	yiw
-nn	yfw	yw
+nm yw yiw
+nm yfw yw
 
 " idea does not like setting mapleader to <BS>
 
@@ -17,12 +17,18 @@ nm <BS><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 
 nm <Space>' <Action>(RestoreDefaultLayout)
+nm <Space>a (ActivateProjectToolWindow)
+nm <Space>; <Action>(CollapseAll)
+
+nm <Space>q <Action>(CloseContent)
 
 nm <Space>j <Action>(VcsShowNextChangeMarker)
 
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 nm <BS>g  <Action>(FindUsages)
+nm <BS>hp <Action>(Compare.SameVersion)
+nm <BS>hu <Action>(Vcs.RollbackChangedLines)
 nm <BS>m  <Action>(CompileFile)
 nm <BS>M  <Action>(CompileDirty)
 
@@ -30,7 +36,12 @@ nm <BS>c  <Plug>(CommentMotion)
 nm <BS>cc <Plug>(CommentLine)
 vm <BS>c  <Plug>(CommentMotionV)
 nm <BS>t  <Action>(GotoDeclaration)
+nm <BS>w  viwpyiw
+
+nm <BS>r  <Action>(RenameElement)
+vm <BS>r  <Action>(RenameElement)
 
 nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)
+nm <BS>Z  <Action>(OptimizeImports)
 
