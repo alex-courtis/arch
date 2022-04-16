@@ -16,7 +16,7 @@ nn	yfw	yw
 nm <BS><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 
-nm <Space>; <Action>(CollapseAll)
+nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>j <Action>(VcsShowNextChangeMarker)
 
@@ -31,5 +31,6 @@ nm <BS>cc <Plug>(CommentLine)
 vm <BS>c  <Plug>(CommentMotionV)
 nm <BS>t  <Action>(GotoDeclaration)
 
+nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)
 
