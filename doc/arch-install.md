@@ -224,6 +224,10 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
+## Tweaks
+
+[Arch Top Tips From Alex](arch-tips.md).
+
 ## Booting
 
 ### Create Boot Image
@@ -252,7 +256,7 @@ HOOKS=(
 (Re)generate the boot image:
 
 ```sh
-pacaur -S linux
+pacman -S linux
 ```
 
 ### systemd-boot
