@@ -90,7 +90,8 @@ call airline#parts#define('linenr', { 'raw': '%l', 'accent': 'bold'})
 call airline#parts#define('maxlinenr', { 'raw': '/%L', 'accent': 'none'})
 let g:airline_section_z = airline#section#create(['colnr', 'linenr', 'maxlinenr'])
 let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
-call airline#add_statusline_func('amc#airlineSpecialDetector')
+call airline#add_statusline_func('amc#airlineStatusLine')
+call airline#add_inactive_statusline_func('amc#airlineStatusLine')
 
 " bufexplorer
 let g:bufExplorerDefaultHelp=0
