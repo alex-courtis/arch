@@ -405,7 +405,6 @@ xsel
 yq
 zsh-completions
 dapper
-gron-bin
 lemonade-git
 libinput-gestures
 rcm
