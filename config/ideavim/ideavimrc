@@ -8,8 +8,8 @@ set smartcase
 
 map ; :
 
-nm yw yiw
-nm yfw yw
+nn yw yiw
+nn yfw yw
 
 " idea does not like setting mapleader to <BS>
 
