@@ -14,19 +14,19 @@ If you wish to use these dotfiles, it is advisable to fork this repository. I fr
 
 # "Desktop Environment"
 
-There is no DE, just a console login which starts sway or X11, depending on `$XDG_VTNR`
+There is no DE, just a console login which starts a wayland compositor or X11, depending on `$XDG_VTNR`
 
-* [slstatus](https://github.com/alex-courtis/slstatus/)
-
-## 1 - sway
-
+* [sway](https://github.com/swaywm/sway)
+* [i3](https://github.com/i3/i3)
 * [way-displays](https://github.com/alex-courtis/way-displays/)
-
-## 2 - i3
-
-When only an nvidia card is available.
-
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
+* [dual-function-keys](https://gitlab.com/interception/linux/plugins/dual-function-keys)
+* [slstatus](https://github.com/alex-courtis/slstatus/)
+* [alacritty](https://github.com/alacritty/alacritty)
+* [neovim](https://github.com/neovim/neovim)
+* [rcm](https://github.com/thoughtbot/rcm)
+* [zsh](https://github.com/zsh-users/zsh)
+* [tmux](https://github.com/tmux/tmux)
 
 # Dotfiles Installation
 
@@ -35,6 +35,7 @@ git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 rcup-root
 su -
+chsh -s /bin/zsh
 ln -s /home/alex/.dotfiles .
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
