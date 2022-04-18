@@ -1,9 +1,9 @@
+settings.focusOnSaved = false
+
 // back/forwards
-api.map('H', 'S');
-api.map('<Backspace><Backspace>', 'H');
+api.map('<Backspace><Backspace>', 'S');
 api.unmap('S');
-api.map('L', 'D');
-api.map('<Space><Space>', 'L');
+api.map('<Space><Space>', 'D');
 api.unmap('D');
 
 // tab left/right
@@ -11,6 +11,12 @@ api.map('h', 'E');
 api.unmap('E');
 api.map('l', 'R');
 api.unmap('R');
+
+// tab move left/right
+api.map('H', '<<');
+api.unmap('<<');
+api.map('L', '>>');
+api.unmap('>>');
 
 // other tabs close
 api.map('C', 'gxx');
