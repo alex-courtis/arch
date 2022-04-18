@@ -435,7 +435,7 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 
 ### Done
 
-Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/x.${USER}.log`, `dmesg --human` and any console errors for oddities.
+Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/i3.x.${XDG_VTNR}.${USER}.log`, `/tmp/sway.${XDG_VTNR}.${USER}.log`, `dmesg --human` and any console errors for oddities.
 
 ## Audio Drivers
 
