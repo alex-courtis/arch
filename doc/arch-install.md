@@ -375,6 +375,7 @@ noto-fonts-emoji
 noto-fonts-extra
 pacman-contrib
 pavucontrol
+pulseaudio
 pwgen
 rsync
 scrot
@@ -406,9 +407,7 @@ yq
 zsh-completions
 dapper
 lemonade-git
-libinput-gestures
 rcm
-redshift-minimal
 todotxt
 vundle-git
 way-displays
@@ -434,18 +433,16 @@ git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
-### Desktop Environment
-
-Choose a [Graphical user interface](https://wiki.archlinux.org/index.php/General_recommendations#Graphical_user_interface) that suits your needs.
-
-- Multitouch: `libinput-gestures-setup autostart`
-- Redshift: `systemctl enable --user redshift`
-
 ### Done
 
 Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/x.${USER}.log`, `dmesg --human` and any console errors for oddities.
 
 ## Audio Drivers
+
+Enable pulseaudio:
+```sh
+systemctl enable --user pulseaudio
+```
 
 ### Intel Corporation Comet Lake PCH-LP cAVS
 
