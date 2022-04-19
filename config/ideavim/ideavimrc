@@ -1,9 +1,11 @@
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
 
 set clipboard+=unnamed
 set ideajoin
-set nowrapscan
+set idearefactormode=keep
 set ignorecase
+set nowrapscan
 set smartcase
 
 map ; :
@@ -16,15 +18,20 @@ nn yfw yw
 nm <BS><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 
+nm <Space>a :NERDTree<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
-nm <Space>a (ActivateProjectToolWindow)
-nm <Space>; <Action>(CollapseAll)
 
+nm <Space>o <Action>(NextTab)
+nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
+
+nm <Space>e <Action>(RecentFiles)
 
 nm <Space>j <Action>(VcsShowNextChangeMarker)
 
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
+
+nm <BS>d  <Action>(CloseAllEditorsButActive)
 
 nm <BS>g  <Action>(FindUsages)
 nm <BS>hp <Action>(Compare.SameVersion)
