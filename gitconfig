@@ -1,18 +1,25 @@
 [alias]
 	d = diff
-	ud = diff --unified=10000
-	dn = diff --name-only
-	ds = diff --staged
-	uds = diff --staged --unified=10000
-	dsn = diff --staged --name-only
+	dn = d --name-only
+	dw = d --ignore-all-space
+	du = d --unified=10000
+	duw = du --ignore-all-space
+
+	ds = d --staged
+	dsn = dn --staged
+	dsw = dw --staged
+	dsu = du --staged
+	dsuw = duw --staged
+
 	co = checkout
 	l = log --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(white) %C(green)%an  %C(cyan)%ah%C(reset)' --graph
 	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
 	rs = restore --staged
-	sh = show
-	shn = show --name-only
-	st = status
+
+	s = show --oneline
+	sn = s --name-status
+	st = status --short
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
