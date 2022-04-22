@@ -75,9 +75,9 @@ om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>t	:call settagstack(win_getid(), {'items' : []})<CR><C-]>
-" vim-repeat doesn't seem to be able to handle a <BS> mapping
-nm	<silent>	<F12>w		viwp:let @+=@0<CR>:let @"=@0<CR>:call repeat#set("\<F12>w")<CR>
-nm	<silent>	<Leader>w	<F12>w
+nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
+xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
+nm	<silent>	<Leader>W	<Plug>ReplaceWithRegisterLine
 
 nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
@@ -85,6 +85,7 @@ vm			<Leader>r	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vm			<Leader>R	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nm	<silent>	<Leader>n	:tn<CR>
 nm	<silent>	<Leader>N	:tp<CR>
+" vim-repeat doesn't seem to be able to handle a <BS> mapping
 nm	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
 nm	<silent>	<Leader>v	<F12>v
 nm	<silent>	<F12>V		:call amc#linewiseIndent("P", "\<F12>V")<CR>

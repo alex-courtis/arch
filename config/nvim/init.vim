@@ -3,16 +3,17 @@ call vundle#begin("~/.local/share/nvim/vundle")
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kyazdani42/nvim-tree.lua'
+Plugin 'kyazdani42/nvim-web-devicons'
+Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'Yohannfra/Vim-Goto-Header'
-Plugin 'lewis6991/gitsigns.nvim'
-Plugin 'kyazdani42/nvim-tree.lua'
-Plugin 'kyazdani42/nvim-web-devicons'
 call vundle#end()
 filetype plugin indent on
 
