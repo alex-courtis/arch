@@ -27,9 +27,6 @@ bindsym XF86AudioMicMute exec volmutemic
 # $
 # ;
 # ,
-# .
-# p
-# y
 bindsym $mod3+period exec vollowermic
 bindsym $mod3+p exec volraisemic
 bindsym $mod3+y exec volmutemic
@@ -59,6 +56,8 @@ bindsym $mod3+j exec vollower
 bindsym $mod1+k focus up
 bindsym $mod2+k move up
 bindsym $mod3+k exec volraise
+bindsym $mod1+x exec dmenu_run                          -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0
+bindsym $mod2+x exec j4-dmenu-desktop "--dmenu=dmenu -i -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0"
 bindsym $mod3+x exec volmute
 
 
@@ -90,3 +89,4 @@ bindsym $mod1+Down resize grow height 25px
 bindsym $mod1+Up resize shrink height 25px
 bindsym $mod1+Right resize grow width 25px
 
+# vim: set filetype=i3config :

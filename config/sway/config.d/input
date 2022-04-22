@@ -1,0 +1,18 @@
+input type:keyboard {
+    xkb_model "pc105"
+    xkb_layout "us,us"
+    xkb_variant "dvp,"
+    xkb_options "caps:escape,grp:win_space_toggle"
+    repeat_delay 400
+    repeat_rate 50
+}
+input type:touchpad {
+    tap enabled
+    natural_scroll enable
+}
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0
+}
+
+# vim: set filetype=i3config :

@@ -1,0 +1,8 @@
+tiling_drag disable
+
+bindsym --no-warn $mod1+x exec bemenu-run
+bindsym --no-warn $mod2+x exec exec $(menjar) > /dev/null 2>&1
+
+bindsym --no-warn $mod3+o exec swaylock -f -c ${BASE01} > /dev/null 2>&1
+
+# vim: set filetype=i3config :

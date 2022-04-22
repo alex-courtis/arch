@@ -1,55 +1,5 @@
-include appearance.config
-include keys.config
-
-
-# mouse
-tiling_drag disable
-
-
-# keys
-bindsym $mod1+x exec bemenu-run
-bindsym $mod2+x exec exec $(menjar) > /dev/null 2>&1
-bindsym $mod3+o exec swaylock -f -c ${BASE01} > /dev/null 2>&1
-
-
-# startup
-exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
-exec swayidle -w \
-	timeout 900  'swaylock -f -c ${BASE01}' \
-	before-sleep 'swaylock -f -c ${BASE01}' \
-	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
-
-
-# input
-input type:keyboard {
-    xkb_model "pc105"
-    xkb_layout "us,us"
-    xkb_variant "dvp,"
-    xkb_options "caps:escape,grp:win_space_toggle"
-    repeat_delay 400
-    repeat_rate 50
-}
-input type:touchpad {
-    tap enabled
-    natural_scroll enable
-}
-input type:pointer {
-    accel_profile flat
-    pointer_accel 0
-}
-
-
-# decorations
-for_window [shell="xwayland"] title_format "%title (%shell)"
-
-
-# gaps
-gaps inner 1
-gaps outer -1
-smart_gaps on
-smart_borders on
-default_border normal 1
-
+include ~/.config/i3/config.d/*
+include ~/.config/sway/config.d/*
 
 # https://www.reddit.com/r/swaywm/comments/l9asbc/zoom_on_sway_what_settings_do_you_use/
 #

@@ -1,0 +1,9 @@
+for_window [shell="xwayland"] title_format "%title (%shell)"
+
+gaps inner 1
+gaps outer -1
+smart_gaps on
+smart_borders on
+default_border normal 1
+
+# vim: set filetype=i3config :

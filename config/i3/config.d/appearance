@@ -1,5 +1,4 @@
-# i3 cannot use variables from included files
-
+# i3 cannot use environment variables
 # base16 bright
 set $base00 #000000
 set $base01 #303030
@@ -19,6 +18,9 @@ set $base0E #d381c3
 set $base0F #be643c
 
 font pango:monospace 11
+
+default_border normal 1
+hide_edge_borders smart
 
 bar {
     position top
@@ -44,3 +46,4 @@ client.urgent           $base03 $base02 $base06 $base03 $base03
 client.placeholder      $base02 $base01 $base04 $base01 $base01
 client.background       $base00
 
+# vim: set filetype=i3config :
