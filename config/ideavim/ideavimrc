@@ -1,5 +1,6 @@
-Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 set clipboard+=unnamed
 set ideajoin
@@ -43,7 +44,9 @@ nm <BS>c  <Plug>(CommentMotion)
 nm <BS>cc <Plug>(CommentLine)
 vm <BS>c  <Plug>(CommentMotionV)
 nm <BS>t  <Action>(GotoDeclaration)
-nm <BS>w  viwpyiw
+nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
+xm <BS>w <Plug>ReplaceWithRegisterVisual
+nm <BS>W <Plug>ReplaceWithRegisterLine
 
 nm <BS>r  <Action>(RenameElement)
 vm <BS>r  <Action>(RenameElement)
