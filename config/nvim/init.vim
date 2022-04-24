@@ -62,12 +62,6 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" find
-cabbrev f find
-" unused command kept here for reference
-" command -nargs=1 -complete=file_in_path F call amc#win#goHome() | find <args>
-" cabbrev f F
-
 " tags search down only
 set tags=**/tags
 

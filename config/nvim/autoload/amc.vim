@@ -15,7 +15,7 @@ endfunction
 function amc#colours()
 	highlight CursorLineNr cterm=bold
 	highlight default link TagbarHighlight CursorLine
-        highlight default link bufExplorerHidBuf Operator
+	highlight default link bufExplorerHidBuf Operator
 	highlight default link NvimTreeWindowPicker IncSearch
 
 	" swap these two
@@ -82,7 +82,7 @@ endfunction
 
 
 function! amc#wipeMacros()
-	let l:regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"' 
+	let l:regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"'
 	let l:i = 0 
 	while (l:i < strlen(regs)) 
 		call setreg(l:regs[l:i], [])
@@ -108,5 +108,10 @@ function! amc#clearDelete()
 			execute "bw!" . l:bn
 		endif
 	endfor
+endfunction
+
+function! amc#find()
+	call amc#win#goHome()
+	execute "silent find " . input("find: ", "", "file_in_path")
 endfunction
 

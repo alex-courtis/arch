@@ -19,10 +19,10 @@ let mapleader=s:leader
 " begin left
 nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
-nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
+nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
@@ -37,14 +37,14 @@ nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
 
 " y
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
+" x
 
 nm	<silent>	<Space><BS>	:call amc#mru#back()<CR>
 nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
 
 " begin right
-nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
-vm			<Leader>f	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
+nm	<silent>	<Leader>f	:call amc#find()<CR>
 nm	<silent>	<Leader>d	:call amc#clear()<CR>
 nm	<silent>	<Leader>D	:call amc#clearDelete()<CR>
 nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
@@ -93,7 +93,8 @@ nm	<silent>	<Leader>V	:put!<CR>'[v']=
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>z	gg=G``
 
-" /
+nm			<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
+vm			<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
