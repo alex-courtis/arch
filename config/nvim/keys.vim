@@ -38,6 +38,7 @@ nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
 " y
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 
+nm	<silent>	<Space><BS>	:call amc#mru#back()<CR>
 nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 " end left
 
@@ -96,6 +97,7 @@ nm	<silent>	<Leader>z	gg=G``
 nm	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
+nm	<silent>	<BS><Space>	:call amc#mru#forward()<CR>
 nm	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
 " end right
 endfor

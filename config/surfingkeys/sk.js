@@ -1,8 +1,10 @@
 settings.focusOnSaved = false
 
 // back/forwards
+api.map('<Space><Backspace>', 'S');
 api.map('<Backspace><Backspace>', 'S');
 api.unmap('S');
+api.map('<Backspace><Space>', 'D');
 api.map('<Space><Space>', 'D');
 api.unmap('D');
 
