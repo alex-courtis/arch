@@ -17,8 +17,8 @@
 	mtv = mergetool --tool vimdiff
 	rs = restore --staged
 
-	s = show --oneline
-	sn = s --name-status
+	sh = show --oneline
+	shn = sh --name-status
 	st = status --short
 [user]
 	name = Alexander Courtis
