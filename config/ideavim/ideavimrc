@@ -35,6 +35,7 @@ nm <Space>k <Action>(VcsShowPrevChangeMarker)
 nm <BS>d  <Action>(CloseAllEditorsButActive)
 
 nm <BS>g  <Action>(FindUsages)
+vm <BS>g  <Action>(FindUsages)
 nm <BS>hp <Action>(Compare.SameVersion)
 nm <BS>hu <Action>(Vcs.RollbackChangedLines)
 nm <BS>m  <Action>(CompileFile)

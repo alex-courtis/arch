@@ -35,17 +35,6 @@ function amc#updateTitleString()
 endfunction
 
 
-function amc#vselFirstLine()
-	try
-		let l:zprev = @z
-		normal! gv"zy
-		return substitute(@z, "\n.*", "", "g")
-	finally
-		let @z = l:zprev
-	endtry
-endfunction
-
-
 function amc#startupCwd()
 	if argc() == 1 && isdirectory(argv()[0])
 

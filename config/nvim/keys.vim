@@ -44,14 +44,14 @@ nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 
 " begin right
 nm			<Leader>f	/<C-r>=expand("<cword>")<CR><CR>
-vm			<Leader>f	<Esc>/<C-u><C-r>=amc#vselFirstLine()<CR><CR>
+vm			<Leader>f	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>d	:call amc#clear()<CR>
 nm	<silent>	<Leader>D	:call amc#clearDelete()<CR>
 nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
-vm			<Leader>g	<Esc>:<C-u>ag "<C-r>=amc#vselFirstLine()<CR>"
+vm			<Leader>g	"*y<Esc>:<C-u>ag "<C-r>=getreg("*")<CR>"
 om	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
 xm	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
 nm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
@@ -82,8 +82,8 @@ nm	<silent>	<Leader>W	<Plug>ReplaceWithRegisterLine
 
 nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
-vm			<Leader>r	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
-vm			<Leader>R	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
+vm			<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
+vm			<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
 nm	<silent>	<Leader>n	:tn<CR>
 nm	<silent>	<Leader>N	:tp<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
