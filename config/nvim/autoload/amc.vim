@@ -1,10 +1,3 @@
-function amc#sourceIfExists(file)
-	if filereadable(expand(a:file))
-		exe 'source' a:file
-	endif
-endfunction
-
-
 function amc#colourString(group)
 	redir => l:cs
 	execute "silent highlight " . a:group
@@ -63,13 +56,6 @@ endfunction
 function! amc#airlineStatusLine(...)
 	let l:builder = a:1
 	let l:context = a:2
-
-	if !amc#buf#isSpecial(l:context.bufnr)
-		let l:special = getwinvar(l:context.winnr, "amcSpecial", 0)
-		if l:special
-			call l:builder.add_section_spaced('airline_error', g:amc#buf#specialNames[l:special])
-		endif
-	endif
 
 	if getbufvar(l:context.bufnr, "&filetype") == 'NvimTree'
 		call l:builder.add_section_spaced('airline_a', 'NvimTree')

@@ -31,27 +31,20 @@ function amc#log#winBuf(msg)
 		let l:descAlt = g:amc#buf#specialNames[amc#buf#special(l:bna)]
 	endif
 
-	let l:special = get(w:, 'amcSpecial', 0)
-	if l:special
-		let l:winSpecialDesc = g:amc#buf#specialNames[l:special]
-	else
-		let l:winSpecialDesc = ""
-	endif
-
 	let l:bt = getbufvar(l:bn, "&buftype")
 	let l:bta = getbufvar(l:bna, "&buftype")
 	let l:ft = getbufvar(l:bn, "&filetype")
 	let l:fta = getbufvar(l:bna, "&filetype")
 
-	let l:fmt = "%-12.12s %3s %4s %-17.17s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s '%s'"
-	call amc#log#_line(printf(l:fmt, a:msg, "w" . winnr(), win_getid(), l:winSpecialDesc, l:desc, "%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
+	let l:fmt = "%-12.12s %3s %4s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s '%s'"
+	call amc#log#_line(printf(l:fmt, a:msg, "w" . winnr(), win_getid(), l:desc, "%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
 	if l:bna != -1
-		call amc#log#_line(printf(l:fmt, "", "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
+		call amc#log#_line(printf(l:fmt, "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
 	endif
 endfunction
 
 function amc#log#startEventLogging()
-	autocmd BufAdd      * call amc#log#winBuf("BufAdd")
+	" autocmd BufAdd      * call amc#log#winBuf("BufAdd")
 	autocmd BufDelete   * call amc#log#winBuf("BufDelete")
 	autocmd BufEnter    * call amc#log#winBuf("BufEnter")
 	autocmd BufHidden   * call amc#log#winBuf("BufHidden")

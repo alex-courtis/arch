@@ -3,7 +3,7 @@ function amc#win#goHome()
 	" topleftest nonspecial
 	let [ l:lowestRow, l:lowestCol, l:topLeftWn ] = [ 0, 0, 0 ]
 	for l:wn in range(winnr("$"), 1, -1)
-		if !getwinvar(l:wn, "amcSpecial")
+		if !amc#buf#isSpecial(winbufnr(l:wn))
 			let [ l:row, l:col ] = win_screenpos(l:wn)
 			if (!l:lowestRow || !l:lowestCol) ||
 						\ l:row == l:lowestRow && l:col < l:lowestCol ||
@@ -25,14 +25,14 @@ function amc#win#goHome()
 endfunction
 
 function amc#win#goHomeOrNext()
-	if get(w:, 'amcSpecial', 0)
+	if amc#buf#isSpecial(bufnr())
 		call amc#win#goHome()
 		return
 	endif
 
 	" search up from this window then start at 0
 	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
-		if !getwinvar(l:wn, "amcSpecial")
+		if !amc#buf#isSpecial(winbufnr(l:wn))
 			execute l:wn . " wincmd w"
 			return
 		endif
@@ -40,24 +40,11 @@ function amc#win#goHomeOrNext()
 endfunction
 
 function amc#win#openBufExplorer()
-	if get(w:, 'amcSpecial', 0)
+	if amc#buf#isSpecial(bufnr())
 		call amc#win#goHome()
 	endif
 
 	BufExplorer
-endfunction
-
-function amc#win#goBufName(bn)
-	if bufname() == a:bn
-		return
-	endif
-
-	for l:wn in range(1, winnr("$"))
-		if bufname(winbufnr(l:wn)) == a:bn
-			execute l:wn . " wincmd w"
-			return
-		endif
-	endfor
 endfunction
 
 let s:closeOrder = [
@@ -74,9 +61,9 @@ function amc#win#closeInc()
 	let l:lsi = -1
 	let l:lsw = -1
 	for l:wn in range(1, winnr("$"))
-		let l:amcSpecial = getwinvar(l:wn, "amcSpecial")
-		if l:amcSpecial
-			let l:i = index(s:closeOrder, l:amcSpecial)
+		let l:special = amc#buf#special(winbufnr(l:wn))
+		if l:special
+			let l:i = index(s:closeOrder, l:special)
 			if l:lsi == -1 || l:i < l:lsi
 				let l:lsi = l:i
 				let l:lsw = l:wn
@@ -105,29 +92,6 @@ function amc#win#closeAll()
 			execute l:wn . " wincmd c"
 		endif
 	endfor
-endfunction
-
-" one shot mark the window as special via w:amcSpecial
-" except OTHER_SPECIAL will be overwritten by a known special
-" event ordering is inconsistent, hence this is called for many events
-function amc#win#markSpecial()
-	let l:bn = bufnr("%")
-	if l:bn == -1
-		return
-	endif
-
-	let l:curSpecial = get(w:, 'amcSpecial', 0)
-	if l:curSpecial && l:curSpecial != g:amc#buf#OTHER_SPECIAL
-		return
-	endif
-
-	let l:special = amc#buf#special(l:bn)
-	if !l:special || l:special == g:amc#buf#BUF_EXPLORER
-		return
-	endif
-
-	let w:amcSpecial = l:special
-	call amc#log#line("amc#win#markSpecial marking " . winnr() . " " . g:amc#buf#specialNames[w:amcSpecial])
 endfunction
 
 let s:wipeOnClosed = [

@@ -114,14 +114,12 @@ nmap	gc	<NOP>
 
 
 " event order matters
-autocmd BufEnter * call amc#win#markSpecial()
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#mru#update()
 autocmd BufEnter * call amc#updateTitleString()
 autocmd BufLeave * ++nested call amc#buf#autoWrite()
 autocmd BufWritePost * call amc#updateTitleString()
 autocmd DirChanged global call amc#updatePath()
-autocmd FileType * call amc#win#markSpecial()
 autocmd FileType qf call amc#qf#setGrepPattern()
 autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * ++nested call amc#buf#autoWrite()
