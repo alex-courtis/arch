@@ -130,51 +130,6 @@ function amc#win#markSpecial()
 	call amc#log#line("amc#win#markSpecial marking " . winnr() . " " . g:amc#buf#specialNames[w:amcSpecial])
 endfunction
 
-" nvimtree does this itself, however this method doesn't thrash around so much
-let s:ejectFrom = [
-			\ g:amc#buf#GIT,
-			\ g:amc#buf#FUGITIVE,
-			\ g:amc#buf#HELP,
-			\ g:amc#buf#NERD_TREE,
-			\ g:amc#buf#QUICK_FIX,
-			\ g:amc#buf#MAN,
-			\ g:amc#buf#TAGBAR
-			\ ]
-function amc#win#ejectFromSpecial()
-	let l:bn = bufnr("%")
-	let l:abn = bufnr("#")
-	if l:bn == -1
-		return
-	endif
-
-	let l:special = get(w:, 'amcSpecial', 0)
-	if l:special
-		if amc#buf#isSpecial(l:bn) != g:amc#buf#SPECIAL && index(s:ejectFrom, l:special) != -1
-			call amc#log#line("amc#win#ejectFromSpecial ejecting '" . bufname(l:bn) . "' from " . g:amc#buf#specialNames[l:special])
-			let l:pwn = winnr()
-			if l:abn != -1
-				b#
-			endif
-			call amc#win#goHome()
-			exec "b" . l:bn
-
-			if l:abn == -1
-				" close window when # wiped e.g. quickfix
-				if l:pwn != winnr()
-					call amc#log#line("amc#win#ejectFromSpecial closing")
-					execute l:pwn . " wincmd c"
-				endif
-			else
-				" wipe the leftover no longer special buffer that is no longer valid e.g. fugitive
-				if !amc#buf#isSpecial(l:abn) && bufnr(l:abn)
-					call amc#log#line("amc#win#ejectFromSpecial wiping '" . bufname(l:abn) . "'")
-					execute "bw".bufnr(l:abn)
-				endif
-			endif
-		endif
-	endif
-endfunction
-
 let s:wipeOnClosed = [
 			\ g:amc#buf#MAN,
 			\ ]

@@ -115,7 +115,6 @@ nmap	gc	<NOP>
 
 " event order matters
 autocmd BufEnter * call amc#win#markSpecial()
-autocmd BufEnter * call amc#win#ejectFromSpecial()
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#mru#update()
 autocmd BufEnter * call amc#updateTitleString()
