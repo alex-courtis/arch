@@ -50,6 +50,7 @@ nm <BS>W <Plug>ReplaceWithRegisterLine
 
 nm <BS>r  <Action>(RenameElement)
 vm <BS>r  <Action>(RenameElement)
+nm <BS>v  :put<CR>
 
 nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)

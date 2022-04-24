@@ -85,11 +85,8 @@ vm			<Leader>r	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/
 vm			<Leader>R	<Esc>:<C-u>%s/<C-r>=amc#vselFirstLine()<CR>/<C-r>=amc#vselFirstLine()<CR>
 nm	<silent>	<Leader>n	:tn<CR>
 nm	<silent>	<Leader>N	:tp<CR>
-" vim-repeat doesn't seem to be able to handle a <BS> mapping
-nm	<silent>	<F12>v		:call amc#linewiseIndent("p", "\<F12>v")<CR>
-nm	<silent>	<Leader>v	<F12>v
-nm	<silent>	<F12>V		:call amc#linewiseIndent("P", "\<F12>V")<CR>
-nm	<silent>	<Leader>V	<F12>V
+nm	<silent>	<Leader>v	:put<CR>'[v']=
+nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
 " l
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
