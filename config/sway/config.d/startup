@@ -6,4 +6,6 @@ exec swayidle -w \
 	before-sleep 'swaylock -f -c ${BASE01}' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
+exec swayrd > /tmp/swayrd.${XDG_VTNR}.${USER}.log 2>&1
+
 # vim: set filetype=sh :
