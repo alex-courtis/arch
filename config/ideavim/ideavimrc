@@ -17,7 +17,9 @@ nn yfw yw
 " idea does not like setting mapleader to <BS>
 
 nm <BS><BS> <Action>(Back)
+nm <Space><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
+nm <BS><Space> <Action>(Forward)
 
 nm <Space>a :NERDTree<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
@@ -41,7 +43,7 @@ nm <BS>d  <Action>(CloseAllEditorsButActive)
 nm <BS>g  <Action>(FindUsages)
 vm <BS>g  <Action>(FindUsages)
 nm <BS>hp <Action>(Compare.SameVersion)
-nm <BS>hu <Action>(Vcs.RollbackChangedLines)
+nm <BS>hx <Action>(Vcs.RollbackChangedLines)
 nm <BS>m  <Action>(CompileFile)
 nm <BS>M  <Action>(CompileDirty)
 
