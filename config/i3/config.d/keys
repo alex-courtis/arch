@@ -14,6 +14,7 @@ bindsym $mod1+space fullscreen
 bindsym $mod1+Return exec exec alacritty > /dev/null 2>&1
 bindsym $mod2+Return exec exec browser > /dev/null 2>&1
 bindsym $mod2+space exec exec browser google-chrome-stable > /dev/null 2>&1
+bindsym $mod1+Tab exec i3-msg "[con_id=$(cat /tmp/last_focus)] focus"
 
 
 # special

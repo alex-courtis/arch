@@ -28,9 +28,13 @@ nm <Space>q <Action>(CloseContent)
 
 nm <Space>e <Action>(RecentFiles)
 
+nm <Space>. <Action>(GotoNextError)
 nm <Space>j <Action>(VcsShowNextChangeMarker)
+nm <Space>J <Action>(GotoNextError)
 
+nm <Space>p <Action>(GotoPreviousError)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
+nm <Space>K <Action>(GotoPreviousError)
 
 nm <BS>d  <Action>(CloseAllEditorsButActive)
 
