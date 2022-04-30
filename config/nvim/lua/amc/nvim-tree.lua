@@ -44,6 +44,9 @@ tree.setup {
       enable = true,
     },
   },
+  diagnostics = {
+    enable = true,
+  },
   view = {
     mappings = {
       list = {
