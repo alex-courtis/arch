@@ -144,14 +144,6 @@ function amc#mru#back()
 		return
 	endif
 
-	let ts = gettagstack()
-	if ts.length > 0 && ts.curidx > ts.length
-		pop
-		echo "POP: " . fnamemodify(bufname(), ":t")
-		return
-	endif
-	call settagstack(win_getid(), {'items' : []})
-
 	if empty(w:amcMruWin)
 		let w:amcMruWin = copy(w:amcMru)
 		let w:amcMruWinP = len(w:amcMru) - 1
@@ -175,8 +167,6 @@ function amc#mru#forward()
 	call amc#log#line("mru: forw")
 
 	call amc#mru#initWinVars()
-
-	call settagstack(win_getid(), {'items' : []})
 
 	if empty(w:amcMruWin)
 		return

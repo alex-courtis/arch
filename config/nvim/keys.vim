@@ -30,10 +30,12 @@ nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 nm	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
 nm	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
 nm	<silent>	<Leader>j	:Gitsigns next_hunk<CR>
+nm	<silent>	<Leader>J	<Plug>(coc-diagnostic-next)
 
 nm	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 nm	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
 nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
+nm	<silent>	<Leader>K	<Plug>(coc-diagnostic-prev)
 
 " y
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
@@ -75,7 +77,8 @@ nm	<silent>	<Leader>cc	<Plug>CommentaryLine
 om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
-nm	<silent>	<Leader>t	:call settagstack(win_getid(), {'items' : []})<CR><C-]>
+nm	<silent>	<Leader>t	<Plug>(coc-definition)
+nm	<silent>	<Leader>T	<Plug>(coc-references)
 nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
 xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
 nm	<silent>	<Leader>W	<Plug>ReplaceWithRegisterLine
@@ -84,8 +87,7 @@ nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vm			<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
 vm			<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
-nm	<silent>	<Leader>n	:tn<CR>
-nm	<silent>	<Leader>N	:tp<CR>
+nm	<silent>	<Leader>n	<Plug>(coc-rename)
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
