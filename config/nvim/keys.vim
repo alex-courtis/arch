@@ -52,11 +52,11 @@ nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
 nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
 nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
 
-nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
-nm			<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
-vm			<Leader>g	"*y<Esc>:<C-u>ag "<C-r>=getreg("*")<CR>"
-om	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
-xm	<silent>	gh		:<C-U>Gitsigns select_hunk<CR>
+nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
+nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
+vm				<Leader>g	"*y<Esc>:<C-u>ag "<C-r>=getreg("*")<CR>"
+om	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
+xm	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
 nm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
 vm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
 nm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
@@ -84,11 +84,12 @@ nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
 xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
 nm	<silent>	<Leader>W	<Plug>ReplaceWithRegisterLine
 
-nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
-nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
-vm			<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
-vm			<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
+nm				<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
+nm				<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
+vm				<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
+vm				<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
 nm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
+vm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
@@ -97,8 +98,8 @@ nm	<silent>	<Leader>L	:call amc#clearDelete()<CR>
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>z	gg=G``
 
-nm			<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
-vm			<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
+nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
+vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>-	:GotoHeader<CR>
 " \
 
