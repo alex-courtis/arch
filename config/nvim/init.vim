@@ -7,7 +7,7 @@ Plugin 'kyazdani42/nvim-tree.lua'
 Plugin 'kyazdani42/nvim-web-devicons'
 Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
-Plugin 'neoclide/coc.nvim'
+Plugin 'neovim/nvim-lspconfig'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -20,6 +20,7 @@ filetype plugin indent on
 
 set autowriteall
 set clipboard=unnamedplus
+set completeopt=menu
 set cursorline
 set ignorecase
 set mouse=a
@@ -72,6 +73,7 @@ cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 " start neovim only plugins
 if has('nvim')
 	lua require 'amc/gitsigns'
+	lua require 'amc/lspconfig'
 	lua require 'amc/nvim-tree'
 endif
 

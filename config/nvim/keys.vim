@@ -27,19 +27,17 @@ nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 
-nm	<silent>	<Leader>.	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
-nm	<silent>	<Leader>e	:call amc#win#openBufExplorer()<CR>
+nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
+nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
 nm	<silent>	<Leader>j	:Gitsigns next_hunk<CR>
-nm	<silent>	<Leader>J	<Plug>(coc-diagnostic-next)
 
-nm	<silent>	<Leader>p	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
-nm	<silent>	<Leader>u	:call amc#buf#safeHash()<CR>
+nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
+nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
-nm	<silent>	<Leader>K	<Plug>(coc-diagnostic-prev)
 
-" y
-nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
-" x
+nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
+nm	<silent>	<Leader>i	:call amc#win#openBufExplorer()<CR>
+nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
 
 nm	<silent>	<Space><BS>	:call amc#mru#back()<CR>
 nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
@@ -47,8 +45,11 @@ nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
 
 " begin right
 nm	<silent>	<Leader>f	:call amc#find()<CR>
-nm	<silent>	<Leader>d	:call amc#clear()<CR>
-nm	<silent>	<Leader>D	:call amc#clearDelete()<CR>
+nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
+nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
+nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
+nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
+nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
 nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
 
 nm			<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
@@ -77,8 +78,8 @@ nm	<silent>	<Leader>cc	<Plug>CommentaryLine
 om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
-nm	<silent>	<Leader>t	<Plug>(coc-definition)
-nm	<silent>	<Leader>T	<Plug>(coc-references)
+nm	<silent>	<Leader>t	:lua vim.lsp.buf.declaration()<CR>
+nm	<silent>	<Leader>T	:lua vim.lsp.buf.definition()<CR>
 nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
 xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
 nm	<silent>	<Leader>W	<Plug>ReplaceWithRegisterLine
@@ -87,11 +88,12 @@ nm			<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm			<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vm			<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
 vm			<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
-nm	<silent>	<Leader>n	<Plug>(coc-rename)
+nm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
-" l
+nm	<silent>	<Leader>l	:call amc#clear()<CR>
+nm	<silent>	<Leader>L	:call amc#clearDelete()<CR>
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>z	gg=G``
 
@@ -116,28 +118,17 @@ function s:fugitive_map()
 	nm <buffer>t =
 	nm <buffer>x X
 endfunction
-autocmd FileType fugitive call s:fugitive_map() 
+autocmd FileType fugitive call <SID>fugitive_map()
 
 
-" coc.nvim
-
-" Use tab for trigger completion with characters ahead and navigate.
+" pum hacks from coc.nvim
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? "\<C-n>" :
 			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
+			\ "\<C-x><C-o>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" use <c-space>for trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-
