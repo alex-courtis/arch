@@ -120,15 +120,3 @@ function s:fugitive_map()
 endfunction
 autocmd FileType fugitive call <SID>fugitive_map()
 
-
-" pum hacks from coc.nvim
-inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ "\<C-x><C-o>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
