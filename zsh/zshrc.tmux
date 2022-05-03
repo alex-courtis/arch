@@ -3,9 +3,9 @@ if [ ! -f "${HOME}/notmux" ] ; then
 	if [ $(whence tmux) -a -z "${TMUX}" -a "${XDG_VTNR}" -ne 6 ]; then
 		DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
 		if [ -z "${DETACHED}" ]; then
-			exec tmux
+			tmux && exit
 		else
-			exec tmux attach -t "${DETACHED}"
+			tmux attach -t "${DETACHED}" && exit
 		fi
 	fi
 else

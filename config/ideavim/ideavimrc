@@ -17,31 +17,34 @@ nn yfw yw
 " idea does not like setting mapleader to <BS>
 
 nm <BS><BS> <Action>(Back)
+nm <Space><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
+nm <BS><Space> <Action>(Forward)
 
 nm <Space>a :NERDTree<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
 
+nm <Space>, <Action>(PreviousTab)
 nm <Space>o <Action>(NextTab)
-nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
 
-nm <Space>e <Action>(RecentFiles)
-
 nm <Space>. <Action>(GotoNextError)
+nm <Space>e <Action>(NextOccurence)
 nm <Space>j <Action>(VcsShowNextChangeMarker)
-nm <Space>J <Action>(GotoNextError)
 
 nm <Space>p <Action>(GotoPreviousError)
+nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
-nm <Space>K <Action>(GotoPreviousError)
 
-nm <BS>d  <Action>(CloseAllEditorsButActive)
+nm <Space>i <Action>(RecentFiles)
 
-nm <BS>g  <Action>(FindUsages)
-vm <BS>g  <Action>(FindUsages)
+nm <BS>f  <Action>(Find)
+vm <BS>f  <Action>(Find)
+nm <BS>dr <Action>(RenameElement)
+vm <BS>dr <Action>(RenameElement)
+
 nm <BS>hp <Action>(Compare.SameVersion)
-nm <BS>hu <Action>(Vcs.RollbackChangedLines)
+nm <BS>hx <Action>(Vcs.RollbackChangedLines)
 nm <BS>m  <Action>(CompileFile)
 nm <BS>M  <Action>(CompileDirty)
 
@@ -53,10 +56,13 @@ nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
 xm <BS>w <Plug>ReplaceWithRegisterVisual
 nm <BS>W <Plug>ReplaceWithRegisterLine
 
-nm <BS>r  <Action>(RenameElement)
-vm <BS>r  <Action>(RenameElement)
+nm <BS>r  <Action>(Replace)
+vm <BS>r  <Action>(Replace)
+nm <BS>n  <Action>(FindUsages)
+vm <BS>n  <Action>(FindUsages)
 nm <BS>v  :put<CR>
 
+nm <BS>l <Action>(CloseAllEditorsButActive)
 nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)

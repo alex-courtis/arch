@@ -2,12 +2,19 @@ filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'hrsh7th/cmp-buffer'
+Plugin 'hrsh7th/cmp-cmdline'
+Plugin 'hrsh7th/cmp-nvim-lsp'
+Plugin 'hrsh7th/cmp-path'
+Plugin 'hrsh7th/cmp-vsnip'
+Plugin 'hrsh7th/nvim-cmp'
+Plugin 'hrsh7th/vim-vsnip'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kyazdani42/nvim-tree.lua'
 Plugin 'kyazdani42/nvim-web-devicons'
 Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
-Plugin 'neoclide/coc.nvim'
+Plugin 'neovim/nvim-lspconfig'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -20,11 +27,14 @@ filetype plugin indent on
 
 set autowriteall
 set clipboard=unnamedplus
+set completeopt=menu,menuone,noselect
 set cursorline
 set ignorecase
 set mouse=a
 set nowrapscan
 set number
+set pumheight=15
+set pumwidth=30
 set smartcase
 set switchbuf=useopen,uselast
 set termguicolors
@@ -71,7 +81,9 @@ cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 
 " start neovim only plugins
 if has('nvim')
+	lua require 'amc/cmp'
 	lua require 'amc/gitsigns'
+	lua require 'amc/lspconfig'
 	lua require 'amc/nvim-tree'
 endif
 

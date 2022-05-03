@@ -79,8 +79,6 @@ endfunction
 
 function! amc#clear()
 	call amc#mru#clear()
-
-	call settagstack(win_getid(), {'items' : []})
 endfunction
 
 function! amc#clearDelete()
