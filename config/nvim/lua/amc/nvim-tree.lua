@@ -21,7 +21,6 @@ tree.setup({
 	update_focused_file = {
 		enable = true,
 	},
-	open_on_setup = true,
 	open_on_setup_file = true,
 	actions = {
 		change_dir = {
@@ -43,9 +42,13 @@ tree.setup({
 		indent_markers = {
 			enable = true,
 		},
+    icons = {
+      git_placement = "signcolumn",
+    },
 	},
 	diagnostics = {
 		enable = true,
+    show_on_dirs = true,
 	},
 	view = {
 		mappings = {
