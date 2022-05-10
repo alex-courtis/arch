@@ -198,7 +198,7 @@ systemctl enable NetworkManager
 Add the following to `/etc/vconsole.conf`
 ```
 KEYMAP=dvorak-programmer
-FONT=ter-v16b
+FONT=ter-u32n
 ```
 
 ### Microcode
@@ -270,6 +270,8 @@ Edit `/boot/loader/loader.conf` and change its contents to:
 default arch
 timeout 1
 ```
+
+Try `console-mode 1` if the text is too small.
 
 Create `/boot/loader/entries/arch.conf`:
 ```
