@@ -15,6 +15,9 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 		3)
 			exec startwm x dwm
 			;;
+		4)
+			exec startwm river
+			;;
 	esac
 fi
 

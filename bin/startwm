@@ -12,6 +12,10 @@ case "${1}" in
 		sway -V \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
+	"river")
+		river \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/river.${XDG_VTNR}.${USER}.log") 2>&1
+		;;
 	"x")
 		export X_WM="${2}"
 		startx \
