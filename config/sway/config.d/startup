@@ -8,4 +8,6 @@ exec swayidle -w \
 
 exec swayrd > /tmp/swayrd.${XDG_VTNR}.${USER}.log 2>&1
 
+exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
+
 # vim: set filetype=sh :
