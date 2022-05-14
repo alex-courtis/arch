@@ -26,11 +26,6 @@ let &rtp.=",~/.config/nvim"
 runtime init.vim
 
 
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'wincent/terminus'
-
-
 " mapping overrides
 for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
