@@ -27,11 +27,47 @@ runtime init.vim
 
 
 " mapping overrides
+unmap			gh
+
 for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
+
+" begin left
 nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
 unmap			<Leader>,
+
+unmap			<Leader>.
+
+unmap			<Leader>p
+" end left
+
+" begin right
+unmap			<Leader>da
+unmap			<Leader>dq
+unmap			<Leader>df
+unmap			<Leader>dh
+unmap			<Leader>dr
+
+unmap			<Leader>hs
+unmap			<Leader>hx
+unmap			<Leader>hS
+unmap			<Leader>hu
+unmap			<Leader>hX
+unmap			<Leader>hp
+unmap			<Leader>hb
+unmap			<Leader>hl
+unmap			<Leader>hd
+unmap			<Leader>hD
+unmap			<Leader>ht
+
+nm	<silent>	<Leader>t	<C-]>
+nm	<silent>	<Leader>T	:call settagstack(win_getid(), {'items' : []})<CR>
+
+nm	<silent>	<Leader>n	:tn<CR>
+nm	<silent>	<Leader>N	:tp<CR>
+" end right
+
 endfor
 
 

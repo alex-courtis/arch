@@ -13,6 +13,9 @@ nn	yfw	yw
 nm	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
+om	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
+xm	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
+
 for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
 
@@ -55,8 +58,6 @@ nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
 nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vm				<Leader>g	"*y<Esc>:<C-u>ag "<C-r>=getreg("*")<CR>"
-om	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
-xm	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
 nm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
 vm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
 nm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
