@@ -78,7 +78,7 @@ nm	<silent>	<Leader>cc	<Plug>CommentaryLine
 om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
-nm	<silent>	<Leader>t	:lua require 'amc/lspconfig'.goto_definition_or_tag()<CR>
+nm	<silent>	<Leader>t	:lua require 'amc/lsp'.goto_definition_or_tag()<CR>
 nm	<silent>	<Leader>T	:lua vim.lsp.buf.declaration()<CR>
 nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
 xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
@@ -88,7 +88,7 @@ nm				<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm				<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vm				<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
 vm				<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
-nm	<silent>	<Leader>n	:lua require 'amc/lspconfig'.references_or_next_tag()<CR>
+nm	<silent>	<Leader>n	:lua require 'amc/lsp'.references_or_next_tag()<CR>
 vm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
 nm	<silent>	<Leader>N	:silent! tp<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=

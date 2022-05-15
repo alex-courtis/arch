@@ -90,10 +90,10 @@ cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 
 " start neovim only plugins
 if has('nvim')
-	lua require 'amc/cmp'
-	lua require 'amc/gitsigns'
-	lua require 'amc/lspconfig'.setup()
-	lua require 'amc/nvim-tree'
+	lua require 'amc/cmp'.setup()
+	lua require 'amc/gitsigns'.setup()
+	lua require 'amc/lsp'.setup()
+	lua require 'amc/nvim-tree'.setup()
 endif
 
 " airline
