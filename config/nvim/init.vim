@@ -92,7 +92,7 @@ cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 if has('nvim')
 	lua require 'amc/cmp'
 	lua require 'amc/gitsigns'
-	lua require 'amc/lspconfig'
+	lua require 'amc/lspconfig'.setup()
 	lua require 'amc/nvim-tree'
 endif
 
