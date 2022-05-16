@@ -1,20 +1,10 @@
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
+
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'hrsh7th/cmp-buffer'
-Plugin 'hrsh7th/cmp-cmdline'
-Plugin 'hrsh7th/cmp-nvim-lsp'
-Plugin 'hrsh7th/cmp-path'
-Plugin 'hrsh7th/cmp-vsnip'
-Plugin 'hrsh7th/nvim-cmp'
-Plugin 'hrsh7th/vim-vsnip'
 Plugin 'jlanzarotta/bufexplorer'
-Plugin 'kyazdani42/nvim-tree.lua'
-Plugin 'kyazdani42/nvim-web-devicons'
-Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
-Plugin 'neovim/nvim-lspconfig'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -22,6 +12,25 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'Yohannfra/Vim-Goto-Header'
+
+if has('nvim')
+	Plugin 'hrsh7th/cmp-buffer'
+	Plugin 'hrsh7th/cmp-cmdline'
+	Plugin 'hrsh7th/cmp-nvim-lsp'
+	Plugin 'hrsh7th/cmp-path'
+	Plugin 'hrsh7th/cmp-vsnip'
+	Plugin 'hrsh7th/nvim-cmp'
+	Plugin 'hrsh7th/vim-vsnip'
+	Plugin 'kyazdani42/nvim-tree.lua'
+	Plugin 'kyazdani42/nvim-web-devicons'
+	Plugin 'lewis6991/gitsigns.nvim'
+	Plugin 'neovim/nvim-lspconfig'
+else
+	Plugin 'preservim/nerdtree'
+	Plugin 'Xuyuanp/nerdtree-git-plugin'
+	Plugin 'wincent/terminus'
+endif
+
 call vundle#end()
 filetype plugin indent on
 
@@ -81,10 +90,10 @@ cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
 
 " start neovim only plugins
 if has('nvim')
-	lua require 'amc/cmp'
-	lua require 'amc/gitsigns'
-	lua require 'amc/lspconfig'
-	lua require 'amc/nvim-tree'
+	lua require 'amc/cmp'.setup()
+	lua require 'amc/gitsigns'.setup()
+	lua require 'amc/lsp'.setup()
+	lua require 'amc/nvim-tree'.setup()
 endif
 
 " airline
