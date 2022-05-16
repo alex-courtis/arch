@@ -5,3 +5,6 @@ Host aur.archlinux.org
 Host gigantorw.courtis.org gigantorw gigantor.courtis.org gigantor baronw.courtis.org baronw baron.courtis.org baron
   User acourtis
 
+Host *
+  User alex
+
