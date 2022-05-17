@@ -40,12 +40,16 @@ api.removeSearchAlias('b');
 api.removeSearchAlias('s');
 api.removeSearchAlias('h');
 
-// open in new tab
-api.map('F', 'gf');
+// open link in new tab
+api.map('F', 'af');
 
 // move tab to another window
 api.map('w', 'W');
 api.unmap('W');
+
+// new tab
+api.map('t', 'on');
+api.unmap('on');
 
 // open bookmarks
 api.mapkey('b', '#8Open a bookmark in current tab', function() { api.Front.openOmnibar(({type: "Bookmarks", tabbed: false})); });
