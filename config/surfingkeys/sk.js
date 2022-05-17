@@ -9,8 +9,8 @@ api.map('<Space><Space>', 'D');
 api.unmap('D');
 
 // scroll left/right
-api.map('<', 'h')
-api.map('>', 'l')
+api.map('<', 'h');
+api.map('>', 'l');
 
 // tab left/right
 api.map('h', 'E');
@@ -40,18 +40,20 @@ api.removeSearchAlias('b');
 api.removeSearchAlias('s');
 api.removeSearchAlias('h');
 
-// overwrite all sX
-api.map('s', 'od')
-
 // open in new tab
-api.map('F', 'gf')
+api.map('F', 'gf');
 
 // move tab to another window
-api.map('w', 'W')
+api.map('w', 'W');
+api.unmap('W');
 
 // open bookmarks
 api.mapkey('b', '#8Open a bookmark in current tab', function() { api.Front.openOmnibar(({type: "Bookmarks", tabbed: false})); });
 api.mapkey('B', '#8Open a bookmark in new tab', function() { api.Front.openOmnibar(({type: "Bookmarks", tabbed: true})); });
+
+// open search d with s and S
+api.mapkey('s', '#8Open search with alias d in current tab', function() { api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: false})); });
+api.mapkey('S', '#8Open search with alias d in new tab', function() { api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: true})); });
 
 api.Hints.setCharacters('aoeuipyqx');
 
