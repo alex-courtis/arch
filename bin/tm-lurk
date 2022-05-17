@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+SID="$(tmux lsw -F '#{session_name}')"
+
+if [[ "${SID}" = *-lurking ]]; then
+	SID_LURKING="${SID}"
+else
+	SID_LURKING="${SID}-lurking"
+fi
+
+tmux rename-session -t "${SID}" "${SID_LURKING}"
+
+tmux detach -s "${SID_LURKING}"
+

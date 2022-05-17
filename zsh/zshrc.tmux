@@ -1,7 +1,7 @@
 # maybe execute tmux, not on vt6, attaching to detached if present
 if [ ! -f "${HOME}/notmux" ] ; then
 	if [ $(whence tmux) -a -z "${TMUX}" -a "${XDG_VTNR}" -ne 6 ]; then
-		DETACHED="$( tmux ls 2>/dev/null | grep -vm1 attached | cut -d: -f1 )"
+		DETACHED="$(tmux ls -F '#{session_name}' -f '#{?session_attached,0,1}' | grep -vm1 '\-lurking$')"
 		if [ -z "${DETACHED}" ]; then
 			exec tmux
 		else
