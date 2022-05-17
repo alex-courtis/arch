@@ -1,4 +1,4 @@
-settings.focusOnSaved = false
+settings.focusOnSaved = true
 
 // back/forwards
 api.map('<Space><Backspace>', 'S');
@@ -7,6 +7,10 @@ api.unmap('S');
 api.map('<Backspace><Space>', 'D');
 api.map('<Space><Space>', 'D');
 api.unmap('D');
+
+// scroll left/right
+api.map('<', 'h')
+api.map('>', 'l')
 
 // tab left/right
 api.map('h', 'E');
@@ -35,6 +39,19 @@ api.unmap('se');
 api.removeSearchAlias('b');
 api.removeSearchAlias('s');
 api.removeSearchAlias('h');
+
+// overwrite all sX
+api.map('s', 'od')
+
+// open in new tab
+api.map('F', 'gf')
+
+// move tab to another window
+api.map('w', 'W')
+
+// open bookmarks
+api.mapkey('b', '#8Open a bookmark in current tab', function() { api.Front.openOmnibar(({type: "Bookmarks", tabbed: false})); });
+api.mapkey('B', '#8Open a bookmark in new tab', function() { api.Front.openOmnibar(({type: "Bookmarks", tabbed: true})); });
 
 api.Hints.setCharacters('aoeuipyqx');
 
