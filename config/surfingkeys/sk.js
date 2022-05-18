@@ -8,10 +8,6 @@ api.map('<Backspace><Space>', 'D');
 api.map('<Space><Space>', 'D');
 api.unmap('D');
 
-// scroll left/right
-api.map('<', 'h');
-api.map('>', 'l');
-
 // tab left/right
 api.map('h', 'E');
 api.unmap('E');
@@ -23,6 +19,10 @@ api.map('H', '<<');
 api.unmap('<<');
 api.map('L', '>>');
 api.unmap('>>');
+
+// scroll left/right
+api.map('<', 'h');
+api.map('>', 'l');
 
 // other tabs close
 api.map('C', 'gxx');
