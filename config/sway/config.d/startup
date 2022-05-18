@@ -6,7 +6,10 @@ exec swayidle -w \
 	before-sleep 'swaylock -f -c ${BASE01}' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
-exec swayrd > /tmp/swayrd.${XDG_VTNR}.${USER}.log 2>&1
+# [2022-05-17T22:29:07Z WARN  swayr::daemon] Resetting!
+# [2022-05-17T22:29:07Z WARN  swayr::daemon] Error while receiving events: failed to fill whole buffer
+# [2022-05-17T22:29:10Z WARN  swayr::daemon] Resetting!
+# exec swayrd > /tmp/swayrd.${XDG_VTNR}.${USER}.log 2>&1
 
 exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
 
