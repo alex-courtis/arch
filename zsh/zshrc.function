@@ -132,11 +132,18 @@ function smt() {
 	swaymsg -t ${@}
 }
 
-function nvt-dev() {
+function pyenv_init() {
+	if [ "$(whence pyenv)" ]; then
+		export PYENV_ROOT=$HOME/.pyenv
+		eval "$(pyenv init -)"
+	fi
+}
+
+function nvt_dev() {
 	nvim -nu /tmp/nvt-dev.lua ${@}
 }
 
-function nvt-dev-init() {
+function nvt_dev_init() {
 	rm -rf /tmp/nvt-dev.lua /tmp/nvt-dev
 	grep -B 1000 "MODIFY NVIM-TREE SETTINGS" ~/.local/share/nvim/vundle/nvim-tree.lua.dev/.github/ISSUE_TEMPLATE/nvt-min.lua > /tmp/nvt-dev.lua
 	sed -i -e "s/kyazdani42\/nvim-tree\.lua/~\/.local\/share\/nvim\/vundle\/nvim-tree.lua.dev/g ; s/nvt-min/nvt-dev/g" /tmp/nvt-dev.lua

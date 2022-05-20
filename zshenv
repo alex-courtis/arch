@@ -63,9 +63,3 @@ export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
 export XKB_DEFAULT_OPTIONS="caps:escape,grp:win_space_toggle"
 
-# pyenv
-if [ "$(whence pyenv)" ]; then
-	export PYENV_ROOT=$HOME/.pyenv
-	eval "$(pyenv init -)"
-fi
-
