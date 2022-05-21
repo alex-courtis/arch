@@ -25,6 +25,7 @@ function M.setup()
       enable = true,
     },
     open_on_setup_file = true,
+    reload_on_bufenter = true,
     actions = {
       change_dir = {
         restrict_above_cwd = true,
