@@ -44,8 +44,10 @@ set nowrapscan
 set number
 set pumheight=15
 set pumwidth=30
+set shiftwidth=4
 set smartcase
 set switchbuf=useopen,uselast
+set tabstop=4
 set termguicolors
 set title
 set undofile
