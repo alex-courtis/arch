@@ -152,7 +152,7 @@ function nvt-dev-clear() {
 }
 
 function nvt-dev-init() {
-	SRC="${HOME}/src/nvim-tree.lua"
+	SRC="${XDG_DATA_HOME}/nvim/vundle/nvim-tree.lua.dev"
 	INIT="${XDG_CACHE_HOME}/nvim/nvt-dev.lua"
 
 	rm -rf "${INIT}" /tmp/nvt-dev
