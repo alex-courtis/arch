@@ -39,6 +39,7 @@ set clipboard=unnamedplus
 set completeopt=menu,menuone,noselect
 set cursorline
 set ignorecase
+set lcs+=space:·
 set mouse=a
 set nowrapscan
 set number
