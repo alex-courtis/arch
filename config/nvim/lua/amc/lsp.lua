@@ -17,6 +17,24 @@ function M.setup()
       },
     },
   })
+
+  lspconfig.sumneko_lua.setup({
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- ignore vim global, for which there are no definitions
+          globals = {'vim'},
+        },
+        workspace = {
+          -- current project before runtime
+          library = {
+            '.',
+            vim.api.nvim_get_runtime_file("", true),
+          },
+        },
+      },
+    },
+  })
 end
 
 function M.goto_definition_or_tag()
