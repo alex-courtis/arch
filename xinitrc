@@ -17,9 +17,6 @@ if [ "$(whence display-init)" ]; then
 	display-init
 fi
 
-# start all the autostart apps
-dapper --user-dir --system-dir --desktop alex >/dev/null 2>&1
-
 # slock the screen after 5 mins
 if [ "$(whence xautolock)" -a "$(whence slock)" ]; then
 	xautolock -locker slock -time 5 &

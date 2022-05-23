@@ -407,7 +407,6 @@ xorg-xrandr
 xsel
 yq
 zsh-completions
-dapper
 lemonade-git
 rcm
 todotxt
