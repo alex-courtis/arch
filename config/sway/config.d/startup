@@ -2,7 +2,7 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
 exec swayidle -w \
 	timeout 450 'swaylock -f -c ${BASE01}' \
-	timeout 900 'systemctl suspend' \
+	timeout 1800 'systemctl suspend' \
 	before-sleep 'swaylock -f -c ${BASE01}' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
