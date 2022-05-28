@@ -1,13 +1,7 @@
 local M = {}
 
 function M.setup()
-  -- g: will eventually move to setup
-  vim.g.nvim_tree_group_empty = 1
-  vim.g.nvim_tree_special_files = {}
-  vim.g.nvim_tree_show_icons = { git = 1, folders = 0, files = 1, folder_arrows = 0 }
-
   local tree = require("nvim-tree")
-  local lib = require("nvim-tree.lib")
 
   tree.setup({
     log = {
@@ -43,11 +37,19 @@ function M.setup()
       },
     },
     renderer = {
+      group_empty = true,
+      special_files = {},
       indent_markers = {
         enable = true,
       },
       icons = {
         git_placement = "signcolumn",
+        show = {
+          file = true,
+          folder = false,
+          folder_arrow = false,
+          git = true,
+        },
       },
     },
     diagnostics = {
