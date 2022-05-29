@@ -13,6 +13,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'Yohannfra/Vim-Goto-Header'
 
+" plugin and coc-settings.json retained for coc replications
+" Plugin 'neoclide/coc.nvim'
+
 if has('nvim')
 	Plugin 'hrsh7th/cmp-buffer'
 	Plugin 'hrsh7th/cmp-cmdline'

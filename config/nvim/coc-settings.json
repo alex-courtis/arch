@@ -1,0 +1,22 @@
+{
+  "suggest": {
+    "autoTrigger": "none",
+    "maxCompleteItemCount": 10,
+    "noselect": false
+  },
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls"],
+      "initializationOptions": {
+        "compilationDatabaseDirectory": "build",
+        "cache": {
+          "directory": ".ccls-cache"
+        }
+      }
+    }
+  },
+  "Lua.telemetry.enable": true
+}
+
