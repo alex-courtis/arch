@@ -5,7 +5,7 @@ function M.setup()
 
   tree.setup({
     create_in_closed_folder = true,
-    hijack_cursor = true, -- TODO apparently not working
+    hijack_cursor = true,
     open_on_setup_file = true,
     reload_on_bufenter = true,
     update_cwd = true,
