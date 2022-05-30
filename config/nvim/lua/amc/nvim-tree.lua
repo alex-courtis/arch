@@ -47,6 +47,9 @@ function M.setup()
           chars = "aoeui",
         },
       },
+      remove_file = {
+        close_window = false,
+      },
     },
     view = {
       mappings = {
