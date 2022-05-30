@@ -5,6 +5,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'majutsushi/tagbar'
+Plugin 'qpkorr/vim-bufkill'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
@@ -120,6 +121,9 @@ call airline#add_inactive_statusline_func('amc#airlineStatusLine')
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
+
+" buf-kill
+let g:BufKillCreateMappings = 1
 
 " editorconfig
 let EditorConfig_max_line_indicator='line'
