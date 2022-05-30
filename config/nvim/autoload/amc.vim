@@ -16,6 +16,8 @@ function amc#colours()
 	let l:IncSearch = amc#colourString("IncSearch")
 	execute "highlight IncSearch " . l:Search
 	execute "highlight Search " . l:IncSearch
+
+	highlight TrailingSpace ctermbg=9 guibg=red
 endfunction
 
 

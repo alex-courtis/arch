@@ -83,6 +83,9 @@ let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 " put the results of a silent command in " and +
 command -nargs=+ C redir @" | silent exec <q-args> | redir end | let @+ = @"
 
+" reset mouse
+command RM set mouse= | set mouse=a
+
 " default only in vim: return to last edit point
 autocmd BufReadPost *
 			\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
@@ -123,7 +126,7 @@ let g:bufExplorerDisableDefaultKeyMapping=1
 let g:bufExplorerShowNoName=1
 
 " buf-kill
-let g:BufKillCreateMappings = 1
+let g:BufKillCreateMappings = 0
 
 " editorconfig
 let EditorConfig_max_line_indicator='line'

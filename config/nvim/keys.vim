@@ -53,7 +53,8 @@ nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
 nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
 nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
-nm	<silent>	<Leader>b	:set mouse= <Bar> set mouse=a<CR>
+nm	<silent>	<Leader>b	<Plug>BufKillBd
+nm	<silent>	<Leader>B	<Plug>BufKillBw
 
 nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
@@ -103,7 +104,7 @@ nm	<silent>	<Leader>z	gg=G``
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>-	:GotoHeader<CR>
-" \
+nm	<silent>	<Leader>\	:syntax match TrailingSpace /\s\+$/<CR>
 
 nm	<silent>	<BS><Space>	:call amc#mru#forward()<CR>
 nm	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
