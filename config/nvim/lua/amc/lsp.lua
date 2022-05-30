@@ -38,10 +38,10 @@ function M.setup()
 end
 
 function M.goto_definition_or_tag()
+  vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
   if vim.lsp.buf.server_ready() then
     vim.lsp.buf.definition()
   else
-    vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
     vim.cmd(vim.api.nvim_replace_termcodes('normal <C-]>', true, true, true))
   end
 end
