@@ -16,10 +16,14 @@ function amc#colours()
 	let l:IncSearch = amc#colourString("IncSearch")
 	execute "highlight IncSearch " . l:Search
 	execute "highlight Search " . l:IncSearch
-
-	highlight TrailingSpace ctermbg=9 guibg=red
 endfunction
 
+
+function amc#showTrailingSpaces()	      
+	highlight TrailingSpace ctermbg=9 guibg=red
+	syntax clear TrailingSpace
+	syntax match TrailingSpace /\s\+$/
+endfunction
 
 function amc#updateTitleString()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
