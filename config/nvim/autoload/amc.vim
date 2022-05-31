@@ -104,3 +104,24 @@ function amc#forward()
 	call settagstack(win_getid(), {'items' : []})
 endfunction
 
+
+function amc#grep(...)
+	let l:cmd = "silent grep!"
+
+	" fnameescape everything except quotes
+	for l:arg in a:000
+		if match(l:arg, "^'.*'$") == 0
+			let l:arg = "'" . fnameescape(trim(l:arg, "'")) . "'"
+		elseif match(l:arg, '^".*"$') == 0
+			let l:arg = '"' . fnameescape(trim(l:arg, '"')) . '"'
+		else
+			let l:arg = fnameescape(l:arg)
+		end
+		let l:cmd = l:cmd . " " . l:arg
+	endfor
+
+	execute l:cmd
+
+	call amc#qf#openJump()
+endfunction
+
