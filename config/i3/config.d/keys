@@ -23,19 +23,28 @@ bindsym XF86AudioRaiseVolume exec volraise
 bindsym XF86AudioMute exec volmute
 bindsym XF86AudioMicMute exec volmutemic
 
+# first workspace
+bindsym $mod1+a workspace number 1
 
 # left
 # $
-# ;
-# ,
+bindsym $mod1+semicolon workspace number 6
+bindsym $mod2+semicolon move container to workspace number 6; workspace 6
+bindsym $mod1+comma workspace number 7
+bindsym $mod2+comma move container to workspace number 7; workspace 7
+bindsym $mod1+period workspace number 8
+bindsym $mod2+period move container to workspace number 8; workspace 8
 bindsym $mod3+period exec vollowermic
+bindsym $mod1+p workspace number 9
+bindsym $mod2+p move container to workspace number 9; workspace 9
 bindsym $mod3+p exec volraisemic
+bindsym $mod1+y workspace number 10
+bindsym $mod2+y move container to workspace number 10; workspace 10
 bindsym $mod3+y exec volmutemic
 
-bindsym $mod1+a workspace number 1
+# @
+# bindsym $mod1+a workspace number 1
 bindsym $mod2+a move container to workspace number 1; workspace 1
-bindsym $mod1+at workspace number 0
-bindsym $mod2+at move container to workspace number 0; workspace 0
 bindsym $mod1+o workspace number 2
 bindsym $mod2+o move container to workspace number 2; workspace 2
 bindsym $mod1+e workspace number 3
