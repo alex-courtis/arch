@@ -79,18 +79,6 @@ function! amc#wipeMacros()
 endfunction
 
 
-function! amc#clearDelete()
-	call amc#win#goHome()
-
-	for l:bn in range(1, bufnr("$"), 1)
-		if l:bn != bufnr("%") && amc#buf#flavour(l:bn) == g:amc#buf#ORDINARY_HAS_FILE && getbufvar(l:bn, "&buflisted")
-			" amc#buf#autoWrite will update before delete
-			execute "bw!" . l:bn
-		endif
-	endfor
-endfunction
-
-
 function! amc#find()
 	call amc#win#goHome()
 	execute "silent find " . input("find: ", "", "file_in_path")

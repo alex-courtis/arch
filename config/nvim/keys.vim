@@ -53,8 +53,8 @@ nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
 nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
 nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
-nm	<silent>	<Leader>b	<Plug>BufKillBd
-nm	<silent>	<Leader>B	<Plug>BufKillBw
+nm	<silent>	<Leader>b	<Plug>BufKillBw
+nm	<silent>	<Leader>B	<Plug>BufKillBangBw
 
 nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
@@ -96,7 +96,7 @@ nm	<silent>	<Leader>N	:silent! tp<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
-nm	<silent>	<Leader>L	:call amc#clearDelete()<CR>
+" l
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>z	gg=G``
 
