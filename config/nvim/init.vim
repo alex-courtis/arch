@@ -95,9 +95,6 @@ autocmd BufReadPost *
 " tags search down only
 set tags=**/tags
 
-" mru
-cabbrev ml call amc#mru#prn("mru w" . winnr(), 1)
-
 " start neovim only plugins
 if has('nvim')
 	lua require 'amc/cmp'.setup()
@@ -150,7 +147,6 @@ nmap	gc	<NOP>
 
 " event order matters
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
-autocmd BufEnter * call amc#mru#update()
 autocmd BufEnter * call amc#updateTitleString()
 autocmd BufLeave * ++nested call amc#buf#autoWrite()
 autocmd BufWritePost * call amc#updateTitleString()
@@ -162,10 +158,8 @@ autocmd QuickfixCmdPost * call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
 autocmd WinClosed * call amc#win#wipeOnClosed()
-autocmd WinNew * call amc#mru#winNew()
 
 " log
 " let g:amcLog = 1
-" let g:amcLogMru = 1
 " call amc#log#startEventLogging()
 

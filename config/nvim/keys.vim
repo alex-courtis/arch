@@ -42,8 +42,8 @@ nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>i	:call amc#win#openBufExplorer()<CR>
 nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
 
-nm	<silent>	<Space><BS>	:call amc#mru#back()<CR>
-nm	<silent>	<BS><BS>	:call amc#mru#back()<CR>
+nm	<silent>	<Space><BS>	:call amc#back()<CR>
+nm	<silent>	<BS><BS>	:call amc#back()<CR>
 " end left
 
 " begin right
@@ -96,7 +96,6 @@ nm	<silent>	<Leader>N	:silent! tp<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
-nm	<silent>	<Leader>l	:call amc#clear()<CR>
 nm	<silent>	<Leader>L	:call amc#clearDelete()<CR>
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>z	gg=G``
@@ -106,8 +105,8 @@ vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>-	:GotoHeader<CR>
 nm	<silent>	<Leader>\	:syntax match TrailingSpace /\s\+$/<CR>
 
-nm	<silent>	<BS><Space>	:call amc#mru#forward()<CR>
-nm	<silent>	<Space><Space>	:call amc#mru#forward()<CR>
+nm	<silent>	<BS><Space>	:call amc#forward()<CR>
+nm	<silent>	<Space><Space>	:call amc#forward()<CR>
 " end right
 endfor
 

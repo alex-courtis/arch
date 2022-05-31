@@ -79,14 +79,8 @@ function! amc#wipeMacros()
 endfunction
 
 
-function! amc#clear()
-	call amc#mru#clear()
-endfunction
-
 function! amc#clearDelete()
 	call amc#win#goHome()
-
-	call amc#clear()
 
 	for l:bn in range(1, bufnr("$"), 1)
 		if l:bn != bufnr("%") && amc#buf#flavour(l:bn) == g:amc#buf#ORDINARY_HAS_FILE && getbufvar(l:bn, "&buflisted")
@@ -96,8 +90,25 @@ function! amc#clearDelete()
 	endfor
 endfunction
 
+
 function! amc#find()
 	call amc#win#goHome()
 	execute "silent find " . input("find: ", "", "file_in_path")
+endfunction
+
+
+function amc#back()
+	let ts = gettagstack()
+	if ts.length > 0 && ts.curidx > ts.length
+		pop
+	else
+		silent execute ":BB"
+	endif
+	call settagstack(win_getid(), {'items' : []})
+endfunction
+
+function amc#forward()
+	silent execute ":BF"
+	call settagstack(win_getid(), {'items' : []})
 endfunction
 
