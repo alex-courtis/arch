@@ -71,7 +71,7 @@ endif
 " grep
 set grepprg=ag\ --vimgrep\ --debug
 let &grepformat="ERR: %m,DEBUG: Query is %o,%-GDEBUG:%.%#,%f:%l:%c:%m,%f"
-command -nargs=+ -complete=file_in_path AG silent grep! <args> <Bar> set hlsearch
+command -nargs=+ -complete=file_in_path AG silent grep! <args> <Bar> set hlsearch <Bar> call amc#qf#openJump()
 cabbrev ag AG
 
 " errorformat
@@ -158,7 +158,7 @@ autocmd DirChanged global call amc#updatePath()
 autocmd FileType qf call amc#qf#setGrepPattern()
 autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * ++nested call amc#buf#autoWrite()
-autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPost()
+autocmd QuickfixCmdPost * call amc#qf#cmdPost()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
 autocmd WinClosed * call amc#win#wipeOnClosed()

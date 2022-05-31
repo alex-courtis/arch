@@ -1,3 +1,5 @@
+let g:amc#qf#ccFirst = 0
+
 " update @/ with the grep query, if present
 function amc#qf#setGrepPattern()
 	let l:context = getqflist({"context" : 0})["context"]
@@ -12,12 +14,13 @@ endfunction
 " 0 for no results, >0 for first valid, -1 for only invalid
 function amc#qf#processGrep()
 	let l:title = getqflist({"title" : 0}).title
+	let l:items = getqflist({"items" : 0}).items
 	let l:firstValid = 0
 	let l:firstInvalid = 0
 	let l:itemNr = 0
 	let l:filteredItems = []
 	let l:query = ""
-	for l:item in getqflist()
+	for l:item in l:items
 
 		" query is the only module; remove from list
 		if strlen(l:item["module"]) > 0
@@ -36,11 +39,11 @@ function amc#qf#processGrep()
 			let l:firstInvalid = l:itemNr
 		endif
 	endfor
-	call setqflist(l:filteredItems, 'r')
+	call setqflist([], "r", {"items": l:filteredItems})
 
 	" use query as the context
 	if strlen(l:query) > 0
-		call setqflist([], 'r', { 'context': { 'grepPattern' : l:query } })
+		call setqflist([], "r", {"context": { "grepPattern" : l:query } })
 		call amc#qf#setGrepPattern()
 	endif
 
@@ -48,21 +51,20 @@ function amc#qf#processGrep()
 	call setqflist([], 'r', {'title': l:title})
 
 	if l:firstInvalid && !l:firstValid
-		return -1
+		let g:amc#qf#ccFirst = 0
 	else
-		return l:firstValid
+		let g:amc#qf#ccFirst = l:firstValid
 	endif
 endfunction
 
 function amc#qf#processInexistent()
 	let l:title = getqflist({"title" : 0}).title
-	let l:all = getqflist({'all' : 1})
-	let l:all['items'] = []
+	let l:items = getqflist({"items" : 0}).items
 
 	let l:firstValid = 0
 	let l:itemNr = 0
 	let l:filteredItems = []
-	for l:item in getqflist()
+	for l:item in l:items
 		let l:itemNr += 1
 		let l:bufnr = l:item["bufnr"]
 		let l:bname = bufname(l:bufnr)
@@ -89,34 +91,31 @@ function amc#qf#processInexistent()
 			let l:firstValid = l:itemNr
 		endif
 	endfor
-	call setqflist(l:filteredItems, 'r')
+	call setqflist([], 'r', {"items": l:filteredItems})
 
-	" title is changed to ":setqflist()" after setting items
-	call setqflist([], 'r', {'title': l:title})
-
-	return l:firstValid
+	let g:amc#qf#ccFirst = l:firstValid
 endfunction
 
 function amc#qf#cmdPost()
+	let g:amc#qf#ccFirst = 0
+
 	let l:title = getqflist({"title" : 0}).title
 
-	let l:cc = 0
 	if match(l:title, ':\s*' . &grepprg . '\s*') >= 0
 		call amc#qf#processInexistent()
-		let l:cc = amc#qf#processGrep()
+		call amc#qf#processGrep()
 	elseif match(l:title, ':\s*' . &makeprg . '\s*') >= 0
-		let l:cc = amc#qf#processInexistent()
+		call amc#qf#processInexistent()
 	endif
+endfunction
 
+function amc#qf#openJump()
 	call amc#win#goHome()
-	if l:cc == -1
-		belowright copen 15
-	else
-		belowright cwindow 15
-	endif
 
-	if l:cc > 0
-		execute "cc" . l:cc
+	belowright cwindow 15
+
+	if g:amc#qf#ccFirst
+		execute "cc" . g:amc#qf#ccFirst
 	endif
 endfunction
 
