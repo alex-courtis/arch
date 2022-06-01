@@ -1,5 +1,7 @@
 settings.focusOnSaved = true
 
+api.Hints.setCharacters('aoeuipyqx');
+
 // back/forwards
 api.map('<Space><Backspace>', 'S');
 api.map('<Backspace><Backspace>', 'S');
@@ -43,6 +45,11 @@ api.removeSearchAlias('h');
 // open link in new tab
 api.map('F', 'af');
 
+// open url
+api.map('e', 'go');
+api.unmap('go');
+api.map('E', 't');
+
 // move tab to another window
 api.map('w', 'W');
 api.unmap('W');
@@ -59,7 +66,17 @@ api.mapkey('B', '#8Open a bookmark in new tab', function() { api.Front.openOmnib
 api.mapkey('s', '#8Open search with alias d in current tab', function() { api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: false})); });
 api.mapkey('S', '#8Open search with alias d in new tab', function() { api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: true})); });
 
-api.Hints.setCharacters('aoeuipyqx');
+// open url from clipboard
+api.mapkey('p', '#7Open link from clipboard in current tab', function() {
+	api.Clipboard.read(function(response) {
+		window.location.href = response.data;
+	});
+});
+api.mapkey('P', '#7Open link from clipboard in new tab', function() {
+	api.Clipboard.read(function(response) {
+		api.tabOpenLink(response.data);
+	});
+});
 
 // ace editor
 api.aceVimMap(';', ':', 'normal');
