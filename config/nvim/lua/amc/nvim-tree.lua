@@ -52,6 +52,7 @@ function M.setup()
       },
     },
     view = {
+      adaptive_size = true,
       mappings = {
         list = {
           { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
