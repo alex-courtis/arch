@@ -5,7 +5,4 @@ bindsym --no-warn $mod2+x exec exec $(menjar) > /dev/null 2>&1
 
 bindsym --no-warn $mod3+o exec swaylock -f -c ${BASE01} > /dev/null 2>&1
 
-bindsym --no-warn $mod1+tab exec swayr next-window current-workspace
-bindsym --no-warn $mod2+tab exec swayr prev-window current-workspace
-
 # vim: set filetype=i3config :
