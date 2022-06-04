@@ -92,7 +92,7 @@ vm				<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
 vm				<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
 nm	<silent>	<Leader>n	:lua require 'amc/lsp'.references_or_next_tag()<CR>
 vm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
-nm	<silent>	<Leader>N	:silent! tp<CR>
+nm	<silent>	<Leader>N	:lua require 'amc/lsp'.nothing_or_prev_tag()<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
