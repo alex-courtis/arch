@@ -140,11 +140,11 @@ function pyenv-init() {
 }
 
 function nvt-dev() {
-	nvim -nu "${XDG_CACHE_HOME}/nvim/nvt-dev.lua" ${@}
+	nvim -nu "/tmp/nvt-dev.lua" ${@}
 }
 
 function nvt-dev-edit() {
-	vi "${XDG_CACHE_HOME}/nvim/nvt-dev.lua"
+	vi "/tmp/nvt-dev.lua"
 }
 
 function nvt-dev-clear() {
@@ -153,7 +153,7 @@ function nvt-dev-clear() {
 
 function nvt-dev-init() {
 	SRC="${XDG_DATA_HOME}/nvim/vundle/nvim-tree.lua.dev"
-	INIT="${XDG_CACHE_HOME}/nvim/nvt-dev.lua"
+	INIT="/tmp/nvt-dev.lua"
 
 	rm -rf "${INIT}" /tmp/nvt-dev
 
