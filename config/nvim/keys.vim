@@ -103,7 +103,7 @@ nm	<silent>	<Leader>z	gg=G``
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 nm	<silent>	<Leader>-	:GotoHeader<CR>
-nm	<silent>	<Leader>l	:call amc#showTrailingSpaces()<CR>
+nm	<silent>	<Leader>l	:call amc#showTrailingSpaces()<CR>     
 
 nm	<silent>	<BS><Space>	:call amc#forward()<CR>
 nm	<silent>	<Space><Space>	:call amc#forward()<CR>
