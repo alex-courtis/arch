@@ -1,5 +1,3 @@
-let g:amc#qf#ccFirst = 0
-
 " update @/ with the grep query, if present
 function amc#qf#setGrepPattern()
 	let l:context = getqflist({"context" : 0})["context"]
@@ -10,6 +8,9 @@ function amc#qf#setGrepPattern()
 		return 0
 	endif
 endfunction
+
+" needed when the quickfix list is twiddled, as the auto jump won't happen
+let s:ccJumpTo = 0
 
 " 0 for no results, >0 for first valid, -1 for only invalid
 function amc#qf#processGrep()
@@ -51,9 +52,9 @@ function amc#qf#processGrep()
 	call setqflist([], 'r', {'title': l:title})
 
 	if l:firstInvalid && !l:firstValid
-		let g:amc#qf#ccFirst = 0
+		let s:ccJumpTo = 0
 	else
-		let g:amc#qf#ccFirst = l:firstValid
+		let s:ccJumpTo = l:firstValid
 	endif
 endfunction
 
@@ -93,11 +94,11 @@ function amc#qf#processInexistent()
 	endfor
 	call setqflist([], 'r', {"items": l:filteredItems})
 
-	let g:amc#qf#ccFirst = l:firstValid
+	let s:ccJumpTo = l:firstValid
 endfunction
 
-function amc#qf#cmdPost()
-	let g:amc#qf#ccFirst = 0
+function amc#qf#cmdPostProcess()
+	let s:ccJumpTo = 0
 
 	let l:title = getqflist({"title" : 0}).title
 
@@ -107,15 +108,15 @@ function amc#qf#cmdPost()
 	elseif match(l:title, ':\s*' . &makeprg . '\s*') >= 0
 		call amc#qf#processInexistent()
 	endif
-endfunction
 
-function amc#qf#openJump()
 	call amc#win#goHome()
 
 	belowright cwindow 15
 
-	if g:amc#qf#ccFirst
-		execute "cc" . g:amc#qf#ccFirst
+	if s:ccJumpTo
+		execute "cc" . s:ccJumpTo
 	endif
+
+	let s:ccJumpTo = 0
 endfunction
 

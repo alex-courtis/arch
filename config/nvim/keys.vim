@@ -72,8 +72,8 @@ nm	<silent>	<Leader>hl	:Gitsigns toggle_current_line_blame<CR>
 nm	<silent>	<Leader>hd	:Gitsigns diffthis<CR>
 nm	<silent>	<Leader>hD	:lua require"gitsigns".diffthis("~")<CR>
 nm	<silent>	<Leader>ht	:Gitsigns toggle_deleted<CR>
-nm	<silent>	<Leader>m	:make <Bar> call amc#qf#openJump()<CR>
-nm	<silent>	<Leader>M	:make clean <Bar> call amc#qf#openJump()<CR>
+nm	<silent>	<Leader>m	:make<CR>
+nm	<silent>	<Leader>M	:make clean<CR>
 
 nm	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
 nm	<silent>	<Leader>cc	<Plug>CommentaryLine
