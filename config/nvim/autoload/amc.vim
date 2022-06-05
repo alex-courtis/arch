@@ -104,3 +104,20 @@ function amc#forward()
 	call settagstack(win_getid(), {'items' : []})
 endfunction
 
+
+function amc#grep(...)
+	let l:cmd = "silent grep!"
+
+	" Escape all cmdline-special. There is no nice function for this.
+	for l:arg in a:000
+		let l:arg = substitute(l:arg, '#', '\\#', "g")
+		let l:arg = substitute(l:arg, '%', '\\%', "g")
+		let l:cmd = l:cmd . " " . l:arg
+	endfor
+
+	echo l:cmd
+	execute l:cmd
+
+	call amc#qf#openJump()
+endfunction
+
