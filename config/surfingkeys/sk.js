@@ -95,6 +95,7 @@ function createSearch(alias, prompt, search_url, suggestion_url, callback_to_par
 }
 
 // clear all search aliases
+api.unmap('e');
 api.removeSearchAlias('g');
 api.removeSearchAlias('d');
 api.removeSearchAlias('b');
