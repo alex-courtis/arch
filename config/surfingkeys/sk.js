@@ -1,5 +1,10 @@
 settings.focusOnSaved = false
 
+var engine_prefix_this_tab = 'e';
+api.unmap('e');
+var engine_prefix_new_tab = 'E';
+api.unmap('E');
+
 api.Hints.setCharacters('aoeuipyqx');
 
 // back/forwards
@@ -36,10 +41,9 @@ api.map('<Ctrl-u>', 'u');
 // open link in new tab
 api.map('F', 'af');
 
-// open url
-api.map('e', 'go');
-api.unmap('go');
-api.map('E', 't');
+// open url - current tab
+api.map('O', 't');
+api.unmap('t');
 
 // move tab to another window
 api.map('w', 'W');
@@ -48,6 +52,10 @@ api.unmap('W');
 // new tab
 api.map('t', 'on');
 api.unmap('on');
+
+// open url - new tab
+api.map('o', 'go');
+api.unmap('go');
 
 // open bookmarks
 api.mapkey('b', '#8Open a bookmark in current tab', function() {
@@ -58,10 +66,10 @@ api.mapkey('B', '#8Open a bookmark in new tab', function() {
 });
 
 // open search d with s and S; clobbers all the unwanted s prefixes
-api.mapkey('s', '#8Open search with alias du in current tab', function() {
+api.mapkey('s', '#8Duck Duck Go', function() {
 	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: false}));
 });
-api.mapkey('S', '#8Open search with alias du in new tab', function() {
+api.mapkey('S', '#8Duck Duck Go', function() {
 	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: true}));
 });
 
@@ -85,26 +93,34 @@ api.removeSearchAlias('s');
 api.removeSearchAlias('h');
 api.removeSearchAlias('w');
 
+function createSearch(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
+	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
+	api.unmap('o' + alias);
+	api.unmap('s' + alias);
+	api.mapkey(engine_prefix_this_tab + alias, '#8' + prompt, () => {
+		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
+	});
+	api.mapkey(engine_prefix_new_tab + alias, '#8' + prompt, () => {
+		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
+	});
+}
+
 // real search aliases
-// TODO make untabbed, add O prefix for tabbed
-api.addSearchAlias('du', 'duckduckgo', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
+createSearch('du', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
 		return r.phrase;
 	});
 });
-api.addSearchAlias('wi', 'wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+createSearch('wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
-api.addSearchAlias('ap', 'Arch Packages', 'https://www.archlinux.org/packages/?q=%s');
-api.addSearchAlias('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?title=Special:Search&search=%s');
-api.addSearchAlias('au', 'AUR Packages', 'https://aur.archlinux.org/packages/?O=0&K=%s');
-api.addSearchAlias('sd', 'Steam DB', 'https://steamdb.info/search/?a=app&q=%s');
-api.addSearchAlias('ss', 'Steam Store', 'https://store.steampowered.com/search/?snr=1_4_4__12&term=%s');
-api.addSearchAlias('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=%s&scope=internal&navigationSearch=true');
-api.mapkey('odw', '#8Open Search with alias dw', () => {
-	api.Front.openOmnibar({type: "SearchEngine", extra: 'dw', tabbed: false});
-});
+createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
+createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
+createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
+createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
+createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
+createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
 
 // ace editor
 api.aceVimMap(';', ':', 'normal');
