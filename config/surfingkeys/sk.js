@@ -1,9 +1,7 @@
 settings.focusOnSaved = false
 
-var engine_prefix_this_tab = 'e';
-api.unmap('e');
-var engine_prefix_new_tab = 'E';
-api.unmap('E');
+// ace editor
+api.aceVimMap(';', ':', 'normal');
 
 api.Hints.setCharacters('aoeuipyqx');
 
@@ -41,7 +39,7 @@ api.map('<Ctrl-u>', 'u');
 // open link in new tab
 api.map('F', 'af');
 
-// open url - current tab
+// open url - new tab
 api.map('O', 't');
 api.unmap('t');
 
@@ -53,7 +51,7 @@ api.unmap('W');
 api.map('t', 'on');
 api.unmap('on');
 
-// open url - new tab
+// open url - current tab
 api.map('o', 'go');
 api.unmap('go');
 
@@ -85,43 +83,52 @@ api.mapkey('P', '#7Open link from clipboard in new tab', function() {
 	});
 });
 
-// clear most search aliases
-api.removeSearchAlias('e');
-api.removeSearchAlias('d');
-api.removeSearchAlias('b');
-api.removeSearchAlias('s');
-api.removeSearchAlias('h');
-api.removeSearchAlias('w');
-
+// create search alias with e and E prefixes
 function createSearch(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
 	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
-	api.unmap('o' + alias);
-	api.unmap('s' + alias);
-	api.mapkey(engine_prefix_this_tab + alias, '#8' + prompt, () => {
+	api.mapkey('e' + alias, '#8' + prompt, () => {
 		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
 	});
-	api.mapkey(engine_prefix_new_tab + alias, '#8' + prompt, () => {
+	api.mapkey('E' + alias, '#8' + prompt, () => {
 		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
 	});
 }
 
-// real search aliases
+// clear all search aliases
+api.removeSearchAlias('g');
+api.removeSearchAlias('d');
+api.removeSearchAlias('b');
+api.removeSearchAlias('e');
+api.removeSearchAlias('w');
+api.removeSearchAlias('s');
+api.removeSearchAlias('h');
+api.removeSearchAlias('y');
+
+// search aliases
 createSearch('du', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
 		return r.phrase;
 	});
 });
+createSearch('go', 'Google', 'https://www.google.com/search?q=', 's', 'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=', function(response) {
+	var res = JSON.parse(response.text);
+	return res[1];
+});
 createSearch('wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
+createSearch('yo', 'youtube', 'https://www.youtube.com/results?search_query=', 's',
+	'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=', function(response) {
+		var res = JSON.parse(response.text.substr(9, response.text.length-10));
+		return res[1].map(function(d) {
+			return d[0];
+		});
+	});
 createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
 createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
 createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
 createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
 createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
 createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
-
-// ace editor
-api.aceVimMap(';', ':', 'normal');
 
