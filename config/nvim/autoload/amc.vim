@@ -84,7 +84,17 @@ endfunction
 
 function! amc#find()
 	call amc#win#goHome()
-	execute "silent find " . input("find: ", "", "file_in_path")
+
+	let l:fn = input("find: ", "", "file_in_path")
+	if l:fn == ""
+		return
+	endif
+
+	try
+		execute "silent find " . l:fn
+	catch
+		echo " not found"
+	endtry
 endfunction
 
 
