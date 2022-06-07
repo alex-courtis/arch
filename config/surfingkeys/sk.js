@@ -1,5 +1,4 @@
 // settings.focusOnSaved = false
-settings.focusFirstCandidate = true;
 settings.tabsThreshold = 99;
 settings.tabsMRUOrder = false;
 
