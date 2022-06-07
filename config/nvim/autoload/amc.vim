@@ -7,7 +7,6 @@ endfunction
 
 function amc#colours()
 	highlight CursorLineNr cterm=bold
-	highlight default link TagbarHighlight CursorLine
 	highlight default link bufExplorerHidBuf Operator
 	highlight default link NvimTreeWindowPicker IncSearch
 

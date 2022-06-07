@@ -39,7 +39,6 @@ nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
 nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
 
-nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>i	:call amc#win#openBufExplorer()<CR>
 nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
 
