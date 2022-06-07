@@ -58,7 +58,7 @@ function amc#qf#processGrep()
 	endif
 endfunction
 
-function amc#qf#processInexistent()
+function amc#qf#removeInexistent()
 	let l:title = getqflist({"title" : 0}).title
 	let l:items = getqflist({"items" : 0}).items
 
@@ -103,12 +103,13 @@ function amc#qf#cmdPostProcess()
 	let l:title = getqflist({"title" : 0}).title
 
 	if match(l:title, ':\s*' . &grepprg . '\s*') >= 0
-		call amc#qf#processInexistent()
 		call amc#qf#processGrep()
 	elseif match(l:title, ':\s*' . &makeprg . '\s*') >= 0
-		call amc#qf#processInexistent()
+		call amc#qf#removeInexistent()
 	endif
+endfunction
 
+function amc#qf#openJump()
 	call amc#win#goHome()
 
 	belowright cwindow 15

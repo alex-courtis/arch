@@ -28,7 +28,8 @@ nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
-nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
+nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright cwindow 15 <CR>
+nm	<silent>	<Leader>Q	:cclose<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
@@ -72,8 +73,8 @@ nm	<silent>	<Leader>hl	:Gitsigns toggle_current_line_blame<CR>
 nm	<silent>	<Leader>hd	:Gitsigns diffthis<CR>
 nm	<silent>	<Leader>hD	:lua require"gitsigns".diffthis("~")<CR>
 nm	<silent>	<Leader>ht	:Gitsigns toggle_deleted<CR>
-nm	<silent>	<Leader>m	:make<CR>
-nm	<silent>	<Leader>M	:make clean<CR>
+nm	<silent>	<Leader>m	:make <Bar> call amc#qf#openJump()<CR>
+nm	<silent>	<Leader>M	:make clean <Bar> call amc#qf#openJump()<CR>
 
 nm	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
 nm	<silent>	<Leader>cc	<Plug>CommentaryLine

@@ -117,5 +117,7 @@ function amc#grep(...)
 
 	echo l:cmd
 	execute l:cmd
+
+	call amc#qf#openJump()
 endfunction
 
