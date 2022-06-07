@@ -1,101 +1,131 @@
-settings.focusOnSaved = false
+// settings.focusOnSaved = false
+settings.focusFirstCandidate = true;
+settings.tabsThreshold = 99;
+settings.tabsMRUOrder = false;
 
 // ace editor
 api.aceVimMap(';', ':', 'normal');
 
 api.Hints.setCharacters('aoeuipyqx');
 
+var except_map = [
+	// unchanged defaults
+	'<Ctrl-i>',
+	'?', '/', ':',
+	'd', 'u',
+	'f',
+	'gg', 'G',
+	'i', 'I',
+	'j', 'k',
+	'n', 'N',
+	'r',
+	'T',
+	'x', 'X',
+	'yy',
+	'zi', 'zo', 'zr',
+];
+function map(new_keystroke, old_keystroke, domain, new_annotation) {
+	api.map(new_keystroke, old_keystroke, domain, new_annotation);
+	except_map.push(new_keystroke);
+}
+function mapkey(keys, annotation, jscode, options) {
+	api.mapkey(keys, annotation, jscode, options);
+	except_map.push(keys);
+}
+
+// toggle
+map('<Ctrl-g>', '<Alt-s>');
+
+// passthrough
+map('<Ctrl-s>', '<Alt-i>');
+
 // back/forwards
-api.map('<Space><Backspace>', 'S');
-api.map('<Backspace><Backspace>', 'S');
-api.unmap('S');
-api.map('<Backspace><Space>', 'D');
-api.map('<Space><Space>', 'D');
-api.unmap('D');
-
-// tab left/right
-api.map('h', 'E');
-api.unmap('E');
-api.map('l', 'R');
-api.unmap('R');
-
-// tab move left/right
-api.map('H', '<<');
-api.unmap('<<');
-api.map('L', '>>');
-api.unmap('>>');
+map('<Space><Backspace>', 'S');
+map('<Backspace><Backspace>', 'S');
+map('<Backspace><Space>', 'D');
+map('<Space><Space>', 'D');
 
 // scroll left/right
-api.map('<', 'h');
-api.map('>', 'l');
+map('<', 'h');
+map('>', 'l');
+
+// tab left/right
+map('h', 'E');
+map('l', 'R');
+
+// tab move left/right
+map('H', '<<');
+map('L', '>>');
 
 // other tabs close
-api.map('C', 'gxx');
+map('C', 'gxx');
 
 // additional down/up
-api.map('<Ctrl-d>', 'd');
-api.map('<Ctrl-u>', 'u');
+map('<Ctrl-d>', 'd');
+map('<Ctrl-u>', 'u');
 
 // open link in new tab
-api.map('F', 'af');
+map('F', 'af');
 
-// open url - new tab
-api.map('O', 't');
-api.unmap('t');
+// open url
+map('o', 'go');
+map('O', 't');
 
 // move tab to another window
-api.map('w', 'W');
-api.unmap('W');
+map('m', 'W');
+mapkey('M', '#3Move current tab to a new window', function() {
+	api.RUNTIME('moveToWindow', { windowId: -1 });
+});
 
 // new tab
-api.map('t', 'on');
-api.unmap('on');
+map('t', 'on');
 
-// open url - current tab
-api.map('o', 'go');
-api.unmap('go');
+// edit url
+map('v', ';U');
+map('V', ';u');
 
 // open bookmarks
-api.mapkey('b', '#8Open a bookmark in current tab', function() {
+mapkey('b', '#8Open a bookmark in current tab', function() {
 	api.Front.openOmnibar(({type: "Bookmarks", tabbed: false}));
 });
-api.mapkey('B', '#8Open a bookmark in new tab', function() {
+mapkey('B', '#8Open a bookmark in new tab', function() {
 	api.Front.openOmnibar(({type: "Bookmarks", tabbed: true}));
 });
 
 // open search d with s and S; clobbers all the unwanted s prefixes
-api.mapkey('s', '#8Duck Duck Go', function() {
+mapkey('s', '#6Duck Duck Go', function() {
 	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: false}));
 });
-api.mapkey('S', '#8Duck Duck Go', function() {
+mapkey('S', '#6Duck Duck Go', function() {
 	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: true}));
 });
 
 // open url from clipboard
-api.mapkey('p', '#7Open link from clipboard in current tab', function() {
+mapkey('p', '#7Open link from clipboard in current tab', function() {
 	api.Clipboard.read(function(response) {
 		window.location.href = response.data;
 	});
 });
-api.mapkey('P', '#7Open link from clipboard in new tab', function() {
+mapkey('P', '#7Open link from clipboard in new tab', function() {
 	api.Clipboard.read(function(response) {
 		api.tabOpenLink(response.data);
 	});
 });
 
 // create search alias with e and E prefixes
+api.unmap('e');
+api.unmap('E');
 function createSearch(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
 	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
-	api.mapkey('e' + alias, '#8' + prompt, () => {
+	mapkey('e' + alias, '#6' + prompt, () => {
 		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
 	});
-	api.mapkey('E' + alias, '#8' + prompt, () => {
+	mapkey('E' + alias, '#6' + prompt, () => {
 		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
 	});
 }
 
-// clear all search aliases
-api.unmap('e');
+// clear all default search aliases
 api.removeSearchAlias('g');
 api.removeSearchAlias('d');
 api.removeSearchAlias('b');
@@ -106,6 +136,12 @@ api.removeSearchAlias('h');
 api.removeSearchAlias('y');
 
 // search aliases
+createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
+createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
+createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
+createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
+createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
+createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
 createSearch('du', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
@@ -119,17 +155,49 @@ createSearch('go', 'Google', 'https://www.google.com/search?q=', 's', 'https://w
 createSearch('wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
-createSearch('yo', 'youtube', 'https://www.youtube.com/results?search_query=', 's',
+createSearch('yo', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
 	'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=', function(response) {
 		var res = JSON.parse(response.text.substr(9, response.text.length-10));
 		return res[1].map(function(d) {
 			return d[0];
 		});
 	});
-createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
-createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
-createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
-createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
-createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
-createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
+
+// unmap defaults
+api.unmapAllExcept(except_map);
+api.iunmap(':');
+api.iunmap('<Ctrl-u>');
+
+// no api for visual unmap
+api.vunmap('$');
+api.vunmap('(');
+api.vunmap(')');
+api.vunmap('*');
+api.vunmap(',');
+api.vunmap('0');
+api.vunmap(';');
+api.vunmap('<Ctrl-d>');
+api.vunmap('<Ctrl-u>');
+api.vunmap('<Enter>');
+api.vunmap('<Shift-Enter>');
+api.vunmap('b');
+api.vunmap('e');
+api.vunmap('f');
+api.vunmap('F');
+api.vunmap('G');
+api.vunmap('gg');
+api.vunmap('gr');
+api.vunmap('h');
+api.vunmap('j');
+api.vunmap('k');
+api.vunmap('l');
+api.vunmap('o');
+api.vunmap('p');
+api.vunmap('q');
+api.vunmap('t');
+api.vunmap('V');
+api.vunmap('w');
+api.vunmap('zz');
+api.vunmap('{');
+api.vunmap('}');
 
