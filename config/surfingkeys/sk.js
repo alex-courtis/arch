@@ -67,18 +67,20 @@ map('<Ctrl-u>', 'u');
 // open link in new tab
 map('F', 'af');
 
+// new tab
+map('_', 't');
+map('t', 'on');
+
 // open url
 map('o', 'go');
-map('O', 't');
+map('O', '_');
+api.unmap('_');
 
 // move tab to another window
 map('m', 'W');
 mapkey('M', '#3Move current tab to a new window', function() {
 	api.RUNTIME('moveToWindow', { windowId: -1 });
 });
-
-// new tab
-map('t', 'on');
 
 // edit url
 map('v', ';U');
