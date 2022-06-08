@@ -32,11 +32,14 @@ function mapkey(keys, annotation, jscode, options) {
 	except_map.push(keys);
 }
 
-// toggle
-map('<Ctrl-g>', '<Alt-s>');
+// toggle SK
+map('<Ctrl-s>', '<Alt-s>');
 
 // passthrough
-map('<Ctrl-s>', '<Alt-i>');
+map('<Ctrl-a>', '<Alt-i>');
+
+// toggle PDF
+map('<Ctrl-p>', ';s');
 
 // back/forwards
 map('<Space><Backspace>', 'S');
@@ -138,11 +141,12 @@ api.removeSearchAlias('y');
 
 // search aliases
 createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
-createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
 createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
+createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
+createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
+createSearch('ga', 'go', 'http://go/');
 createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
 createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
-createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
 createSearch('du', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
