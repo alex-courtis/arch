@@ -28,6 +28,7 @@ nm <Space>' <Action>(RestoreDefaultLayout)
 nm <Space>, <Action>(PreviousTab)
 nm <Space>o <Action>(NextTab)
 nm <Space>q <Action>(CloseContent)
+nm <Space>Q <Action>(CloseAllEditorsButActive)
 
 nm <Space>. <Action>(GotoNextError)
 nm <Space>e <Action>(NextOccurence)
