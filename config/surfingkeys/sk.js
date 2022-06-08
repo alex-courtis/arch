@@ -47,6 +47,10 @@ map('<Backspace><Backspace>', 'S');
 map('<Backspace><Space>', 'D');
 map('<Space><Space>', 'D');
 
+// tab move left/right
+map('H', '<<');
+map('L', '>>');
+
 // scroll left/right
 map('<', 'h');
 map('>', 'l');
@@ -54,10 +58,6 @@ map('>', 'l');
 // tab left/right
 map('h', 'E');
 map('l', 'R');
-
-// tab move left/right
-map('H', '<<');
-map('L', '>>');
 
 // other tabs close
 map('C', 'gxx');
