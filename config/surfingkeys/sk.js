@@ -88,6 +88,14 @@ mapkey('M', '#3Move current tab to a new window', function() {
 map('v', ';U');
 map('V', ';u');
 
+// close / restore tab
+map('q', 'x');
+map('Q', 'X');
+
+// omnibar page
+api.cmap('<Ctrl-d>', '<Ctrl-.>');
+api.cmap('<Ctrl-u>', '<Ctrl-,>');
+
 // open bookmarks
 mapkey('b', '#8Open a bookmark in current tab', function() {
 	api.Front.openOmnibar(({type: "Bookmarks", tabbed: false}));
@@ -205,4 +213,15 @@ api.vunmap('w');
 api.vunmap('zz');
 api.vunmap('{');
 api.vunmap('}');
+
+// omnibar; no api for command unmap 
+api.cmap('<Ctrl-.>', '');
+api.cmap('<Ctrl-,>', '');
+api.cmap('<Ctrl-v>', '');
+api.cmap('<Ctrl-m>', '');
+api.cmap('<Ctrl-D>', '');
+api.cmap('<Ctrl-r>', '');
+api.cmap("<Ctrl-'>", '');
+api.cmap('<Ctrl-n>', '');
+api.cmap('<Ctrl-p>', '');
 
