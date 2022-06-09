@@ -88,7 +88,8 @@ bindsym $mod2+minus move scratchpad
 
 bindsym $mod1+b splitv
 bindsym $mod1+m splith
-# v
+bindsym $mod1+w focus output left
+bindsym $mod1+v focus output right
 # z
 # \
 

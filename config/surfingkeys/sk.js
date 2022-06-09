@@ -19,7 +19,6 @@ var except_map = [
 	'n', 'N',
 	'r',
 	'T',
-	'x', 'X',
 	'yy',
 	'zi', 'zo', 'zr',
 ];
