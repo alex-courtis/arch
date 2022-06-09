@@ -26,31 +26,31 @@ bindsym XF86AudioMicMute exec volmutemic
 # left
 
 # @
-bindsym $mod1+a workspace number 1
+bindsym $mod1+a exec sway-workspace-or-focus 1 right
 bindsym $mod2+a move container to workspace number 1; workspace 1
-bindsym $mod1+o workspace number 2
+bindsym $mod1+o exec sway-workspace-or-focus 2 right
 bindsym $mod2+o move container to workspace number 2; workspace 2
-bindsym $mod1+e workspace number 3
+bindsym $mod1+e exec sway-workspace-or-focus 3 right
 bindsym $mod2+e move container to workspace number 3; workspace 3
-bindsym $mod1+u workspace number 4
+bindsym $mod1+u exec sway-workspace-or-focus 4 right
 bindsym $mod2+u move container to workspace number 4; workspace 4
 bindsym $mod3+u exec volraise
-bindsym $mod1+i workspace number 5
+bindsym $mod1+i exec sway-workspace-or-focus 5 right
 bindsym $mod2+i move container to workspace number 5; workspace 5
 bindsym $mod3+i exec volmutemic
 
 # $
-bindsym $mod1+semicolon workspace number 6
+bindsym $mod1+semicolon exec sway-workspace-or-focus 6 right
 bindsym $mod2+semicolon move container to workspace number 6; workspace 6
-bindsym $mod1+comma workspace number 7
+bindsym $mod1+comma exec sway-workspace-or-focus 7 right
 bindsym $mod2+comma move container to workspace number 7; workspace 7
-bindsym $mod1+period workspace number 8
+bindsym $mod1+period exec sway-workspace-or-focus 8 right
 bindsym $mod2+period move container to workspace number 8; workspace 8
 bindsym $mod3+period exec vollowermic
-bindsym $mod1+p workspace number 9
+bindsym $mod1+p exec sway-workspace-or-focus 9 right
 bindsym $mod2+p move container to workspace number 9; workspace 9
 bindsym $mod3+p exec volraisemic
-bindsym $mod1+y workspace number 10
+bindsym $mod1+y exec sway-workspace-or-focus 10 right
 bindsym $mod2+y move container to workspace number 10; workspace 10
 bindsym $mod3+y exec volmutemic
 
