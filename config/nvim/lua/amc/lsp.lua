@@ -22,8 +22,12 @@ function M.setup()
     settings = {
       Lua = {
         diagnostics = {
+          globals = {
+            "vim",
+          },
           disable = {
             "trailing-space",
+            "redundant-parameter",
           },
         },
         workspace = {
