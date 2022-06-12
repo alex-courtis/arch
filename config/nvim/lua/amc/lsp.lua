@@ -23,13 +23,13 @@ function M.setup()
       Lua = {
         diagnostics = {
           disable = {
-            'trailing-space',
+            "trailing-space",
           },
         },
         workspace = {
           -- current project before runtime
           library = {
-            '.',
+            ".",
             vim.api.nvim_get_runtime_file("", true),
           },
         },
@@ -43,7 +43,7 @@ function M.goto_definition_or_tag()
   if vim.lsp.buf.server_ready() then
     vim.lsp.buf.definition()
   else
-    local cmd = vim.api.nvim_replace_termcodes('normal <C-]>', true, true, true)
+    local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
     local ok, err = pcall(vim.cmd, cmd)
     if not ok then
       vim.api.nvim_notify(err, vim.log.levels.WARN, {})
@@ -72,4 +72,3 @@ function M.nothing_or_prev_tag()
 end
 
 return M
-
