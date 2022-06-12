@@ -22,8 +22,9 @@ function M.setup()
     settings = {
       Lua = {
         diagnostics = {
-          -- ignore vim global, for which there are no definitions
-          globals = {'vim'},
+          disable = {
+            'trailing-space',
+          },
         },
         workspace = {
           -- current project before runtime
