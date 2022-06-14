@@ -9,12 +9,13 @@ bindsym --whole-window $mod1+button2 floating toggle
 
 
 # thumb
-bindsym $mod1+Escape floating toggle
+bindsym $mod1+BackSpace floating toggle
+bindsym $mod1+Escape scratchpad show
+bindsym $mod2+Escape move scratchpad
 bindsym $mod1+space fullscreen
 bindsym $mod1+Return exec exec alacritty > /dev/null 2>&1
 bindsym $mod2+Return exec exec browser > /dev/null 2>&1
-bindsym $mod2+space exec exec browser google-chrome-stable > /dev/null 2>&1
-bindsym $mod1+Tab exec i3-msg "[con_id=$(cat /tmp/last_focus)] focus"
+bindsym $mod3+Return exec exec browser google-chrome-stable > /dev/null 2>&1
 
 
 # special
@@ -55,8 +56,8 @@ bindsym $mod2+y move container to workspace number 10; workspace 10
 bindsym $mod3+y exec volmutemic
 
 # \
-bindsym $mod1+apostrophe focus parent
-bindsym $mod1+q focus child
+# '
+bindsym $mod1+q kill
 bindsym $mod3+q exit
 bindsym $mod1+j focus down
 bindsym $mod2+j move down
@@ -64,8 +65,7 @@ bindsym $mod3+j exec vollower
 bindsym $mod1+k focus up
 bindsym $mod2+k move up
 bindsym $mod3+k exec volraise
-bindsym $mod1+x exec dmenu_run                          -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0
-bindsym $mod2+x exec j4-dmenu-desktop "--dmenu=dmenu -i -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0"
+# x reserved for cycle workspace focus
 bindsym $mod3+x exec volmute
 
 
@@ -77,14 +77,14 @@ bindsym $mod1+l focus right
 bindsym $mod2+l move right
 # /
 
-bindsym $mod1+d kill
+bindsym $mod1+d exec dmenu_run                          -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0
+bindsym $mod2+d exec j4-dmenu-desktop "--dmenu=dmenu -i -l 10 -fn monospace:size=11 -nb \#303030 -nf \#d0d0d0 -sb \#505050 -sf \#e0e0e0"
 bindsym $mod1+h focus left
 bindsym $mod2+h move left
 bindsym $mod1+t layout tabbed
 bindsym $mod1+n layout toggle split
 bindsym $mod1+s layout stacking
-bindsym $mod1+minus scratchpad show
-bindsym $mod2+minus move scratchpad
+# -
 
 bindsym $mod1+b splitv
 bindsym $mod1+m splith
