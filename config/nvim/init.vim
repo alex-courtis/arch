@@ -4,6 +4,7 @@ call vundle#begin("~/.local/share/nvim/vundle")
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'majutsushi/tagbar'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -130,6 +131,12 @@ let EditorConfig_max_line_indicator='line'
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
+
+" tagbar
+let g:tagbar_compact=1
+let tagbar_map_showproto=''
+let g:tagbar_silent = 1
+let g:tagbar_sort = 0
 
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s

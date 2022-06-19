@@ -53,6 +53,7 @@ let s:closeOrder = [
 			\ g:amc#buf#HELP,
 			\ g:amc#buf#NERD_TREE,
 			\ g:amc#buf#NVIM_TREE,
+			\ g:amc#buf#TAGBAR,
 			\ ]
 function amc#win#closeInc()
 

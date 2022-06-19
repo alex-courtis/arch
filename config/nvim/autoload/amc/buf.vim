@@ -21,8 +21,9 @@ let g:amc#buf#HELP = 4
 let g:amc#buf#NERD_TREE = 5
 let g:amc#buf#NVIM_TREE = 6
 let g:amc#buf#QUICK_FIX = 7
-let g:amc#buf#MAN = 8
-let g:amc#buf#OTHER_SPECIAL = 9
+let g:amc#buf#TAGBAR = 8
+let g:amc#buf#MAN = 9
+let g:amc#buf#OTHER_SPECIAL = 10
 let g:amc#buf#specialNames = [
 			\ "NO_SPECIAL",
 			\ "BUF_EXPLORER",
@@ -32,6 +33,7 @@ let g:amc#buf#specialNames = [
 			\ "NERD_TREE",
 			\ "NVIM_TREE",
 			\ "QUICK_FIX",
+			\ "TAGBAR",
 			\ "MAN",
 			\ "OTHER_SPECIAL",
 			\]
@@ -40,6 +42,7 @@ let g:amc#buf#specialNames = [
 let s:specialNames = [
 			\ 'NERD_tree',
 			\ '\[BufExplorer\]',
+			\ '__Tagbar__',
 			\ 'fugitive://',
 			\ 'man://',
 			\]
@@ -99,6 +102,8 @@ function amc#buf#special(buf)
 		return g:amc#buf#NVIM_TREE
 	elseif getbufvar(a:buf, "&buftype") == "quickfix"
 		return g:amc#buf#QUICK_FIX
+	elseif l:name =~# '__Tagbar__'
+		return g:amc#buf#TAGBAR
 	endif
 
 	return g:amc#buf#OTHER_SPECIAL
