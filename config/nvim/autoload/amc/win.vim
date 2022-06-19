@@ -1,4 +1,7 @@
 function amc#win#goHome()
+	if !amc#buf#isSpecial(bufnr())
+		return
+	endif
 
 	" topleftest nonspecial
 	let [ l:lowestRow, l:lowestCol, l:topLeftWn ] = [ 0, 0, 0 ]
@@ -40,9 +43,7 @@ function amc#win#goHomeOrNext()
 endfunction
 
 function amc#win#openBufExplorer()
-	if amc#buf#isSpecial(bufnr())
-		call amc#win#goHome()
-	endif
+	call amc#win#goHome()
 
 	BufExplorer
 endfunction
