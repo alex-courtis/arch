@@ -112,7 +112,7 @@ endfunction
 function amc#qf#openJump()
 	call amc#win#goHome()
 
-	belowright cwindow 15
+	botright cwindow 15
 
 	if s:ccJumpTo
 		execute "cc" . s:ccJumpTo
