@@ -35,7 +35,6 @@ let mapleader=s:leader
 " begin left
 nm	<silent>	<Leader>;	:call amc#nt#smartFind()<CR>
 nm	<silent>	<Leader>a	:call amc#nt#smartFocus()<CR>
-unmap			<Leader>,
 
 unmap			<Leader>.
 
