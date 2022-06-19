@@ -83,22 +83,6 @@ function! amc#wipeMacros()
 endfunction
 
 
-function! amc#find()
-	call amc#win#goHome()
-
-	let l:fn = input("find: ", "", "file_in_path")
-	if l:fn == ""
-		return
-	endif
-
-	try
-		execute "silent find " . l:fn
-	catch
-		echo " not found"
-	endtry
-endfunction
-
-
 function amc#back()
 	let ts = gettagstack()
 	if ts.length > 0 && ts.curidx > ts.length
