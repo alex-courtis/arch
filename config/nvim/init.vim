@@ -128,10 +128,6 @@ let g:BufKillCreateMappings = 0
 " editorconfig
 let EditorConfig_max_line_indicator='line'
 
-" fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
