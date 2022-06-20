@@ -25,11 +25,11 @@ nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
+nm	<silent>	<Leader>,	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
+nm	<silent>	<Leader><	:cclose<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
-nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright cwindow 15 <CR>
-nm	<silent>	<Leader>Q	:cclose<CR>
+nm	<silent>	<Leader>q	:q<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
@@ -40,6 +40,7 @@ nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif
 nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
+nm	<silent>	<Leader>Y	:TagbarClose<CR>
 nm	<silent>	<Leader>i	:call amc#win#openBufExplorer()<CR>
 nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
 
