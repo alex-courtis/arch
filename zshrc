@@ -1,6 +1,7 @@
 source "${HOME}/.zsh/zshrc.tmux"
 source "${HOME}/.zsh/zshrc.completion"
 source "${HOME}/.zsh/zshrc.zle"
+source "${HOME}/.zsh/zshrc.fzf"
 source "${HOME}/.zsh/zshrc.prompt"
 source "${HOME}/.zsh/zshrc.function"
 source "${HOME}/.zsh/zshrc.alias"
