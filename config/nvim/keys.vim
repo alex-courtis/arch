@@ -25,12 +25,11 @@ nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nm	<silent>	<Leader>,	:call amc#win#goHome() <Bar> belowright cwindow 15<CR>
-nm	<silent>	<Leader><	:cclose<CR>
+nm	<silent>	<Leader>,	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
-nm	<silent>	<Leader>q	<Plug>BufKillBw
-nm	<silent>	<Leader>Q	<Plug>BufKillBangBw
+nm	<silent>	<Leader>q	:call amc#win#goHome() <Bar> belowright cwindow 15 <CR>
+nm	<silent>	<Leader>Q	:cclose<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
@@ -55,6 +54,8 @@ nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
 nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
 nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
+nm	<silent>	<Leader>b	<Plug>BufKillBw
+nm	<silent>	<Leader>B	<Plug>BufKillBangBw
 
 nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
