@@ -64,6 +64,3 @@ export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
 export XKB_DEFAULT_OPTIONS="caps:escape,grp:win_space_toggle"
 
-# fzf
-export FZF_DEFAULT_OPTS='--height=10 --exact --info=hidden --reverse --bind tab:down,shift-tab:up'
-

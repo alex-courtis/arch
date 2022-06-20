@@ -1,0 +1,15 @@
+# all but height apply to vim
+export FZF_DEFAULT_OPTS='--height=10 --multi --exact --info=hidden --reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
+
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+
+# overriding zsh tab complete is a bad idea
+bindkey '^I' expand-or-complete
+
+# explicitly invoke completion widgets without a trigger
+export FZF_COMPLETION_TRIGGER=""
+bindkey -M emacs '^ ' fzf-completion
+bindkey -M vicmd '^ ' fzf-completion
+bindkey -M viins '^ ' fzf-completion
+
