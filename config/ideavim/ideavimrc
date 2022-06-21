@@ -44,6 +44,7 @@ nm <BS>f  <Action>(Find)
 vm <BS>f  <Action>(Find)
 nm <BS>dr <Action>(RenameElement)
 vm <BS>dr <Action>(RenameElement)
+nm <BS>dg <Action>(Generate)
 
 nm <BS>hp <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
