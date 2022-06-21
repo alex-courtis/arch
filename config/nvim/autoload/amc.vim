@@ -6,6 +6,7 @@ function amc#colourString(group)
 endfunction
 
 function amc#colours()
+	highlight TrailingSpace ctermbg=9 guibg=red
 	highlight CursorLineNr cterm=bold
 	highlight default link TagbarHighlight CursorLine
 	highlight default link bufExplorerHidBuf Operator
@@ -18,12 +19,6 @@ function amc#colours()
 	execute "highlight Search " . l:IncSearch
 endfunction
 
-
-function amc#showTrailingSpaces()	      
-	highlight TrailingSpace ctermbg=9 guibg=red
-	syntax clear TrailingSpace
-	syntax match TrailingSpace /\s\+$/
-endfunction
 
 function amc#updateTitleString()
 	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
