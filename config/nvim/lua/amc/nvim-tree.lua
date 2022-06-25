@@ -10,7 +10,7 @@ function M.setup()
     reload_on_bufenter = true,
     update_cwd = true,
     view = {
-      adaptive_size = true,
+      adaptive_size = false,
       mappings = {
         list = {
           { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
@@ -41,6 +41,7 @@ function M.setup()
       },
     },
     renderer = {
+      full_name = true,
       group_empty = true,
       special_files = {},
       indent_markers = {
