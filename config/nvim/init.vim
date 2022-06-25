@@ -84,7 +84,10 @@ let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
 command -nargs=+ C redir @" | silent exec <q-args> | redir end | let @+ = @"
 
 " reset mouse
-command RM set mouse= | set mouse=a
+command MR set mouse= | set mouse=a
+
+" clear macros; can't persist emtpy macro so 0 will do
+command MC for i in range(char2nr('a'), char2nr('z')) | call setreg(nr2char(i), "0") | endfor | unlet i
 
 " default only in vim: return to last edit point
 autocmd BufReadPost *

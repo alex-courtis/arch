@@ -68,16 +68,6 @@ function! amc#airlineStatusLine(...)
 endfunction
 
 
-function! amc#wipeMacros()
-	let l:regs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"'
-	let l:i = 0 
-	while (l:i < strlen(regs)) 
-		call setreg(l:regs[l:i], [])
-		let l:i += 1 
-	endwhile 
-endfunction
-
-
 function amc#back()
 	let ts = gettagstack()
 	if ts.length > 0 && ts.curidx > ts.length
