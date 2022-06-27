@@ -35,10 +35,9 @@ bindsym $mod1+e exec sway-workspace-or-focus 3 right
 bindsym $mod2+e move container to workspace number 3; workspace 3
 bindsym $mod1+u exec sway-workspace-or-focus 4 right
 bindsym $mod2+u move container to workspace number 4; workspace 4
-bindsym $mod3+u exec volraise
 bindsym $mod1+i exec sway-workspace-or-focus 5 right
 bindsym $mod2+i move container to workspace number 5; workspace 5
-bindsym $mod3+i exec volmutemic
+bindsym $mod3+i exec sudo camtoggle
 
 # $
 bindsym $mod1+semicolon exec sway-workspace-or-focus 6 right
