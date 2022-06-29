@@ -22,11 +22,12 @@ nm <Space><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 nm <BS><Space> <Action>(Forward)
 
-nm <Space>a :NERDTree<CR>
+nm <Space>a :NERDTreeFocus<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>, <Action>(PreviousTab)
 nm <Space>o <Action>(NextTab)
+nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
 nm <Space>Q <Action>(CloseAllEditorsButActive)
 
@@ -46,6 +47,9 @@ nm <BS>dr <Action>(RenameElement)
 vm <BS>dr <Action>(RenameElement)
 nm <BS>dg <Action>(Generate)
 
+nm <BS>g  viw<Action>(FindInPath)<Esc>
+nm <BS>G  vw<Action>(FindInPath)<Esc>
+vm <BS>g  <Action>(FindInPath)<Esc>
 nm <BS>hp <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
 nm <BS>m  <Action>(CompileFile)
@@ -65,7 +69,6 @@ nm <BS>n  <Action>(FindUsages)
 vm <BS>n  <Action>(FindUsages)
 nm <BS>v  :put<CR>
 
-nm <BS>l <Action>(CloseAllEditorsButActive)
 nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
