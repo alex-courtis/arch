@@ -44,8 +44,8 @@ export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 # moar history
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 
 # customise various bemenu invocations
 export BEMENU_OPTS="--ignorecase \
