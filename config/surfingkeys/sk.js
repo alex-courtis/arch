@@ -106,10 +106,10 @@ mapkey('B', '#8Open a bookmark in new tab', function() {
 
 // open search d with s and S; clobbers all the unwanted s prefixes
 mapkey('s', '#6Duck Duck Go', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: false}));
+	api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: false}));
 });
 mapkey('S', '#6Duck Duck Go', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'du', tabbed: true}));
+	api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: true}));
 });
 
 // open url from clipboard
@@ -124,19 +124,6 @@ mapkey('P', '#7Open link from clipboard in new tab', function() {
 	});
 });
 
-// create search alias with e and E prefixes
-api.unmap('e');
-api.unmap('E');
-function createSearch(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
-	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
-	mapkey('e' + alias, '#6' + prompt, () => {
-		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
-	});
-	mapkey('E' + alias, '#6' + prompt, () => {
-		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
-	});
-}
-
 // clear all default search aliases
 api.removeSearchAlias('g');
 api.removeSearchAlias('d');
@@ -147,28 +134,42 @@ api.removeSearchAlias('s');
 api.removeSearchAlias('h');
 api.removeSearchAlias('y');
 
+// create search alias
+api.unmap('e');
+api.unmap('E');
+function createSearch(prefix, alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
+	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
+	mapkey(prefix + alias, '#6' + prompt, () => {
+		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
+	});
+	mapkey(prefix.toUpperCase() + alias, '#6' + prompt, () => {
+		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
+	});
+}
+
 // search aliases
-createSearch('ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
-createSearch('au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
-createSearch('aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
-createSearch('dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
-createSearch('ga', 'go', 'http://go/');
-createSearch('sd', 'Steam DB', 'https://steamdb.info/search/?q=');
-createSearch('ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
-createSearch('du', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
+createSearch('e', 'ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
+createSearch('e', 'au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
+createSearch('e', 'aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
+createSearch('e', 'dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
+createSearch('g', 'o', 'go', 'http://go/');
+createSearch('e', 'h', 'hello', 'https://hello.atlassian.net/wiki/search?text=');
+createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/search/?q=');
+createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
+createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
 		return r.phrase;
 	});
 });
-createSearch('go', 'Google', 'https://www.google.com/search?q=', 's', 'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=', function(response) {
+createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=', 's', 'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res[1];
 });
-createSearch('wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+createSearch('e', 'w', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
-createSearch('yo', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
+createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
 	'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=', function(response) {
 		var res = JSON.parse(response.text.substr(9, response.text.length-10));
 		return res[1].map(function(d) {
