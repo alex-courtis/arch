@@ -368,6 +368,7 @@ inetutils
 interception-dual-function-keys
 jq
 keychain
+libva-utils
 man-db
 man-pages
 neovim
@@ -394,6 +395,7 @@ ttf-dejavu
 ttf-hack
 udisks2
 unzip
+vdpauinfo
 wl-clipboard
 xautolock
 xdg-utils
@@ -459,6 +461,8 @@ pacaur -S sof-firmware
 
 ## Video Drivers
 
+Test that hardware acceleration is available via `vainfo` and `vdpauinfo`.
+
 ### Modern AMD
 
 Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
@@ -477,23 +481,12 @@ KMS will automatically be used.
 pacaur -S xf86-video-intel libva-intel-driver
 ```
 
-### Note To Nvidia Users
-
-The Xorg .conf files are part of the dotfiles and thus live in `~/.config/X11/xorg.conf.d`. Nvidia drivers will not load them, insisting that they reside in `/etc/X11/xorg.conf.d`.
-
-```sh
-cd /etc/X11/xorg.conf.d
-ln -s ~/.config/X11/xorg.conf.d/* .
-```
-
-[KMS](https://wiki.archlinux.org/index.php/NVIDIA#DRM_kernel_mode_setting) is not great with the nvidia driver: I've had virtual console isses with "out of range" signals sent to the monitor.
-
 ### Nvidia Only (desktop)
 
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 ```sh
-pacaur -S nvidia
+pacaur -S nvidia libva-vdpau-driver
 ```
 
 ### Nvidia + Intel (heavy laptop)
