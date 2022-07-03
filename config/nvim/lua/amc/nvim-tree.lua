@@ -20,6 +20,8 @@ function M.setup()
           { key = "<BS>", action = "" }, -- close_node
           { key = "<Tab>", action = "" }, -- preview
           { key = "D", action = "" }, -- trash
+          { key = "[e", action = "" }, -- prev_diag_item
+          { key = "]e", action = "" }, -- next_diag_item
           { key = "[c", action = "" }, -- prev_git_item
           { key = "]c", action = "" }, -- next_git_item
           { key = "-", action = "" }, -- dir_up
@@ -31,6 +33,8 @@ function M.setup()
           { key = "x", action = "remove" }, -- cut
 
           { key = "t", action = "cut" },
+          { key = "<Space>p", action = "prev_diag_item" },
+          { key = "<Space>.", action = "next_diag_item" },
           { key = "<Space>k", action = "prev_git_item" },
           { key = "<Space>j", action = "next_git_item" },
           { key = "u", action = "dir_up" },
