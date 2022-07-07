@@ -1,9 +1,6 @@
 source "${HOME}/.zsh/zshenv.base16-bright"
 source "${HOME}/.zsh/zshenv.function"
 
-typeset -U path
-path=(~/bin ~/.local/bin $path)
-
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
 export VISUAL="vi"
