@@ -48,6 +48,7 @@ function M.setup()
       full_name = true,
       group_empty = true,
       special_files = {},
+      symlink_destination = false,
       indent_markers = {
         enable = true,
       },
