@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Toggle camera and video for Tenveo webcam.
+# Toggle sound for Tenveo webcam.
 # Toggling the entire hub is unreliable: pulse doesn't always reconnect.
 
 device_id()
@@ -35,23 +35,16 @@ device_on()
 ID_SOUND="$(device_id '27c2/526')"
 BOUND_SOUND="$(is_bound ${ID_SOUND})"
 
-# Tenveo Tenveo 4K AI Cam
-ID_VIDEO="$(device_id '2aad/1120')"
-BOUND_VIDEO="$(is_bound ${ID_VIDEO})"
-
-if [ -z "${ID_SOUND}" -a -z "${ID_VIDEO}" ]; then
+if [ -z "${ID_SOUND}" ]; then
 	echo "devices unavailable"
 	exit
 fi
 
-# off if either device is enabled
-if [ "${BOUND_SOUND}" = "true" -o "${BOUND_VIDEO}" = "true" ]; then
+if [ "${BOUND_SOUND}" = "true" ]; then
 	echo unbinding
 	device_off "${ID_SOUND}"
-	device_off "${ID_VIDEO}"
 else
 	echo binding
 	device_on "${ID_SOUND}"
-	device_on "${ID_VIDEO}"
 fi
 
