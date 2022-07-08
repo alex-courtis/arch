@@ -152,7 +152,7 @@ createSearch('e', 'ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
 createSearch('e', 'au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
 createSearch('e', 'aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
 createSearch('e', 'dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
-createSearch('g', 'o', 'go', 'http://go/');
+createSearch('e', 'o', 'go', 'http://go/');
 createSearch('e', 'h', 'hello', 'https://hello.atlassian.net/wiki/search?text=');
 createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/search/?q=');
 createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
@@ -215,7 +215,7 @@ api.vunmap('zz');
 api.vunmap('{');
 api.vunmap('}');
 
-// omnibar; no api for command unmap 
+// omnibar; no api for command unmap
 api.cmap('<Ctrl-.>', '');
 api.cmap('<Ctrl-,>', '');
 api.cmap('<Ctrl-v>', '');
