@@ -20,8 +20,13 @@ for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
 
 " begin left
-nm	<silent>	<Leader>;	:NvimTreeCollapse<CR>
+" $
+" @
+" \ used by right
+
+nm	<silent>	<Leader>;	:NvimTreeRefresh<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
+nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 

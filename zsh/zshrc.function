@@ -172,9 +172,9 @@ cat << EOF >> "${INIT}"
   }
 end
 vim.api.nvim_set_keymap('n', ';', ':', {})
-vim.api.nvim_set_keymap('n', '<Space>;', ':NvimTreeCollapse<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>a', ':NvimTreeOpen<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>,', ':NvimTreeRefresh<CR>', {})
+vim.api.nvim_set_keymap('n', '<Space>;', ':NvimTreeRefresh<CR>', {})
+vim.api.nvim_set_keymap('n', '<Space>a', ':NvimTreeFindFile<CR>', {})
+vim.api.nvim_set_keymap('n', '<Space>,', ':NvimTreeOpen<CR>', {})
 vim.api.nvim_set_keymap('n', '<Space>o', ':wincmd p<CR>', {})
 vim.api.nvim_set_keymap('n', '<Space>\'', ':NvimTreeClose<CR>', {})
 EOF
