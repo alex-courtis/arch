@@ -8,7 +8,7 @@ function M.setup()
     hijack_cursor = true,
     open_on_setup_file = true,
     reload_on_bufenter = true,
-    update_cwd = true,
+    sync_root_with_cwd = true,
     view = {
       adaptive_size = false,
       mappings = {
@@ -64,6 +64,7 @@ function M.setup()
     },
     update_focused_file = {
       enable = true,
+      update_root = true,
     },
     diagnostics = {
       enable = true,
@@ -74,13 +75,16 @@ function M.setup()
         "^.git$",
       },
     },
+    git = {
+      show_on_dirs = false,
+    },
     filesystem_watchers = {
       enable = true,
       interval = 100,
     },
     actions = {
       change_dir = {
-        restrict_above_cwd = true,
+        enable = false,
       },
       open_file = {
         resize_window = true,
