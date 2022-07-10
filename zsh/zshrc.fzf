@@ -1,5 +1,5 @@
 # all but height apply to vim
-export FZF_DEFAULT_OPTS='--height=10 --multi --exact --info=hidden --reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
+export FZF_DEFAULT_OPTS='--height=15 --multi --exact --info=hidden --reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
 
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh

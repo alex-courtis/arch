@@ -54,7 +54,8 @@ nm	<silent>	<BS><BS>	:call amc#back()<CR>
 " end left
 
 " begin right
-nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> call fzf#run({ 'down': '10', 'sink': 'e', })<CR>
+nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> call fzf#vim#gitfiles("", { 'options': '--prompt "> "' })<CR>
+nm	<silent>	<Leader>F	:call amc#win#goHome() <Bar> call fzf#vim#files   ("", { 'options': '--prompt "> "' })<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>

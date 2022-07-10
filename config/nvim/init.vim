@@ -4,6 +4,7 @@ call vundle#begin("~/.local/share/nvim/vundle")
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'junegunn/fzf.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'tpope/vim-commentary'
@@ -134,6 +135,9 @@ let EditorConfig_max_line_indicator='line'
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
+
+" fzf
+let g:fzf_layout = { 'down': '15' }
 
 " tagbar
 let g:tagbar_compact=1
