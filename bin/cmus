@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ -f ~/.config/cmus/autosave ]; then
-	sed -i 's/^bind/#bind/g' ~/.config/cmus/autosave
-fi
-
-/usr/bin/cmus ${@}
-
