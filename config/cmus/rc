@@ -1,0 +1,33 @@
+bind common j win-down
+bind common k win-up
+bind common h win-next
+bind common l win-next
+
+bind common u win-page-up
+bind common ^U win-page-up
+bind common d win-page-down
+bind common ^D win-page-down
+
+bind common ? view settings
+bind settings ? view tree
+
+bind common / search-start
+bind common n search-next
+bind common N search-prev
+
+bind common enter win-activate
+bind common o win-toggle
+
+bind common space player-pause
+
+bind common J player-next
+bind common K player-prev
+
+bind common H seek -5
+bind common L seek +5
+
+bind common + vol +5%
+bind common - vol -5%
+
+bind common q quit
+

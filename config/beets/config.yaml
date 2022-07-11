@@ -1,5 +1,5 @@
 # - create empty ~/music-beets
-# - import
+# - import, use --noautotag for compilations/various artists
 # - twiddle
 # - move to ~/.music
 # - rm -rf ~/music/beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle
@@ -33,6 +33,9 @@
 # hunt down any RIGHT SINGLE QUOTATION MARK U+2019 and just replace them with a single quote; android will glitch on this character with no apparent pattern:
 #   beet ls | grep ’
 #   beet modify Say It Ain’t So title="Say It Ain't So"
+#
+# compilations:
+#   beet modify albumartist="Various Artists" comp=true
 
 
 # don't muck around with discogs; stick with musicbrainz as beets is very tightly coupled
