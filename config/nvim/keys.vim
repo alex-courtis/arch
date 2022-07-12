@@ -24,17 +24,17 @@ let mapleader=s:leader
 " @
 " \ used by right
 
-nm	<silent>	<Leader>;	:NvimTreeRefresh<CR>
+nm	<silent>	<Leader>;	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
+nm	<silent>	<Leader>:	:cclose<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nm	<silent>	<Leader>,	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
-nm	<silent>	<Leader><	:cclose<CR>
+nm	<silent>	<Leader>,	:G<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
-nm	<silent>	<Leader>q	:q<CR>
+nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
@@ -107,11 +107,12 @@ nm	<silent>	<Leader>V	:put!<CR>'[v']=
 nm	<silent>	<Leader>l	:syntax match TrailingSpace /\s\+$/<CR>
 nm	<silent>	<Leader>L	:syntax clear TrailingSpace<CR>
 nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
+nm	<silent>	<Leader>S	:GotoHeader<CR>
 nm	<silent>	<Leader>z	gg=G``
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
-nm	<silent>	<Leader>-	:GotoHeader<CR>
+nm	<silent>	<Leader>-	:call amc#win#goHome() <Bar> call fzf#vim#gitfiles("?", { 'options': '--prompt "> "', 'preview': 0, })<CR>
 nm	<silent>	<Leader>\	gg"_dG
 
 nm	<silent>	<BS><Space>	:call amc#forward()<CR>
