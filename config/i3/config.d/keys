@@ -1,6 +1,6 @@
-set $mod1 Mod1
-set $mod2 Mod1+Ctrl
-set $mod3 Mod1+Ctrl+Shift
+set $mod1 Mod4
+set $mod2 Mod4+Ctrl
+set $mod3 Mod4+Ctrl+Shift
 
 
 # mouse
