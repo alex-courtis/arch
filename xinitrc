@@ -25,6 +25,12 @@ fi
 # numlock on
 numlockx
 
+# Xorg doesn't read these
+setxkbmap -model "${XKB_DEFAULT_MODEL}"
+setxkbmap -layout "${XKB_DEFAULT_LAYOUT}"
+setxkbmap -variant "${XKB_DEFAULT_VARIANT}"
+setxkbmap -option "${XKB_DEFAULT_OPTIONS}"
+
 # start window manager
 case "${X_WM}" in
 	"dwm")
