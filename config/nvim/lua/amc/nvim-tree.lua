@@ -76,9 +76,6 @@ function M.setup()
         "^.git$",
       },
     },
-    git = {
-      show_on_dirs = false,
-    },
     filesystem_watchers = {
       enable = true,
       interval = 100,

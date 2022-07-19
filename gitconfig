@@ -25,7 +25,7 @@
 	email = alex@courtis.org
 [core]
 	excludesfile = ~/.gitignore
-	pager = less -FX
+	pager = less -FX -x4
 [push]
 	default = current
 [pull]
