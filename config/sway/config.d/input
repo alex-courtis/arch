@@ -1,8 +1,4 @@
 input type:keyboard {
-    xkb_model "pc105"
-    xkb_layout "us,us"
-    xkb_variant "dvp,"
-    xkb_options "caps:escape,grp:win_space_toggle"
     repeat_delay 400
     repeat_rate 50
 }
