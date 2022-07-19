@@ -59,12 +59,4 @@ export BEMENU_OPTS="--ignorecase \
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
-case "${HOST}" in
-	(duke|gigantor)
-		export XKB_DEFAULT_OPTIONS="caps:escape,grp:shift_caps_toggle,altwin:swap_alt_win"
-		;;
-	(*)
-		export XKB_DEFAULT_OPTIONS="caps:escape,grp:alts_toggle"
-		;;
-esac
-
+export XKB_DEFAULT_OPTIONS="caps:escape,grp:alts_toggle,grp:shift_caps_toggle"
