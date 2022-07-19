@@ -9,6 +9,8 @@ else
 fi
 
 tmux rename-session -t "${SID}" "${SID_LURKING}"
+tmux set-option status on
+tmux set-option status-format '#[align=left]#{session_name}'
 
 tmux detach -s "${SID_LURKING}"
 

@@ -89,7 +89,7 @@ bindsym $mod1+b splitv
 bindsym $mod1+m splith
 bindsym $mod1+w focus output left
 bindsym $mod1+v focus output right
-# z
+bindsym $mod2+z exec pkill zoom
 # \
 
 bindsym $mod1+Left resize shrink width 25px
