@@ -78,7 +78,6 @@ function M.setup()
     },
     filesystem_watchers = {
       enable = true,
-      interval = 100,
     },
     actions = {
       change_dir = {
