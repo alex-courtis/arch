@@ -50,8 +50,6 @@ alias music-home-to-android="adb-sync --delete \${HOME}/.music/ /sdcard/Music"
 alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
 alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/.music"
 
-alias pandoc="docker run --rm --volume "\${PWD}:/data" --user \$(id -u):\$(id -g) pandoc/latex"
-
 # bash style targets that cannot play well with complete_aliases
 alias todo="todo.sh"
 compdef todo="todo.sh"
