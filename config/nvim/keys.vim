@@ -31,7 +31,7 @@ nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:call amc#win#closeAll()<CR>
 
-nm	<silent>	<Leader>,	:G<CR>
+nm	<silent>	<Leader>,	:call amc#win#smartFugitive()<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:call amc#win#goHome()<CR>
 nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
