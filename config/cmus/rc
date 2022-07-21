@@ -3,6 +3,11 @@ bind -f common k win-up
 bind -f common h win-next
 bind -f common l win-next
 
+bind -f common down win-down
+bind -f common up win-up
+bind -f common left win-next
+bind -f common right win-next
+
 bind -f common u win-half-page-up
 bind -f common ^U win-half-page-up
 bind -f common d win-half-page-down
