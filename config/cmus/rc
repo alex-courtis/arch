@@ -46,3 +46,5 @@ set aaa_mode=artist
 
 set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
 
+set format_trackwin_va=%3n. %t%= %y %d
+

@@ -2,7 +2,7 @@
 # - import, use --noautotag for compilations/various artists
 # - twiddle
 # - move to ~/.music
-# - rm -rf ~/music/beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle
+# - rm -rf ~/music-beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle
 #
 # import:
 #   beet import ~/Downloads/NewAlbum
