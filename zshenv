@@ -1,4 +1,4 @@
-source "${HOME}/.zsh/zshenv.base16-bright"
+source "${HOME}/.zsh/zshenv.appearance"
 source "${HOME}/.zsh/zshenv.function"
 
 # vi everywhere, symlinked to vim

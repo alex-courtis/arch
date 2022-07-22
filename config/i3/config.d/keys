@@ -13,7 +13,7 @@ bindsym $mod1+BackSpace floating toggle
 bindsym $mod1+Escape scratchpad show
 bindsym $mod2+Escape move scratchpad
 bindsym $mod1+space fullscreen
-bindsym $mod1+Return exec exec alacritty > /dev/null 2>&1
+bindsym $mod1+Return exec exec term > /dev/null 2>&1
 bindsym $mod2+Return exec exec browser > /dev/null 2>&1
 bindsym $mod3+Return exec exec browser google-chrome-stable > /dev/null 2>&1
 

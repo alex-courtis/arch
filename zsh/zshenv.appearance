@@ -1,3 +1,12 @@
+# font size hack for gigantor's scale 1 for intellij
+if [ "$(hostname)" = "gigantor" ]; then
+	FONT_SIZE_PT=12
+else
+	FONT_SIZE_PT=11
+fi
+export FONT_SIZE_PT
+
+# base16-bright
 # greys
 export BASE00="#000000" # Default Background
 export BASE01="#303030" # Lighter Background (Used for status bars)

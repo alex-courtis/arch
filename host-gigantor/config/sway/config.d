@@ -1,0 +1,1 @@
+../../../config/sway/config.d
