@@ -5,4 +5,6 @@ bindsym --no-warn $mod2+d exec exec $(menjar) > /dev/null 2>&1
 
 bindsym --no-warn $mod3+o exec swaylock -f -c ${BASE01} > /dev/null 2>&1
 
+bindsym --no-warn $mod3+q output eDP-1 enable; exit
+
 # vim: set filetype=i3config :
