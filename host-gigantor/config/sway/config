@@ -5,5 +5,5 @@ include ~/.config/sway/config.d/*
 font pango:monospace 12
 
 # this monitor is very slow so hardcode to the way-displays value to prevent double mode setting
-output "Unknown MAG274QRF-QD CA8A271A00352" mode 2560x1440@120Hz
+output "Unknown MAG274QRF-QD CA8A271A00352" pos 0 0 mode 2560x1440@144Hz
 
