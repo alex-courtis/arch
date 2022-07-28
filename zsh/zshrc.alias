@@ -42,6 +42,8 @@ alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
+alias pu="pacaur -Syy archlinux-keyring && pacaur -Su"
+
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /net/lord/music/"
