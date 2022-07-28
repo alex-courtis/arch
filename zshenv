@@ -54,6 +54,7 @@ export BEMENU_OPTS="--ignorecase \
 	--tb '${BASE0B}' --tf '${BASE00}' \
 	--fb '${BASE01}' --ff '${BASE04}' \
 	--nb '${BASE01}' --nf '${BASE04}' \
+	--ab '${BASE01}' --af '${BASE04}' \
 	--hb '${BASE02}' --hf '${BASE06}'"
 
 export XKB_DEFAULT_MODEL="pc105"

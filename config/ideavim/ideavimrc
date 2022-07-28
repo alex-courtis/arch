@@ -52,6 +52,7 @@ nm <BS>G  vw<Action>(FindInPath)<Esc>
 vm <BS>g  <Action>(FindInPath)<Esc>
 nm <BS>hp <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
+nm <BS>hX <Action>(ChangesView.Revert)
 nm <BS>m  <Action>(CompileFile)
 nm <BS>M  <Action>(CompileDirty)
 
@@ -69,7 +70,6 @@ nm <BS>n  <Action>(FindUsages)
 vm <BS>n  <Action>(FindUsages)
 nm <BS>v  :put<CR>
 
-nm <BS>s  <Action>(Generate)
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
 
