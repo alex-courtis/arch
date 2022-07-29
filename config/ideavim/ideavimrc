@@ -15,6 +15,38 @@ nn yw yiw
 nn yfw yw
 nm Y y$
 
+sethandler <C-2> a:ide
+sethandler <C-S-2> a:ide
+sethandler <C-6> a:ide
+sethandler <C-S-6> a:ide
+sethandler <C-A> a:ide
+sethandler <C-B> a:ide
+sethandler <C-C> a:ide
+sethandler <C-D> a:vim
+sethandler <C-E> a:ide
+sethandler <C-F> a:ide
+sethandler <C-G> a:vim
+sethandler <C-H> a:ide
+sethandler <C-I> a:ide
+sethandler <C-J> a:vim
+sethandler <C-K> a:vim
+sethandler <C-L> a:ide
+sethandler <C-M> a:ide
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:ide
+sethandler <C-Q> a:ide
+sethandler <C-R> a:ide
+sethandler <C-S> a:ide
+sethandler <C-T> a:ide
+sethandler <C-U> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:ide
+sethandler <C-X> a:ide
+sethandler <C-Y> a:vim
+sethandler <C-[> a:vim
+sethandler <C-]> a:vim
+
 " idea does not like setting mapleader to <BS>
 
 nm <BS><BS> <Action>(Back)
@@ -41,8 +73,8 @@ nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 nm <Space>i <Action>(RecentFiles)
 
-nm <BS>f  <Action>(Find)
-vm <BS>f  <Action>(Find)
+nm <BS>f  viw<Action>(Find)<Esc>
+vm <BS>f  <Action>(Find)<Esc>
 nm <BS>dr <Action>(RenameElement)
 vm <BS>dr <Action>(RenameElement)
 nm <BS>dg <Action>(Generate)
@@ -64,12 +96,18 @@ nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
 xm <BS>w <Plug>ReplaceWithRegisterVisual
 nm <BS>W <Plug>ReplaceWithRegisterLine
 
-nm <BS>r  <Action>(Replace)
+nm <BS>r  viw<Action>(Replace)<Esc>
 vm <BS>r  <Action>(Replace)
 nm <BS>n  <Action>(FindUsages)
 vm <BS>n  <Action>(FindUsages)
+nm <BS>N  <Action>(ShowSettingsAndFindUsages)
+vm <BS>N  <Action>(ShowSettingsAndFindUsages)
 nm <BS>v  :put<CR>
 
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
+
+nm <BS>/  viw<Action>(Find)<Esc>
+vm <BS>/  <Action>(Find)<Esc>
+nm <BS>\  gg"_dG
 
