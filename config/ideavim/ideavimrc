@@ -32,11 +32,11 @@ sethandler <C-J> a:vim
 sethandler <C-K> a:vim
 sethandler <C-L> a:ide
 sethandler <C-M> a:ide
-sethandler <C-N> a:vim
+sethandler <C-N> a:ide
 sethandler <C-O> a:vim
 sethandler <C-P> a:ide
 sethandler <C-Q> a:ide
-sethandler <C-R> a:ide
+sethandler <C-R> a:vim
 sethandler <C-S> a:ide
 sethandler <C-T> a:ide
 sethandler <C-U> a:vim
@@ -92,6 +92,7 @@ nm <BS>c  <Plug>(CommentMotion)
 nm <BS>cc <Plug>(CommentLine)
 vm <BS>c  <Plug>(CommentMotionV)
 nm <BS>t  <Action>(GotoDeclaration)
+nm <BS>T  <Action>(GotoImplementation)
 nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
 xm <BS>w <Plug>ReplaceWithRegisterVisual
 nm <BS>W <Plug>ReplaceWithRegisterLine
