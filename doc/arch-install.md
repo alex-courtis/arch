@@ -448,6 +448,11 @@ Enable pulseaudio:
 systemctl enable --user pulseaudio
 ```
 
+Add user to the audio group to allow alsa access to sound devices when headless. Not recommended for security reasons.
+```sh
+sudo usermod -a -G audio alex
+```
+
 ### Intel Corporation Comet Lake PCH-LP cAVS
 
 ```sh
