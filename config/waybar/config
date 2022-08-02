@@ -1,0 +1,19 @@
+{
+	"position": "top",
+
+    "modules-left": ["river/tags"],
+    "modules-center": ["river/window"],
+    "modules-right": ["custom/slstatus", "tray"],
+
+	"fixed-center": false,
+
+	"river/tags": {
+		"num-tags": 10
+	},
+
+	"custom/slstatus": {
+		"exec": "slstatus -s",
+		"tooltip": false
+	}
+}
+
