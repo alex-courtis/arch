@@ -47,7 +47,7 @@ SAVEHIST=100000
 # customise various bemenu invocations
 export BEMENU_OPTS="--ignorecase \
 	--prompt ':;' \
-	--fn 'monospace 11' \
+	--fn 'monospace ${FONT_SIZE_PT}' \
 	--list 10 \
 	--wrap \
 	--sb '#FFFF00' --sf '#FFFFFF' \
