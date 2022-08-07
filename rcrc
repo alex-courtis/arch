@@ -1,3 +1,3 @@
 EXCLUDES="git doc root misc README.md"
-SYMLINK_DIRS="config/nvim config/i3 config/way-displays config/ideavim config/luacheck zsh"
+SYMLINK_DIRS="config/nvim config/i3 config/way-displays config/ideavim config/luacheck config/river config/waybar zsh"
 UNDOTTED="bin"

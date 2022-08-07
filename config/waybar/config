@@ -1,0 +1,29 @@
+{
+	"position": "top",
+
+    "modules-left": ["river/tags", "river/window"],
+    "modules-right": ["custom/slstatus", "tray"],
+
+	"fixed-center": false,
+
+	"tray": {
+		"spacing": 4
+	},
+
+	"river/tags": {
+		"num-tags": 10
+	},
+
+	"river/window": {
+		"format": "   {}",
+		// truncates when it hits slstatus if a value is set
+		"max-length": 999,
+		"tooltip": false
+	},
+
+	"custom/slstatus": {
+		"exec": "slstatus -s",
+		"tooltip": false
+	}
+}
+
