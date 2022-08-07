@@ -15,7 +15,6 @@
 	},
 
 	"river/window": {
-		"format": "   {}",
 		// truncates when it hits slstatus if a value is set
 		"max-length": 999,
 		"tooltip": false

@@ -41,10 +41,15 @@ window#waybar {
 }
 
 /* left */
+#tags {
+	margin-right: 6pt;
+}
+
 #tags button {
 	color: #d0d0d0;
 	background-color: #303030;
-	padding: 0 2pt 0 2pt;
+	padding-left: 2pt;
+	padding-right: 2pt;
 }
 
 #tags button:hover {
@@ -53,6 +58,7 @@ window#waybar {
 }
 
 #tags button.focused {
+	color: #f5f5f5;
     background-color: #505050;
 }
 
@@ -62,15 +68,19 @@ window#waybar {
 }
 
 #window {
-	padding: 0 32pt 0 0;
+	color: #f5f5f5;
+	background-color: #505050;
+	padding-left: 6pt;
+	padding-right: 6pt;
+	margin-right: 6pt;
 }
 
 /* right */
 #custom-slstatus {
-	padding: 0 4pt 0 0;
+	margin-right: 6pt;
 }
 
 #tray {
-	padding: 0 4pt 0 0;
+	margin-right: 6pt;
 }
 
