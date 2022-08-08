@@ -3,6 +3,7 @@
 set $base00 #000000
 set $base01 #303030
 set $base02 #505050
+set $base0203 "#808080"
 set $base03 #b0b0b0
 set $base04 #d0d0d0
 set $base05 #e0e0e0
@@ -31,19 +32,19 @@ bar {
         statusline $base04
 
         #                   Border  BG      Text
-        focused_workspace   $base02 $base02 $base06
+        focused_workspace   $base02 $base02 $base05
         active_workspace    $base02 $base02 $base04
         inactive_workspace  $base01 $base01 $base04
-        urgent_workspace    $base03 $base02 $base06
-        binding_mode        $base02 $base02 $base06
+        urgent_workspace    $base03 $base02 $base05
+        binding_mode        $base02 $base02 $base05
     }
 }
-#                       Border  BG      Text    Indicat Child Border
-client.focused          $base02 $base02 $base06 $base02 $base02
-client.focused_inactive $base02 $base01 $base04 $base01 $base01
-client.unfocused        $base02 $base01 $base04 $base01 $base01
-client.urgent           $base03 $base02 $base06 $base03 $base03
-client.placeholder      $base02 $base01 $base04 $base01 $base01
+#                       Border    BG      Text    Indicat Child Border
+client.focused          $base0203 $base02 $base05 $base02 $base0203
+client.focused_inactive $base02   $base01 $base04 $base01 $base01
+client.unfocused        $base02   $base01 $base04 $base01 $base01
+client.urgent           $base03   $base02 $base05 $base03 $base03
+client.placeholder      $base02   $base01 $base04 $base01 $base01
 client.background       $base00
 
 # vim: set filetype=i3config :

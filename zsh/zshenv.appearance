@@ -11,6 +11,7 @@ export FONT_SIZE_PT
 export BASE00="#000000" # Default Background
 export BASE01="#303030" # Lighter Background (Used for status bars)
 export BASE02="#505050" # Selection Background
+export BASE0203="#808080" # Window selection border
 export BASE03="#b0b0b0" # Comments, Invisibles, Line Highlighting
 export BASE04="#d0d0d0" # Dark Foreground (Used for status bars)
 export BASE05="#e0e0e0" # Default Foreground, Caret, Delimiters, Operators
