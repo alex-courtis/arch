@@ -11,8 +11,13 @@ riverctl map-pointer normal $mod1 BTN_LEFT move-view
 riverctl map-pointer normal $mod1 BTN_RIGHT resize-view
 
 # thumbs
-riverctl map normal $mod1 BackSpace toggle-fullscreen
-riverctl map normal $mod1 Escape toggle-float
+riverctl map normal $mod1 BackSpace focus-output next
+riverctl map normal $mod2 BackSpace spawn "riverctl send-to-output next && riverctl focus-output next"
+riverctl map normal $mod3 BackSpace send-to-output next
+riverctl map normal $mod1 Escape toggle-fullscreen
+riverctl map normal $mod2 Escape toggle-float
+riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
+riverctl map normal $mod2 Tab spawn "exec \$(menjar) > /dev/null 2>&1"
 riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1"
 riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1"
 riverctl map normal $mod3 Delete spawn "browser google-chrome-stable > /dev/null 2>&1"
@@ -24,8 +29,10 @@ riverctl map normal $mod2 Space swap previous
 # left
 tags=1
 for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
+
 	riverctl map normal $mod1 $k set-focused-tags $tags
-	riverctl map normal $mod2 $k set-view-tags $tags
+	riverctl map normal $mod2 $k spawn "riverctl set-view-tags $tags && riverctl set-focused-tags $tags"
+	riverctl map normal $mod3 $k set-view-tags $tags
 	tags=$(($tags << 1))
 done
 
@@ -58,9 +65,6 @@ riverctl map normal $mod2 minus spawn "\
 	"
 
 riverctl map normal $mod3 l spawn "swaylock -f -c ${BASE01} > /dev/null 2>&1"
-
-riverctl map normal $mod1 d spawn "bemenu-run > /dev/null 2>&1"
-riverctl map normal $mod2 d spawn "exec \$(menjar) > /dev/null 2>&1"
 
 riverctl map normal $mod1 h spawn "\
 	riverctl send-layout-cmd stacktile 'all_primary false' && \
@@ -99,9 +103,10 @@ river-input-setup
 
 # behaviour
 riverctl attach-mode bottom
+riverctl set-cursor-warp on-output-change
 
+# run
 riverctl spawn waybar
-
 riverctl default-layout stacktile
 exec stacktile --per-tag-config --drop-empty-configs \
 	--primary-position "left" \
