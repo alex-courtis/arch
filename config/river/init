@@ -64,7 +64,7 @@ riverctl map normal $mod2 minus spawn "\
 	riverctl send-layout-cmd stacktile 'primary_count -1'\
 	"
 
-riverctl map normal $mod3 l spawn "swaylock -f -c ${BASE01} > /dev/null 2>&1"
+riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE01} > /dev/null 2>&1"
 
 riverctl map normal $mod1 h spawn "\
 	riverctl send-layout-cmd stacktile 'all_primary false' && \
