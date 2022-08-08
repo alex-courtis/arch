@@ -104,12 +104,12 @@ mapkey('B', '#8Open a bookmark in new tab', function() {
 	api.Front.openOmnibar(({type: "Bookmarks", tabbed: true}));
 });
 
-// open search d with s and S; clobbers all the unwanted s prefixes
-mapkey('s', '#6Duck Duck Go', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: false}));
+// open search g with s and S; clobbers all the unwanted s prefixes
+mapkey('s', '#6Google', function() {
+	api.Front.openOmnibar(({type: "SearchEngine", extra: 'g', tabbed: false}));
 });
-mapkey('S', '#6Duck Duck Go', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'd', tabbed: true}));
+mapkey('S', '#6Google', function() {
+	api.Front.openOmnibar(({type: "SearchEngine", extra: 'g', tabbed: true}));
 });
 
 // open url from clipboard
