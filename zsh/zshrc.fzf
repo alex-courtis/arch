@@ -3,6 +3,14 @@ export FZF_DEFAULT_OPTS='--height=15 --multi --exact --info=hidden --reverse --b
 
 # https://github.com/junegunn/fzf/pull/2885
 export FZF_DEFAULT_COMMAND="set -o pipefail; command find -L . -mindepth 1 \( -path '*/\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) -prune -print -o -type f -print -o -type l -print 2> /dev/null | cut -b3-"
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+_fzf_compgen_path() {
+	echo "$1"
+	command find -L "$1" \
+		\( -path '*/\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) -prune \
+		-print -o -type f -print -o -type l -print \
+		-a -not -path "$1" -print 2> /dev/null | sed 's@^\./@@'
+}
 
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
