@@ -3,6 +3,5 @@
 # new term should not inherit TMUX, so that it starts its own session
 TMUX=
 
-echo $FONT_SIZE_PT
 alacritty -o font.size=$FONT_SIZE_PT ${@}
 
