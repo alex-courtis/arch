@@ -44,8 +44,14 @@ alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
 alias pu="pacaur -Syy archlinux-keyring && pacaur -Su"
 
+alias k="kill"
+alias _fzf_complete_k="_fzf_complete_kill"
+alias kk="kill -9"
+alias _fzf_complete_kk="_fzf_complete_kill"
+
 alias pg="pgrep --list-full --full"
 alias pk="pkill --full"
+alias pkk="pkill -9 --full"
 
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 

@@ -1,5 +1,5 @@
 # all but height apply to vim
-export FZF_DEFAULT_OPTS='--height=15 --multi --info=inline --layout=reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
+export FZF_DEFAULT_OPTS='--height=15 --exact --multi --info=inline --layout=reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
 
 # https://github.com/junegunn/fzf/pull/2885
 # dosdevices and SteamLinuxRuntime_soldier (proton) link back to fs roots
