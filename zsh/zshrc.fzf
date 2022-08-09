@@ -1,14 +1,38 @@
 # all but height apply to vim
-export FZF_DEFAULT_OPTS='--height=15 --multi --exact --info=hidden --reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
+export FZF_DEFAULT_OPTS='--height=15 --multi --info=inline --layout=reverse --bind tab:down,shift-tab:up,ctrl-t:toggle'
 
 # https://github.com/junegunn/fzf/pull/2885
-export FZF_DEFAULT_COMMAND="set -o pipefail; command find -L . -mindepth 1 \( -path '*/\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) -prune -print -o -type f -print -o -type l -print 2> /dev/null | cut -b3-"
-export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+# dosdevices and SteamLinuxRuntime_soldier (proton) link back to fs roots
+export FZF_DEFAULT_COMMAND="set -o pipefail; command \
+	find -L . -mindepth 1 \
+	\\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \\) -prune -print \
+	-o -type f -print -o -type l -print \
+	2> /dev/null | cut -b3-"
+
+export FZF_ALT_C_COMMAND="command \
+	find -L . -mindepth 1 \
+	\\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \\) -prune -print \
+	-o -type d -print \
+	2> /dev/null | cut -b3-"
+
+export FZF_CTRL_T_COMMAND="command \
+	find -L . -mindepth 1 \
+	\\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \\) -prune -print \
+	-o -type f -print -o -type d -print -o -type l -print \
+	2> /dev/null | cut -b3-"
+
 _fzf_compgen_path() {
 	echo "$1"
 	command find -L "$1" \
-		\( -path '*/\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \) -prune \
-		-print -o -type f -print -o -type l -print \
+		\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \) -prune -print \
+		-o \( -type f -o -type l \) \
+		-a -not -path "$1" -print 2> /dev/null | sed 's@^\./@@'
+}
+
+_fzf_compgen_dir() {
+	command find -L "$1" \
+		\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \) -prune -print \
+		-o -type d \
 		-a -not -path "$1" -print 2> /dev/null | sed 's@^\./@@'
 }
 
