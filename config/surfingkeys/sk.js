@@ -229,7 +229,6 @@ api.cmap('<Ctrl-p>', '');
 // https://github.com/Foldex/surfingkeys-config/blob/master/themes.js
 api.Visual.style('marks', 'background-color: #fda331;'); // base0A
 api.Visual.style('cursor', 'background-color: #e0e0e0;'); // base05
-
 settings.theme = `
 :root {
   --font: Monospace;
@@ -244,14 +243,30 @@ settings.theme = `
   --base05: #e0e0e0; /* Default Foreground, Caret, Delimiters, Operators */
   --base06: #f5f5f5; /* Light Foreground (Not often used) */
   --base07: #ffffff; /* Light Background (Not often used) */
+  /* red */
+  --base08: #fb0120; /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+  /* orange */
+  --base09: #fc6d24; /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+  /* yellow */
+  --base0A: #fda331; /* Classes, Markup Bold, Search Text Background */
+  /* green */
+  --base0B: #a1c659; /* Strings, Inherited Class, Markup Code, Diff Inserted */
+  /* cyan */
+  --base0C: #76c7b7; /* Support, Regular Expressions, Escape Characters, Markup Quotes */
+  /* blue */
+  --base0D: #6fb3d2; /* Functions, Methods, Attribute IDs, Headings */
+  /* magenta */
+  --base0E: #d381c3; /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+  /* brown */
+  --base0F: #be643c; /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 
-  --fg: var(--base04);
+  --fg: var(--base05);
   --bg: var(--base01);
   --bg-dark: var(--base01);
   --border: var(--base02);
-  --main-fg: var(--base04);
+  --main-fg: var(--base0D);
   --accent-fg: var(--base05);
-  --info-fg: var(--base04);
+  --info-fg: var(--base0C);
   --select: var(--base02);
 }
 
