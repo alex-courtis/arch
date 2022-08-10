@@ -4,9 +4,10 @@ export FZF_DEFAULT_OPTS='--height=15 --exact --multi --info=inline --layout=reve
 # https://github.com/junegunn/fzf/pull/2885
 # dosdevices and SteamLinuxRuntime_soldier (proton) link back to fs roots
 export FZF_PATH_PRUNE="\
-	\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' -o \
-		-path '*/.git' -o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \) -prune \
-	-a -not -name '.git' -print"
+	\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
+		-o  -path '*/.git' -o -path '*/node_modules' -o -path '*/__pycache__' \
+		-o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \) -prune \
+	-a -not -name '.git' -a -not -name 'node_modules' -a -not -name '__pycache__' -print"
 
 export FZF_DEFAULT_COMMAND="set -o pipefail; command \
 	find -L . -mindepth 1 ${FZF_PATH_PRUNE} \
