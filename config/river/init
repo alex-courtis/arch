@@ -1,6 +1,7 @@
 #!/bin/sh
 
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
+mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
 
 mod1="Super"
 mod2="$mod1+Control"
