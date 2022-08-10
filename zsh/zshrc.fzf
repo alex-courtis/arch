@@ -15,7 +15,7 @@ export FZF_DEFAULT_COMMAND="set -o pipefail; command \
 	2> /dev/null | cut -b3-"
 
 export FZF_ALT_C_COMMAND="command \
-	find -L . -mindepth 1 ${FZF_PATH_PRUNE} \
+	find -L . -mindepth 1 -maxdepth 4 ${FZF_PATH_PRUNE} \
 	-o -type d -print \
 	2> /dev/null | cut -b3-"
 
@@ -34,7 +34,7 @@ _fzf_compgen_path() {
 
 _fzf_compgen_dir() {
 	eval "\
-		find -L \"$1\" ${FZF_PATH_PRUNE} \
+		find -L \"$1\" -maxdepth 4 ${FZF_PATH_PRUNE} \
 		-o -type d \
 		-a -not -path \"$1\" -print \
 		2> /dev/null | sed 's@^\./@@'"
