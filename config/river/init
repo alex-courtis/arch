@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# TODO
+# BTN_MIDDLE toggle float
+# touchpad scroll horizontally
+# smart borders
+
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
 
@@ -37,18 +42,8 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 	tags=$(($tags << 1))
 done
 
-riverctl map normal $mod3 period spawn "vollowermic"
-riverctl map normal $mod3 p spawn "volraisemic"
-riverctl map normal $mod3 y spawn "volmutemic"
-
-riverctl map normal $mod3 i spawn "sudo camtoggle"
-
 riverctl map normal $mod1 q close
 riverctl map normal $mod3 q exit
-
-riverctl map normal $mod3 j spawn "vollower"
-riverctl map normal $mod3 k spawn "volraise"
-riverctl map normal $mod3 x spawn "volmute"
 
 riverctl map normal $mod1 equal send-layout-cmd stacktile "primary_ratio 0.5"
 
@@ -65,12 +60,18 @@ riverctl map normal $mod2 minus spawn "\
 	riverctl send-layout-cmd stacktile 'primary_count -1'\
 	"
 
+riverctl map normal $mod3 f spawn "volraisemic"
+riverctl map normal $mod3 g spawn "volraise"
+
 riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE01} > /dev/null 2>&1"
+
+riverctl map normal $mod3 d spawn "vollowermic"
 
 riverctl map normal $mod1 h spawn "\
 	riverctl send-layout-cmd stacktile 'all_primary false' && \
 	riverctl send-layout-cmd stacktile 'primary_position left'\
 	"
+riverctl map normal $mod3 h spawn "vollower"
 
 riverctl map normal $mod1 t spawn "\
 	riverctl send-layout-cmd stacktile 'primary_sublayout full' && \
@@ -82,6 +83,10 @@ riverctl map normal $mod1 n spawn "\
 	riverctl send-layout-cmd stacktile 'all_primary false' && \
 	riverctl send-layout-cmd stacktile 'primary_position right'\
 	"
+
+riverctl map normal $mod3 b spawn "volmutemic"
+riverctl map normal $mod3 m spawn "volmute"
+riverctl map normal $mod3 w spawn "sudo camtoggle"
 
 # special
 riverctl map normal None XF86AudioMute         spawn "volmute"
