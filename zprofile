@@ -8,9 +8,9 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 	case "${XDG_VTNR}" in
 		1)
 			if [ "$(hostname)" = "emperor" ]; then
-				exec startwm x i3
+				exec startwm x dwm
 			else
-				exec startwm sway
+				exec startwm river
 			fi
 			;;
 		2)
@@ -20,7 +20,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 			exec startwm x dwm
 			;;
 		4)
-			exec startwm river
+			exec startwm sway
 			;;
 	esac
 fi
