@@ -1,3 +1,6 @@
+let g:loaded_netrw       = 1
+let g:loaded_netrwPlugin = 1
+
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 
