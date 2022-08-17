@@ -836,8 +836,8 @@ key_bindings:
   - { key: Return, mods: Shift,   mode: Search|~Vi, action: none }
 
   # (Windows, Linux, and BSD only)
-  #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
-  #- { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
   - { key: F,              mods: Control|Shift, mode: ~Search,    action: none }
   - { key: B,              mods: Control|Shift, mode: ~Search,    action: none }
   - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: none }
