@@ -28,7 +28,7 @@ riverctl map normal $mod3 BackSpace send-to-output next
 riverctl map normal $mod1 Escape toggle-fullscreen
 riverctl map normal $mod2 Escape toggle-float
 riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
-riverctl map normal $mod2 Tab spawn "exec \$(menjar) > /dev/null 2>&1"
+riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ~/.local/share/applications) > /dev/null 2>&1"
 riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1"
 riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1"
 riverctl map normal $mod3 Delete spawn "browser google-chrome-stable > /dev/null 2>&1"
