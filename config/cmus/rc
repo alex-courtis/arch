@@ -45,6 +45,7 @@ set mouse=true
 set wrap_search=false
 
 set aaa_mode=artist
+set continue_album=false
 
 set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
 
