@@ -91,6 +91,8 @@ riverctl map normal $mod1 n spawn "\
 	riverctl send-layout-cmd stacktile 'primary_position right'\
 	"
 
+riverctl map normal $mod3 s spawn "sss"
+
 riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
