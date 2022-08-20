@@ -22,6 +22,9 @@ var except_map = [
 	'T',
 	'yy',
 	'zi', 'zo', 'zr',
+	// remapping unreliable
+	'<Alt-s>',
+	'<Alt-i>',
 ];
 function map(new_keystroke, old_keystroke, domain, new_annotation) {
 	api.map(new_keystroke, old_keystroke, domain, new_annotation);
@@ -32,14 +35,8 @@ function mapkey(keys, annotation, jscode, options) {
 	except_map.push(keys);
 }
 
-// toggle SK
-map('<Ctrl-s>', '<Alt-s>');
-
-// passthrough
-map('<Ctrl-a>', '<Alt-i>');
-
 // toggle PDF
-map('<Ctrl-p>', ';s');
+map('<Alt-p>', ';s');
 
 // back/forwards
 map('<Space><Backspace>', 'S');
