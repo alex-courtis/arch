@@ -224,8 +224,8 @@ api.cmap('<Ctrl-n>', '');
 api.cmap('<Ctrl-p>', '');
 
 // https://github.com/Foldex/surfingkeys-config/blob/master/themes.js
-api.Visual.style('marks', 'background-color: #fda331;'); // base0A
-api.Visual.style('cursor', 'background-color: #e0e0e0;'); // base05
+api.Visual.style('marks', 'background-color: #fda331; opacity: 0.5;'); // base0A
+api.Visual.style('cursor', 'background-color: #6fb3d2; z-index: 2147483300;'); // base0D, one higher than surfingkeys_selection_mark
 settings.theme = `
 :root {
   --font: Monospace;
