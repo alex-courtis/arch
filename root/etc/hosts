@@ -1,3 +1,4 @@
+192.168.10.1	router
 192.168.10.2	lord
 192.168.10.3	lord-ipmi-shared
 192.168.10.4	lord-ipmi-dedicated
