@@ -46,7 +46,7 @@ window#waybar {
 }
 
 #tags button {
-	color: #d0d0d0;
+	color: #303030;
 	background-color: #303030;
 	padding-left: 2pt;
 	padding-right: 2pt;
@@ -55,6 +55,10 @@ window#waybar {
 #tags button:hover {
 	/* cannot change background from white; accept it and move on */
     color: #303030;
+}
+
+#tags button.occupied {
+	color: #d0d0d0;
 }
 
 #tags button.focused {
