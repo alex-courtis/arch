@@ -42,7 +42,7 @@ window#waybar {
 
 /* left */
 #tags {
-	margin-right: 6pt;
+	margin-right: 12pt;
 }
 
 #tags button {
@@ -69,10 +69,13 @@ window#waybar {
 
 #window {
 	color: #f5f5f5;
-	background-color: #505050;
 	padding-left: 6pt;
 	padding-right: 6pt;
-	margin-right: 6pt;
+	margin-right: 12pt;
+}
+
+#window.focused {
+	background-color: #505050;
 }
 
 /* right */
