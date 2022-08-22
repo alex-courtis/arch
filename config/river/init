@@ -51,7 +51,7 @@ done
 
 riverctl map normal $mod1 q close
 
-if [ "${HOST}" = "gigantor" ]; then
+if [ "$(hostname)" = "gigantor" ]; then
 	# if exiting wayland cleanly: gigantor will sleep when lid closed
 	riverctl map normal $mod3 q spawn "pkill -9 river"
 else

@@ -5,7 +5,7 @@ set -o pipefail
 if [ -n "${1}" ]; then
 	browser="${1}"
 else
-	if [ "${HOST}" = "gigantor" ]; then
+	if [ "$(hostname)" = "gigantor" ]; then
 		browser=chromium
 	else
 		browser=google-chrome-stable
