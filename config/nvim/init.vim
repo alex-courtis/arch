@@ -17,6 +17,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'Yohannfra/Vim-Goto-Header'
+Plugin 'ziglang/zig.vim'
 
 " plugin and coc-settings.json retained for coc replications
 " Plugin 'neoclide/coc.nvim'
