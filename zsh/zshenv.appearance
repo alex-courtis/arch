@@ -1,5 +1,5 @@
 # font size hack for gigantor's scale 1 for intellij
-if [ "$(hostname)" = "gigantor" ]; then
+if [ "${HOST}" = "gigantor" ]; then
 	FONT_SIZE_PT=12
 else
 	FONT_SIZE_PT=11

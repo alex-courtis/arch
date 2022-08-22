@@ -7,7 +7,7 @@ path=(~/bin ~/.local/bin $path)
 if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" -a ! -f "${XDG_CONFIG_HOME}/nogui" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			if [ "$(hostname)" = "emperor" ]; then
+			if [ "${HOST}" = "emperor" ]; then
 				exec startwm x dwm
 			else
 				exec startwm river
