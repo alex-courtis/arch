@@ -9,7 +9,7 @@ way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 swayidle -w \
 	timeout 900 'swaylock -f -c ${BASE01}' \
-	timeout 1800 'pkill -9 -f swaylock ; sudo systemctl hibernate' \
+	timeout 1800 'sudo systemctl hibernate' \
 	before-sleep 'swaylock -f -c ${BASE01}' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 
