@@ -50,7 +50,13 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 done
 
 riverctl map normal $mod1 q close
-riverctl map normal $mod3 q exit
+
+if [ "$(hostname)" = "gigantor" ]; then
+	# if exiting wayland cleanly: gigantor will sleep when lid closed
+	riverctl map normal $mod3 q spawn "pkill -9 river"
+else
+	riverctl map normal $mod3 q exit
+fi
 
 riverctl map normal $mod1 equal send-layout-cmd stacktile "primary_ratio 0.5"
 
