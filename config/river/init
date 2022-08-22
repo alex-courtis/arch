@@ -97,8 +97,6 @@ riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
 
-riverctl map normal $mod3 w spawn "sudo camtoggle"
-
 # special
 riverctl map normal None XF86AudioMute         spawn "volmute"
 riverctl map normal None XF86AudioMicMute      spawn "volmutemic"
