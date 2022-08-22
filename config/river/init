@@ -8,9 +8,8 @@
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 swayidle -w \
-	timeout 750 'swaylock -f -c ${BASE01}' \
-	timeout 1500 'sudo systemctl suspend' \
-	before-sleep 'swaylock -f -c ${BASE01}' \
+	timeout 900 'swaylock -f -c ${BASE01}' \
+	timeout 1800 'pkill -9 -f swaylock ; sudo systemctl hibernate' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 
 mod1="Super"
@@ -36,6 +35,8 @@ riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
 riverctl map normal $mod1 Space swap next
 riverctl map normal $mod2 Space swap previous
+
+riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
 # left
 tags=1
