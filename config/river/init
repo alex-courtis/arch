@@ -4,6 +4,8 @@
 # BTN_MIDDLE toggle float
 # touchpad scroll horizontally
 
+echo "llllllllll1" > /tmp/rlw.state
+
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 
