@@ -1,0 +1,107 @@
+#!/bin/zsh
+
+# build masks for convenience
+typeset -a tag_masks
+tag=1
+for i in $(seq 1 10); do
+	tag_masks[i]=${tag}
+	tag=$((${tag} << 1))
+done
+
+# current state
+state=$(cat /tmp/rlw.state)
+print "river-layout-wrapper ${@} '${state}'"
+
+cmd="${1}"
+shift
+args="${@}"
+
+# exactly 10 layouts then current tag
+typeset -A layouts
+for i in $(seq 1 10); do
+	# sanitize
+	layout=${state[${i}]//[^mlr]/l}
+	if [ -z "${layout}" ]; then
+		layout="l"
+	fi
+	layouts[${tag_masks[${i}]}]=${layout}
+done
+
+cur_tag=${state:10}
+if [[ "$cur_tag" != <-> ]]; then
+	# sanitize
+	cur_tag=${tag_masks[10]}
+fi
+cur_layout=${layouts[${cur_tag}]}
+
+case "${cmd}" in
+	"layout")
+		new_tag=${cur_tag}
+		new_layout=${args[1]}
+		;;
+	"tag-focus")
+		;&
+	"tag-move")
+		new_tag=${args}
+		new_layout=${layouts[${new_tag}]}
+		;;
+	*)
+		print "${0} bad command ${cmd}"
+		return 1
+		;;
+esac
+
+print " ${cur_tag}->${new_tag} ${cur_layout}->${new_layout}"
+
+# send view to new
+if [ "${cmd}" = "tag-move" ]; then
+	riverctl set-view-tags ${new_tag}
+fi
+
+# change layout in scratch tag to prevent unwanted window resizing
+if [ "${cur_layout}" != "${new_layout}" ]; then
+
+	# scratch tag 11
+	cur_tag="1024"
+	riverctl set-focused-tags ${cur_tag}
+	print " ->${cur_tag}"
+
+	location="left"
+	case "${new_layout}" in
+		"m")
+			location="monocle"
+			;;
+		"r")
+			location="right"
+			;;
+		*)
+			new_layout="l"
+			;;
+	esac
+	riverctl send-layout-cmd rivercarro "main-location ${location}"
+	print " ->${location}"
+
+	# smartborders
+	if [ "${location}" = "monocle" ]; then
+		riverctl border-width 0
+	else
+		riverctl border-width 1
+	fi
+fi
+
+# switch tag
+if [ "${cur_tag}" != "${new_tag}" ]; then
+	riverctl set-focused-tags ${new_tag}
+	print " ->${new_tag}"
+fi
+
+# new state
+state=""
+layouts[${new_tag}]=${new_layout}
+for i in ${tag_masks}; do
+	state+=${layouts[${i}]}
+done
+state+=${new_tag}
+print " '${state}'"
+print "${state}" > /tmp/rlw.state
+

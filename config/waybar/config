@@ -11,6 +11,7 @@
 	},
 
 	"river/tags": {
+		"disable-click": true,
 		"num-tags": 10
 	},
 
