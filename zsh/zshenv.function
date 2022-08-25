@@ -21,7 +21,14 @@ function printtermtitle() {
 
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~ "
-	__git_ps1
+	gps1=$(__git_ps1)
+
+	# hack for waybar river title not escaping html
+	if [ -n "${WAYLAND_DISPLAY}" ]; then
+		print -n "${gps1//</&lt;}"
+	else
+		print -n "${gps1}"
+	fi
 }
 
 # print TERM from the tmux environment
