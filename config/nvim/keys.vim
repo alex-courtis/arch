@@ -10,8 +10,7 @@ vm	<C-w>; 	<C-w>:
 nn	yw	yiw
 nn	yfw	yw
 
-nm	<silent>	<Esc>		<Esc>:nohlsearch<CR>
-im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
+nn <silent>		<Esc><Esc>	:nohlsearch<CR>
 
 om	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
 xm	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
