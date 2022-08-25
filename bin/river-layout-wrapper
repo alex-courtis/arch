@@ -58,13 +58,15 @@ if [ "${cmd}" = "tag-move" ]; then
 	riverctl set-view-tags ${new_tag}
 fi
 
-# change layout in scratch tag to prevent unwanted window resizing
+# change layout
 if [ "${cur_layout}" != "${new_layout}" ]; then
 
-	# scratch tag 11
-	cur_tag="1024"
-	riverctl set-focused-tags ${cur_tag}
-	print " ->${cur_tag}"
+	# change layout in scratch tag to prevent unwanted window resizing in current tag
+	if [ "${cur_tag}" != "${new_tag}" ]; then
+		cur_tag="1024"
+		riverctl set-focused-tags ${cur_tag}
+		print " ->${cur_tag}"
+	fi
 
 	location="left"
 	case "${new_layout}" in
