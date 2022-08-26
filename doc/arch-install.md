@@ -483,7 +483,7 @@ pacaur -S xf86-video-amdgpu libva-mesa-driver linux
 KMS will automatically be used.
 
 ```sh
-pacaur -S xf86-video-intel libva-intel-driver
+pacaur -S xf86-video-intel libva-intel-driver intel-media-driver
 ```
 
 ### Nvidia Only (desktop)
@@ -491,7 +491,7 @@ pacaur -S xf86-video-intel libva-intel-driver
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 ```sh
-pacaur -S nvidia libva-vdpau-driver
+pacaur -S nvidia libva-vdpau-driver libva-vdpau-driver-chromium
 ```
 
 ### Nvidia + Intel (heavy laptop)
