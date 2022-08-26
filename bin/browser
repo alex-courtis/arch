@@ -12,9 +12,5 @@ else
 	fi
 fi
 
-if [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
-	${browser} --enable-features=UseOzonePlatform --ozone-platform=wayland &!
-else
-	${browser} &!
-fi
+${browser} &!
 
