@@ -1,4 +1,0 @@
-#!/bin/sh
-
-/usr/bin/google-chrome-stable > /dev/null 2>&1 &!
-
