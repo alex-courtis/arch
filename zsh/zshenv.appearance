@@ -34,3 +34,19 @@ export BASE0E="#d381c3" # Keywords, Storage, Selector, Markup Italic, Diff Chang
 # brown
 export BASE0F="#be643c" # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 
+# customise various bemenu invocations
+export BEMENU_OPTS="\
+	--monitor focused \
+	--ignorecase \
+	--prefix "\>" \
+	--prompt ':;' \
+	--fn 'monospace ${FONT_SIZE_PT}' \
+	--list 10 \
+	--wrap \
+	--sb '#FFFF00' --sf '#FFFFFF' \
+	--tb '${BASE0B}' --tf '${BASE00}' \
+	--fb '${BASE01}' --ff '${BASE04}' \
+	--nb '${BASE01}' --nf '${BASE04}' \
+	--ab '${BASE01}' --af '${BASE04}' \
+	--hb '${BASE02}' --hf '${BASE06}'"
+

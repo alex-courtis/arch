@@ -44,20 +44,6 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-# customise various bemenu invocations
-export BEMENU_OPTS="--ignorecase \
-	--prefix "\>" \
-	--prompt ':;' \
-	--fn 'monospace ${FONT_SIZE_PT}' \
-	--list 10 \
-	--wrap \
-	--sb '#FFFF00' --sf '#FFFFFF' \
-	--tb '${BASE0B}' --tf '${BASE00}' \
-	--fb '${BASE01}' --ff '${BASE04}' \
-	--nb '${BASE01}' --nf '${BASE04}' \
-	--ab '${BASE01}' --af '${BASE04}' \
-	--hb '${BASE02}' --hf '${BASE06}'"
-
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
