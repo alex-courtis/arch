@@ -1,7 +1,1 @@
-#!/bin/sh
-
-# new term should not inherit TMUX, so that it starts its own session
-TMUX=
-
-alacritty -o font.size=$FONT_SIZE_PT ${@} &!
-
+/usr/bin/alacritty
