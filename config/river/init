@@ -33,8 +33,8 @@ riverctl map-pointer normal $mod1 BTN_RIGHT resize-view
 riverctl map normal $mod1 BackSpace focus-output next
 riverctl map normal $mod2 BackSpace spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 BackSpace send-to-output next
-riverctl map normal $mod1 Escape toggle-fullscreen
-riverctl map normal $mod2 Escape toggle-float
+riverctl map normal $mod1 Escape swap next
+riverctl map normal $mod2 Escape swap previous
 riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1 &\!"
 riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ~/.local/share/applications) > /dev/null 2>&1 &\!"
 riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
@@ -42,8 +42,8 @@ riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
 riverctl map normal $mod3 Delete spawn "browser-alt > /dev/null 2>&1 &!"
 riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
-riverctl map normal $mod1 Space swap next
-riverctl map normal $mod2 Space swap previous
+riverctl map normal $mod1 Space toggle-fullscreen
+riverctl map normal $mod2 Space toggle-float
 
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
