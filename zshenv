@@ -1,3 +1,6 @@
+typeset -U path
+path=(~/bin ~/.local/bin $path)
+
 source "${HOME}/.zsh/zshenv.appearance"
 source "${HOME}/.zsh/zshenv.function"
 

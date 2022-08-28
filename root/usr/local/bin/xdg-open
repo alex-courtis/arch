@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Suppress any spurious output from noisy apps like chrome.
+# Invoke /usr/bin/xdg-open directly for more interactive operations.
+
+/usr/bin/xdg-open "${@}" > /dev/null 2>&1
+
