@@ -3,25 +3,25 @@
 # keyboard
 riverctl set-repeat 50 400
 
-# known and detected touch devices
-typeset -U TOUCH
-TOUCH=("pointer-1452-782-Alex_Courtis___s_Trackpad")
-for t in $(riverctl list-inputs | grep "^touch-"); do
-	TOUCH+=("${t}")
+# known and detected touch/track pads
+typeset -U PAD
+PAD=("pointer-1452-782-Alex_Courtis___s_Trackpad")
+for t in $(riverctl list-inputs | grep -Ei "^pointer-.*touch"); do
+	PAD+=("${t}")
 done
 
-# setup pointers excluding touch
-for p in $(riverctl list-inputs | grep "^pointer-"); do
-	if [ -z "${TOUCH[(r)${p}]}" ]; then
-		echo "pointer: ${p}"
+# mouses
+for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint"); do
+	if [ -z "${PAD[(r)${p}]}" ]; then
+		echo "mouse: ${p}"
 		riverctl input "$p" pointer-accel 0
 		riverctl input "$p" accel-profile none
 	fi
 done
 
-# setup touch
-for t in "${TOUCH[@]}"; do
-	echo "touch:   ${t}"
+# pads
+for t in "${PAD[@]}"; do
+	echo "pad:   ${t}"
 	riverctl input "${t}" tap enabled
 	riverctl input "${t}" natural-scroll enabled
 done
