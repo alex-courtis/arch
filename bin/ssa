@@ -2,8 +2,6 @@
 
 if [ "$(basename ${0})" == "sss" ]; then
 	SEL="true"
-elif [ "$(basename ${0})" == "ssw" ]; then 
-	WIN="true"
 elif [ "$(basename ${0})" == "ssm" ]; then 
 	MON="true"
 fi
@@ -11,8 +9,6 @@ fi
 if [ -n "${WAYLAND_DISPLAY}" ]; then
 	if [ "${SEL}" == "true" ]; then
 		grim -g "$(slurp)" "/tmp/$(date +%Y%m%d_%H%M%S).png"
-	elif [ "${WIN}" == "true" ]; then
-		grim -g "$(swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.focused) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" "/tmp/$(date +%Y%m%d_%H%M%S).png"
 	elif [ "${MON}" == "true" ]; then
 		grim -g "$(slurp -o)" "/tmp/$(date +%Y%m%d_%H%M%S).png"
 	else
@@ -21,8 +17,6 @@ if [ -n "${WAYLAND_DISPLAY}" ]; then
 elif [ -n "${DISPLAY}" ]; then
 	if [ "${SEL}" == "true" ]; then
 		scrot -s '/tmp/%Y%m%d_%H%M%S.$wx$h.png'
-	elif [ "${WIN}" == "true" ]; then
-		scrot -u '/tmp/%Y%m%d_%H%M%S.$wx$h.png'
 	else
 		scrot '/tmp/%Y%m%d_%H%M%S.$wx$h.png'
 	fi
