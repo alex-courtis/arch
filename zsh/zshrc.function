@@ -55,6 +55,7 @@ function remote_env_teardown() {
 function ssh() {
 	remote_env_setup
 	$(whence -p ssh) "${@}"
+	print -n '\Ec'
 	remote_env_teardown
 }
 
@@ -124,6 +125,7 @@ function sshl() {
 		pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
 	fi
 
+	read
 	ssh ${@}
 }
 
