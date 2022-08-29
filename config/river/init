@@ -15,10 +15,6 @@ if [ "$(hostname)" = "gigantor" ]; then
 		timeout 1800 'sudo systemctl hibernate' \
 		before-sleep 'swaylock -f -c ${BASE01}' \
 		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
-else
-	swayidle -w \
-		timeout 1800 'sudo systemctl suspend' \
-		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 fi
 
 mod1="Super"
