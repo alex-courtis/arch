@@ -1,3 +1,147 @@
+unbind -f common !
+unbind -f common +
+unbind -f common ,
+unbind -f common -
+unbind -f common .
+unbind -f common /
+unbind -f common =
+unbind -f common ?
+unbind -f common [
+unbind -f common ]
+unbind -f common {
+unbind -f common }
+
+unbind -f common 0
+unbind -f common 1
+unbind -f common 2
+unbind -f common 3
+unbind -f common 4
+unbind -f common 5
+unbind -f common 6
+unbind -f common 7
+unbind -f common 8
+unbind -f common 9
+
+unbind -f common A
+unbind -f common B
+unbind -f common C
+unbind -f common D
+unbind -f common E
+unbind -f common F
+unbind -f common G
+unbind -f common H
+unbind -f common I
+unbind -f common J
+unbind -f common K
+unbind -f common L
+unbind -f common M
+unbind -f common N
+unbind -f common O
+unbind -f common P
+unbind -f common Q
+unbind -f common R
+unbind -f common S
+unbind -f common T
+unbind -f common U
+unbind -f common V
+unbind -f common W
+unbind -f common X
+unbind -f common Y
+unbind -f common Z
+
+unbind -f common a
+unbind -f common b
+unbind -f common c
+unbind -f common d
+unbind -f common e
+unbind -f common f
+unbind -f common g
+unbind -f common h
+unbind -f common i
+unbind -f common j
+unbind -f common k
+unbind -f common l
+unbind -f common m
+unbind -f common n
+unbind -f common o
+unbind -f common p
+unbind -f common q
+unbind -f common r
+unbind -f common s
+unbind -f common t
+unbind -f common u
+unbind -f common v
+unbind -f common w
+unbind -f common x
+unbind -f common y
+unbind -f common z
+
+unbind -f common ^A
+unbind -f common ^B
+unbind -f common ^C
+unbind -f common ^D
+unbind -f common ^E
+unbind -f common ^F
+unbind -f common ^G
+unbind -f common ^H
+# unbind -f common ^I
+# unbind -f common ^J
+unbind -f common ^K
+unbind -f common ^L
+unbind -f common ^M
+unbind -f common ^N
+unbind -f common ^O
+unbind -f common ^P
+unbind -f common ^Q
+unbind -f common ^R
+unbind -f common ^S
+unbind -f common ^T
+unbind -f common ^U
+unbind -f common ^V
+unbind -f common ^W
+unbind -f common ^X
+unbind -f common ^Y
+unbind -f common ^Z
+
+unbind -f common up
+unbind -f common down
+unbind -f common left
+unbind -f common right
+
+unbind -f common delete
+unbind -f common end
+unbind -f common enter
+unbind -f common home
+unbind -f common page_down
+unbind -f common page_up
+unbind -f common space
+unbind -f common tab
+
+unbind -f common mlb_click_bar
+unbind -f common mlb_click_selected
+unbind -f common mouse_scroll_down
+unbind -f common mouse_scroll_down_bar
+unbind -f common mouse_scroll_down_title
+unbind -f common mouse_scroll_up
+unbind -f common mouse_scroll_up_bar
+unbind -f common mouse_scroll_up_title
+
+unbind -f browser backspace
+unbind -f browser i
+unbind -f browser space
+unbind -f browser u
+
+
+set mouse=true
+set wrap_search=false
+
+set aaa_mode=artist
+set continue_album=false
+
+set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
+
+set format_trackwin_va=%3n. %t%= %y %d
+
 bind -f common j win-down
 bind -f common k win-up
 bind -f common h win-next
@@ -40,14 +184,3 @@ bind -f common + vol +5%
 bind -f common - vol -5%
 
 bind -f common q quit
-
-set mouse=true
-set wrap_search=false
-
-set aaa_mode=artist
-set continue_album=false
-
-set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
-
-set format_trackwin_va=%3n. %t%= %y %d
-
