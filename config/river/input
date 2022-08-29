@@ -11,7 +11,7 @@ for t in $(riverctl list-inputs | grep -Ei "^pointer-.*touch"); do
 done
 
 # mouses
-for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint|keyboard"); do
+for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint|keyboard|consumer"); do
 	if [ -z "${PAD[(r)${p}]}" ]; then
 		echo "mouse: ${p}"
 		riverctl input "$p" pointer-accel 0
