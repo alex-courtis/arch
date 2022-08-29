@@ -110,13 +110,11 @@ riverctl border-color-focused "0x${BASE0203#*#}"
 riverctl border-color-urgent "0x${BASE03#*#}"
 riverctl border-width 1
 
-# input
-riverctl set-repeat 50 400
-river-input-setup
-
 # behaviour
 riverctl attach-mode bottom
 riverctl set-cursor-warp on-output-change
+
+${XDG_CONFIG_HOME}/river/input
 
 # run
 riverctl spawn waybar
