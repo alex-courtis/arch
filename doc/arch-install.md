@@ -411,11 +411,16 @@ xsel
 yq
 zsh-completions
 lemonade-git
+libinput-gestures
+menjar
+river-git
+rivercarro
 rcm
 todotxt
-vundle-git
+vundle
 way-displays
 xlayoutdisplay
+ydotool
 `
 
 Clean any unnecessary packages:

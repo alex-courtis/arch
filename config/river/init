@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # TODO
 # BTN_MIDDLE toggle float
@@ -114,7 +114,11 @@ riverctl border-width 1
 riverctl attach-mode bottom
 riverctl set-cursor-warp on-output-change
 
+# input
 ${XDG_CONFIG_HOME}/river/input
+if [ "$(whence libinput-gestures-setup)" ]; then
+	libinput-gestures-setup restart > /dev/null 2>&1
+fi
 
 # run
 riverctl spawn waybar
