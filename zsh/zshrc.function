@@ -124,6 +124,7 @@ function sshl() {
 		pgrep -a -f "ssh.*${LEM_SSH_ARGS}"
 	fi
 
+	read
 	ssh ${@}
 }
 
