@@ -3,6 +3,8 @@
 # TODO
 # BTN_MIDDLE toggle float
 # touchpad scroll horizontally
+# layout indicator with monocle window count
+# focus on urgent (RequestActivate)
 
 echo "llllllllll1" > /tmp/rlw.state
 
