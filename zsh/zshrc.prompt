@@ -27,8 +27,14 @@ function updatecolours() {
 			(duke)
 				COL_PROMPT="blue"
 				;;
-			(*)
+			(count)
+				COL_PROMPT="yellow"
+				;;
+			(lord)
 				COL_PROMPT="cyan"
+				;;
+			(*)
+				COL_PROMPT="white"
 				;;
 		esac
 		STR_PROMPT=" ${HOST} "
