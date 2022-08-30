@@ -9,13 +9,10 @@ echo "llllllllll1" > /tmp/rlw.state
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 
-if [ "$(hostname)" = "gigantor" ]; then
-	swayidle -w \
-		timeout 900 'swaylock -f -c ${BASE01}' \
-		timeout 1800 'sudo systemctl hibernate' \
-		before-sleep 'swaylock -f -c ${BASE01}' \
-		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
-fi
+swayidle -w \
+	timeout 900 'swaylock -f -c ${BASE01}' \
+	before-sleep 'swaylock -f -c ${BASE01}' \
+	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 
 mod1="Super"
 mod2="$mod1+Control"
