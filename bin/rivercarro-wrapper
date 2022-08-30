@@ -8,25 +8,25 @@
 # State stored in /tmp/rlw.state
 
 # usage:
-#   river-layout-wrapper layout <left|right|middle>
+#   rivercarro-wrapper layout <left|right|middle>
 #     apply layout setting borders as appropriate
-#   river-layout-wrapper tag-focus <tag>
+#   rivercarro-wrapper tag-focus <tag>
 #     set-focused-tags and apply previous layout for that tag
-#   river-layout-wrapper tag-move <tag>
+#   rivercarro-wrapper tag-move <tag>
 #     set-view-tags, set-focused-tags and apply previous layout for that tag
 
 # example river init:
 # echo "llllllllll1" > /tmp/rlw.state
 # tag=1
 # for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
-# 	riverctl map normal $mod1 $k spawn "river-layout-wrapper tag-focus $tag"
-# 	riverctl map normal $mod2 $k spawn "river-layout-wrapper tag-move $tag"
+# 	riverctl map normal $mod1 $k spawn "rivercarro-wrapper tag-focus $tag"
+# 	riverctl map normal $mod2 $k spawn "rivercarro-wrapper tag-move $tag"
 # 	riverctl map normal $mod3 $k set-view-tags $tag
 # 	tag=$(($tag << 1))
 # done
-# riverctl map normal $mod1 h spawn 'river-layout-wrapper layout left'
-# riverctl map normal $mod1 t spawn 'river-layout-wrapper layout monocle'
-# riverctl map normal $mod1 n spawn 'river-layout-wrapper layout right'
+# riverctl map normal $mod1 h spawn 'rivercarro-wrapper layout left'
+# riverctl map normal $mod1 t spawn 'rivercarro-wrapper layout monocle'
+# riverctl map normal $mod1 n spawn 'rivercarro-wrapper layout right'
 
 # build masks for convenience
 typeset -a tag_masks
@@ -38,7 +38,7 @@ done
 
 # current state
 state=$(cat /tmp/rlw.state)
-print "river-layout-wrapper ${@} '${state}'"
+print "rivercarro-wrapper ${@} '${state}'"
 
 cmd="${1}"
 shift
