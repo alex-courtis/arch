@@ -155,6 +155,9 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 " stop the plugin from creating the default mappings
 nmap	gc	<NOP>
 
+" zig
+let g:zig_fmt_autosave = 0
+
 
 " event order matters
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
