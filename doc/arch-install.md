@@ -392,7 +392,6 @@ terminus-font
 the_silver_searcher
 tmux
 ttf-dejavu
-ttf-hack
 udisks2
 unzip
 vdpauinfo
@@ -413,6 +412,7 @@ zsh-completions
 lemonade-git
 libinput-gestures
 menjar
+nerd-fonts-hack
 river-git
 rivercarro
 rcm
