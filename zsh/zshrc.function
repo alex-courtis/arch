@@ -55,9 +55,8 @@ function remote_env_teardown() {
 function ssh() {
 	remote_env_setup
 	$(whence -p ssh) "${@}"
-	if [ "${?}" -eq 0 ]; then
-		print -n '\Ec'
-	fi
+	read
+	print -n '\Ec'
 	remote_env_teardown
 }
 
