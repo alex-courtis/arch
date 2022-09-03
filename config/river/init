@@ -115,6 +115,11 @@ if [ "$(whence libinput-gestures-setup)" ]; then
 	libinput-gestures-setup restart > /dev/null 2>&1
 fi
 
+# app hacks
+riverctl csd-filter-add app-id zoom
+riverctl float-filter-add app-id zoom
+riverctl float-filter-add app-id nm-openconnect-auth-dialog
+
 # run
 riverctl spawn waybar
 riverctl default-layout rivercarro
