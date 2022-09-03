@@ -23,26 +23,27 @@ magenta
 0E  #d381c3  Keywords, Storage, Selector, Markup Italic, Diff Changed
 brown
 0F  #be643c  Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
-*/
+ */
 
 * {
-    font-family: Monospace;
-    font-size: 12pt;
+	font-family: Monospace;
+	font-size: 11pt;
+	min-height: 15pt;
 	padding: 0 0 0 0;
 	border: none;
-    border-radius: 0;
+	border-radius: 0;
 	transition-property: none;
 	transition-duration: 0;
 }
 
 window#waybar {
-    color: #d0d0d0;
-    background-color: #303030;
+	color: #d0d0d0;
+	background-color: #303030;
 }
 
 /* left */
 #tags {
-	margin-right: 12pt;
+	margin-right: 11pt;
 }
 
 #tags button {
@@ -54,7 +55,7 @@ window#waybar {
 
 #tags button:hover {
 	/* cannot change background from white; accept it and move on */
-    color: #303030;
+	color: #303030;
 }
 
 #tags button.occupied {
@@ -63,19 +64,19 @@ window#waybar {
 
 #tags button.focused {
 	color: #f5f5f5;
-    background-color: #505050;
+	background-color: #505050;
 }
 
 #tags button.urgent {
-    color: #303030;
-    background-color: #d0d0d0;
+	color: #303030;
+	background-color: #d0d0d0;
 }
 
 #window {
 	color: #f5f5f5;
 	padding-left: 6pt;
 	padding-right: 6pt;
-	margin-right: 12pt;
+	margin-right: 11pt;
 }
 
 #window.focused {
