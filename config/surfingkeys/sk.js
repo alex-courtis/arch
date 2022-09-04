@@ -11,7 +11,7 @@ var except_map = [
 	// unchanged defaults
 	'<Ctrl-i>',
 	'<Esc>',
-	'?', '/', ':',
+	'?', '/',
 	'd', 'u',
 	'f',
 	'gg', 'G',
