@@ -121,6 +121,10 @@ mapkey('P', '#7Open link from clipboard in new tab', function() {
 	});
 });
 
+// visual click
+api.vmap('f', '<Enter>');
+api.vmap('F', '<Shift-Enter>');
+
 // clear all default search aliases
 api.removeSearchAlias('g');
 api.removeSearchAlias('d');
@@ -193,8 +197,6 @@ api.vunmap('<Enter>');
 api.vunmap('<Shift-Enter>');
 api.vunmap('b');
 api.vunmap('e');
-api.vunmap('f');
-api.vunmap('F');
 api.vunmap('G');
 api.vunmap('gg');
 api.vunmap('gr');
