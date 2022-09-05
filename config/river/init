@@ -120,8 +120,11 @@ riverctl csd-filter-add app-id zoom
 riverctl float-filter-add app-id zoom
 riverctl float-filter-add app-id nm-openconnect-auth-dialog
 
-# run
+# bar
+sed -e "s/\${FONT_SIZE_PT}/${FONT_SIZE_PT}/g" $XDG_CONFIG_HOME/waybar/style.template.css > $XDG_CONFIG_HOME/waybar/style.css
 riverctl spawn waybar
+
+# run
 riverctl default-layout rivercarro
 exec rivercarro -inner-gaps 0 -outer-gaps 0 \
 	-main-location left -main-ratio 0.5

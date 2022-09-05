@@ -27,7 +27,7 @@ brown
 
 * {
 	font-family: Monospace;
-	font-size: 11pt;
+	font-size: ${FONT_SIZE_PT}pt;
 	min-height: 15pt;
 	padding: 0 0 0 0;
 	border: none;
