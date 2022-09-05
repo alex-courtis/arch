@@ -56,9 +56,6 @@ map('>', 'l');
 map('h', 'E');
 map('l', 'R');
 
-// other tabs close
-map('C', 'gxx');
-
 // additional down/up
 map('<Ctrl-d>', 'd');
 map('<Ctrl-u>', 'u');
@@ -66,14 +63,9 @@ map('<Ctrl-u>', 'u');
 // open link in new tab
 map('F', 'af');
 
-// new tab
-map('_', 't');
-map('t', 'on');
-
 // open url
 map('o', 'go');
-map('O', '_');
-api.unmap('_');
+map('O', 't');
 
 // move tab to another window
 map('m', 'W');
@@ -87,7 +79,7 @@ map('V', ';u');
 
 // close / restore tab
 map('q', 'x');
-map('Q', 'X');
+map('Q', 'gxx');
 
 // omnibar page
 api.cmap('<Ctrl-d>', '<Ctrl-.>');
