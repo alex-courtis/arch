@@ -40,6 +40,8 @@ function M.setup()
       },
     },
   })
+
+  require("lspconfig").zls.setup({})
 end
 
 function M.goto_definition_or_tag()
