@@ -156,7 +156,7 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 nmap	gc	<NOP>
 
 " zig
-let g:zig_fmt_autosave = 0
+let g:zig_build_makeprg_params="-Dxwayland --prefix ~/.local install"
 
 
 " event order matters

@@ -24,6 +24,9 @@ mod3="$mod2+Shift"
 riverctl map-pointer normal $mod1 BTN_LEFT move-view
 riverctl map-pointer normal $mod1 BTN_RIGHT resize-view
 
+riverctl map-button normal $mod1 BTN_MIDDLE toggle-float
+riverctl map-button normal $mod2 BTN_MIDDLE toggle-fullscreen
+
 # thumbs
 riverctl map normal $mod1 BackSpace focus-output next
 riverctl map normal $mod2 BackSpace spawn "riverctl send-to-output next && riverctl focus-output next"
