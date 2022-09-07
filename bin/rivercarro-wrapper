@@ -8,8 +8,9 @@
 # State stored in /tmp/rlw.state
 
 # usage:
-#   rivercarro-wrapper layout <left|right|middle>
+#   rivercarro-wrapper layout <toggle|left|right|monocle>
 #     apply layout setting borders as appropriate
+#     toggle left/monocle
 #   rivercarro-wrapper tag-focus <tag>
 #     set-focused-tags and apply previous layout for that tag
 #   rivercarro-wrapper tag-move <tag>
@@ -27,6 +28,7 @@
 # riverctl map normal $mod1 h spawn 'rivercarro-wrapper layout left'
 # riverctl map normal $mod1 t spawn 'rivercarro-wrapper layout monocle'
 # riverctl map normal $mod1 n spawn 'rivercarro-wrapper layout right'
+# riverctl map normal $mod1 s spawn 'rivercarro-wrapper layout toggle'
 
 # build masks for convenience
 typeset -a tag_masks
@@ -65,7 +67,15 @@ cur_layout=${layouts[${cur_tag}]}
 case "${cmd}" in
 	"layout")
 		new_tag=${cur_tag}
-		new_layout=${args[1]}
+		if [ "${args}" = "toggle" ]; then
+			if [ "${cur_layout}" = "m" ]; then
+				new_layout="l"
+			else
+				new_layout="m"
+			fi
+		else
+			new_layout=${args[1]}
+		fi
 		;;
 	"tag-focus")
 		;&

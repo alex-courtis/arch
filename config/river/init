@@ -40,8 +40,9 @@ riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
 riverctl map normal $mod3 Delete spawn "browser-alt > /dev/null 2>&1 &!"
 riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
-riverctl map normal $mod1 Space toggle-fullscreen
-riverctl map normal $mod2 Space toggle-float
+riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
+riverctl map normal $mod2 Space toggle-fullscreen
+riverctl map normal $mod3 Space toggle-float
 
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
@@ -79,13 +80,7 @@ riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE01} > /dev/null 2>&1"
 
 riverctl map normal $mod3 d spawn "vollowermic"
 
-riverctl map normal $mod1 h spawn 'rivercarro-wrapper layout left'
-
 riverctl map normal $mod3 h spawn "vollower"
-
-riverctl map normal $mod1 t spawn 'rivercarro-wrapper layout monocle'
-
-riverctl map normal $mod1 n spawn 'rivercarro-wrapper layout right'
 
 riverctl map normal $mod3 s spawn "sss"
 
