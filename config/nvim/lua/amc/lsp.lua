@@ -8,6 +8,7 @@ function M.setup()
 
   lspconfig.ccls.setup({
     capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern(".ccls", "compile_commands.json"),
     init_options = {
       compilationDatabaseDirectory = "build",
       clang = {
