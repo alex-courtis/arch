@@ -1,5 +1,14 @@
+# USER prioritised
+typeset -A PROMPT_COLOURS
+PROMPT_COLOURS[root]="red"
+PROMPT_COLOURS[count]="magenta"
+PROMPT_COLOURS[duke]="yellow"
+PROMPT_COLOURS[emperor]="green"
+PROMPT_COLOURS[lord]="cyan"
+PROMPT_COLOURS[gigantor]="blue"
+
 # font size hack for gigantor's scale 1 for intellij
-if [ "$(hostname)" = "gigantor" ]; then
+if [ "${HOST}" = "gigantor" ]; then
 	FONT_SIZE_PT=12
 else
 	FONT_SIZE_PT=11

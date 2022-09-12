@@ -14,33 +14,18 @@ function periodic() {
 }
 
 function updatecolours() {
-	STR_PROMPT=""
-	local COL_PROMPT=""
-	if [ "${USER}" = "root" ]; then
-		COL_PROMPT="red"
+	local COL_PROMPT="white"
+
+	if [ -n "${SSH_CONNECTION}" ]; then
 		STR_PROMPT=" ${HOST} "
-	elif [ -n "${SSH_CONNECTION}" ]; then
-		case "${HOST}" in
-			(gigantor)
-				COL_PROMPT="magenta"
-				;;
-			(duke)
-				COL_PROMPT="blue"
-				;;
-			(count)
-				COL_PROMPT="yellow"
-				;;
-			(lord)
-				COL_PROMPT="cyan"
-				;;
-			(*)
-				COL_PROMPT="white"
-				;;
-		esac
-		STR_PROMPT=" ${HOST} "
-	else
-		COL_PROMPT="green"
 	fi
+
+	if [ -n "${PROMPT_COLOURS[${USER}]}" ]; then
+		COL_PROMPT="${PROMPT_COLOURS[${USER}]}"
+	elif [ -n "${PROMPT_COLOURS[${HOST}]}" ]; then
+		COL_PROMPT="${PROMPT_COLOURS[${HOST}]}"
+	fi
+
 	COL_ZSH_OFF="%k%f"
 	COL_ZSH_NOR="%F{black}%K{${COL_PROMPT}}"
 	COL_ZSH_WAR="%F{black}%K{yellow}"
