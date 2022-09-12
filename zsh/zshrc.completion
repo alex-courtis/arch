@@ -1,3 +1,5 @@
+fpath=(~/.local/share/zsh/site-functions $fpath)
+
 autoload -Uz compinit
 compinit
 
