@@ -15,7 +15,7 @@ function printtermtitle() {
 		fi
 	fi
 
-	if [ -n "${SSH_CONNECTION}" ]; then
+	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
 		print -n "${HOST}  "
 	fi
 

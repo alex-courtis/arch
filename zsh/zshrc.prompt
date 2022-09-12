@@ -16,7 +16,7 @@ function periodic() {
 function updatecolours() {
 	local COL_PROMPT="white"
 
-	if [ -n "${SSH_CONNECTION}" ]; then
+	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
 		STR_PROMPT=" ${HOST} "
 	fi
 
