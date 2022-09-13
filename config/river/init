@@ -1,11 +1,5 @@
 #!/bin/zsh
 
-# TODO
-# BTN_MIDDLE toggle float
-# touchpad scroll horizontally
-# layout indicator with monocle window count
-# focus on urgent (RequestActivate)
-
 echo "llllllllll1" > /tmp/rlw.state
 
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
@@ -23,9 +17,8 @@ mod3="$mod2+Shift"
 # mouse
 riverctl map-pointer normal $mod1 BTN_LEFT move-view
 riverctl map-pointer normal $mod1 BTN_RIGHT resize-view
-
-riverctl map-button normal $mod1 BTN_MIDDLE toggle-float
-riverctl map-button normal $mod2 BTN_MIDDLE toggle-fullscreen
+riverctl map-pointer normal $mod1 BTN_MIDDLE toggle-float
+riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 
 # thumbs
 riverctl map normal $mod1 BackSpace focus-output next
