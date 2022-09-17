@@ -7,12 +7,19 @@ PROMPT_COLOURS[emperor]="green"
 PROMPT_COLOURS[lord]="cyan"
 PROMPT_COLOURS[gigantor]="blue"
 
-# font size hack for gigantor's scale 1 for intellij
-if [ "${HOST}" = "gigantor" ]; then
-	FONT_SIZE_PT=12
-else
-	FONT_SIZE_PT=11
-fi
+# font size hack scale 1 at 2560x1440 for intellij
+case "${HOST}" in
+	"count")
+		;&
+	"gigantor")
+		;&
+	"tinygod")
+		FONT_SIZE_PT=12
+		;;
+	*)
+		FONT_SIZE_PT=11
+		;;
+esac
 export FONT_SIZE_PT
 
 # base16-bright
