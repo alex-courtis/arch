@@ -1,13 +1,21 @@
 #!/bin/sh
 
-if [ "${HOST}" = "gigantor" -o "${HOST}" = "duke" ]; then
-	# tenveo won't handle mute
-	pactl get-source-volume @DEFAULT_SOURCE@ | grep " 0%" > /dev/null 2>&1
-	if [ $? -eq 0 ]; then
-		pactl set-source-volume @DEFAULT_SOURCE@ 100%
-	else
-		pactl set-source-volume @DEFAULT_SOURCE@ 0
-	fi
-else
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle
-fi
+case "${HOST}" in
+	"count")
+		;&
+	"gigantor")
+		;&
+	"tinygod")
+		# tenveo won't handle mute
+		pactl get-source-volume @DEFAULT_SOURCE@ | grep " 0%" > /dev/null 2>&1
+		if [ $? -eq 0 ]; then
+			pactl set-source-volume @DEFAULT_SOURCE@ 100%
+		else
+			pactl set-source-volume @DEFAULT_SOURCE@ 0
+		fi
+		FONT_SIZE_PT=12
+		;;
+	*)
+		pactl set-source-mute @DEFAULT_SOURCE@ toggle
+		;;
+esac
