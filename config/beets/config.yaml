@@ -43,6 +43,14 @@
 #
 # musicbrainz notes track lengths, however these are ignored in favour of the actual length of the track
 
+
+# list everything:
+#   beet ls -f '$title - $artist - $artist_sort - $artist_credit - $album - $albumartist - $albumartist_sort - $albumartist_credit - $genre - $composer - $grouping - $year - $month - $day - $original_year - $original_month - $original_day - $track - $tracktotal - $disc - $disctotal - $lyrics - $comments - $bpm - $comp - $albumtype - $label - $asin - $catalognum - $script - $language - $country - $albumstatus - $media - $albumdisambig - $disctitle - $encoder - $length - $bitrate - $format - $channels - $bitdepth - $samplerate - $mb_trackid - $mb_releasetrackid - $mb_albumid - $mb_artistid - $mb_albumartistid - $mb_releasegroupid - $acoustid_fingerprint - $acoustid_id - $mtime - $added - $path'
+#
+# list pertinent:
+#   beet ls -f '$artist - $artist_sort - $artist_credit - $album - $albumartist - $albumartist_sort - $albumartist_credit - $comp - $disc/$disctotal - $track/$tracktotal - $genre - $composer - $grouping - $year/$month/$day - $lyrics - $comments - $bpm - $albumtype - $encoder - $length - $bitrate - $format - $channels - $bitdepth - $samplerate - $title'
+
+
 #
 # TODO
 # - migrate from lyricwiki to genius, as genius has better lyrics with headings, however currently cannot be scraped if there are web annotations
