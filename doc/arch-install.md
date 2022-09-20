@@ -573,6 +573,12 @@ mdadm --create --verbose --level=0 --metadata=1.2 --raid-devices=2 --homehost=gi
 
 Use `/dev/md0` as the device for LUKS.
 
+```sh
+pacman -S mdadm
+```
+
+Put `mdadm_udev` before `encrypt` in `/etc/mkinitcpio.conf`.
+
 ## LVM on LUKS
 
 ```sh
@@ -645,7 +651,7 @@ The UUID is of the raw device `/dev/nvme0n1p2`
 Install lvm:
 
 ```sh
-pacaur -S lvm2
+pacman -S lvm2
 ```
 
 Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
@@ -653,5 +659,5 @@ Put `keyboard encrypt lvm2` before `filesystems` in `/etc/mkinitcpio.conf`.
 Regenerate the boot image:
 
 ```sh
-pacaur -S linux
+pacman -S linux
 ```
