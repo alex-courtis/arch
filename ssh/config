@@ -2,7 +2,7 @@ Host aur.archlinux.org
   IdentityFile ~/.ssh/id_rsa.aur
   User aur
 
-Host gigantorw.courtis.org gigantorw gigantor.courtis.org gigantor baronw.courtis.org baronw baron.courtis.org baron
+Host gigantor gigantorw gigantori tinygod tinygod1 tinygod2
   User acourtis
 
 Host *

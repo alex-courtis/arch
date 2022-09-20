@@ -1,16 +1,14 @@
 # USER prioritised
 typeset -A PROMPT_COLOURS
 PROMPT_COLOURS[root]="red"
-PROMPT_COLOURS[count]="magenta"
 PROMPT_COLOURS[duke]="yellow"
 PROMPT_COLOURS[emperor]="green"
 PROMPT_COLOURS[lord]="cyan"
 PROMPT_COLOURS[gigantor]="blue"
+PROMPT_COLOURS[tinygod]="magenta"
 
 # font size hack scale 1 at 2560x1440 for intellij
 case "${HOST}" in
-	"count")
-		;&
 	"gigantor")
 		;&
 	"tinygod")
