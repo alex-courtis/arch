@@ -144,11 +144,15 @@ function createSearch(prefix, alias, prompt, search_url, suggestion_url, callbac
 createSearch('e', 'ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
 createSearch('e', 'au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
 createSearch('e', 'aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
-createSearch('e', 'dw', 'Dark Souls Wiki', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
-createSearch('e', 'o', 'go', 'http://go/');
+createSearch('e', 'dw', 'Dark Souls', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
 createSearch('e', 'h', 'hello', 'https://hello.atlassian.net/wiki/search?text=');
+createSearch('e', 'na', 'Nier Automata', 'https://nier.fandom.com/wiki/Special:Search?query=')
+createSearch('e', 'o', 'go', 'http://go/');
+createSearch('e', 'pd', 'Proton DB', 'https://www.protondb.com/search?q=');
+createSearch('e', 'rr', 'Risk Of Rain', 'https://riskofrain2.fandom.com/wiki/Special:Search?query=')
 createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/search/?q=');
 createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
+
 createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
 	var res = JSON.parse(response.text);
 	return res.map(function(r){
@@ -159,7 +163,7 @@ createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=', 's', 'https
 	var res = JSON.parse(response.text);
 	return res[1];
 });
-createSearch('e', 'w', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
 createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
