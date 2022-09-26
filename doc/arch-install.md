@@ -248,8 +248,6 @@ HOOKS=(
     keyboard
     fsck
     resume
-    usr
-    shutdown
 )
 ```
 
@@ -445,6 +443,14 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ### Done
 
 Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/i3.x.${XDG_VTNR}.${USER}.log`, `/tmp/sway.${XDG_VTNR}.${USER}.log`, `dmesg --human` and any console errors for oddities.
+
+## USB Firmware
+
+`WARNING: Possibly missing firmware for module: xhci_pci` during kernel image build indicates missing USB firmware.
+
+```sh
+pacaur -S upd72020x-fw
+```
 
 ## Audio Drivers
 
