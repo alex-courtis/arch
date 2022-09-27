@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 case "${HOST}" in
-	"count")
+	"duke")
 		;&
 	"gigantor")
 		;&
