@@ -40,6 +40,7 @@ function remote_env_setup() {
 	TERM_PREV="${TERM}"
 	TERM=$(underlyingterm)
 	if [ -n "${TMUX}" ]; then
+		# prefix2 C-b still available
 		tmux set prefix None
 	fi
 }
