@@ -37,8 +37,6 @@ riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
 riverctl map normal $mod2 Space toggle-fullscreen
 riverctl map normal $mod3 Space toggle-float
 
-riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
-
 # left
 tag=1
 for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
@@ -75,11 +73,17 @@ riverctl map normal $mod3 d spawn "vollowermic"
 
 riverctl map normal $mod3 h spawn "vollower"
 
+riverctl map normal $mod3 n spawn "ssa"
+
 riverctl map normal $mod3 s spawn "sss"
+
+riverctl map normal $mod3 minus spawn "sudo systemctl suspend"
 
 riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
+
+riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
 # special
 riverctl map normal None XF86AudioMute         spawn "volmute"
