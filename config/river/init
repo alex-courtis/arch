@@ -112,6 +112,7 @@ fi
 
 # app hacks
 riverctl csd-filter-add app-id zoom
+riverctl float-filter-add title "Open File"
 riverctl float-filter-add app-id zoom
 riverctl float-filter-add app-id nm-openconnect-auth-dialog
 
