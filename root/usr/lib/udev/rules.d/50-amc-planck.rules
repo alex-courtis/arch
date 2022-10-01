@@ -1,0 +1,4 @@
+# sourced from qmk_firmware/util/udev/50-qmk.rules
+
+# STM32 DFU
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
