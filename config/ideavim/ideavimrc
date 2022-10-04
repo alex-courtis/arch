@@ -82,7 +82,8 @@ nm <BS>dg <Action>(Generate)
 nm <BS>g  viw<Action>(FindInPath)<Esc>
 nm <BS>G  vw<Action>(FindInPath)<Esc>
 vm <BS>g  <Action>(FindInPath)<Esc>
-nm <BS>hp <Action>(Compare.SameVersion)
+nm <BS>hb <Action>(Annotate)
+nm <BS>hd <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
 nm <BS>hX <Action>(ChangesView.Revert)
 nm <BS>m  <Action>(CompileFile)

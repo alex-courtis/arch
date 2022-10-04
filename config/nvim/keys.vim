@@ -75,7 +75,8 @@ nm	<silent>	<Leader>hS	:Gitsigns stage_buffer<CR>
 nm	<silent>	<Leader>hu	:Gitsigns undo_stage_hunk<CR>
 nm	<silent>	<Leader>hX	:Gitsigns reset_buffer<CR>
 nm	<silent>	<Leader>hp	:Gitsigns preview_hunk<CR>
-nm	<silent>	<Leader>hb	:lua require"gitsigns".blame_line{full=true}<CR>
+nm	<silent>	<Leader>hb	:G blame<CR>
+nm	<silent>	<Leader>hB	:lua require"gitsigns".blame_line{full=true}<CR>
 nm	<silent>	<Leader>hl	:Gitsigns toggle_current_line_blame<CR>
 nm	<silent>	<Leader>hd	:Gitsigns diffthis<CR>
 nm	<silent>	<Leader>hD	:lua require"gitsigns".diffthis("~")<CR>
