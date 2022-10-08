@@ -131,64 +131,10 @@ function sshl() {
 	ssh ${@}
 }
 
-function smt() {
-	export SWAYSOCK=$(ls -tr ${XDG_RUNTIME_DIR}/sway-ipc*sock | tail -1)
-	swaymsg -t ${@}
-}
-
-function pyenv-init() {
+function pyenv_init() {
 	if [ "$(whence pyenv)" ]; then
 		export PYENV_ROOT=$HOME/.pyenv
 		eval "$(pyenv init -)"
 	fi
-}
-
-function nvt-dev() {
-	nvim -nu "/tmp/nvt-dev.lua" ${@}
-}
-
-function nvt-dev-edit() {
-	vi "/tmp/nvt-dev.lua"
-}
-
-function nvt-dev-clear() {
-	rm -rf /tmp/nvt-dev
-}
-
-function nvt-dev-init() {
-	if [ -z "${1}" ]; then
-		EXT="dev"
-	else
-		EXT="${1}"
-	fi
-	SRC="${XDG_DATA_HOME}/nvim/vundle/nvim-tree.lua.${EXT}"
-	INIT="/tmp/nvt-dev.lua"
-
-	rm -rf "${INIT}" /tmp/nvt-dev
-
-	grep -B 1000 "MODIFY NVIM-TREE SETTINGS" ${SRC}/.github/ISSUE_TEMPLATE/nvt-min.lua > "${INIT}"
-
-	sed -i -e "s#kyazdani42/nvim-tree.lua#${SRC}#g ; s/nvt-min/nvt-dev/g" "${INIT}"
-
-	cat << EOF >> "${INIT}"
-_G.setup = function()
-  require("nvim-tree").setup {
-EOF
-
-	sed -n -e "/BEGIN_DEFAULT_OPTS/,/END_DEFAULT_OPTS/{ /BEGIN_DEFAULT_OPTS/d; /END_DEFAULT_OPTS/d; p; }" "${SRC}/lua/nvim-tree.lua" | sed -e "s/^  /    /" >> "${INIT}"
-
-cat << EOF >> "${INIT}"
-  }
-end
-vim.api.nvim_set_keymap('n', ';', ':', {})
-vim.api.nvim_set_keymap('n', '<Space>;', ':NvimTreeRefresh<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>a', ':NvimTreeFindFile<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>,', ':NvimTreeOpen<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>o', ':wincmd p<CR>', {})
-vim.api.nvim_set_keymap('n', '<Space>\'', ':NvimTreeClose<CR>', {})
-EOF
-
-	unset SRC
-	unset INIT
 }
 

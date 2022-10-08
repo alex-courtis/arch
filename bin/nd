@@ -1,0 +1,79 @@
+#!/bin/zsh
+
+INIT="${HOME}/.local/share/nvim/nvt-dev.lua"
+PACKPATH="/tmp/nvt-dev/site"
+
+function edit() {
+	vi "${INIT}"
+}
+
+function clear() {
+	rm -rf "${INIT}" "${PACKPATH}"
+}
+
+function init() {
+	clear
+
+	if [ -z "${1}" ]; then
+		EXT="dev"
+	else
+		EXT="${1}"
+	fi
+	SRC="${XDG_DATA_HOME}/nvim/vundle/nvim-tree.lua.${EXT}"
+
+	# disable netrw
+	cat << EOF > "${INIT}"
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+EOF
+
+	# copy up to setup
+	grep -B 1000 "MODIFY NVIM-TREE SETTINGS" ${SRC}/.github/ISSUE_TEMPLATE/nvt-min.lua >> "${INIT}"
+
+	# setup call
+	cat << EOF >> "${INIT}"
+_G.setup = function()
+  require("nvim-tree").setup({
+EOF
+
+	# default options
+	sed -n -e "/BEGIN_DEFAULT_OPTS/,/END_DEFAULT_OPTS/{ /BEGIN_DEFAULT_OPTS/d; /END_DEFAULT_OPTS/d; p; }" "${SRC}/lua/nvim-tree.lua" | sed -e "s/^  /    /" >> "${INIT}"
+
+	# modify plugin directory, enable logging
+	sed -i -e "
+	s#kyazdani42/nvim-tree.lua#${SRC}#g ;
+	s/nvt-min/nvt-dev/g ;
+
+	/log = {/{ n; s/enable = false/enable = true/ } ;
+	s/truncate = false/truncate = true/ ;
+	s/dev = false/dev = true/ ;
+	" "${INIT}"
+
+	# mappings
+	cat << EOF >> "${INIT}"
+  })
+end
+vim.api.nvim_set_keymap("n", ";", ":", {})
+vim.api.nvim_set_keymap("n", "<Space>;", ":NvimTreeRefresh<CR>", {})
+vim.api.nvim_set_keymap("n", "<Space>a", ":NvimTreeFindFile<CR>", {})
+vim.api.nvim_set_keymap("n", "<Space>,", ":NvimTreeOpen<CR>", {})
+vim.api.nvim_set_keymap("n", "<Space>o", ":wincmd p<CR>", {})
+vim.api.nvim_set_keymap("n", '<Space>"', ":NvimTreeClose<CR>", {})
+EOF
+}
+
+case "${1}" in
+	"edit")
+		edit
+		;;
+	"clear")
+		clear
+		;;
+	"init")
+		init "${2}"
+		;;
+	*)
+		nvim -nu "${INIT}" ${@}
+		;;
+esac
+
