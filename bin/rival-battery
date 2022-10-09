@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+THRESHOLD=50
+
+STATUS=$(rivalcfg --battery 2>/dev/null)
+
+PERCENT=${STATUS//[^0-9]/}
+
+if [ $PERCENT -le $THRESHOLD ]; then
+	echo "${STATUS}" > /tmp/rival.battery
+else
+	rm -f /tmp/rival.battery
+fi
+

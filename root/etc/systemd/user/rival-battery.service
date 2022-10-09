@@ -1,0 +1,7 @@
+[Unit]
+Description=rival battery
+
+[Service]
+Type=oneshot
+ExecStart=/home/alex/bin/rival-battery
+
