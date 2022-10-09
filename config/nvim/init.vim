@@ -30,8 +30,8 @@ if has('nvim')
 	Plugin 'hrsh7th/cmp-vsnip'
 	Plugin 'hrsh7th/nvim-cmp'
 	Plugin 'hrsh7th/vim-vsnip'
-	Plugin 'kyazdani42/nvim-tree.lua'
-	Plugin 'kyazdani42/nvim-web-devicons'
+	Plugin 'nvim-tree/nvim-tree.lua'
+	Plugin 'nvim-tree/nvim-web-devicons'
 	Plugin 'lewis6991/gitsigns.nvim'
 	Plugin 'neovim/nvim-lspconfig'
 else

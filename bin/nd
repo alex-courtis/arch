@@ -41,7 +41,7 @@ EOF
 
 	# modify plugin directory, enable logging
 	sed -i -e "
-	s#kyazdani42/nvim-tree.lua#${SRC}#g ;
+	s#nvim-tree/nvim-tree.lua#${SRC}#g ;
 	s/nvt-min/nvt-dev/g ;
 
 	/log = {/{ n; s/enable = false/enable = true/ } ;
