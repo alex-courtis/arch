@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rmdir /home/alex/Downloads 2>/dev/null || true
+

@@ -1,0 +1,7 @@
+[Unit]
+Description=clean home
+
+[Service]
+Type=oneshot
+ExecStart=/home/alex/bin/clean-home
+
