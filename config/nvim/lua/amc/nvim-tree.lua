@@ -6,8 +6,9 @@ function M.setup()
   tree.setup({
     create_in_closed_folder = true,
     hijack_cursor = true,
+    open_on_setup = true,
     open_on_setup_file = true,
-    reload_on_bufenter = true,
+    focus_empty_on_setup = true,
     sync_root_with_cwd = true,
     view = {
       adaptive_size = false,
@@ -76,12 +77,10 @@ function M.setup()
         "^.git$",
       },
     },
-    filesystem_watchers = {
-      enable = true,
-    },
     actions = {
       change_dir = {
         enable = false,
+        restrict_above_cwd = true,
       },
       open_file = {
         resize_window = true,
