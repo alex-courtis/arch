@@ -15,6 +15,10 @@ function M.setup()
         excludeArgs = {
           "-Werror",
         },
+        extraArgs = {
+          -- this is often false flagged
+          "-Wno-empty-translation-unit",
+        },
       },
     },
   })
