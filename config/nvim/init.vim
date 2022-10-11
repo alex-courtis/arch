@@ -6,9 +6,20 @@ call vundle#begin("~/.local/share/nvim/vundle")
 
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'hrsh7th/cmp-buffer'
+Plugin 'hrsh7th/cmp-cmdline'
+Plugin 'hrsh7th/cmp-nvim-lsp'
+Plugin 'hrsh7th/cmp-path'
+Plugin 'hrsh7th/cmp-vsnip'
+Plugin 'hrsh7th/nvim-cmp'
+Plugin 'hrsh7th/vim-vsnip'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'junegunn/fzf.vim'
+Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-tree/nvim-tree.lua'
+Plugin 'nvim-tree/nvim-web-devicons'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
@@ -21,24 +32,6 @@ Plugin 'ziglang/zig.vim'
 
 " plugin and coc-settings.json retained for coc replications
 " Plugin 'neoclide/coc.nvim'
-
-if has('nvim')
-	Plugin 'hrsh7th/cmp-buffer'
-	Plugin 'hrsh7th/cmp-cmdline'
-	Plugin 'hrsh7th/cmp-nvim-lsp'
-	Plugin 'hrsh7th/cmp-path'
-	Plugin 'hrsh7th/cmp-vsnip'
-	Plugin 'hrsh7th/nvim-cmp'
-	Plugin 'hrsh7th/vim-vsnip'
-	Plugin 'nvim-tree/nvim-tree.lua'
-	Plugin 'nvim-tree/nvim-web-devicons'
-	Plugin 'lewis6991/gitsigns.nvim'
-	Plugin 'neovim/nvim-lspconfig'
-else
-	Plugin 'preservim/nerdtree'
-	Plugin 'Xuyuanp/nerdtree-git-plugin'
-	Plugin 'wincent/terminus'
-endif
 
 call vundle#end()
 filetype plugin indent on
@@ -103,13 +96,11 @@ autocmd BufReadPost *
 " tags search down only
 set tags=**/tags
 
-" start neovim only plugins
-if has('nvim')
-	lua require 'amc/cmp'.setup()
-	lua require 'amc/gitsigns'.setup()
-	lua require 'amc/lsp'.setup()
-	lua require 'amc/nvim-tree'.setup()
-endif
+" start plugins
+lua require 'amc/cmp'.setup()
+lua require 'amc/gitsigns'.setup()
+lua require 'amc/lsp'.setup()
+lua require 'amc/nvim-tree'.setup()
 
 " airline
 set noshowmode
