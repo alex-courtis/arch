@@ -24,3 +24,5 @@ set undofile
 
 set background=dark
 
+set listchars=tab:>\ ,trail:-,nbsp:+,space:·
+
