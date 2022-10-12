@@ -5,13 +5,13 @@ riverctl set-repeat 50 400
 
 # known and detected touch/track pads
 typeset -U PAD
-PAD=("pointer-1452-782-Alex_Courtis___s_Trackpad")
+PAD=("pointer-1452-782-Alex_Courtis___s_Trackpad", "pointer-1452-613-Apple_Inc._Magic_Trackpad", "pointer-76-613-Apple_Inc._Magic_Trackpad_2")
 for t in $(riverctl list-inputs | grep -Ei "^pointer-.*touch"); do
 	PAD+=("${t}")
 done
 
 # mouses
-for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint|keyboard|consumer"); do
+for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint|keyboard|consumer|ydotoold"); do
 	if [ -z "${PAD[(r)${p}]}" ]; then
 		echo "mouse: ${p}"
 		riverctl input "$p" pointer-accel 0
