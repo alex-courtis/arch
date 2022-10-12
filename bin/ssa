@@ -1,5 +1,9 @@
 #!/bin/sh
 
+OUT="${HOME}/.ss"
+
+mkdir -p "${OUT}"
+
 if [ "$(basename ${0})" == "sss" ]; then
 	SEL="true"
 elif [ "$(basename ${0})" == "ssm" ]; then 
@@ -8,17 +12,17 @@ fi
 
 if [ -n "${WAYLAND_DISPLAY}" ]; then
 	if [ "${SEL}" == "true" ]; then
-		grim -g "$(slurp)" "/tmp/$(date +%Y%m%d_%H%M%S).png"
+		grim -g "$(slurp)" "${OUT}/$(date +%Y%m%d_%H%M%S).png"
 	elif [ "${MON}" == "true" ]; then
-		grim -g "$(slurp -o)" "/tmp/$(date +%Y%m%d_%H%M%S).png"
+		grim -g "$(slurp -o)" "${OUT}/$(date +%Y%m%d_%H%M%S).png"
 	else
-		grim "/tmp/$(date +%Y%m%d_%H%M%S).png"
+		grim "${OUT}/$(date +%Y%m%d_%H%M%S).png"
 	fi
 elif [ -n "${DISPLAY}" ]; then
 	if [ "${SEL}" == "true" ]; then
-		scrot -s '/tmp/%Y%m%d_%H%M%S.$wx$h.png'
+		scrot -s "${OUT}/%Y%m%d_%H%M%S.\$wx\$h.png"
 	else
-		scrot '/tmp/%Y%m%d_%H%M%S.$wx$h.png'
+		scrot "${OUT}/%Y%m%d_%H%M%S.\$wx\$h.png"
 	fi
 fi
 
