@@ -23,7 +23,7 @@ function init() {
 
 	# disable netrw
 	cat << EOF > "${INIT}"
-vim.g.loaded = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 EOF
 
