@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-THRESHOLD=50
+THRESHOLD=25
 
 STATUS=$(rivalcfg --battery 2>/dev/null)
 
