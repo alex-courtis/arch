@@ -19,7 +19,7 @@
 		// truncates when it hits slstatus if a value is set
 		"max-length": 999,
 		"tooltip": false,
-		"on-click": "wl-copy $(lswt -j | jq -r 'map(select(.activated)) | first | .title')"
+		"on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')"
 	},
 
 	"custom/slstatus": {

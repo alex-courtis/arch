@@ -409,6 +409,7 @@ yq
 zsh-completions
 lemonade-git
 libinput-gestures
+lswt
 menjar
 nerd-fonts-hack
 river-git
