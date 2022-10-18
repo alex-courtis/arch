@@ -8,7 +8,6 @@ function M.setup()
     hijack_cursor = true,
     open_on_setup = true,
     open_on_setup_file = true,
-    focus_empty_on_setup = true,
     sync_root_with_cwd = true,
     ignore_ft_on_setup = {
       "gitcommit"
