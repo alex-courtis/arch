@@ -25,7 +25,7 @@
 	"custom/slstatus": {
 		"exec": "slstatus -s",
 		"tooltip": false,
-		"on-click-right": "pacmd play-file /usr/share/sounds/freedesktop/stereo/bell.oga @DEFAULT_SINK@"
+		"on-click-right": "bell"
 	}
 }
 
