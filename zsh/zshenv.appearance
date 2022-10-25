@@ -50,7 +50,6 @@ export BASE0F="#be643c" # Deprecated, Opening/Closing Embedded Language Tags, e.
 # customise various bemenu invocations
 export BEMENU_OPTS="\
 	--monitor focused \
-	--ignorecase \
 	--prefix "\>" \
 	--prompt ':;' \
 	--fn 'monospace ${FONT_SIZE_PT}' \
