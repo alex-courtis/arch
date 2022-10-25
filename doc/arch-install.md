@@ -395,6 +395,7 @@ unzip
 vdpauinfo
 wl-clipboard
 xautolock
+xdg-desktop-portal-wlr
 xdg-utils
 xmlstarlet
 xorg-fonts-100dpi
