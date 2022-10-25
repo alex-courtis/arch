@@ -1,2 +1,2 @@
 chooser_type = simple
-chooser_cmd = slurp -f %o -ro
+chooser_cmd = slurp -f %o -r -o -s FFFFFF40
