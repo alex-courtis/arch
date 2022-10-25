@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Slack WebRTC
+StartupWMClass=Slack
+Comment=Slack Desktop
+GenericName=Slack Client for Linux
+Exec=/usr/bin/slack --enable-features=WebRTCPipeWireCapturer -s %U
+Icon=slack
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Network;InstantMessaging;
+MimeType=x-scheme-handler/slack;
