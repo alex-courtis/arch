@@ -22,9 +22,6 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 				exec startwm x gnome
 				;;
 			4)
-				exec startwm x i3
-				;;
-			5)
 				exec startwm sway
 				;;
 		esac
