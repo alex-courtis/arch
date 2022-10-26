@@ -21,6 +21,10 @@ case "${1}" in
 		startx \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${X_WM}.x.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
+	"gnome")
+		gnome-shell --wayland \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/gnome.${XDG_VTNR}.${USER}.log") 2>&1
+		;;
 	"weston")
 		weston \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/weston.${XDG_VTNR}.${USER}.log") 2>&1

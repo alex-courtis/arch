@@ -19,7 +19,11 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 				exec startwm x dwm
 				;;
 			3)
-				exec startwm x gnome
+				if [ "${HOST}" = "emperor" ]; then
+					exec startwm x gnome
+				else
+					exec startwm gnome
+				fi
 				;;
 			4)
 				exec startwm sway
