@@ -56,6 +56,8 @@ alias pkk="pkill -9 --full"
 
 alias sun="sort | uniq -c | sort -n"
 
+alias egrep="grep -E"
+
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /net/lord/music/"
