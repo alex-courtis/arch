@@ -1,12 +1,20 @@
 #!/bin/zsh
 
-THRESHOLD=25
+THRESHOLD=50
 
-STATUS=$(rivalcfg --battery 2>/dev/null)
+STATUS=$(rivalcfg --battery 2>/tmp/rival.battery)
+if [ $? -ne 0 ]; then
+	# fails with following message when no device connected
+	grep 'unrecognized arguments: --battery' /tmp/rival.battery > /dev/null 2>&1
+	if [ $? -eq 0 ]; then
+		rm /tmp/rival.battery
+	fi
+	exit
+fi
 
 PERCENT=${STATUS//[^0-9]/}
 
-if [ $PERCENT -le $THRESHOLD ]; then
+if [ "${PERCENT}" != "" -a $PERCENT -le $THRESHOLD ]; then
 	echo "${STATUS}" > /tmp/rival.battery
 else
 	rm -f /tmp/rival.battery
