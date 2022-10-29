@@ -23,7 +23,7 @@
 #   beet ls lyrics::'^$'
 #
 # remove album cruft from db:
-#   beet modify -a albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
+#   beet modify -a albumartist_sort= albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
 #
 # remove dodgey lyrics:
 #   beet modify New Album lyrics=''
@@ -49,6 +49,8 @@
 #
 # list pertinent:
 #   beet ls -f '$artist - $artist_sort - $artist_credit - $album - $albumartist - $albumartist_sort - $albumartist_credit - $comp - $disc/$disctotal - $track/$tracktotal - $genre - $composer - $grouping - $year/$month/$day - $lyrics - $comments - $bpm - $albumtype - $encoder - $length - $bitrate - $format - $channels - $bitdepth - $samplerate - $title'
+#
+#   beet ls -f '$album - $albumartist - $albumartist_sort - $albumartist_credit - $comp - $artist - $artist_sort - $artist_credit - $disc/$disctotal - $track/$tracktotal - $genre - $composer - $grouping - $year/$month/$day - $lyrics - $comments - $bpm - $albumtype - $encoder - $length - $bitrate - $format - $channels - $bitdepth - $samplerate - $title'
 
 
 #
@@ -67,6 +69,7 @@ directory: ~/music-beets
 library: ~/.config/beets/musiclibrary.db
 
 import:
+  log: /tmp/beet.import.log
   copy: yes
   write: yes
   move: no
