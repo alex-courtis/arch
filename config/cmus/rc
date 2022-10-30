@@ -140,7 +140,7 @@ set continue_album=false
 
 set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
 
-set format_trackwin_va=%3n. %t%= %y %d
+set format_trackwin_va=%3n. %t%=%-40%a %y %d
 
 bind -f common j win-down
 bind -f common k win-up
