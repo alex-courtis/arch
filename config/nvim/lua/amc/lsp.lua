@@ -1,5 +1,9 @@
 local M = {}
 
+local start_client_flags = {
+  debounce_text_changes = 3000,
+}
+
 function M.setup()
   local lspconfig = require("lspconfig")
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -7,6 +11,7 @@ function M.setup()
   local capabilities = cmp_nvim_lsp.default_capabilities()
 
   lspconfig.ccls.setup({
+    flags = start_client_flags,
     capabilities = capabilities,
     root_dir = lspconfig.util.root_pattern(".ccls", "build/compile_commands.json"),
     init_options = {
@@ -24,6 +29,7 @@ function M.setup()
   })
 
   lspconfig.sumneko_lua.setup({
+    flags = start_client_flags,
     settings = {
       Lua = {
         diagnostics = {
@@ -46,7 +52,9 @@ function M.setup()
     },
   })
 
-  require("lspconfig").zls.setup({})
+  require("lspconfig").zls.setup({
+    flags = start_client_flags,
+  })
 end
 
 function M.goto_definition_or_tag()
