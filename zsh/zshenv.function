@@ -38,16 +38,16 @@ function underlyingterm() {
 
 # make override with specially placed Makefiles
 function make() {
-	if [ -f build/build.ninja ]; then
-		ninja -C build "${@}"
-	elif [ -f amc/Makefile ]; then
-		$(whence -p make) -f amc/Makefile "${@}"
-	elif [ -f amc/GNUmakefile ]; then
-		$(whence -p make) -f amc/GNUmakefile "${@}"
-	elif [ -f Makefile.dev ]; then
+	if [ -f Makefile.dev ]; then
 		$(whence -p make) -f Makefile.dev "${@}"
+	elif [ -f Makefile ]; then
+		$(whence -p make) -f Makefile "${@}"
 	elif [ -f GNUmakefile.dev ]; then
 		$(whence -p make) -f GNUmakefile.dev "${@}"
+	elif [ -f GNUmakefile ]; then
+		$(whence -p make) -f GNUmakefile "${@}"
+	elif [ -f build/build.ninja ]; then
+		ninja -C build "${@}"
 	else
 		$(whence -p make) "${@}"
 	fi
