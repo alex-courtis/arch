@@ -1,7 +1,7 @@
 local M = {}
 
 local start_client_flags = {
-  debounce_text_changes = 3000,
+  debounce_text_changes = 500,
 }
 
 function M.setup()
