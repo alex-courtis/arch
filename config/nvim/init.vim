@@ -6,6 +6,7 @@ call vundle#begin("~/.local/share/nvim/vundle")
 
 Plugin 'chriskempson/base16-vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'hashivim/vim-terraform'
 Plugin 'hrsh7th/cmp-buffer'
 Plugin 'hrsh7th/cmp-cmdline'
 Plugin 'hrsh7th/cmp-nvim-lsp'
