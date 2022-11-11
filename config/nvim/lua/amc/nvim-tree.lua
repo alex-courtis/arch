@@ -3,6 +3,10 @@ local M = {}
 function M.setup()
   local tree = require("nvim-tree")
 
+  local function print_node_path(node)
+    print(node.absolute_path)
+  end
+
   tree.setup({
     create_in_closed_folder = true,
     hijack_cursor = true,
@@ -10,40 +14,35 @@ function M.setup()
     open_on_setup_file = true,
     sync_root_with_cwd = true,
     ignore_ft_on_setup = {
-      "gitcommit"
+      "gitcommit",
     },
     view = {
       adaptive_size = false,
       mappings = {
         list = {
           { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
-          { key = "<C-v>", action = "" }, -- vsplit
-          { key = "<C-x>", action = "" }, -- split
-          { key = "<C-t>", action = "" }, -- tabnew
-          { key = "<BS>", action = "" }, -- close_node
-          { key = "<Tab>", action = "" }, -- preview
           { key = "D", action = "" }, -- trash
           { key = "[e", action = "" }, -- prev_diag_item
           { key = "]e", action = "" }, -- next_diag_item
           { key = "[c", action = "" }, -- prev_git_item
           { key = "]c", action = "" }, -- next_git_item
-          { key = "-", action = "" }, -- dir_up
-          { key = "s", action = "" }, -- system_open
-          { key = "W", action = "" }, -- collapse_all
           { key = "g?", action = "" }, -- toggle_help
 
-          { key = "d", action = "cd" }, -- remove
-          { key = "x", action = "remove" }, -- cut
+          { key = "<C-t>", action = "dir_up" }, -- tabnew
 
-          { key = "t", action = "cut" },
+          { key = "<Space>t", action = "cd" },
+          { key = "<BS>t", action = "cd" },
           { key = "<Space>p", action = "prev_diag_item" },
+          { key = "<BS>p", action = "prev_diag_item" },
           { key = "<Space>.", action = "next_diag_item" },
+          { key = "<BS>.", action = "next_diag_item" },
           { key = "<Space>k", action = "prev_git_item" },
+          { key = "<BS>k", action = "prev_git_item" },
           { key = "<Space>j", action = "next_git_item" },
-          { key = "u", action = "dir_up" },
+          { key = "<BS>j", action = "next_git_item" },
           { key = "'", action = "close_node" },
-          { key = '"', action = "collapse_all" },
           { key = "?", action = "toggle_help" },
+          { key = "<C-P>", action = "print", action_cb = print_node_path },
         },
       },
     },
