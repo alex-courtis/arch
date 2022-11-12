@@ -53,3 +53,11 @@ function make() {
 	fi
 }
 
+# print git ps1, current branch, upstream URL
+function gs() {
+	branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
+	remote=${branch/\/*/}
+	url=$(git remote get-url ${remote})
+
+	print "$(__git_ps1)\n${branch}\n${url}"
+}
