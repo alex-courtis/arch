@@ -35,6 +35,8 @@ alias n="cd ~/.local/share/nvim/vundle/nvim-tree.lua.dev"
 
 alias o="xdg-open"
 
+alias gs="print \$(__git_ps1) \$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})"
+
 alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
 # COPY_ALWAYS does not work
 alias rcup-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcup -C"
