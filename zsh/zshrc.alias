@@ -32,6 +32,7 @@ alias d="cd ~/.dotfiles"
 alias j="cd ~/src/jira"
 alias s="cd ~/src"
 alias n="cd ~/.local/share/nvim/vundle/nvim-tree.lua.dev"
+alias v="cd ~/.local/share/nvim/vundle"
 
 alias o="xdg-open"
 
