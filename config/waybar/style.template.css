@@ -91,6 +91,8 @@ window#waybar {
 
 /* right */
 #custom-slstatus {
+	color: #d0d0d0;
+	background-color: #303030;
 	margin-right: 6pt;
 }
 
