@@ -55,9 +55,20 @@ function make() {
 
 # print git ps1, current branch, upstream URL
 function gs() {
-	branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
-	remote=${branch/\/*/}
-	url=$(git remote get-url ${remote})
+	branch_local=$(git rev-parse --abbrev-ref HEAD)
+	branch_remote=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
+	url=$(git remote get-url ${branch_remote/\/*/})
 
-	print "$(__git_ps1)\n${branch}\n${url}"
+	print "$(__git_ps1)\n${branch_local}\n${branch_remote}\n${url}"
 }
+
+# set branch upstream to $1
+function gu {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: go <name>" >&2
+		return 1
+	fi
+	branch_local=$(git rev-parse --abbrev-ref HEAD)
+	echo git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
+}
+

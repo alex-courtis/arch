@@ -14,7 +14,7 @@ function vimdiff() {
 
 function mnt() {
 	if [ ${#} -ne 1 ]; then
-		echo "Usage: ${FUNCNAME} <block device>" >&2
+		echo "Usage: mnt <block device>" >&2
 		return 1
 	fi
 	udisksctl mount -b "${1}"
@@ -24,7 +24,7 @@ function mnt() {
 
 function umnt() {
 	if [ ${#} -gt 1 ]; then
-		echo "Usage: ${FUNCNAME} [block device]" >&2
+		echo "Usage: mnt [block device]" >&2
 		return 1
 	fi
 	sync
