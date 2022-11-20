@@ -65,7 +65,7 @@ function gs() {
 # set branch upstream to $1
 function gu {
 	if [ ${#} -ne 1 ]; then
-		echo "Usage: go <name>" >&2
+		echo "Usage: gu <name>" >&2
 		return 1
 	fi
 	branch_local=$(git rev-parse --abbrev-ref HEAD)

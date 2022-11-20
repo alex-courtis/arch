@@ -132,6 +132,8 @@ unbind -f browser space
 unbind -f browser u
 
 
+set resume=true
+
 set mouse=true
 set wrap_search=false
 
