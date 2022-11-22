@@ -49,6 +49,7 @@ function M.setup()
     renderer = {
       full_name = true,
       group_empty = true,
+      root_folder_modifier = ":t",
       special_files = {},
       symlink_destination = false,
       indent_markers = {
@@ -72,6 +73,10 @@ function M.setup()
     diagnostics = {
       enable = true,
       show_on_dirs = true,
+      severity = {
+        min = vim.diagnostic.severity.INFO,
+        max = vim.diagnostic.severity.ERROR,
+      },
     },
     filters = {
       custom = {
