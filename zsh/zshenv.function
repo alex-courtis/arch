@@ -69,6 +69,6 @@ function gu {
 		return 1
 	fi
 	branch_local=$(git rev-parse --abbrev-ref HEAD)
-	echo git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
+	git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
 }
 
