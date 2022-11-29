@@ -163,7 +163,7 @@ createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=', 's', 'https
 	var res = JSON.parse(response.text);
 	return res[1];
 });
-createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/wiki/', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
+createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/w/index.php?search=', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
 	return JSON.parse(response.text)[1];
 });
 createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
