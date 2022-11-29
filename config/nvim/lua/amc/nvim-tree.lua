@@ -70,9 +70,13 @@ function M.setup()
       update_root = true,
       ignore_list = { "help" },
     },
+    git = {
+      show_on_open_dirs = false,
+    },
     diagnostics = {
       enable = true,
       show_on_dirs = true,
+      show_on_open_dirs = false,
       severity = {
         min = vim.diagnostic.severity.INFO,
         max = vim.diagnostic.severity.ERROR,
