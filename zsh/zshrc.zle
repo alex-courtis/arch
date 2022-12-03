@@ -67,3 +67,6 @@ bindkey -M vicmd "^C" abort-buffer
 # explicitly define this behaviour which was implicitly gained vi stty intr
 bindkey -M command "^C" send-break
 
+# disable XON/XOFF flow control; ctrl-S suspend ctrl-Q resume are not useful
+stty -ixon
+
