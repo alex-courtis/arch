@@ -13,9 +13,6 @@ nn	yfw	yw
 nm	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 
-om	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
-xm	<silent>	gh			:<C-U>Gitsigns select_hunk<CR>
-
 for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
 
@@ -38,11 +35,11 @@ nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
-nm	<silent>	<Leader>j	:Gitsigns next_hunk<CR>
+" j gitsigns.next_hunk
 
 nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
 nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
-nm	<silent>	<Leader>k	:Gitsigns prev_hunk<CR>
+" k gitsigns.prev_hunk
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>Y	:TagbarClose<CR>
@@ -67,20 +64,8 @@ nm	<silent>	<Leader>B	<Plug>BufKillBangBw
 nm				<Leader>g	:ag "<C-r>=expand('<cword>')<CR>"
 nm				<Leader>G	:ag "<C-r>=expand('<cWORD>')<CR>"
 vm				<Leader>g	"*y<Esc>:<C-u>ag "<C-r>=getreg("*")<CR>"
-nm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
-vm	<silent>	<Leader>hs	:Gitsigns stage_hunk<CR>
-nm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
-vm	<silent>	<Leader>hx	:Gitsigns reset_hunk<CR>
-nm	<silent>	<Leader>hS	:Gitsigns stage_buffer<CR>
-nm	<silent>	<Leader>hu	:Gitsigns undo_stage_hunk<CR>
-nm	<silent>	<Leader>hX	:Gitsigns reset_buffer<CR>
-nm	<silent>	<Leader>hp	:Gitsigns preview_hunk<CR>
 nm	<silent>	<Leader>hb	:G blame<CR>
-nm	<silent>	<Leader>hB	:lua require"gitsigns".blame_line{full=true}<CR>
-nm	<silent>	<Leader>hl	:Gitsigns toggle_current_line_blame<CR>
-nm	<silent>	<Leader>hd	:Gitsigns diffthis<CR>
-nm	<silent>	<Leader>hD	:lua require"gitsigns".diffthis("~")<CR>
-nm	<silent>	<Leader>ht	:Gitsigns toggle_deleted<CR>
+" h* gitsigns
 nm	<silent>	<Leader>ma	:make all <Bar> call amc#qf#openJump()<CR>
 nm	<silent>	<Leader>mc	:make clean <Bar> call amc#qf#openJump()<CR>
 nm	<silent>	<Leader>mm	:make <Bar> call amc#qf#openJump()<CR>
