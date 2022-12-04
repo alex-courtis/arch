@@ -52,10 +52,13 @@ EOF
 	# mappings
 	cat << EOF >> "${INIT}"
   })
+
+  local nt_api = require("nvim-tree.api")
+
+  vim.keymap.set("n", ";", ":", { noremap = true })
+  vim.keymap.set("n", "<space>a", nt_api.tree.open, { noremap = true })
+  vim.keymap.set("n", "<space>o", [[ :wincmd p<CR> ]], { noremap = true })
 end
-vim.api.nvim_set_keymap("n", ";", ":", {})
-vim.api.nvim_set_keymap("n", "<Space>a", ":NvimTreeOpen<CR>", {})
-vim.api.nvim_set_keymap("n", "<Space>o", ":wincmd p<CR>", {})
 EOF
 }
 
