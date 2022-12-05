@@ -2,5 +2,5 @@
 
 set -o pipefail
 
-xlayoutdisplay --primary DP3
+xlayoutdisplay --primary DP1-3
 
