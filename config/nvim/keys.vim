@@ -44,7 +44,7 @@ nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>Y	:TagbarClose<CR>
 nm	<silent>	<Leader>i	:lua require('telescope.builtin').buffers()<CR>
-nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
+nm	<silent>	<Leader>x	:lua require('amc/buf').safe_hash()<CR>
 
 nm	<silent>	<Space><BS>	:call amc#back()<CR>
 nm	<silent>	<BS><BS>	:call amc#back()<CR>

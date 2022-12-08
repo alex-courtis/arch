@@ -130,20 +130,6 @@ function amc#buf#isSpecial(buf)
 	return 0
 endfunction
 
-function amc#buf#safeHash()
-	if amc#buf#isSpecial(bufnr("%"))
-		return
-	endif
-	if bufnr("#") < 0
-		return
-	endif
-	if amc#buf#isSpecial(bufnr("#"))
-		return
-	endif
-
-	b!#
-endfunction
-
 function amc#buf#autoWrite()
 	if !&readonly && amc#buf#flavour(bufnr("%")) == g:amc#buf#ORDINARY_HAS_FILE
 		update
