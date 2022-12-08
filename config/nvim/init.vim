@@ -100,11 +100,7 @@ autocmd BufReadPost *
 set tags=**/tags
 
 " start plugins
-lua require 'amc/cmp'.setup()
-lua require 'amc/gitsigns'.setup()
-lua require 'amc/lsp'.setup()
-lua require 'amc/nvim-tree'.setup()
-lua require 'amc/telescope'.setup()
+lua require 'amc/plugins'.setup()
 
 " airline
 set noshowmode
