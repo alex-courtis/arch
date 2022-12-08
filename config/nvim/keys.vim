@@ -77,7 +77,7 @@ nm	<silent>	<Leader>cc	<Plug>CommentaryLine
 om	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>c	<Plug>Commentary
 xm	<silent>	<Leader>c	<Plug>Commentary
-nm	<silent>	<Leader>t	:lua require 'amc/lsp'.goto_definition_or_tag()<CR>
+nm	<silent>	<Leader>t	:lua require('amc/plugins/lsp').goto_definition_or_tag()<CR>
 nm	<silent>	<Leader>T	:lua vim.lsp.buf.declaration()<CR>
 nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
 xm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterVisual
