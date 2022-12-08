@@ -14,11 +14,12 @@ Plugin 'hrsh7th/cmp-path'
 Plugin 'hrsh7th/cmp-vsnip'
 Plugin 'hrsh7th/nvim-cmp'
 Plugin 'hrsh7th/vim-vsnip'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'junegunn/fzf.vim'
 Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
 Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope-fzf-native.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-tree/nvim-tree.lua'
 Plugin 'nvim-tree/nvim-web-devicons'
 Plugin 'qpkorr/vim-bufkill'
@@ -28,6 +29,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/ReplaceWithRegister'
+Plugin 'xorid/asciitree.nvim'
 Plugin 'Yohannfra/Vim-Goto-Header'
 Plugin 'ziglang/zig.vim'
 
@@ -102,6 +104,7 @@ lua require 'amc/cmp'.setup()
 lua require 'amc/gitsigns'.setup()
 lua require 'amc/lsp'.setup()
 lua require 'amc/nvim-tree'.setup()
+lua require 'amc/telescope'.setup()
 
 " airline
 set noshowmode

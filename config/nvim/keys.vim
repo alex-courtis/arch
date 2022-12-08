@@ -43,7 +43,7 @@ nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>Y	:TagbarClose<CR>
-nm	<silent>	<Leader>i	:call amc#win#openBufExplorer()<CR>
+nm	<silent>	<Leader>i	:lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:call amc#buf#safeHash()<CR>
 
 nm	<silent>	<Space><BS>	:call amc#back()<CR>
@@ -51,8 +51,8 @@ nm	<silent>	<BS><BS>	:call amc#back()<CR>
 " end left
 
 " begin right
-nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> call fzf#vim#files   ("",  { 'options': '--prompt "> "' })<CR>
-nm	<silent>	<Leader>F	:call amc#win#goHome() <Bar> call fzf#vim#gitfiles("?", { 'options': '--prompt ">> " --preview ""' })<CR>
+nm	<silent>	<Leader>f	:lua require('telescope.builtin').find_files()<CR>
+nm	<silent>	<Leader>F	:lua require('telescope.builtin').git_status()<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
@@ -87,9 +87,7 @@ nm				<Leader>r	:%s/<C-r>=expand('<cword>')<CR>/
 nm				<Leader>R	:%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>
 vm				<Leader>r	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/
 vm				<Leader>R	"*y<Esc>:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>
-nm	<silent>	<Leader>n	:lua require 'amc/lsp'.references_or_next_tag()<CR>
-vm	<silent>	<Leader>n	:lua vim.lsp.buf.references()<CR>
-nm	<silent>	<Leader>N	:lua require 'amc/lsp'.nothing_or_prev_tag()<CR>
+nm	<silent>	<Leader>n	:lua require('telescope.builtin').lsp_references()<CR>
 nm	<silent>	<Leader>v	:put<CR>'[v']=
 nm	<silent>	<Leader>V	:put!<CR>'[v']=
 

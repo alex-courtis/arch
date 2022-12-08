@@ -70,24 +70,4 @@ function M.goto_definition_or_tag()
   end
 end
 
-function M.references_or_next_tag()
-  if vim.lsp.buf.server_ready() then
-    vim.lsp.buf.references()
-  else
-    local ok, err = pcall(vim.cmd, "tnext")
-    if not ok then
-      vim.api.nvim_notify(err, vim.log.levels.WARN, {})
-    end
-  end
-end
-
-function M.nothing_or_prev_tag()
-  if not vim.lsp.buf.server_ready() then
-    local ok, err = pcall(vim.cmd, "tprevious")
-    if not ok then
-      vim.api.nvim_notify(err, vim.log.levels.WARN, {})
-    end
-  end
-end
-
 return M
