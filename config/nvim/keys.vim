@@ -21,7 +21,7 @@ let mapleader=s:leader
 " @
 " \ used by right
 
-nm	<silent>	<Leader>;	:lua require('amc/windows').go_home() <Bar> belowright copen 15 <CR>
+nm	<silent>	<Leader>;	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 nm	<silent>	<Leader>:	:cclose<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
@@ -31,7 +31,7 @@ nm	<silent>	<Leader>"	:lua require('amc/windows').close_others()<CR>
 nm	<silent>	<Leader>,	:call amc#win#smartFugitive()<CR>
 nm	<silent>	<Leader>o	:call amc#win#goHomeOrNext()<CR>
 nm	<silent>	<Leader>O	:lua require('amc/windows').go_home()<CR>
-nm	<silent>	<Leader>q	:q<CR>lua require('amc/windows').go_home()<CR>
+nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
 nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
@@ -41,9 +41,9 @@ nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
 nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
 " k gitsigns.prev_hunk
 
-nm	<silent>	<Leader>y	:lua require('amc/windows').go_home() <Bar> TagbarOpen fj<CR>
+nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>Y	:TagbarClose<CR>
-nm	<silent>	<Leader>i	:lua require('amc/windows').go_home() <Bar> :lua require('telescope.builtin').buffers()<CR>
+nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc/buffers').safe_hash()<CR>
 
 nm	<silent>	<Space><BS>	:call amc#back()<CR>
@@ -51,8 +51,8 @@ nm	<silent>	<BS><BS>	:call amc#back()<CR>
 " end left
 
 " begin right
-nm	<silent>	<Leader>f	:lua require('amc/windows').go_home() <Bar> :lua require('telescope.builtin').find_files()<CR>
-nm	<silent>	<Leader>F	:lua require('amc/windows').go_home() <Bar> :lua require('telescope.builtin').git_status()<CR>
+nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').find_files()<CR>
+nm	<silent>	<Leader>F	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').git_status()<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>

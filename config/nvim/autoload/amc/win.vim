@@ -1,3 +1,7 @@
+function amc#win#goHome()
+	lua require('amc/windows').go_home()
+endfunction
+
 function amc#win#goHomeOrNext()
 	if amc#buf#isSpecial(bufnr())
 		lua require('amc/windows').go_home()
