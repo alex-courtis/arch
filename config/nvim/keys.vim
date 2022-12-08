@@ -43,7 +43,7 @@ nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
 nm	<silent>	<Leader>Y	:TagbarClose<CR>
-nm	<silent>	<Leader>i	:lua require('telescope.builtin').buffers()<CR>
+nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc/buf').safe_hash()<CR>
 
 nm	<silent>	<Space><BS>	:call amc#back()<CR>
@@ -51,8 +51,8 @@ nm	<silent>	<BS><BS>	:call amc#back()<CR>
 " end left
 
 " begin right
-nm	<silent>	<Leader>f	:lua require('telescope.builtin').find_files()<CR>
-nm	<silent>	<Leader>F	:lua require('telescope.builtin').git_status()<CR>
+nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').find_files()<CR>
+nm	<silent>	<Leader>F	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').git_status()<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
