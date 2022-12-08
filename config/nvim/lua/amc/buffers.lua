@@ -10,7 +10,7 @@ local SPECIAL_NAMES = {
 --- &buftype is set or name in SPECIAL_NAME
 --- @param bufnr number
 --- @return boolean
-local function is_special(bufnr)
+function M.is_special(bufnr)
   local name = vim.api.nvim_buf_get_name(bufnr)
 
   if vim.bo[bufnr].buftype ~= "" then
@@ -30,12 +30,12 @@ end
 function M.safe_hash()
 
   local prev = vim.fn.bufnr("#")
-  if prev == -1 or is_special(prev) then
+  if prev == -1 or M.is_special(prev) then
     return
   end
 
   local cur = vim.fn.bufnr("%")
-  if is_special(cur) then
+  if M.is_special(cur) then
     return
   end
 

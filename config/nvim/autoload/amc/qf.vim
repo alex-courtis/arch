@@ -110,7 +110,7 @@ function amc#qf#cmdPostProcess()
 endfunction
 
 function amc#qf#openJump()
-	call amc#win#goHome()
+	lua require('amc/windows').go_home()
 
 	botright cwindow 15
 
