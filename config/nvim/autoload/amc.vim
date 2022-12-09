@@ -68,22 +68,6 @@ function! amc#airlineStatusLine(...)
 endfunction
 
 
-function amc#back()
-	let ts = gettagstack()
-	if ts.length > 0 && ts.curidx > ts.length
-		pop
-	else
-		silent execute ":BB"
-	endif
-	call settagstack(win_getid(), {'items' : []})
-endfunction
-
-function amc#forward()
-	silent execute ":BF"
-	call settagstack(win_getid(), {'items' : []})
-endfunction
-
-
 function amc#grep(...)
 	let l:cmd = "silent grep!"
 

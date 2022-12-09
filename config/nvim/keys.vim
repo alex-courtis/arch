@@ -46,8 +46,8 @@ nm	<silent>	<Leader>Y	:TagbarClose<CR>
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc/buffers').safe_hash()<CR>
 
-nm	<silent>	<Space><BS>	:call amc#back()<CR>
-nm	<silent>	<BS><BS>	:call amc#back()<CR>
+nm	<silent>	<Space><BS>	:BB<CR>
+nm	<silent>	<BS><BS>	:BB<CR>
 " end left
 
 " begin right
@@ -102,8 +102,8 @@ vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
 " -
 nm	<silent>	<Leader>\	gg"_dG
 
-nm	<silent>	<BS><Space>	:call amc#forward()<CR>
-nm	<silent>	<Space><Space>	:call amc#forward()<CR>
+nm	<silent>	<BS><Space>	:BF<CR>
+nm	<silent>	<Space><Space>	:BF<CR>
 " end right
 endfor
 
