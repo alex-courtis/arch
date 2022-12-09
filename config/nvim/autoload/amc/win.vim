@@ -2,21 +2,6 @@ function amc#win#goHome()
 	lua require('amc/windows').go_home()
 endfunction
 
-function amc#win#goHomeOrNext()
-	if amc#buf#isSpecial(bufnr())
-		lua require('amc/windows').go_home()
-		return
-	endif
-
-	" search up from this window then start at 0
-	for l:wn in range(winnr() + 1, winnr("$")) + range(1, winnr() - 1)
-		if !amc#buf#isSpecial(winbufnr(l:wn))
-			execute l:wn . " wincmd w"
-			return
-		endif
-	endfor
-endfunction
-
 let s:closeOrder = [
 			\ g:amc#buf#QUICK_FIX,
 			\ g:amc#buf#FUGITIVE,

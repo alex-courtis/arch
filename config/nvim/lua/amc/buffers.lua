@@ -28,7 +28,6 @@ end
 
 --- b# if # exists and % and # are not special
 function M.safe_hash()
-
   local prev = vim.fn.bufnr("#")
   if prev == -1 or M.is_special(prev) then
     return
@@ -39,8 +38,7 @@ function M.safe_hash()
     return
   end
 
-  vim.cmd ":b#"
+  vim.cmd(":b#")
 end
 
 return M
-

@@ -165,6 +165,5 @@ autocmd VimEnter * call amc#updateTitleString()
 autocmd WinClosed * call amc#win#wipeOnClosed()
 
 " log
-" let g:amcLog = 1
 " call amc#log#startEventLogging()
 

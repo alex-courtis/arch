@@ -1,16 +1,5 @@
-let s:firstLogLine = 1
-function amc#log#_line(msg)
-	if s:firstLogLine
-		call system("echo ---------------- >> /tmp/vim." . $USER . ".log")
-		let s:firstLogLine = 0
-	endif
-	call system(printf("echo \'%s\' >> /tmp/vim.%s.log", substitute(a:msg, "'", "'\\\\''", "g"), $USER))
-endfunction
-
 function amc#log#line(msg)
-	if exists('g:amcLog') && g:amcLog
-		call amc#log#_line(a:msg)
-	endif
+	exec "lua require('amc/log').line('" . a:msg . "')"
 endfunction
 
 function amc#log#winBuf(msg)
@@ -36,10 +25,10 @@ function amc#log#winBuf(msg)
 	let l:ft = getbufvar(l:bn, "&filetype")
 	let l:fta = getbufvar(l:bna, "&filetype")
 
-	let l:fmt = "%-12.12s %3s %4s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s '%s'"
-	call amc#log#_line(printf(l:fmt, a:msg, "w" . winnr(), win_getid(), l:desc, "%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
+	let l:fmt = "%-12.12s %3s %4s %-17.17s %s b%-2d w%-2d %-8.8s %-8.8s \"%s\""
+	call amc#log#line(printf(l:fmt, a:msg, "w" . winnr(), win_getid(), l:desc, "%%", l:bn, l:bwn, l:bt, l:ft, bufname("%")))
 	if l:bna != -1
-		call amc#log#_line(printf(l:fmt, "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
+		call amc#log#line(printf(l:fmt, "", "", "", l:descAlt, "#", l:bna, l:bwna, l:bta, l:fta, bufname("#")))
 	endif
 endfunction
 
