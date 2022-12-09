@@ -153,12 +153,12 @@ let g:zig_build_makeprg_params="-Dxwayland --prefix ~/.local install"
 " event order matters
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#updateTitleString()
-autocmd BufLeave * ++nested call amc#buf#autoWrite()
+autocmd BufLeave * ++nested silent! update
 autocmd BufWritePost * call amc#updateTitleString()
 autocmd DirChanged global call amc#updatePath()
 autocmd FileType qf call amc#qf#setGrepPattern()
 autocmd FocusGained * call amc#updateTitleString()
-autocmd FocusLost * ++nested call amc#buf#autoWrite()
+autocmd FocusLost * ++nested silent! update
 autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPostProcess()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()

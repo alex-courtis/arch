@@ -130,12 +130,6 @@ function amc#buf#isSpecial(buf)
 	return 0
 endfunction
 
-function amc#buf#autoWrite()
-	if !&readonly && amc#buf#flavour(bufnr("%")) == g:amc#buf#ORDINARY_HAS_FILE
-		update
-	endif
-endfunction
-
 " no name new buffers are not wiped when loading an existing buffer over them
 function amc#buf#wipeAltNoNameNew()
 	let l:bn = bufnr('%')
