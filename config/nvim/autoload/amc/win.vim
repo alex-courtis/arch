@@ -51,14 +51,3 @@ function amc#win#wipeOnClosed()
 		endif
 	endif
 endfunction
-
-function amc#win#smartFugitive()
-	for l:wn in range(1, winnr("$"), 1)
-		if getbufvar(winbufnr(l:wn), "&filetype") == 'fugitive'
-			execute l:wn . " wincmd w"
-			return
-		endif
-	endfor
-
-	:G
-endfunction

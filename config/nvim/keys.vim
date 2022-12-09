@@ -28,7 +28,7 @@ nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
 nm	<silent>	<Leader>"	:lua require('amc/windows').close_others()<CR>
 
-nm	<silent>	<Leader>,	:call amc#win#smartFugitive()<CR>
+nm	<silent>	<Leader>,	:G<CR>
 nm	<silent>	<Leader>o	:lua require('amc/windows').go_home_or_next()<CR>
 nm	<silent>	<Leader>O	:lua require('amc/windows').go_home()<CR>
 nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
