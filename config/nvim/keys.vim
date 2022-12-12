@@ -34,11 +34,11 @@ nm	<silent>	<Leader>O	:lua require('amc/windows').go_home()<CR>
 nm	<silent>	<Leader>q	:q<CR>:call amc#win#goHome()<CR>
 
 nm	<silent>	<Leader>.	:lua vim.diagnostic.goto_next({wrap = false})<CR>
-nm	<silent>	<Leader>e	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cnext<CR>
+nm	<silent>	<Leader>e	:cnext<CR>
 " j gitsigns.next_hunk
 
 nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
-nm	<silent>	<Leader>u	:if amc#qf#setGrepPattern() <Bar> set hlsearch <Bar> endif <Bar> cprev<CR>
+nm	<silent>	<Leader>u	:cprev<CR>
 " k gitsigns.prev_hunk
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
