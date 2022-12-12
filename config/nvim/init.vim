@@ -19,7 +19,6 @@ Plugin 'lewis6991/gitsigns.nvim'
 Plugin 'majutsushi/tagbar'
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope-fzf-native.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-tree/nvim-tree.lua'
 Plugin 'nvim-tree/nvim-web-devicons'
@@ -69,12 +68,6 @@ if match(system('underlyingterm'), 'st-256color\|alacritty') >= 0
 else
 	set background=dark
 endif
-
-" grep
-set grepprg=ag\ --vimgrep\ --debug
-let &grepformat="ERR: %m,DEBUG: Query is %o,%-GDEBUG:%.%#,%f:%l:%c:%m,%f"
-command -nargs=+ -complete=file_in_path AG call amc#grep(<f-args>) <Bar> set hlsearch
-cabbrev ag AG
 
 " errorformat
 let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"

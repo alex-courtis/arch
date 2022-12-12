@@ -1,8 +1,13 @@
 local M = {}
 
 function M.setup()
-  require('telescope').setup({})
-  require('telescope').load_extension('fzf')
+  require('telescope').setup({
+    pickers = {
+      buffers = {
+        initial_mode = "normal",
+      },
+    }
+  })
 end
 
 return M
