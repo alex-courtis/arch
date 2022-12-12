@@ -26,8 +26,11 @@ function M.setup()
           { key = "[c", action = "" }, -- prev_git_item
           { key = "]c", action = "" }, -- next_git_item
           { key = "g?", action = "" }, -- toggle_help
+          { key = "<BS>", action = "" }, -- close_node
+          { key = "<C-e>", action = "" }, -- edit_in_place
 
           { key = "<C-t>", action = "dir_up" }, -- tabnew
+          { key = "O", action = "close_node" }, -- edit_no_picker
 
           { key = "<Space>t", action = "cd" },
           { key = "<BS>t", action = "cd" },
