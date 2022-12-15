@@ -28,6 +28,8 @@ function M.setup()
           { key = "g?", action = "" }, -- toggle_help
           { key = "<BS>", action = "" }, -- close_node
           { key = "<C-e>", action = "" }, -- edit_in_place
+          { key = "f", action = "" }, -- live_filter
+          { key = "F", action = "" }, -- clear_live_filter
 
           { key = "<C-t>", action = "dir_up" }, -- tabnew
           { key = "O", action = "close_node" }, -- edit_no_picker
