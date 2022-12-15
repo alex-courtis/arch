@@ -6,7 +6,6 @@ let s:closeOrder = [
 			\ g:amc#buf#QUICK_FIX,
 			\ g:amc#buf#FUGITIVE,
 			\ g:amc#buf#HELP,
-			\ g:amc#buf#NERD_TREE,
 			\ g:amc#buf#NVIM_TREE,
 			\ g:amc#buf#TAGBAR,
 			\ ]

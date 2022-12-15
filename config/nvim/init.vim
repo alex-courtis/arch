@@ -110,11 +110,6 @@ let g:airline#extensions#whitespace#checks=['trailing', 'conflicts']
 call airline#add_statusline_func('amc#airlineStatusLine')
 call airline#add_inactive_statusline_func('amc#airlineStatusLine')
 
-" bufexplorer
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerDisableDefaultKeyMapping=1
-let g:bufExplorerShowNoName=1
-
 " buf-kill
 let g:BufKillCreateMappings = 0
 
@@ -124,9 +119,6 @@ let EditorConfig_max_line_indicator='line'
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
-
-" fzf
-let g:fzf_layout = { 'down': '15' }
 
 " tagbar
 let g:tagbar_compact=1

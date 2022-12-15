@@ -14,23 +14,19 @@ let g:amc#buf#flavourNames = [
 			\ "SCRATCH",
 			\]
 
-let g:amc#buf#BUF_EXPLORER = 1
-let g:amc#buf#FUGITIVE = 2
-let g:amc#buf#GIT = 3
-let g:amc#buf#HELP = 4
-let g:amc#buf#NERD_TREE = 5
-let g:amc#buf#NVIM_TREE = 6
-let g:amc#buf#QUICK_FIX = 7
-let g:amc#buf#TAGBAR = 8
-let g:amc#buf#MAN = 9
-let g:amc#buf#OTHER_SPECIAL = 10
+let g:amc#buf#FUGITIVE = 1
+let g:amc#buf#GIT = 2
+let g:amc#buf#HELP = 3
+let g:amc#buf#NVIM_TREE = 4
+let g:amc#buf#QUICK_FIX = 5
+let g:amc#buf#TAGBAR = 6
+let g:amc#buf#MAN = 7
+let g:amc#buf#OTHER_SPECIAL = 8
 let g:amc#buf#specialNames = [
 			\ "NO_SPECIAL",
-			\ "BUF_EXPLORER",
 			\ "FUGITIVE",
 			\ "GIT",
 			\ "HELP",
-			\ "NERD_TREE",
 			\ "NVIM_TREE",
 			\ "QUICK_FIX",
 			\ "TAGBAR",
@@ -40,8 +36,6 @@ let g:amc#buf#specialNames = [
 
 " on creation some may not have &buftype set at BufEnter
 let s:specialNames = [
-			\ 'NERD_tree',
-			\ '\[BufExplorer\]',
 			\ '__Tagbar__',
 			\ 'fugitive://',
 			\ 'man://',
@@ -86,9 +80,7 @@ function amc#buf#special(buf)
 
 	let l:name = bufname(a:buf)
 
-	if l:name =~# '\[BufExplorer\]'
-		return g:amc#buf#BUF_EXPLORER
-	elseif getbufvar(a:buf, "&filetype") =~# '^git'
+	if getbufvar(a:buf, "&filetype") =~# '^git'
 		return g:amc#buf#GIT
 	elseif getbufvar(a:buf, "&filetype") =~# '^fugitive' || l:name =~# '^fugitive://'
 		return g:amc#buf#FUGITIVE
@@ -96,8 +88,6 @@ function amc#buf#special(buf)
 		return g:amc#buf#MAN
 	elseif getbufvar(a:buf, "&buftype") == "help"
 		return g:amc#buf#HELP
-	elseif l:name =~# 'NERD_tree'
-		return g:amc#buf#NERD_TREE
 	elseif l:name =~# 'NvimTree'
 		return g:amc#buf#NVIM_TREE
 	elseif getbufvar(a:buf, "&buftype") == "quickfix"
