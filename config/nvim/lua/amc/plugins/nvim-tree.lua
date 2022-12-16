@@ -72,7 +72,12 @@ function M.setup()
     update_focused_file = {
       enable = true,
       update_root = true,
-      ignore_list = { "help" },
+      ignore_list = { 
+        -- ft
+        "help",
+        -- bufname
+        "fugitiveblame"
+      },
     },
     git = {
       show_on_open_dirs = false,
