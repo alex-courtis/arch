@@ -8,7 +8,6 @@ endfunction
 function amc#colours()
 	highlight TrailingSpace ctermbg=9 guibg=red
 	highlight CursorLineNr cterm=bold
-	highlight default link TagbarHighlight CursorLine
 	highlight default link NvimTreeWindowPicker IncSearch
 
 	" swap these two

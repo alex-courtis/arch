@@ -19,9 +19,8 @@ let g:amc#buf#GIT = 2
 let g:amc#buf#HELP = 3
 let g:amc#buf#NVIM_TREE = 4
 let g:amc#buf#QUICK_FIX = 5
-let g:amc#buf#TAGBAR = 6
-let g:amc#buf#MAN = 7
-let g:amc#buf#OTHER_SPECIAL = 8
+let g:amc#buf#MAN = 6
+let g:amc#buf#OTHER_SPECIAL = 7
 let g:amc#buf#specialNames = [
 			\ "NO_SPECIAL",
 			\ "FUGITIVE",
@@ -29,14 +28,12 @@ let g:amc#buf#specialNames = [
 			\ "HELP",
 			\ "NVIM_TREE",
 			\ "QUICK_FIX",
-			\ "TAGBAR",
 			\ "MAN",
 			\ "OTHER_SPECIAL",
 			\]
 
 " on creation some may not have &buftype set at BufEnter
 let s:specialNames = [
-			\ '__Tagbar__',
 			\ 'fugitive://',
 			\ 'man://',
 			\]
@@ -92,8 +89,6 @@ function amc#buf#special(buf)
 		return g:amc#buf#NVIM_TREE
 	elseif getbufvar(a:buf, "&buftype") == "quickfix"
 		return g:amc#buf#QUICK_FIX
-	elseif l:name =~# '__Tagbar__'
-		return g:amc#buf#TAGBAR
 	endif
 
 	return g:amc#buf#OTHER_SPECIAL

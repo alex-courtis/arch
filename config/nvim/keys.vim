@@ -41,8 +41,6 @@ nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
 nm	<silent>	<Leader>u	:cprev<CR>
 " k gitsigns.prev_hunk
 
-nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> TagbarOpen fj<CR>
-nm	<silent>	<Leader>Y	:TagbarClose<CR>
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc/buffers').safe_hash()<CR>
 

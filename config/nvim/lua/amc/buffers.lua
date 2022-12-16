@@ -2,7 +2,6 @@ local M = {}
 
 -- on creation some buffers may not have &buftype set at BufEnter time
 local SPECIAL_NAMES = {
-  "__Tagbar__",
   "^fugitive://",
   "^man://",
 }

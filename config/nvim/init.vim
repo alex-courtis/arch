@@ -16,7 +16,6 @@ Plugin 'hrsh7th/cmp-vsnip'
 Plugin 'hrsh7th/nvim-cmp'
 Plugin 'hrsh7th/vim-vsnip'
 Plugin 'lewis6991/gitsigns.nvim'
-Plugin 'majutsushi/tagbar'
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
@@ -119,12 +118,6 @@ let EditorConfig_max_line_indicator='line'
 " Goto-Header
 let g:goto_header_associate_cpp_h = 1
 let g:goto_header_includes_dirs = [".", "/usr/include"]
-
-" tagbar
-let g:tagbar_compact=1
-let tagbar_map_showproto=''
-let g:tagbar_silent = 1
-let g:tagbar_sort = 0
 
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
