@@ -9,7 +9,6 @@ local on_attach = function(bufnr)
     return vim.tbl_extend("keep", opts, { desc = d })
   end
 
-  -- TODO gitsigns.undo_stage_hunk via undo
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     -- ;a'
  
@@ -20,7 +19,7 @@ local on_attach = function(bufnr)
     vim.keymap.set("v", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
     vim.keymap.set("n", leader .. "j",  gitsigns.next_hunk,                 desc("Next Hunk"))
 
-    vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk,              desc("Preview Hunk"))
+    vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview Hunk"))
     -- u
     vim.keymap.set("n", leader .. "k",  gitsigns.prev_hunk,                 desc("Prev Hunk"))
 
@@ -53,6 +52,7 @@ end
 
 function M.setup()
   require("gitsigns").setup({
+    numhl = true,
     current_line_blame_opts = {
       delay = 100,
     },
