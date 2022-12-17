@@ -8,6 +8,9 @@ function M.setup()
         initial_mode = "normal",
         sort_mru = true,
       },
+      git_status = {
+        initial_mode = "normal",
+      },
       grep_string = {
         initial_mode = "normal",
       },

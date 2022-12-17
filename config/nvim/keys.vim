@@ -41,6 +41,7 @@ nm	<silent>	<Leader>p	:lua vim.diagnostic.goto_prev({wrap = false})<CR>
 nm	<silent>	<Leader>u	:cprev<CR>
 " k gitsigns.prev_hunk
 
+nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').git_status()<CR>
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc/buffers').safe_hash()<CR>
 
@@ -49,9 +50,7 @@ nm	<silent>	<BS><BS>	:BB<CR>
 " end left
 
 " begin right
-nm	<silent>	<Leader>fd	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').git_status()<CR>
-nm	<silent>	<Leader>ff	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').find_files()<CR>
-nm	<silent>	<Leader>fg	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').live_grep()<CR>
+nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').find_files()<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
@@ -60,9 +59,7 @@ nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
 nm	<silent>	<Leader>b	<Plug>BufKillBw
 nm	<silent>	<Leader>B	<Plug>BufKillBangBw
 
-nm				<Leader>g	:lua require('telescope.builtin').grep_string()<CR>
-nm				<Leader>G	:lua require('telescope.builtin').grep_string({search='<C-r>=expand('<cWORD>')<CR>'})<CR>
-vm				<Leader>g	"*y<Esc>:<C-u>lua require('telescope.builtin').grep_string({search='<C-r>=getreg("*")<CR>'})<CR>"
+nm	<silent>	<Leader>g	:call amc#win#goHome() <Bar> :lua require('telescope.builtin').live_grep()<CR>
 nm	<silent>	<Leader>hb	:G blame<CR>
 " h* gitsigns
 nm	<silent>	<Leader>ma	:make all <Bar> call amc#qf#openJump()<CR>
@@ -92,13 +89,15 @@ nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
 nm	<silent>	<Leader>l	:syntax match TrailingSpace /\s\+$/<CR>
 nm	<silent>	<Leader>L	:syntax clear TrailingSpace<CR>
-nm	<silent>	<Leader>s	:GotoHeaderSwitch<CR>
-nm	<silent>	<Leader>S	:GotoHeader<CR>
+nm				<Leader>s	:lua require('telescope.builtin').grep_string()<CR>
+nm				<Leader>S	:lua require('telescope.builtin').grep_string({search='<C-r>=expand('<cWORD>')<CR>'})<CR>
+vm				<Leader>s	"*y<Esc>:<C-u>lua require('telescope.builtin').grep_string({search='<C-r>=getreg("*")<CR>'})<CR>"
 nm	<silent>	<Leader>z	gg=G``
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
-" -
+nm	<silent>	<Leader>-	:GotoHeaderSwitch<CR>
+nm	<silent>	<Leader>_	:GotoHeader<CR>
 nm	<silent>	<Leader>\	gg"_dG
 
 nm	<silent>	<BS><Space>	:BF<CR>
