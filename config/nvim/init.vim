@@ -92,9 +92,6 @@ autocmd BufReadPost *
 " tags search down only
 set tags=**/tags
 
-" start plugins
-lua require 'amc/plugins'.setup()
-
 " airline
 set noshowmode
 let g:airline#extensions#branch#enabled = 0
@@ -128,6 +125,9 @@ nmap	gc	<NOP>
 " zig
 let g:zig_build_makeprg_params="-Dxwayland --prefix ~/.local install"
 
+" "init.lua"
+lua require 'amc/init'
+
 
 " event order matters
 autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
@@ -137,7 +137,6 @@ autocmd BufWritePost * call amc#updateTitleString()
 autocmd DirChanged global call amc#updatePath()
 autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * ++nested silent! update
-autocmd QuickfixCmdPost * ++nested call amc#qf#cmdPostProcess()
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
 autocmd WinClosed * call amc#win#wipeOnClosed()

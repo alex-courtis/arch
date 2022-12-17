@@ -21,7 +21,6 @@ let mapleader=s:leader
 " @
 " \ used by right
 
-nm	<silent>	<Leader>;	:call amc#win#goHome() <Bar> belowright copen 15 <CR>
 nm	<silent>	<Leader>:	:cclose<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
@@ -62,11 +61,11 @@ nm	<silent>	<Leader>B	<Plug>BufKillBangBw
 nm	<silent>	<Leader>g	:call amc#win#goHome() <Bar> :lua require('amc/plugins/telescope').live_grep()<CR>
 nm	<silent>	<Leader>hb	:G blame<CR>
 " h* gitsigns
-nm	<silent>	<Leader>ma	:make all <Bar> call amc#qf#openJump()<CR>
-nm	<silent>	<Leader>mc	:make clean <Bar> call amc#qf#openJump()<CR>
-nm	<silent>	<Leader>mm	:make <Bar> call amc#qf#openJump()<CR>
+nm	<silent>	<Leader>ma	:make all<CR>
+nm	<silent>	<Leader>mc	:make clean<CR>
+nm	<silent>	<Leader>mm	:make<CR>
 nm	<silent>	<Leader>mn	:!rm -rf build ; meson build <CR>
-nm	<silent>	<Leader>mt	:make test <Bar> call amc#qf#openJump()<CR>
+nm	<silent>	<Leader>mt	:make test<CR>
 
 nm	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
 nm	<silent>	<Leader>cc	<Plug>CommentaryLine
