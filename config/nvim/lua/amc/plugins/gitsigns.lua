@@ -19,9 +19,9 @@ local on_attach = function(bufnr)
     vim.keymap.set("v", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
     vim.keymap.set("n", leader .. "j",  gitsigns.next_hunk,                 desc("Next Hunk"))
 
-    vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview Hunk"))
-    -- u
-    vim.keymap.set("n", leader .. "k",  gitsigns.prev_hunk,                 desc("Prev Hunk"))
+    vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview Hunk Inline"))
+    vim.keymap.set("n", leader .. "hu", gitsigns.undo_stage_hunk,           desc("Undo Stage Hunk"))
+    vim.keymap.set("n", leader .. "k",  gitsigns.prev_hunk,                 desc("Previous Hunk"))
 
     -- yi
     vim.keymap.set("n", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
@@ -40,7 +40,7 @@ local on_attach = function(bufnr)
 
     -- rnv
 
-    vim.keymap.set("n", leader .. "hl", gitsigns.toggle_current_line_blame, desc("Toggle Blame Line"))
+    vim.keymap.set("n", leader .. "hl", gitsigns.toggle_current_line_blame, desc("Toggle Current Blame Line"))
     vim.keymap.set("n", leader .. "hs", gitsigns.stage_hunk,                desc("Stage Hunk"))
     vim.keymap.set("v", leader .. "hs", gitsigns.stage_hunk,                desc("Stage Hunk"))
     vim.keymap.set("n", leader .. "hS", gitsigns.stage_buffer,              desc("Stage Buffer"))
