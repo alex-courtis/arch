@@ -1,7 +1,9 @@
+local telescope = require('telescope')
+
 local M = {}
 
 function M.setup()
-  require('telescope').setup({
+  telescope.setup({
     pickers = {
       buffers = {
         ignore_current_buffer = true,
@@ -17,7 +19,24 @@ function M.setup()
       lsp_references = {
         initial_mode = "normal",
       },
-    }
+    },
+    defaults = {
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+        height = 0.95,
+        width = 0.9,
+        horizontal = {
+          preview_cutoff = 120,
+          prompt_position = "top",
+        },
+        vertical = {
+          preview_cutoff = 40,
+          prompt_position = "top",
+          mirror = true,
+        }
+      },
+    },
   })
 end
 
