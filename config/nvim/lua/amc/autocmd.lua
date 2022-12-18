@@ -1,4 +1,4 @@
-local log = require("amc/log")
+local log = require("amc.log")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 

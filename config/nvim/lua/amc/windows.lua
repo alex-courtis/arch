@@ -1,22 +1,18 @@
-local buffers = require("amc/buffers")
-local log = require("amc/log")
+local buffers = require("amc.buffers")
 
 local M = {}
 
 --- go to first nonspecial window, nuke if none found
 --- @param wins table preferred order
 local function home(wins)
-  log.line("windows home %s", vim.inspect(wins))
   for _, w in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(w)
     if not buffers.is_special(buf) then
-      log.line("windows home %d", w)
       vim.api.nvim_set_current_win(w)
       return
     end
   end
 
-  log.line("windows home nuking")
   vim.notify("windows home nuking")
   vim.cmd(":new")
   M.close_others()
@@ -25,7 +21,6 @@ end
 --- if current window is special go to the topleftest non special window
 --- :new and nukes when none available
 function M.go_home()
-  log.line("windows.go_home")
   if buffers.is_special(0) then
     home(vim.api.nvim_list_wins())
   end
@@ -33,7 +28,6 @@ end
 
 --- go_home if window is special otherwise go to the next topleftest non special window
 function M.go_home_or_next()
-  log.line("windows.go_home_or_next")
   if buffers.is_special(0) then
     M.go_home()
     return

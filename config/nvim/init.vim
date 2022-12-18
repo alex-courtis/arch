@@ -127,7 +127,7 @@ nmap	gc	<NOP>
 let g:zig_build_makeprg_params="-Dxwayland --prefix ~/.local install"
 
 " "init.lua"
-lua require 'amc/init'
+lua require('amc.init')
 
 
 " event order matters

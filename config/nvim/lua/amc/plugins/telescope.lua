@@ -1,4 +1,5 @@
 local telescope = require("telescope")
+local history = require("telescope.actions.history")
 local builtin = require("telescope.builtin")
 
 local M = {}
@@ -54,6 +55,17 @@ for n, f in pairs(builtin) do
       return f(vim.tbl_extend("force", opts(), o or {}))
     end
   end
+end
+
+function M.live_grep_last(o)
+  o = vim.tbl_extend("force", opts(), o or {})
+
+  local simple = history.get_simple_history()
+  if simple and type(simple.content) == "table" then
+    o.default_text = simple.content[#simple.content]
+  end
+
+  return builtin.live_grep(o)
 end
 
 return M

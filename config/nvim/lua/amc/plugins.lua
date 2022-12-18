@@ -1,4 +1,4 @@
-local log = require("amc/log")
+local log = require("amc.log")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")

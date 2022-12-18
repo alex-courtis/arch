@@ -1,5 +1,5 @@
 function amc#log#line(msg)
-	exec "lua require('amc/log').line('" . a:msg . "')"
+	exec "lua require('amc.log').line('" . a:msg . "')"
 endfunction
 
 function amc#log#winBuf(msg)
