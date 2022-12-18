@@ -40,4 +40,16 @@ function M.safe_hash()
   vim.cmd(":b#")
 end
 
+function M.back()
+  if not M.is_special(0) then
+    vim.cmd("silent BB")
+  end
+end
+
+function M.forward()
+  if not M.is_special(0) then
+    vim.cmd("silent BF")
+  end
+end
+
 return M

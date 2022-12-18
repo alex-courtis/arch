@@ -42,10 +42,10 @@ nm	<silent>	<Leader>u	:cprev<CR>
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').git_status()<CR>
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').buffers()<CR>
-nm	<silent>	<Leader>x	:lua require('amc/buffers').safe_hash()<CR>
+nm	<silent>	<Leader>x	:lua require('amc.buffers').safe_hash()<CR>
 
-nm	<silent>	<Space><BS>	:BB<CR>
-nm	<silent>	<BS><BS>	:BB<CR>
+nm	<silent>	<Space><BS>	:lua require('amc.buffers').back()<CR>
+nm	<silent>	<BS><BS>	:lua require('amc.buffers').back()<CR>
 " end left
 
 " begin right
@@ -99,8 +99,8 @@ nm	<silent>	<Leader>-	:GotoHeaderSwitch<CR>
 nm	<silent>	<Leader>_	:GotoHeader<CR>
 nm	<silent>	<Leader>\	gg"_dG
 
-nm	<silent>	<BS><Space>	:BF<CR>
-nm	<silent>	<Space><Space>	:BF<CR>
+nm	<silent>	<BS><Space>	:lua require('amc.buffers').forward()<CR>
+nm	<silent>	<Space><Space>	:lua require('amc.buffers').forward()<CR>
 " end right
 endfor
 
