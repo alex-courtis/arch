@@ -1,61 +1,12 @@
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local capabilities = cmp_nvim_lsp.default_capabilities()
+
 local M = {}
 
 local start_client_flags = {
   debounce_text_changes = 500,
 }
-
-function M.setup()
-  local lspconfig = require("lspconfig")
-  local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-  local capabilities = cmp_nvim_lsp.default_capabilities()
-
-  lspconfig.ccls.setup({
-    flags = start_client_flags,
-    capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(".ccls", "build/compile_commands.json"),
-    init_options = {
-      compilationDatabaseDirectory = "build",
-      clang = {
-        excludeArgs = {
-          "-Werror",
-        },
-        extraArgs = {
-          -- this is often false flagged
-          "-Wno-empty-translation-unit",
-        },
-      },
-    },
-  })
-
-  lspconfig.sumneko_lua.setup({
-    flags = start_client_flags,
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = {
-            "vim",
-          },
-          disable = {
-            "trailing-space",
-            "redundant-parameter",
-          },
-        },
-        workspace = {
-          -- current project before runtime
-          library = {
-            ".",
-            vim.api.nvim_get_runtime_file("", true),
-          },
-        },
-      },
-    },
-  })
-
-  require("lspconfig").zls.setup({
-    flags = start_client_flags,
-  })
-end
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
@@ -69,5 +20,51 @@ function M.goto_definition_or_tag()
     end
   end
 end
+
+lspconfig.ccls.setup({
+  flags = start_client_flags,
+  capabilities = capabilities,
+  root_dir = lspconfig.util.root_pattern(".ccls", "build/compile_commands.json"),
+  init_options = {
+    compilationDatabaseDirectory = "build",
+    clang = {
+      excludeArgs = {
+        "-Werror",
+      },
+      extraArgs = {
+        -- this is often false flagged
+        "-Wno-empty-translation-unit",
+      },
+    },
+  },
+})
+
+lspconfig.sumneko_lua.setup({
+  flags = start_client_flags,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          "vim",
+        },
+        disable = {
+          "trailing-space",
+          "redundant-parameter",
+        },
+      },
+      workspace = {
+        -- current project before runtime
+        library = {
+          ".",
+          vim.api.nvim_get_runtime_file("", true),
+        },
+      },
+    },
+  },
+})
+
+require("lspconfig").zls.setup({
+  flags = start_client_flags,
+})
 
 return M
