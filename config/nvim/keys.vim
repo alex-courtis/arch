@@ -55,8 +55,7 @@ nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
 nm	<silent>	<Leader>dh	:lua vim.lsp.buf.hover()<CR>
 nm	<silent>	<Leader>dr	:lua vim.lsp.buf.rename()<CR>
-nm	<silent>	<Leader>b	<Plug>BufKillBw
-nm	<silent>	<Leader>B	<Plug>BufKillBangBw
+" b
 
 nm	<silent>	<Leader>g	:call amc#win#goHome() <Bar> :lua require('amc/plugins/telescope').live_grep()<CR>
 nm	<silent>	<Leader>hb	:G blame<CR>
@@ -88,9 +87,9 @@ nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
 nm	<silent>	<Leader>l	:syntax match TrailingSpace /\s\+$/<CR>
 nm	<silent>	<Leader>L	:syntax clear TrailingSpace<CR>
-nm				<Leader>s	:lua require('amc/plugins/telescope').grep_string()<CR>
-nm				<Leader>S	:lua require('amc/plugins/telescope').grep_string('<C-r>=expand('<cWORD>')<CR>')<CR>
-vm				<Leader>s	"*y<Esc>:<C-u>lua require('amc/plugins/telescope').grep_string('<C-r>=getreg("*")<CR>')<CR>"
+nm				<Leader>s	:lua require('amc/plugins/telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>' })<CR>
+nm				<Leader>S	:lua require('amc/plugins/telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>' })<CR>
+vm				<Leader>s	"*y<Esc>:<C-u>lua require('amc/plugins/telescope').live_grep( { default_text = '<C-r>=getreg("*")<CR>' })<CR>"
 nm	<silent>	<Leader>z	gg=G``
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
