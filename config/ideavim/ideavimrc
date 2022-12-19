@@ -48,18 +48,24 @@ sethandler <C-[> a:vim
 sethandler <C-]> a:vim
 
 " idea does not like setting mapleader to <BS>
+"
+" /home/acourtis/src/jira/dispatcher/conf/idea-template/inspectionProfiles/Project_Default.xml
+" /home/acourtis/src/jira/dispatcher/.idea/inspectionProfiles/Project_Default.xml
+"
+" <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
+" <inspection_tool class="UNUSED_IMPORT" enabled="true" level="ERROR" enabled_by_default="true" />
 
 nm <BS><BS> <Action>(Back)
 nm <Space><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 nm <BS><Space> <Action>(Forward)
 
+nm <Space>; <Action>(ActivateFindToolWindow)
 nm <Space>a :NERDTreeFocus<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>, <Action>(CheckinFiles)
 nm <Space>o <Action>(NextTab)
-nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
 nm <Space>Q <Action>(CloseAllEditorsButActive)
 
@@ -71,17 +77,16 @@ nm <Space>p <Action>(GotoPreviousError)
 nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
-nm <Space>i <Action>(RecentFiles)
+" yix
 
-nm <BS>f  viw<Action>(Find)<Esc>
-vm <BS>f  <Action>(Find)<Esc>
+nm <BS>f  <Action>(GotoFile)
+nm <BS>F  <Action>(GotoClass)
 nm <BS>dr <Action>(RenameElement)
 vm <BS>dr <Action>(RenameElement)
 nm <BS>dg <Action>(Generate)
+" b
 
-nm <BS>g  viw<Action>(FindInPath)<Esc>
-nm <BS>G  vw<Action>(FindInPath)<Esc>
-vm <BS>g  <Action>(FindInPath)<Esc>
+nm <BS>g  <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
 nm <BS>hd <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
@@ -107,10 +112,14 @@ nm <BS>N  <Action>(ShowSettingsAndFindUsages)
 vm <BS>N  <Action>(ShowSettingsAndFindUsages)
 nm <BS>v  :put<CR>
 
+" l
+nm <BS>s  viw<Action>(FindInPath)<Esc>
+vm <BS>s  <Action>(FindInPath)<Esc>
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
 
 nm <BS>/  viw<Action>(Find)<Esc>
 vm <BS>/  <Action>(Find)<Esc>
+" s
 nm <BS>\  gg"_dG
 
