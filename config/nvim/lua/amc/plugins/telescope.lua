@@ -4,21 +4,14 @@ local action_set = require("telescope.actions.set")
 local action_state = require("telescope.actions.state")
 local builtin = require("telescope.builtin")
 
-local M = {
-  last_grep = nil,
+local M = {}
+
+-- builtin's last search text
+local last = {
+  live_grep = "",
+  find_files = "",
+  git_status = "",
 }
-
-local function opts()
-  local o = {}
-
-  if vim.o.columns >= 160 then
-    o.layout_strategy = "horizontal"
-  else
-    o.layout_strategy = "vertical"
-  end
-
-  return o
-end
 
 local function attach_quickfix_select(prompt_bufnr)
   actions.select_default:replace(function()
@@ -44,25 +37,15 @@ local function attach_quickfix_select(prompt_bufnr)
   return true
 end
 
-local function set_last_grep()
-  M.last_grep = action_state.get_current_line()
-end
-
-telescope.setup({
+local telescope_opts = {
   pickers = {
     live_grep = {
       attach_mappings = attach_quickfix_select,
-      on_complete = {
-        set_last_grep,
-      },
     },
     buffers = {
       ignore_current_buffer = true,
       initial_mode = "normal",
       sort_mru = true,
-    },
-    git_status = {
-      initial_mode = "normal",
     },
     lsp_references = {
       initial_mode = "normal",
@@ -85,25 +68,47 @@ telescope.setup({
       },
     },
   },
-})
+}
 
+local function opts()
+  local o = {}
+
+  if vim.o.columns >= 160 then
+    o.layout_strategy = "horizontal"
+  else
+    o.layout_strategy = "vertical"
+  end
+
+  return o
+end
+
+for n, _ in pairs(last) do
+  -- run builtin with last text populated
+  M[n .. "_last"] = function(o)
+    o = o or {}
+    o.default_text = last[n]
+    o.initial_mode = "normal"
+    return M[n](o)
+  end
+
+  -- set last text
+  telescope_opts.pickers[n] = telescope_opts.pickers[n] or {}
+  telescope_opts.pickers[n].on_complete = {
+    function()
+      last[n] = action_state.get_current_line()
+    end,
+  }
+end
+
+telescope.setup(telescope_opts)
+
+-- extend each builtin to include opts
 for n, f in pairs(builtin) do
   if type(f) == "function" then
     M[n] = function(o)
-      if o and o.default_text then
-        M.last_grep = o.default_text
-      end
       return f(vim.tbl_extend("force", opts(), o or {}))
     end
   end
-end
-
-function M.live_grep_last(o)
-  o = vim.tbl_extend("force", opts(), o or {})
-
-  o.default_text = M.last_grep
-
-  return builtin.live_grep(o)
 end
 
 return M

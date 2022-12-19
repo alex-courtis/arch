@@ -41,6 +41,7 @@ nm	<silent>	<Leader>u	:cprev<CR>
 " k gitsigns.prev_hunk
 
 nm	<silent>	<Leader>y	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').git_status()<CR>
+nm	<silent>	<Leader>Y	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').git_status_last()<CR>
 nm	<silent>	<Leader>i	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').buffers()<CR>
 nm	<silent>	<Leader>x	:lua require('amc.buffers').safe_hash()<CR>
 
@@ -50,6 +51,7 @@ nm	<silent>	<BS><BS>	:lua require('amc.buffers').back()<CR>
 
 " begin right
 nm	<silent>	<Leader>f	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').find_files()<CR>
+nm	<silent>	<Leader>F	:call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').find_files_last()<CR>
 nm	<silent>	<Leader>da	:lua vim.lsp.buf.code_action()<CR>
 nm	<silent>	<Leader>dq	:lua vim.diagnostic.setqflist()<CR>
 nm	<silent>	<Leader>df	:lua vim.diagnostic.open_float()<CR>
@@ -88,8 +90,8 @@ nm	<silent>	<Leader>V	:put!<CR>'[v']=
 
 nm	<silent>	<Leader>l	:syntax match TrailingSpace /\s\+$/<CR>
 nm	<silent>	<Leader>L	:syntax clear TrailingSpace<CR>
-nm				<Leader>s	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>' })<CR>
-nm				<Leader>S	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>' })<CR>
+nm				<Leader>s	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = "normal" })<CR>
+nm				<Leader>S	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = "normal" })<CR>
 vm				<Leader>s	"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg("*")<CR>' })<CR>"
 nm	<silent>	<Leader>z	gg=G``
 
