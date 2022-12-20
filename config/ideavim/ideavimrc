@@ -78,6 +78,7 @@ nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 " yix
+nm <Space>i <Action>(RecentFiles)
 
 nm <BS>f  <Action>(GotoFile)
 nm <BS>F  <Action>(GotoClass)
