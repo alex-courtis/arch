@@ -64,7 +64,7 @@ nm <Space>; <Action>(ActivateFindToolWindow)
 nm <Space>a :NERDTreeFocus<CR>
 nm <Space>' <Action>(RestoreDefaultLayout)
 
-nm <Space>, <Action>(CheckinFiles)
+nm <Space>, <Action>(CheckinProject)
 nm <Space>o <Action>(NextTab)
 nm <Space>q <Action>(CloseContent)
 nm <Space>Q <Action>(CloseAllEditorsButActive)
@@ -77,8 +77,10 @@ nm <Space>p <Action>(GotoPreviousError)
 nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
-" yix
-nm <Space>i <Action>(RecentFiles)
+" y
+nm <Space>i <Action>(RecentChangedFiles)
+nm <Space>I <Action>(RecentFiles)
+" x
 
 nm <BS>f  <Action>(GotoFile)
 nm <BS>F  <Action>(GotoClass)

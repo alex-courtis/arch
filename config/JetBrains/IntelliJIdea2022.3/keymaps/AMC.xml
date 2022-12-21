@@ -13,7 +13,9 @@
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="alt d" />
   </action>
-  <action id="ActivateFindToolWindow" />
+  <action id="ActivateFindToolWindow">
+    <keyboard-shortcut first-keystroke="alt f" />
+  </action>
   <action id="ActivateProblemsViewToolWindow" />
   <action id="ActivateProjectToolWindow">
     <keyboard-shortcut first-keystroke="alt p" />
