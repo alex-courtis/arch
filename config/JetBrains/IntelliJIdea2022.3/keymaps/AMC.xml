@@ -1,11 +1,20 @@
 <keymap version="1" name="AMC" parent="Default for XWin">
   <action id="$Copy">
-    <keyboard-shortcut first-keystroke="ctrl c" />
+    <keyboard-shortcut first-keystroke="shift ctrl c" />
+  </action>
+  <action id="$Cut">
+    <keyboard-shortcut first-keystroke="shift ctrl x" />
+  </action>
+  <action id="$Paste">
+    <keyboard-shortcut first-keystroke="shift ctrl v" />
   </action>
   <action id="ActivateBigDataToolWindowToolWindow" />
   <action id="ActivateBookmarksToolWindow" />
   <action id="ActivateBuildToolWindow">
     <keyboard-shortcut first-keystroke="alt b" />
+  </action>
+  <action id="ActivateCheckStyleToolWindow">
+    <keyboard-shortcut first-keystroke="alt y" />
   </action>
   <action id="ActivateCommitToolWindow">
     <keyboard-shortcut first-keystroke="alt c" />
@@ -16,23 +25,33 @@
   <action id="ActivateFindToolWindow">
     <keyboard-shortcut first-keystroke="alt f" />
   </action>
-  <action id="ActivateProblemsViewToolWindow" />
-  <action id="ActivateProjectToolWindow">
+  <action id="ActivateNotificationsToolWindow">
+    <keyboard-shortcut first-keystroke="alt n" />
+  </action>
+  <action id="ActivateProblemsViewToolWindow">
     <keyboard-shortcut first-keystroke="alt p" />
   </action>
+  <action id="ActivateProjectToolWindow" />
   <action id="ActivateRunToolWindow">
     <keyboard-shortcut first-keystroke="alt r" />
   </action>
   <action id="ActivateServicesToolWindow" />
-  <action id="ActivateStructureToolWindow">
-    <keyboard-shortcut first-keystroke="alt s" />
-  </action>
+  <action id="ActivateStructureToolWindow" />
   <action id="ActivateVersionControlToolWindow">
     <keyboard-shortcut first-keystroke="alt g" />
   </action>
   <action id="CompareTwoFiles" />
+  <action id="CopyPaths" />
+  <action id="CopyReference" />
   <action id="DatabaseView.CopyAction" />
+  <action id="DatabaseView.CopyDdlAction" />
   <action id="Diff.ShowDiff" />
+  <action id="Editor Copy">
+    <keyboard-shortcut first-keystroke="shift ctrl c" />
+  </action>
+  <action id="Editor Paste">
+    <keyboard-shortcut first-keystroke="shift ctrl v" />
+  </action>
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
     <keyboard-shortcut first-keystroke="j" />
@@ -44,18 +63,26 @@
   <action id="EditorPageUp">
     <keyboard-shortcut first-keystroke="ctrl u" />
   </action>
+  <action id="EditorSelectWord" />
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="k" />
   </action>
   <action id="FileChooser.GotoDesktop" />
-  <action id="GotoSuperMethod" />
-  <action id="LivePlugin.RunPlugin">
-    <keyboard-shortcut first-keystroke="shift ctrl l" />
+  <action id="GotoAction">
+    <keyboard-shortcut first-keystroke="alt a" />
   </action>
+  <action id="GotoSuperMethod" />
+  <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
+  <action id="PasteMultiple" />
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
+  <action id="ShowSettings">
+    <keyboard-shortcut first-keystroke="alt s" />
+  </action>
+  <action id="UsageFiltering.WriteAccess" />
   <action id="XDebugger.CopyWatch" />
   <action id="org.intellij.plugins.markdown.ui.actions.styling.InsertImageAction" />
+  <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleCodeSpanAction" />
 </keymap>

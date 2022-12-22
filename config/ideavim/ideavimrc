@@ -21,7 +21,7 @@ sethandler <C-6> a:ide
 sethandler <C-S-6> a:ide
 sethandler <C-A> a:ide
 sethandler <C-B> a:ide
-sethandler <C-C> a:ide
+sethandler <C-C> a:vim
 sethandler <C-D> a:vim
 sethandler <C-E> a:ide
 sethandler <C-F> a:ide
@@ -42,7 +42,7 @@ sethandler <C-T> a:ide
 sethandler <C-U> a:vim
 sethandler <C-V> a:vim
 sethandler <C-W> a:ide
-sethandler <C-X> a:ide
+sethandler <C-X> a:vim
 sethandler <C-Y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-]> a:vim
@@ -62,6 +62,7 @@ nm <BS><Space> <Action>(Forward)
 
 nm <Space>; <Action>(ActivateFindToolWindow)
 nm <Space>a :NERDTreeFocus<CR>
+nm <Space>A <Action>(ActivateStructureToolWindow)
 nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>, <Action>(CheckinProject)
@@ -123,6 +124,7 @@ nm <BS>Z  <Action>(OptimizeImports)
 
 nm <BS>/  viw<Action>(Find)<Esc>
 vm <BS>/  <Action>(Find)<Esc>
-" s
+nm <BS>-  <Action>(CopyReference)
+nm <BS>_  <Action>(CopyPathFromRepositoryRootProvider)
 nm <BS>\  gg"_dG
 
