@@ -6,8 +6,7 @@ local group = vim.api.nvim_create_augroup("amc", { clear = true })
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   group = group,
   nested = true,
-  callback = function(data)
-    log.line("qf %s", vim.inspect(data))
+  callback = function()
     vim.cmd({ cmd = "cwindow", count = 15 })
   end,
 })

@@ -22,6 +22,7 @@ let mapleader=s:leader
 " \ used by right
 
 nm	<silent>	<Leader>:	:cclose<CR>
+nm	<silent>	<Leader>;	:copen 15<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
 nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
