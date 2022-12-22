@@ -67,6 +67,7 @@ nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>, <Action>(CheckinProject)
 nm <Space>o <Action>(NextTab)
+nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
 nm <Space>Q <Action>(CloseAllEditorsButActive)
 
