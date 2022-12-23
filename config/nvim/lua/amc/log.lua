@@ -21,4 +21,6 @@ else
   M.line = function() end
 end
 
+M.line("%s END", ...)
+
 return M
