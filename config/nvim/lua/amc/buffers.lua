@@ -1,7 +1,12 @@
 local M = {}
 
--- on creation some buffers may not have &buftype set at BufEnter time
+-- special buffers that have no buftype
 local SPECIAL_NAMES = {
+  "^man://",
+}
+
+-- unwanted buffers after they go away
+local UNWANTED_NAMES = {
   "^man://",
 }
 
@@ -48,6 +53,18 @@ end
 function M.forward()
   if not M.is_special(0) then
     vim.cmd("silent BF")
+  end
+end
+
+--- wipe unwanted buffers when they go away
+function M.wipe_unwanted(data)
+  local name = vim.api.nvim_buf_get_name(data.buf)
+
+  for _, s in ipairs(UNWANTED_NAMES) do
+    if name:find(s) then
+      vim.cmd({ cmd = "bwipeout", count = data.buf })
+      return
+    end
   end
 end
 

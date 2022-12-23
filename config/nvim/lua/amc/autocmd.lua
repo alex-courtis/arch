@@ -1,3 +1,4 @@
+local buffers = require("amc.buffers")
 local log = require("amc.log")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
@@ -27,5 +28,12 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   callback = function()
     vim.cmd({ cmd = "cwindow", count = 15 })
   end,
+})
+
+-- wipe unwanted buffers on win closed
+vim.api.nvim_create_autocmd("WinClosed", {
+  group = group,
+  nested = true,
+  callback = buffers.wipe_unwanted,
 })
 

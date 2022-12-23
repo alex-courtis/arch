@@ -38,14 +38,3 @@ function amc#win#closeInc()
 	endfor
 endfunction
 
-let s:wipeOnClosed = [
-			\ g:amc#buf#MAN,
-			\ ]
-function amc#win#wipeOnClosed()
-	let l:bn = winbufnr(expand('<amatch>'))
-	if l:bn != -1
-		if index(s:wipeOnClosed, amc#buf#special(l:bn)) != -1
-			execute "bw" . l:bn
-		endif
-	endif
-endfunction

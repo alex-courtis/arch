@@ -139,5 +139,4 @@ autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * ++nested silent! update
 autocmd VimEnter * call amc#startupCwd()
 autocmd VimEnter * call amc#updateTitleString()
-autocmd WinClosed * call amc#win#wipeOnClosed()
 
