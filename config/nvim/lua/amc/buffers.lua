@@ -29,6 +29,15 @@ function M.is_special(bufnr)
   return false
 end
 
+--- &buftype is empty, name is empty, not modified
+function M.is_no_name_new(bufnr)
+  if vim.bo[bufnr].buftype ~= "" then
+    return false
+  end
+
+  return vim.api.nvim_buf_get_name(bufnr) == "" and not vim.bo[bufnr].modified
+end
+
 --- b# if # exists and % and # are not special
 function M.safe_hash()
   local prev = vim.fn.bufnr("#")
@@ -56,7 +65,7 @@ function M.forward()
   end
 end
 
---- wipe unwanted buffers when they go away
+--- wipe unwanted buffers
 function M.wipe_unwanted(data)
   local name = vim.api.nvim_buf_get_name(data.buf)
 
@@ -65,6 +74,17 @@ function M.wipe_unwanted(data)
       vim.cmd({ cmd = "bwipeout", count = data.buf })
       return
     end
+  end
+end
+
+--- wipe # when it's a no-name new not visible anywhere
+function M.wipe_alt_no_name_new(data)
+  local buf_alt = vim.fn.bufnr("#")
+  local win_alt = vim.fn.bufwinnr(buf_alt)
+
+  -- alt is not visible
+  if buf_alt ~= -1 and data.buf ~= buf_alt and win_alt == -1 and M.is_no_name_new(buf_alt) then
+    vim.cmd({ cmd = "bwipeout", args = { buf_alt } })
   end
 end
 

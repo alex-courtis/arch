@@ -130,7 +130,6 @@ lua require('amc.init')
 
 
 " event order matters
-autocmd BufEnter * call amc#buf#wipeAltNoNameNew()
 autocmd BufEnter * call amc#updateTitleString()
 autocmd BufLeave * ++nested silent! update
 autocmd BufWritePost * call amc#updateTitleString()

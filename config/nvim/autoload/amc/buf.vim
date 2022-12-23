@@ -115,16 +115,3 @@ function amc#buf#isSpecial(buf)
 	return 0
 endfunction
 
-" no name new buffers are not wiped when loading an existing buffer over them
-function amc#buf#wipeAltNoNameNew()
-	let l:bn = bufnr('%')
-	let l:bna = bufnr('#')
-	let l:bwna = bufwinnr(l:bna)
-	if l:bna != -1 && l:bn != l:bna && l:bwna == -1
-		if amc#buf#flavour(l:bna) == g:amc#buf#NO_NAME_NEW
-			echo "wiping " . l:bna
-			execute "bw" . l:bna
-		endif
-	endif
-endfunction
-

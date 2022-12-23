@@ -30,10 +30,17 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   end,
 })
 
--- wipe unwanted buffers on win closed
+-- wipe unwanted buffers
 vim.api.nvim_create_autocmd("WinClosed", {
   group = group,
-  nested = true,
+  nested = false,
   callback = buffers.wipe_unwanted,
+})
+
+-- no name new buffers are not wiped when loading an existing buffer over them
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = group,
+  nested = false,
+  callback = buffers.wipe_alt_no_name_new,
 })
 
