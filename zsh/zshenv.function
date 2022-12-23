@@ -74,3 +74,7 @@ function gu {
 	git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
 }
 
+# search parents / .config
+function stylua {
+	$(whence -p stylua) -s "${@}"
+}
