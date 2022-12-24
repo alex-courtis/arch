@@ -5,7 +5,7 @@ let g:loaded_perl_provider = 0
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 
-Plugin 'echasnovski/mini.nvim'
+Plugin 'echasnovski/mini.base16'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'hrsh7th/cmp-buffer'
