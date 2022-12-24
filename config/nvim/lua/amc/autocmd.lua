@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("WinClosed", {
   callback = function(data)
     -- wipe unwanted buffers
     buffers.wipe_unwanted(data)
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   callback = function(data)
     -- no name new buffers are not wiped when loading an existing buffer over them
     buffers.wipe_alt_no_name_new(data)
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -56,5 +56,5 @@ vim.api.nvim_create_autocmd("FileType", {
       -- man is not useful, vim help usually is
       vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
     end
-  end
+  end,
 })

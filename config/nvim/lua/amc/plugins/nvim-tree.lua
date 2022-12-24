@@ -68,7 +68,6 @@ tree.setup({
   },
   update_focused_file = {
     enable = true,
-    update_root = true,
     ignore_list = {
       -- ft
       "help",
@@ -95,8 +94,8 @@ tree.setup({
   },
   actions = {
     change_dir = {
-      enable = false,
-      restrict_above_cwd = true,
+      enable = true,
+      global = true,
     },
     open_file = {
       resize_window = true,
