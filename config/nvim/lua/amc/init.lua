@@ -11,6 +11,8 @@ end
 
 log.line("init.lua START", ...)
 
+M.require("amc.appearance")
+
 M.require("amc.plugins.cmp")
 M.require("amc.plugins.gitsigns")
 M.require("amc.plugins.lsp")

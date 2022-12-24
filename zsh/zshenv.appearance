@@ -30,22 +30,14 @@ export BASE04="#d0d0d0" # Dark Foreground (Used for status bars)
 export BASE05="#e0e0e0" # Default Foreground, Caret, Delimiters, Operators
 export BASE06="#f5f5f5" # Light Foreground (Not often used)
 export BASE07="#ffffff" # Light Background (Not often used)
-# red
-export BASE08="#fb0120" # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-# orange
-export BASE09="#fc6d24" # Integers, Boolean, Constants, XML Attributes, Markup Link Url
-# yellow
-export BASE0A="#fda331" # Classes, Markup Bold, Search Text Background
-# green
-export BASE0B="#a1c659" # Strings, Inherited Class, Markup Code, Diff Inserted
-# cyan
-export BASE0C="#76c7b7" # Support, Regular Expressions, Escape Characters, Markup Quotes
-# blue
-export BASE0D="#6fb3d2" # Functions, Methods, Attribute IDs, Headings
-# magenta
-export BASE0E="#d381c3" # Keywords, Storage, Selector, Markup Italic, Diff Changed
-# brown
-export BASE0F="#be643c" # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+export BASE08="#fb0120" # RED Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+export BASE09="#fc6d24" # ORANGE Integers, Boolean, Constants, XML Attributes, Markup Link Url
+export BASE0A="#fda331" # YELLOW Classes, Markup Bold, Search Text Background
+export BASE0B="#a1c659" # GREEN Strings, Inherited Class, Markup Code, Diff Inserted
+export BASE0C="#76c7b7" # CYAN Support, Regular Expressions, Escape Characters, Markup Quotes
+export BASE0D="#6fb3d2" # BLUE Functions, Methods, Attribute IDs, Headings
+export BASE0E="#d381c3" # MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
+export BASE0F="#be643c" # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 
 # customise various bemenu invocations
 export BEMENU_OPTS="\

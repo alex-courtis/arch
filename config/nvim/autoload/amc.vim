@@ -1,23 +1,3 @@
-function amc#colourString(group)
-	redir => l:cs
-	execute "silent highlight " . a:group
-	redir END
-	return substitute(l:cs, ".*xxx *", "", "")
-endfunction
-
-function amc#colours()
-	highlight TrailingSpace ctermbg=9 guibg=red
-	highlight CursorLineNr cterm=bold
-	highlight default link NvimTreeWindowPicker IncSearch
-
-	" swap these two
-	let l:Search = amc#colourString("Search")
-	let l:IncSearch = amc#colourString("IncSearch")
-	execute "highlight IncSearch " . l:Search
-	execute "highlight Search " . l:IncSearch
-endfunction
-
-
 function amc#startupCwd()
 	if argc() == 1 && isdirectory(argv()[0])
 

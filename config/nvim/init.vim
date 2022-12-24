@@ -5,7 +5,7 @@ let g:loaded_perl_provider = 0
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 
-Plugin 'chriskempson/base16-vim'
+Plugin 'echasnovski/mini.nvim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'hrsh7th/cmp-buffer'
@@ -58,15 +58,6 @@ set title
 set undofile
 
 runtime keys.vim
-
-" appearance
-if match(system('underlyingterm'), 'st-256color\|alacritty') >= 0
-	let base16colorspace=256
-	autocmd ColorScheme * call amc#colours()
-	colorscheme base16-bright
-else
-	set background=dark
-endif
 
 " errorformat
 let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
