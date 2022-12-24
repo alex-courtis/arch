@@ -20,4 +20,3 @@ M.require("amc.plugins.telescope")
 M.require("amc.autocmd")
 
 log.line("init.lua END", ...)
-

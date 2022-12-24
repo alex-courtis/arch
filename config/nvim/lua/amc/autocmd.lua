@@ -30,17 +30,31 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   end,
 })
 
--- wipe unwanted buffers
 vim.api.nvim_create_autocmd("WinClosed", {
   group = group,
   nested = false,
-  callback = buffers.wipe_unwanted,
+  callback = function(data)
+    -- wipe unwanted buffers
+    buffers.wipe_unwanted(data)
+  end
 })
 
--- no name new buffers are not wiped when loading an existing buffer over them
 vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   nested = false,
-  callback = buffers.wipe_alt_no_name_new,
+  callback = function(data)
+    -- no name new buffers are not wiped when loading an existing buffer over them
+    buffers.wipe_alt_no_name_new(data)
+  end
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = group,
+  nested = false,
+  callback = function(data)
+    if data.match == "lua" then
+      -- man is not useful, vim help usually is
+      vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
+    end
+  end
+})
