@@ -18,15 +18,6 @@ function amc#colours()
 endfunction
 
 
-function amc#updateTitleString()
-	if &modifiable && &buflisted && strlen(&buftype) == 0 && filereadable(bufname())
-		let &titlestring = system('printtermtitle') . ' %m'
-	else
-		let &titlestring = system('printtermtitle')
-	endif
-endfunction
-
-
 function amc#startupCwd()
 	if argc() == 1 && isdirectory(argv()[0])
 

@@ -130,12 +130,8 @@ lua require('amc.init')
 
 
 " event order matters
-autocmd BufEnter * call amc#updateTitleString()
 autocmd BufLeave * ++nested silent! update
-autocmd BufWritePost * call amc#updateTitleString()
 autocmd DirChanged global call amc#updatePath()
-autocmd FocusGained * call amc#updateTitleString()
 autocmd FocusLost * ++nested silent! update
 autocmd VimEnter * call amc#startupCwd()
-autocmd VimEnter * call amc#updateTitleString()
 
