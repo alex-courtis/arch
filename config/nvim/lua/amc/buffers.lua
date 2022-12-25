@@ -84,7 +84,7 @@ function M.wipe_alt_no_name_new(data)
 
   -- alt is not visible
   if buf_alt ~= -1 and data.buf ~= buf_alt and win_alt == -1 and M.is_no_name_new(buf_alt) then
-    vim.cmd({ cmd = "bwipeout", args = { buf_alt } })
+    vim.cmd({ cmd = "bwipeout", count = buf_alt })
   end
 end
 

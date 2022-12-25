@@ -26,11 +26,6 @@ mini_base16.setup({
     base0E = vim.env.BASE0E,
     base0F = vim.env.BASE0F,
   },
-  plugins = {
-    default = false,
-    ["lewis6991/gitsigns.nvim"] = true,
-    ["nvim-telescope/telescope.nvim"] = true,
-  },
 })
 
 -- api doesn't allow setting individual attributes
@@ -42,6 +37,6 @@ vim.cmd("highlight TrailingSpace ctermbg=9 guibg=red")
 vim.cmd(string.format("highlight Search guibg=%s", vim.env.BASE09)) -- yellow -> orange
 vim.cmd(string.format("highlight IncSearch guibg=%s", vim.env.BASE0A)) -- orange -> yellow
 
-vim.cmd(string.format("highlight NvimTreeWindowPicker guibg=%s", vim.env.BASE02)) -- blue -> selection
+vim.cmd(string.format("highlight! link NvimTreeWindowPicker Cursor"))
 
 return M
