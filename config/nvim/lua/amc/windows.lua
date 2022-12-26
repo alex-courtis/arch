@@ -2,12 +2,19 @@ local buffers = require("amc.buffers")
 
 local M = {}
 
+local CLOSE_INC_ORDER = {
+  buffers.SPECIAL.QUICK_FIX,
+  buffers.SPECIAL.FUGITIVE,
+  buffers.SPECIAL.HELP,
+  buffers.SPECIAL.NVIM_TREE,
+}
+
 --- go to first nonspecial window, nuke if none found
 --- @param wins table preferred order
 local function home(wins)
   for _, w in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(w)
-    if not buffers.is_special(buf) then
+    if not buffers.special(buf) then
       vim.api.nvim_set_current_win(w)
       return
     end
@@ -21,14 +28,14 @@ end
 --- if current window is special go to the topleftest non special window
 --- :new and nukes when none available
 function M.go_home()
-  if buffers.is_special(0) then
+  if buffers.special(0) then
     home(vim.api.nvim_list_wins())
   end
 end
 
 --- go_home if window is special otherwise go to the next topleftest non special window
 function M.go_home_or_next()
-  if buffers.is_special(0) then
+  if buffers.special(0) then
     M.go_home()
     return
   end

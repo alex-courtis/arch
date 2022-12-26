@@ -16,7 +16,7 @@ tree.setup({
     adaptive_size = false,
     mappings = {
       list = {
-        { key = { "<2-RightMouse>", "<C-]>" }, action = "" }, -- cd
+        { key = { "<2-RightMouse>", }, action = "" }, -- cd
         { key = "D", action = "" }, -- trash
         { key = "[e", action = "" }, -- prev_diag_item
         { key = "]e", action = "" }, -- next_diag_item

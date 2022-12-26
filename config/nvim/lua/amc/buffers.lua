@@ -1,32 +1,41 @@
 local M = {}
 
--- special buffers that have no buftype
-local SPECIAL_NAMES = {
-  "^man://",
-}
-
 -- unwanted buffers after they go away
 local UNWANTED_NAMES = {
   "^man://",
 }
 
---- &buftype is set or name in SPECIAL_NAME
+M.SPECIAL = {
+  HELP = 1,
+  QUICK_FIX = 2,
+  MAN = 3,
+  FUGITIVE = 4,
+  NVIM_TREE = 5,
+  OTHER = 6,
+}
+
+--- &buftype set or otherwise not a normal buffer
 --- @param bufnr number
---- @return boolean
-function M.is_special(bufnr)
-  local name = vim.api.nvim_buf_get_name(bufnr)
+--- @return number|nil enum M.SPECIAL_TYPE
+function M.special(bufnr)
+  local buftype = vim.bo[bufnr].buftype
+  local filetype = vim.bo[bufnr].filetype
 
-  if vim.bo[bufnr].buftype ~= "" then
-    return true
+  if filetype == "help" then
+    return M.SPECIAL.HELP
+  elseif buftype == "quickfix" then
+    return M.SPECIAL.QUICK_FIX
+  elseif filetype == "man" then
+    return M.SPECIAL.MAN
+  elseif filetype:match("^fugitive") then
+    return M.SPECIAL.FUGITIVE
+  elseif filetype == "NvimTree" then
+    return M.SPECIAL.NVIM_TREE
+  elseif buftype ~= "" then
+    return M.SPECIAL.OTHER
   end
 
-  for _, s in ipairs(SPECIAL_NAMES) do
-    if name:find(s) then
-      return true
-    end
-  end
-
-  return false
+  return nil
 end
 
 --- &buftype is empty, name is empty, not modified
@@ -41,12 +50,12 @@ end
 --- b# if # exists and % and # are not special
 function M.safe_hash()
   local prev = vim.fn.bufnr("#")
-  if prev == -1 or M.is_special(prev) then
+  if prev == -1 or M.special(prev) then
     return
   end
 
   local cur = vim.fn.bufnr("%")
-  if M.is_special(cur) then
+  if M.special(cur) then
     return
   end
 
@@ -54,13 +63,13 @@ function M.safe_hash()
 end
 
 function M.back()
-  if not M.is_special(0) then
+  if not M.special(0) then
     vim.cmd("silent BB")
   end
 end
 
 function M.forward()
-  if not M.is_special(0) then
+  if not M.special(0) then
     vim.cmd("silent BF")
   end
 end
