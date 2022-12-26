@@ -49,12 +49,6 @@ command MR set mouse= | set mouse=a
 " clear macros; can't persist emtpy macro so 0 will do
 command MC for i in range(char2nr('a'), char2nr('z')) | call setreg(nr2char(i), "0") | endfor | unlet i
 
-" default only in vim: return to last edit point
-autocmd BufReadPost *
-			\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-			\ |   exe "normal! g`\""
-			\ | endif
-
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
