@@ -9,6 +9,13 @@ local function line(fmt, ...)
   end
 end
 
+function M.require(modname)
+  M.line("%s START", modname)
+  local module = require(modname)
+  M.line("%s END", modname)
+  return module
+end
+
 if vim.env.NVIM_LOG then
   M.path = string.format("/tmp/nvim.log")
   os.remove(M.path)

@@ -1,7 +1,3 @@
-let g:loaded_netrw       = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_perl_provider = 0
-
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 
@@ -28,7 +24,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'xorid/asciitree.nvim'
-Plugin 'Yohannfra/Vim-Goto-Header'
 Plugin 'ziglang/zig.vim'
 
 " plugin and coc-settings.json retained for coc replications
@@ -36,24 +31,6 @@ Plugin 'ziglang/zig.vim'
 
 call vundle#end()
 filetype plugin indent on
-
-set autowriteall
-set clipboard=unnamedplus
-set completeopt=menu,menuone,noselect
-set cursorline
-set ignorecase
-set lcs+=space:·
-set mouse=a
-set nowrapscan
-set number
-set pumheight=15
-set pumwidth=30
-set shiftwidth=4
-set smartcase
-set switchbuf=useopen,uselast
-set tabstop=4
-set title
-set undofile
 
 runtime keys.vim
 
@@ -78,27 +55,11 @@ autocmd BufReadPost *
 			\ |   exe "normal! g`\""
 			\ | endif
 
-" tags search down only
-set tags=**/tags
-
-" buf-kill
-let g:BufKillCreateMappings = 0
-
-" editorconfig
-let EditorConfig_max_line_indicator='line'
-
-" Goto-Header
-let g:goto_header_associate_cpp_h = 1
-let g:goto_header_includes_dirs = [".", "/usr/include"]
-
 " vim-commentary
 autocmd FileType c setlocal commentstring=//\ %s
 autocmd FileType cpp setlocal commentstring=//\ %s
 " stop the plugin from creating the default mappings
 nmap	gc	<NOP>
-
-" zig
-let g:zig_build_makeprg_params="-Dxwayland --prefix ~/.local install"
 
 " "init.lua"
 lua require('amc.init')

@@ -98,8 +98,6 @@ nm	<silent>	<Leader>z	gg=G``
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
-nm	<silent>	<Leader>-	:GotoHeaderSwitch<CR>
-nm	<silent>	<Leader>_	:GotoHeader<CR>
 nm	<silent>	<Leader>\	gg"_dG
 
 nm	<silent>	<BS><Space>	:lua require('amc.buffers').forward()<CR>

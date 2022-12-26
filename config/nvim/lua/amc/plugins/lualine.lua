@@ -81,21 +81,21 @@ lualine.setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "diagnostics", name, ftname, },
+    lualine_b = { "diagnostics", name, ftname },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { ft, },
+    lualine_y = { ft },
     lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = { "diagnostics", name, ftname, },
+    lualine_b = { "diagnostics", name, ftname },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { ft, },
+    lualine_y = { ft },
     lualine_z = {},
   },
-  extensions = {'nvim-tree', 'fugitive', 'man'}
+  extensions = { "nvim-tree", "fugitive", "man" },
 })
 
 vim.o.showmode = false
