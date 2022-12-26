@@ -12,4 +12,4 @@ mini_base16.setup({
   use_cterm = true,
 })
 
-vim.g.colors_name = "base16-bright"
+vim.g.colors_name = "base16"

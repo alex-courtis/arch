@@ -7,7 +7,7 @@ end
 vim.o.background = "dark"
 vim.o.termguicolors = true
 
-vim.cmd("colorscheme base16-bright")
+vim.cmd("colorscheme base16")
 
 vim.cmd("highlight CursorLineNr cterm=bold gui=bold")
 
