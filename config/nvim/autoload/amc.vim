@@ -22,17 +22,3 @@ function amc#updatePath()
 	let &path = getcwd() . "/**"
 endfunction
 
-
-function! amc#airlineStatusLine(...)
-	let l:builder = a:1
-	let l:context = a:2
-
-	if getbufvar(l:context.bufnr, "&filetype") == 'NvimTree'
-		call l:builder.add_section_spaced('airline_a', 'NvimTree')
-		call l:builder.add_section('airline_c', '')
-		return 1
-	endif
-
-	return 0
-endfunction
-

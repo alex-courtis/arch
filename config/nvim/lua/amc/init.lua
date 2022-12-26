@@ -16,6 +16,7 @@ M.require("amc.appearance")
 M.require("amc.plugins.cmp")
 M.require("amc.plugins.gitsigns")
 M.require("amc.plugins.lsp")
+M.require("amc.plugins.lualine")
 M.require("amc.plugins.nvim-tree")
 M.require("amc.plugins.telescope")
 
