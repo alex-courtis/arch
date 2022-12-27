@@ -19,8 +19,9 @@ Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-tree/nvim-tree.lua'
 Plugin 'nvim-tree/nvim-web-devicons'
 Plugin 'qpkorr/vim-bufkill'
-Plugin 'terrortylor/nvim-comment'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'xorid/asciitree.nvim'
 Plugin 'ziglang/zig.vim'
@@ -47,6 +48,12 @@ command MR set mouse= | set mouse=a
 
 " clear macros; can't persist emtpy macro so 0 will do
 command MC for i in range(char2nr('a'), char2nr('z')) | call setreg(nr2char(i), "0") | endfor | unlet i
+
+" vim-commentary
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s
+" stop the plugin from creating the default mappings
+nmap	gc	<NOP>
 
 " "init.lua"
 lua require('amc.init')

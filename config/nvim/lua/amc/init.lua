@@ -41,7 +41,6 @@ log.line("init.lua legacy", ...)
 require("amc.appearance")
 
 require("amc.plugins.cmp")
-require("amc.plugins.comment")
 require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")

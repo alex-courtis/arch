@@ -70,7 +70,11 @@ nm	<silent>	<Leader>mm	:make<CR>
 nm	<silent>	<Leader>mn	:!rm -rf build ; meson build <CR>
 nm	<silent>	<Leader>mt	:make test<CR>
 
-" c* comment
+nm	<silent>	<Leader>cu	<Plug>Commentary<Plug>Commentary
+nm	<silent>	<Leader>cc	<Plug>CommentaryLine
+om	<silent>	<Leader>c	<Plug>Commentary
+nm	<silent>	<Leader>c	<Plug>Commentary
+xm	<silent>	<Leader>c	<Plug>Commentary
 nm	<silent>	<Leader>t	:lua require('amc.plugins.lsp').goto_definition_or_tag()<CR>
 nm	<silent>	<Leader>T	:lua vim.lsp.buf.declaration()<CR>
 nm	<silent>	<Leader>w	<Plug>ReplaceWithRegisterOperatoriw
