@@ -110,18 +110,4 @@ function M.BufEnter(data)
   wipe_alt_no_name_new(data.buf)
 end
 
---- au FileType
-function M.FileType(data)
-
-  -- man is not useful, vim help usually is
-  if data.match == "lua" then
-    vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
-  end
-
-  -- c line comments please
-  if data.match == "c" or data.match == "cpp" then
-    vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
-  end
-end
-
 return M

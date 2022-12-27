@@ -1,4 +1,5 @@
 local buffers = require("amc.buffers")
+local dev = require("amc.dev")
 local log = require("amc.log")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
@@ -33,6 +34,7 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
   group = group,
   nested = true,
   callback = function()
+    -- TODO this only works for helpgrep, make etc, not telescope or stylua
     -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
     vim.cmd({ cmd = "cwindow", count = 15 })
   end,
@@ -69,4 +71,4 @@ vim.api.nvim_create_autocmd("DirChanged", {
 -- general
 vim.api.nvim_create_autocmd("WinClosed", { group = group, callback = buffers.WinClosed })
 vim.api.nvim_create_autocmd("BufEnter", { group = group, callback = buffers.BufEnter })
-vim.api.nvim_create_autocmd("FileType", { group = group, callback = buffers.FileType })
+vim.api.nvim_create_autocmd("FileType", { group = group, callback = dev.FileType })
