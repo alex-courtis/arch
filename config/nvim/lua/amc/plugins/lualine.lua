@@ -34,16 +34,10 @@ local theme = {
   },
 }
 
-local filetype_name = {
-  {
-    "filetype",
-    icon_only = true,
-  },
-  {
-    "filename",
-    symbols = {
-      readonly = "",
-    },
+local filename = {
+  "filename",
+  symbols = {
+    readonly = "",
   },
 }
 
@@ -106,19 +100,19 @@ lualine.setup({
   options = {
     theme = theme,
     section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
 
   sections = {
-    lualine_a = filetype_name,
+    lualine_a = { filename },
     lualine_b = { "diagnostics" },
     lualine_c = { win_buf_info },
     lualine_x = {},
-    lualine_y = { "searchcount" },
-    lualine_z = { "location" },
+    lualine_y = { "filetype" },
+    lualine_z = { "searchcount", "location" },
   },
   inactive_sections = {
-    lualine_a = filetype_name,
+    lualine_a = { filename },
     lualine_b = {},
     lualine_c = { win_buf_info },
     lualine_x = {},
