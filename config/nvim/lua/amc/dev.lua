@@ -12,8 +12,4 @@ function M.format()
   end
 end
 
-stylua.setup({
-  error_display_strategy = "loclist",
-})
-
 return M

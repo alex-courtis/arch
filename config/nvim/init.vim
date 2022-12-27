@@ -35,12 +35,6 @@ filetype plugin indent on
 
 runtime keys.vim
 
-" errorformat
-let s:ef_cmocha = "%.%#[   LINE   ] --- %f:%l:%m,"
-let s:ef_make = "make: *** [%f:%l:%m,"
-let s:ef_cargo = "\\ %#--> %f:%l:%c,"
-let &errorformat = s:ef_cmocha . s:ef_make . s:ef_cargo . &errorformat
-
 " put the results of a silent command in " and +
 command -nargs=+ C redir @" | silent exec <q-args> | redir end | let @+ = @"
 

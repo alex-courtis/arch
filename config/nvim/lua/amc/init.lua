@@ -30,13 +30,15 @@ vim.o.title = true
 vim.o.undofile = true
 vim.o.wrapscan = false
 
-log.line("init.lua options", ...)
+-- error format
+vim.o.errorformat = "%.%#[   LINE   ] --- %f:%l:%m," .. vim.o.errorformat -- cmocka
+vim.o.errorformat = "make: *** [%f:%l:%m," .. vim.o.errorformat -- errors in makefiles themselves
 
 -- legacy plugin options
 vim.g.BufKillCreateMappings = 0
 vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
-log.line("init.lua legacy", ...)
+log.line("init.lua options", ...)
 
 require("amc.appearance")
 
@@ -45,6 +47,7 @@ require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")
 require("amc.plugins.nvim-tree")
+require("amc.plugins.stylua")
 require("amc.plugins.telescope")
 
 require("amc.autocmd")
