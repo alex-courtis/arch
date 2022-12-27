@@ -46,11 +46,3 @@ command MC for i in range(char2nr('a'), char2nr('z')) | call setreg(nr2char(i), 
 
 " "init.lua"
 lua require('amc.init')
-
-
-" event order matters
-autocmd BufLeave * ++nested silent! update
-autocmd DirChanged global call amc#updatePath()
-autocmd FocusLost * ++nested silent! update
-autocmd VimEnter * call amc#startupCwd()
-
