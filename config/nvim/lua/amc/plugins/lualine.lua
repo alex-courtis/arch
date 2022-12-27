@@ -1,21 +1,11 @@
 local lualine = require("lualine")
 
-local name = require("lualine.components.filename"):extend()
-local ftname = require("lualine.components.filetype"):extend()
-local ft = require("lualine.components.filetype"):extend()
-
-local FT_IS_FILENAME = {
-  fugitiveblame = true,
-  qf = true,
-  git = true,
-}
-
 local theme = {
   -- z/y/x inherits a/b/c
   normal = {
     a = { fg = vim.env.BASE01, bg = vim.env.BASE03, gui = "bold" },
     b = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE01 }, -- dark fg, light bg
   },
 
   -- inherits normal
@@ -38,39 +28,20 @@ local theme = {
   inactive = {
     a = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
     b = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE01 }, -- dark fg, light bg
   },
 }
 
-function name:init(options)
-  name.super.init(self, options)
+local filename = {
+  "filename",
+  symbols = {
+    readonly = "",
+  },
+}
 
-  -- remove [-]
-  self.options.symbols.readonly = nil
-end
-
-function name:update_status()
-  if FT_IS_FILENAME[vim.bo.filetype] then
-    return nil
-  else
-    return self.super.update_status(self)
-  end
-end
-
-function ft:update_status()
-  if FT_IS_FILENAME[vim.bo.filetype] then
-    return nil
-  else
-    return self.super.update_status(self)
-  end
-end
-
-function ftname:update_status()
-  if FT_IS_FILENAME[vim.bo.filetype] then
-    return self.super.update_status(self)
-  else
-    return nil
-  end
+-- Loc list title is problematic, especially with telescope. Don't use loc list.
+local function qf_title()
+  return vim.fn.getqflist({ title = 0 }).title
 end
 
 lualine.setup({
@@ -79,23 +50,86 @@ lualine.setup({
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
   },
+
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "diagnostics", name, ftname },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = { ft },
+    lualine_b = { filename },
+    lualine_c = { "diagnostics" },
+    lualine_x = { "searchcount" },
+    lualine_y = { "filetype" },
     lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = { "diagnostics", name, ftname },
+    lualine_b = { filename },
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { ft },
+    lualine_y = { "filetype" },
     lualine_z = {},
   },
-  extensions = { "nvim-tree", "fugitive", "man" },
-})
+  extensions = {
 
-vim.o.showmode = false
+    -- filetype is name
+    {
+      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "filetype" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = { "filetype" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+    },
+
+    -- no name
+    {
+      filetypes = { "NvimTree" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = { "filetype" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+    },
+
+    -- quickfix title is name
+    {
+      filetypes = { "qf" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { qf_title },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { "filetype" },
+        lualine_z = {},
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = { qf_title },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { "filetype" },
+        lualine_z = {},
+      },
+    },
+  },
+})
