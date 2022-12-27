@@ -14,6 +14,41 @@ M.SPECIAL = {
   OTHER = 6,
 }
 
+--- &buftype is empty, name is empty, not modified
+--- @param bufnr number
+local function is_no_name_new(bufnr)
+  if vim.bo[bufnr].buftype ~= "" then
+    return false
+  end
+
+  return vim.api.nvim_buf_get_name(bufnr) == "" and not vim.bo[bufnr].modified
+end
+
+--- wipe unwanted buffers by name
+--- @param bufnr number
+local function wipe_unwanted(bufnr)
+  local name = vim.api.nvim_buf_get_name(bufnr)
+
+  for _, s in ipairs(UNWANTED_NAMES) do
+    if name:find(s) then
+      vim.cmd({ cmd = "bwipeout", count = bufnr })
+      return
+    end
+  end
+end
+
+--- wipe # when it's a no-name new not visible anywhere
+--- @param bufnr number
+local function wipe_alt_no_name_new(bufnr)
+  local bufnr_alt = vim.fn.bufnr("#")
+  local winnr_alt = vim.fn.bufwinnr(bufnr_alt)
+
+  -- alt is not visible
+  if bufnr_alt ~= -1 and bufnr ~= bufnr_alt and winnr_alt == -1 and is_no_name_new(bufnr_alt) then
+    vim.cmd({ cmd = "bwipeout", count = bufnr_alt })
+  end
+end
+
 --- &buftype set or otherwise not a normal buffer
 --- @param bufnr number
 --- @return number|nil enum M.SPECIAL_TYPE
@@ -36,15 +71,6 @@ function M.special(bufnr)
   end
 
   return nil
-end
-
---- &buftype is empty, name is empty, not modified
-function M.is_no_name_new(bufnr)
-  if vim.bo[bufnr].buftype ~= "" then
-    return false
-  end
-
-  return vim.api.nvim_buf_get_name(bufnr) == "" and not vim.bo[bufnr].modified
 end
 
 --- b# if # exists and % and # are not special
@@ -74,26 +100,27 @@ function M.forward()
   end
 end
 
---- wipe unwanted buffers
-function M.wipe_unwanted(data)
-  local name = vim.api.nvim_buf_get_name(data.buf)
-
-  for _, s in ipairs(UNWANTED_NAMES) do
-    if name:find(s) then
-      vim.cmd({ cmd = "bwipeout", count = data.buf })
-      return
-    end
-  end
+--- au WinClosed
+function M.WinClosed(data)
+  wipe_unwanted(data.buf)
 end
 
---- wipe # when it's a no-name new not visible anywhere
-function M.wipe_alt_no_name_new(data)
-  local buf_alt = vim.fn.bufnr("#")
-  local win_alt = vim.fn.bufwinnr(buf_alt)
+--- au BufEnter
+function M.BufEnter(data)
+  wipe_alt_no_name_new(data.buf)
+end
 
-  -- alt is not visible
-  if buf_alt ~= -1 and data.buf ~= buf_alt and win_alt == -1 and M.is_no_name_new(buf_alt) then
-    vim.cmd({ cmd = "bwipeout", count = buf_alt })
+--- au FileType
+function M.FileType(data)
+
+  -- man is not useful, vim help usually is
+  if data.match == "lua" then
+    vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
+  end
+
+  -- c line comments please
+  if data.match == "c" or data.match == "cpp" then
+    vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
   end
 end
 

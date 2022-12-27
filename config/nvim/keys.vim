@@ -16,6 +16,9 @@ im	<silent>	<Esc>		<Esc>:nohlsearch<CR>
 for s:leader in [ "\<Space>", "\<BS>", ]
 let mapleader=s:leader
 
+" stop vim-commentary from creating the default mappings
+nmap	gc	<NOP>
+
 " begin left
 " $
 " @
