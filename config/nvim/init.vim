@@ -1,6 +1,7 @@
 filetype off
 call vundle#begin("~/.local/share/nvim/vundle")
 
+Plugin 'ckipp01/stylua-nvim'
 Plugin 'echasnovski/mini.base16'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'hashivim/vim-terraform'

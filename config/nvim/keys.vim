@@ -97,7 +97,7 @@ nm	<silent>	<Leader>L	:syntax clear TrailingSpace<CR>
 nm				<Leader>s	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = "normal" })<CR>
 nm				<Leader>S	:lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = "normal" })<CR>
 vm				<Leader>s	"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg("*")<CR>' })<CR>"
-nm	<silent>	<Leader>z	gg=G``
+nm	<silent>	<Leader>z	:lua require('amc.dev').format()<CR>
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>

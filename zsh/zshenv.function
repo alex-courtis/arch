@@ -76,5 +76,12 @@ function gu {
 
 # search parents / .config
 function stylua {
-	$(whence -p stylua) -s "${@}"
+	local ARGS=""
+
+	if [ -z "${@[(r)--search-parent-directories]}" -a -z "${@[(r)-s]}" ]; then
+		ARGS="--search-parent-directories"
+		$(whence -p stylua)  "${@}"
+	fi
+
+	$(whence -p stylua) "${ARGS}" "${@}"
 }

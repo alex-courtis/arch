@@ -45,15 +45,26 @@ local filetype_name = {
   },
 }
 
---- quickfix title
---- Loc list title is problematic, especially with telescope. Don't use loc list.
+--- loclist or quickfix title
+--- replaces :setXXlist() which can happen after list manipulation
 --- @return string|nil
 local function qf_title()
-  local list = vim.fn.getqflist({ title = 0 })
-  if list then
-    return list.title
-  else
-    return nil
+  local loclist = vim.fn.getloclist(0, { title = 0, filewinid = 0 })
+  if loclist.filewinid ~= 0 then
+    if loclist.title == ":setloclist()" then
+      return "Location List"
+    else
+      return loclist.title
+    end
+  end
+
+  local qflist = vim.fn.getqflist({ title = 0 })
+  if qflist then
+    if qflist.title == ":setqflist()" then
+      return "Quickfix List"
+    else
+      return qflist.title
+    end
   end
 end
 
