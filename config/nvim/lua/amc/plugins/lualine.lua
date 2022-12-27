@@ -1,5 +1,7 @@
 local lualine = require("lualine")
 
+local log = require("amc.log")
+
 local theme = {
   -- z/y/x inherits a/b/c
   normal = {
@@ -90,6 +92,16 @@ local function qf_progress()
   return string.format("%d/%d", cur, total)
 end
 
+--- only when logging
+--- @return string bufnr winnr winid
+local function win_buf_info()
+  if not log.enabled then
+    return ""
+  end
+
+  return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
+end
+
 lualine.setup({
   options = {
     theme = theme,
@@ -100,7 +112,7 @@ lualine.setup({
   sections = {
     lualine_a = filetype_name,
     lualine_b = { "diagnostics" },
-    lualine_c = {},
+    lualine_c = { win_buf_info },
     lualine_x = {},
     lualine_y = { "searchcount" },
     lualine_z = { "location" },
@@ -108,7 +120,7 @@ lualine.setup({
   inactive_sections = {
     lualine_a = filetype_name,
     lualine_b = {},
-    lualine_c = {},
+    lualine_c = { win_buf_info },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {},
@@ -120,9 +132,11 @@ lualine.setup({
       filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit", "NvimTree" },
       sections = {
         lualine_a = { "filetype" },
+        lualine_c = { win_buf_info },
       },
       inactive_sections = {
         lualine_a = { "filetype" },
+        lualine_c = { win_buf_info },
       },
     },
 
@@ -131,10 +145,12 @@ lualine.setup({
       filetypes = { "qf" },
       sections = {
         lualine_a = { qf_title },
+        lualine_c = { win_buf_info },
         lualine_z = { qf_progress },
       },
       inactive_sections = {
         lualine_a = { qf_title },
+        lualine_c = { win_buf_info },
         lualine_z = { qf_progress },
       },
     },

@@ -28,7 +28,7 @@ nm	<silent>	<Leader>:	:cclose<CR>
 nm	<silent>	<Leader>;	:copen 15<CR>
 nm	<silent>	<Leader>a	:NvimTreeFindFile<CR>:NvimTreeFocus<CR>
 nm	<silent>	<Leader>A	:NvimTreeCollapse<CR><Leader>a
-nm	<silent>	<Leader>'	:call amc#win#closeInc()<CR>
+nm	<silent>	<Leader>'	:lua require('amc.windows').close_inc()<CR>
 nm	<silent>	<Leader>"	:lua require('amc.windows').close_others()<CR>
 
 nm	<silent>	<Leader>,	:G<CR>
