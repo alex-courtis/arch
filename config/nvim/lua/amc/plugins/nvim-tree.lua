@@ -9,6 +9,7 @@ tree.setup({
   open_on_setup = true,
   open_on_setup_file = true,
   sync_root_with_cwd = true,
+  prefer_startup_root = true,
   ignore_ft_on_setup = {
     "gitcommit",
   },
@@ -68,9 +69,11 @@ tree.setup({
   },
   update_focused_file = {
     enable = true,
+    update_root = true,
     ignore_list = {
       -- ft
       "help",
+      "git",
       -- bufname
       "fugitiveblame",
     },

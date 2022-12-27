@@ -1,3 +1,5 @@
+local log = require("amc.log")
+
 local M = {}
 
 -- unwanted buffers after they go away
@@ -11,7 +13,10 @@ M.SPECIAL = {
   MAN = 3,
   FUGITIVE = 4,
   NVIM_TREE = 5,
-  OTHER = 6,
+  GIT = 6,
+  DIR = 7,
+  OTHER = 8,
+  BLEH = 9,
 }
 
 --- &buftype is empty, name is empty, not modified
@@ -55,6 +60,7 @@ end
 function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local filetype = vim.bo[bufnr].filetype
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
 
   if filetype == "help" then
     return M.SPECIAL.HELP
@@ -64,10 +70,14 @@ function M.special(bufnr)
     return M.SPECIAL.MAN
   elseif filetype:match("^fugitive") then
     return M.SPECIAL.FUGITIVE
+  elseif filetype == "git" then
+    return M.SPECIAL.GIT
   elseif filetype == "NvimTree" then
     return M.SPECIAL.NVIM_TREE
   elseif buftype ~= "" then
     return M.SPECIAL.OTHER
+  elseif vim.fn.isdirectory(bufname) ~= 0 then
+    return M.SPECIAL.DIR
   end
 
   return nil
@@ -108,6 +118,26 @@ end
 --- au BufEnter
 function M.BufEnter(data)
   wipe_alt_no_name_new(data.buf)
+end
+
+--- wipe directory buffers
+--- change directory to the first buffer if it is a directory
+function M.wipe_dir_bufers_and_cd()
+  local dir
+
+  for i, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if M.special(bufnr) == M.SPECIAL.DIR then
+      if i == 1 then
+        dir = vim.api.nvim_buf_get_name(bufnr)
+      end
+      vim.cmd({ cmd = "bwipeout", count = bufnr })
+    end
+  end
+
+  if dir then
+    log.line("cd %s", dir)
+    vim.cmd({ cmd = "cd", args = { dir } })
+  end
 end
 
 return M
