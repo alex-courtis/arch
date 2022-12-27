@@ -5,7 +5,7 @@ local theme = {
   normal = {
     a = { fg = vim.env.BASE01, bg = vim.env.BASE03, gui = "bold" },
     b = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE01 }, -- dark fg, light bg
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
   },
 
   -- inherits normal
@@ -28,86 +28,90 @@ local theme = {
   inactive = {
     a = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
     b = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE01 }, -- dark fg, light bg
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
   },
 }
 
-local filename = {
-  "filename",
-  symbols = {
-    readonly = "",
+local filetype_name = {
+  {
+    "filetype",
+    icon_only = true,
+  },
+  {
+    "filename",
+    symbols = {
+      readonly = "",
+    },
   },
 }
 
--- Loc list title is problematic, especially with telescope. Don't use loc list.
+--- quickfix title
+--- Loc list title is problematic, especially with telescope. Don't use loc list.
+--- @return string|nil
 local function qf_title()
-  return vim.fn.getqflist({ title = 0 }).title
+  local list = vim.fn.getqflist({ title = 0 })
+  if list then
+    return list.title
+  else
+    return nil
+  end
+end
+
+--- quickfix cur/total
+--- @return string|nil
+local function qf_progress()
+  local list = vim.fn.getqflist({ idx = 0, items = 0 })
+  if not list then
+    return nil
+  end
+
+  local total, cur = 0, 0
+
+  for i, item in ipairs(list.items) do
+    if item.valid == 1 then
+      total = total + 1
+      if list.idx == i then
+        cur = total
+      end
+    end
+  end
+
+  return string.format("%d/%d", cur, total)
 end
 
 lualine.setup({
   options = {
     theme = theme,
     section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
   },
 
   sections = {
-    lualine_a = { "mode" },
-    lualine_b = { filename },
-    lualine_c = { "diagnostics" },
-    lualine_x = { "searchcount" },
-    lualine_y = { "filetype" },
+    lualine_a = filetype_name,
+    lualine_b = { "diagnostics" },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = { "searchcount" },
     lualine_z = { "location" },
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = { filename },
+    lualine_a = filetype_name,
+    lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = { "filetype" },
+    lualine_y = {},
     lualine_z = {},
   },
   extensions = {
 
     -- filetype is name
     {
-      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit" },
+      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit", "NvimTree" },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "filetype" },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
+        lualine_a = { "filetype" },
       },
       inactive_sections = {
-        lualine_a = {},
-        lualine_b = { "filetype" },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
-    },
-
-    -- no name
-    {
-      filetypes = { "NvimTree" },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = { "filetype" },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
+        lualine_a = { "filetype" },
       },
     },
 
@@ -115,20 +119,12 @@ lualine.setup({
     {
       filetypes = { "qf" },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = { qf_title },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { "filetype" },
-        lualine_z = {},
+        lualine_a = { qf_title },
+        lualine_z = { qf_progress },
       },
       inactive_sections = {
-        lualine_a = {},
-        lualine_b = { qf_title },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = { "filetype" },
-        lualine_z = {},
+        lualine_a = { qf_title },
+        lualine_z = { qf_progress },
       },
     },
   },
