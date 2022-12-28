@@ -31,8 +31,8 @@ alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 alias d="cd ~/.dotfiles"
 alias j="cd ~/src/jira"
 alias s="cd ~/src"
-alias n="cd ~/.local/share/nvim/vundle/nvim-tree.lua.dev"
-alias v="cd ~/.local/share/nvim/vundle"
+alias p="cd ${XDG_DATA_HOME}/nvim/site/pack/packer/start"
+alias n="cd ${XDG_DATA_HOME}/nvim/site/pack/packer/start/nvim-tree.lua.dev"
 
 alias o="xdg-open"
 

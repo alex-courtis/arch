@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-INIT="${HOME}/.local/share/nvim/nvt-dev.lua"
+INIT="${XDG_DATA_HOME}/nvim/nvt-dev.lua"
 PACKPATH="/tmp/nvt-dev/site"
 
 function edit() {
@@ -19,7 +19,7 @@ function init() {
 	else
 		EXT="${1}"
 	fi
-	SRC="${XDG_DATA_HOME}/nvim/vundle/nvim-tree.lua.${EXT}"
+	SRC="${XDG_DATA_HOME}/nvim/site/pack/packer/start/nvim-tree.lua.${EXT}"
 
 	# disable netrw
 	cat << EOF > "${INIT}"

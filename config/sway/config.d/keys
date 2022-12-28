@@ -14,7 +14,7 @@ bindsym --whole-window $mod1+button2 floating toggle
 bindsym $mod1+Escape fullscreen
 bindsym $mod2+Escape floating toggle
 bindsym $mod1+Tab exec bemenu-run
-bindsym $mod2+Tab exec exec $(menjar -d ~/.local/share/applications) > /dev/null 2>&1
+bindsym $mod2+Tab exec exec $(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1
 bindsym $mod1+Delete exec exec term > /dev/null 2>&1
 bindsym $mod2+Delete exec exec browser > /dev/null 2>&1
 bindsym $mod3+Delete exec exec browser google-chrome-stable > /dev/null 2>&1

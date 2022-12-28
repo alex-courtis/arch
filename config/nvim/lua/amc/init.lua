@@ -33,6 +33,36 @@ vim.o.errorformat = "make: *** [%f:%l:%m," .. vim.o.errorformat -- errors in mak
 vim.g.BufKillCreateMappings = 0
 vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
+require("packer").startup({
+  {
+    "ckipp01/stylua-nvim",
+    "echasnovski/mini.base16",
+    "editorconfig/editorconfig-vim",
+    "hashivim/vim-terraform",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/vim-vsnip",
+    "lewis6991/gitsigns.nvim",
+    "neovim/nvim-lspconfig",
+    "nvim-lua/plenary.nvim",
+    "nvim-lualine/lualine.nvim",
+    "nvim-telescope/telescope.nvim",
+    "nvim-tree/nvim-tree.lua",
+    "nvim-tree/nvim-web-devicons",
+    "qpkorr/vim-bufkill",
+    "tpope/vim-commentary",
+    "tpope/vim-fugitive",
+    "tpope/vim-repeat",
+    "vim-scripts/ReplaceWithRegister",
+    "xorid/asciitree.nvim",
+    "ziglang/zig.vim",
+  },
+})
+
 require("amc.init.appearance")
 require("amc.init.autocmd")
 require("amc.init.cmd")

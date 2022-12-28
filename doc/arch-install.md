@@ -417,7 +417,7 @@ river-git
 rivercarro
 rcm
 todotxt
-vundle
+nvim-packer-git
 way-displays
 xlayoutdisplay
 ydotool
