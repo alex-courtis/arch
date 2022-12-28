@@ -7,19 +7,24 @@ function edit() {
 	vi "${INIT}"
 }
 
-function clear() {
+function clean() {
 	rm -rf "${INIT}" "${PACKPATH}"
 }
 
 function init() {
-	clear
+	clean
 
 	if [ -z "${1}" ]; then
-		EXT="dev"
+		USR="dev"
 	else
-		EXT="${1}"
+		USR="${1}"
 	fi
-	SRC="${XDG_DATA_HOME}/nvim/site/pack/packer/start/nvim-tree.lua.${EXT}"
+	SRC="${HOME}/src/nvim-tree.lua/${USR}"
+
+	if [ ! -d "${SRC}" ]; then
+		echo "${SRC} inexistent"
+		exit 1
+	fi
 
 	# disable netrw
 	cat << EOF > "${INIT}"
