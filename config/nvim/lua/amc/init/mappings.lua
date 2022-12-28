@@ -1,11 +1,10 @@
 local K = require("amc.keymap")
 
-local nvim_tree = require("nvim-tree.api")
-
 local buffers = require("amc.buffers")
 local dev = require("amc.dev")
 local windows = require("amc.windows")
 
+local nvim_tree = require("amc.plugins.nvim-tree")
 local telescope = require("amc.plugins.telescope")
 local lsp = require("amc.plugins.lsp")
 
@@ -35,7 +34,8 @@ end)
 -- @
 -- \ used by right
 
-K.nmsl("a", nvim_tree.tree.open)
+K.nmsl("a", nvim_tree.find_focus)
+K.nmsl("A", nvim_tree.collapse_find)
 K.nmsl("'", windows.close_inc)
 K.nmsl('"', windows.close_others)
 

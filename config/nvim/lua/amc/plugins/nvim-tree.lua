@@ -1,4 +1,7 @@
 local tree = require("nvim-tree")
+local api = require("nvim-tree.api")
+
+local M = {}
 
 local function print_node_path(node)
   print(node.absolute_path)
@@ -123,3 +126,25 @@ tree.setup({
     },
   },
 })
+
+-- maybe find
+local function find()
+  local bufname = vim.api.nvim_buf_get_name(0)
+  if bufname then
+    api.tree.find_file(bufname)
+  end
+end
+
+--- maybe find and focus
+function M.find_focus()
+  find()
+  api.tree.focus()
+end
+
+--- collapse then find
+function M.collapse_find()
+  api.tree.collapse_all(false)
+  find()
+end
+
+return M
