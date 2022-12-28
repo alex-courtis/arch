@@ -108,6 +108,20 @@ function M.forward()
   end
 end
 
+--- write to a new scratch buffer
+--- @param text string newline delimited
+function M.write_scratch(text)
+  local bufnr = vim.api.nvim_create_buf(true, true)
+
+  local line = 0
+  for s in text:gmatch("[^\r\n]+") do
+    vim.fn.appendbufline(bufnr, line, s)
+    line = line + 1
+  end
+
+  vim.cmd({ cmd = "buffer", count = bufnr })
+end
+
 --- au WinClosed
 function M.WinClosed(data)
   wipe_unwanted(data.buf)

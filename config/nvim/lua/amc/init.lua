@@ -35,6 +35,7 @@ vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
 require("amc.init.appearance")
 require("amc.init.autocmd")
+require("amc.init.cmd")
 require("amc.init.env")
 
 require("amc.plugins.cmp")
