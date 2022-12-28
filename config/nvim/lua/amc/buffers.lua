@@ -11,9 +11,8 @@ M.SPECIAL = {
   MAN = 3,
   FUGITIVE = 4,
   NVIM_TREE = 5,
-  GIT = 6,
-  DIR = 7,
-  OTHER = 8,
+  DIR = 6,
+  OTHER = 7,
 }
 
 --- &buftype is empty, name is empty, not modified
@@ -66,7 +65,7 @@ function M.special(bufnr)
   local filetype = vim.bo[bufnr].filetype
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
-  if filetype == "help" then
+  if buftype == "help" then
     return M.SPECIAL.HELP
   elseif buftype == "quickfix" then
     return M.SPECIAL.QUICK_FIX
@@ -74,8 +73,6 @@ function M.special(bufnr)
     return M.SPECIAL.MAN
   elseif filetype:match("^fugitive") then
     return M.SPECIAL.FUGITIVE
-  elseif filetype == "git" then
-    return M.SPECIAL.GIT
   elseif filetype == "NvimTree" then
     return M.SPECIAL.NVIM_TREE
   elseif vim.fn.isdirectory(bufname) ~= 0 then
@@ -103,7 +100,6 @@ function M.safe_hash()
 end
 
 function M.back()
-  print("%d", M.special(0))
   if not M.special(0) then
     vim.cmd("silent BB")
   end
