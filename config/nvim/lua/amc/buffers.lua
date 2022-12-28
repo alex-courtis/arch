@@ -125,11 +125,9 @@ end
 function M.wipe_dir_bufers_and_cd()
   local dir
 
-  for i, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if M.special(bufnr) == M.SPECIAL.DIR then
-      if i == 1 then
-        dir = vim.api.nvim_buf_get_name(bufnr)
-      end
+      dir = dir or vim.api.nvim_buf_get_name(bufnr)
       vim.cmd({ cmd = "bwipeout", count = bufnr })
     end
   end

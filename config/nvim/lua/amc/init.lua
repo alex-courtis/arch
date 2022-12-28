@@ -1,12 +1,7 @@
-local log = require("amc.log")
-log.line("init.lua START")
-
-local require = log.require
 local buffers = require("amc.buffers")
 
 -- deal with startup directories
 buffers.wipe_dir_bufers_and_cd()
-log.line("init.lua dir")
 
 -- prevent netrw from loading
 vim.g.loaded_netrw = 1
@@ -43,9 +38,8 @@ vim.o.errorformat = "make: *** [%f:%l:%m," .. vim.o.errorformat -- errors in mak
 vim.g.BufKillCreateMappings = 0
 vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
-log.line("init.lua options")
-
-require("amc.appearance")
+require("amc.init.appearance")
+require("amc.init.autocmd")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")
@@ -54,7 +48,3 @@ require("amc.plugins.lualine")
 require("amc.plugins.nvim-tree")
 require("amc.plugins.stylua")
 require("amc.plugins.telescope")
-
-require("amc.autocmd")
-
-log.line("init.lua END")
