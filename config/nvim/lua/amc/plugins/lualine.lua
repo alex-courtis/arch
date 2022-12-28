@@ -44,23 +44,27 @@ local filename = {
 --- loclist or quickfix title
 --- replaces :setXXlist() which can happen after list manipulation
 --- @return string|nil
-local function qf_title()
+local function qf_name()
   local loclist = vim.fn.getloclist(0, { title = 0, filewinid = 0 })
   if loclist.filewinid ~= 0 then
-    if loclist.title == ":setloclist()" then
-      return "Location List"
-    else
+    if loclist.title ~= ":setloclist()" then
       return loclist.title
     end
   end
 
   local qflist = vim.fn.getqflist({ title = 0 })
   if qflist then
-    if qflist.title == ":setqflist()" then
-      return "Quickfix List"
-    else
+    if qflist.title ~= ":setqflist()" then
       return qflist.title
     end
+  end
+end
+
+local function qf_title()
+  if vim.fn.getloclist(0, { filewinid = 0 }).filewinid ~= 0 then
+    return "Location"
+  else
+    return "QuickFix"
   end
 end
 
@@ -138,13 +142,15 @@ lualine.setup({
     {
       filetypes = { "qf" },
       sections = {
-        lualine_a = { qf_title },
+        lualine_a = { qf_name },
         lualine_c = { win_buf_info },
+        lualine_y = { qf_title },
         lualine_z = { qf_progress },
       },
       inactive_sections = {
-        lualine_a = { qf_title },
+        lualine_a = { qf_name },
         lualine_c = { win_buf_info },
+        lualine_y = { qf_title },
         lualine_z = { qf_progress },
       },
     },

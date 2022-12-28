@@ -101,6 +101,7 @@ nm	<silent>	<Leader>z	:lua require('amc.dev').format()<CR>
 
 nm				<Leader>/	/<C-r>=expand("<cword>")<CR><CR>
 vm				<Leader>/	"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>
+nm				<Leader>-	:LspRestart<CR>
 nm	<silent>	<Leader>\	gg"_dG
 
 nm	<silent>	<BS><Space>	:lua require('amc.buffers').forward()<CR>

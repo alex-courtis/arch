@@ -76,7 +76,6 @@ end
 
 --- close lowest window: CLOSE_INC_ORDER, special, normal
 function M.close_inc()
-
   -- find lowest special by order
   local lowest
   for _, winid in ipairs(vim.api.nvim_list_wins()) do
@@ -104,6 +103,28 @@ function M.close_inc()
     if winid_cur ~= winid then
       vim.api.nvim_win_close(winid, true)
       return
+    end
+  end
+end
+
+--- au QuickFixCmdPost
+function M.QuickFixCmdPost(data)
+  -- open quickfix or location
+  -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
+  if data.match:sub(1, 1) == "l" then
+    vim.cmd("lwindow")
+  else
+    vim.cmd("cwindow")
+  end
+end
+
+--- au BufWinEnter
+function M.BufWinEnter(data)
+  --- resize quickfix and loclist
+  if data.file == "quickfix" then
+    local winid = vim.fn.bufwinid(data.buf)
+    if winid ~= -1 then
+      vim.api.nvim_win_set_height(winid, 15)
     end
   end
 end

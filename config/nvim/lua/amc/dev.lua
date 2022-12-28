@@ -14,7 +14,6 @@ end
 
 --- au FileType
 function M.FileType(data)
-
   -- man is not useful, vim help usually is
   if data.match == "lua" then
     vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")

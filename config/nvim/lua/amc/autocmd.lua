@@ -1,4 +1,5 @@
 local buffers = require("amc.buffers")
+local windows = require("amc.windows")
 local dev = require("amc.dev")
 local log = require("amc.log")
 
@@ -30,22 +31,12 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "DirChanged", "FocusGained", "VimE
   end,
 })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-  group = group,
-  nested = true,
-  callback = function()
-    -- TODO this only works for helpgrep, make etc, not telescope or stylua
-    -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
-    vim.cmd({ cmd = "cwindow", count = 15 })
-  end,
-})
-
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   group = group,
   nested = true,
   callback = function(data)
     -- autowriteall doesn't cover all cases
-    if vim.bo[data.buf].buftype == "" then
+    if vim.bo[data.buf].buftype == "" and vim.api.nvim_buf_get_name(data.buf) ~= "" then
       vim.cmd({ cmd = "update" })
     end
   end,
@@ -68,7 +59,11 @@ vim.api.nvim_create_autocmd("DirChanged", {
   end,
 })
 
--- general
-vim.api.nvim_create_autocmd("WinClosed", { group = group, callback = buffers.WinClosed })
+-- buffer
 vim.api.nvim_create_autocmd("BufEnter", { group = group, callback = buffers.BufEnter })
+vim.api.nvim_create_autocmd("WinClosed", { group = group, callback = buffers.WinClosed })
 vim.api.nvim_create_autocmd("FileType", { group = group, callback = dev.FileType })
+
+-- window
+vim.api.nvim_create_autocmd("BufWinEnter", { group = group, callback = windows.BufWinEnter })
+vim.api.nvim_create_autocmd("QuickFixCmdPost", { group = group, nested = true, callback = windows.QuickFixCmdPost })
