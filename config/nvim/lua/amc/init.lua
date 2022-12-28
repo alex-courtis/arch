@@ -1,8 +1,3 @@
-local buffers = require("amc.buffers")
-
--- deal with startup directories
-buffers.wipe_dir_bufers_and_cd()
-
 -- prevent netrw from loading
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -40,6 +35,7 @@ vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
 require("amc.init.appearance")
 require("amc.init.autocmd")
+require("amc.init.env")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")

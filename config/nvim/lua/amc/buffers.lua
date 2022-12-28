@@ -1,5 +1,3 @@
-local log = require("amc.log")
-
 local M = {}
 
 -- unwanted buffers after they go away
@@ -120,21 +118,10 @@ function M.BufEnter(data)
   wipe_alt_no_name_new(data.buf)
 end
 
---- wipe directory buffers
---- change directory to the first buffer if it is a directory
-function M.wipe_dir_bufers_and_cd()
-  local dir
-
-  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-    if M.special(bufnr) == M.SPECIAL.DIR then
-      dir = dir or vim.api.nvim_buf_get_name(bufnr)
-      vim.cmd({ cmd = "bwipeout", count = bufnr })
-    end
-  end
-
-  if dir then
-    log.line("cd %s", dir)
-    vim.cmd({ cmd = "cd", args = { dir } })
+--- autowriteall doesn't cover all cases
+function M.update(data)
+  if vim.bo[data.buf].buftype == "" and vim.api.nvim_buf_get_name(data.buf) ~= "" then
+    vim.cmd({ cmd = "update" })
   end
 end
 
