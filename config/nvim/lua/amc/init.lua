@@ -67,6 +67,7 @@ require("amc.init.appearance")
 require("amc.init.autocmd")
 require("amc.init.cmd")
 require("amc.init.env")
+require("amc.init.keys")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")

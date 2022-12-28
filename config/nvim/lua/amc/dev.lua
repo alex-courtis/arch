@@ -23,6 +23,12 @@ function M.FileType(data)
   if data.match == "c" or data.match == "cpp" then
     vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
   end
+
+  -- no way to remap fugitive and tpope will not add
+  if data.match == "fugitive" then
+    vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
+    vim.keymap.set("n", "x", "X", { buffer = data.buf, remap = true })
+  end
 end
 
 return M
