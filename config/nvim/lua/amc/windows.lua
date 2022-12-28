@@ -20,7 +20,6 @@ local function home(wins)
     end
   end
 
-  vim.notify("windows home nuking")
   vim.cmd(":new")
   M.close_others()
 end
@@ -62,6 +61,12 @@ function M.go_home_or_next()
   table.insert(pref, cur)
 
   home(pref)
+end
+
+--- close current window and return home
+function M.close()
+  vim.cmd.quit()
+  M.go_home()
 end
 
 --- close windows other than the current

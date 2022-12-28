@@ -4,6 +4,8 @@ local action_set = require("telescope.actions.set")
 local action_state = require("telescope.actions.state")
 local builtin = require("telescope.builtin")
 
+local windows = require("amc.windows")
+
 local M = {}
 
 -- builtin's last search text
@@ -102,10 +104,11 @@ end
 
 telescope.setup(telescope_opts)
 
--- extend each builtin to include opts
+-- extend each builtin to go home and include opts
 for n, f in pairs(builtin) do
   if type(f) == "function" then
     M[n] = function(o)
+      windows.go_home()
       return f(vim.tbl_extend("force", opts(), o or {}))
     end
   end

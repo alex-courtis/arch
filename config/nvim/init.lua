@@ -6,7 +6,6 @@ require("amc.init.appearance")
 require("amc.init.autocmds")
 require("amc.init.commands")
 require("amc.init.dirs")
-require("amc.init.mappings")
 
 require("packer").startup({
   {
@@ -37,6 +36,8 @@ require("packer").startup({
     "ziglang/zig.vim",
   },
 })
+
+require("amc.init.mappings")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")

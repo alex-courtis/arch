@@ -1,6 +1,6 @@
 local M = {}
 
-local MODES = {
+MODES = {
   "n",
   "i",
   "c",
@@ -10,7 +10,7 @@ local MODES = {
   "o",
 }
 
-local LEADERS = {
+LEADERS = {
   "<Space>",
   "<BS>",
 }

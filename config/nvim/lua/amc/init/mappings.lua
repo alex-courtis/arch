@@ -1,5 +1,11 @@
 local K = require("amc.keymap")
 
+local nvim_tree = require("nvim-tree.api")
+
+local buffers = require("amc.buffers")
+local telescope = require("amc.plugins.telescope")
+local windows = require("amc.windows")
+
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 K.vm__("<LeftRelease>", '"*ygv')
 
@@ -10,8 +16,8 @@ K.vm__("q;", "q:")
 K.nm__("<C-w>;", "<C-w>:")
 K.vm__("<C-w>;", "<C-w>:")
 
-K.nmsl(":", ":cclose<CR>")
-K.nmsl(";", ":copen<CR>")
+K.nmsl(":", vim.cmd.cclose)
+K.nmsl(";", vim.cmd.copen)
 
 K.cm__("<C-j>", "<Down>")
 K.cm__("<C-k>", "<Up>")
@@ -21,31 +27,29 @@ K.cm__("<C-k>", "<Up>")
 -- @
 -- \ used by right
 
-K.nmsl("a", ":NvimTreeOpen<CR>")
-K.nmsl("A", ":NvimTreeCollapseKeepBuffers<CR>")
-K.nmsl("'", ":lua require('amc.windows').close_inc()<CR>")
-K.nmsl('"', ":lua require('amc.windows').close_others()<CR>")
+K.nmsl("a", nvim_tree.tree.open)
+K.nmsl("'", windows.close_inc)
+K.nmsl('"', windows.close_others)
 
-K.nmsl(",", ":G<CR>")
-K.nmsl("o", ":lua require('amc.windows').go_home_or_next()<CR>")
-K.nmsl("O", ":lua require('amc.windows').go_home()<CR>")
-K.nmsl("q", ":q<CR>:call amc#win#goHome()<CR>")
-
-K.nmsl(".", ":lua vim.diagnostic.goto_next({wrap = false})<CR>")
-K.nmsl("e", ":cnext<CR>")
+K.nmsl(",", vim.cmd.Git)
+K.nmsl("o", windows.go_home_or_next)
+K.nmsl("O", windows.go_home)
+K.nmsl("q", windows.close)
+K.nmsl(".", vim.diagnostic.goto_next)
+K.nmsl("e", vim.cmd.cnext)
 -- j gitsigns.next_hunk
 
-K.nmsl("p", ":lua vim.diagnostic.goto_prev({wrap = false})<CR>")
-K.nmsl("u", ":cprev<CR>")
+K.nmsl("p", vim.diagnostic.goto_prev)
+K.nmsl("u", vim.cmd.cprev)
 -- k gitsigns.prev_hunk
 
-K.nmsl("y", ":call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').git_status()<CR>")
-K.nmsl("Y", ":call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').git_status_last()<CR>")
-K.nmsl("i", ":call amc#win#goHome() <Bar> :lua require('amc.plugins.telescope').buffers()<CR>")
-K.nmsl("x", ":lua require('amc.buffers').safe_hash()<CR>")
+K.nmsl("y", telescope.git_status)
+K.nmsl("Y", telescope.git_status_last)
+K.nmsl("i", telescope.buffers)
+K.nmsl("x", buffers.safe_hash)
 
-K.nms_("<Space><BS>", ":lua require('amc.buffers').back()<CR>")
-K.nms_("<BS><BS>", ":lua require('amc.buffers').back()<CR>")
+K.nms_("<Space><BS>", buffers.back)
+K.nms_("<BS><BS>", buffers.back)
 -- end left
 
 -- begin right
