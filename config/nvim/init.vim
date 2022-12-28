@@ -35,9 +35,5 @@ filetype plugin indent on
 
 runtime keys.vim
 
-" put the results of a silent command in " and +
-" TODO :SV :SL to file instead
-command -nargs=+ C redir @" | silent exec <q-args> | redir end | let @+ = @"
-
 " "init.lua"
 lua require('amc.init')

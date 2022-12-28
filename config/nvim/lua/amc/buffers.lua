@@ -14,7 +14,6 @@ M.SPECIAL = {
   GIT = 6,
   DIR = 7,
   OTHER = 8,
-  BLEH = 9,
 }
 
 --- &buftype is empty, name is empty, not modified
@@ -57,6 +56,13 @@ end
 --- @return number|nil enum M.SPECIAL_TYPE
 function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
+  local bufhidden = vim.bo[bufnr].bufhidden
+
+  -- scratch is not special
+  if buftype == "nofile" and bufhidden == "hide" then
+    return nil
+  end
+
   local filetype = vim.bo[bufnr].filetype
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
@@ -72,10 +78,10 @@ function M.special(bufnr)
     return M.SPECIAL.GIT
   elseif filetype == "NvimTree" then
     return M.SPECIAL.NVIM_TREE
-  elseif buftype ~= "" then
-    return M.SPECIAL.OTHER
   elseif vim.fn.isdirectory(bufname) ~= 0 then
     return M.SPECIAL.DIR
+  elseif buftype ~= "" then
+    return M.SPECIAL.OTHER
   end
 
   return nil
@@ -97,6 +103,7 @@ function M.safe_hash()
 end
 
 function M.back()
+  print("%d", M.special(0))
   if not M.special(0) then
     vim.cmd("silent BB")
   end
