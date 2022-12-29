@@ -32,6 +32,7 @@ alias d="cd ~/.dotfiles"
 alias j="cd ~/src/jira"
 alias s="cd ~/src"
 alias n="cd ${HOME}/src/nvim-tree.lua/dev"
+alias p="cd $XDG_DATA_HOME/nvim/site/pack/packer/start"
 
 alias o="xdg-open"
 

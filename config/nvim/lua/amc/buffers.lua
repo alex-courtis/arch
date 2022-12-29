@@ -137,7 +137,7 @@ end
 
 --- autowriteall doesn't cover all cases
 function M.update(data)
-  if vim.bo[data.buf].buftype == "" and vim.api.nvim_buf_get_name(data.buf) ~= "" then
+  if vim.bo[data.buf].buftype == "" and vim.api.nvim_buf_get_name(data.buf) ~= "" and not vim.bo[data.buf].readonly then
     vim.cmd({ cmd = "update" })
   end
 end
