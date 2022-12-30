@@ -1,12 +1,5 @@
 require("amc.log")
 
-require("amc.init.options")
-
-require("amc.init.appearance")
-require("amc.init.autocmds")
-require("amc.init.commands")
-require("amc.init.dirs")
-
 require("packer").startup({
   {
     "ckipp01/stylua-nvim",
@@ -37,6 +30,12 @@ require("packer").startup({
   },
 })
 
+require("amc.init.options")
+
+require("amc.init.appearance")
+require("amc.init.autocmds")
+require("amc.init.commands")
+require("amc.init.dirs")
 require("amc.init.mappings")
 
 require("amc.plugins.cmp")
