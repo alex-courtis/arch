@@ -1,4 +1,7 @@
-local mini_base16 = require("mini.base16")
+local ok, mini_base16 = pcall(require, "mini.base16")
+if not ok then
+  return
+end
 
 local palette = {}
 
