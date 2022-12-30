@@ -39,6 +39,24 @@ export BASE0D="#6fb3d2" # BLUE Functions, Methods, Attribute IDs, Headings
 export BASE0E="#d381c3" # MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
 export BASE0F="#be643c" # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 
+export BASE16_DEFAULT_BACKGROUND="${BASE00}"
+export BASE16_LIGHT_BACKGROUND="${BASE01}"
+export BASE16_SELECTION_BACKGROUND="${BASE02}"
+export BASE16_COMMENTS="${BASE03}"
+export BASE16_DARK_FOREGROUND="${BASE04}"
+export BASE16_DEFAULT_FOREGROUND="${BASE05}"
+export BASE16_LIGHT_FOREGROUND="${BASE06}"
+export BASE16_LIGHT_BACKGROUND="${BASE07}"
+
+export BASE16_RED="${BASE08}"
+export BASE16_ORANGE="${BASE09}"
+export BASE16_YELLOW="${BASE0A}"
+export BASE16_GREEN="${BASE0B}"
+export BASE16_CYAN="${BASE0C}"
+export BASE16_BLUE="${BASE0D}"
+export BASE16_MAGENTA="${BASE0E}"
+export BASE16_BROWN="${BASE0F}"
+
 # customise various bemenu invocations
 export BEMENU_OPTS="\
 	--monitor focused \
