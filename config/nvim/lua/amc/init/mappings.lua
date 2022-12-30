@@ -43,11 +43,11 @@ K.nmsl(",", vim.cmd.Git)
 K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", windows.go_home)
 K.nmsl("q", windows.close)
-K.nmsl(".", vim.diagnostic.goto_next)
+K.nmsl(".", lsp.goto_next)
 K.nmsl("e", vim.cmd.cnext)
 -- j gitsigns.next_hunk
 
-K.nmsl("p", vim.diagnostic.goto_prev)
+K.nmsl("p", lsp.goto_prev)
 K.nmsl("u", vim.cmd.cprev)
 -- k gitsigns.prev_hunk
 

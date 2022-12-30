@@ -67,4 +67,12 @@ function M.goto_definition_or_tag()
   end
 end
 
+function M.goto_prev()
+  vim.diagnostic.goto_prev({ wrap = false })
+end
+
+function M.goto_next()
+  vim.diagnostic.goto_next({ wrap = false })
+end
+
 return M
