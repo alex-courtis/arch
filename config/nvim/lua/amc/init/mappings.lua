@@ -44,11 +44,11 @@ K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", windows.go_home)
 K.nmsl("q", windows.close)
 K.nmsl(".", lsp.goto_next)
-K.nmsl("e", vim.cmd.cnext)
+K.nmsl("e", windows.cnext)
 -- j gitsigns.next_hunk
 
 K.nmsl("p", lsp.goto_prev)
-K.nmsl("u", vim.cmd.cprev)
+K.nmsl("u", windows.cprev)
 -- k gitsigns.prev_hunk
 
 K.nmsl("y", telescope.git_status)

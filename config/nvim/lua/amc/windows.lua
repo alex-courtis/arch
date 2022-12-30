@@ -112,6 +112,14 @@ function M.close_inc()
   end
 end
 
+function M.cprev()
+  pcall(vim.cmd.cprev)
+end
+
+function M.cnext()
+  pcall(vim.cmd.cnext)
+end
+
 --- au QuickFixCmdPost
 function M.QuickFixCmdPost(data)
   -- open quickfix or location
