@@ -32,7 +32,6 @@ require("packer").startup({
     "tpope/vim-fugitive",
     "tpope/vim-repeat",
     "vim-scripts/ReplaceWithRegister",
-    "xorid/asciitree.nvim",
     "ziglang/zig.vim",
   },
 })
