@@ -68,6 +68,9 @@ tree.setup({
         folder_arrow = false,
         git = true,
       },
+      glyphs = {
+        modified = "[+]",
+      },
     },
   },
   update_focused_file = {
@@ -96,6 +99,10 @@ tree.setup({
     custom = {
       "^.git$",
     },
+  },
+  modified = {
+    enable = true,
+    show_on_open_dirs = false,
   },
   actions = {
     change_dir = {
