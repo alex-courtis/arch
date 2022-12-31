@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, { group = group, callb
 -- buffer
 vim.api.nvim_create_autocmd({ "BufEnter" }, { group = group, callback = buffers.BufEnter })
 vim.api.nvim_create_autocmd({ "WinClosed" }, { group = group, callback = buffers.WinClosed })
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, { group = group, callback = buffers.update })
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, { group = group, callback = buffers.update, nested = true, })
 
 -- dev
 vim.api.nvim_create_autocmd({ "FileType" }, { group = group, callback = dev.FileType })
