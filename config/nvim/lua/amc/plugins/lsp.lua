@@ -30,20 +30,11 @@ lspconfig.sumneko_lua.setup({
   flags = start_client_flags,
   settings = {
     Lua = {
-      diagnostics = {
-        globals = {
-          "vim",
-        },
-        disable = {
-          "trailing-space",
-          "redundant-parameter",
-        },
-      },
       workspace = {
-        -- current project before runtime
         library = {
-          ".",
-          vim.api.nvim_get_runtime_file("", true),
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
         },
       },
     },
