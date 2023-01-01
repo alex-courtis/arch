@@ -15,7 +15,7 @@ vim.cmd("highlight Search guibg=" .. vim.env.BASE16_ORANGE) -- default yellow
 vim.cmd("highlight IncSearch guibg=" .. vim.env.BASE16_YELLOW) -- default orange
 
 -- nvim-tree
-vim.cmd("highlight! link NvimTreeWindowPicker lualine_a_normal")
+vim.cmd("highlight! link NvimTreeWindowPicker lualine_a_insert")
 vim.cmd("highlight NvimTreeGitDirty ctermfg=magenta guifg=" .. vim.env.BASE16_MAGENTA)
 vim.cmd("highlight NvimTreeGitDeleted ctermfg=red guifg=" .. vim.env.BASE16_RED)
 vim.cmd("highlight NvimTreeGitStaged ctermfg=yellow guifg=" .. vim.env.BASE16_ORANGE)
