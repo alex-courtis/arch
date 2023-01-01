@@ -55,7 +55,7 @@ function M.clean()
   end
 end
 
-function M.deploy()
+function M.dev()
   local bt = build_type()
 
   if bt == M.build_type.MAKE then
