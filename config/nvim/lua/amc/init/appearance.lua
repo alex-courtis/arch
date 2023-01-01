@@ -21,6 +21,7 @@ vim.cmd("highlight NvimTreeGitDeleted ctermfg=red guifg=" .. vim.env.BASE16_RED)
 vim.cmd("highlight NvimTreeGitStaged ctermfg=yellow guifg=" .. vim.env.BASE16_ORANGE)
 vim.cmd("highlight NvimTreeGitMerge	ctermfg=blue guifg=" .. vim.env.BASE16_BLUE)
 vim.cmd("highlight NvimTreeGitNew ctermfg=green guifg=" .. vim.env.BASE16_GREEN)
+vim.cmd("highlight NvimTreeModifiedFile ctermfg=magenta guifg=" .. vim.env.BASE16_MAGENTA)
 
 -- override mini.base16
 vim.cmd("highlight DiagnosticError ctermfg=red guifg=" .. vim.env.BASE16_RED)

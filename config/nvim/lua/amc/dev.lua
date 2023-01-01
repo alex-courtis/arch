@@ -12,6 +12,13 @@ function M.format()
   end
 end
 
+function M.source()
+  local filetype = vim.bo.filetype
+  if filetype == "lua" or filetype == "vim" then
+    vim.cmd.so()
+  end
+end
+
 --- au FileType
 function M.FileType(data)
   -- man is not useful, vim help usually is

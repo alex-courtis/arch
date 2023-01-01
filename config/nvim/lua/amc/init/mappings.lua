@@ -79,6 +79,7 @@ K.nmsl("mc", ":make clean<CR>")
 K.nmsl("mm", ":make<CR>")
 K.nmsl("mn", ":!rm -rf build ; meson build <CR>")
 K.nmsl("mt", ":make test<CR>")
+K.nmsl("ms", dev.source)
 
 K.nmsl("cu", "<Plug>Commentary<Plug>Commentary")
 K.nmsl("cc", "<Plug>CommentaryLine")
