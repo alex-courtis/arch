@@ -3,10 +3,10 @@ local buffers = require("amc.buffers")
 local M = {}
 
 local CLOSE_INC_ORDER = {
-  [buffers.SPECIAL.QUICK_FIX] = 1,
-  [buffers.SPECIAL.FUGITIVE] = 2,
-  [buffers.SPECIAL.HELP] = 3,
-  [buffers.SPECIAL.NVIM_TREE] = 4,
+  [buffers.Special.QUICK_FIX] = 1,
+  [buffers.Special.FUGITIVE] = 2,
+  [buffers.Special.HELP] = 3,
+  [buffers.Special.NVIM_TREE] = 4,
 }
 
 --- go to first nonspecial window, nuke if none found

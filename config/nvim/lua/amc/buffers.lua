@@ -5,7 +5,8 @@ local UNWANTED_NAMES = {
   "^man://",
 }
 
-M.SPECIAL = {
+--- @enum buffers.Special
+M.Special = {
   HELP = 1,
   QUICK_FIX = 2,
   MAN = 3,
@@ -52,7 +53,7 @@ end
 
 --- &buftype set or otherwise not a normal buffer
 --- @param bufnr number
---- @return number|nil enum M.SPECIAL_TYPE
+--- @return buffers.Special|nil
 function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local bufhidden = vim.bo[bufnr].bufhidden
@@ -66,19 +67,19 @@ function M.special(bufnr)
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
   if buftype == "help" then
-    return M.SPECIAL.HELP
+    return M.Special.HELP
   elseif buftype == "quickfix" then
-    return M.SPECIAL.QUICK_FIX
+    return M.Special.QUICK_FIX
   elseif filetype == "man" then
-    return M.SPECIAL.MAN
+    return M.Special.MAN
   elseif filetype:match("^fugitive") then
-    return M.SPECIAL.FUGITIVE
+    return M.Special.FUGITIVE
   elseif filetype == "NvimTree" then
-    return M.SPECIAL.NVIM_TREE
+    return M.Special.NVIM_TREE
   elseif vim.fn.isdirectory(bufname) ~= 0 then
-    return M.SPECIAL.DIR
+    return M.Special.DIR
   elseif buftype ~= "" then
-    return M.SPECIAL.OTHER
+    return M.Special.OTHER
   end
 
   return nil

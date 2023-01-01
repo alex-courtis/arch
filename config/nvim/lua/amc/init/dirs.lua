@@ -4,7 +4,7 @@ local log = require("amc.log")
 --- wipe directory buffers
 local dir
 for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-  if buffers.special(bufnr) == buffers.SPECIAL.DIR then
+  if buffers.special(bufnr) == buffers.Special.DIR then
     dir = dir or vim.api.nvim_buf_get_name(bufnr)
     vim.cmd({ cmd = "bwipeout", count = bufnr })
   end
