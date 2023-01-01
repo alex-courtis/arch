@@ -30,8 +30,10 @@ lspconfig.sumneko_lua.setup({
   flags = start_client_flags,
   settings = {
     Lua = {
-      globals = {
-        "vim",
+      diagnostics = {
+        globals = {
+          "vim",
+        },
       },
       workspace = {
         library = {
