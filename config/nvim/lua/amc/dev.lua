@@ -55,6 +55,24 @@ function M.clean()
   end
 end
 
+function M.deploy()
+  local bt = build_type()
+
+  if bt == M.build_type.MAKE then
+    vim.cmd.make({ args = { "dev" } })
+  end
+end
+
+function M.install()
+  local bt = build_type()
+
+  if bt == M.build_type.MAKE then
+    vim.cmd.make({ args = { "install" } })
+  elseif bt == M.build_type.MESON then
+    vim.cmd({ cmd = "!", args = { "ninja", "-C", "build", "install" } })
+  end
+end
+
 function M.test()
   local bt = build_type()
 

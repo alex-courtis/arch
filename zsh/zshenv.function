@@ -36,23 +36,6 @@ function underlyingterm() {
 	printf "${UNDERLYING}"
 }
 
-# make override with specially placed Makefiles
-function make() {
-	if [ -f Makefile.dev ]; then
-		$(whence -p make) -f Makefile.dev "${@}"
-	elif [ -f Makefile ]; then
-		$(whence -p make) -f Makefile "${@}"
-	elif [ -f GNUmakefile.dev ]; then
-		$(whence -p make) -f GNUmakefile.dev "${@}"
-	elif [ -f GNUmakefile ]; then
-		$(whence -p make) -f GNUmakefile "${@}"
-	elif [ -f build/build.ninja ]; then
-		ninja -C build "${@}"
-	else
-		$(whence -p make) "${@}"
-	fi
-}
-
 # print git ps1, current branch, upstream URL
 function gs() {
 	git_ps1=$(__git_ps1 2>/dev/null)

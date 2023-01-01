@@ -75,6 +75,8 @@ K.nmsl("G", telescope.live_grep_last)
 K.nmsl("hb", ":G blame<CR>")
 -- h* gitsigns
 K.nmsl("mc", dev.clean)
+K.nmsl("md", dev.dev)
+K.nmsl("mi", dev.install)
 K.nmsl("mm", dev.build)
 K.nmsl("mr", dev.reconfigure)
 K.nmsl("mt", dev.test)
