@@ -48,8 +48,14 @@ local telescope_opts = {
       ignore_current_buffer = true,
       initial_mode = "normal",
       sort_mru = true,
+      mappings = {
+        n = {
+          ["d"] = actions.delete_buffer,
+        },
+      },
     },
     lsp_references = {
+      attach_mappings = attach_quickfix_select,
       initial_mode = "normal",
     },
   },
@@ -67,6 +73,26 @@ local telescope_opts = {
         preview_cutoff = 55,
         prompt_position = "top",
         mirror = true,
+      },
+    },
+    mappings = {
+      n = {
+        ["<S-Tab>"] = actions.move_selection_previous,
+        ["<Tab>"] = actions.move_selection_next,
+        ["<M-q>"] = false,
+        ["<PageDown>"] = false,
+        ["<PageUp>"] = false,
+        ["H"] = false,
+        ["L"] = false,
+        ["M"] = false,
+      },
+      i = {
+        ["<S-Tab>"] = actions.move_selection_previous,
+        ["<Tab>"] = actions.move_selection_next,
+        ["<C-l>"] = false,
+        ["<M-q>"] = false,
+        ["<PageDown>"] = false,
+        ["<PageUp>"] = false,
       },
     },
   },
