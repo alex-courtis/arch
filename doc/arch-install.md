@@ -364,6 +364,7 @@ fd
 fzf
 inetutils
 interception-dual-function-keys
+inter-font
 jq
 keychain
 libva-utils
