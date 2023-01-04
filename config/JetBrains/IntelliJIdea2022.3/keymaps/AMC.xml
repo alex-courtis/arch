@@ -82,6 +82,7 @@
     <keyboard-shortcut first-keystroke="alt s" />
   </action>
   <action id="UsageFiltering.WriteAccess" />
+  <action id="Vcs.UpdateProject" />
   <action id="XDebugger.CopyWatch" />
   <action id="org.intellij.plugins.markdown.ui.actions.styling.InsertImageAction" />
   <action id="org.intellij.plugins.markdown.ui.actions.styling.ToggleCodeSpanAction" />
