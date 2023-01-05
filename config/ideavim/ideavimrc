@@ -38,7 +38,7 @@ sethandler <C-P> a:ide
 sethandler <C-Q> a:ide
 sethandler <C-R> a:vim
 sethandler <C-S> a:ide
-sethandler <C-T> a:ide
+sethandler <C-T> a:vim
 sethandler <C-U> a:vim
 sethandler <C-V> a:vim
 sethandler <C-W> a:ide
@@ -103,8 +103,8 @@ nm <BS>md <Action>(CompileDirty)
 nm <BS>c  <Plug>(CommentMotion)
 nm <BS>cc <Plug>(CommentLine)
 vm <BS>c  <Plug>(CommentMotionV)
-nm <BS>t  <Action>(GotoDeclaration)
-nm <BS>T  <Action>(GotoImplementation)
+" this uses vim's tag navigation history, not intellij's, so we can use <C-t>
+nm <BS>t  <C-]>
 nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
 xm <BS>w <Plug>ReplaceWithRegisterVisual
 nm <BS>W <Plug>ReplaceWithRegisterLine
