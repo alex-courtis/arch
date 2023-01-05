@@ -12,7 +12,7 @@ case "${HOST}" in
 	"gigantor")
 		;&
 	"tinygod")
-		FONT_SIZE_PT=12
+		FONT_SIZE_PT=13
 		;;
 	*)
 		FONT_SIZE_PT=11
