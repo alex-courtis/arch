@@ -19,6 +19,9 @@
   <action id="ActivateCommitToolWindow">
     <keyboard-shortcut first-keystroke="alt c" />
   </action>
+  <action id="ActivateCoverageToolWindow">
+    <keyboard-shortcut first-keystroke="alt o" />
+  </action>
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="alt d" />
   </action>
@@ -68,6 +71,7 @@
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="k" />
   </action>
+  <action id="ExportToTextFile" />
   <action id="FileChooser.GotoDesktop" />
   <action id="GotoAction">
     <keyboard-shortcut first-keystroke="alt a" />
@@ -77,6 +81,7 @@
   <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
   <action id="PasteMultiple" />
+  <action id="Rerun" />
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
   <action id="ShowSettings">
