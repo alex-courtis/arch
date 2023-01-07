@@ -1,6 +1,6 @@
+// settings.focusOnSaved = false
 settings.tabsThreshold = 99;
 settings.tabsMRUOrder = false;
-settings.focusFirstCandidate = true;
 
 // ace editor
 api.aceVimMap(';', ':', 'normal');
