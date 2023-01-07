@@ -21,7 +21,6 @@ var except_map = [
 	'r',
 	'T',
 	'yy',
-	'zi', 'zo', 'zr',
 	// remapping unreliable
 	'<Alt-s>',
 	'<Alt-i>',
@@ -34,6 +33,9 @@ function mapkey(keys, annotation, jscode, options) {
 	api.mapkey(keys, annotation, jscode, options);
 	except_map.push(keys);
 }
+
+// settings
+map('<Alt-e>', ';e');
 
 // toggle PDF
 map('<Alt-p>', ';s');
