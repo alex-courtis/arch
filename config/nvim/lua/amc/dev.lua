@@ -37,11 +37,26 @@ function M.format()
   end
 end
 
-function M.reconfigure()
+local function meson(args)
+  vim.cmd({ cmd = "!", args = vim.list_extend({ "meson", "setup", "build" }, args or {}) })
+end
+
+local function ninja(args)
+  if not vim.loop.fs_stat("build") then
+    meson({})
+  end
+  vim.cmd({ cmd = "!", args = vim.list_extend({ "ninja", "-C", "build" }, args or {}) })
+end
+
+function M.setup()
   local bt = build_type()
 
   if bt == M.build_type.MESON then
-    vim.cmd({ cmd = "!", args = { "meson", "setup", "--reconfigure", "build" } })
+    if vim.loop.fs_stat("build") then
+      meson({ "--reconfigure" })
+    else
+      meson({})
+    end
   end
 end
 
@@ -51,7 +66,7 @@ function M.clean()
   if bt == M.build_type.MAKE then
     vim.cmd.make({ args = { "clean" } })
   elseif bt == M.build_type.MESON then
-    vim.cmd({ cmd = "!", args = { "ninja", "-C", "build", "clean" } })
+    ninja({ "clean" })
   end
 end
 
@@ -69,7 +84,7 @@ function M.install()
   if bt == M.build_type.MAKE then
     vim.cmd.make({ args = { "install" } })
   elseif bt == M.build_type.MESON then
-    vim.cmd({ cmd = "!", args = { "ninja", "-C", "build", "install" } })
+    ninja({ "install" })
   end
 end
 
@@ -79,7 +94,7 @@ function M.test()
   if bt == M.build_type.MAKE then
     vim.cmd.make({ args = { "test" } })
   elseif bt == M.build_type.MESON then
-    vim.cmd({ cmd = "!", args = { "ninja", "-C", "build", "test" } })
+    ninja({ "test" })
   end
 end
 
@@ -89,7 +104,7 @@ function M.build()
   if bt == M.build_type.MAKE then
     vim.cmd.make()
   elseif bt == M.build_type.MESON then
-    vim.cmd({ cmd = "!", args = { "ninja", "-C", "build" } })
+    ninja({})
   end
 end
 
