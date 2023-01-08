@@ -48,11 +48,3 @@ require("amc.plugins.stylua").init()
 require("amc.plugins.telescope").init()
 
 require("amc.init.mappings")
-
-require("amc.plugins.cmp")
-require("amc.plugins.gitsigns")
-require("amc.plugins.lsp")
-require("amc.plugins.lualine")
-require("amc.plugins.nvim-tree")
-require("amc.plugins.stylua")
-require("amc.plugins.telescope")
