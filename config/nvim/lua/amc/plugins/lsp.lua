@@ -8,7 +8,7 @@ local start_client_flags = {
   debounce_text_changes = 500,
 }
 
-lspconfig.ccls.setup({
+local config_ccls = {
   flags = start_client_flags,
   capabilities = capabilities,
   root_dir = lspconfig.util.root_pattern(".ccls", "build/compile_commands.json"),
@@ -24,9 +24,9 @@ lspconfig.ccls.setup({
       },
     },
   },
-})
+}
 
-lspconfig.sumneko_lua.setup({
+local config_lua = {
   flags = start_client_flags,
   settings = {
     Lua = {
@@ -44,11 +44,11 @@ lspconfig.sumneko_lua.setup({
       },
     },
   },
-})
+}
 
-lspconfig.zls.setup({
+local config_zls = {
   flags = start_client_flags,
-})
+}
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
@@ -69,6 +69,12 @@ end
 
 function M.goto_next()
   vim.diagnostic.goto_next({ wrap = false })
+end
+
+function M.init()
+  lspconfig.ccls.setup(config_ccls)
+  lspconfig.sumneko_lua.setup(config_lua)
+  lspconfig.zls.setup(config_zls)
 end
 
 return M

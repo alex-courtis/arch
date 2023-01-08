@@ -1,5 +1,11 @@
 local stylua = require("stylua-nvim")
 
-stylua.setup({
-  error_display_strategy = "loclist",
-})
+local M = {}
+
+function M.init()
+  stylua.setup({
+    error_display_strategy = "loclist",
+  })
+end
+
+return M

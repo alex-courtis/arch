@@ -1,5 +1,7 @@
 local gitsigns = require("gitsigns")
 
+local M = {}
+
 local on_attach = function(bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
@@ -48,10 +50,14 @@ local on_attach = function(bufnr)
   end
 end
 
-gitsigns.setup({
-  numhl = true,
-  current_line_blame_opts = {
-    delay = 100,
-  },
-  on_attach = on_attach,
-})
+function M.init()
+  gitsigns.setup({
+    numhl = true,
+    current_line_blame_opts = {
+      delay = 100,
+    },
+    on_attach = on_attach,
+  })
+end
+
+return M

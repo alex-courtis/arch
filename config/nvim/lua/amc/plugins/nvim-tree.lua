@@ -7,7 +7,7 @@ local function print_node_path(node)
   print(node.absolute_path)
 end
 
-tree.setup({
+local config = {
   hijack_cursor = true,
   open_on_setup = true,
   open_on_setup_file = true,
@@ -132,7 +132,7 @@ tree.setup({
       watcher = false,
     },
   },
-})
+}
 
 -- maybe find
 local function find()
@@ -152,6 +152,10 @@ end
 function M.collapse_find()
   api.tree.collapse_all(false)
   find()
+end
+
+function M.init()
+  tree.setup(config)
 end
 
 return M

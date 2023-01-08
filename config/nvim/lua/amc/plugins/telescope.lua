@@ -39,7 +39,7 @@ local function attach_quickfix_select(prompt_bufnr)
   return true
 end
 
-local telescope_opts = {
+local config = {
   pickers = {
     live_grep = {
       attach_mappings = attach_quickfix_select,
@@ -110,32 +110,34 @@ local function opts()
   return o
 end
 
-for n, _ in pairs(last) do
-  -- run builtin with last text populated
-  M[n .. "_last"] = function(o)
-    o = o or {}
-    o.default_text = last[n]
-    o.initial_mode = "normal"
-    return M[n](o)
+function M.init()
+  for n, _ in pairs(last) do
+    -- run builtin with last text populated
+    M[n .. "_last"] = function(o)
+      o = o or {}
+      o.default_text = last[n]
+      o.initial_mode = "normal"
+      return M[n](o)
+    end
+
+    -- set last text
+    config.pickers[n] = config.pickers[n] or {}
+    config.pickers[n].on_complete = {
+      function()
+        last[n] = action_state.get_current_line()
+      end,
+    }
   end
 
-  -- set last text
-  telescope_opts.pickers[n] = telescope_opts.pickers[n] or {}
-  telescope_opts.pickers[n].on_complete = {
-    function()
-      last[n] = action_state.get_current_line()
-    end,
-  }
-end
+  telescope.setup(config)
 
-telescope.setup(telescope_opts)
-
--- extend each builtin to go home and include opts
-for n, f in pairs(builtin) do
-  if type(f) == "function" then
-    M[n] = function(o)
-      windows.go_home()
-      return f(vim.tbl_extend("force", opts(), o or {}))
+  -- extend each builtin to go home and include opts
+  for n, f in pairs(builtin) do
+    if type(f) == "function" then
+      M[n] = function(o)
+        windows.go_home()
+        return f(vim.tbl_extend("force", opts(), o or {}))
+      end
     end
   end
 end

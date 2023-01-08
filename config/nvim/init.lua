@@ -38,6 +38,15 @@ require("amc.init.appearance")
 require("amc.init.autocmds")
 require("amc.init.commands")
 require("amc.init.dirs")
+
+require("amc.plugins.cmp").init()
+require("amc.plugins.gitsigns").init()
+require("amc.plugins.lsp").init()
+require("amc.plugins.lualine").init()
+require("amc.plugins.nvim-tree").init()
+require("amc.plugins.stylua").init()
+require("amc.plugins.telescope").init()
+
 require("amc.init.mappings")
 
 require("amc.plugins.cmp")

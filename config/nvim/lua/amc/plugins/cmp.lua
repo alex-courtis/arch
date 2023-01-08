@@ -1,6 +1,8 @@
 local cmp = require("cmp")
 
-cmp.setup({
+local M = {}
+
+local config = {
   completion = {
     autocomplete = false,
   },
@@ -23,4 +25,10 @@ cmp.setup({
   }, {
     { name = "buffer" },
   }),
-})
+}
+
+function M.init()
+  cmp.setup(config)
+end
+
+return M

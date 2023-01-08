@@ -2,37 +2,7 @@ local lualine = require("lualine")
 
 local log = require("amc.log")
 
-local theme = {
-  -- z/y/x inherits a/b/c
-  normal = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE03, gui = "bold" },
-    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-  },
-
-  -- inherits normal
-  replace = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0A, gui = "bold" }, -- YELLOW
-  },
-  insert = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0D, gui = "bold" }, -- BLUE
-  },
-  visual = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0E, gui = "bold" }, -- MAGENTA
-  },
-  command = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE08, gui = "bold" }, -- RED
-  },
-  terminal = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0B, gui = "bold" }, -- GREEN
-  },
-
-  inactive = {
-    a = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-  },
-}
+local M = {}
 
 local filename = {
   "filename",
@@ -100,7 +70,39 @@ local function win_buf_info()
   return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
 end
 
-lualine.setup({
+local theme = {
+  -- z/y/x inherits a/b/c
+  normal = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE03, gui = "bold" },
+    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+  },
+
+  -- inherits normal
+  replace = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE0A, gui = "bold" }, -- YELLOW
+  },
+  insert = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE0D, gui = "bold" }, -- BLUE
+  },
+  visual = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE0E, gui = "bold" }, -- MAGENTA
+  },
+  command = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE08, gui = "bold" }, -- RED
+  },
+  terminal = {
+    a = { fg = vim.env.BASE01, bg = vim.env.BASE0B, gui = "bold" }, -- GREEN
+  },
+
+  inactive = {
+    a = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
+    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+  },
+}
+
+local config = {
   options = {
     theme = theme,
     section_separators = { left = "", right = "" },
@@ -155,4 +157,11 @@ lualine.setup({
       },
     },
   },
-})
+}
+
+
+function M.init()
+  lualine.setup(config)
+end
+
+return M

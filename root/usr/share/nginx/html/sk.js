@@ -1,4 +1,3 @@
-// settings.focusOnSaved = false
 settings.tabsThreshold = 99;
 settings.tabsMRUOrder = false;
 
@@ -64,10 +63,6 @@ map('<Ctrl-u>', 'u');
 
 // open link in new tab
 map('F', 'af');
-
-// open url
-map('o', 'go');
-map('O', 't');
 
 // move tab to another window
 map('m', 'W');
