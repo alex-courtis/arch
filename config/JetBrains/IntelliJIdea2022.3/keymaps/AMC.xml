@@ -16,11 +16,9 @@
   <action id="ActivateCheckStyleToolWindow">
     <keyboard-shortcut first-keystroke="alt y" />
   </action>
-  <action id="ActivateCommitToolWindow">
-    <keyboard-shortcut first-keystroke="alt c" />
-  </action>
+  <action id="ActivateCommitToolWindow" />
   <action id="ActivateCoverageToolWindow">
-    <keyboard-shortcut first-keystroke="alt o" />
+    <keyboard-shortcut first-keystroke="alt c" />
   </action>
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="alt d" />
@@ -39,7 +37,9 @@
     <keyboard-shortcut first-keystroke="alt r" />
   </action>
   <action id="ActivateServicesToolWindow" />
-  <action id="ActivateStructureToolWindow" />
+  <action id="ActivateStructureToolWindow">
+    <keyboard-shortcut first-keystroke="alt t" />
+  </action>
   <action id="ActivateVersionControlToolWindow">
     <keyboard-shortcut first-keystroke="alt g" />
   </action>
@@ -81,13 +81,16 @@
   <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
   <action id="PasteMultiple" />
+  <action id="Refresh" />
   <action id="Rerun" />
+  <action id="RerunTests" />
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
   <action id="ShowSettings">
     <keyboard-shortcut first-keystroke="alt s" />
   </action>
   <action id="UsageFiltering.WriteAccess" />
+  <action id="UsageView.Rerun" />
   <action id="Vcs.UpdateProject" />
   <action id="XDebugger.CopyWatch" />
   <action id="org.intellij.plugins.markdown.ui.actions.styling.InsertImageAction" />
