@@ -48,12 +48,6 @@ sethandler <C-[> a:vim
 sethandler <C-]> a:vim
 
 " idea does not like setting mapleader to <BS>
-"
-" /home/acourtis/src/jira/dispatcher/conf/idea-template/inspectionProfiles/Project_Default.xml
-" /home/acourtis/src/jira/dispatcher/.idea/inspectionProfiles/Project_Default.xml
-"
-" <inspection_tool class="SpellCheckingInspection" enabled="false" level="TYPO" enabled_by_default="false">
-" <inspection_tool class="UNUSED_IMPORT" enabled="true" level="ERROR" enabled_by_default="true" />
 
 nm <BS><BS> <Action>(Back)
 nm <Space><BS> <Action>(Back)
@@ -100,7 +94,8 @@ nm <BS>mc <Action>(RunCoverage)
 nm <BS>md <Action>(DebugClass)
 nm <BS>me <Action>(editRunConfigurations)
 nm <BS>mm <Action>(CompileFile)
-nm <BS>mt <Action>(RunClass)
+nm <BS>mr <Action>(RunClass)
+nm <BS>mt <Action>(Rerun)
 nm <BS>mu <Action>(UpdateRunningApplication)
 
 nm <BS>c  <Plug>(CommentMotion)
