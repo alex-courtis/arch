@@ -4,6 +4,7 @@ require("amc.init.options")
 
 -- installs but does not load
 local bootstrapped = require("amc.init.packer")({
+  "antosha417/nvim-lsp-file-operations",
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "editorconfig/editorconfig-vim",

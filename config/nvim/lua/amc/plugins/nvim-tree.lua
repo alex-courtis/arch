@@ -1,6 +1,8 @@
 local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
 
+local lsp_file_operations = require("lsp-file-operations")
+
 local M = {}
 
 local function print_node_path(node)
@@ -156,6 +158,7 @@ end
 
 function M.init()
   tree.setup(config)
+  lsp_file_operations.setup({})
 end
 
 return M
