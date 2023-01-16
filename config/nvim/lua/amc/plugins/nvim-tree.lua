@@ -56,6 +56,7 @@ local config = {
   renderer = {
     full_name = true,
     group_empty = true,
+    highlight_opened_files = "name",
     root_folder_modifier = ":t",
     special_files = {},
     symlink_destination = false,
