@@ -1,6 +1,8 @@
 local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
 
+local lsp_file_operations = require("lsp-file-operations")
+
 local M = {}
 
 local function print_node_path(node)
@@ -54,6 +56,7 @@ local config = {
   renderer = {
     full_name = true,
     group_empty = true,
+    highlight_opened_files = "name",
     root_folder_modifier = ":t",
     special_files = {},
     symlink_destination = false,
@@ -156,6 +159,7 @@ end
 
 function M.init()
   tree.setup(config)
+  lsp_file_operations.setup({})
 end
 
 return M
