@@ -9,21 +9,13 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 	else
 		case "${XDG_VTNR}" in
 			1)
-				if [ "${HOST}" = "emperor" ]; then
-					exec startwm x dwm
-				else
-					exec startwm river
-				fi
+				exec startwm river
 				;;
 			2)
 				exec startwm x dwm
 				;;
 			3)
-				if [ "${HOST}" = "emperor" ]; then
-					exec startwm x gnome
-				else
-					exec startwm gnome
-				fi
+				exec startwm gnome
 				;;
 			4)
 				exec startwm sway
