@@ -93,7 +93,9 @@ bindsym $mod1+b splitv
 bindsym $mod1+m splith
 bindsym $mod1+w focus output left
 bindsym $mod1+v focus output right
+bindsym $mod3+v exec way-displays -s AUTO_SCALE on
 bindsym $mod2+z exec pkill zoom
+bindsym $mod3+z exec way-displays -s AUTO_SCALE off
 # \
 
 bindsym $mod1+Left resize shrink width 25px
