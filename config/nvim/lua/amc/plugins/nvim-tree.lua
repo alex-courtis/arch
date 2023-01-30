@@ -11,13 +11,8 @@ end
 
 local config = {
   hijack_cursor = true,
-  open_on_setup = true,
-  open_on_setup_file = true,
   sync_root_with_cwd = true,
   prefer_startup_root = true,
-  ignore_ft_on_setup = {
-    "gitcommit",
-  },
   view = {
     adaptive_size = false,
     mappings = {
@@ -155,6 +150,46 @@ end
 function M.collapse_find()
   api.tree.collapse_all(false)
   find()
+end
+
+function M.open_nvim_tree(data)
+  -- buffer is a real file on the disk
+  local real_file = vim.fn.filereadable(data.file) == 1
+
+  -- buffer is a [No Name]
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+  -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-files-and-no-name-buffers
+  -- if real_file or no_name then
+  if real_file then
+    -- open the tree but don't focus it
+    require("nvim-tree.api").tree.toggle({ focus = false })
+
+    -- find the file if it exists
+    require("nvim-tree.api").tree.find_file(data.file)
+
+    return
+  end
+
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-directories-and-change-neovims-directory
+  if directory then
+    -- create a new, empty buffer
+    vim.cmd.enew()
+
+    -- wipe the directory buffer
+    vim.cmd.bw(data.buf)
+
+    -- change to the directory
+    vim.cmd.cd(data.file)
+
+    -- open the tree
+    require("nvim-tree.api").tree.open()
+
+    return
+  end
 end
 
 function M.init()

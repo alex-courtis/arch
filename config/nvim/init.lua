@@ -38,7 +38,8 @@ end
 require("amc.init.appearance")
 require("amc.init.autocmds")
 require("amc.init.commands")
-require("amc.init.dirs")
+-- removed while dogfooding https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-directories-and-change-neovims-directory
+-- require("amc.init.dirs")
 
 require("amc.plugins.cmp").init()
 require("amc.plugins.gitsigns").init()

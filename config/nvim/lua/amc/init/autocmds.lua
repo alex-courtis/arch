@@ -2,8 +2,12 @@ local buffers = require("amc.buffers")
 local dev = require("amc.dev")
 local env = require("amc.env")
 local windows = require("amc.windows")
+local nvim_tree = require("amc.plugins.nvim-tree")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
+
+-- startup first to trigger following events
+vim.api.nvim_create_autocmd({ "VimEnter" }, { group = group, callback = nvim_tree.open_nvim_tree })
 
 -- unload modules before reloading
 vim.api.nvim_create_autocmd({ "SourcePre"}, { group = group, callback = env.unload })
