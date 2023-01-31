@@ -132,27 +132,25 @@ local config = {
   },
 }
 
--- maybe find
-local function find()
+--- open and maybe find
+function M.open_find()
+  api.tree.open({ find_file = true })
+end
+
+--- collapse then maybe find
+function M.collapse_find()
   local bufname = vim.api.nvim_buf_get_name(0)
+  api.tree.collapse_all(false)
   if bufname then
     api.tree.find_file(bufname)
   end
 end
 
---- maybe find and focus
-function M.find_focus()
-  find()
-  api.tree.focus()
-end
-
---- collapse then find
-function M.collapse_find()
-  api.tree.collapse_all(false)
-  find()
-end
-
 function M.open_nvim_tree(data)
+  local IGNORED_FT = {
+    "gitcommit",
+  }
+
   -- buffer is a real file on the disk
   local real_file = vim.fn.filereadable(data.file) == 1
 
@@ -160,8 +158,13 @@ function M.open_nvim_tree(data)
   local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
   -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-files-and-no-name-buffers
-  -- if real_file or no_name then
   if real_file then
+    -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open_on_setup_file-and-ignore_ft_on_setup
+    -- ignored &filetype
+    if vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft) then
+      return
+    end
+
     -- open the tree but don't focus it
     require("nvim-tree.api").tree.toggle({ focus = false })
 

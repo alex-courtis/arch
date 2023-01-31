@@ -34,7 +34,7 @@ end)
 -- @
 -- \ used by right
 
-K.nmsl("a", nvim_tree.find_focus)
+K.nmsl("a", nvim_tree.open_find)
 K.nmsl("A", nvim_tree.collapse_find)
 K.nmsl("'", windows.close_inc)
 K.nmsl('"', windows.close_others)
