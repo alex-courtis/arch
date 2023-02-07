@@ -6,7 +6,7 @@ local function line(fmt, ...)
   local file = io.open(M.path, "a")
   if file then
     io.output(file)
-    io.write(string.format((fmt or "") .. "\n", ...))
+    io.write(string.format(string.format("[%s] %s\n", os.date "%Y-%m-%d %H:%M:%S", fmt or ""), ...))
     io.close(file)
   end
 end
