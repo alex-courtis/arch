@@ -187,7 +187,7 @@ api.vunmap(';');
 api.vunmap('<Ctrl-d>');
 api.vunmap('<Ctrl-u>');
 api.vunmap('<Enter>');
-api.vunmap('<Shift-Enter>');
+api.vunmap('<Ctrl-Shift-Enter>');
 api.vunmap('b');
 api.vunmap('e');
 api.vunmap('G');
