@@ -73,7 +73,7 @@ end
 
 function M.init()
   lspconfig.ccls.setup(config_ccls)
-  lspconfig.sumneko_lua.setup(config_lua)
+  lspconfig.lua_ls.setup(config_lua)
   lspconfig.zls.setup(config_zls)
 end
 
