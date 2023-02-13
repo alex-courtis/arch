@@ -1,19 +1,22 @@
 #!/bin/zsh
 
-INIT="${XDG_DATA_HOME}/nvim/nvt-dev.lua"
-PACKPATH="/tmp/nvt-dev/site"
+TEMPLATE="${XDG_CONFIG_HOME}/nvim/nvt-dev-template.lua"
+ROOT="/tmp/nvt-dev"
+INIT="${ROOT}/nvt-dev.lua"
+PACKPATH="${ROOT}/site"
 
 function edit() {
+	cd "${ROOT}"
 	vi "${INIT}"
 }
 
 function clean() {
-	rm -rf "${INIT}" "${PACKPATH}"
+	rm -rf "${ROOT}"
 }
 
 function init() {
-	clean
 
+	# pick source
 	if [ -z "${1}" ]; then
 		USR="dev"
 	else
@@ -26,46 +29,45 @@ function init() {
 		exit 1
 	fi
 
-	# disable netrw
-	cat << EOF > "${INIT}"
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-EOF
+	# create
+	clean
+	mkdir "${ROOT}"
+	cp "${TEMPLATE}" "${INIT}"
 
-	# copy up to setup
-	grep -B 1000 "MODIFY NVIM-TREE SETTINGS" ${SRC}/.github/ISSUE_TEMPLATE/nvt-min.lua >> "${INIT}"
-
-	# setup call
-	cat << EOF >> "${INIT}"
-_G.setup = function()
-  require("nvim-tree").setup({
-EOF
-
-	# default options
-	sed -n -e "/BEGIN_DEFAULT_OPTS/,/END_DEFAULT_OPTS/{ /BEGIN_DEFAULT_OPTS/d; /END_DEFAULT_OPTS/d; p; }" "${SRC}/lua/nvim-tree.lua" | sed -e "s/^  /    /" >> "${INIT}"
-
-	# modify plugin directory, enable logging
+	# nvim-tree plugin path
 	sed -i -e "
-	s#nvim-tree/nvim-tree.lua#${SRC}#g ;
-	s#ADD PLUGINS.*#'nvim-tree/nvim-tree.lua',#g ;
-	s/nvt-min/nvt-dev/g ;
-
-	/log = {/{ n; s/enable = false/enable = true/ } ;
-	s/truncate = false/truncate = true/ ;
-	s/dev = false/dev = true/ ;
+		s#-- NVIM_TREE_DIR#\"${SRC}\",#
 	" "${INIT}"
 
-	# mappings
-	cat << EOF >> "${INIT}"
-  })
+	# scrape options
+	sed -n -e "
+		/BEGIN_DEFAULT_OPTS/,/END_DEFAULT_OPTS/{
+			/BEGIN_DEFAULT_OPTS/d
+			/END_DEFAULT_OPTS/d
+			p
+		}
+	" "${SRC}/lua/nvim-tree.lua" > "${ROOT}/DEFAULT_OPTS.lua"
 
-  local nt_api = require("nvim-tree.api")
+	sed -i -e "
+	"
 
-  vim.keymap.set("n", ";", ":", { noremap = true })
-  vim.keymap.set("n", "<space>a", nt_api.tree.open, { noremap = true })
-  vim.keymap.set("n", "<space>o", [[ :wincmd p<CR> ]], { noremap = true })
-end
-EOF
+	# insert options
+	sed -i -e "
+		/DEFAULT_OPTS/{
+			r ${ROOT}/DEFAULT_OPTS.lua
+			/DEFAULT_OPTS/d
+		}
+	" "${INIT}"
+
+	# enable logging
+	sed -i -e "
+		/log = {/{
+			n
+			s/enable = false/enable = true/
+		}
+		s/truncate = false/truncate = true/
+		s/dev = false/dev = true/
+	" "${INIT}"
 }
 
 case "${1}" in
