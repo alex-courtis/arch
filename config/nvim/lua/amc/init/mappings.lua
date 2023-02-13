@@ -4,7 +4,7 @@ local buffers = require("amc.buffers")
 local dev = require("amc.dev")
 local windows = require("amc.windows")
 
-local nvim_tree = require("amc.plugins.nvim-tree")
+local nvim_tree = require("amc.plugins.nvt")
 local telescope = require("amc.plugins.telescope")
 local lsp = require("amc.plugins.lsp")
 

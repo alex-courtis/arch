@@ -1,6 +1,16 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.termguicolors = true
+vim.opt.cursorline = true
+
+local opts = { noremap = true }
+-- stylua: ignore start
+vim.keymap.set("n", ";",        ":",                                                 opts)
+vim.keymap.set("n", "<space>a", function() require("nvim-tree.api").tree.open() end, opts)
+vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end                 , opts)
+-- stylua: ignore end
+
 vim.o.packpath = "/tmp/nvt-dev/site"
 local package_root = vim.o.packpath .. "/pack"
 local install_path = vim.o.packpath .. "/pack/packer/start/packer.nvim"
@@ -40,9 +50,3 @@ end
 require("nvim-tree").setup({
   -- DEFAULT_OPTS
 })
-
-local nt_api = require("nvim-tree.api")
-
-vim.keymap.set("n", ";", ":", { noremap = true })
-vim.keymap.set("n", "<space>a", nt_api.tree.open, { noremap = true })
-vim.keymap.set("n", "<space>o", [[ :wincmd p<CR> ]], { noremap = true })

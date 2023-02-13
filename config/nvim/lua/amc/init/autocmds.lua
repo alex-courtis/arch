@@ -2,7 +2,7 @@ local buffers = require("amc.buffers")
 local dev = require("amc.dev")
 local env = require("amc.env")
 local windows = require("amc.windows")
-local nvim_tree = require("amc.plugins.nvim-tree")
+local nvim_tree = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 

@@ -3,7 +3,7 @@ require("amc.log")
 require("amc.init.options")
 
 -- installs but does not load
-local bootstrapped = require("amc.init.packer")({
+local bootstrapped = require("amc.init.pack")({
   "antosha417/nvim-lsp-file-operations",
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
@@ -45,7 +45,7 @@ require("amc.plugins.cmp").init()
 require("amc.plugins.gitsigns").init()
 require("amc.plugins.lsp").init()
 require("amc.plugins.lualine").init()
-require("amc.plugins.nvim-tree").init()
+require("amc.plugins.nvt").init()
 require("amc.plugins.stylua").init()
 require("amc.plugins.telescope").init()
 
