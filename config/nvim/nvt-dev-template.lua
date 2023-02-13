@@ -30,6 +30,13 @@ packer.init({
   compile_path = compile_path,
 })
 
+packer.use("wbthomason/packer.nvim")
+packer.use({
+  "nvim-tree/nvim-web-devicons",
+  -- 'nvim-tree/nvim-tree.lua',
+  -- NVIM_TREE_DIR
+})
+
 if bootstrapping then
   vim.api.nvim_create_autocmd({ "User PackerComplete" }, {
     callback = function()
@@ -37,12 +44,6 @@ if bootstrapping then
     end,
   })
 
-  packer.use("wbthomason/packer.nvim")
-  packer.use({
-    -- 'nvim-tree/nvim-tree.lua',
-    -- NVIM_TREE_DIR
-    "nvim-tree/nvim-web-devicons",
-  })
   packer.sync()
   return
 end
