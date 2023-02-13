@@ -48,9 +48,6 @@ function init() {
 		}
 	" "${SRC}/lua/nvim-tree.lua" > "${ROOT}/DEFAULT_OPTS.lua"
 
-	sed -i -e "
-	"
-
 	# insert options
 	sed -i -e "
 		/DEFAULT_OPTS/{
@@ -74,8 +71,8 @@ case "${1}" in
 	"edit")
 		edit
 		;;
-	"clear")
-		clear
+	"clean")
+		clean
 		;;
 	"init")
 		init "${2}"
