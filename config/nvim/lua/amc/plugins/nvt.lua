@@ -132,6 +132,11 @@ local config = {
   },
 }
 
+if vim.env.NVIM_TREE_PROFILE then
+  config.log.enable = true
+  config.log.types.profile = true
+end
+
 --- open and maybe find
 function M.open_find()
   api.tree.open({ find_file = true })
