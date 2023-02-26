@@ -29,6 +29,7 @@ local bootstrapped = require("amc.init.pack")({
   "tpope/vim-fugitive",
   "tpope/vim-repeat",
   "vim-scripts/ReplaceWithRegister",
+  "Yohannfra/Vim-Goto-Header",
   "ziglang/zig.vim",
 })
 if bootstrapped then

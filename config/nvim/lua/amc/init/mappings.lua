@@ -110,7 +110,8 @@ K.nmsl("z", dev.format)
 
 K.nm_l("/", '/<C-r>=expand("<cword>")<CR><CR>')
 K.vm_l("/", '"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>')
-K.nm_l("-", ":LspStop<CR>:sleep 1<CR>:LspStart<CR>")
+K.nm_l("-", ":GotoHeaderSwitch<CR>")
+K.nm_l("_", ":GotoHeader<CR>")
 K.nmsl("\\", 'gg"_dG')
 
 K.nms_("<BS><Space>", buffers.forward)
