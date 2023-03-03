@@ -1,7 +1,7 @@
 {
 	"position": "top",
 
-    "modules-left": ["river/tags", "river/window"],
+    "modules-left": ["river/tags", "river/layout", "river/window"],
     "modules-right": ["custom/slstatus", "tray"],
 
 	"fixed-center": false,
