@@ -5,48 +5,50 @@ local lsp_file_operations = require("lsp-file-operations")
 
 local M = {}
 
-local function print_node_path(node)
-  print(node.absolute_path)
+local function on_attach(bufnr)
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- stylua: ignore start
+  vim.keymap.del('n', '<2-RightMouse>', { buffer = bufnr })
+  vim.keymap.del('n', 'D',              { buffer = bufnr })
+  vim.keymap.del('n', '[e',             { buffer = bufnr })
+  vim.keymap.del('n', ']e',             { buffer = bufnr })
+  vim.keymap.del('n', '[c',             { buffer = bufnr })
+  vim.keymap.del('n', ']c',             { buffer = bufnr })
+  vim.keymap.del('n', 'g?',             { buffer = bufnr })
+  vim.keymap.del('n', '<BS>',           { buffer = bufnr })
+  vim.keymap.del('n', '<C-e>',          { buffer = bufnr })
+  vim.keymap.del('n', 'f',              { buffer = bufnr })
+  vim.keymap.del('n', 'F',              { buffer = bufnr })
+
+  vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,     opts('Up'))
+  vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))
+  vim.keymap.set('n', '<Space>t', api.tree.change_root_to_node,       opts('CD'))
+  vim.keymap.set('n', '<BS>t',    api.tree.change_root_to_node,       opts('CD'))
+  vim.keymap.set('n', '<Space>p', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
+  vim.keymap.set('n', '<BS>p',    api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
+  vim.keymap.set('n', '<Space>.', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
+  vim.keymap.set('n', '<BS>.',    api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
+  vim.keymap.set('n', '<Space>k', api.node.navigate.git.prev,         opts('Prev Git'))
+  vim.keymap.set('n', '<BS>k',    api.node.navigate.git.prev,         opts('Prev Git'))
+  vim.keymap.set('n', '<Space>j', api.node.navigate.git.next,         opts('Next Git'))
+  vim.keymap.set('n', '<BS>j',    api.node.navigate.git.next,         opts('Next Git'))
+  vim.keymap.set('n', "'",        api.node.navigate.parent_close,     opts('Close Directory'))
+  vim.keymap.set('n', '?',        api.tree.toggle_help,               opts('Help'))
+  -- stylua: ignore end
 end
 
 local config = {
   hijack_cursor = true,
   sync_root_with_cwd = true,
   prefer_startup_root = true,
+  on_attach = on_attach,
   view = {
     adaptive_size = false,
-    mappings = {
-      list = {
-        { key = { "<2-RightMouse>" }, action = "" }, -- cd
-        { key = "D", action = "" }, -- trash
-        { key = "[e", action = "" }, -- prev_diag_item
-        { key = "]e", action = "" }, -- next_diag_item
-        { key = "[c", action = "" }, -- prev_git_item
-        { key = "]c", action = "" }, -- next_git_item
-        { key = "g?", action = "" }, -- toggle_help
-        { key = "<BS>", action = "" }, -- close_node
-        { key = "<C-e>", action = "" }, -- edit_in_place
-        { key = "f", action = "" }, -- live_filter
-        { key = "F", action = "" }, -- clear_live_filter
-
-        { key = "<C-t>", action = "dir_up" }, -- tabnew
-        { key = "O", action = "close_node" }, -- edit_no_picker
-
-        { key = "<Space>t", action = "cd" },
-        { key = "<BS>t", action = "cd" },
-        { key = "<Space>p", action = "prev_diag_item" },
-        { key = "<BS>p", action = "prev_diag_item" },
-        { key = "<Space>.", action = "next_diag_item" },
-        { key = "<BS>.", action = "next_diag_item" },
-        { key = "<Space>k", action = "prev_git_item" },
-        { key = "<BS>k", action = "prev_git_item" },
-        { key = "<Space>j", action = "next_git_item" },
-        { key = "<BS>j", action = "next_git_item" },
-        { key = "'", action = "close_node" },
-        { key = "?", action = "toggle_help" },
-        { key = "<C-P>", action = "print", action_cb = print_node_path },
-      },
-    },
   },
   renderer = {
     full_name = true,
