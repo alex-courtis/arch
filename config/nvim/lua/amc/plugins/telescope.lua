@@ -27,8 +27,8 @@ local function attach_quickfix_select(prompt_bufnr)
       -- closes telescope
       actions.send_to_qflist(prompt_bufnr)
 
-      vim.cmd("cwindow")
-      vim.cmd({ cmd = "cc", count = count })
+      vim.cmd.cwindow()
+      vim.cmd.cc({ count = count })
 
       return true
     else

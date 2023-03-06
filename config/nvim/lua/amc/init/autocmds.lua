@@ -6,9 +6,6 @@ local nvim_tree = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
--- startup first to trigger following events
-vim.api.nvim_create_autocmd({ "VimEnter" }, { group = group, callback = nvim_tree.open_nvim_tree })
-
 -- unload modules before reloading
 vim.api.nvim_create_autocmd({ "SourcePre"}, { group = group, callback = env.unload })
 
@@ -27,3 +24,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, { group = group, callback = dev.File
 -- window
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, { group = group, callback = windows.BufWinEnter })
 vim.api.nvim_create_autocmd({ "QuickFixCmdPost" }, { group = group, nested = true, callback = windows.QuickFixCmdPost })
+
+-- nvim-tree startup
+vim.api.nvim_create_autocmd({ "VimEnter" }, { group = group, callback = nvim_tree.open_nvim_tree })

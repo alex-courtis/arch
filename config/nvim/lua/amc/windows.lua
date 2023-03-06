@@ -20,7 +20,7 @@ local function home(wins)
     end
   end
 
-  vim.cmd(":new")
+  vim.cmd.new()
   M.close_others()
 end
 
@@ -125,9 +125,9 @@ function M.QuickFixCmdPost(data)
   -- open quickfix or location
   -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
   if data.match:sub(1, 1) == "l" then
-    vim.cmd("lwindow")
+    vim.cmd.lwindow()
   else
-    vim.cmd("cwindow")
+    vim.cmd.cwindow()
   end
 end
 

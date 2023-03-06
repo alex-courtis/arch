@@ -3,7 +3,14 @@ local api = require("nvim-tree.api")
 
 local lsp_file_operations = require("lsp-file-operations")
 
-local M = {}
+local M = {
+  -- maybe set by dirs.lua
+  startup_dir = nil,
+}
+
+local IGNORED_FT = {
+  "gitcommit",
+}
 
 local function on_attach(bufnr)
   local function opts(desc)
@@ -153,52 +160,20 @@ function M.collapse_find()
   end
 end
 
+--- Open nvim-tree for real files or startup directory
+--- @param data table from autocommand
 function M.open_nvim_tree(data)
-  local IGNORED_FT = {
-    "gitcommit",
-  }
-
-  -- buffer is a real file on the disk
   local real_file = vim.fn.filereadable(data.file) == 1
 
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+  local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
 
-  -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-files-and-no-name-buffers
-  if real_file then
-    -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open_on_setup_file-and-ignore_ft_on_setup
-    -- ignored &filetype
-    if vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft) then
-      return
-    end
+  if (real_file and not ignored_ft) or M.startup_dir then
 
     -- open the tree but don't focus it
     require("nvim-tree.api").tree.toggle({ focus = false })
 
     -- find the file if it exists
     require("nvim-tree.api").tree.find_file(data.file)
-
-    return
-  end
-
-  -- buffer is a directory
-  local directory = vim.fn.isdirectory(data.file) == 1
-
-  -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-directories-and-change-neovims-directory
-  if directory then
-    -- create a new, empty buffer
-    vim.cmd.enew()
-
-    -- wipe the directory buffer
-    vim.cmd.bw(data.buf)
-
-    -- change to the directory
-    vim.cmd.cd(data.file)
-
-    -- open the tree
-    require("nvim-tree.api").tree.open()
-
-    return
   end
 end
 

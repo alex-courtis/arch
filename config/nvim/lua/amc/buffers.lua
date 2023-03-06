@@ -18,6 +18,7 @@ M.Special = {
 
 --- &buftype is empty, name is empty, not modified
 --- @param bufnr number
+--- @return boolean
 local function is_no_name_new(bufnr)
   if vim.bo[bufnr].buftype ~= "" then
     return false
@@ -33,7 +34,7 @@ local function wipe_unwanted(bufnr)
 
   for _, s in ipairs(UNWANTED_NAMES) do
     if name:find(s) then
-      vim.cmd({ cmd = "bwipeout", count = bufnr })
+      vim.cmd.bwipeout(bufnr)
       return
     end
   end
@@ -47,7 +48,7 @@ local function wipe_alt_no_name_new(bufnr)
 
   -- alt is not visible
   if bufnr_alt ~= -1 and bufnr ~= bufnr_alt and winnr_alt == -1 and is_no_name_new(bufnr_alt) then
-    vim.cmd({ cmd = "bwipeout", count = bufnr_alt })
+    vim.cmd.bwipeout(bufnr_alt)
   end
 end
 
@@ -97,7 +98,7 @@ function M.safe_hash()
     return
   end
 
-  vim.cmd(":b#")
+  vim.cmd.buffer("#")
 end
 
 function M.back()
@@ -123,7 +124,7 @@ function M.write_scratch(text)
     line = line + 1
   end
 
-  vim.cmd({ cmd = "buffer", count = bufnr })
+  vim.cmd.buffer(bufnr)
 end
 
 --- au WinClosed
@@ -140,7 +141,7 @@ end
 function M.update(data)
   local bo = vim.bo[data.buf]
   if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(data.buf) ~= "" then
-    vim.cmd({ cmd = "update" })
+    vim.cmd.update()
   end
 end
 
