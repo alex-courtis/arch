@@ -39,7 +39,9 @@
     <keyboard-shortcut first-keystroke="alt r" />
   </action>
   <action id="ActivateServicesToolWindow" />
-  <action id="ActivateStructureToolWindow" />
+  <action id="ActivateStructureToolWindow">
+    <keyboard-shortcut first-keystroke="alt t" />
+  </action>
   <action id="ActivateVersionControlToolWindow">
     <keyboard-shortcut first-keystroke="alt g" />
   </action>
