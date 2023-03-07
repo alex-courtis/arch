@@ -22,6 +22,8 @@
     "u": "unset",
     "w": "unset",
     "x": "unset",
+    "shift+j": "unset",
+    "shift+k": "unset",
     "#": "unset",
     "]": "unset",
     "[": "unset",
