@@ -27,6 +27,7 @@ vim.cmd("highlight! link NvimTreeNormal Comment")
 vim.cmd("highlight! link NvimTreeOpenedFile DiagnosticHint")
 
 vim.cmd("highlight! link NvimTreeExecFile NvimTreeNormal")
+vim.cmd("highlight! link NvimTreeSymLink NvimTreeNormal")
 
 -- override mini.base16
 vim.cmd("highlight DiagnosticError ctermfg=red guifg=" .. vim.env.BASE16_RED)
