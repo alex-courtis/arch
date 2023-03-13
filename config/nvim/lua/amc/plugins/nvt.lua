@@ -146,18 +146,15 @@ if vim.env.NVIM_TREE_PROFILE then
   config.log.types.profile = true
 end
 
---- open and maybe find
+--- open and find
 function M.open_find()
   api.tree.open({ find_file = true })
 end
 
---- collapse then maybe find
+--- collapse then open and find
 function M.collapse_find()
-  local bufname = vim.api.nvim_buf_get_name(0)
   api.tree.collapse_all(false)
-  if bufname then
-    api.tree.find_file(bufname)
-  end
+  api.tree.open({ find_file = true })
 end
 
 --- Open nvim-tree for real files or startup directory
