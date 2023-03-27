@@ -4,13 +4,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 
-local opts = { noremap = true }
--- stylua: ignore start
-vim.keymap.set("n", ";",        ":",                                                 opts)
-vim.keymap.set("n", "<space>a", function() require("nvim-tree.api").tree.open() end, opts)
-vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end                 , opts)
--- stylua: ignore end
-
 vim.o.packpath = "/tmp/nvt-dev/site"
 local package_root = vim.o.packpath .. "/pack"
 local install_path = vim.o.packpath .. "/pack/packer/start/packer.nvim"
@@ -46,6 +39,27 @@ if bootstrapping then
 
   packer.sync()
   return
+end
+
+local api = require("nvim-tree.api")
+
+-- stylua: ignore start
+vim.keymap.set("n", ";",        ":",                                   { noremap = true })
+vim.keymap.set("n", "<space>a", function() api.tree.open({}) end,      { noremap = true })
+vim.keymap.set("n", "<space>'", function() api.tree.find_file({}) end, { noremap = true })
+vim.keymap.set("n", "<space>o", "wincmd p",                            { noremap = true })
+-- stylua: ignore end
+
+local function on_attach(bufnr)
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- stylua: ignore start
+  vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+  -- stylua: ignore end
 end
 
 require("nvim-tree").setup({

@@ -56,6 +56,11 @@ function init() {
 		}
 	" "${INIT}"
 
+	# on_attach
+	sed -i -e "
+		s/on_attach = .*,/on_attach = on_attach,/g
+	" "${INIT}"
+
 	# enable logging
 	sed -i -e "
 		/log = {/{
