@@ -28,8 +28,9 @@
 	pager = less -FX -x4
 [push]
 	default = current
+	autoSetupRemote = true
 [pull]
-	rebase = false
+	rebase = interactive
 [color]
 	ui = auto
 
