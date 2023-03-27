@@ -47,7 +47,7 @@ local api = require("nvim-tree.api")
 vim.keymap.set("n", ";",        ":",                                   { noremap = true })
 vim.keymap.set("n", "<space>a", function() api.tree.open({}) end,      { noremap = true })
 vim.keymap.set("n", "<space>'", function() api.tree.find_file({}) end, { noremap = true })
-vim.keymap.set("n", "<space>o", "wincmd p",                            { noremap = true })
+vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,    { noremap = true })
 -- stylua: ignore end
 
 local function on_attach(bufnr)
