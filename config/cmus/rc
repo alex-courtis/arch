@@ -140,9 +140,12 @@ set wrap_search=false
 set aaa_mode=artist
 set continue_album=false
 
+set tree_width_percent=15
+
 set format_statusline= %{status}  %{position} / %{duration}%=%{?volume>=0?%{volume}%% }
 
-set format_trackwin_va=%3n. %t%=%-40%a %y %d
+set format_trackwin_va=%3n. %{?c=""?%t?%-35%t %c} %= %-25%a %y %d
+set    format_trackwin=%3n. %{?c=""?%t?%-35%t %c} %= %y %d 
 
 bind -f common j win-down
 bind -f common k win-up
