@@ -40,6 +40,10 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<BS>p',    api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
   vim.keymap.set('n', '<Space>.', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
   vim.keymap.set('n', '<BS>.',    api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
+  vim.keymap.set('n', '<Space>u', api.node.navigate.opened.prev,      opts('Prev Opened'))
+  vim.keymap.set('n', '<BS>u',    api.node.navigate.opened.prev,      opts('Prev Opened'))
+  vim.keymap.set('n', '<Space>e', api.node.navigate.opened.next,      opts('Next Opened'))
+  vim.keymap.set('n', '<BS>e',    api.node.navigate.opened.next,      opts('Next Opened'))
   vim.keymap.set('n', '<Space>k', api.node.navigate.git.prev,         opts('Prev Git'))
   vim.keymap.set('n', '<BS>k',    api.node.navigate.git.prev,         opts('Prev Git'))
   vim.keymap.set('n', '<Space>j', api.node.navigate.git.next,         opts('Next Git'))
@@ -124,6 +128,11 @@ local config = {
     },
     remove_file = {
       close_window = false,
+    },
+  },
+  experimental = {
+    git = {
+      async = true,
     },
   },
   log = {
