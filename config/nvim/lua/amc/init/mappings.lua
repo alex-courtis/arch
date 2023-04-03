@@ -103,8 +103,8 @@ K.nmsl("V", ":put!<CR>'[v']=")
 
 K.nmsl("l", ":syntax match TrailingSpace /\\s\\+$/<CR>")
 K.nmsl("L", ":syntax clear TrailingSpace<CR>")
-K.nm_l("s", telescope.grep_string)
-K.nm_l("S", telescope.grep_string_last)
+K.nm_l("s", ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>")
+K.nm_l("S", ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>")
 K.vmsl("s", "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>\"")
 K.nmsl("z", dev.format)
 

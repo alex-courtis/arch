@@ -13,7 +13,6 @@ local last = {
   live_grep = "",
   find_files = "",
   git_status = "",
-  grep_string = "",
 }
 
 local function attach_quickfix_select(prompt_bufnr)
@@ -43,9 +42,6 @@ end
 local config = {
   pickers = {
     live_grep = {
-      attach_mappings = attach_quickfix_select,
-    },
-    grep_string = {
       attach_mappings = attach_quickfix_select,
     },
     buffers = {
