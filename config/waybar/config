@@ -30,7 +30,16 @@
 
 	"pulseaudio": {
 		"tooltip": false,
-		"format": "{format_source} V {volume}%   ",
+		"states": {
+			"full": 100,
+			"mid": 99,
+			"off": 0
+		},
+		"max-volume": 110,
+		"format":       "{format_source} V {volume}%   ",
+		"format-full":  "{format_source}   ",
+		"format-mid":   "{format_source} V {volume}%   ",
+		"format-off":   "{format_source}   ",
 		"format-muted": "{format_source}   ",
 		"format-source": "M {volume}%",
 		"format-source-muted": "",
