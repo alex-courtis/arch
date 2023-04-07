@@ -1,8 +1,8 @@
 {
 	"position": "top",
 
-    "modules-left": ["river/tags", "river/layout", "river/window"],
-    "modules-right": ["custom/slstatus", "tray"],
+	"modules-left": ["river/tags", "river/layout", "river/window"],
+	"modules-right": ["pulseaudio", "custom/slstatus", "tray"],
 
 	"fixed-center": false,
 
@@ -26,6 +26,19 @@
 		"exec": "slstatus -s",
 		"tooltip": false,
 		"on-click-right": "bell"
+	},
+
+	"pulseaudio": {
+		"tooltip": false,
+		"format": "{format_source} V {volume}%   ",
+		"format-muted": "{format_source}   ",
+		"format-source": "M {volume}%",
+		"format-source-muted": "",
+		"scroll-step": 5,
+		"on-click": "volmute",
+		"on-click-middle": "pavucontrol",
+		"on-click-right": "volmutemic",
 	}
 }
 
+// vim:ft=json5
