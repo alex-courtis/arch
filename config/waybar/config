@@ -2,7 +2,7 @@
 	"position": "top",
 
 	"modules-left": ["river/tags", "river/layout", "river/window"],
-	"modules-right": ["pulseaudio", "custom/slstatus", "tray"],
+	"modules-right": ["battery", "pulseaudio", "custom/slstatus", "tray"],
 
 	"fixed-center": false,
 
@@ -38,6 +38,20 @@
 		"on-click": "volmute",
 		"on-click-middle": "pavucontrol",
 		"on-click-right": "volmutemic",
+	},
+
+	"battery": {
+		"tooltip": false,
+		"interval": 30,
+		"states": {
+			"low": 50,
+			"critical": 25
+		},
+		"format": "",
+		"format-charging": "{capacity}% ({time})   ",
+		"format-discharging-low": "{capacity}% {time}   ",
+		"format-discharging-critical": "{capacity}% {time} {power}W   ",
+		"format-time": "{H}:{m}",
 	}
 }
 
