@@ -2,7 +2,7 @@
 	"position": "top",
 
 	"modules-left": ["river/tags", "river/layout", "river/window"],
-	"modules-right": ["battery", "pulseaudio", "custom/slstatus", "cpu", "clock", "tray"],
+	"modules-right": ["pulseaudio", "battery", "custom/slstatus", "memory", "cpu", "clock", "tray"],
 
 	"fixed-center": false,
 
@@ -27,20 +27,20 @@
 		"states": {
 			"full": 100,
 			"mid": 99,
-			"off": 0
 		},
-		"max-volume": 110,
-		"format":       "{format_source} V {volume}%   ",
-		"format-full":  "{format_source}   ",
-		"format-mid":   "{format_source} V {volume}%   ",
-		"format-off":   "{format_source}   ",
-		"format-muted": "{format_source}   ",
-		"format-source": "M {volume}%",
+		"format":       "{format_source}┃ V {volume}% ",
+		"format-full":  "{format_source}",
+		"format-mid":   "{format_source}┃ V {volume}% ",
+		"format-muted": "{format_source}",
+		"format-source": "┃ M {volume}% ",
 		"format-source-muted": "",
 		"scroll-step": 5,
+
 		"on-click": "volmute",
-		"on-click-middle": "pavucontrol",
 		"on-click-right": "volmutemic",
+		"on-scroll-up": "volraise",
+		"on-scroll-down": "vollower",
+		"on-click-middle": "pavucontrol",
 	},
 
 	"battery": {
@@ -50,31 +50,44 @@
 			"low": 50,
 			"critical": 25
 		},
-		"format": "",
-		"format-charging": "{capacity}% ({time})   ",
-		"format-discharging-low": "{capacity}% {time}   ",
-		"format-discharging-critical": "{capacity}% {time} {power}W   ",
+		"format": "┃ ",
+		"format-charging": "┃ {capacity}% ({time}) ",
+		"format-discharging-low": "┃ {capacity}% {time} ",
+		"format-discharging-critical": "┃ {capacity}% {time} {power}W ",
 		"format-time": "{H}:{m}",
+
+		"on-click": "volmute",
+		"on-click-right": "volmutemic",
+		"on-scroll-up": "volraise",
+		"on-scroll-down": "vollower",
 	},
 
 	"custom/slstatus": {
 		"exec": "slstatus -s",
-		// extra space is always appended; newline?
-		"format": "{}  ",
 		"tooltip": false,
-		"on-click-right": "bell"
+
+		"on-click": "volmute",
+		"on-click-right": "volmutemic",
+		"on-scroll-up": "volraise",
+		"on-scroll-down": "vollower",
+	},
+
+	"memory": {
+		"tooltip": false,
+		"interval": 5,
+		"format": "┃ {percentage}% {swapPercentage}% ",
 	},
 
 	"cpu": {
 		"tooltip": false,
 		"interval": 5,
-		"format": "{load}   "
+		"format": "┃ {load} ",
 	},
 
 	"clock": {
 		"tooltip": false,
 		"interval": 1,
-		"format": "{:%a %d %b %H:%M:%S} ",
+		"format": "┃ {:%a %d %b %H:%M:%S} ",
 	}
 }
 
