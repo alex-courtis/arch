@@ -2,7 +2,7 @@
 	"position": "top",
 
 	"modules-left": ["river/tags", "river/layout", "river/window"],
-	"modules-right": ["pulseaudio", "battery", "custom/slstatus", "memory", "cpu", "clock", "tray"],
+	"modules-right": ["network-duke", "pulseaudio", "battery", "custom/slstatus", "memory", "cpu", "clock", "tray"],
 
 	"fixed-center": false,
 
@@ -20,6 +20,12 @@
 		"max-length": 999,
 		"tooltip": false,
 		"on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')"
+	},
+
+	"network-duke": {
+		"interface": "wlp0s20f3",
+		"format": "",
+		"format-disconnected": "┃ {ifname} disconnected ",
 	},
 
 	"pulseaudio": {
@@ -50,7 +56,7 @@
 			"low": 50,
 			"critical": 25
 		},
-		"format": "┃ ",
+		"format": "",
 		"format-charging": "┃ {capacity}% ({time}) ",
 		"format-discharging-low": "┃ {capacity}% {time} ",
 		"format-discharging-critical": "┃ {capacity}% {time} {power}W ",
