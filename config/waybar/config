@@ -2,7 +2,7 @@
 	"position": "top",
 
 	"modules-left": ["river/tags", "river/layout", "river/window"],
-	"modules-right": ["network-duke", "pulseaudio", "battery", "custom/slstatus", "memory", "cpu", "clock", "tray"],
+	"modules-right": ["network", "pulseaudio", "battery", "custom/slstatus", "memory", "cpu", "clock", "tray"],
 
 	"fixed-center": false,
 
@@ -22,7 +22,7 @@
 		"on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')"
 	},
 
-	"network-duke": {
+	"network": {
 		"interface": "wlp0s20f3",
 		"format": "",
 		"format-disconnected": "┃ {ifname} disconnected ",
