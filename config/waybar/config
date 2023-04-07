@@ -23,6 +23,7 @@
 	},
 
 	"network": {
+		"tooltip": false,
 		"interface": "wlp0s20f3",
 		"format": "",
 		"format-disconnected": "┃ {ifname} disconnected ",
