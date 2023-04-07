@@ -1,16 +1,18 @@
 #!/bin/zsh
 
-case "${HOST}" in
-	"duke")
-		# muted light on F4 is annoying
-		pactl get-source-volume @DEFAULT_SOURCE@ | grep " 0%" > /dev/null 2>&1
-		if [ $? -eq 0 ]; then
-			pactl set-source-volume @DEFAULT_SOURCE@ 100%
-		else
+pactl get-source-volume @DEFAULT_SOURCE@ | grep " 0%" > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	# unmute at 100%
+	pactl set-source-mute @DEFAULT_SOURCE@ 0
+	pactl set-source-volume @DEFAULT_SOURCE@ 100%
+else
+	case "${HOST}" in
+		"duke")
+			# muted light on F4 is annoying
 			pactl set-source-volume @DEFAULT_SOURCE@ 0
-		fi
-		;;
-	*)
-		pactl set-source-mute @DEFAULT_SOURCE@ toggle
-		;;
-esac
+			;;
+		*)
+			pactl set-source-mute @DEFAULT_SOURCE@ toggle
+			;;
+	esac
+fi
