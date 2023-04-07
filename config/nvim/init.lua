@@ -8,6 +8,7 @@ local bootstrapped = require("amc.init.pack")({
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "editorconfig/editorconfig-vim",
+  "GutenYe/json5.vim",
   "hashivim/vim-terraform",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-cmdline",
@@ -18,6 +19,7 @@ local bootstrapped = require("amc.init.pack")({
   "hrsh7th/nvim-cmp",
   "hrsh7th/vim-vsnip",
   "lewis6991/gitsigns.nvim",
+  "lifepillar/vim-colortemplate",
   "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
@@ -31,7 +33,6 @@ local bootstrapped = require("amc.init.pack")({
   "vim-scripts/ReplaceWithRegister",
   "Yohannfra/Vim-Goto-Header",
   "ziglang/zig.vim",
-  "lifepillar/vim-colortemplate",
 })
 if bootstrapped then
   return
