@@ -19,6 +19,7 @@
     "pulseaudio",
     "battery",
     // "network#gigantor#vpn",
+    // "network#tinygod#vpn",
     // always
     "custom/slstatus",
     "memory",
@@ -115,6 +116,17 @@
     "tooltip": false
   },
   "network#gigantor#vpn": {
+    "interface": "vpn0",
+    "interval": 30,
+    "format": "│ VPN ",
+    "format-disconnected": "",
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "tooltip": false
+  },
+  "network#tinygod#vpn": {
     "interface": "vpn0",
     "interval": 30,
     "format": "│ VPN ",
