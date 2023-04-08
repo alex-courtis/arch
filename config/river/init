@@ -126,8 +126,12 @@ riverctl float-filter-add title "Open Folder"
 riverctl float-filter-add app-id zoom
 riverctl float-filter-add app-id nm-openconnect-auth-dialog
 
-# bar
+# optional bar contents
+sed -E "s|// *(.*#${HOST})|\1|g" $XDG_CONFIG_HOME/waybar/config.template > $XDG_CONFIG_HOME/waybar/config
+
+# bar style
 sed -e "s/\${FONT_SIZE_PT}/${FONT_SIZE_PT}/g" $XDG_CONFIG_HOME/waybar/style.template.css > $XDG_CONFIG_HOME/waybar/style.css
+
 riverctl spawn waybar
 
 # run
