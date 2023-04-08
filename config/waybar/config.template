@@ -38,8 +38,8 @@
   },
   "custom/rival.battery#emperor": {
     "exec": "cat /tmp/rival.battery 2>/dev/null",
-	"format": "║ {} ║ ",
-	"interval": 5,
+    "format": "║ {} ║ ",
+    "interval": 5,
     "tooltip": false
   },
   "network#duke": {
@@ -74,9 +74,9 @@
       "full": 100,
       "mid": 99
     },
-    "format": "{format_source}│ V {volume}% ",
+    "format": "{format_source}│ S {volume}% ",
     "format-full": "{format_source}",
-    "format-mid": "{format_source}│ V {volume}% ",
+    "format-mid": "{format_source}│ S {volume}% ",
     "format-muted": "{format_source}",
     "format-source": "│ M {volume}% ",
     "format-source-muted": "",
