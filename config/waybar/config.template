@@ -157,7 +157,7 @@
   },
   "cpu": {
     "interval": 5,
-    "format": "│ {load} ",
+    "format": "│ {load:.2f} ",
     "tooltip": false
   },
   "clock": {
