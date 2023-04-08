@@ -9,6 +9,7 @@
   ],
   "modules-center": [
     // "network#duke",
+    // "custom/rival.battery#emperor",
     "disk#run",
     "disk#tmp",
   ],
@@ -35,6 +36,12 @@
     "on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
     "tooltip": false
   },
+  "custom/rival.battery#emperor": {
+    "exec": "cat /tmp/rival.battery 2>/dev/null",
+	"format": "║ {} ║ ",
+	"interval": 5,
+    "tooltip": false
+  },
   "network#duke": {
     "interface": "wlp0s20f3",
     "interval": 30,
@@ -44,7 +51,7 @@
   },
   "disk#run": {
     "path": "/run/user/1000",
-    "interval": 30,
+    "interval": 5,
     "states": {
       "warn": 30
     },
@@ -54,7 +61,7 @@
   },
   "disk#tmp": {
     "path": "/tmp",
-    "interval": 30,
+    "interval": 5,
     "states": {
       "warn": 50
     },
