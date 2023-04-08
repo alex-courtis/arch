@@ -7,11 +7,13 @@
     "river/layout",
     "river/window"
   ],
-  "modules-right": [
+  "modules-center": [
     // problem
-    "network",
     "disk#run",
     "disk#tmp",
+    "network",
+  ],
+  "modules-right": [
     // exceptional
     "pulseaudio",
     "battery",
@@ -40,7 +42,7 @@
     "interface": "wlp0s20f3",
     "interval": 30,
     "format": "",
-    "format-disconnected": "│ {ifname} disconnected ",
+    "format-disconnected": "║ {ifname} disconnected ║ ",
     "tooltip": false
   },
   "disk#run": {
@@ -50,7 +52,7 @@
       "warn": 30
     },
     "format": "",
-    "format-warn": "│ /run/user/1000 {percentage_used}% ",
+    "format-warn": "║ /run/user/1000 {percentage_used}% ║ ",
     "tooltip": false
   },
   "disk#tmp": {
@@ -60,7 +62,7 @@
       "warn": 50
     },
     "format": "",
-    "format-warn": "│ /tmp {percentage_used}% ",
+    "format-warn": "║ /tmp {percentage_used}% ║ ",
     "tooltip": false
   },
   "pulseaudio": {
