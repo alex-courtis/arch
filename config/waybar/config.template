@@ -87,7 +87,7 @@
     "format": "{format_source}│ S {volume}% ",
     "format-full": "{format_source}",
     "format-mid": "{format_source}│ S {volume}% ",
-    "format-muted": "{format_source}",
+    "format-muted": "{format_source}│ Mute ",
     "format-source": "│ M {volume}% ",
     "format-source-muted": "",
     "scroll-step": 5,
