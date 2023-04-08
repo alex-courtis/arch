@@ -26,7 +26,7 @@
 		"tooltip": false,
 		"interface": "wlp0s20f3",
 		"format": "",
-		"format-disconnected": "┃ {ifname} disconnected ",
+		"format-disconnected": "│ {ifname} disconnected ",
 	},
 
 	"pulseaudio": {
@@ -35,11 +35,11 @@
 			"full": 100,
 			"mid": 99,
 		},
-		"format":       "{format_source}┃ V {volume}% ",
+		"format":       "{format_source}│ V {volume}% ",
 		"format-full":  "{format_source}",
-		"format-mid":   "{format_source}┃ V {volume}% ",
+		"format-mid":   "{format_source}│ V {volume}% ",
 		"format-muted": "{format_source}",
-		"format-source": "┃ M {volume}% ",
+		"format-source": "│ M {volume}% ",
 		"format-source-muted": "",
 		"scroll-step": 5,
 
@@ -58,9 +58,9 @@
 			"critical": 25
 		},
 		"format": "",
-		"format-charging": "┃ {capacity}% ({time}) ",
-		"format-discharging-low": "┃ {capacity}% {time} ",
-		"format-discharging-critical": "┃ {capacity}% {time} {power}W ",
+		"format-charging": "│ {capacity}% ({time}) ",
+		"format-discharging-low": "│ {capacity}% {time} ",
+		"format-discharging-critical": "│ {capacity}% {time} {power}W ",
 		"format-time": "{H}:{m}",
 
 		"on-click": "volmute",
@@ -82,19 +82,19 @@
 	"memory": {
 		"tooltip": false,
 		"interval": 5,
-		"format": "┃ {percentage}% {swapPercentage}% ",
+		"format": "│ {percentage}% {swapPercentage}% ",
 	},
 
 	"cpu": {
 		"tooltip": false,
 		"interval": 5,
-		"format": "┃ {load} ",
+		"format": "│ {load} ",
 	},
 
 	"clock": {
 		"tooltip": false,
 		"interval": 1,
-		"format": "┃ {:%a %d %b %H:%M:%S} ",
+		"format": "│ {:%a %d %b %H:%M:%S} ",
 	}
 }
 
