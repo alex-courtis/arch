@@ -1,164 +1,127 @@
+// cat ~/.config/waybar/config | grep -v "//" | jq
+
 {
-	"position": "top",
-
-	"modules-left": [
-		"river/tags",
-		"river/layout",
-		"river/window"
-	],
-	"modules-right": [
-		// problem
-		"network",
-		"disk#run",
-		"disk#tmp",
-		// exceptional
-		"pulseaudio",
-		"battery",
-		// normal
-		"custom/slstatus",
-		"memory",
-		"cpu",
-		"clock",
-		"tray"
-	],
-
-	"fixed-center": false,
-
-	"tray": {
-		"spacing": 6
-	},
-
-	"river/tags": {
-		"disable-click": true,
-		"num-tags": 10
-	},
-
-	"river/window": {
-		// truncates when it hits slstatus if a value is set
-		"max-length": 999,
-
-		"on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
-
-		"tooltip": false
-	},
-
-	"network": {
-		"interface": "wlp0s20f3",
-		"interval": 30,
-
-		"format": "",
-		"format-disconnected": "│ {ifname} disconnected ",
-
-		"tooltip": false
-	},
-
-	"disk#run": {
-		"path": "/run/user/1000",
-		"interval": 30,
-
-		"states": {
-			"warn": 30
-		},
-
-		"format": "",
-		"format-warn": "│ /run/user/1000 {percentage_used}% ",
-
-		"tooltip": false
-	},
-
-	"disk#tmp": {
-		"path": "/tmp",
-		"interval": 30,
-
-		"states": {
-			"warn": 50
-		},
-
-		"format": "",
-		"format-warn": "│ /tmp {percentage_used}% ",
-
-		"tooltip": false
-	},
-
-	"pulseaudio": {
-		"states": {
-			"full": 100,
-			"mid": 99
-		},
-
-		"format":       "{format_source}│ V {volume}% ",
-		"format-full":  "{format_source}",
-		"format-mid":   "{format_source}│ V {volume}% ",
-		"format-muted": "{format_source}",
-		"format-source": "│ M {volume}% ",
-		"format-source-muted": "",
-		"scroll-step": 5,
-
-		"on-click": "volmute",
-		"on-click-right": "volmutemic",
-		"on-scroll-up": "volraise",
-		"on-scroll-down": "vollower",
-		"on-click-middle": "pavucontrol",
-
-		"tooltip": false
-	},
-
-	"battery": {
-		"interval": 5,
-
-		"states": {
-			"low": 50,
-			"critical": 25
-		},
-
-		"format": "",
-		"format-charging": "│ {capacity}% ({time}) ",
-		"format-discharging-low": "│ {capacity}% {time} ",
-		"format-discharging-critical": "│ {capacity}% {time} {power}W ",
-		"format-time": "{H}:{m}",
-
-		"on-click": "volmute",
-		"on-click-right": "volmutemic",
-		"on-scroll-up": "volraise",
-		"on-scroll-down": "vollower",
-
-		"tooltip": false
-	},
-
-	"custom/slstatus": {
-		"exec": "slstatus -s",
-
-		"on-click": "volmute",
-		"on-click-right": "volmutemic",
-		"on-scroll-up": "volraise",
-		"on-scroll-down": "vollower",
-
-		"tooltip": false
-	},
-
-	"memory": {
-		"interval": 5,
-
-		"format": "│ {percentage}% {swapPercentage}% ",
-
-		"tooltip": false
-	},
-
-	"cpu": {
-		"interval": 5,
-
-		"format": "│ {load} ",
-
-		"tooltip": false
-	},
-
-	"clock": {
-		"interval": 1,
-
-		"format": "│ {:%a %d %b %H:%M:%S} ",
-
-		"tooltip": false
-	}
+  "position": "top",
+  "modules-left": [
+    "river/tags",
+    "river/layout",
+    "river/window"
+  ],
+  "modules-right": [
+    // problem
+    "network",
+    "disk#run",
+    "disk#tmp",
+    // exceptional
+    "pulseaudio",
+    "battery",
+    // always
+    "custom/slstatus",
+    "memory",
+    "cpu",
+    "clock",
+    "tray"
+  ],
+  "fixed-center": false,
+  "tray": {
+    "spacing": 6
+  },
+  "river/tags": {
+    "disable-click": true,
+    "num-tags": 10
+  },
+  "river/window": {
+    // truncates when it hits slstatus if a value is set
+    "max-length": 999,
+    "on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
+    "tooltip": false
+  },
+  "network": {
+    "interface": "wlp0s20f3",
+    "interval": 30,
+    "format": "",
+    "format-disconnected": "│ {ifname} disconnected ",
+    "tooltip": false
+  },
+  "disk#run": {
+    "path": "/run/user/1000",
+    "interval": 30,
+    "states": {
+      "warn": 30
+    },
+    "format": "",
+    "format-warn": "│ /run/user/1000 {percentage_used}% ",
+    "tooltip": false
+  },
+  "disk#tmp": {
+    "path": "/tmp",
+    "interval": 30,
+    "states": {
+      "warn": 50
+    },
+    "format": "",
+    "format-warn": "│ /tmp {percentage_used}% ",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "states": {
+      "full": 100,
+      "mid": 99
+    },
+    "format": "{format_source}│ V {volume}% ",
+    "format-full": "{format_source}",
+    "format-mid": "{format_source}│ V {volume}% ",
+    "format-muted": "{format_source}",
+    "format-source": "│ M {volume}% ",
+    "format-source-muted": "",
+    "scroll-step": 5,
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "on-click-middle": "pavucontrol",
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 5,
+    "states": {
+      "low": 50,
+      "critical": 25
+    },
+    "format": "",
+    "format-charging": "│ {capacity}% ({time}) ",
+    "format-discharging-low": "│ {capacity}% {time} ",
+    "format-discharging-critical": "│ {capacity}% {time} {power}W ",
+    "format-time": "{H}:{m}",
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "tooltip": false
+  },
+  "custom/slstatus": {
+    "exec": "slstatus -s",
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": "│ {percentage}% {swapPercentage}% ",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "│ {load} ",
+    "tooltip": false
+  },
+  "clock": {
+    "interval": 1,
+    "format": "│ {:%a %d %b %H:%M:%S} ",
+    "tooltip": false
+  }
 }
 
-// vim:ft=json5
+// vim:ft=json5:ts=2:sw=2:et
