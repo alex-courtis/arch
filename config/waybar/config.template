@@ -9,6 +9,7 @@
   ],
   "modules-center": [
     // "network#duke",
+    // "network#gigantor#wl",
     // "custom/rival.battery#emperor",
     "disk#run",
     "disk#tmp",
@@ -17,6 +18,7 @@
     // exceptional
     "pulseaudio",
     "battery",
+    // "network#gigantor#vpn",
     // always
     "custom/slstatus",
     "memory",
@@ -44,6 +46,13 @@
   },
   "network#duke": {
     "interface": "wlp0s20f3",
+    "interval": 30,
+    "format": "",
+    "format-disconnected": "║ {ifname} disconnected ║ ",
+    "tooltip": false
+  },
+  "network#gigantor#wl": {
+    "interface": "wlp59s0",
     "interval": 30,
     "format": "",
     "format-disconnected": "║ {ifname} disconnected ║ ",
@@ -99,6 +108,17 @@
     "format-discharging-low": "│ {capacity}% {time} ",
     "format-discharging-critical": "│ {capacity}% {time} {power}W ",
     "format-time": "{H}:{m}",
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "tooltip": false
+  },
+  "network#gigantor#vpn": {
+    "interface": "vpn0",
+    "interval": 30,
+    "format": "│ VPN ",
+    "format-disconnected": "",
     "on-click": "volmute",
     "on-click-right": "volmutemic",
     "on-scroll-up": "volraise",
