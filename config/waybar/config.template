@@ -35,7 +35,12 @@
     "disable-click": true,
     "num-tags": 10
   },
+  "river/layout": {
+    "format": "  {}  ",
+    "tooltip": false
+  },
   "river/window": {
+    "format": " {} ",
     "on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
     "tooltip": false
   },

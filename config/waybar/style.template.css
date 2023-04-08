@@ -46,11 +46,6 @@ window#waybar {
 	background-color: #303030;
 }
 
-/* left */
-#tags {
-	margin-right: 11pt;
-}
-
 #tags button {
 	color: #303030;
 	background-color: #303030;
@@ -77,35 +72,7 @@ window#waybar {
 	background-color: #d0d0d0;
 }
 
-#window {
-	color: #f5f5f5;
-	padding-left: 6pt;
-	padding-right: 6pt;
-	margin-right: 11pt;
-}
-
 #window.focused {
-	background-color: #505050;
-}
-
-#layout {
 	color: #f5f5f5;
-	padding-left: 6pt;
-	padding-right: 6pt;
-	margin-right: 11pt;
-}
-
-#layout.focused {
 	background-color: #505050;
 }
-
-/* right */
-#custom-slstatus {
-	color: #d0d0d0;
-	margin-right: 6pt;
-}
-
-#tray {
-	margin-right: 4pt;
-}
-
