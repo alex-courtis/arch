@@ -41,6 +41,7 @@
   },
   "river/window": {
     "format": " {} ",
+	"max-length": 999, // will push center/right unless capped, needs some value to truncate
     "on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
     "tooltip": false
   },
