@@ -5,5 +5,14 @@ if [ $? -eq 0 ]; then
 	pactl set-source-mute @DEFAULT_SOURCE@ 0
 	pactl set-source-volume @DEFAULT_SOURCE@ 100%
 else
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	case "${HOST}" in
+		"duke")
+			;&
+		"tinygod")
+			pactl set-source-volume @DEFAULT_SOURCE@ 0%
+			;;
+		*)
+			pactl set-source-mute @DEFAULT_SOURCE@ toggle
+			;;
+	esac
 fi

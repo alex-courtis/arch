@@ -16,10 +16,10 @@
   ],
   "modules-right": [
     // exceptional
-    "pulseaudio",
     "battery",
     // "network#gigantor#vpn",
     // "network#tinygod#vpn",
+    "pulseaudio",
     // always
     "custom/slstatus",
     "memory",
@@ -85,25 +85,6 @@
     "format-warn": "║ /tmp {percentage_used}% ║ ",
     "tooltip": false
   },
-  "pulseaudio": {
-    "states": {
-      "full": 100,
-      "mid": 99
-    },
-    "format": "{format_source}│ S {volume}% ",
-    "format-full": "{format_source}",
-    "format-mid": "{format_source}│ S {volume}% ",
-    "format-muted": "{format_source}│ Mute ",
-    "format-source": "│ M {volume}% ",
-    "format-source-muted": "",
-    "scroll-step": 5,
-    "on-click": "volmute",
-    "on-click-right": "volmutemic",
-    "on-scroll-up": "volraise",
-    "on-scroll-down": "vollower",
-    "on-click-middle": "pavucontrol",
-    "tooltip": false
-  },
   "battery": {
     "interval": 5,
     "states": {
@@ -115,10 +96,6 @@
     "format-discharging-low": "│ {capacity}% {time} ",
     "format-discharging-critical": "│ {capacity}% {time} {power}W ",
     "format-time": "{H}:{m}",
-    "on-click": "volmute",
-    "on-click-right": "volmutemic",
-    "on-scroll-up": "volraise",
-    "on-scroll-down": "vollower",
     "tooltip": false
   },
   "network#gigantor#vpn": {
@@ -126,10 +103,6 @@
     "interval": 30,
     "format": "│ VPN ",
     "format-disconnected": "",
-    "on-click": "volmute",
-    "on-click-right": "volmutemic",
-    "on-scroll-up": "volraise",
-    "on-scroll-down": "vollower",
     "tooltip": false
   },
   "network#tinygod#vpn": {
@@ -137,10 +110,26 @@
     "interval": 30,
     "format": "│ VPN ",
     "format-disconnected": "",
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "states": {
+      "full": 100,
+      "mid": 99
+    },
+    "format": "{format_source}│ S {volume}% ",
+    "format-full": "{format_source}",
+    "format-mid": "{format_source}│ S {volume}% ",
+    "format-muted": "{format_source}│ Mute ",
+    "format-source": "│ M {volume}% ",
+    "format-source-muted": "",
     "on-click": "volmute",
     "on-click-right": "volmutemic",
     "on-scroll-up": "volraise",
     "on-scroll-down": "vollower",
+    "on-click-middle": "pavucontrol",
+    "scroll-step": 0,
+    "smooth-scrolling-threshold": 5.0,
     "tooltip": false
   },
   "custom/slstatus": {
@@ -149,6 +138,9 @@
     "on-click-right": "volmutemic",
     "on-scroll-up": "volraise",
     "on-scroll-down": "vollower",
+    "on-click-middle": "pavucontrol",
+    "scroll-step": 0,
+    "smooth-scrolling-threshold": 5.0,
     "tooltip": false
   },
   "memory": {
