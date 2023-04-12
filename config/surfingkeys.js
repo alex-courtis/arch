@@ -142,7 +142,8 @@ createSearch('e', 'ap', 'Arch Packages', 'https://archlinux.org/packages/?q=');
 createSearch('e', 'au', 'AUR Packages', 'https://aur.archlinux.org/packages?K=');
 createSearch('e', 'aw', 'Arch Wiki', 'https://wiki.archlinux.org/index.php?search=');
 createSearch('e', 'dw', 'Dark Souls', 'https://darksouls.fandom.com/wiki/Special:Search?query=');
-createSearch('e', 'h', 'hello', 'https://hello.atlassian.net/wiki/search?text=');
+createSearch('e', 'hi', 'hello issue', 'https://hello.atlassian.net/browse/');
+createSearch('e', 'hs', 'hello search', 'https://hello.atlassian.net/wiki/search?text=');
 createSearch('e', 'na', 'Nier Automata', 'https://nier.fandom.com/wiki/Special:Search?query=')
 createSearch('e', 'o', 'go', 'http://go/');
 createSearch('e', 'pd', 'Proton DB', 'https://www.protondb.com/search?q=');
