@@ -133,6 +133,14 @@ function M.FileType(data)
     vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
     vim.keymap.set("n", "x", "X", { buffer = data.buf, remap = true })
   end
+
+  -- keep these roughly in sync with editorconfig, which will not be executed outside of ~
+  if vim.tbl_contains({ "lua", "json", "yml", "yaml", "ts", "tf" }, data.match) then
+    vim.bo[data.buf].expandtab = true
+    vim.bo[data.buf].shiftwidth = 2
+    vim.bo[data.buf].softtabstop = 2
+    vim.bo[data.buf].tabstop = 2
+  end
 end
 
 return M
