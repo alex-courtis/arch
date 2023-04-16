@@ -1,10 +1,11 @@
-local telescope = require("telescope")
-local actions = require("telescope.actions")
-local action_set = require("telescope.actions.set")
-local action_state = require("telescope.actions.state")
-local builtin = require("telescope.builtin")
-
+local util = require("amc.util")
 local windows = require("amc.windows")
+
+local telescope = util.require_or_nil("telescope")
+local actions = util.require_or_nil("telescope.actions")
+local action_set = util.require_or_nil("telescope.actions.set")
+local action_state = util.require_or_nil("telescope.actions.state")
+local builtin = util.require_or_nil("telescope.builtin")
 
 local M = {}
 
@@ -16,6 +17,10 @@ local last = {
 }
 
 local function attach_quickfix_select(prompt_bufnr)
+  if not actions or not action_set or not action_state then
+    return false
+  end
+
   actions.select_default:replace(function()
     local picker = action_state.get_current_picker(prompt_bufnr)
     local manager = picker.manager
@@ -39,7 +44,7 @@ local function attach_quickfix_select(prompt_bufnr)
   return true
 end
 
-local config = {
+local config = actions and {
   pickers = {
     live_grep = {
       attach_mappings = attach_quickfix_select,
@@ -96,7 +101,7 @@ local config = {
       },
     },
   },
-}
+} or nil
 
 local function opts()
   local o = {}
@@ -110,9 +115,13 @@ local function opts()
   return o
 end
 
-function M.init()
+--- run builtin with last text populated
+local function add_builtins()
+  if not config or not action_state then
+    return
+  end
+
   for n, _ in pairs(last) do
-    -- run builtin with last text populated
     M[n .. "_last"] = function(o)
       o = o or {}
       o.default_text = last[n]
@@ -128,10 +137,14 @@ function M.init()
       end,
     }
   end
+end
 
-  telescope.setup(config)
+--- extend each builtin to go home and include opts
+local function extend_builtins()
+  if not builtin then
+    return
+  end
 
-  -- extend each builtin to go home and include opts
   for n, f in pairs(builtin) do
     if type(f) == "function" then
       M[n] = function(o)
@@ -140,6 +153,18 @@ function M.init()
       end
     end
   end
+end
+
+function M.init()
+  if not telescope or not actions or not action_set or not action_state or not builtin then
+    return
+  end
+
+  add_builtins()
+
+  telescope.setup(config)
+
+  extend_builtins()
 end
 
 return M

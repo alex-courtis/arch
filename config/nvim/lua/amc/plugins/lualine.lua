@@ -1,6 +1,6 @@
-local lualine = require("lualine")
-
+local util = require("amc.util")
 local log = require("amc.log")
+local lualine = util.require_or_nil("lualine")
 
 local M = {}
 
@@ -161,6 +161,10 @@ local config = {
 
 
 function M.init()
+  if not lualine then
+    return
+  end
+
   lualine.setup(config)
 end
 

@@ -1,8 +1,13 @@
-local gitsigns = require("gitsigns")
+local util = require("amc.util")
+local gitsigns = util.require_or_nil("gitsigns")
 
 local M = {}
 
 local on_attach = function(bufnr)
+  if not gitsigns then
+    return
+  end
+
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
   local function desc(d)
@@ -51,6 +56,10 @@ local on_attach = function(bufnr)
 end
 
 function M.init()
+  if not gitsigns then
+    return
+  end
+
   gitsigns.setup({
     numhl = true,
     current_line_blame_opts = {

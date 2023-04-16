@@ -1,7 +1,7 @@
-local tree = require("nvim-tree")
-local api = require("nvim-tree.api")
-
-local lsp_file_operations = require("lsp-file-operations")
+local util = require("amc.util")
+local tree = util.require_or_nil("nvim-tree")
+local api = util.require_or_nil("nvim-tree.api")
+local lsp_file_operations = util.require_or_nil("lsp-file-operations")
 
 local M = {
   -- maybe set by dirs.lua
@@ -13,6 +13,10 @@ local IGNORED_FT = {
 }
 
 local function on_attach(bufnr)
+  if not api then
+    return
+  end
+
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
@@ -157,11 +161,19 @@ end
 
 --- open and find
 function M.open_find()
+  if not api then
+    return
+  end
+
   api.tree.open({ find_file = true })
 end
 
 --- collapse then open and find
 function M.collapse_find()
+  if not api then
+    return
+  end
+
   api.tree.collapse_all(false)
   api.tree.open({ find_file = true })
 end
@@ -169,6 +181,10 @@ end
 --- Open nvim-tree for real files or startup directory
 --- @param data table from autocommand
 function M.open_nvim_tree(data)
+  if not api then
+    return
+  end
+
   local real_file = vim.fn.filereadable(data.file) == 1
 
   local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
@@ -176,16 +192,20 @@ function M.open_nvim_tree(data)
   if (real_file and not ignored_ft) or M.startup_dir then
 
     -- open the tree but don't focus it
-    require("nvim-tree.api").tree.toggle({ focus = false })
+    api.tree.toggle({ focus = false })
 
     -- find the file if it exists
-    require("nvim-tree.api").tree.find_file(data.file)
+    api.tree.find_file(data.file)
   end
 end
 
 function M.init()
-  tree.setup(config)
-  lsp_file_operations.setup({})
+  if tree then
+    tree.setup(config)
+  end
+  if lsp_file_operations then
+    lsp_file_operations.setup({})
+  end
 end
 
 return M

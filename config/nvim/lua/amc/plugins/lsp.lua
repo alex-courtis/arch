@@ -1,6 +1,6 @@
-local lspconfig = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_nvim_lsp.default_capabilities()
+local util = require("amc.util")
+local lspconfig = util.require_or_nil("lspconfig")
+local cmp_nvim_lsp = util.require_or_nil("cmp_nvim_lsp")
 
 local M = {}
 
@@ -10,8 +10,8 @@ local start_client_flags = {
 
 local config_ccls = {
   flags = start_client_flags,
-  capabilities = capabilities,
-  root_dir = lspconfig.util.root_pattern(".ccls", "build/compile_commands.json"),
+  capabilities = cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities() or nil,
+  root_dir = lspconfig and lspconfig.util.root_pattern(".ccls", "build/compile_commands.json") or nil,
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -72,6 +72,10 @@ function M.goto_next()
 end
 
 function M.init()
+  if not lspconfig then
+    return
+  end
+
   lspconfig.ccls.setup(config_ccls)
   lspconfig.lua_ls.setup(config_lua)
   lspconfig.zls.setup(config_zls)
