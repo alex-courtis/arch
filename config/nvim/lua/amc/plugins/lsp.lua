@@ -42,6 +42,10 @@ local config_lua = {
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
         },
       },
+      semantic = {
+        -- ugly and takes time to set
+        variable = false,
+      },
     },
   },
 }
