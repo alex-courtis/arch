@@ -6,9 +6,6 @@ local nvim_tree = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
--- unload modules before reloading
-vim.api.nvim_create_autocmd({ "SourcePre"}, { group = group, callback = env.unload })
-
 -- env
 vim.api.nvim_create_autocmd({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, { group = group, callback = env.update_title })
 vim.api.nvim_create_autocmd({ "DirChanged", "VimEnter" }, { group = group, callback = env.update_path })
