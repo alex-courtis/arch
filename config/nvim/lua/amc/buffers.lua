@@ -27,28 +27,41 @@ local function is_no_name_new(bufnr)
   return vim.api.nvim_buf_get_name(bufnr) == "" and not vim.bo[bufnr].modified
 end
 
+--- au WinClosed
 --- wipe unwanted buffers by name
---- @param bufnr number
-local function wipe_unwanted(bufnr)
-  local name = vim.api.nvim_buf_get_name(bufnr)
+--- @param data table
+function M.wipe_unwanted(data)
+  local name = vim.api.nvim_buf_get_name(data.buf)
 
   for _, s in ipairs(UNWANTED_NAMES) do
     if name:find(s) then
-      vim.cmd.bwipeout(bufnr)
+      vim.cmd.bwipeout(data.buf)
       return
     end
   end
 end
 
+--- au BufEnter
 --- wipe # when it's a no-name new not visible anywhere
---- @param bufnr number
-local function wipe_alt_no_name_new(bufnr)
+--- @param data table
+function M.wipe_alt_no_name_new(data)
   local bufnr_alt = vim.fn.bufnr("#")
   local winnr_alt = vim.fn.bufwinnr(bufnr_alt)
 
   -- alt is not visible
-  if bufnr_alt ~= -1 and bufnr ~= bufnr_alt and winnr_alt == -1 and is_no_name_new(bufnr_alt) then
+  if bufnr_alt ~= -1 and data.buf ~= bufnr_alt and winnr_alt == -1 and is_no_name_new(bufnr_alt) then
     vim.cmd.bwipeout(bufnr_alt)
+  end
+end
+
+--- au BufLeave
+--- au FocusLost
+--- autowriteall doesn't cover all cases
+--- @param data table
+function M.update(data)
+  local bo = vim.bo[data.buf]
+  if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(data.buf) ~= "" then
+    vim.cmd.update()
   end
 end
 
@@ -125,24 +138,6 @@ function M.write_scratch(text)
   end
 
   vim.cmd.buffer(bufnr)
-end
-
---- au WinClosed
-function M.WinClosed(data)
-  wipe_unwanted(data.buf)
-end
-
---- au BufEnter
-function M.BufEnter(data)
-  wipe_alt_no_name_new(data.buf)
-end
-
---- autowriteall doesn't cover all cases
-function M.update(data)
-  local bo = vim.bo[data.buf]
-  if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(data.buf) ~= "" then
-    vim.cmd.update()
-  end
 end
 
 return M

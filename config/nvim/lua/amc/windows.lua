@@ -121,7 +121,8 @@ function M.cnext()
 end
 
 --- au QuickFixCmdPost
-function M.QuickFixCmdPost(data)
+--- @param data table
+function M.open_qf_loc_win(data)
   -- open quickfix or location
   -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
   if data.match:sub(1, 1) == "l" then
@@ -132,7 +133,8 @@ function M.QuickFixCmdPost(data)
 end
 
 --- au BufWinEnter
-function M.BufWinEnter(data)
+--- @param data table
+function M.resize_qf_loc_win(data)
   --- resize quickfix and loclist
   if data.file == "quickfix" then
     local winid = vim.fn.bufwinid(data.buf)

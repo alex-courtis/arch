@@ -116,31 +116,4 @@ function M.source()
   end
 end
 
---- au FileType
-function M.FileType(data)
-  -- man is not useful, vim help usually is
-  if data.match == "lua" then
-    vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
-  end
-
-  -- line comments please
-  if data.match == "c" or data.match == "cpp" then
-    vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
-  end
-
-  -- no way to remap fugitive and tpope will not add
-  if data.match == "fugitive" then
-    vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
-    vim.keymap.set("n", "x", "X", { buffer = data.buf, remap = true })
-  end
-
-  -- keep these roughly in sync with editorconfig, which will not be executed outside of ~
-  if vim.tbl_contains({ "lua", "json", "yml", "yaml", "ts", "tf" }, data.match) then
-    vim.bo[data.buf].expandtab = true
-    vim.bo[data.buf].shiftwidth = 2
-    vim.bo[data.buf].softtabstop = 2
-    vim.bo[data.buf].tabstop = 2
-  end
-end
-
 return M
