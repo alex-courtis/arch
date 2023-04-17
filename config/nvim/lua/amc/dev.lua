@@ -39,26 +39,20 @@ function M.format()
 end
 
 local function meson(args)
-  vim.cmd({ cmd = "!", args = vim.list_extend({ "meson", "setup", "build" }, args or {}) })
+  local prev_makeprg = vim.o.makeprg
+  vim.o.makeprg = "meson"
+  vim.cmd.make(vim.list_extend({ "setup", "build" }, args or {}))
+  vim.o.makeprg = prev_makeprg
 end
 
 local function ninja(args)
   if not vim.loop.fs_stat("build") then
     meson({})
   end
-  vim.cmd({ cmd = "!", args = vim.list_extend({ "ninja", "-C", "build" }, args or {}) })
-end
-
-function M.setup()
-  local bt = build_type()
-
-  if bt == M.build_type.MESON then
-    if vim.loop.fs_stat("build") then
-      meson({ "--reconfigure" })
-    else
-      meson({})
-    end
-  end
+  local prev_makeprg = vim.o.makeprg
+  vim.o.makeprg = "ninja"
+  vim.cmd.make(vim.list_extend({ "-C", "build" }, args or {}))
+  vim.o.makeprg = prev_makeprg
 end
 
 function M.clean()
@@ -68,14 +62,6 @@ function M.clean()
     vim.cmd.make({ args = { "clean" } })
   elseif bt == M.build_type.MESON then
     ninja({ "clean" })
-  end
-end
-
-function M.dev()
-  local bt = build_type()
-
-  if bt == M.build_type.MAKE then
-    vim.cmd.make({ args = { "dev" } })
   end
 end
 
