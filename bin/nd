@@ -22,7 +22,7 @@ function init() {
 	else
 		USR="${1}"
 	fi
-	SRC="${HOME}/src/nvim-tree.lua/${USR}"
+	SRC="${HOME}/src/nvim-tree/${USR}"
 
 	if [ ! -d "${SRC}" ]; then
 		echo "${SRC} inexistent"
