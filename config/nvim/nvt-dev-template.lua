@@ -1,3 +1,5 @@
+local M = {}
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -50,7 +52,7 @@ vim.keymap.set("n", "<space>'", function() api.tree.find_file({}) end, { noremap
 vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,    { noremap = true })
 -- stylua: ignore end
 
-local function on_attach(bufnr)
+function M.on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
@@ -65,3 +67,5 @@ end
 require("nvim-tree").setup({
   -- DEFAULT_OPTS
 })
+
+return M
