@@ -160,12 +160,23 @@ if vim.env.NVIM_TREE_PROFILE then
 end
 
 --- open and find
-function M.open_find()
+--- @param update_root boolean
+local function open_find(update_root)
   if not api then
     return
   end
 
-  api.tree.open({ find_file = true })
+  api.tree.open({ find_file = true, update_root = update_root, })
+end
+
+--- maybe open and find
+function M.open_find()
+  open_find(false)
+end
+
+--- mapbe open, find and update root
+function M.open_find_update_root()
+  open_find(true)
 end
 
 --- collapse then open and find

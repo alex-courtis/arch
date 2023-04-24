@@ -1,5 +1,6 @@
 local buffers = require("amc.buffers")
 local log = require("amc.log")
+local env = require("amc.env")
 local nvim_tree = require("amc.plugins.nvt")
 
 --- wipe directory buffers
@@ -17,3 +18,7 @@ if first_dir then
   nvim_tree.startup_dir = first_dir
   vim.cmd.cd(first_dir)
 end
+
+--- record the initial cwd
+env.init_cwd = vim.loop.cwd()
+
