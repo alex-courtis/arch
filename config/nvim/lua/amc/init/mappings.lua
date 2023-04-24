@@ -96,6 +96,7 @@ K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
 K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/')
 K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>')
 K.nmsl("n", telescope.lsp_references)
+K.nmsl("N", vim.diagnostic.setqflist)
 K.nmsl("v", ":put<CR>'[v']=")
 K.nmsl("V", ":put!<CR>'[v']=")
 
