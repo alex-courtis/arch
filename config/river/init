@@ -123,7 +123,8 @@ riverctl rule-add float -app-id zoom
 
 # behaviour
 riverctl attach-mode bottom
-riverctl set-cursor-warp on-output-change
+riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-focus-change
 
 # input
 ${XDG_CONFIG_HOME}/river/input
