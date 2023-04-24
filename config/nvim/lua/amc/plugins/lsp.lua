@@ -30,10 +30,10 @@ local config_lua = {
   flags = start_client_flags,
   settings = {
     Lua = {
-      globals = {
-        "vim",
-      },
       diagnostics = {
+        globals = {
+          "vim",
+        },
         neededFileStatus = {
           ["ambiguity-1"] = "Any",
           ["assign-type-mismatch"] = "Any",
