@@ -35,7 +35,7 @@ end)
 -- \ used by right
 
 K.nmsl("a", nvim_tree.open_find)
-K.nmsl("A", nvim_tree.collapse_find)
+K.nmsl("A", nvim_tree.open_find_update_root)
 K.nmsl("'", windows.close_inc)
 K.nmsl('"', windows.close_others)
 
@@ -43,6 +43,7 @@ K.nmsl(",", vim.cmd.Git)
 K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", windows.go_home)
 K.nmsl("q", windows.close)
+
 K.nmsl(".", lsp.goto_next)
 K.nmsl("e", windows.cnext)
 -- j gitsigns.next_hunk
