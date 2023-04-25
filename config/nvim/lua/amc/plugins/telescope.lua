@@ -49,6 +49,9 @@ local config = actions and {
     live_grep = {
       attach_mappings = attach_quickfix_select,
     },
+    git_status = {
+      initial_mode = "normal",
+    },
     buffers = {
       ignore_current_buffer = true,
       initial_mode = "normal",
