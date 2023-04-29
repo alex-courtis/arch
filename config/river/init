@@ -33,7 +33,7 @@ riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
 riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
 riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
 riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
-riverctl map normal $mod3 Delete spawn "way-displays -s AUTO_SCALE off ; steam > /dev/null 2>&1"
+riverctl map normal $mod3 Delete spawn "way-displays -s AUTO_SCALE off ; way-displays -d SCALE M28U ; steam > /dev/null 2>&1"
 riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
 riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
@@ -88,9 +88,9 @@ riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
 
-riverctl map normal $mod3 v spawn "way-displays -s AUTO_SCALE on"
+riverctl map normal $mod3 v spawn "way-displays -s AUTO_SCALE on  ; way-displays -s SCALE M28U 1.75"
 
-riverctl map normal $mod3 z spawn "way-displays -s AUTO_SCALE off"
+riverctl map normal $mod3 z spawn "way-displays -s AUTO_SCALE off ; way-displays -d SCALE M28U"
 
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
