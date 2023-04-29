@@ -95,7 +95,7 @@
 
     "ctrl+d": "window.document.getElementById('messagepane').contentDocument.documentElement.getElementsByTagName('body')[0].scrollBy(0, 100)",
     "ctrl+e": "unset",
-    "ctrl+f": "unset",
+
     "ctrl+g": "unset",
     "ctrl+h": "unset",
     "ctrl+i": "unset",
