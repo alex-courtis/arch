@@ -1,0 +1,13 @@
+# sourced from qmk_firmware/util/udev/50-qmk.rules
+
+# Atmel DFU
+### ATmega32U4
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", TAG+="uaccess"
+
+# STM32 DFU
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
+
+# hid bootloaders
+## PJRC's HalfKay
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0478", TAG+="uaccess"
+
