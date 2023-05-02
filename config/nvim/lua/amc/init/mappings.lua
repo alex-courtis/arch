@@ -32,7 +32,8 @@ end)
 -- begin left
 -- $
 -- @
--- \ used by right
+K.nmsl("\\", buffers.wipe)
+K.nmsl("|", buffers.wipe_all)
 
 K.nmsl("a", nvim_tree.open_find)
 K.nmsl("A", nvim_tree.open_find_update_root)
@@ -69,7 +70,8 @@ K.nmsl("dq", vim.diagnostic.setqflist)
 K.nmsl("df", vim.diagnostic.open_float)
 K.nmsl("dh", vim.lsp.buf.hover)
 K.nmsl("dr", vim.lsp.buf.rename)
--- b
+K.nmsl("b", ':%y<CR>')
+K.nmsl("B", ':%d_<CR>')
 
 K.nmsl("g", telescope.live_grep)
 K.nmsl("G", telescope.live_grep_last)
@@ -112,7 +114,7 @@ K.nm_l("/", '/<C-r>=expand("<cword>")<CR><CR>')
 K.vm_l("/", '"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>')
 K.nm_l("-", ":GotoHeaderSwitch<CR>")
 K.nm_l("_", ":GotoHeader<CR>")
-K.nmsl("\\", 'gg"_dG')
+-- \ used by left
 
 K.nms_("<BS><Space>", buffers.forward)
 K.nms_("<Space><Space>", buffers.forward)
