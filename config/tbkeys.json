@@ -2,6 +2,8 @@
 // https://hg.mozilla.org/comm-central/file/tip/mail/base/content/mainCommandSet.inc.xhtml
 
 {
+    "escape": "window.document.getElementById('threadTree').focus()",
+
     "0": "unset",
     "1": "unset",
     "2": "unset",
@@ -19,20 +21,20 @@
     "e": "unset",
     "f": "unset",
     "g": "unset",
-    "h": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(-1, true)",
+    "h": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(-1, false)",
     "i": "unset",
     "j": "cmd:cmd_nextMsg",
     "k": "cmd:cmd_previousMsg",
-    "l": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(1, true)",
+    "l": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(1, false)",
     "m": "cmd:cmd_toggleRead",
     "n": "cmd:cmd_newMessage",
     "o": "unset",
     "p": "unset",
     "q": "func:CloseTabOrWindow",
-    "r": "unset",
+    "r": "cmd:cmd_getMsgsForAuthAccounts",
     "s": "unset",
     "t": "cmd:cmd_selectThread",
-    "u": "unset",
+    "u": "cmd:cmd_undo",
     "v": "unset",
     "w": "unset",
     "x": "unset",
@@ -93,7 +95,7 @@
 
     "ctrl+b": "unset",
 
-    "ctrl+d": "window.document.getElementById('messagepane').contentDocument.documentElement.getElementsByTagName('body')[0].scrollBy(0, 100)",
+    "ctrl+d": "window.document.getElementById('messagepane').contentDocument.documentElement.getElementsByTagName('body')[0].scrollBy(0, 200)",
     "ctrl+e": "unset",
 
     "ctrl+g": "unset",
@@ -110,7 +112,7 @@
     "ctrl+r": "unset",
     "ctrl+s": "unset",
     "ctrl+t": "unset",
-    "ctrl+u": "window.document.getElementById('messagepane').contentDocument.documentElement.getElementsByTagName('body')[0].scrollBy(0, -100)",
+    "ctrl+u": "window.document.getElementById('messagepane').contentDocument.documentElement.getElementsByTagName('body')[0].scrollBy(0, -200)",
 
 
 
