@@ -66,9 +66,9 @@ export BEMENU_OPTS="\
 	--list 10 \
 	--wrap \
 	--sb '#FFFF00' --sf '#FFFFFF' \
-	--tb '${BASE0B}' --tf '${BASE00}' \
-	--fb '${BASE01}' --ff '${BASE04}' \
-	--nb '${BASE01}' --nf '${BASE04}' \
-	--ab '${BASE01}' --af '${BASE04}' \
-	--hb '${BASE02}' --hf '${BASE06}'"
+	--tb '${BASE16_GREEN}'                --tf '${BASE16_DEFAULT_BACKGROUND}' \
+	--fb '${BASE16_LIGHTER_BACKGROUND}'   --ff '${BASE16_DARK_FOREGROUND}' \
+	--nb '${BASE16_LIGHTER_BACKGROUND}'   --nf '${BASE16_DARK_FOREGROUND}' \
+	--ab '${BASE16_LIGHTER_BACKGROUND}'   --af '${BASE16_DARK_FOREGROUND}' \
+	--hb '${BASE16_SELECTION_BACKGROUND}' --hf '${BASE16_LIGHT_FOREGROUND}'"
 
