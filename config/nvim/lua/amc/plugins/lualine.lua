@@ -70,37 +70,40 @@ local function win_buf_info()
   return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
 end
 
+-- stylua: ignore start
 local theme = {
+
   -- z/y/x inherits a/b/c
   normal = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE03, gui = "bold" },
-    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_COMMENTS,            gui = "bold" },
+    b = { fg = vim.env.BASE16_DARK_FOREGROUND,    bg = vim.env.BASE16_LIGHTER_BACKGROUND                },
+    c = { fg = vim.env.BASE16_DARK_FOREGROUND,    bg = vim.env.BASE16_SELECTION_BACKGROUND              },
   },
 
   -- inherits normal
   replace = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0A, gui = "bold" }, -- YELLOW
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_YELLOW,              gui = "bold" },
   },
   insert = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0D, gui = "bold" }, -- BLUE
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_BLUE,                gui = "bold" },
   },
   visual = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0E, gui = "bold" }, -- MAGENTA
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_MAGENTA,             gui = "bold" },
   },
   command = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE08, gui = "bold" }, -- RED
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_RED,                 gui = "bold" },
   },
   terminal = {
-    a = { fg = vim.env.BASE01, bg = vim.env.BASE0B, gui = "bold" }, -- GREEN
+    a = { fg = vim.env.BASE16_LIGHTER_BACKGROUND, bg = vim.env.BASE16_GREEN,               gui = "bold" },
   },
 
   inactive = {
-    a = { fg = vim.env.BASE04, bg = vim.env.BASE02 }, -- dark fg, sel bg
-    b = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
-    c = { fg = vim.env.BASE04, bg = vim.env.BASE02 },
+    a = { fg = vim.env.BASE16_DARK_FOREGROUND,    bg = vim.env.BASE16_SELECTION_BACKGROUND              },
+    b = { fg = vim.env.BASE16_DARK_FOREGROUND,    bg = vim.env.BASE16_SELECTION_BACKGROUND              },
+    c = { fg = vim.env.BASE16_DARK_FOREGROUND,    bg = vim.env.BASE16_SELECTION_BACKGROUND              },
   },
 }
+-- stylua: ignore start
 
 local config = {
   options = {
@@ -111,11 +114,11 @@ local config = {
 
   sections = {
     lualine_a = { filename },
-    lualine_b = { "diagnostics" },
-    lualine_c = { win_buf_info },
-    lualine_x = {},
-    lualine_y = { "filetype" },
-    lualine_z = { "searchcount", "location" },
+    lualine_b = { "searchcount" },
+    lualine_c = { "diagnostics", win_buf_info },
+    lualine_x = { "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = { filename },
@@ -158,7 +161,6 @@ local config = {
     },
   },
 }
-
 
 function M.init()
   if not lualine then

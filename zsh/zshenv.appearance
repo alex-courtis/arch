@@ -40,7 +40,7 @@ export BASE0E="#d381c3" # MAGENTA Keywords, Storage, Selector, Markup Italic, Di
 export BASE0F="#be643c" # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 
 export BASE16_DEFAULT_BACKGROUND="${BASE00}"
-export BASE16_LIGHT_BACKGROUND="${BASE01}"
+export BASE16_LIGHTER_BACKGROUND="${BASE01}"
 export BASE16_SELECTION_BACKGROUND="${BASE02}"
 export BASE16_COMMENTS="${BASE03}"
 export BASE16_DARK_FOREGROUND="${BASE04}"
