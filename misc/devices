@@ -1,0 +1,12 @@
+lord					D0:50:99:C2:80:DF	192.168.1.101	NAS LAN1 - Right Port
+lord-ipmi-shared		D0:50:99:E1:73:68	192.168.1.102	NAS IPMI Shared
+lord-ipmi-dedicated		D0:50:99:E1:74:8D	192.168.1.103	NAS IPMI Dedicated - Top Port
+emperor					10:7B:44:93:A5:6D	192.168.1.111	Desktop Wired
+dukew					3C:58:C2:F0:D4:F8	192.168.1.121	Lenovo Laptop
+duke					00:2B:67:4F:AE:CA	192.168.1.122	Lenovo Laptop Wired
+gigantorw				58:A0:23:CF:E6:8A	192.168.1.131	Dell 5530
+gigantori				8C:04:BA:6F:80:C2	192.168.1.132	Dell 5530 Wired
+tinygod tinygod1		70:85:C2:59:E2:7D	192.168.1.141	Desktop Top Port
+tinygod2				70:85:C2:59:E2:7F	192.168.1.142	Desktop Bottom Port
+deckw					50:5A:65:60:76:61	192.168.1.151	Steam Deck
+gigantor deck dock		B4:45:06:B6:69:64	192.168.1.161	Dell Dock
