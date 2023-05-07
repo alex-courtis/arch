@@ -1,13 +1,14 @@
 127.0.0.1	localhost
-192.168.10.1	router
-192.168.10.2	lord
-192.168.10.3	lord-ipmi-shared
-192.168.10.4	lord-ipmi-dedicated
-192.168.10.11	emperor
-192.168.10.21	dukew
-192.168.10.22	duke
-192.168.10.31	gigantorw
-192.168.10.32	gigantori
-192.168.10.41	tinygod tinygod1
-192.168.10.42	tinygod2
-192.168.10.60	gigantor 
+192.168.1.1		router
+192.168.1.101	lord
+192.168.1.102	lord-ipmi-shared
+192.168.1.103	lord-ipmi-dedicated
+192.168.1.111	emperor
+192.168.1.121	dukew
+192.168.1.122	duke
+192.168.1.131	gigantorw
+192.168.1.132	gigantori
+192.168.1.141	tinygod tinygod1
+192.168.1.142	tinygod2
+192.168.1.151	deckw
+192.168.1.161	gigantor deck dock

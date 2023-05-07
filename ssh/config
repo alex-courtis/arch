@@ -5,6 +5,9 @@ Host aur.archlinux.org
 Host gigantor gigantorw gigantori tinygod tinygod1 tinygod2
   User acourtis
 
+Host deck deckw
+  User deck
+
 Host *
   User alex
 
