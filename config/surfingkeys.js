@@ -45,6 +45,20 @@ map('<Backspace><Backspace>', 'S');
 map('<Backspace><Space>', 'D');
 map('<Space><Space>', 'D');
 
+// new private window
+map('W', 'oi');
+
+// new tab
+map('t', 'on');
+
+// close current tab
+map('qq', 'x');
+
+// close other tabs all/left/right
+map('qa', 'gxx');
+map('qh', 'gx0');
+map('ql', 'gx$');
+
 // tab move left/right
 map('H', '<<');
 map('L', '>>');
@@ -73,10 +87,6 @@ mapkey('M', '#3Move current tab to a new window', function() {
 // edit url
 map('v', ';U');
 map('V', ';u');
-
-// close / restore tab
-map('q', 'x');
-map('Q', 'gxx');
 
 // omnibar page
 api.cmap('<Ctrl-d>', '<Ctrl-.>');
