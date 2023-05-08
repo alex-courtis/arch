@@ -81,8 +81,13 @@ mapkey('M', '#3Move current tab to a new window', function() {
 	api.RUNTIME('moveToWindow', { windowId: -1 });
 });
 
-// new private window
-map('W', 'oi');
+// new windows
+mapkey('w', '#8Open window', function() {
+	api.RUNTIME('openWindow', { url: 'about:blank', incognito: false });
+});
+mapkey('W', '#8Open incognito window', function() {
+	api.RUNTIME('openWindow', { url: 'about:blank', incognito: true });
+});
 
 // edit url
 map('v', ';U');
