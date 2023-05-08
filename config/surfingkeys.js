@@ -4,7 +4,7 @@ settings.tabsMRUOrder = false;
 // ace editor
 api.aceVimMap(';', ':', 'normal');
 
-api.Hints.setCharacters('aoeui;,.py\'qjkx');
+api.Hints.setCharacters('aoeuidhtnspyfgcrlqjkxbmwvz');
 
 var except_map = [
 	// unchanged defaults
