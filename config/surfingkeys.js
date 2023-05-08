@@ -45,8 +45,12 @@ map('<Backspace><Backspace>', 'S');
 map('<Backspace><Space>', 'D');
 map('<Space><Space>', 'D');
 
-// new tab
+// omnibar url t->o
+// new tab on->t
+map('XXX', 't');
 map('t', 'on');
+map('o', 'XXX');
+api.unmap('XXX');
 
 // close current tab
 map('q', 'x');
