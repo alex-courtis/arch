@@ -4,7 +4,7 @@ settings.tabsMRUOrder = false;
 // ace editor
 api.aceVimMap(';', ':', 'normal');
 
-api.Hints.setCharacters('aoeuipyqx');
+api.Hints.setCharacters('aoeui;,.py\'qjkx');
 
 var except_map = [
 	// unchanged defaults
@@ -45,19 +45,16 @@ map('<Backspace><Backspace>', 'S');
 map('<Backspace><Space>', 'D');
 map('<Space><Space>', 'D');
 
-// new private window
-map('W', 'oi');
-
 // new tab
 map('t', 'on');
 
 // close current tab
-map('qq', 'x');
+map('q', 'x');
 
 // close other tabs all/left/right
-map('qa', 'gxx');
-map('qh', 'gx0');
-map('ql', 'gx$');
+map('ca', 'gxx');
+map('ch', 'gx0');
+map('cl', 'gx$');
 
 // tab move left/right
 map('H', '<<');
@@ -83,6 +80,9 @@ map('m', 'W');
 mapkey('M', '#3Move current tab to a new window', function() {
 	api.RUNTIME('moveToWindow', { windowId: -1 });
 });
+
+// new private window
+map('W', 'oi');
 
 // edit url
 map('v', ';U');
