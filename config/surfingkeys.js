@@ -45,12 +45,8 @@ map('<Backspace><Backspace>', 'S');
 map('<Backspace><Space>', 'D');
 map('<Space><Space>', 'D');
 
-// omnibar url t->o
-// new tab on->t
-map('XXX', 't');
+// new tab
 map('t', 'on');
-map('o', 'XXX');
-api.unmap('XXX');
 
 // close current tab
 map('q', 'x');
@@ -100,6 +96,14 @@ map('V', ';u');
 // omnibar page
 api.cmap('<Ctrl-d>', '<Ctrl-.>');
 api.cmap('<Ctrl-u>', '<Ctrl-,>');
+
+// omnibar url
+mapkey('o', '#8Open a URL in current tab', function() {
+	api.Front.openOmnibar({type: "URLs", tabbed: false});
+});
+mapkey('O', '#8Open a URL in new tab', function() {
+	api.Front.openOmnibar({type: "URLs", tabbed: true});
+});
 
 // open bookmarks
 mapkey('b', '#8Open a bookmark in current tab', function() {
