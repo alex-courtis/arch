@@ -116,8 +116,8 @@ riverctl rule-add ssd
 riverctl rule-add csd -app-id zoom
 
 # floating
-riverctl rule-add float title "Open File"
-riverctl rule-add float title "Open Folder"
+riverctl rule-add float -title "Open File"
+riverctl rule-add float -title "Open Folder"
 riverctl rule-add float -app-id nm-openconnect-auth-dialog
 riverctl rule-add float -app-id zoom
 
