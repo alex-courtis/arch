@@ -107,7 +107,7 @@ riverctl background-color       "0x${BASE16_DEFAULT_BACKGROUND#*#}"
 riverctl border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
 riverctl border-color-focused   "0x${BASE16_DARK_FOREGROUND#*#}"
 riverctl border-color-urgent    "0x${BASE16_COMMENTS#*#}"
-riverctl border-width 2
+riverctl border-width 1
 
 # ssd by default
 riverctl rule-add ssd
