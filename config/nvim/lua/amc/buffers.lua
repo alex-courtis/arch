@@ -145,6 +145,26 @@ function M.forward()
   end
 end
 
+--- :setlocal list/nolist
+function M.toggle_list()
+  local list = vim.api.nvim_get_option_value("list", { scope = "local" })
+  vim.api.nvim_set_option_value("list", not list, { scope = "local" })
+end
+
+local buf_trailing = {}
+
+--- toggle TrailingSpace for buffer
+function M.toggle_trailing_space()
+  local buf = vim.api.nvim_get_current_buf()
+  if buf_trailing[buf] then
+    vim.cmd.syntax("clear TrailingSpace")
+    buf_trailing[buf] = nil
+  else
+    vim.cmd.syntax("match TrailingSpace /\\s\\+$/")
+    buf_trailing[buf] = true
+  end
+end
+
 --- write to a new scratch buffer
 --- @param text string newline delimited
 function M.write_scratch(text)
