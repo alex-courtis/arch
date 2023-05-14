@@ -6,6 +6,8 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 
+vim.opt.statusline = "b%{bufnr()} w%{winnr()} i%{win_getid()} %{bufname()}"
+
 vim.o.packpath = "/tmp/nvt-dev/site"
 local package_root = vim.o.packpath .. "/pack"
 local install_path = vim.o.packpath .. "/pack/packer/start/packer.nvim"
