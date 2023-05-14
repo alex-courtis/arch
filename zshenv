@@ -16,6 +16,7 @@ export PAGER="less"
 
 # git core.pager applies additional options
 export LESS=Ri
+export SYSTEMD_LESS="${LESS}"
 
 # tell intellij that we're using a non-reparenting window manager
 # maybe set suppress.focus.stealing=false custom setting
