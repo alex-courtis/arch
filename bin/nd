@@ -18,7 +18,7 @@ function init() {
 
 	# pick source
 	if [ -z "${1}" ]; then
-		USR="dev"
+		USR="master"
 	else
 		USR="${1}"
 	fi
