@@ -773,6 +773,10 @@ key_bindings:
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
 
+  # vim expects these for <S-CR> and <C-CR>
+  - { key: Return, mods: Shift,         chars: "\x1b[13;2u" }
+  - { key: Return, mods: Control,       chars: "\x1b[13;5u" }
+
   # Vi Mode
   - { key: Space,  mods: Shift|Control, mode: ~Search,    action: none }
   - { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: none }
