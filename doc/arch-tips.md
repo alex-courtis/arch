@@ -1,5 +1,13 @@
 # Arch Top Tips From Alex
 
+## Parallel Pacman Downloads
+
+`vi /etc/pacman.conf`
+
+```
+ParallelDownloads = 10
+```
+
 ## Don't Compress Packages
 
 When invoking makepkg, the results are xz'd by default. This is unnecessary, as they are almost always immediately un-xz'd. Your AUR updates will be _muchly_ faster.
