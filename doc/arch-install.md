@@ -198,7 +198,6 @@ systemctl enable NetworkManager
 Add the following to `/etc/vconsole.conf`
 ```
 KEYMAP=dvorak-programmer
-FONT=ter-u32n
 ```
 
 ### Microcode
@@ -237,15 +236,15 @@ Update the boot image configuration: `/etc/mkinitcpio.conf`
 Add hooks. It's fine to use multiple lines, which makes for easier change detection.
 ```
 HOOKS=(
-    consolefont
-    keymap
     base
     udev
     autodetect
     modconf
+    kms
+    keyboard
+    keymap
     block
     filesystems
-    keyboard
     fsck
     resume
 )
@@ -265,11 +264,11 @@ bootctl --path=/boot install
 
 Edit `/boot/loader/loader.conf` and change its contents to:
 ```
-default arch
-timeout 1
+timeout 2
+default Arch Linux
 ```
 
-Try `console-mode 1` if the text is too small.
+Try `console-mode max` to use native resolution.
 
 Create `/boot/loader/entries/arch.conf`:
 ```
@@ -492,6 +491,13 @@ Install the X driver and (re)generate the boot image:
 pacaur -S xf86-video-amdgpu libva-mesa-driver linux
 ```
 
+Create `/etc/modprobe.d/no_ucsi_ccg.conf`
+
+```
+# nvidia specific usb c
+blacklist ucsi_ccg
+```
+
 ### Intel Only (lightweight laptop)
 
 KMS will automatically be used.
@@ -528,7 +534,7 @@ Install `bbswitch`.
 
 Create `/etc/modprobe.d/bbswitch.conf`:
 
-```sh
+```
 blacklist nouveau
 options bbswitch load_state=0 unload_state=1
 ```

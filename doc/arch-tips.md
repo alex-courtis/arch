@@ -1,10 +1,11 @@
 # Arch Top Tips From Alex
 
-## Parallel Pacman Downloads
+## Pacman UX Tweaks
 
 `vi /etc/pacman.conf`
 
 ```
+Color
 ParallelDownloads = 10
 ```
 
