@@ -12,6 +12,8 @@ vm	<C-w>; 	<C-w>:
 cm	<C-j>	<Down>
 cm	<C-k>	<Up>
 
+nm	<Space>x	:b#<CR>
+
 syntax on
 
 set cursorline
