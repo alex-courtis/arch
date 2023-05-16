@@ -16,8 +16,8 @@ If you wish to use these dotfiles, it is advisable to fork this repository. I fr
 
 There is no DE, just a console login which starts a wayland compositor or X11, depending on `$XDG_VTNR`
 
-* [sway](https://github.com/swaywm/sway)
-* [i3](https://github.com/i3/i3)
+* [river](https://github.com/riverwm/river)
+* [dwm](https://dwm.suckless.org)
 * [way-displays](https://github.com/alex-courtis/way-displays/)
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/)
 * [dual-function-keys](https://gitlab.com/interception/linux/plugins/dual-function-keys)
