@@ -147,8 +147,9 @@ K.nm_l("_", ":GotoHeader<CR>")
 K.nms_("<BS><Space>", buffers.forward)
 K.nms_("<Space><Space>", buffers.forward)
 
-K.nmsl("<Del>", ":wincmd W<CR>")
+-- <Del>
 K.nmsl("<CR>", ":wincmd w<CR>")
+K.nmsl("<S-CR>", ":wincmd W<CR>")
 
 K.nmsl("<Up>", ":wincmd k<CR>")
 K.nmsl("<Down>", ":wincmd j<CR>")
