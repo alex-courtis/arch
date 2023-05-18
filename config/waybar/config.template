@@ -87,13 +87,11 @@
   "battery": {
     "interval": 5,
     "states": {
-      "low": 50,
       "critical": 25
     },
-    "format": "",
-    "format-charging": "│ {capacity}% ({time}) ",
-    "format-discharging-low": "│ {capacity}% {time} ",
+    "format": "│ {capacity}% {time} ",
     "format-discharging-critical": "│ {capacity}% {time} {power}W ",
+    "format-charging": "│ {capacity}% ({time}) ",
     "format-time": "{H}:{m}",
     "tooltip": false
   },
