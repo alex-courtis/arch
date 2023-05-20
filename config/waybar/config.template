@@ -89,9 +89,11 @@
     "states": {
       "critical": 25
     },
-    "format": "│ {capacity}% {time} ",
-    "format-discharging-critical": "│ {capacity}% {time} {power}W ",
+    "format": "",
+    "format-full": "",
     "format-charging": "│ {capacity}% ({time}) ",
+    "format-discharging": "│ {capacity}% {time} ",
+    "format-discharging-critical": "│ {capacity}% {time} {power}W ",
     "format-time": "{H}:{m}",
     "tooltip": false
   },
