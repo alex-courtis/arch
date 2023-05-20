@@ -8,6 +8,8 @@ else
 	case "${HOST}" in
 		"duke")
 			;&
+		"gigantor")
+			;&
 		"tinygod")
 			pactl set-source-volume @DEFAULT_SOURCE@ 0%
 			;;
