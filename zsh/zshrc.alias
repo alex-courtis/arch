@@ -62,6 +62,8 @@ alias glances="glances --disable-left-sidebar"
 
 alias egrep="grep -E"
 
+alias jqp="wl-paste | jq"
+
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /net/lord/music/"
