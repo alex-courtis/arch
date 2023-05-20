@@ -157,7 +157,7 @@ arch-chroot /mnt /bin/bash
 ### Packages Needed For Installation
 
 ```sh
-pacman -S btrfs-progs efibootmgr git gvim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+pacman -S btrfs-progs efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
 ```
 
 ### Locale And Time
@@ -330,16 +330,12 @@ You can check this with:
 timedatectl status
 ```
 
-### Install [pacaur](https://aur.archlinux.org/packages/pacaur/)
+### Install [yay](https://github.com/Jguer/yay)
 
 ```sh
 cd /tmp
-git clone https://aur.archlinux.org/auracle-git.git
-cd auracle-git
-makepkg -sri
-cd ..
-git clone https://aur.archlinux.org/pacaur.git
-cd pacaur
+git clone https://aur.archlinux.org/yay-bin.git
+cd yay-bin
 makepkg -sri
 ```
 
@@ -347,7 +343,7 @@ makepkg -sri
 
 AUR packages are at the end.
 
-`pacaur -S
+`yay -S
 alacritty
 autofs
 bemenu-wayland
@@ -358,9 +354,11 @@ efibootmgr
 gpm
 hunspell-en_AU
 hunspell-en_GB
-i3-wm
 fd
+firefox
+fwupd
 fzf
+grim
 inetutils
 interception-dual-function-keys
 inter-font
@@ -379,18 +377,21 @@ pacman-contrib
 pavucontrol
 pulseaudio
 pwgen
+ripgrep
 rsync
 scrot
 slock
-sway
+slurp
 swayidle
 swaylock
 sysstat
 terminus-font
-the_silver_searcher
+thunderbird
 tmux
 ttf-dejavu
+ttf-hack-nerd
 udisks2
+usbutils
 unzip
 vdpauinfo
 wl-clipboard
@@ -417,15 +418,16 @@ river-git
 rivercarro
 rcm
 todotxt
-nvim-packer-git
 way-displays
+wev
 xlayoutdisplay
 ydotool
+zig-static
 `
 
 Clean any unnecessary packages:
 ```sh
-pacaur -Rns $(pacaur -Qdtq)
+yay -Rns $(yay -Qdtq)
 ```
 
 Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
@@ -451,7 +453,7 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 `WARNING: Possibly missing firmware for module: xhci_pci` during kernel image build indicates missing USB firmware.
 
 ```sh
-pacaur -S upd72020x-fw
+yay -S upd72020x-fw
 ```
 
 ## Audio Drivers
@@ -474,7 +476,7 @@ lspci | grep "Intel Corporation Comet Lake PCH-LP cAVS"
 
 Firmware:
 ```sh
-pacaur -S sof-firmware
+yay -S sof-firmware
 ```
 
 ## Video Drivers
@@ -488,7 +490,7 @@ Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 Install the X driver and (re)generate the boot image:
 
 ```sh
-pacaur -S xf86-video-amdgpu libva-mesa-driver linux
+yay -S xf86-video-amdgpu libva-mesa-driver linux
 ```
 
 Create `/etc/modprobe.d/no_ucsi_ccg.conf`
@@ -503,7 +505,7 @@ blacklist ucsi_ccg
 KMS will automatically be used.
 
 ```sh
-pacaur -S xf86-video-intel libva-intel-driver intel-media-driver
+yay -S xf86-video-intel libva-intel-driver intel-media-driver
 ```
 
 ### Nvidia Only (desktop)
@@ -511,7 +513,7 @@ pacaur -S xf86-video-intel libva-intel-driver intel-media-driver
 Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
 
 ```sh
-pacaur -S nvidia libva-vdpau-driver libva-vdpau-driver-chromium
+yay -S nvidia libva-vdpau-driver libva-vdpau-driver-chromium
 ```
 
 ### Nvidia + Intel (heavy laptop)
@@ -525,7 +527,7 @@ The discrete one will only be used automagically on demand when, say, launching 
 If the magic doesn't happen, use `prime-run` to launch the app.
 
 ```sh
-pacaur -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
+yay -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
 ```
 
 #### Turn Off Nvidia GPU
