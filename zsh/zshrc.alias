@@ -45,8 +45,6 @@ alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
-alias pu="pacaur -Syy archlinux-keyring && pacaur -Su"
-
 alias k="kill"
 alias _fzf_complete_k="_fzf_complete_kill"
 alias kk="kill -9"
@@ -62,7 +60,8 @@ alias glances="glances --disable-left-sidebar"
 
 alias egrep="grep -E"
 
-alias jqp="wl-paste | jq"
+alias jqp="wl-paste | jq --color-output"
+alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 
 alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 
