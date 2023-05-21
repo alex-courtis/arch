@@ -1,8 +1,11 @@
 // https://github.com/wshanks/tbkeys
 // https://hg.mozilla.org/comm-central/file/tip/mail/base/content/mainCommandSet.inc.xhtml
 
+// useful:
+// window.document.getElementsByTagName('tree')
+
 {
-    "escape": "window.document.getElementById('threadTree').focus()",
+    "escape": "if (window.document.getElementById('threadTree').focused) window.document.getElementById('folderTree').focus(); else window.document.getElementById('threadTree').focus();",
 
     "0": "unset",
     "1": "unset",
@@ -30,7 +33,7 @@
     "n": "cmd:cmd_newMessage",
     "o": "unset",
     "p": "unset",
-    "q": "func:CloseTabOrWindow",
+    "q": "if (window.document.getElementById('tabmail').selectedTab.canClose) window.CloseTabOrWindow();",
     "r": "cmd:cmd_getMsgsForAuthAccounts",
     "s": "unset",
     "t": "cmd:cmd_selectThread",
@@ -65,7 +68,7 @@
     "shift+j": "unset",
     "shift+k": "unset",
     "shift+l": "unset",
-    "shift+m": "unset",
+    "shift+m": "cmd:cmd_markAllRead",
     "shift+n": "unset",
     "shift+o": "unset",
     "shift+p": "unset",
