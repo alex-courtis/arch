@@ -11,19 +11,10 @@
     // "network#duke",
     // "network#gigantor#wl",
     // "custom/rival.battery#emperor",
-    "disk#run",
-    "disk#tmp",
   ],
   "modules-right": [
-    // exceptional
-    "battery",
-    // "network#gigantor#vpn",
-    // "network#tinygod#vpn",
     // always
     "custom/slstatus", // volume (exceptional), lm_sensors
-    "memory",
-    "cpu",
-    "clock",
     "tray"
   ],
   "fixed-center": false,
@@ -64,53 +55,6 @@
     "format-disconnected": "║ {ifname} disconnected ║ ",
     "tooltip": false
   },
-  "disk#run": {
-    "path": "/run/user/1000",
-    "interval": 5,
-    "states": {
-      "warn": 30
-    },
-    "format": "",
-    "format-warn": "║ /run/user/1000 {percentage_used}% ║ ",
-    "tooltip": false
-  },
-  "disk#tmp": {
-    "path": "/tmp",
-    "interval": 5,
-    "states": {
-      "warn": 50
-    },
-    "format": "",
-    "format-warn": "║ /tmp {percentage_used}% ║ ",
-    "tooltip": false
-  },
-  "battery": {
-    "interval": 5,
-    "states": {
-      "critical": 25
-    },
-    "format": "",
-    "format-full": "",
-    "format-charging": "│ {capacity}% ({time}) ",
-    "format-discharging": "│ {capacity}% {time} ",
-    "format-discharging-critical": "│ {capacity}% {time} {power}W ",
-    "format-time": "{H}:{m}",
-    "tooltip": false
-  },
-  "network#gigantor#vpn": {
-    "interface": "vpn0",
-    "interval": 30,
-    "format": "│ VPN ",
-    "format-disconnected": "",
-    "tooltip": false
-  },
-  "network#tinygod#vpn": {
-    "interface": "vpn0",
-    "interval": 30,
-    "format": "│ VPN ",
-    "format-disconnected": "",
-    "tooltip": false
-  },
   "custom/slstatus": {
     "exec": "slstatus -s",
     "on-click": "volmute",
@@ -120,21 +64,6 @@
     "on-click-middle": "pavucontrol",
     "tooltip": false
   },
-  "memory": {
-    "interval": 5,
-    "format": "│ {percentage}% {swapPercentage}% ",
-    "tooltip": false
-  },
-  "cpu": {
-    "interval": 5,
-    "format": "│ {load:.2f} ",
-    "tooltip": false
-  },
-  "clock": {
-    "interval": 1,
-    "format": "│ {:%a %d %b %H:%M:%S} ",
-    "tooltip": false
-  }
 }
 
 // vim:ft=json5:ts=2:sw=2:et
