@@ -13,11 +13,9 @@ vim.api.nvim_create_user_command("S", function(cmd)
 end, { nargs = "+", complete = "expression" })
 
 vim.api.nvim_create_user_command("RD", function(cmd)
-  print(vim.inspect(cmd))
   telescope.live_grep({ search_dirs = cmd.fargs })
 end, { nargs = "+", complete = "dir" })
 
 vim.api.nvim_create_user_command("RT", function(cmd)
-  print(vim.inspect(cmd))
   telescope.live_grep({ type_filter = cmd.args })
 end, { nargs = 1 })
