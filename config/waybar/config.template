@@ -8,9 +8,9 @@
     "river/window"
   ],
   "modules-center": [
-    // "network#duke",
-    // "network#gigantor#wl",
-    // "custom/rival.battery#emperor",
+    // "network#duke"
+    // "network#gigantor#wl"
+    // "custom/rival.battery#emperor"
   ],
   "modules-right": [
     // always
