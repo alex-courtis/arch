@@ -9,6 +9,7 @@
   ],
   "modules-center": [
     // "network#duke"
+    // "network#tinygod"
     // "network#gigantor#wl"
     // "custom/rival.battery#emperor"
   ],
@@ -43,6 +44,13 @@
   },
   "network#duke": {
     "interface": "wlp0s20f3",
+    "interval": 30,
+    "format": "",
+    "format-disconnected": "║ {ifname} disconnected ║ ",
+    "tooltip": false
+  },
+  "network#tinygod": {
+    "interface": "enp4s0",
     "interval": 30,
     "format": "",
     "format-disconnected": "║ {ifname} disconnected ║ ",
