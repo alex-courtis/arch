@@ -1,4 +1,4 @@
-# - rm -rf ~/music-beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle ; ~/music-beets
+# - rm -rf ~/music-beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle ; mkdir ~/music-beets ; cd ~/music-beets
 # - import, use --noautotag for compilations/various artists
 # - twiddle
 # - beet write
