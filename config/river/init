@@ -132,9 +132,6 @@ if [ "$(whence libinput-gestures-setup)" ]; then
 	libinput-gestures-setup restart > /dev/null 2>&1
 fi
 
-# optional bar contents
-sed -E "s|// *(.*#${HOST})|\1|g" $XDG_CONFIG_HOME/waybar/config.template > $XDG_CONFIG_HOME/waybar/config
-
 # bar style
 sed -e "s/\${FONT_SIZE_PT}/${FONT_SIZE_PT}/g" $XDG_CONFIG_HOME/waybar/style.template.css > $XDG_CONFIG_HOME/waybar/style.css
 

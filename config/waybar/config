@@ -1,0 +1,43 @@
+// cat ~/.config/waybar/config | grep -v "//" | jq
+
+{
+  "position": "top",
+  "modules-left": [
+    "river/tags",
+    "river/layout",
+    "river/window"
+  ],
+  "modules-right": [
+    "custom/slstatus",
+    "tray"
+  ],
+  "fixed-center": false,
+  "tray": {
+    "spacing": 6
+  },
+  "river/tags": {
+    "disable-click": true,
+    "num-tags": 10
+  },
+  "river/layout": {
+    "format": "  {}  ",
+    "tooltip": false
+  },
+  "river/window": {
+    "format": " {} ",
+    "max-length": 999, // will push center/right unless capped, needs some value to truncate
+    "on-click": "wl-copy -p $(lswt -j | jq -r 'map(select(.activated)) | first | .title')",
+    "tooltip": false
+  },
+  "custom/slstatus": {
+    "exec": "slstatus -s",
+    "on-click": "volmute",
+    "on-click-right": "volmutemic",
+    "on-scroll-up": "volraise",
+    "on-scroll-down": "vollower",
+    "on-click-middle": "pavucontrol",
+    "tooltip": false
+  },
+}
+
+// vim:ft=json5:ts=2:sw=2:et
