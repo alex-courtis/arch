@@ -99,6 +99,7 @@ local config = {
     },
   },
   git = {
+    timeout = 800,
     show_on_open_dirs = false,
   },
   diagnostics = {

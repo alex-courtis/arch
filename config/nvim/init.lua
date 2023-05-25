@@ -4,6 +4,7 @@ require("amc.init.options")
 
 -- installs but does not load
 local bootstrapped = require("amc.init.pack")({
+  "stevearc/aerial.nvim",
   "antosha417/nvim-lsp-file-operations",
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
@@ -24,7 +25,9 @@ local bootstrapped = require("amc.init.pack")({
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
   "nvim-telescope/telescope.nvim",
-  "nvim-tree/nvim-tree.lua",
+  -- "nvim-tree/nvim-tree.lua",
+  -- "/home/alex/src/nvim-tree/dmehala",
+  "/home/alex/src/nvim-tree/Akmadan23",
   "nvim-tree/nvim-web-devicons",
   "qpkorr/vim-bufkill",
   "tpope/vim-commentary",
@@ -52,3 +55,5 @@ require("amc.plugins.stylua").init()
 require("amc.plugins.telescope").init()
 
 require("amc.init.mappings")
+
+require('aerial').setup()
