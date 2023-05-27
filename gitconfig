@@ -11,6 +11,11 @@
 	dsu = du --staged
 	dsuw = duw --staged
 
+	w = worktree
+	wl = worktree list
+	wb = "!f() { git worktree add ../$1 -b $1 ; }; f"
+	wc = "!f() { git worktree add ../$1 $1 ; }; f"
+
 	co = checkout
 	l = log --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(white) %C(green)%an  %C(cyan)%ah%C(reset)' --graph
 	mti = mergetool --tool idea
