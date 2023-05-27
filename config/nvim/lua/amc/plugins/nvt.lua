@@ -33,8 +33,6 @@ local function on_attach(bufnr)
   vim.keymap.del('n', 'g?',             { buffer = bufnr })
   vim.keymap.del('n', '<BS>',           { buffer = bufnr })
   vim.keymap.del('n', '<C-e>',          { buffer = bufnr })
-  vim.keymap.del('n', 'f',              { buffer = bufnr })
-  vim.keymap.del('n', 'F',              { buffer = bufnr })
 
   vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,     opts('Up'))
   vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))
@@ -147,6 +145,7 @@ local config = {
       all = false,
       config = false,
       copy_paste = false,
+      dev = true,
       diagnostics = false,
       git = false,
       profile = false,
