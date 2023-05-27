@@ -171,7 +171,7 @@ createSearch('e', 'na', 'Nier Automata', 'https://nier.fandom.com/wiki/Special:S
 createSearch('e', 'o', 'go', 'http://go/');
 createSearch('e', 'pd', 'Proton DB', 'https://www.protondb.com/search?q=');
 createSearch('e', 'rr', 'Risk Of Rain', 'https://riskofrain2.fandom.com/wiki/Special:Search?query=')
-createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/search/?q=');
+createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/instantsearch/?query=');
 createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
 
 createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
