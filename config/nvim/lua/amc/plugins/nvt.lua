@@ -134,9 +134,6 @@ local config = {
     },
   },
   experimental = {
-    git = {
-      async = true,
-    },
   },
   log = {
     enable = false,
