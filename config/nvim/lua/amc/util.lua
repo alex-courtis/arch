@@ -8,7 +8,7 @@ M.require_or_nil = function(modname)
   if ok then
     return module
   end
-  vim.notify("failed: require(\"" .. modname .. "\")", vim.log.levels.ERROR)
+  vim.notify('failed: require("' .. modname .. '")', vim.log.levels.ERROR)
 end
 
 return M

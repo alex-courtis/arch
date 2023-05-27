@@ -21,4 +21,3 @@ end
 
 --- record the initial cwd
 env.init_cwd = vim.loop.cwd()
-

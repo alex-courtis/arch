@@ -166,7 +166,7 @@ local function open_find(update_root)
     return
   end
 
-  api.tree.open({ find_file = true, update_root = update_root, })
+  api.tree.open({ find_file = true, update_root = update_root })
 end
 
 --- maybe open and find
@@ -201,7 +201,6 @@ function M.open_nvim_tree(data)
   local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
 
   if (real_file and not ignored_ft) or M.startup_dir then
-
     -- open the tree but don't focus it
     api.tree.toggle({ focus = false })
 

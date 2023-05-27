@@ -1,6 +1,6 @@
 local M = {
   -- overridden by dirs.lua
-  init_cwd = vim.loop.cwd()
+  init_cwd = vim.loop.cwd(),
 }
 
 function M.update_path()

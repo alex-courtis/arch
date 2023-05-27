@@ -74,14 +74,14 @@ K.nmsl("<Left>", ":wincmd h<CR>")
 K.nmsl("<Right>", ":wincmd l<CR>")
 
 -- TODO remove once training complete
-vim.cmd [[
+vim.cmd([[
 nnoremap <C-w>p <Nop>
 nnoremap <C-w><C-p> <Nop>
 nnoremap <C-w>h <Nop>
 nnoremap <C-w><C-h> <Nop>
 nnoremap <C-w>l <Nop>
 nnoremap <C-w><C-l> <Nop>
-]]
+]])
 
 -- end left
 
@@ -95,8 +95,8 @@ K.nmsl("dq", vim.diagnostic.setqflist)
 K.nmsl("df", vim.diagnostic.open_float)
 K.nmsl("dh", vim.lsp.buf.hover)
 K.nmsl("dr", vim.lsp.buf.rename)
-K.nmsl("b", ':%y<CR>')
-K.nmsl("B", ':%d_<CR>')
+K.nmsl("b", ":%y<CR>")
+K.nmsl("B", ":%d_<CR>")
 
 -- )
 K.nmsl("g", telescope.live_grep)
@@ -155,7 +155,7 @@ K.nmsl("<Up>", ":wincmd k<CR>")
 K.nmsl("<Down>", ":wincmd j<CR>")
 
 -- TODO remove once training complete
-vim.cmd [[
+vim.cmd([[
 nnoremap <C-w>w <Nop>
 nnoremap <C-w><C-w> <Nop>
 nnoremap <C-w>W <Nop>
@@ -164,7 +164,7 @@ nnoremap <C-w>k <Nop>
 nnoremap <C-w><C-k> <Nop>
 nnoremap <C-w>j <Nop>
 nnoremap <C-w><C-j> <Nop>
-]]
+]])
 -- end right
 
 -- stop vim-commentary from creating the default mappings
