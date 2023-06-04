@@ -8,7 +8,6 @@ local bootstrapped = require("amc.init.pack")({
   "antosha417/nvim-lsp-file-operations",
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
-  "editorconfig/editorconfig-vim",
   "GutenYe/json5.vim",
   "hashivim/vim-terraform",
   "hrsh7th/cmp-buffer",
