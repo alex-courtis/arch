@@ -1,7 +1,12 @@
 local util = require("amc.util")
+local telescope = require("amc.plugins.telescope")
 local tree = util.require_or_nil("nvim-tree")
 local api = util.require_or_nil("nvim-tree.api")
 local lsp_file_operations = util.require_or_nil("lsp-file-operations")
+
+if not tree or not api then
+  return { init = function() end }
+end
 
 local M = {
   -- maybe set by dirs.lua
@@ -12,11 +17,30 @@ local IGNORED_FT = {
   "gitcommit",
 }
 
-local function on_attach(bufnr)
-  if not api then
+--- Absolute path of the current node's directory
+--- @return string|nil
+local function node_dir_path()
+  local node = api.tree.get_node_under_cursor()
+  if not node then
     return
   end
 
+  if node.parent and node.type == "file" then
+    node = node.parent
+  end
+
+  return node.absolute_path
+end
+
+local function find_files()
+  telescope.find_files({ search_dirs = { node_dir_path() } })
+end
+
+local function live_grep()
+  telescope.live_grep({ search_dirs = { node_dir_path() } })
+end
+
+local function on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
@@ -33,6 +57,11 @@ local function on_attach(bufnr)
   vim.keymap.del('n', 'g?',             { buffer = bufnr })
   vim.keymap.del('n', '<BS>',           { buffer = bufnr })
   vim.keymap.del('n', '<C-e>',          { buffer = bufnr })
+  vim.keymap.del('n', 'f',              { buffer = bufnr })
+  vim.keymap.del('n', 'F',              { buffer = bufnr })
+  vim.keymap.del('n', 'y',              { buffer = bufnr })
+  vim.keymap.del('n', 'Y',              { buffer = bufnr })
+  vim.keymap.del('n', 'gy',             { buffer = bufnr })
 
   vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,     opts('Up'))
   vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))
@@ -51,7 +80,12 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<Space>j', api.node.navigate.git.next,         opts('Next Git'))
   vim.keymap.set('n', '<BS>j',    api.node.navigate.git.next,         opts('Next Git'))
   vim.keymap.set('n', "'",        api.node.navigate.parent_close,     opts('Close Directory'))
+  vim.keymap.set('n', 'yn',       api.fs.copy.filename,               opts('Copy Name'))
+  vim.keymap.set('n', 'yr',       api.fs.copy.relative_path,          opts('Copy Relative Path'))
+  vim.keymap.set('n', 'ya',       api.fs.copy.absolute_path,          opts('Copy Absolute Path'))
   vim.keymap.set('n', '?',        api.tree.toggle_help,               opts('Help'))
+  vim.keymap.set('n', 'f',        find_files,                         opts('Find Files'))
+  vim.keymap.set('n', 'g',        live_grep,                          opts('Live Grep'))
   -- stylua: ignore end
 end
 
@@ -133,8 +167,7 @@ local config = {
       close_window = false,
     },
   },
-  experimental = {
-  },
+  experimental = {},
   log = {
     enable = false,
     truncate = true,
@@ -207,9 +240,7 @@ function M.open_nvim_tree(data)
 end
 
 function M.init()
-  if tree then
-    tree.setup(config)
-  end
+  tree.setup(config)
   if lsp_file_operations then
     lsp_file_operations.setup({})
   end
