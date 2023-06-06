@@ -108,13 +108,19 @@ local config = actions
     }
   or nil
 
-local function opts()
-  local o = {}
+local function opts(o)
+  o = o or {}
 
   if vim.o.columns >= 160 then
     o.layout_strategy = "horizontal"
   else
     o.layout_strategy = "vertical"
+  end
+
+  if o.search_dirs then
+    o.results_title = table.concat(o.search_dirs, ", ")
+  else
+    o.results_title = vim.loop.cwd()
   end
 
   return o
@@ -154,7 +160,7 @@ local function extend_builtins()
     if type(f) == "function" then
       M[n] = function(o)
         windows.go_home()
-        return f(vim.tbl_extend("force", opts(), o or {}))
+        return f(opts(o))
       end
     end
   end
