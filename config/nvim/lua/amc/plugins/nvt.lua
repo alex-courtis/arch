@@ -48,23 +48,22 @@ local function on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   -- stylua: ignore start
-  vim.keymap.del('n', '<2-RightMouse>', { buffer = bufnr })
-  vim.keymap.del('n', 'D',              { buffer = bufnr })
-  vim.keymap.del('n', '[e',             { buffer = bufnr })
-  vim.keymap.del('n', ']e',             { buffer = bufnr })
-  vim.keymap.del('n', '[c',             { buffer = bufnr })
-  vim.keymap.del('n', ']c',             { buffer = bufnr })
-  vim.keymap.del('n', 'g?',             { buffer = bufnr })
-  vim.keymap.del('n', '<BS>',           { buffer = bufnr })
-  vim.keymap.del('n', '<C-e>',          { buffer = bufnr })
-  vim.keymap.del('n', 'f',              { buffer = bufnr })
-  vim.keymap.del('n', 'F',              { buffer = bufnr })
-  vim.keymap.del('n', 'y',              { buffer = bufnr })
-  vim.keymap.del('n', 'Y',              { buffer = bufnr })
-  vim.keymap.del('n', 'gy',             { buffer = bufnr })
+  vim.keymap.del('n', '<2-RightMouse>', { buffer = bufnr }) -- CD
+  vim.keymap.del('n', 'D',              { buffer = bufnr }) -- trash
+  vim.keymap.del('n', '[e',             { buffer = bufnr }) -- prev diagnostic
+  vim.keymap.del('n', ']e',             { buffer = bufnr }) -- next diagnostic
+  vim.keymap.del('n', '[c',             { buffer = bufnr }) -- prev git
+  vim.keymap.del('n', ']c',             { buffer = bufnr }) -- next git
+  vim.keymap.del('n', 'g?',             { buffer = bufnr }) -- help
+  vim.keymap.del('n', '<BS>',           { buffer = bufnr }) -- close dir
+  vim.keymap.del('n', '<C-e>',          { buffer = bufnr }) -- open in place
+  vim.keymap.del('n', 'F',              { buffer = bufnr }) -- clear filter
+  vim.keymap.del('n', 'y',              { buffer = bufnr }) -- copy name
+  vim.keymap.del('n', 'Y',              { buffer = bufnr }) -- copy relative path
+  vim.keymap.del('n', 'gy',             { buffer = bufnr }) -- copy absolute path
 
-  vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,     opts('Up'))
-  vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))
+  vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,     opts('Up'))                 -- open new tab
+  vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))    -- open no window picker
   vim.keymap.set('n', '<Space>t', api.tree.change_root_to_node,       opts('CD'))
   vim.keymap.set('n', '<BS>t',    api.tree.change_root_to_node,       opts('CD'))
   vim.keymap.set('n', '<Space>p', api.node.navigate.diagnostics.prev, opts('Prev Diagnostic'))
@@ -82,10 +81,10 @@ local function on_attach(bufnr)
   vim.keymap.set('n', "'",        api.node.navigate.parent_close,     opts('Close Directory'))
   vim.keymap.set('n', 'yn',       api.fs.copy.filename,               opts('Copy Name'))
   vim.keymap.set('n', 'yr',       api.fs.copy.relative_path,          opts('Copy Relative Path'))
-  vim.keymap.set('n', 'ya',       api.fs.copy.absolute_path,          opts('Copy Absolute Path'))
+  vim.keymap.set('n', 'yy',       api.fs.copy.absolute_path,          opts('Copy Absolute Path'))
   vim.keymap.set('n', '?',        api.tree.toggle_help,               opts('Help'))
-  vim.keymap.set('n', 'f',        find_files,                         opts('Find Files'))
-  vim.keymap.set('n', 'g',        live_grep,                          opts('Live Grep'))
+  vim.keymap.set('n', 'f',        find_files,                         opts('Find Files'))         -- filter
+  vim.keymap.set('n', 'e',        live_grep,                          opts('Live Grep'))          -- rename basename
   -- stylua: ignore end
 end
 
