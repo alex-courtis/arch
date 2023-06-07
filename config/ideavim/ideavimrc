@@ -74,8 +74,8 @@ nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 " y
-nm <Space>i <Action>(RecentChangedFiles)
-nm <Space>I <Action>(RecentFiles)
+nm <Space>i <Action>(RecentFiles)
+nm <Space>I <Action>(RecentChangedFiles)
 " x
 
 nm <BS>f  <Action>(GotoFile)
