@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # https://github.com/sickcodes/Docker-OSX
 
@@ -15,7 +15,11 @@ case "${1}" in
 		docker start -ai "${NAME}"
 		;;
 	"ssh")
-		ssh -p "${SSH_LOCAL}" acourtis@localhost
+		remote_env_ssh -p "${SSH_LOCAL}" "$(hostname)"
+		;;
+	"scp")
+		shift
+		scp -P "${SSH_LOCAL}" "${@}"
 		;;
 	"init")
 		docker run -it \
@@ -25,6 +29,8 @@ case "${1}" in
 			-v /tmp/.X11-unix:/tmp/.X11-unix \
 			-e "RAM=${RAM}" \
 			-e "DISPLAY=${DISPLAY:-:0.0}" \
+			-e WIDTH=2560 \
+			-e HEIGHT=1440 \
 			-e GENERATE_UNIQUE=true \
 			-e MASTER_PLIST_URL='https://raw.githubusercontent.com/sickcodes/osx-serial-generator/master/config-custom.plist' \
 			-e AUDIO_DRIVER=pa,server=unix:/tmp/pulseaudio.socket \

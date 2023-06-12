@@ -68,3 +68,28 @@ function stylua {
 
 	$(whence -p stylua) "${ARGS}" "${@}"
 }
+
+function remote_env_setup() {
+	TERM_PREV="${TERM}"
+	TERM=$(underlyingterm)
+	if [ -n "${TMUX}" ]; then
+		# prefix2 C-b still available
+		tmux set prefix None
+	fi
+}
+
+function remote_env_teardown() {
+	if [ -n "${TMUX}" ]; then
+		tmux set -u prefix
+	fi
+	TERM="${TERM_PREV}"
+	unset TERM_PREV
+}
+
+function remote_env_ssh() {
+	remote_env_setup
+	$(whence -p ssh) "${@}"
+	read
+	print -n '\Ec'
+	remote_env_teardown
+}

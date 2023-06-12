@@ -7,7 +7,7 @@ source "${HOME}/.zsh/zshrc.function"
 source "${HOME}/.zsh/zshrc.alias"
 
 # use the keychain wrapper to start ssh-agent if needed
-if [ $(whence keychain) -a -f ~/.ssh/id_rsa ]; then
+if [ "$(whence keychain)" -a -f ~/.ssh/id_rsa ]; then
 	eval $(keychain --eval --quiet --agents ssh ~/.ssh/id_rsa)
 fi
 

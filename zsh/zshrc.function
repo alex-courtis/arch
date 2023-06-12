@@ -54,11 +54,7 @@ function remote_env_teardown() {
 }
 
 function ssh() {
-	remote_env_setup
-	$(whence -p ssh) "${@}"
-	read
-	print -n '\Ec'
-	remote_env_teardown
+	remote_env_ssh "${@}"
 }
 
 function su() {
