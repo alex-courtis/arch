@@ -40,8 +40,13 @@ fzf-completion-deep() {
 }
 zle -N fzf-completion-deep
 
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+if [ -f "${HOME}/.fzf.zsh" ]; then
+	# from brew's /usr/local/opt/fzf/install
+	source ~/.fzf.zsh
+else
+	source /usr/share/fzf/completion.zsh
+	source /usr/share/fzf/key-bindings.zsh
+fi
 
 # explicitly invoke completion widgets without a trigger
 export FZF_COMPLETION_TRIGGER=""

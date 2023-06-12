@@ -3,10 +3,12 @@ fpath=(${XDG_DATA_HOME}/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 
-eval $(dircolors)
+if [ "$(whence dircolors)" ]; then
+	eval $(dircolors)
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu select
+	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+	zstyle ':completion:*' menu select
 
-unset LS_COLORS
+	unset LS_COLORS
+fi
 
