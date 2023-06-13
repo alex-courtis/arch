@@ -177,7 +177,7 @@ bind -f common mlb_click_selected win-activate
 
 bind -f common backspace win-toggle
 
-bind -f common space player-pause
+bind -f common space shell cmus-pause
 
 bind -f common J player-next
 bind -f common K player-prev
