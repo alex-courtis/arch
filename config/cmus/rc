@@ -149,8 +149,8 @@ set    format_trackwin=%3n. %{?c=""?%t?%-35%t %c} %= %y %d
 
 bind -f common j win-down
 bind -f common k win-up
-bind -f common h win-next
-bind -f common l win-next
+
+bind -f common tab win-next
 
 bind -f common down win-down
 bind -f common up win-up
