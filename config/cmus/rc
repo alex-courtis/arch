@@ -175,7 +175,7 @@ bind -f common N search-prev
 bind -f common enter win-activate
 bind -f common mlb_click_selected win-activate
 
-bind -f common o win-toggle
+bind -f common backspace win-toggle
 
 bind -f common space player-pause
 
