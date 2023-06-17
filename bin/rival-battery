@@ -15,7 +15,7 @@ fi
 PERCENT=${STATUS//[^0-9]/}
 
 if [ "${PERCENT}" != "" -a $PERCENT -le $THRESHOLD ]; then
-	echo "${STATUS}" > /tmp/rival.battery
+	echo "│ ${STATUS}" > /tmp/rival.battery
 else
 	rm -f /tmp/rival.battery
 fi

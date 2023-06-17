@@ -1,0 +1,10 @@
+#!/bin/sh
+
+while :; do
+	sudo turbostat --show PkgWatt --Summary --quiet --num_iterations 1 --interval 0.1 \
+		| grep "^[0-9]" \
+		| sed -e 's/\..*/W/g' \
+		> "/tmp/cpu.power"
+	sleep 1
+done
+

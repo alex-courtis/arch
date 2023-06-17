@@ -1,0 +1,9 @@
+[Unit]
+Description=turbostat CPU power
+
+[Service]
+ExecStart=/home/alex/bin/cpu-power
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
