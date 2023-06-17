@@ -5,7 +5,7 @@
 // window.document.getElementsByTagName('tree')
 
 {
-    "escape": "if (window.document.getElementById('threadTree').focused) window.document.getElementById('folderTree').focus(); else window.document.getElementById('threadTree').focus();",
+    "escape": "if (window.document.getElementById('tabmail-tabs').selectedIndex != 0) { window.document.getElementById('mailButton').click(); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); } else if (window.document.getElementById('folderTree').focused) { window.document.getElementById('folderTree').view.selection.select(1); }",
 
     "0": "unset",
     "1": "unset",
@@ -24,11 +24,11 @@
     "e": "unset",
     "f": "unset",
     "g": "unset",
-    "h": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(-1, false)",
+    "h": "if (window.document.getElementById('tabmail-tabs').selectedIndex != 0) { window.document.getElementById('mailButton').click(); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); }",
     "i": "unset",
-    "j": "cmd:cmd_nextMsg",
-    "k": "cmd:cmd_previousMsg",
-    "l": "window.document.getElementById('tabmail-tabs').advanceSelectedTab(1, false)",
+    "j": "if (window.document.getElementById('tabmail-tabs').selectedIndex == 0) { if (window.document.getElementById('folderTree').focused) { var sel = window.document.getElementById('folderTree').view.selection; sel.select(sel.currentIndex + 1); } else { window.goDoCommand('cmd_nextMsg'); } }",
+    "k": "if (window.document.getElementById('tabmail-tabs').selectedIndex == 0) { if (window.document.getElementById('folderTree').focused) { var sel = window.document.getElementById('folderTree').view.selection; sel.select(sel.currentIndex - 1); } else { window.goDoCommand('cmd_previousMsg'); } }",
+    "l": "if (window.document.getElementById('tabmail-tabs').selectedIndex == 0) { if (window.document.getElementById('folderTree').focused) window.document.getElementById('threadTree').focus(); }",
     "m": "cmd:cmd_toggleRead",
     "n": "cmd:cmd_newMessage",
     "o": "unset",
