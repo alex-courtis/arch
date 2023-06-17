@@ -1,26 +1,24 @@
 #!/bin/sh
 
-PLAYING=false
+DELTA="-5%"
+STATE="/tmp/cmus-pause-vol"
 
 cmus-remote -C status | grep "status playing" > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-	PLAYING=true
-	DELTA="-5%"
-else
-	PLAYING=false
-	DELTA="+5%"
-	pactl set-sink-volume @DEFAULT_SINK@ 0
-fi
 
-if [ "${PLAYING}" = "false" ]; then
+if [ $? -eq 0 ]; then
+	cmus-remote -C "status" | grep vol_left | sed -e 's/.*vol_left //g' > ${STATE}
+	for i in $(seq 1 1 20); do
+		sleep 0.05
+		cmus-remote -C "vol -5%"
+	done
+	cmus-remote -C player-pause
+else
+	VOL="100"
+	if [ -f "${STATE}" ]; then
+		VOL=$(cat ${STATE})
+		rm "${STATE}"
+	fi
+	cmus-remote -C "vol ${VOL}%"
 	cmus-remote -C player-play
 fi
 
-for i in $(seq 1 1 20); do
-	sleep 0.05
-	pactl set-sink-volume @DEFAULT_SINK@ "${DELTA}"
-done
-
-if [ "${PLAYING}" = "true" ]; then
-	cmus-remote -C player-pause
-fi

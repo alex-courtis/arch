@@ -1,0 +1,11 @@
+#!/bin/sh
+
+DELTA="-5%"
+STATE="/tmp/cmus-pause-vol"
+
+if [ -f "${STATE}" ]; then
+	cmus-remote -C "vol $(cat ${STATE})%"
+	rm "${STATE}"
+fi
+cmus-remote -C win-activate
+
