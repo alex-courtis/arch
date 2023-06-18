@@ -9,6 +9,10 @@ local builtin = util.require_or_nil("telescope.builtin")
 
 local M = {}
 
+if not telescope or not actions or not action_set or not action_state or not builtin then
+  return M
+end
+
 -- builtin's last search text
 local last = {
   live_grep = "",
@@ -17,10 +21,6 @@ local last = {
 }
 
 local function attach_quickfix_select(prompt_bufnr)
-  if not actions or not action_set or not action_state then
-    return false
-  end
-
   actions.select_default:replace(function()
     local picker = action_state.get_current_picker(prompt_bufnr)
     local manager = picker.manager
@@ -128,10 +128,6 @@ end
 
 --- run builtin with last text populated
 local function add_builtins()
-  if not config or not action_state then
-    return
-  end
-
   for n, _ in pairs(last) do
     M[n .. "_last"] = function(o)
       o = o or {}
@@ -152,10 +148,6 @@ end
 
 --- extend each builtin to go home and include opts
 local function extend_builtins()
-  if not builtin then
-    return
-  end
-
   for n, f in pairs(builtin) do
     if type(f) == "function" then
       M[n] = function(o)
@@ -166,16 +158,9 @@ local function extend_builtins()
   end
 end
 
-function M.init()
-  if not telescope or not actions or not action_set or not action_state or not builtin then
-    return
-  end
-
-  add_builtins()
-
-  telescope.setup(config)
-
-  extend_builtins()
-end
+-- init
+add_builtins()
+telescope.setup(config)
+extend_builtins()
 
 return M

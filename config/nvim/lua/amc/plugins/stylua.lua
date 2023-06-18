@@ -3,14 +3,15 @@ local stylua = util.require_or_nil("stylua-nvim")
 
 local M = {}
 
-function M.init()
-  if not stylua then
-    return
-  end
-
-  stylua.setup({
-    error_display_strategy = "loclist",
-  })
+if not stylua then
+  return M
 end
+
+local config = {
+  error_display_strategy = "loclist",
+}
+
+-- init
+stylua.setup(config)
 
 return M

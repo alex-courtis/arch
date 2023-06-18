@@ -2,16 +2,15 @@ local util = require("amc.util")
 local telescope = require("amc.plugins.telescope")
 local tree = util.require_or_nil("nvim-tree")
 local api = util.require_or_nil("nvim-tree.api")
-local lsp_file_operations = util.require_or_nil("lsp-file-operations")
-
-if not tree or not api then
-  return { init = function() end }
-end
 
 local M = {
   -- maybe set by dirs.lua
   startup_dir = nil,
 }
+
+if not tree or not api then
+  return M
+end
 
 local IGNORED_FT = {
   "gitcommit",
@@ -230,10 +229,6 @@ end
 --- open and find
 --- @param update_root boolean
 local function open_find(update_root)
-  if not api then
-    return
-  end
-
   api.tree.open({ find_file = true, update_root = update_root })
 end
 
@@ -249,21 +244,13 @@ end
 
 --- collapse then open and find
 function M.collapse_find()
-  if not api then
-    return
-  end
-
   api.tree.collapse_all(false)
   api.tree.open({ find_file = true })
 end
 
 --- Open nvim-tree for real files or startup directory
 --- @param data table from autocommand
-function M.open_nvim_tree(data)
-  if not api then
-    return
-  end
-
+function M.vim_enter(data)
   local real_file = vim.fn.filereadable(data.file) == 1
 
   local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
@@ -277,11 +264,7 @@ function M.open_nvim_tree(data)
   end
 end
 
-function M.init()
-  tree.setup(config)
-  if lsp_file_operations then
-    lsp_file_operations.setup({})
-  end
-end
+-- init
+tree.setup(config)
 
 return M

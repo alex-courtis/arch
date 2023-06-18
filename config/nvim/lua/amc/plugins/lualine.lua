@@ -4,6 +4,10 @@ local lualine = util.require_or_nil("lualine")
 
 local M = {}
 
+if not lualine then
+  return M
+end
+
 local filename = {
   "filename",
   symbols = {
@@ -162,12 +166,7 @@ local config = {
   },
 }
 
-function M.init()
-  if not lualine then
-    return
-  end
-
-  lualine.setup(config)
-end
+-- init
+lualine.setup(config)
 
 return M

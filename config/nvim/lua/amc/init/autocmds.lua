@@ -6,11 +6,15 @@ local nvim_tree = require("amc.plugins.nvt")
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
 local function au(event, callback, opts)
-  vim.api.nvim_create_autocmd(event, vim.tbl_extend("force", { group = group, callback = callback }, opts or {}))
+  if callback then
+    vim.api.nvim_create_autocmd(event, vim.tbl_extend("force", { group = group, callback = callback }, opts or {}))
+  end
 end
 
 local function ft(pattern, callback, opts)
-  vim.api.nvim_create_autocmd("FileType", vim.tbl_extend("force", { group = group, callback = callback, pattern = pattern }, opts or {}))
+  if callback then
+    vim.api.nvim_create_autocmd("FileType", vim.tbl_extend("force", { group = group, callback = callback, pattern = pattern }, opts or {}))
+  end
 end
 
 -- stylua: ignore start
@@ -21,7 +25,7 @@ au({ "WinClosed" },                                             buffers.wipe_unw
 au({ "BufLeave", "FocusLost" },                                 buffers.update,               { nested = true })
 au({ "QuickFixCmdPost" },                                       windows.open_qf_loc_win,      { nested = true })
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
-au({ "VimEnter" },                                              nvim_tree.open_nvim_tree,     {})
+au({ "VimEnter" },                                              nvim_tree.vim_enter,          {})
 -- stylua: ignore end
 
 --- no way to remap fugitive and tpope will not add

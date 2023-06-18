@@ -4,8 +4,6 @@ require("amc.init.options")
 
 -- installs but does not load
 local bootstrapped = require("amc.init.pack")({
-  "stevearc/aerial.nvim",
-  "antosha417/nvim-lsp-file-operations",
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "GutenYe/json5.vim",
@@ -43,14 +41,12 @@ require("amc.init.autocmds")
 require("amc.init.commands")
 require("amc.init.dirs")
 
-require("amc.plugins.cmp").init()
-require("amc.plugins.gitsigns").init()
-require("amc.plugins.lsp").init()
-require("amc.plugins.lualine").init()
-require("amc.plugins.nvt").init()
-require("amc.plugins.stylua").init()
-require("amc.plugins.telescope").init()
+require("amc.plugins.cmp")
+require("amc.plugins.gitsigns")
+require("amc.plugins.lsp")
+require("amc.plugins.lualine")
+require("amc.plugins.nvt")
+require("amc.plugins.stylua")
+require("amc.plugins.telescope")
 
 require("amc.init.mappings")
-
-require("aerial").setup()

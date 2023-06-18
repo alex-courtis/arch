@@ -13,9 +13,13 @@ vim.api.nvim_create_user_command("S", function(cmd)
 end, { nargs = "+", complete = "expression" })
 
 vim.api.nvim_create_user_command("RD", function(cmd)
-  telescope.live_grep({ search_dirs = cmd.fargs })
+  if telescope.live_grep then
+    telescope.live_grep({ search_dirs = cmd.fargs })
+  end
 end, { nargs = "+", complete = "dir" })
 
 vim.api.nvim_create_user_command("RT", function(cmd)
-  telescope.live_grep({ type_filter = cmd.args })
+  if telescope.live_grep then
+    telescope.live_grep({ type_filter = cmd.args })
+  end
 end, { nargs = 1 })

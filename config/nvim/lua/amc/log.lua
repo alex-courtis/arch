@@ -20,7 +20,7 @@ if vim.env.NVIM_LOG then
 
   M.line("----------------")
 else
-  M.line = function() end
+  function M.line() end
 end
 
 return M

@@ -4,6 +4,10 @@ local cmp_nvim_lsp = util.require_or_nil("cmp_nvim_lsp")
 
 local M = {}
 
+if not lspconfig or not cmp_nvim_lsp then
+  return M
+end
+
 local start_client_flags = {
   debounce_text_changes = 500,
 }
@@ -132,14 +136,9 @@ function M.goto_next()
   vim.diagnostic.goto_next({ wrap = false })
 end
 
-function M.init()
-  if not lspconfig then
-    return
-  end
-
-  lspconfig.ccls.setup(config_ccls)
-  lspconfig.lua_ls.setup(config_lua)
-  lspconfig.zls.setup(config_zls)
-end
+-- init
+lspconfig.ccls.setup(config_ccls)
+lspconfig.lua_ls.setup(config_lua)
+lspconfig.zls.setup(config_zls)
 
 return M

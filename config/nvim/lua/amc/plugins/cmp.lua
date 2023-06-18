@@ -3,6 +3,10 @@ local cmp = util.require_or_nil("cmp")
 
 local M = {}
 
+if not cmp then
+  return M
+end
+
 local config = cmp
     and {
       completion = {
@@ -30,10 +34,7 @@ local config = cmp
     }
   or nil
 
-function M.init()
-  if cmp then
-    cmp.setup(config)
-  end
-end
+--init
+cmp.setup(config)
 
 return M

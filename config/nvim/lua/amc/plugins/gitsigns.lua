@@ -3,11 +3,11 @@ local gitsigns = util.require_or_nil("gitsigns")
 
 local M = {}
 
-local on_attach = function(bufnr)
-  if not gitsigns then
-    return
-  end
+if not gitsigns then
+  return M
+end
 
+local on_attach = function(bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
   local function desc(d)
@@ -55,18 +55,15 @@ local on_attach = function(bufnr)
   end
 end
 
-function M.init()
-  if not gitsigns then
-    return
-  end
+local config = {
+  numhl = true,
+  current_line_blame_opts = {
+    delay = 100,
+  },
+  on_attach = on_attach,
+}
 
-  gitsigns.setup({
-    numhl = true,
-    current_line_blame_opts = {
-      delay = 100,
-    },
-    on_attach = on_attach,
-  })
-end
+-- init
+gitsigns.setup(config)
 
 return M

@@ -3,7 +3,7 @@ local M = {}
 --- Attempt to require
 --- @param modname string
 --- @return table|nil
-M.require_or_nil = function(modname)
+function M.require_or_nil(modname)
   local ok, module = pcall(require, modname)
   if ok then
     return module
