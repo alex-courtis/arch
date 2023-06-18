@@ -1,3 +1,6 @@
+# used by xdg-desktop-portal-wlr
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
 exec swayidle -w \

@@ -59,4 +59,4 @@ default_border normal 1
 # - the main window is tiled
 for_window [app_id="zoom"] floating enable, floating_maximum_size 800 x 600
 
-# vim: set filetype=i3config :
+# vim: set filetype=swayconfig :

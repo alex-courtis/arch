@@ -76,8 +76,6 @@ riverctl map normal $mod3 d spawn "vollowermic"
 
 riverctl map normal $mod3 h spawn "vollower"
 
-riverctl map normal $mod3 t spawn "bell"
-
 riverctl map normal $mod3 n spawn "ssa"
 
 riverctl map normal $mod3 s spawn "sss"

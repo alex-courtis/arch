@@ -11,4 +11,4 @@ input type:pointer {
     pointer_accel 0
 }
 
-# vim: set filetype=i3config :
+# vim: set filetype=swayconfig :
