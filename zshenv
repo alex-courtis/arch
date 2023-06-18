@@ -54,4 +54,4 @@ export MOZ_ENABLE_WAYLAND=1
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
-export XKB_DEFAULT_OPTIONS="caps:escape"
+export XKB_DEFAULT_OPTIONS="caps:escape,grp:menu_toggle"
