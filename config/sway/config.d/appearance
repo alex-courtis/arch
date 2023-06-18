@@ -22,6 +22,8 @@ font pango:monospace 11
 default_border normal 1
 hide_edge_borders smart
 
+focus_follows_mouse no
+
 bar {
     position top
     status_command slstatus -s
