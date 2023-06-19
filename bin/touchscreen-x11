@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case "${1}" in
+	"disable")
+		;;
+	"enable")
+		;;
+	*)
+		echo "usage: $(basename ${0}) <enable|disable>" 1>&2
+		exit 1
+		;;
+esac
+
+ID="$(xinput list | grep "Wacom Pen and multitouch sensor Finger" | sed -E 's/.*id=([0-9]+).*/\1/g')"
+
+xinput "${1}" "${ID}"
+
