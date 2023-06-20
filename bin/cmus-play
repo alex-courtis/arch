@@ -1,11 +1,20 @@
 #!/bin/sh
 
-DELTA="-5%"
 STATE="/tmp/cmus-pause-vol"
 
 if [ -f "${STATE}" ]; then
-	cmus-remote -C "vol $(cat ${STATE})%"
+	VOL="$(cat ${STATE} 2>/dev/null)"
 	rm "${STATE}"
+else
+	CUR="$(cmus-remote -C "status" | grep vol_left | sed -e 's/.*vol_left //g')"
+	if [ -n "${CUR}" ] && [ "${CUR}" -eq 0 ]; then
+		VOL=100
+	fi
 fi
+
+if [ -n "${VOL}" ]; then
+	cmus-remote -C "vol ${VOL}%"
+fi
+
 cmus-remote -C win-activate
 
