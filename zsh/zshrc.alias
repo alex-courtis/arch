@@ -70,7 +70,7 @@ alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 
 alias nin="ninja -C build"
 
-alias vg="valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
+alias vg="touch /tmp/vg.supp ; valgrind --leak-check=full --show-leak-kinds=all --suppressions=/tmp/vg.supp --gen-suppressions=all"
 
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /net/lord/music/"
 alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/.music/"
