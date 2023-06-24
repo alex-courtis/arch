@@ -5,8 +5,8 @@
 // window.document.getElementsByTagName('tree')
 
 {
-    "escape": "if (window.document.getElementById('tabmail-tabs').selectedIndex != 0) { window.document.getElementById('mailButton').click(); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); } else if (window.document.getElementById('folderTree').focused) { window.document.getElementById('folderTree').view.selection.select(1); }",
-    "ctrl+escape": "if (window.document.getElementById('tabmail-tabs').selectedIndex != 0) { window.document.getElementById('mailButton').click(); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); } else if (window.document.getElementById('folderTree').focused) { window.document.getElementById('folderTree').view.selection.select(1); }",
+    "escape": "if (window.document.getElementById('tabmail-tabs').selectedIndex == 0) { if (window.document.getElementById('folderTree').focused) { window.document.getElementById('folderTree').view.selection.select(1); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); } else { window.document.getElementById('threadTree').focus(); } } else { window.document.getElementById('mailButton').click(); }",
+    "ctrl+escape": "if (window.document.getElementById('tabmail-tabs').selectedIndex == 0) { if (window.document.getElementById('folderTree').focused) { window.document.getElementById('folderTree').view.selection.select(1); } else if (window.document.getElementById('threadTree').focused) { window.document.getElementById('folderTree').focus(); } else { window.document.getElementById('threadTree').focus(); } } else { window.document.getElementById('mailButton').click(); }",
 
     "0": "unset",
     "1": "unset",
