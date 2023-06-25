@@ -205,6 +205,9 @@ local config = {
       close_window = false,
     },
   },
+  notify = {
+    absolute_path = false,
+  },
   experimental = {},
   log = {
     enable = false,
