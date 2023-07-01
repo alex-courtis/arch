@@ -55,3 +55,6 @@ export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
 export XKB_DEFAULT_OPTIONS="caps:escape,grp:menu_toggle"
+
+# workaround for double scaling of steam overlay https://www.gamingonlinux.com/2023/06/steam-ui-scaling-should-work-even-better-in-the-latest-beta/
+export STEAM_FORCE_DESKTOPUI_SCALING=1
