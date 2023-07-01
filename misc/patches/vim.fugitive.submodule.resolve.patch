@@ -1,0 +1,25 @@
+From 6b12b43dbae842cab4d8f6edb29474875d72f28c Mon Sep 17 00:00:00 2001
+From: Alexander Courtis <alex@courtis.org>
+Date: Sat, 1 Jul 2023 17:00:44 +1000
+Subject: [PATCH] submodule don't resolve ../lib/.. ../usr/lib/..
+
+---
+ plugin/fugitive.vim | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugin/fugitive.vim b/plugin/fugitive.vim
+index d88fb8c..718dd8c 100644
+--- a/plugin/fugitive.vim
++++ b/plugin/fugitive.vim
+@@ -374,7 +374,7 @@ function! s:Tree(path) abort
+       endif
+     endif
+     if exists('worktree')
+-      let s:worktree_for_dir[dir] = s:Slash(resolve(worktree))
++      let s:worktree_for_dir[dir] = s:Slash(simplify(worktree))
+       let s:dir_for_worktree[s:worktree_for_dir[dir]] = dir
+     endif
+   endif
+-- 
+2.41.0
+
