@@ -87,7 +87,7 @@ nnoremap <C-w><C-l> <Nop>
 
 -- begin right
 K.nm_l("*", '/<C-r>=expand("<cword>")<CR><CR>')
-K.vm_l("*", '"*y<Esc>/<C-u><C-r>=getreg("*")<CR><CR>')
+K.vm_l("*", '"*y<Esc>/<C-u><C-r>=substitute(getreg("*"), "\\n", "\\\\\\\\n", "g")<CR><CR>') -- escape just newlines for now
 K.nmsl("f", telescope.find_files)
 K.nmsl("F", telescope.find_files_last)
 K.nmsl("da", vim.lsp.buf.code_action)
