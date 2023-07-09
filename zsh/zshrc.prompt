@@ -1,4 +1,4 @@
-setopt -o promptsubst
+setopt promptsubst
 
 PS1="\${COL_ZSH_NOR}:\${STR_PROMPT}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
 PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "
