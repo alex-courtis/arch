@@ -134,6 +134,7 @@ local config = {
   on_attach = on_attach,
   view = {
     adaptive_size = false,
+    width = {},
   },
   renderer = {
     full_name = true,
