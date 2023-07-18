@@ -102,4 +102,10 @@ function M.source()
   end
 end
 
+function M.lsp_rename()
+  vim.cmd.wall()
+  vim.lsp.buf.rename()
+  vim.cmd.wall()
+end
+
 return M

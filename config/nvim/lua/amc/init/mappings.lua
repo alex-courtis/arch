@@ -94,7 +94,7 @@ K.nmsl("da", vim.lsp.buf.code_action)
 K.nmsl("dq", vim.diagnostic.setqflist)
 K.nmsl("df", vim.diagnostic.open_float)
 K.nmsl("dh", vim.lsp.buf.hover)
-K.nmsl("dr", vim.lsp.buf.rename)
+K.nmsl("dr", dev.lsp_rename)
 K.nmsl("b", ":%y<CR>")
 K.nmsl("B", ":%d_<CR>")
 
