@@ -18,6 +18,7 @@ local bootstrapped = require("amc.init.pack")({
   "hrsh7th/vim-vsnip",
   "lewis6991/gitsigns.nvim",
   "lifepillar/vim-colortemplate",
+  "mhartington/formatter.nvim",
   "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
@@ -43,6 +44,7 @@ require("amc.init.dirs")
 
 require("amc.plugins.cmp")
 require("amc.plugins.gitsigns")
+require("amc.plugins.formatter")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")
 require("amc.plugins.nvt")

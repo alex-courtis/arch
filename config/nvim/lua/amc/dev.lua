@@ -28,16 +28,6 @@ local function build_type()
   return nil
 end
 
-function M.format()
-  local filetype = vim.bo.filetype
-
-  if stylua and filetype == "lua" then
-    stylua.format_file()
-  else
-    vim.cmd([[norm! gg=G``]])
-  end
-end
-
 local function meson(args)
   local prev_makeprg = vim.o.makeprg
   vim.o.makeprg = "meson"
