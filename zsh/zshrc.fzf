@@ -1,3 +1,7 @@
+if [ ! -f /usr/share/fzf/completion.zsh -o ! -f /usr/share/fzf/key-bindings.zsh ]; then
+	return
+fi
+
 # all but height apply to vim
 export FZF_DEFAULT_OPTS='--height=15 --exact --multi --info=inline --layout=reverse --bind tab:down,shift-tab:up,del:toggle,left-click:select,right-click:deselect'
 
