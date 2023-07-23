@@ -185,7 +185,7 @@ local config = {
   filters = {
     custom = {
       "^.git$",
-      '^\\~formatter',
+      "^\\~formatter",
     },
   },
   modified = {

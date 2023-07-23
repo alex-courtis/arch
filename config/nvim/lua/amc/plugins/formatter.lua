@@ -18,14 +18,8 @@ formatter.setup({
   logging = true,
   log_level = vim.log.levels.WARN,
   filetype = {
-    lua = function()
-      -- finding parent stylua.toml is currently non-functional when using stdin
-      --   Failed to run formatter stylua. error: no file or directory found matching ''
-      return {
-        exe = "stylua",
-        stdin = false,
-      }
-    end,
+    -- stylua finding parent stylua.toml is currently non-functional when using stdin
+    --   Failed to run formatter stylua. error: no file or directory found matching ''
     javascript = {
       require("formatter.filetypes.javascript").jsbeautify,
     },

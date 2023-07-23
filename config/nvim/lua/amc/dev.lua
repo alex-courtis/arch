@@ -1,4 +1,5 @@
 local util = require("amc.util")
+local formatter = require("amc.plugins.formatter")
 local stylua = util.require_or_nil("stylua-nvim")
 
 local M = {}
@@ -96,6 +97,16 @@ function M.lsp_rename()
   vim.cmd.wall()
   vim.lsp.buf.rename()
   vim.cmd.wall()
+end
+
+function M.format()
+  if stylua and vim.bo.filetype == "lua" then
+    stylua.format_file()
+  elseif formatter.format then
+    formatter.format()
+  else
+    vim.cmd([[norm! gg=G``]])
+  end
 end
 
 return M
