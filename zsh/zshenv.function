@@ -93,7 +93,3 @@ function remote_env_ssh() {
 	print -n '\Ec'
 	remote_env_teardown
 }
-
-function make() {
-	$(whence -p make) "${CC+CC=${CC}}" "${CXX+CXX=${CXX}}" "${@}"
-}
