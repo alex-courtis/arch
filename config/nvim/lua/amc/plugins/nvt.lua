@@ -132,10 +132,6 @@ local config = {
   sync_root_with_cwd = true,
   prefer_startup_root = true,
   on_attach = on_attach,
-  view = {
-    adaptive_size = false,
-    width = {},
-  },
   renderer = {
     full_name = true,
     group_empty = true,
