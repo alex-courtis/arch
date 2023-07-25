@@ -51,6 +51,9 @@ SAVEHIST=100000
 # it falls back to X successfully
 export MOZ_ENABLE_WAYLAND=1
 
+# suggest make behaviour
+export MAKEFLAGS="-j"
+
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
