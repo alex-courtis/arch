@@ -102,11 +102,14 @@ end
 function M.format()
   if stylua and vim.bo.filetype == "lua" then
     stylua.format_file()
-  elseif formatter.format then
-    formatter.format()
-  else
-    vim.cmd([[norm! gg=G``]])
+    return
   end
+
+  if formatter.format and formatter.format() then
+    return
+  end
+
+  vim.cmd([[silent norm! gg=G``]])
 end
 
 return M
