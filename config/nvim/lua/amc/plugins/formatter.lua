@@ -9,17 +9,27 @@ if not formatter or not formatter_format or not formatter_util then
   return M
 end
 
+local function jsbeautify()
+  return {
+    exe = "js-beautify",
+    args = {
+      "--editorconfig",
+    },
+    stdin = true,
+  }
+end
+
 local filetype = {
   -- stylua finding parent stylua.toml is currently non-functional when using stdin
   --   Failed to run formatter stylua. error: no file or directory found matching ''
   javascript = {
-    require("formatter.filetypes.javascript").jsbeautify,
+    jsbeautify,
   },
   json = {
-    require("formatter.filetypes.json").jsbeautify,
+    jsbeautify,
   },
   json5 = {
-    require("formatter.filetypes.json").jsbeautify,
+    jsbeautify,
   },
 }
 

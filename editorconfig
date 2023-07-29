@@ -7,7 +7,7 @@ indent_size = 4
 indent_style = tab
 trim_trailing_whitespace = false
 
-[*.{lua,json,yml,yaml,ts,tf}]
+[*.{lua,json,yml,yaml,ts,tf,js}]
 indent_style = space
 indent_size = 2
 
