@@ -1,4 +1,5 @@
 {
+  "space": "unset",
   "escape": "window.document.getElementById('mail3PaneTabBrowser1').contentDocument.getElementById('folderTree').selectedIndex = 1; window.document.getElementById('mail3PaneTabBrowser1').contentDocument.getElementById('threadTree').getElementsByAttribute('is', 'tree-view-table-body')[0].focus();",
 
   "0": "unset",
