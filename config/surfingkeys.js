@@ -7,30 +7,32 @@ api.aceVimMap(';', ':', 'normal');
 api.Hints.setCharacters('aoeuidhtnspyfgcrlqjkxbmwvz');
 
 var except_map = [
-	// unchanged defaults
-	'<Ctrl-i>',
-	'<Esc>',
-	'?', '/',
-	'd', 'u',
-	'f',
-	'gg', 'G',
-	'i', 'I',
-	'j', 'k',
-	'n', 'N',
-	'r',
-	'T',
-	'yy',
-	// remapping unreliable
-	'<Alt-s>',
-	'<Alt-i>',
+  // unchanged defaults
+  '<Ctrl-i>',
+  '<Esc>',
+  '?', '/',
+  'd', 'u',
+  'f',
+  'gg', 'G',
+  'i', 'I',
+  'j', 'k',
+  'n', 'N',
+  'r',
+  'T',
+  'yy',
+  // remapping unreliable
+  '<Alt-s>',
+  '<Alt-i>',
 ];
+
 function map(new_keystroke, old_keystroke, domain, new_annotation) {
-	api.map(new_keystroke, old_keystroke, domain, new_annotation);
-	except_map.push(new_keystroke);
+  api.map(new_keystroke, old_keystroke, domain, new_annotation);
+  except_map.push(new_keystroke);
 }
+
 function mapkey(keys, annotation, jscode, options) {
-	api.mapkey(keys, annotation, jscode, options);
-	except_map.push(keys);
+  api.mapkey(keys, annotation, jscode, options);
+  except_map.push(keys);
 }
 
 // settings
@@ -78,15 +80,23 @@ map('F', 'af');
 // move tab to another window
 map('m', 'W');
 mapkey('M', '#3Move current tab to a new window', function() {
-	api.RUNTIME('moveToWindow', { windowId: -1 });
+  api.RUNTIME('moveToWindow', {
+    windowId: -1
+  });
 });
 
 // new windows
 mapkey('w', '#8Open window', function() {
-	api.RUNTIME('openWindow', { url: 'about:blank', incognito: false });
+  api.RUNTIME('openWindow', {
+    url: 'about:blank',
+    incognito: false
+  });
 });
 mapkey('W', '#8Open incognito window', function() {
-	api.RUNTIME('openWindow', { url: 'about:blank', incognito: true });
+  api.RUNTIME('openWindow', {
+    url: 'about:blank',
+    incognito: true
+  });
 });
 
 // edit url
@@ -99,38 +109,58 @@ api.cmap('<Ctrl-u>', '<Ctrl-,>');
 
 // omnibar url
 mapkey('o', '#8Open a URL in current tab', function() {
-	api.Front.openOmnibar({type: "URLs", tabbed: false});
+  api.Front.openOmnibar({
+    type: "URLs",
+    tabbed: false
+  });
 });
 mapkey('O', '#8Open a URL in new tab', function() {
-	api.Front.openOmnibar({type: "URLs", tabbed: true});
+  api.Front.openOmnibar({
+    type: "URLs",
+    tabbed: true
+  });
 });
 
 // open bookmarks
 mapkey('b', '#8Open a bookmark in current tab', function() {
-	api.Front.openOmnibar(({type: "Bookmarks", tabbed: false}));
+  api.Front.openOmnibar(({
+    type: "Bookmarks",
+    tabbed: false
+  }));
 });
 mapkey('B', '#8Open a bookmark in new tab', function() {
-	api.Front.openOmnibar(({type: "Bookmarks", tabbed: true}));
+  api.Front.openOmnibar(({
+    type: "Bookmarks",
+    tabbed: true
+  }));
 });
 
 // open search g with s and S; clobbers all the unwanted s prefixes
 mapkey('s', '#6Google', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'g', tabbed: false}));
+  api.Front.openOmnibar(({
+    type: "SearchEngine",
+    extra: 'g',
+    tabbed: false
+  }));
 });
 mapkey('S', '#6Google', function() {
-	api.Front.openOmnibar(({type: "SearchEngine", extra: 'g', tabbed: true}));
+  api.Front.openOmnibar(({
+    type: "SearchEngine",
+    extra: 'g',
+    tabbed: true
+  }));
 });
 
 // open url from clipboard
 mapkey('p', '#7Open link from clipboard in current tab', function() {
-	api.Clipboard.read(function(response) {
-		window.location.href = response.data;
-	});
+  api.Clipboard.read(function(response) {
+    window.location.href = response.data;
+  });
 });
 mapkey('P', '#7Open link from clipboard in new tab', function() {
-	api.Clipboard.read(function(response) {
-		api.tabOpenLink(response.data);
-	});
+  api.Clipboard.read(function(response) {
+    api.tabOpenLink(response.data);
+  });
 });
 
 // visual click
@@ -150,14 +180,23 @@ api.removeSearchAlias('y');
 // create search alias
 api.unmap('e');
 api.unmap('E');
+
 function createSearch(prefix, alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion) {
-	api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
-	mapkey(prefix + alias, '#6' + prompt, () => {
-		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: false});
-	});
-	mapkey(prefix.toUpperCase() + alias, '#6' + prompt, () => {
-		api.Front.openOmnibar({type: 'SearchEngine', extra: alias, tabbed: true});
-	});
+  api.addSearchAlias(alias, prompt, search_url, suggestion_url, callback_to_parse_suggestion);
+  mapkey(prefix + alias, '#6' + prompt, () => {
+    api.Front.openOmnibar({
+      type: 'SearchEngine',
+      extra: alias,
+      tabbed: false
+    });
+  });
+  mapkey(prefix.toUpperCase() + alias, '#6' + prompt, () => {
+    api.Front.openOmnibar({
+      type: 'SearchEngine',
+      extra: alias,
+      tabbed: true
+    });
+  });
 }
 
 // search aliases
@@ -175,25 +214,26 @@ createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/instantsearch/?query='
 createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
 
 createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
-	var res = JSON.parse(response.text);
-	return res.map(function(r){
-		return r.phrase;
-	});
+  var res = JSON.parse(response.text);
+  return res.map(function(r) {
+    return r.phrase;
+  });
 });
 createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=', 's', 'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=', function(response) {
-	var res = JSON.parse(response.text);
-	return res[1];
+  var res = JSON.parse(response.text);
+  return res[1];
 });
 createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/w/index.php?search=', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
-	return JSON.parse(response.text)[1];
+  return JSON.parse(response.text)[1];
 });
 createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
-	'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=', function(response) {
-		var res = JSON.parse(response.text.substr(9, response.text.length-10));
-		return res[1].map(function(d) {
-			return d[0];
-		});
-	});
+  'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=',
+  function(response) {
+    var res = JSON.parse(response.text.substr(9, response.text.length - 10));
+    return res[1].map(function(d) {
+      return d[0];
+    });
+  });
 
 // unmap defaults
 api.unmapAllExcept(except_map);
