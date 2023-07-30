@@ -2,6 +2,32 @@
 
 # https://github.com/sickcodes/Docker-OSX
 
+# keyboard:
+# https://www.kaufmann.no/roland/dvorak/macosx.html
+# ctrl double click to install
+# sudo rm -f /System/Library/Caches/com.apple.IntlDataCache.le*
+# reboot
+
+# ssh:
+# preferences->sharing
+# remote login->allow full disk access
+
+# hostname:
+# sudo scutil --set HostName
+# sudo scutil --set ComputerName emperor-osx
+# sudo scutil --set LocalHostName emperor-osx
+# sudo dscacheutil -flushcache
+
+# terminfo:
+# curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
+# sudo /usr/bin/tic -xe tmux-256color terminfo.src
+
+# brew:
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# utils:
+# brew install rcm tmux alacritty neovim fd rg
+
 NAME=amc_osx
 IMG=sickcodes/docker-osx:monterey
 
@@ -38,7 +64,7 @@ case "${1}" in
 			"${IMG}"
 		;;
 	*)
-		printf "usage: osx <run|ssh|init>\n" 1>&2
+		printf "usage: osx <run|ssh|scp|init>\n" 1>&2
 		;;
 esac
 
