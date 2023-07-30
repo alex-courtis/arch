@@ -13,7 +13,7 @@
 # remote login->allow full disk access
 
 # hostname:
-# sudo scutil --set HostName
+# sudo scutil --set HostName emperor-osx
 # sudo scutil --set ComputerName emperor-osx
 # sudo scutil --set LocalHostName emperor-osx
 # sudo dscacheutil -flushcache
