@@ -8,6 +8,10 @@
 # sudo rm -f /System/Library/Caches/com.apple.IntlDataCache.le*
 # reboot
 
+# terminfo:
+# curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
+# sudo /usr/bin/tic -xe tmux-256color terminfo.src
+
 # ssh:
 # preferences->sharing
 # remote login->allow full disk access
@@ -17,10 +21,6 @@
 # sudo scutil --set ComputerName emperor-osx
 # sudo scutil --set LocalHostName emperor-osx
 # sudo dscacheutil -flushcache
-
-# terminfo:
-# curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
-# sudo /usr/bin/tic -xe tmux-256color terminfo.src
 
 # brew:
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
