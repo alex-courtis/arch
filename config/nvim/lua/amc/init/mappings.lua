@@ -29,12 +29,14 @@ K.nm__("<Esc>", function()
   vim.api.nvim_feedkeys(ESC, "n", false)
 end)
 
+--
 -- begin left
+--
+
 -- &
 -- $
 -- @
-K.nmsl("\\", buffers.wipe)
-K.nmsl("|", buffers.wipe_all)
+-- fn
 
 -- [
 K.nmsl("a", nvim_tree.open_find)
@@ -67,25 +69,20 @@ K.nmsl("x", buffers.safe_hash)
 K.nms_("<Space><BS>", buffers.back)
 K.nms_("<BS><BS>", buffers.back)
 
--- <Tab>
+K.nmsl("<Tab>", ":wincmd t<CR>")
 K.nmsl("<Esc>", ":wincmd p<CR>")
 
 K.nmsl("<Left>", ":wincmd h<CR>")
 K.nmsl("<Right>", ":wincmd l<CR>")
 
--- TODO remove once training complete
-vim.cmd([[
-nnoremap <C-w>p <Nop>
-nnoremap <C-w><C-p> <Nop>
-nnoremap <C-w>h <Nop>
-nnoremap <C-w><C-h> <Nop>
-nnoremap <C-w>l <Nop>
-nnoremap <C-w><C-l> <Nop>
-]])
-
+--
 -- end left
+--
 
+--
 -- begin right
+--
+
 K.nm_l("*", '/<C-r>=expand("<cword>")<CR><CR>')
 K.vm_l("*", '"*y<Esc>/<C-u><C-r>=substitute(getreg("*"), "\\n", "\\\\\\\\n", "g")<CR><CR>') -- escape just newlines for now
 K.nmsl("f", telescope.find_files)
@@ -142,30 +139,21 @@ K.nmsl("z", dev.format)
 -- /
 K.nm_l("-", ":GotoHeaderSwitch<CR>")
 K.nm_l("_", ":GotoHeader<CR>")
--- \ defined at left
+K.nmsl("\\", buffers.wipe)
+K.nmsl("|", buffers.wipe_all)
 
 K.nms_("<BS><Space>", buffers.forward)
 K.nms_("<Space><Space>", buffers.forward)
 
--- <Del>
+K.nmsl("<Del>", ":wincmd W<CR>")
 K.nmsl("<CR>", ":wincmd w<CR>")
-K.nmsl("<S-CR>", ":wincmd W<CR>")
 
 K.nmsl("<Up>", ":wincmd k<CR>")
 K.nmsl("<Down>", ":wincmd j<CR>")
 
--- TODO remove once training complete
-vim.cmd([[
-nnoremap <C-w>w <Nop>
-nnoremap <C-w><C-w> <Nop>
-nnoremap <C-w>W <Nop>
-nnoremap <C-w><C-W> <Nop>
-nnoremap <C-w>k <Nop>
-nnoremap <C-w><C-k> <Nop>
-nnoremap <C-w>j <Nop>
-nnoremap <C-w><C-j> <Nop>
-]])
+--
 -- end right
+--
 
 -- stop vim-commentary from creating the default mappings
 K.nm__("gc", "<NOP>")
