@@ -1,0 +1,4 @@
+#!/bin/sh
+
+firefox --new-window http://calendar.google.com &!
+
