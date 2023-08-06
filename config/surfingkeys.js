@@ -207,6 +207,7 @@ createSearch('e', 'dw', 'Dark Souls', 'https://darksouls.fandom.com/wiki/Special
 createSearch('e', 'hi', 'hello issue', 'https://hello.atlassian.net/browse/');
 createSearch('e', 'hs', 'hello search', 'https://hello.atlassian.net/wiki/search?text=');
 createSearch('e', 'na', 'Nier Automata', 'https://nier.fandom.com/wiki/Special:Search?query=')
+createSearch('e', 'ni', 'nvim-tree issue', 'https://github.com/nvim-tree/nvim-tree.lua/issues/')
 createSearch('e', 'o', 'go', 'http://go/');
 createSearch('e', 'pd', 'Proton DB', 'https://www.protondb.com/search?q=');
 createSearch('e', 'rr', 'Risk Of Rain', 'https://riskofrain2.fandom.com/wiki/Special:Search?query=')
