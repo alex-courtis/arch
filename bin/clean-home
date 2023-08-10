@@ -1,4 +1,6 @@
 #!/bin/sh
 
-rmdir /home/alex/Downloads 2>/dev/null || true
+rm -rf "${HOME}/Downloads" 2>/dev/null || true
+find "${HOME}/.dl" ! -newermt yesterday -delete
+find "${HOME}/.ss" ! -newermt yesterday -delete
 
