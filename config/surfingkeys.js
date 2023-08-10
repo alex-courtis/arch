@@ -136,17 +136,17 @@ mapkey('B', '#8Open a bookmark in new tab', function() {
 });
 
 // open search g with s and S; clobbers all the unwanted s prefixes
-mapkey('s', '#6Google', function() {
+mapkey('s', '#6Duck Duck Go', function() {
   api.Front.openOmnibar(({
     type: "SearchEngine",
-    extra: 'g',
+    extra: 'd',
     tabbed: false
   }));
 });
-mapkey('S', '#6Google', function() {
+mapkey('S', '#6Duck Duck Go', function() {
   api.Front.openOmnibar(({
     type: "SearchEngine",
-    extra: 'g',
+    extra: 'd',
     tabbed: true
   }));
 });
