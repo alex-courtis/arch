@@ -7,6 +7,9 @@ vim.o.termguicolors = true
 
 vim.cmd("colorscheme base16")
 
+-- changing MsgArea clears messages: https://github.com/neovim/neovim/issues/17832
+vim.cmd("highlight clear MsgArea")
+
 vim.cmd("highlight CursorLineNr cterm=bold gui=bold")
 
 vim.cmd("highlight TrailingSpace ctermbg=9 guibg=red")
