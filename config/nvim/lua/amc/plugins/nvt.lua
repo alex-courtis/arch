@@ -39,6 +39,18 @@ local function live_grep()
   telescope.live_grep({ search_dirs = { node_dir_path() } })
 end
 
+local function git_stage()
+  vim.fn.system({ "git", "stage", api.tree.get_node_under_cursor().absolute_path })
+end
+
+local function git_unstage()
+  vim.fn.system({ "git", "restore", "--staged", api.tree.get_node_under_cursor().absolute_path })
+end
+
+local function git_restore()
+  vim.fn.system({ "git", "restore", api.tree.get_node_under_cursor().absolute_path })
+end
+
 local function on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -117,10 +129,11 @@ local function on_attach(bufnr)
   vim.keymap.set('n', "'",        api.node.navigate.parent_close,     opts('Close Directory'))
   vim.keymap.set('n', '?',        api.tree.toggle_help,               opts('Help'))
   vim.keymap.set('n', 'O',        api.node.navigate.parent_close,     opts('Close Directory'))
-  vim.keymap.set('n', 'fc',       api.live_filter.clear,              opts('Clean Filter'))
-  vim.keymap.set('n', 'ff',       find_files,                         opts('Find Files'))
-  vim.keymap.set('n', 'fi',       api.live_filter.start,              opts('Filter'))
-  vim.keymap.set('n', 'gr',       live_grep,                          opts('Live Grep'))
+  vim.keymap.set('n', 'gr',       git_restore,                        opts('Git Restore'))
+  vim.keymap.set('n', 'gs',       git_stage,                          opts('Git Stage'))
+  vim.keymap.set('n', 'gu',       git_unstage,                        opts('Git Unstage'))
+  vim.keymap.set('n', 'tf',       find_files,                         opts('Find Files'))
+  vim.keymap.set('n', 'tg',       live_grep,                          opts('Live Grep'))
   vim.keymap.set('n', 'yn',       api.fs.copy.filename,               opts('Copy Name'))
   vim.keymap.set('n', 'yr',       api.fs.copy.relative_path,          opts('Copy Relative Path'))
   vim.keymap.set('n', 'yy',       api.fs.copy.absolute_path,          opts('Copy Absolute Path'))
