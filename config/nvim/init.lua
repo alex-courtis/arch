@@ -54,3 +54,6 @@ require("amc.plugins.stylua")
 require("amc.plugins.telescope")
 
 require("amc.init.mappings")
+
+-- colorscheme clears messages; this will show twice but that is better than never
+vim.cmd.messages()
