@@ -13,12 +13,7 @@ if not telescope or not actions or not action_set or not action_state or not bui
   return M
 end
 
--- builtin's last search text
-local last = {
-  live_grep = "",
-  find_files = "",
-  git_status = "",
-}
+telescope.load_extension('smart_history')
 
 local function attach_quickfix_select(prompt_bufnr)
   actions.select_default:replace(function()
@@ -84,6 +79,10 @@ local config = actions
             mirror = true,
           },
         },
+        history = {
+          path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+          limit = 100,
+        },
         mappings = {
           n = {
             ["<S-Tab>"] = actions.move_selection_previous,
@@ -94,6 +93,10 @@ local config = actions
             ["H"] = false,
             ["L"] = false,
             ["M"] = false,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
+            ["<C-Up>"] = actions.cycle_history_prev,
           },
           i = {
             ["<S-Tab>"] = actions.move_selection_previous,
@@ -102,6 +105,10 @@ local config = actions
             ["<M-q>"] = false,
             ["<PageDown>"] = false,
             ["<PageUp>"] = false,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
+            ["<C-Up>"] = actions.cycle_history_prev,
           },
         },
       },
@@ -126,26 +133,6 @@ local function opts(o)
   return o
 end
 
---- run builtin with last text populated
-local function add_builtins()
-  for n, _ in pairs(last) do
-    M[n .. "_last"] = function(o)
-      o = o or {}
-      o.default_text = last[n]
-      o.initial_mode = "normal"
-      return M[n](o)
-    end
-
-    -- set last text
-    config.pickers[n] = config.pickers[n] or {}
-    config.pickers[n].on_complete = {
-      function()
-        last[n] = action_state.get_current_line()
-      end,
-    }
-  end
-end
-
 --- extend each builtin to go home and include opts
 local function extend_builtins()
   for n, f in pairs(builtin) do
@@ -159,7 +146,6 @@ local function extend_builtins()
 end
 
 -- init
-add_builtins()
 telescope.setup(config)
 extend_builtins()
 

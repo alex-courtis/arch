@@ -382,6 +382,7 @@ rsync
 scrot
 slock
 slurp
+sqlite3
 swayidle
 swaylock
 sysstat
