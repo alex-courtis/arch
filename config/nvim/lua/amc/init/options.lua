@@ -8,6 +8,7 @@ vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.o.ignorecase = true
+vim.o.history = 500 -- applies to shada
 vim.o.listchars = vim.o.listchars .. ",space:·"
 vim.o.mouse = "a"
 vim.o.number = true
