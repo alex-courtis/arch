@@ -5,14 +5,12 @@ fi
 # all but height apply to vim
 export FZF_DEFAULT_OPTS='--height=15 --exact --multi --info=inline --layout=reverse --bind tab:down,shift-tab:up,del:toggle,left-click:select,right-click:deselect'
 
-export FZF_MAX_DEPTH="-maxdepth 4"
-
 # https://github.com/junegunn/fzf/pull/2885
 # dosdevices and SteamLinuxRuntime_soldier (proton) link back to fs roots
 export FZF_PATH_PRUNE="\
 	\( -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \
 		-o  -path '*/.git' -o -path '*/target' -o -path '*/node_modules' -o -path '*/__pycache__' \
-		-o -path '*dosdevices' -o -path '*SteamLinuxRuntime_soldier' \) -prune \
+		-o -path '*dosdevices' -o -path '*SteamLinuxRuntime_*' \) -prune \
 	-a -not -name '.git' -a -not -name 'target' -a -not -name 'node_modules' -a -not -name '__pycache__' -print"
 
 export FZF_DEFAULT_COMMAND="set -o pipefail; command \
@@ -23,26 +21,18 @@ export FZF_DEFAULT_COMMAND="set -o pipefail; command \
 _fzf_compgen_path() {
 	echo "$1"
 	eval "\
-		find -L \"$1\" ${FZF_MAX_DEPTH} ${FZF_PATH_PRUNE} \
+		find -L \"$1\" ${FZF_PATH_PRUNE} \
 		-o \( -type f -o -type l \) \
 		-a -not -path \"$1\" -print | sed 's@^\./@@'"
 }
 
 _fzf_compgen_dir() {
 	eval "\
-		find -L \"$1\" ${FZF_MAX_DEPTH} ${FZF_PATH_PRUNE} \
+		find -L \"$1\" ${FZF_PATH_PRUNE} \
 		-o -type d \
 		-a -not -path \"$1\" -print \
 		2> /dev/null | sed 's@^\./@@'"
 }
-
-fzf-completion-deep() {
-	local FZF_MAX_DEPTH_PREV="${FZF_MAX_DEPTH}"
-	FZF_MAX_DEPTH=""
-	fzf-completion
-	FZF_MAX_DEPTH="${FZF_MAX_DEPTH_PREV}"
-}
-zle -N fzf-completion-deep
 
 if [ -f "${HOME}/.fzf.zsh" ]; then
 	# from brew's /usr/local/opt/fzf/install
@@ -56,8 +46,7 @@ fi
 export FZF_COMPLETION_TRIGGER=""
 
 bindkey '^I' expand-or-complete
-bindkey -M viins '^@^@' fzf-completion
-bindkey -M viins '^@^D' fzf-completion-deep
+bindkey -M viins '^@' fzf-completion
 
 bindkey -M emacs -r '^T'
 bindkey -M viins -r '^T'
