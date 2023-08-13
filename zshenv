@@ -54,6 +54,25 @@ export MOZ_ENABLE_WAYLAND=1
 # suggest make behaviour
 export MAKEFLAGS="-j"
 
+# man colours
+#  errors:    reverse as normal
+#  prompt:    reverse as normal
+#  results:   reverse as normal
+#  bold:      blue
+#  blink:     red
+#  standout:  magenta
+#  underline: green, remove underline
+export MANPAGER="less --use-color \
+	--color=E+kw \
+	--color=P+kw \
+	--color=S+kw \
+	--color=d+b \
+	--color=k+r \
+	--color=s+m \
+	--color=ug \
+"
+export MANROFFOPT="-P -c"
+
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
