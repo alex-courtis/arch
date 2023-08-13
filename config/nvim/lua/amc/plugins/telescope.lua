@@ -6,14 +6,19 @@ local actions = util.require_or_nil("telescope.actions")
 local action_set = util.require_or_nil("telescope.actions.set")
 local action_state = util.require_or_nil("telescope.actions.state")
 local builtin = util.require_or_nil("telescope.builtin")
+local config = util.require_or_nil("telescope.config")
 
 local M = {}
 
-if not telescope or not actions or not action_set or not action_state or not builtin then
+if not telescope or not actions or not action_set or not action_state or not builtin or not config then
   return M
 end
 
-telescope.load_extension('smart_history')
+telescope.load_extension("smart_history")
+
+local vimgrep_arguments_hidden = vim.deepcopy(config.values.vimgrep_arguments)
+table.insert(vimgrep_arguments_hidden, "--hidden")
+table.insert(vimgrep_arguments_hidden, "--no-ignore")
 
 local function attach_quickfix_select(prompt_bufnr)
   actions.select_default:replace(function()
@@ -39,7 +44,7 @@ local function attach_quickfix_select(prompt_bufnr)
   return true
 end
 
-local config = actions
+local cfg = actions
     and {
       pickers = {
         live_grep = {
@@ -80,7 +85,7 @@ local config = actions
           },
         },
         history = {
-          path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+          path = "~/.local/share/nvim/databases/telescope_history.sqlite3",
           limit = 100,
         },
         mappings = {
@@ -146,7 +151,16 @@ local function extend_builtins()
 end
 
 -- init
-telescope.setup(config)
+telescope.setup(cfg)
 extend_builtins()
+
+-- hidden variants
+function M.live_grep_hidden()
+  M.live_grep({ vimgrep_arguments = vimgrep_arguments_hidden })
+end
+
+function M.find_files_hidden()
+  M.find_files({ hidden = true })
+end
 
 return M

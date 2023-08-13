@@ -62,7 +62,6 @@ K.nmsl("u", windows.cprev)
 
 -- =
 K.nmsl("y", telescope.git_status)
-K.nmsl("Y", telescope.git_status_last)
 K.nmsl("i", telescope.buffers)
 K.nmsl("x", buffers.safe_hash)
 
@@ -86,7 +85,7 @@ K.nmsl("<Right>", ":wincmd l<CR>")
 K.nm_l("*", '/<C-r>=expand("<cword>")<CR><CR>')
 K.vm_l("*", '"*y<Esc>/<C-u><C-r>=substitute(getreg("*"), "\\n", "\\\\\\\\n", "g")<CR><CR>') -- escape just newlines for now
 K.nmsl("f", telescope.find_files)
-K.nmsl("F", telescope.find_files_last)
+K.nmsl("F", telescope.find_files_hidden)
 K.nmsl("da", vim.lsp.buf.code_action)
 K.nmsl("dq", vim.diagnostic.setqflist)
 K.nmsl("df", vim.diagnostic.open_float)
@@ -97,7 +96,7 @@ K.nmsl("B", ":%d_<CR>")
 
 -- )
 K.nmsl("g", telescope.live_grep)
-K.nmsl("G", telescope.live_grep_last)
+K.nmsl("G", telescope.live_grep_hidden)
 K.nmsl("hb", ":G blame<CR>")
 -- h* gitsigns
 K.nmsl("mc", dev.clean)
