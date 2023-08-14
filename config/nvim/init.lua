@@ -25,6 +25,7 @@ local bootstrapped = require("amc.init.pack")({
   "nvim-lualine/lualine.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-smart-history.nvim",
+  "nvim-tree/nvim-tree.lua",
   -- "/home/alex/src/nvim-tree/master",
   "nvim-tree/nvim-web-devicons",
   "qpkorr/vim-bufkill",
