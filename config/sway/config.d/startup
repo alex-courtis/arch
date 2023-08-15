@@ -11,4 +11,7 @@ exec swayidle -w \
 
 exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
 
+# set the first X display to primary, for proton: https://github.com/swaywm/sway/issues/6422
+exec xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
+
 # vim: set filetype=sh :

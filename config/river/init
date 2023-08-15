@@ -8,6 +8,9 @@ echo "llllllllll1" > /tmp/rlw.state
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 
+# set the first X display to primary, for proton: https://github.com/swaywm/sway/issues/6422
+xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
+
 swayidle -w \
 	timeout 900 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
 	before-sleep 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
