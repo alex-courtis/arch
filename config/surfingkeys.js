@@ -1,5 +1,7 @@
 settings.tabsThreshold = 99;
 settings.tabsMRUOrder = false;
+settings.focusFirstCandidate = true
+settings.defaultSearchEngine = 'd'
 
 // ace editor
 api.aceVimMap(';', ':', 'normal');
