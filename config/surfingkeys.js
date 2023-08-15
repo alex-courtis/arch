@@ -216,27 +216,10 @@ createSearch('e', 'rr', 'Risk Of Rain', 'https://riskofrain2.fandom.com/wiki/Spe
 createSearch('e', 'sd', 'Steam DB', 'https://steamdb.info/instantsearch/?query=');
 createSearch('e', 'ss', 'Steam Store', 'https://store.steampowered.com/search/?term=');
 
-createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=', 's', 'https://duckduckgo.com/ac/?q=', function(response) {
-  var res = JSON.parse(response.text);
-  return res.map(function(r) {
-    return r.phrase;
-  });
-});
-createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=', 's', 'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=', function(response) {
-  var res = JSON.parse(response.text);
-  return res[1];
-});
-createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/w/index.php?search=', 's', 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&namespace=0&limit=40&search=', function(response) {
-  return JSON.parse(response.text)[1];
-});
-createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=', 's',
-  'https://clients1.google.com/complete/search?client=youtube&ds=yt&callback=cb&q=',
-  function(response) {
-    var res = JSON.parse(response.text.substr(9, response.text.length - 10));
-    return res[1].map(function(d) {
-      return d[0];
-    });
-  });
+createSearch('e', 'd', 'Duck Duck Go', 'https://duckduckgo.com/?q=');
+createSearch('e', 'g', 'Google', 'https://www.google.com/search?q=');
+createSearch('e', 'wi', 'Wikipedia', 'https://en.wikipedia.org/w/index.php?search=');
+createSearch('e', 'y', 'YouTube', 'https://www.youtube.com/results?search_query=');
 
 // unmap defaults
 api.unmapAllExcept(except_map);
