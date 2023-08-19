@@ -27,8 +27,8 @@ riverctl map-pointer normal $mod1 BTN_MIDDLE toggle-float
 riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 
 # thumbs
-riverctl map normal $mod1 BackSpace focus-output next
-riverctl map normal $mod2 BackSpace spawn "riverctl send-to-output next && riverctl focus-output next"
+riverctl map normal $mod1 BackSpace toggle-float
+riverctl map normal $mod2 BackSpace toggle-fullscreen
 riverctl map normal $mod3 BackSpace send-to-output next
 riverctl map normal $mod1 Escape swap next
 riverctl map normal $mod2 Escape swap previous
@@ -36,7 +36,6 @@ riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
 riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
 riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
 riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
-riverctl map normal $mod3 Delete spawn "way-displays -s SCALING off ; steam > /dev/null 2>&1"
 riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
 riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
@@ -73,10 +72,14 @@ riverctl map normal $mod3 f spawn "volraisemic"
 
 riverctl map normal $mod3 g spawn "volraise"
 
+riverctl map normal $mod1 l focus-output next
+riverctl map normal $mod2 l spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE16_LIGHTER_BACKGROUND} > /dev/null 2>&1"
 
 riverctl map normal $mod3 d spawn "vollowermic"
 
+riverctl map normal $mod1 h focus-output previous
+riverctl map normal $mod2 h spawn "riverctl send-to-output previous && riverctl focus-output previous"
 riverctl map normal $mod3 h spawn "vollower"
 
 riverctl map normal $mod3 n spawn "ssa"
