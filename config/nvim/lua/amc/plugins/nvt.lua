@@ -16,39 +16,55 @@ local IGNORED_FT = {
   "gitcommit",
 }
 
---- Absolute path of the current node's directory
---- @return string|nil
-local function node_dir_path()
+--- Absolute paths of the node.
+--- @return string|nil file node
+--- @return string|nil dir parent node of file otherwise node
+local function node_path_dir()
   local node = api.tree.get_node_under_cursor()
   if not node then
     return
   end
 
   if node.parent and node.type == "file" then
-    node = node.parent
+    return node.absolute_path, node.parent.absolute_path
+  else
+    return node.absolute_path, node.absolute_path
   end
-
-  return node.absolute_path
 end
 
 local function find_files()
-  telescope.find_files({ search_dirs = { node_dir_path() } })
+  local _, dir = node_path_dir()
+  if dir then
+    telescope.find_files({ search_dirs = { dir } })
+  end
 end
 
 local function live_grep()
-  telescope.live_grep({ search_dirs = { node_dir_path() } })
+  local _, dir = node_path_dir()
+  if dir then
+    telescope.live_grep({ search_dirs = { dir } })
+  end
 end
 
 local function git_stage()
-  vim.fn.system({ "git", "stage", api.tree.get_node_under_cursor().absolute_path })
+  local path, dir = node_path_dir()
+  if path and dir then
+    vim.fn.system({ "git", "-C", dir, "stage", path })
+  end
 end
 
 local function git_unstage()
-  vim.fn.system({ "git", "restore", "--staged", api.tree.get_node_under_cursor().absolute_path })
+  local path, dir = node_path_dir()
+  if path and dir then
+    vim.fn.system({ "git", "-C", dir, "restore", "--staged", path })
+  end
 end
 
 local function git_restore()
-  vim.fn.system({ "git", "restore", api.tree.get_node_under_cursor().absolute_path })
+  local path, dir = node_path_dir()
+  if path and dir then
+    vim.fn.system({ "git", "-C", dir, "restore", path })
+  end
 end
 
 local function on_attach(bufnr)
