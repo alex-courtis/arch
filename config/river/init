@@ -3,7 +3,7 @@
 # used by xdg-desktop-portal-wlr
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-echo "llllllllll1" > /tmp/rlw.state
+echo "mmmmmmmmmm1" > /tmp/rlw.state
 
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
@@ -109,7 +109,7 @@ riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 # appearance
 riverctl background-color       "0x${BASE16_DEFAULT_BACKGROUND#*#}"
 riverctl border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
-riverctl border-color-focused   "0x${BASE16_DARK_FOREGROUND#*#}"
+riverctl border-color-focused   "0x${BASE16_LIGHTER_BACKGROUND#*#}"		# overridden by rivercarro-wrapper
 riverctl border-color-urgent    "0x${BASE16_COMMENTS#*#}"
 riverctl border-width 1
 
@@ -144,5 +144,5 @@ riverctl spawn waybar
 # run
 riverctl default-layout rivercarro
 exec rivercarro -inner-gaps 0 -outer-gaps 0 \
-	-main-location left -main-ratio 0.5
+	-main-location monocle -main-ratio 0.5
 

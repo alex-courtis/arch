@@ -123,9 +123,9 @@ if [ "${cur_layout}" != "${new_layout}" ]; then
 
 	# smartborders
 	if [ "${location}" = "monocle" ]; then
-		riverctl border-width 0
+		riverctl border-color-focused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
 	else
-		riverctl border-width 1
+		riverctl border-color-focused "0x${BASE16_DARK_FOREGROUND#*#}"
 	fi
 fi
 
