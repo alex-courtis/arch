@@ -408,11 +408,11 @@ xorg-xbacklight
 xorg-xinit
 xorg-xrandr
 xsel
-yq
 zsh-completions
 lemonade-git
 libinput-gestures
 lswt
+go-yq
 menjar
 nerd-fonts-hack
 river-git
