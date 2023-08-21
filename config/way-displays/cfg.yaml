@@ -5,6 +5,7 @@ ORDER:
   - Unknown 0x05EF
   - ASUS XG32V
   - Ancor Communications Inc ROG PG27AQ
+SCALING: TRUE
 AUTO_SCALE: TRUE
 SCALE:
   - NAME_DESC: ASUS XG32V
