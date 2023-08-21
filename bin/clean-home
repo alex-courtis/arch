@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/zsh
+
+# use zsh so that we get environment
 
 rm -rf "${HOME}/Downloads" 2>/dev/null || true
-find "${HOME}/.dl" ! -newermt yesterday -delete
-find "${HOME}/.ss" ! -newermt yesterday -delete
+rm -rf "${XDG_DATA_HOME}/Trash" 2>/dev/null || true
+find "${HOME}/.dl" ! -newermt yesterday -delete 2>/dev/null
+find "${HOME}/.ss" ! -newermt yesterday -delete 2>/dev/null
 
