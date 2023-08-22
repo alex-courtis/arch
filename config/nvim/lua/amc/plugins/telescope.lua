@@ -88,32 +88,64 @@ local cfg = actions
           path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
           limit = 100,
         },
-        mappings = {
+        default_mappings = {
           n = {
-            ["<S-Tab>"] = actions.move_selection_previous,
+            ["<ESC>"] = actions.close,
+            ["<C-c>"] = actions.close,
+
+            ["<CR>"] = actions.select_default,
+
+            ["j"] = actions.move_selection_next,
+            ["<C-n>"] = actions.move_selection_next,
             ["<Tab>"] = actions.move_selection_next,
-            ["<M-q>"] = false,
-            ["<PageDown>"] = false,
-            ["<PageUp>"] = false,
-            ["H"] = false,
-            ["L"] = false,
-            ["M"] = false,
+            ["<Down>"] = actions.move_selection_next,
+            ["k"] = actions.move_selection_previous,
+            ["<C-p>"] = actions.move_selection_previous,
+            ["<S-Tab>"] = actions.move_selection_previous,
+            ["<Up>"] = actions.move_selection_previous,
+
+            ["h"] = actions.results_scrolling_left,
+            ["<C-h>"] = actions.results_scrolling_left,
+            ["l"] = actions.results_scrolling_right,
+            ["<C-l>"] = actions.results_scrolling_right,
+
+            ["gg"] = actions.move_to_top,
+            ["G"] = actions.move_to_bottom,
+
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+
             ["<C-j>"] = actions.cycle_history_next,
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-k>"] = actions.cycle_history_prev,
             ["<C-Up>"] = actions.cycle_history_prev,
+
+            ["?"] = actions.which_key,
           },
           i = {
-            ["<S-Tab>"] = actions.move_selection_previous,
+            ["<C-c>"] = actions.close,
+
+            ["<CR>"] = actions.select_default,
+
+            ["<C-n>"] = actions.move_selection_next,
             ["<Tab>"] = actions.move_selection_next,
-            ["<C-l>"] = false,
-            ["<M-q>"] = false,
-            ["<PageDown>"] = false,
-            ["<PageUp>"] = false,
+            ["<Down>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
+            ["<S-Tab>"] = actions.move_selection_previous,
+            ["<Up>"] = actions.move_selection_previous,
+
+            ["<C-u>"] = actions.preview_scrolling_up,
+            ["<C-d>"] = actions.preview_scrolling_down,
+
+            ["<C-h>"] = actions.results_scrolling_left,
+            ["<C-l>"] = actions.results_scrolling_right,
+
             ["<C-j>"] = actions.cycle_history_next,
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-k>"] = actions.cycle_history_prev,
             ["<C-Up>"] = actions.cycle_history_prev,
+
+            ["<C-/>"] = actions.which_key,
           },
         },
       },
