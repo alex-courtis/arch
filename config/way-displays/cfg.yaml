@@ -16,6 +16,8 @@ SCALE:
     SCALE: 1
   - NAME_DESC: M28U
     SCALE: 1.75
+  - NAME_DESC: Sharp Corporation 0x148D
+    SCALE: 2
 MODE:
   - NAME_DESC: MAG274QRF-QD
     WIDTH: 2560
