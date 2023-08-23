@@ -45,6 +45,8 @@
   <action id="ActivateVersionControlToolWindow">
     <keyboard-shortcut first-keystroke="alt g" />
   </action>
+  <action id="ChangesView.ToggleCommitUi" />
+  <action id="CheckinProject" />
   <action id="CompareTwoFiles" />
   <action id="CopyPaths" />
   <action id="CopyReference" />
@@ -75,21 +77,44 @@
   </action>
   <action id="ExportToTextFile" />
   <action id="FileChooser.GotoDesktop" />
+  <action id="FindNext">
+    <keyboard-shortcut first-keystroke="f3" />
+  </action>
+  <action id="Git.Commit.Stage" />
   <action id="GotoAction">
     <keyboard-shortcut first-keystroke="alt a" />
   </action>
   <action id="GotoDeclaration" />
   <action id="GotoSuperMethod" />
+  <action id="InsertLiveTemplate" />
   <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
+  <action id="NextTab">
+    <keyboard-shortcut first-keystroke="alt right" />
+    <keyboard-shortcut first-keystroke="ctrl j" />
+  </action>
   <action id="PasteMultiple" />
+  <action id="PreviousTab">
+    <keyboard-shortcut first-keystroke="alt left" />
+    <keyboard-shortcut first-keystroke="ctrl k" />
+  </action>
   <action id="Rerun" />
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
   <action id="ShowSettings">
     <keyboard-shortcut first-keystroke="alt s" />
   </action>
+  <action id="SwitcherBackward">
+    <keyboard-shortcut first-keystroke="ctrl l" />
+  </action>
+  <action id="SwitcherForward">
+    <keyboard-shortcut first-keystroke="ctrl x" />
+    <keyboard-shortcut first-keystroke="ctrl h" />
+  </action>
+  <action id="TypeHierarchy" />
+  <action id="TypeHierarchyBase.BaseOnThisType" />
   <action id="UsageFiltering.WriteAccess" />
+  <action id="Vcs.Log.FocusTextFilter" />
   <action id="Vcs.UpdateProject" />
   <action id="XDebugger.CopyWatch" />
   <action id="org.intellij.plugins.markdown.ui.actions.styling.InsertImageAction" />

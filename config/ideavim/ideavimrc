@@ -28,8 +28,8 @@ sethandler <C-F> a:ide
 sethandler <C-G> a:vim
 sethandler <C-H> a:ide
 sethandler <C-I> a:ide
-sethandler <C-J> a:vim
-sethandler <C-K> a:vim
+sethandler <C-J> a:ide
+sethandler <C-K> a:ide
 sethandler <C-L> a:ide
 sethandler <C-M> a:ide
 sethandler <C-N> a:ide
@@ -42,7 +42,7 @@ sethandler <C-T> a:vim
 sethandler <C-U> a:vim
 sethandler <C-V> a:vim
 sethandler <C-W> a:ide
-sethandler <C-X> a:vim
+sethandler <C-X> a:ide
 sethandler <C-Y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-]> a:vim
@@ -76,8 +76,7 @@ nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 nm <Space>y <Action>(ActivateVersionControlToolWindow)
 nm <Space>i <Action>(Switcher)
-nm <Space>x <Action>(CopyPathFromRepositoryRootProvider)
-nm <Space>X <Action>(CopyReference)
+nm <Space>x <Action>(SwitcherForward)
 
 nm <Space><Down> <Action>(NextTab)
 nm <Space><Up> <Action>(PreviousTab)
@@ -87,7 +86,8 @@ nm <BS>F  <Action>(GotoClass)
 nm <BS>dr <Action>(RenameElement)
 vm <BS>dr <Action>(RenameElement)
 nm <BS>dg <Action>(Generate)
-" b
+nm <BS>b  :%y<CR>
+nm <BS>B  :%d_<CR>
 
 nm <BS>g  <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
@@ -119,7 +119,8 @@ nm <BS>N  <Action>(ShowSettingsAndFindUsages)
 vm <BS>N  <Action>(ShowSettingsAndFindUsages)
 nm <BS>v  :put<CR>
 
-" l
+nm <BS>l <Action>(CopyPathFromRepositoryRootProvider)
+nm <BS>L <Action>(CopyReference)
 nm <BS>s  viw<Action>(FindInPath)<Esc>
 vm <BS>s  <Action>(FindInPath)<Esc>
 nm <BS>z  <Action>(ReformatCode)
