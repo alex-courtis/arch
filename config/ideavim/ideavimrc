@@ -129,7 +129,8 @@ nm <BS>Z  <Action>(OptimizeImports)
 nm <BS>/  viw<Action>(Find)<Esc>
 vm <BS>/  <Action>(Find)<Esc>
 " -
-nm <BS>\  gg"_dG
+nm <BS>\ <Action>(CloseContent)
+nm <BS>\ <Action>(CloseAllEditorsButActive)
 
 nm <BS><Down> <Action>(NextTab)
 nm <BS><Up> <Action>(PreviousTab)
