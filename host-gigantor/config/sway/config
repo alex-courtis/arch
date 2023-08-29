@@ -1,9 +1,0 @@
-include ~/.config/i3/config.d/*
-include ~/.config/sway/config.d/*
-
-# font size hack for gigantor's scale 1 for intellij
-font pango:monospace 12
-
-# this monitor is very slow so hardcode to the way-displays value to prevent double mode setting
-output "Unknown MAG274QRF-QD CA8A271A00352" pos 0 0 mode 2560x1440@144Hz
-
