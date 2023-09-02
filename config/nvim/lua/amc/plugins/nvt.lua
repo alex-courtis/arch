@@ -162,6 +162,7 @@ local config = {
   prefer_startup_root = true,
   on_attach = on_attach,
   renderer = {
+    highlight_diagnostics = true,
     full_name = true,
     group_empty = true,
     highlight_opened_files = "name",
@@ -178,6 +179,7 @@ local config = {
         folder = false,
         folder_arrow = false,
         git = true,
+        diagnostics = false,
       },
       glyphs = {
         modified = "[+]",
