@@ -47,7 +47,7 @@ K.nmsl('"', windows.close_others)
 -- {
 K.nmsl(",", vim.cmd.Git)
 K.nmsl("o", windows.go_home_or_next)
-K.nmsl("O", windows.go_home)
+K.nmsl("O", vim.cmd.only)
 K.nmsl("q", windows.close)
 
 -- }
