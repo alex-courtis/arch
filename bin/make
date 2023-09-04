@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case "${PWD}" in
+	*dual-function-keys*)
+		;&
+	*xlayoutdisplay*)
+		/usr/bin/make CC="clang" CXX"=clang++" "${@}"
+		;;
+	*)
+		/usr/bin/make "${@}"
+		;;
+esac
+
