@@ -22,7 +22,7 @@ if [ "${USER}" != "root" -a -z "${TMUX}" -a -z "${DISPLAY}" -a -z "${WAYLAND_DIS
 				exec startwm x dwm
 				;;
 			3)
-				exec startwm gnome
+				exec startwm hyprland
 				;;
 			4)
 				exec startwm sway

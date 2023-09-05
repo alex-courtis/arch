@@ -16,22 +16,13 @@ case "${1}" in
 		river \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/river.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
+	"hyprland")
+		Hyprland > "/tmp/hyprland.${XDG_VTNR}.${USER}.log" 2>&1
+		;;
 	"x")
 		export X_WM="${2}"
 		startx \
 			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${X_WM}.x.${XDG_VTNR}.${USER}.log") 2>&1
-		;;
-	"gnome")
-		gnome-shell --wayland \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/gnome.${XDG_VTNR}.${USER}.log") 2>&1
-		;;
-	"weston")
-		weston \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/weston.${XDG_VTNR}.${USER}.log") 2>&1
-		;;
-	"tinywl")
-		tinywl -s alacritty \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/tinywl.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	*)
 		print "unknown wm ${1}" 1>&2
