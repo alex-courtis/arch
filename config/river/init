@@ -128,7 +128,8 @@ riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 # appearance
 riverctl background-color       "0x${BASE16_DEFAULT_BACKGROUND#*#}"
 riverctl border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
-riverctl border-color-focused   "0x${BASE16_DARK_FOREGROUND#*#}"
+# riverctl border-color-focused   "0x${BASE16_DARK_FOREGROUND#*#}"
+riverctl border-color-focused   "0x808080"
 riverctl border-color-urgent    "0x${BASE16_COMMENTS#*#}"
 riverctl border-width 1
 
