@@ -38,7 +38,8 @@ riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
 riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
 riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
-riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
+# riverctl map normal $mod1 Space spawn 'rivercarro-wrapper layout toggle'
+riverctl map normal $mod1 Space send-layout-cmd river-xmonadwm "--layout-toggle"
 riverctl map normal $mod2 Space toggle-fullscreen
 riverctl map normal $mod3 Space toggle-float
 
@@ -46,8 +47,10 @@ riverctl map normal $mod3 Space toggle-float
 tag=1
 for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 
-	riverctl map normal $mod1 $k spawn "rivercarro-wrapper tag-focus $tag"
-	riverctl map normal $mod2 $k spawn "rivercarro-wrapper tag-move $tag"
+	riverctl map normal $mod1 $k set-focused-tags $tag
+	riverctl map normal $mod2 $k spawn "riverctl set-view-tags ${tag} ; riverctl set-focused-tags ${tag}"
+	# riverctl map normal $mod1 $k spawn "rivercarro-wrapper tag-focus $tag"
+	# riverctl map normal $mod2 $k spawn "rivercarro-wrapper tag-move $tag"
 	riverctl map normal $mod3 $k set-view-tags $tag
 	tag=$(($tag << 1))
 done
@@ -61,21 +64,30 @@ else
 	riverctl map normal $mod3 q exit
 fi
 
-riverctl map normal $mod1 equal send-layout-cmd rivercarro "main-ratio 0.5"
+# riverctl map normal $mod1 equal send-layout-cmd rivercarro "main-ratio 0.5"
+riverctl map normal $mod1 equal send-layout-cmd river-xmonadwm "--ratio-master 0.5"
 
 #right
-riverctl map normal $mod1 plus send-layout-cmd rivercarro "main-ratio +0.025"
+# riverctl map normal $mod1 plus send-layout-cmd rivercarro "main-ratio +0.025"
+riverctl map normal $mod1 plus send-layout-cmd river-xmonadwm "--ratio-master 0.6"
 
-riverctl map normal $mod1 minus send-layout-cmd rivercarro "main-ratio -0.025"
+# riverctl map normal $mod1 minus send-layout-cmd rivercarro "main-ratio -0.025"
+riverctl map normal $mod1 minus send-layout-cmd river-xmonadwm "--ratio-master 0.4"
 
 riverctl map normal $mod3 f spawn "volraisemic"
 
 riverctl map normal $mod3 g spawn "volraise"
 
+riverctl map normal $mod1 c send-layout-cmd river-xmonadwm "--count-master 1"
+riverctl map normal $mod2 c send-layout-cmd river-xmonadwm "--count-master 2"
+riverctl map normal $mod3 c send-layout-cmd river-xmonadwm "--count-master 3"
+
 riverctl map normal $mod1 l focus-output next
 riverctl map normal $mod2 l spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE16_LIGHTER_BACKGROUND} > /dev/null 2>&1"
 
+riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
+riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
 riverctl map normal $mod3 d spawn "vollowermic"
 
 riverctl map normal $mod1 h focus-output previous
@@ -98,6 +110,13 @@ riverctl map normal $mod3 z spawn "way-displays -s SCALING off"
 
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
+riverctl map normal $mod1 left send-layout-cmd river-xmonadwm "--layout left"
+riverctl map normal $mod1 right send-layout-cmd river-xmonadwm "--layout right"
+riverctl map normal $mod1 up send-layout-cmd river-xmonadwm "--layout monocle"
+riverctl map normal $mod2 up send-layout-cmd river-xmonadwm "--layout top"
+riverctl map normal $mod1 down send-layout-cmd river-xmonadwm "--layout monocle"
+riverctl map normal $mod2 down send-layout-cmd river-xmonadwm "--layout bottom"
+
 # special
 riverctl map normal None XF86AudioMute         spawn "volmute"
 riverctl map normal None XF86AudioMicMute      spawn "volmutemic"
@@ -109,7 +128,7 @@ riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 # appearance
 riverctl background-color       "0x${BASE16_DEFAULT_BACKGROUND#*#}"
 riverctl border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
-riverctl border-color-focused   "0x${BASE16_LIGHTER_BACKGROUND#*#}"		# overridden by rivercarro-wrapper
+riverctl border-color-focused   "0x${BASE16_DARK_FOREGROUND#*#}"
 riverctl border-color-urgent    "0x${BASE16_COMMENTS#*#}"
 riverctl border-width 1
 
@@ -142,7 +161,6 @@ sed -e "s/\${FONT_SIZE_PT}/${FONT_SIZE_PT}/g" $XDG_CONFIG_HOME/waybar/style.temp
 riverctl spawn waybar
 
 # run
-riverctl default-layout rivercarro
-exec rivercarro -inner-gaps 0 -outer-gaps 0 \
-	-main-location monocle -main-ratio 0.5
+riverctl default-layout river-xmonadwm
+exec river-xmonadwm --stack dwindle
 
