@@ -197,11 +197,14 @@ env:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
   #primary:
   #  background: '#1d1f21'
   #  foreground: '#c5c8c6'
+  primary:
+    background: '0x000000'
+    foreground: '0xe0e0e0'
 
     # Bright and dim foreground colors
     #
@@ -221,6 +224,9 @@ env:
   #cursor:
   #  text: CellBackground
   #  cursor: CellForeground
+  cursor:
+    text: '0x000000'
+    cursor: '0xe0e0e0'
 
   # Vi mode cursor colors
   #
@@ -231,6 +237,9 @@ env:
   #vi_mode_cursor:
   #  text: CellBackground
   #  cursor: CellForeground
+  vi_mode_cursor:
+    text: '0x000000'
+    cursor: '0xe0e0e0'
 
   # Search colors
   #
@@ -244,6 +253,13 @@ env:
     #focused_match:
     #  foreground: '#ffffff'
     #  background: '#000000'
+  search:
+    matches:
+      foreground: '0x303030'
+      background: '0xfc6d24'
+    focused_match:
+      foreground: '0x303030'
+      background: '0xfda331'
 
   # Keyboard hints
   #hints:
@@ -272,6 +288,9 @@ env:
   #line_indicator:
   #  foreground: None
   #  background: None
+  line_indicator:
+    background: '0x505050'
+    foreground: '0xf5f5f5'
 
   # Footer bar
   #
@@ -281,6 +300,9 @@ env:
   #footer_bar:
   #  background: '#c5c8c6'
   #  foreground: '#1d1f21'
+  footer_bar:
+    background: '0x505050'
+    foreground: '0xf5f5f5'
 
   # Selection colors
   #
@@ -291,6 +313,9 @@ env:
   #selection:
   #  text: CellBackground
   #  background: CellForeground
+  selection:
+    text: CellForeground
+    background: '0x303030'
 
   # Normal colors
   #normal:
@@ -302,6 +327,15 @@ env:
   #  magenta: '#b294bb'
   #  cyan:    '#8abeb7'
   #  white:   '#c5c8c6'
+  normal:
+    black:   '0x000000'
+    red:     '0xfb0120'
+    green:   '0xa1c659'
+    yellow:  '0xfda331'
+    blue:    '0x6fb3d2'
+    magenta: '0xd381c3'
+    cyan:    '0x76c7b7'
+    white:   '0xe0e0e0'
 
   # Bright colors
   #bright:
@@ -313,6 +347,16 @@ env:
   #  magenta: '#c397d8'
   #  cyan:    '#70c0b1'
   #  white:   '#eaeaea'
+  # bright colour variants created by multiplying LCh by 1.25 in GIMP
+  bright:
+    black:   '0xb0b0b0'
+    red:     '0xff4b3f'
+    green:   '0xd6fc8b'
+    yellow:  '0xffd765'
+    blue:    '0x9fe3ff'
+    magenta: '0xffadf1'
+    cyan:    '0xaafceb'
+    white:   '0xffffff'
 
   # Dim colors
   #
@@ -337,49 +381,6 @@ env:
   #   `- { index: 16, color: '#ff00ff' }`
   #
   #indexed_colors: []
-
-  # Transparent cell backgrounds
-  #
-  # Whether or not `window.opacity` applies to all cell backgrounds or only to
-  # the default background. When set to `true` all cells will be transparent
-  # regardless of their background color.
-  #transparent_background_colors: false
-
-# extended base16-bright from https://github.com/chriskempson/base16-shell */
-# sync with .Xresources et al */
-colors:
-  # Default colors
-  primary:
-    background: '0x000000'
-    foreground: '0xe0e0e0'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x000000'
-    cursor: '0xe0e0e0'
-
-  # normal
-  normal:
-    black:   '0x000000'
-    red:     '0xfb0120'
-    green:   '0xa1c659'
-    yellow:  '0xfda331'
-    blue:    '0x6fb3d2'
-    magenta: '0xd381c3'
-    cyan:    '0x76c7b7'
-    white:   '0xe0e0e0'
-
-  # bright colour variants created by multiplying LCh by 1.25 in GIMP
-  bright:
-    black:   '0xb0b0b0'
-    red:     '0xff4b3f'
-    green:   '0xd6fc8b'
-    yellow:  '0xffd765'
-    blue:    '0x9fe3ff'
-    magenta: '0xffadf1'
-    cyan:    '0xaafceb'
-    white:   '0xffffff'
-
   # extended, normally occupying the bright colour variants
   indexed_colors:
     - { index: 16, color: '0xfc6d24' }
@@ -388,6 +389,13 @@ colors:
     - { index: 19, color: '0x505050' }
     - { index: 20, color: '0xd0d0d0' }
     - { index: 21, color: '0xf5f5f5' }
+
+  # Transparent cell backgrounds
+  #
+  # Whether or not `window.opacity` applies to all cell backgrounds or only to
+  # the default background. When set to `true` all cells will be transparent
+  # regardless of their background color.
+  #transparent_background_colors: false
 
 # Bell
 #
@@ -832,7 +840,8 @@ key_bindings:
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
-  #- { key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
+  - {  key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
+  - {  key: C,      mods: Control,       mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
   #- { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }
   #- { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
