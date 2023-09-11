@@ -3,7 +3,7 @@ Name=Slack Wayland
 StartupWMClass=Slack
 Comment=Slack Desktop
 GenericName=Slack Client for Linux
-Exec=/usr/bin/slack --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland -s %U
+Exec=/usr/bin/slack --enable-features=WebRTCPipeWireCapturer --ozone-platform-hint=auto -s %U
 Icon=slack
 Type=Application
 StartupNotify=true
