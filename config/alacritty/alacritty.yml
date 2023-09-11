@@ -829,7 +829,9 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-  - { key: L,          mods: Shift|Control,              action: ClearHistory   }
+  
+  - { key: L,          mods: Shift|Control,              action: ClearHistory     }
+  - { key: N,          mods: Shift|Control,              action: SpawnNewInstance }
 
   # Vi Mode
   - { key: H,       mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
