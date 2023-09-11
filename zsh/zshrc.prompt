@@ -7,6 +7,12 @@ elif [ -n "${PROMPT_COLOURS[${HOST}]}" ]; then
 else
 	COL_PROMPT="white"
 fi
+if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
+    STR_PROMPT=" ${HOST} "
+fi
+if [ "${USER}" = "root" ]; then
+	STR_PROMPT="${STR_PROMPT} root "
+fi
 
 COL_ZSH_OFF="%k%f"
 COL_ZSH_NOR="%F{black}%K{${COL_PROMPT}}"
