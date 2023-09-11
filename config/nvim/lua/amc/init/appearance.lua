@@ -12,7 +12,7 @@ vim.cmd("highlight clear MsgArea")
 
 vim.cmd("highlight CursorLineNr cterm=bold gui=bold")
 
-vim.cmd("highlight TrailingSpace ctermbg=9 guibg=red")
+vim.cmd("highlight TrailingSpace cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_RED)
 
 vim.cmd("highlight Search guibg=" .. vim.env.BASE16_ORANGE) -- default yellow
 vim.cmd("highlight IncSearch guibg=" .. vim.env.BASE16_YELLOW) -- default orange
@@ -43,7 +43,8 @@ vim.cmd("highlight DiagnosticFloatingWarn ctermfg=yellow guifg=" .. vim.env.BASE
 vim.cmd("highlight DiagnosticFloatingInfo ctermfg=blue guifg=" .. vim.env.BASE16_BLUE)
 vim.cmd("highlight DiagnosticFloatingHint ctermfg=white guifg=" .. vim.env.BASE16_LIGHT_FOREGROUND)
 
-vim.cmd("highlight DiagnosticUnderlineError guisp=" .. vim.env.BASE16_RED)
-vim.cmd("highlight DiagnosticUnderlineWarn guisp=" .. vim.env.BASE16_YELLOW)
-vim.cmd("highlight DiagnosticUnderlineInfo guisp=" .. vim.env.BASE16_BLUE)
-vim.cmd("highlight DiagnosticUnderlineHint guisp=" .. vim.env.BASE16_LIGHT_FOREGROUND)
+vim.cmd("highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_RED)
+vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_YELLOW)
+vim.cmd("highlight DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_BLUE)
+vim.cmd("highlight DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_LIGHT_FOREGROUND)
+vim.cmd("highlight DiagnosticUnderlineOk cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_LIGHT_FOREGROUND)
