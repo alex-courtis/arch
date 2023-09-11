@@ -26,7 +26,6 @@ There is no DE, just a console login which starts a wayland compositor or X11, d
 * [neovim](https://github.com/neovim/neovim)
 * [rcm](https://github.com/thoughtbot/rcm)
 * [zsh](https://github.com/zsh-users/zsh)
-* [tmux](https://github.com/tmux/tmux)
 
 # Dotfiles Installation
 

@@ -388,7 +388,6 @@ swaylock
 sysstat
 terminus-font
 thunderbird
-tmux
 ttf-dejavu
 ttf-hack-nerd
 udisks2

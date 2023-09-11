@@ -8,10 +8,6 @@
 # sudo rm -f /System/Library/Caches/com.apple.IntlDataCache.le*
 # reboot
 
-# terminfo:
-# curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
-# sudo /usr/bin/tic -xe tmux-256color terminfo.src
-
 # ssh:
 # preferences->sharing
 # remote login->allow full disk access
@@ -26,7 +22,7 @@
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # utils:
-# brew install rcm tmux alacritty neovim fd rg
+# brew install rcm alacritty neovim fd rg
 
 NAME=amc_osx
 IMG=sickcodes/docker-osx:monterey
@@ -41,7 +37,7 @@ case "${1}" in
 		docker start -ai "${NAME}"
 		;;
 	"ssh")
-		remote_env_ssh -p "${SSH_LOCAL}" "$(hostname)"
+		ssh -p "${SSH_LOCAL}" "$(hostname)"
 		;;
 	"scp")
 		shift

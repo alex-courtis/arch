@@ -1,4 +1,3 @@
-source "${HOME}/.zsh/zshrc.tmux"
 source "${HOME}/.zsh/zshrc.completion"
 source "${HOME}/.zsh/zshrc.zle"
 source "${HOME}/.zsh/zshrc.fzf"

@@ -1,4 +1,4 @@
-if vim.fn.system("underlyingterm") == "linux" then
+if vim.env.TERM == "linux" then
   return
 end
 

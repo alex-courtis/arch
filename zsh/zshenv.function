@@ -24,18 +24,6 @@ function printtermtitle() {
 	__git_ps1
 }
 
-# print TERM from the tmux environment
-function underlyingterm() {
-	local UNDERLYING="${TERM}"
-	if [ -n "${TMUX}" ]; then
-		local TMT=$(tmux show-environment TERM 2>/dev/null)
-		if [ $? -eq 0 ]; then
-			UNDERLYING="${TMT/TERM=/}"
-		fi
-	fi
-	printf "${UNDERLYING}"
-}
-
 # print git ps1, current branch, upstream URL
 function gs() {
 	git_ps1=$(__git_ps1 2>/dev/null)
@@ -67,29 +55,4 @@ function stylua {
 	fi
 
 	$(whence -p stylua) "${ARGS}" "${@}"
-}
-
-function remote_env_setup() {
-	TERM_PREV="${TERM}"
-	TERM=$(underlyingterm)
-	if [ -n "${TMUX}" ]; then
-		# prefix2 C-b still available
-		tmux set prefix None
-	fi
-}
-
-function remote_env_teardown() {
-	if [ -n "${TMUX}" ]; then
-		tmux set -u prefix
-	fi
-	TERM="${TERM_PREV}"
-	unset TERM_PREV
-}
-
-function remote_env_ssh() {
-	remote_env_setup
-	$(whence -p ssh) "${@}"
-	read
-	print -n '\Ec'
-	remote_env_teardown
 }

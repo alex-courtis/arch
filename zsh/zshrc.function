@@ -36,39 +36,6 @@ function umnt() {
 	fi
 }
 
-function remote_env_setup() {
-	TERM_PREV="${TERM}"
-	TERM=$(underlyingterm)
-	if [ -n "${TMUX}" ]; then
-		# prefix2 C-b still available
-		tmux set prefix None
-	fi
-}
-
-function remote_env_teardown() {
-	if [ -n "${TMUX}" ]; then
-		tmux set -u prefix
-	fi
-	TERM="${TERM_PREV}"
-	unset TERM_PREV
-}
-
-function ssh() {
-	remote_env_ssh "${@}"
-}
-
-function su() {
-	remote_env_setup
-	$(whence -p su) "${@}"
-	remote_env_teardown
-}
-
-function sudo() {
-	remote_env_setup
-	$(whence -p sudo) "${@}"
-	remote_env_teardown
-}
-
 function sshl_kill() {
 	pkill -e -f "lemonade server"
 	pkill -e -f "ssh.*${1}"
