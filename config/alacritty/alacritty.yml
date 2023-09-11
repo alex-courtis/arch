@@ -23,7 +23,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: alacritty-direct
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. Both lines and columns
@@ -62,7 +62,7 @@ env:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Background opacity
   #
@@ -315,7 +315,7 @@ colors:
   #  background: CellForeground
   selection:
     text: CellForeground
-    background: '0x303030'
+    background: '0x505050'
 
   # Normal colors
   #normal:
@@ -829,12 +829,11 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-
-  # vim expects these for <S-CR> and <C-CR>
-  - { key: Return, mods: Shift,         chars: "\x1b[13;2u" }
-  - { key: Return, mods: Control,       chars: "\x1b[13;5u" }
+  - { key: L,          mods: Shift|Control,              action: ClearHistory   }
 
   # Vi Mode
+  - { key: H,       mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
+  - { key: H,       mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
@@ -868,8 +867,11 @@ key_bindings:
   #- { key: Left,                        mode: Vi|~Search, action: Left                    }
   #- { key: Right,                       mode: Vi|~Search, action: Right                   }
   #- { key: Key0,                        mode: Vi|~Search, action: First                   }
+  -  { key: 0x08,   mods: Shift,         mode: Vi|~Search, action: First                   }
   #- { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
+  -  { key: 0x29,                        mode: Vi|~Search, action: Last                    }
   #- { key: Key6,   mods: Shift,         mode: Vi|~Search, action: FirstOccupied           }
+  -  { key: 0x1b,   mods: Shift,         mode: Vi|~Search, action: FirstOccupied           }
   #- { key: H,      mods: Shift,         mode: Vi|~Search, action: High                    }
   #- { key: M,      mods: Shift,         mode: Vi|~Search, action: Middle                  }
   #- { key: L,      mods: Shift,         mode: Vi|~Search, action: Low                     }
@@ -880,6 +882,7 @@ key_bindings:
   #- { key: W,      mods: Shift,         mode: Vi|~Search, action: WordRight               }
   #- { key: E,      mods: Shift,         mode: Vi|~Search, action: WordRightEnd            }
   #- { key: Key5,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
+  -  { key: 0x02,   mods: Shift,         mode: Vi|~Search, action: Bracket                 }
   #- { key: Slash,                       mode: Vi|~Search, action: SearchForward           }
   #- { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
   #- { key: N,                           mode: Vi|~Search, action: SearchNext              }
