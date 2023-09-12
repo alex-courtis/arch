@@ -27,7 +27,10 @@ set smartcase
 set title
 set undofile
 
-set background=dark
+" vim is smart enough about setting background
+if &term =~ "alacritty" 
+	set term=xterm-256color
+endif
 
 set listchars=tab:>\ ,trail:-,nbsp:+,space:·
 
