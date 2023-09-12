@@ -823,8 +823,9 @@ cursor:
 key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
-  #- { key: L,         mods: Control,                    action: ClearLogNotice }
-  #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  - {  key: L,         mods: Control,                    action: ClearLogNotice }
+  - {  key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
+  - {  key: L,         mods: Control, mode: ~Vi|~Search, action: ClearHistory   }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
@@ -836,7 +837,6 @@ key_bindings:
 
   - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
 
-  - { key: L,     mods: Shift|Control,  mode: ~Alt,         action: ClearHistory     }
   - { key: H,     mods: Control,        mode: ~Alt|~Search, action: ToggleViMode     }
   - { key: H,     mods: Control,        mode:   Vi|~Search, action: ScrollToBottom   }
   - { key: Space, mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
