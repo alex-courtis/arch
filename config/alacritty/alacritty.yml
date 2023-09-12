@@ -830,14 +830,18 @@ key_bindings:
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
   
-  - { key: L,          mods: Shift|Control,              action: ClearHistory     }
-  - { key: N,          mods: Shift|Control,              action: SpawnNewInstance }
+  # vim expects these for <S-CR> and <C-CR>
+  - { key: Return,  mods: Shift,        mode: Alt,          chars: "\x1b[13;2u" }
+  - { key: Return,  mods: Control,      mode: Alt,          chars: "\x1b[13;5u" }
+
+  - { key: N,     mods: Shift|Control,                      action: SpawnNewInstance }
+  - { key: L,     mods: Shift|Control,  mode: ~Alt,         action: ClearHistory     }
+  - { key: H,     mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
+  - { key: H,     mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
+  - { key: Space, mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
+  - { key: Space, mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
 
   # Vi Mode
-  - { key: H,       mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
-  - { key: H,       mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
-  #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
-  #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
@@ -868,6 +872,8 @@ key_bindings:
   #- { key: Down,                        mode: Vi|~Search, action: Down                    }
   #- { key: Left,                        mode: Vi|~Search, action: Left                    }
   #- { key: Right,                       mode: Vi|~Search, action: Right                   }
+  - {  key: Return,                      mode: Vi|~Search, action: Down                    }
+  - {  key: Return, mods: Shift,         mode: Vi|~Search, action: ScrollPageDown          }
   #- { key: Key0,                        mode: Vi|~Search, action: First                   }
   -  { key: 0x08,   mods: Shift,         mode: Vi|~Search, action: First                   }
   #- { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
