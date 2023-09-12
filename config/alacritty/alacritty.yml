@@ -837,8 +837,8 @@ key_bindings:
   - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
 
   - { key: L,     mods: Shift|Control,  mode: ~Alt,         action: ClearHistory     }
-  - { key: H,     mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
-  - { key: H,     mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
+  - { key: H,     mods: Control,        mode: ~Alt|~Search, action: ToggleViMode     }
+  - { key: H,     mods: Control,        mode:   Vi|~Search, action: ScrollToBottom   }
   - { key: Space, mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
   - { key: Space, mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
 
