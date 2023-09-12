@@ -834,7 +834,8 @@ key_bindings:
   - { key: Return,  mods: Shift,        mode: Alt,          chars: "\x1b[13;2u" }
   - { key: Return,  mods: Control,      mode: Alt,          chars: "\x1b[13;5u" }
 
-  - { key: N,     mods: Shift|Control,                      action: SpawnNewInstance }
+  - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
+
   - { key: L,     mods: Shift|Control,  mode: ~Alt,         action: ClearHistory     }
   - { key: H,     mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
   - { key: H,     mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
