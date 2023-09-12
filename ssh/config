@@ -11,3 +11,5 @@ Host deck deckw
 Host *
   User alex
 
+Host *
+  SetEnv TERM=xterm-256color
