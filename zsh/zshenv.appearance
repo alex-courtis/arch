@@ -6,6 +6,13 @@ PROMPT_COLOURS[emperor]="green"
 PROMPT_COLOURS[lord]="cyan"
 PROMPT_COLOURS[gigantor]="blue"
 PROMPT_COLOURS[tinygod]="magenta"
+PROMPT_COLOUR="white"
+if [ -n "${PROMPT_COLOURS[${USER}]}" ]; then
+	PROMPT_COLOUR="${PROMPT_COLOURS[${USER}]}"
+elif [ -n "${PROMPT_COLOURS[${HOST}]}" ]; then
+	PROMPT_COLOUR="${PROMPT_COLOURS[${HOST}]}"
+fi
+export PROMPT_COLOUR
 
 # font size hack scale 1 at 2560x1440 for intellij
 case "${HOST}" in

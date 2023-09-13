@@ -1,25 +1,18 @@
 setopt promptsubst
 
-if [ -n "${PROMPT_COLOURS[${USER}]}" ]; then
-	COL_PROMPT="${PROMPT_COLOURS[${USER}]}"
-elif [ -n "${PROMPT_COLOURS[${HOST}]}" ]; then
-	COL_PROMPT="${PROMPT_COLOURS[${HOST}]}"
-else
-	COL_PROMPT="white"
-fi
 if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
-    STR_PROMPT=" ${HOST} "
+    PROMPT_STR=" ${HOST} "
 fi
 if [ "${USER}" = "root" ]; then
-	STR_PROMPT="${STR_PROMPT} root "
+	PROMPT_STR="${PROMPT_STR} root "
 fi
 
 COL_ZSH_OFF="%k%f"
-COL_ZSH_NOR="%F{black}%K{${COL_PROMPT}}"
+COL_ZSH_NOR="%F{black}%K{${PROMPT_COLOUR}}"
 COL_ZSH_WAR="%F{black}%K{yellow}"
 COL_ZSH_ERR="%F{black}%K{red}"
 
-PS1="\${COL_ZSH_NOR}:\${STR_PROMPT}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
+PS1="\${COL_ZSH_NOR}:\${PROMPT_STR}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
 PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "
 PS3="\${COL_ZSH_NOR}${PS3}\${COL_ZSH_OFF} "
 PS4="\${COL_ZSH_NOR}${PS4}\${COL_ZSH_OFF} "
