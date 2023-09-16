@@ -1,0 +1,10 @@
+#!/bin/sh
+# https://gist.github.com/avindra/dd2c6f14ec6e03b05261d370ef60c9d8
+
+if [ -z "${ALACRITTY_LOG}" ]; then exit 1; fi
+
+TERM_PID="${ALACRITTY_LOG//[^0-9]/}"
+TTY=$(ps o tty= --ppid ${TERM_PID})
+
+echo -e "\ec" > "/dev/${TTY}"
+

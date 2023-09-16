@@ -825,9 +825,8 @@ cursor:
 key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
-  - {  key: L,         mods: Control,                    action: ClearLogNotice }
-  - {  key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  - {  key: L,         mods: Control, mode: ~Vi|~Search, action: ClearHistory   }
+  #- { key: L,         mods: Control,                    action: ClearLogNotice }
+  #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
   #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
@@ -836,6 +835,9 @@ key_bindings:
   # vim expects these for <S-CR> and <C-CR>
   - { key: Return,  mods: Shift,        mode: Alt,          chars: "\x1b[13;2u" }
   - { key: Return,  mods: Control,      mode: Alt,          chars: "\x1b[13;5u" }
+
+  # externally clear the terminal and history only in "normal" mode
+  - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, command: { program: "alacritty-clear", } }
 
   - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
 
