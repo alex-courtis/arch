@@ -11,5 +11,6 @@ Host deck deckw
 Host *
   User alex
 
+# linux falls back well enough
 Host *
   SetEnv TERM=xterm-256color
