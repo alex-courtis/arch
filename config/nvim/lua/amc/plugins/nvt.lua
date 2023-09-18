@@ -205,7 +205,7 @@ local config = {
     show_on_dirs = true,
     show_on_open_dirs = false,
     severity = {
-      min = vim.diagnostic.severity.INFO,
+      min = vim.diagnostic.severity.HINT,
       max = vim.diagnostic.severity.ERROR,
     },
   },

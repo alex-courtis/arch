@@ -48,3 +48,14 @@ vim.cmd("highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp="
 vim.cmd("highlight DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_BLUE)
 vim.cmd("highlight DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_LIGHT_FOREGROUND)
 vim.cmd("highlight DiagnosticUnderlineOk cterm=undercurl gui=undercurl guisp=" .. vim.env.BASE16_LIGHT_FOREGROUND)
+
+vim.cmd("highlight link NvimTreeLspDiagnosticsErrorText DiagnosticUnderlineError")
+vim.cmd("highlight link NvimTreeLspDiagnosticsWarningText DiagnosticUnderlineWarn")
+vim.cmd("highlight link NvimTreeLspDiagnosticsInfoText DiagnosticUnderlineInfo")
+vim.cmd("highlight link NvimTreeLspDiagnosticsHintText DiagnosticUnderlineHint")
+
+vim.cmd("highlight link NvimTreeLspDiagnosticsErrorFolderText DiagnosticUnderlineError")
+vim.cmd("highlight link NvimTreeLspDiagnosticsWarningFolderText DiagnosticUnderlineWarn")
+vim.cmd("highlight link NvimTreeLspDiagnosticsInfoFolderText DiagnosticUnderlineInfo")
+vim.cmd("highlight link NvimTreeLspDiagnosticsHintFolderText DiagnosticUnderlineHint")
+
