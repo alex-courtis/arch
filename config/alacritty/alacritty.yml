@@ -838,7 +838,8 @@ key_bindings:
 
   # externally clear the terminal and history only in "normal" mode
   - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, command: { program: "alacritty-clear", } }
-  - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, chars: "\x0d" } 
+  # a newline may be sent to "reset" the prompt, however that can result in some unexpected behaviour
+  # - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, chars: "\x0d" } 
 
   - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
 
