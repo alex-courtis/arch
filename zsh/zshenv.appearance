@@ -21,6 +21,9 @@ case "${HOST}" in
 	"tinygod")
 		FONT_SIZE_PT=13
 		;;
+	"emperor")
+		FONT_SIZE_PT=12
+		;;
 	*)
 		FONT_SIZE_PT=11
 		;;
