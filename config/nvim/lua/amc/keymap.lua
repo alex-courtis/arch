@@ -18,12 +18,12 @@ local LEADERS = {
 for _, mode in ipairs(MODES) do
   M[mode .. "m" .. "__"] = function(lhs, rhs)
     if rhs then
-      vim.keymap.set(mode, lhs, rhs, { remap = true })
+      vim.keymap.set(mode, lhs, rhs, { remap = false })
     end
   end
   M[mode .. "m" .. "s_"] = function(lhs, rhs)
     if rhs then
-      vim.keymap.set(mode, lhs, rhs, { remap = true, silent = true })
+      vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true })
     end
   end
   M[mode .. "m" .. "_l"] = function(lhs, rhs)

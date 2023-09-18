@@ -82,8 +82,8 @@ K.nmsl("<Right>", ":wincmd l<CR>")
 -- begin right
 --
 
-K.nm_l("*", '/<C-r>=expand("<cword>")<CR><CR>')
-K.vm_l("*", '"*y<Esc>/<C-u><C-r>=substitute(getreg("*"), "\\n", "\\\\\\\\n", "g")<CR><CR>') -- escape just newlines for now
+K.nm__("*", "<Plug>(asterisk-z*)")
+K.nm_l("*", "*")
 K.nmsl("f", telescope.find_files)
 K.nmsl("F", telescope.find_files_hidden)
 K.nmsl("da", vim.lsp.buf.code_action)
@@ -134,7 +134,8 @@ K.nm_l("S", ":lua require('amc.plugins.telescope').live_grep( { default_text = '
 K.vmsl("s", "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>\"")
 K.nmsl("z", dev.format)
 
--- #
+K.nm__("#", "<Plug>(asterisk-z#)")
+K.nm_l("#", "#")
 -- /
 K.nm_l("-", ":GotoHeaderSwitch<CR>")
 K.nm_l("_", ":GotoHeader<CR>")
