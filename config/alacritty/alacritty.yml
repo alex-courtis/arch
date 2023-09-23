@@ -832,28 +832,39 @@ key_bindings:
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
   
+  - {  key: N,      mods: Control|Shift,                                    command: { program: "term", } }
+
   # vim expects these for <S-CR> and <C-CR>
-  - { key: Return,  mods: Shift,        mode: Alt,          chars: "\x1b[13;2u" }
-  - { key: Return,  mods: Control,      mode: Alt,          chars: "\x1b[13;5u" }
+  - {  key: Return, mods: Shift,         mode: Alt,                         chars: "\x1b[13;2u"     } 
+  - {  key: Return, mods: Control,       mode: Alt,                         chars: "\x1b[13;5u"     }
+
+  # Vi Mode toggle
+  - {  key: Space,  mods: Control|Shift, mode: ~AppCursor|~AppKeypad|~Alt,  action: ToggleViMode    }
+  - {  key: Space,  mods: Control|Shift, mode: Vi,                          action: ScrollToBottom  }
+  - {  key: H,      mods: Control,       mode: ~AppCursor|~AppKeypad|~Alt,  action: ToggleViMode    }
+  - {  key: H,      mods: Control,       mode: Vi,                          action: ScrollToBottom  }
+
+  # Vi Mode exit
+  - {  key: Return,                      mode: ~Search|Vi,                  action: ToggleViMode    }
+  - {  key: Return,                      mode: ~Search|Vi,                  action: ScrollToBottom  }
+  - {  key: C,      mods: Control,       mode: Vi,                          action: ToggleViMode    }
+  - {  key: C,      mods: Control,       mode: Vi,                          action: ScrollToBottom  }
+  - {  key: L,      mods: Control|Shift, mode: Vi,                          action: ToggleViMode    }
+  - {  key: L,      mods: Control|Shift, mode: Vi,                          action: ScrollToBottom  }
+  - {  key: Return, mods: Control|Shift, mode: Vi,                          action: ToggleViMode    }
+  - {  key: Return, mods: Control|Shift, mode: Vi,                          action: ScrollToBottom  }
 
   # externally clear the terminal and history only in "normal" mode
-  - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, command: { program: "alacritty-clear", } }
-  # a newline may be sent to "reset" the prompt, however that can result in some unexpected behaviour
-  # - { key: L,     mods: Control|Shift,  mode: ~AppCursor|~AppKeypad|~Search|~Alt|~Vi, chars: "\x0d" } 
-
-  - { key: N,     mods: Shift|Control,                      command: { program: "term", } }
-
-  - { key: H,     mods: Control,        mode: ~Alt|~Search, action: ToggleViMode     }
-  - { key: H,     mods: Control,        mode:   Vi|~Search, action: ScrollToBottom   }
-  - { key: Space, mods: Shift|Control,  mode: ~Alt|~Search, action: ToggleViMode     }
-  - { key: Space, mods: Shift|Control,  mode:   Vi|~Search, action: ScrollToBottom   }
+  # a proper reset is not possible and won't be built
+  # https://github.com/alacritty/alacritty/issues/4199
+  # https://gist.github.com/avindra/dd2c6f14ec6e03b05261d370ef60c9d8
+  - {  key: L,      mods: Control|Shift, mode: ~AppCursor|~AppKeypad|~Alt,  command: { program: "alacritty-clear", } }
+  - {  key: Return, mods: Control|Shift, mode: ~AppCursor|~AppKeypad|~Alt,  command: { program: "alacritty-clear", } }
 
   # Vi Mode
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: I,                           mode: Vi|~Search, action: ScrollToBottom          }
-  - {  key: C,      mods: Control,       mode: Vi|~Search, action: ToggleViMode            }
-  - {  key: C,      mods: Control,       mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Y,      mods: Control,       mode: Vi|~Search, action: ScrollLineUp            }
   #- { key: E,      mods: Control,       mode: Vi|~Search, action: ScrollLineDown          }
   #- { key: G,                           mode: Vi|~Search, action: ScrollToTop             }
@@ -879,8 +890,6 @@ key_bindings:
   #- { key: Down,                        mode: Vi|~Search, action: Down                    }
   #- { key: Left,                        mode: Vi|~Search, action: Left                    }
   #- { key: Right,                       mode: Vi|~Search, action: Right                   }
-  - {  key: Return,                      mode: Vi|~Search, action: Down                    }
-  - {  key: Return, mods: Shift,         mode: Vi|~Search, action: ScrollPageDown          }
   #- { key: Key0,                        mode: Vi|~Search, action: First                   }
   -  { key: 0x08,   mods: Shift,         mode: Vi|~Search, action: First                   }
   #- { key: Key4,   mods: Shift,         mode: Vi|~Search, action: Last                    }
