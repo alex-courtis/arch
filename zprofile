@@ -12,16 +12,16 @@ fi
 if [ "${USER}" != "root" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" -a -n "${XDG_VTNR}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			exec startwm river
+			startwm river
 			;;
 		2)
-			exec startwm x dwm
+			startwm x dwm
 			;;
 		3)
-			exec startwm hyprland
+			startwm hyprland
 			;;
 		4)
-			exec startwm sway
+			startwm sway
 			;;
 	esac
 fi
