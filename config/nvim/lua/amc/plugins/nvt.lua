@@ -163,6 +163,7 @@ local config = {
   on_attach = on_attach,
   renderer = {
     highlight_diagnostics = true,
+    highlight_bookmarks = "name",
     full_name = true,
     group_empty = true,
     highlight_opened_files = "name",
@@ -180,6 +181,7 @@ local config = {
         folder_arrow = false,
         git = true,
         diagnostics = false,
+        bookmarks = false,
       },
       glyphs = {
         modified = "[+]",
