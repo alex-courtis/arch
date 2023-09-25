@@ -82,3 +82,15 @@ export BEMENU_OPTS="\
 	--ab '${BASE16_LIGHTER_BACKGROUND}'   --af '${BASE16_DARK_FOREGROUND}' \
 	--hb '${BASE16_SELECTION_BACKGROUND}' --hf '${BASE16_LIGHT_FOREGROUND}'"
 
+# https://github.com/termstandard/colors
+case $TERM in
+	linux-truecolor  |\
+	tmux-truecolor   |\
+	xterm-truecolor  |\
+	xterm-direct*    |\
+	alacritty*       )
+		export COLORTERM=truecolor
+		;;
+	vte*)
+esac
+
