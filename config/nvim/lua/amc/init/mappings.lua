@@ -129,6 +129,7 @@ K.nmsl("V", ":put!<CR>'[v']=")
 
 K.nmsl("!", buffers.toggle_list)
 K.nmsl("l", buffers.toggle_trailing_space)
+K.nmsl("L", ":%s/\\s\\+$//e<CR>")
 K.nm_l("s", ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>")
 K.nm_l("S", ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>")
 K.vmsl("s", "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>")
