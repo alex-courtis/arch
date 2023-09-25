@@ -1,3 +1,8 @@
 EXCLUDES="git doc root misc README.md"
 SYMLINK_DIRS="config/nvim config/i3 config/way-displays config/ideavim config/luacheck config/river zsh"
 UNDOTTED="bin"
+
+# hooks/post-up/appearance.zsh will handle these
+export APPEARANCE_FILES="Xresources"
+EXCLUDES="${EXCLUDES} ${APPEARANCE_FILES}"
+

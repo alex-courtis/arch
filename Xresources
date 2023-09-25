@@ -2,32 +2,32 @@
 ! sync with st config.h et al
 
 ! normal
-#define base00 #000000
-#define base08 #fb0120
-#define base0B #a1c659
-#define base0A #fda331
-#define base0D #6fb3d2
-#define base0E #d381c3
-#define base0C #76c7b7
-#define base05 #e0e0e0
+#define base00 $BASE16_black
+#define base08 $BASE16_red
+#define base0B $BASE16_green
+#define base0A $BASE16_yellow
+#define base0D $BASE16_blue
+#define base0E $BASE16_magenta
+#define base0C $BASE16_cyan
+#define base05 $BASE16_white
 
 ! bright colour variants created by multiplying LCh by 1.25 in GIMP
-#define base03 #b0b0b0
-#define base08b #ff4b3f
-#define base0Bb #d6fc8b
-#define base0Ab #ffd765
-#define base0Db #9fe3ff
-#define base0Eb #ffadf1
-#define base0Cb #aafceb
-#define base07 #ffffff
+#define base03 $BASE16_bright_black
+#define base08b $BASE16_bright_red
+#define base0Bb $BASE16_bright_green
+#define base0Ab $BASE16_bright_yellow
+#define base0Db $BASE16_bright_blue
+#define base0Eb $BASE16_bright_magenta
+#define base0Cb $BASE16_bright_cyan
+#define base07 $BASE16_bright_white
 
 ! extended, normally occupying the bright colour variants
-#define base09 #fc6d24
-#define base0F #be643c
-#define base01 #303030
-#define base02 #505050
-#define base04 #d0d0d0
-#define base06 #f5f5f5
+#define base09 $BASE16_orange
+#define base0F $BASE16_brown
+#define base01 $BASE16_lighter_background
+#define base02 $BASE16_selection_background
+#define base04 $BASE16_dark_foreground
+#define base06 $BASE16_light_foreground
 
 *foreground:   base05
 #ifdef background_opacity
@@ -67,5 +67,5 @@
 ! xterm
 XTerm.termName: xterm-256color
 XTerm.vt100.faceName: Monospace
-XTerm.vt100.faceSize: 11
+XTerm.vt100.faceSize: $FONT_SIZE_PT
 XTerm.saveLines: 0
