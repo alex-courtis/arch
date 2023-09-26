@@ -20,7 +20,7 @@
     "num-tags": 10
   },
   "river/layout": {
-    "format": "  {}  ",
+    "format": "{}",
     "tooltip": false
   },
   "river/window": {
