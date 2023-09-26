@@ -153,5 +153,6 @@ exec river-xmonadwm \
 	--border-width-monocle 1 \
 	--border-color-focused "0x${BASE16_DARK_FOREGROUND#*#}" \
 	--border-color-focused-monocle "0x${BASE16_LIGHTER_BACKGROUND#*#}" \
-	--border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}"
+	--border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}" \
+	--log-threshold debug
 
