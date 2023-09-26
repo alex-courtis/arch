@@ -16,7 +16,7 @@
     "spacing": 6
   },
   "river/tags": {
-    "disable-click": true,
+    "disable-click": false,
     "num-tags": 10
   },
   "river/layout": {
