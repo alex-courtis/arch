@@ -144,6 +144,46 @@ BASE16[bright_magenta]="ffadf1"
 BASE16[0F]="be643c"
 BASE16[brown]=$BASE16[0F]
 
+#
+# user then host coloured
+#
+typeset -A HL_BGS
+typeset -A HL_FGS
+
+HL_BGS[default]=$BASE16[selection_background]
+HL_FGS[default]=$BASE16[light_foreground]
+
+HL_BGS[root]=$BASE16[selection_background]
+HL_FGS[root]=$BASE16[bright_red]
+
+HL_BGS[duke]=$BASE16[selection_background]
+HL_FGS[duke]=$BASE16[bright_yellow]
+
+HL_BGS[emperor]=$BASE16[selection_background]
+HL_FGS[emperor]=$BASE16[bright_green]
+
+HL_BGS[lord]=$BASE16[selection_background]
+HL_FGS[root]=$BASE16[bright_cyan]
+
+HL_BGS[gigantor]=$BASE16[selection_background]
+HL_FGS[gigantor]=$BASE16[bright_blue]
+
+HL_BGS[tinygod]=$BASE16[selection_background]
+HL_FGS[tinygod]=$BASE16[bright_magenta]
+
+if [ -n "${HL_BGS[${USER}]}" ]; then
+	HL_BG="${HL_BGS[${USER}]}"
+	HL_FG=$HL_FGS[${USER}]
+elif [ -n "${HL_BGS[${HOST}]}" ]; then
+	HL_BG="${HL_BGS[${HOST}]}"
+	HL_FG=$HL_FGS[${HOST}]
+else
+	HL_BG=$HL_BGS[default]
+	HL_FG=$HL_FGS[default]
+fi
+export HL_BG
+export HL_FG
+
 # customise various bemenu invocations
 export BEMENU_OPTS="\
 	--monitor focused \

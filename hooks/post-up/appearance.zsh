@@ -18,6 +18,10 @@ for f in ${(ps: :)APPEARANCE_FILES}; do
 	# font
 	sed -i -e "s/\$FONT_SIZE_PT/${FONT_SIZE_PT}/g" "${tmp}"
 
+	# host colour
+	sed -i -e "s/\$HL_BG/${HL_BG}/g" "${tmp}"
+	sed -i -e "s/\$HL_FG/${HL_FG}/g" "${tmp}"
+
 	diff "${tmp}" "${dst}" > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		mv -v "${tmp}" "${dst}"

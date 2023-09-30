@@ -215,6 +215,8 @@ colors:
     # color will be used.
     #dim_foreground: '#828482'
     #bright_foreground: '#eaeaea'
+    dim_foreground: '0x$BASE16[dark_foreground]'
+    bright_foreground: '0x$BASE16[light_foreground]'
 
   # Cursor colors
   #
@@ -256,10 +258,10 @@ colors:
     #  background: '#000000'
   search:
     matches:
-      foreground: '0x$BASE16[lighter_background]'
+      foreground: '0x$BASE16[default_background]'
       background: '0x$BASE16[orange]'
     focused_match:
-      foreground: '0x$BASE16[lighter_background]'
+      foreground: '0x$BASE16[default_background]'
       background: '0x$BASE16[yellow]'
 
   # Keyboard hints
@@ -290,8 +292,8 @@ colors:
   #  foreground: None
   #  background: None
   line_indicator:
-    background: '0x$BASE16[selection_background]'
-    foreground: '0x$BASE16[light_foreground]'
+    background: '0x$HL_BG'
+    foreground: '0x$HL_FG'
 
   # Footer bar
   #
@@ -302,8 +304,8 @@ colors:
   #  background: '#c5c8c6'
   #  foreground: '#1d1f21'
   footer_bar:
-    background: '0x$BASE16[selection_background]'
-    foreground: '0x$BASE16[light_foreground]'
+    background: '0x$HL_BG'
+    foreground: '0x$HL_FG'
 
   # Selection colors
   #
@@ -315,7 +317,7 @@ colors:
   #  text: CellBackground
   #  background: CellForeground
   selection:
-    text: CellForeground
+    text: '0x$BASE16[light_foreground]'
     background: '0x$BASE16[selection_background]'
 
   # Normal colors
