@@ -1,5 +1,3 @@
-// cat ~/.config/waybar/config | grep -v "//" | jq
-
 {
   "position": "top",
   "modules-left": [

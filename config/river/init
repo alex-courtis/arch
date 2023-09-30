@@ -141,8 +141,6 @@ if [ "$(whence libinput-gestures-setup)" ]; then
 fi
 
 # bar style
-sed -e "s/\${FONT_SIZE_PT}/${FONT_SIZE_PT}/g" $XDG_CONFIG_HOME/waybar/style.template.css > $XDG_CONFIG_HOME/waybar/style.css
-
 riverctl spawn waybar
 
 # run
