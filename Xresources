@@ -1,40 +1,36 @@
 ! extended base16-bright from https://github.com/chriskempson/base16-shell
 ! sync with st config.h et al
 
-*foreground:   $BASE16_white
-#ifdef background_opacity
-*background:   [background_opacity]$BASE16_black
-#else
-*background:   $BASE16_black
-#endif
-*cursorColor:  $BASE16_light_foreground
+*foreground:   #$BASE16[default_foreground]
+*background:   #$BASE16[default_background]
+*cursorColor:  #$BASE16[light_foreground]
 
-*color0:       $BASE16_black
-*color1:       $BASE16_red
-*color2:       $BASE16_green
-*color3:       $BASE16_yellow
-*color4:       $BASE16_blue
-*color5:       $BASE16_magenta
-*color6:       $BASE16_cyan
-*color7:       $BASE16_white
+*color0:       #$BASE16[black]
+*color1:       #$BASE16[red]
+*color2:       #$BASE16[green]
+*color3:       #$BASE16[yellow]
+*color4:       #$BASE16[blue]
+*color5:       #$BASE16[magenta]
+*color6:       #$BASE16[cyan]
+*color7:       #$BASE16[white]
 
-*color8:       $BASE16_bright_black
-*color9:       $BASE16_bright_red
-*color10:      $BASE16_bright_green
-*color11:      $BASE16_bright_yellow
-*color12:      $BASE16_bright_blue
-*color13:      $BASE16_bright_magenta
-*color14:      $BASE16_bright_cyan
-*color15:      $BASE16_bright_white
+*color8:       #$BASE16[bright_black]
+*color9:       #$BASE16[bright_red]
+*color10:      #$BASE16[bright_green]
+*color11:      #$BASE16[bright_yellow]
+*color12:      #$BASE16[bright_blue]
+*color13:      #$BASE16[bright_magenta]
+*color14:      #$BASE16[bright_cyan]
+*color15:      #$BASE16[bright_white]
 
 ! these are not read by xterm when it starts
 ! man page states "Resources past color15 are available as a compile-time option"
-*color16:      $BASE16_orange
-*color17:      $BASE16_brown
-*color18:      $BASE16_lighter_background
-*color19:      $BASE16_selection_background
-*color20:      $BASE16_dark_foreground
-*color21:      $BASE16_light_foreground
+*color16:      #$BASE16[orange]
+*color17:      #$BASE16[brown]
+*color18:      #$BASE16[lighter_background]
+*color19:      #$BASE16[selection_background]
+*color20:      #$BASE16[dark_foreground]
+*color21:      #$BASE16[light_foreground]
 
 ! xterm
 XTerm.termName: xterm-256color

@@ -123,7 +123,7 @@ window:
   #multiplier: 3
 
 # Font configuration
-#font:
+font:
   # Normal (roman) font face
   #normal:
     # Font family
@@ -171,7 +171,7 @@ window:
     #style: Bold Italic
 
   # Point size
-  #size: 11.0
+  size: $FONT_SIZE_PT
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -204,8 +204,8 @@ colors:
   #  background: '#1d1f21'
   #  foreground: '#c5c8c6'
   primary:
-    background: '0x000000'
-    foreground: '0xe0e0e0'
+    background: '0x$BASE16[default_background]'
+    foreground: '0x$BASE16[default_foreground]'
 
     # Bright and dim foreground colors
     #
@@ -226,8 +226,8 @@ colors:
   #  text: CellBackground
   #  cursor: CellForeground
   cursor:
-    text: '0x000000'
-    cursor: '0xe0e0e0'
+    text: '0x$BASE16[default_background]'
+    cursor: '0x$BASE16[default_foreground]'
 
   # Vi mode cursor colors
   #
@@ -239,8 +239,8 @@ colors:
   #  text: CellBackground
   #  cursor: CellForeground
   vi_mode_cursor:
-    text: '0x000000'
-    cursor: '0xe0e0e0'
+    text: '0x$BASE16[default_background]'
+    cursor: '0x$BASE16[default_foreground]'
 
   # Search colors
   #
@@ -256,11 +256,11 @@ colors:
     #  background: '#000000'
   search:
     matches:
-      foreground: '0x303030'
-      background: '0xfc6d24'
+      foreground: '0x$BASE16[lighter_background]'
+      background: '0x$BASE16[orange]'
     focused_match:
-      foreground: '0x303030'
-      background: '0xfda331'
+      foreground: '0x$BASE16[lighter_background]'
+      background: '0x$BASE16[yellow]'
 
   # Keyboard hints
   #hints:
@@ -290,8 +290,8 @@ colors:
   #  foreground: None
   #  background: None
   line_indicator:
-    background: '0x505050'
-    foreground: '0xf5f5f5'
+    background: '0x$BASE16[selection_background]'
+    foreground: '0x$BASE16[light_foreground]'
 
   # Footer bar
   #
@@ -302,8 +302,8 @@ colors:
   #  background: '#c5c8c6'
   #  foreground: '#1d1f21'
   footer_bar:
-    background: '0x505050'
-    foreground: '0xf5f5f5'
+    background: '0x$BASE16[selection_background]'
+    foreground: '0x$BASE16[light_foreground]'
 
   # Selection colors
   #
@@ -316,7 +316,7 @@ colors:
   #  background: CellForeground
   selection:
     text: CellForeground
-    background: '0x505050'
+    background: '0x$BASE16[selection_background]'
 
   # Normal colors
   #normal:
@@ -329,14 +329,14 @@ colors:
   #  cyan:    '#8abeb7'
   #  white:   '#c5c8c6'
   normal:
-    black:   '0x000000'
-    red:     '0xfb0120'
-    green:   '0xa1c659'
-    yellow:  '0xfda331'
-    blue:    '0x6fb3d2'
-    magenta: '0xd381c3'
-    cyan:    '0x76c7b7'
-    white:   '0xe0e0e0'
+    black:   '0x$BASE16[black]'
+    red:     '0x$BASE16[red]'
+    green:   '0x$BASE16[green]'
+    yellow:  '0x$BASE16[yellow]'
+    blue:    '0x$BASE16[blue]'
+    magenta: '0x$BASE16[magenta]'
+    cyan:    '0x$BASE16[cyan]'
+    white:   '0x$BASE16[white]'
 
   # Bright colors
   #bright:
@@ -350,14 +350,14 @@ colors:
   #  white:   '#eaeaea'
   # bright colour variants created by multiplying LCh by 1.25 in GIMP
   bright:
-    black:   '0xb0b0b0'
-    red:     '0xff4b3f'
-    green:   '0xd6fc8b'
-    yellow:  '0xffd765'
-    blue:    '0x9fe3ff'
-    magenta: '0xffadf1'
-    cyan:    '0xaafceb'
-    white:   '0xffffff'
+    black:   '0x$BASE16[bright_black]'
+    red:     '0x$BASE16[bright_red]'
+    green:   '0x$BASE16[bright_green]'
+    yellow:  '0x$BASE16[bright_yellow]'
+    blue:    '0x$BASE16[bright_blue]'
+    magenta: '0x$BASE16[bright_magenta]'
+    cyan:    '0x$BASE16[bright_cyan]'
+    white:   '0x$BASE16[bright_white]'
 
   # Dim colors
   #
@@ -384,12 +384,12 @@ colors:
   #indexed_colors: []
   # extended, normally occupying the bright colour variants
   indexed_colors:
-    - { index: 16, color: '0xfc6d24' }
-    - { index: 17, color: '0xbe643c' }
-    - { index: 18, color: '0x303030' }
-    - { index: 19, color: '0x505050' }
-    - { index: 20, color: '0xd0d0d0' }
-    - { index: 21, color: '0xf5f5f5' }
+    - { index: 16, color: '0x$BASE16[orange]' }
+    - { index: 17, color: '0x$BASE16[brown]' }
+    - { index: 18, color: '0x$BASE16[lighter_background]' }
+    - { index: 19, color: '0x$BASE16[selection_background]' }
+    - { index: 20, color: '0x$BASE16[dark_foreground]' }
+    - { index: 21, color: '0x$BASE16[light_foreground]' }
 
   # Transparent cell backgrounds
   #

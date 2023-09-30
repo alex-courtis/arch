@@ -71,77 +71,77 @@ typeset -A BASE16
 # bright colour variants created by multiplying LCh by 1.25 in GIMP
 
 # Default Background
-BASE16[00]="#000000"
+BASE16[00]="000000"
 BASE16[default_background]=$BASE16[00]
 BASE16[black]=$BASE16[00]
-BASE16[bright_black]="#b0b0b0"
+BASE16[bright_black]="b0b0b0"
 
 # Lighter Background (Used for status bars)
-BASE16[01]="#303030"
+BASE16[01]="303030"
 BASE16[lighter_background]=$BASE16[01]
 
 # Selection Background
-BASE16[02]="#505050"
+BASE16[02]="505050"
 BASE16[selection_background]=$BASE16[02]
 
 # Comments, Invisibles, Line Highlighting
-BASE16[03]="#b0b0b0"
+BASE16[03]="b0b0b0"
 BASE16[comments]=$BASE16[03]
 
 # Dark Foreground (Used for status bars)
-BASE16[04]="#d0d0d0"
+BASE16[04]="d0d0d0"
 BASE16[dark_foreground]=$BASE16[04]
 
 # Default Foreground, Caret, Delimiters, Operators
-BASE16[05]="#e0e0e0"
+BASE16[05]="e0e0e0"
 BASE16[default_foreground]=$BASE16[05]
 BASE16[white]=$BASE16[05]
-BASE16[bright_white]="#ffffff"
+BASE16[bright_white]="ffffff"
 
 # Light Foreground (Not often used)
-BASE16[06]="#f5f5f5"
+BASE16[06]="f5f5f5"
 BASE16[light_foreground]=$BASE16[06]
 
 # Light Background (Not often used)
-BASE16[07]="#ffffff"
+BASE16[07]="ffffff"
 BASE16[light_background]=$BASE16[07]
 
 # RED Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-BASE16[08]="#fb0120"
+BASE16[08]="fb0120"
 BASE16[red]=$BASE16[08]
-BASE16[bright_red]="#ff4b3f"
+BASE16[bright_red]="ff4b3f"
 
 # ORANGE Integers, Boolean, Constants, XML Attributes, Markup Link Url
-BASE16[09]="#fc6d24"
+BASE16[09]="fc6d24"
 BASE16[orange]=$BASE16[09]
 
 # YELLOW Classes, Markup Bold, Search Text Background
-BASE16[0A]="#fda331"
+BASE16[0A]="fda331"
 BASE16[yellow]=$BASE16[0A]
-BASE16[bright_yellow]="#ffd765"
+BASE16[bright_yellow]="ffd765"
 
 # GREEN Strings, Inherited Class, Markup Code, Diff Inserted
-BASE16[0B]="#a1c659"
+BASE16[0B]="a1c659"
 BASE16[green]=$BASE16[0B]
-BASE16[bright_green]="#d6fc8b"
+BASE16[bright_green]="d6fc8b"
 
 # CYAN Support, Regular Expressions, Escape Characters, Markup Quotes
-BASE16[0C]="#76c7b7"
+BASE16[0C]="76c7b7"
 BASE16[cyan]=$BASE16[0C]
-BASE16[bright_cyan]="#aafceb"
+BASE16[bright_cyan]="aafceb"
 
 # BLUE Functions, Methods, Attribute IDs, Headings
-BASE16[0D]="#6fb3d2"
+BASE16[0D]="6fb3d2"
 BASE16[blue]=$BASE16[0D]
-BASE16[bright_blue]="#9fe3ff"
+BASE16[bright_blue]="9fe3ff"
 
 # MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
-BASE16[0E]="#d381c3"
+BASE16[0E]="d381c3"
 BASE16[magenta]=$BASE16[0E]
-BASE16[bright_magenta]="#ffadf1"
+BASE16[bright_magenta]="ffadf1"
 
 # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
-BASE16[0F]="#be643c"
+BASE16[0F]="be643c"
 BASE16[brown]=$BASE16[0F]
 
 # customise various bemenu invocations

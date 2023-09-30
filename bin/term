@@ -1,4 +1,4 @@
 #!/bin/sh
 
-alacritty -o font.size="${FONT_SIZE_PT}" "${@}" &
+alacritty "${@}" &
 
