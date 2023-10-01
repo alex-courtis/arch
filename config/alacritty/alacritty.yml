@@ -292,8 +292,8 @@ colors:
   #  foreground: None
   #  background: None
   line_indicator:
-    background: '0x$HL_BG'
-    foreground: '0x$HL_FG'
+    background: '0x$PROMPT_COL_RGB'
+    foreground: '0x$BASE16[default_background]'
 
   # Footer bar
   #
@@ -304,8 +304,8 @@ colors:
   #  background: '#c5c8c6'
   #  foreground: '#1d1f21'
   footer_bar:
-    background: '0x$HL_BG'
-    foreground: '0x$HL_FG'
+    background: '0x$PROMPT_COL_RGB'
+    foreground: '0x$BASE16[default_background]'
 
   # Selection colors
   #

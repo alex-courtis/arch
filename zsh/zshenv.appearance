@@ -1,35 +1,3 @@
-# USER prioritised
-typeset -A PROMPT_COLOURS
-PROMPT_COLOURS[root]="red"
-PROMPT_COLOURS[duke]="yellow"
-PROMPT_COLOURS[emperor]="green"
-PROMPT_COLOURS[lord]="cyan"
-PROMPT_COLOURS[gigantor]="blue"
-PROMPT_COLOURS[tinygod]="magenta"
-PROMPT_COLOUR="white"
-if [ -n "${PROMPT_COLOURS[${USER}]}" ]; then
-	PROMPT_COLOUR="${PROMPT_COLOURS[${USER}]}"
-elif [ -n "${PROMPT_COLOURS[${HOST}]}" ]; then
-	PROMPT_COLOUR="${PROMPT_COLOURS[${HOST}]}"
-fi
-export PROMPT_COLOUR
-
-# font size hack scale 1 at 2560x1440 for intellij
-case "${HOST}" in
-	"gigantor")
-		;&
-	"tinygod")
-		FONT_SIZE_PT=13
-		;;
-	"emperor")
-		FONT_SIZE_PT=12
-		;;
-	*)
-		FONT_SIZE_PT=11
-		;;
-esac
-export FONT_SIZE_PT
-
 # base16-bright
 # greys
 export BASE00="#000000" # Default Background
@@ -67,122 +35,79 @@ export BASE16_BLUE="${BASE0D}"
 export BASE16_MAGENTA="${BASE0E}"
 export BASE16_BROWN="${BASE0F}"
 
+#
+# base16 bright colour variants created by multiplying LCh by 1.25 in GIMP
+#
 typeset -A BASE16
-# bright colour variants created by multiplying LCh by 1.25 in GIMP
-
-# Default Background
-BASE16[00]="000000"
-BASE16[default_background]=$BASE16[00]
-BASE16[black]=$BASE16[00]
+BASE16[00]="000000"; BASE16[black]=$BASE16[00]; BASE16[default_background]=$BASE16[00]   # Default Background
+BASE16[01]="303030";                            BASE16[lighter_background]=$BASE16[01]   # Lighter Background (Used for status bars)
+BASE16[02]="505050";                            BASE16[selection_background]=$BASE16[02] # Selection Background
+BASE16[03]="b0b0b0";                            BASE16[comments]=$BASE16[03]             # Comments, Invisibles, Line Highlighting
+BASE16[04]="d0d0d0";                            BASE16[dark_foreground]=$BASE16[04]      # Dark Foreground (Used for status bars)
+BASE16[05]="e0e0e0"; BASE16[white]=$BASE16[05]; BASE16[default_foreground]=$BASE16[05]   # Default Foreground, Caret, Delimiters, Operators
+BASE16[06]="f5f5f5";                            BASE16[light_foreground]=$BASE16[06]     # Light Foreground (Not often used)
+BASE16[07]="ffffff";                            BASE16[light_background]=$BASE16[07]     # Light Background (Not often used)
+BASE16[08]="fb0120"; BASE16[red]=$BASE16[08]                                             # RED Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+BASE16[09]="fc6d24"; BASE16[orange]=$BASE16[09]                                          # ORANGE Integers, Boolean, Constants, XML Attributes, Markup Link Url
+BASE16[0A]="fda331"; BASE16[yellow]=$BASE16[0A]                                          # YELLOW Classes, Markup Bold, Search Text Background
+BASE16[0B]="a1c659"; BASE16[green]=$BASE16[0B]                                           # GREEN Strings, Inherited Class, Markup Code, Diff Inserted
+BASE16[0C]="76c7b7"; BASE16[cyan]=$BASE16[0C]                                            # CYAN Support, Regular Expressions, Escape Characters, Markup Quotes
+BASE16[0D]="6fb3d2"; BASE16[blue]=$BASE16[0D]                                            # BLUE Functions, Methods, Attribute IDs, Headings
+BASE16[0E]="d381c3"; BASE16[magenta]=$BASE16[0E]                                         # MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
+BASE16[0F]="be643c"; BASE16[brown]=$BASE16[0F]                                           # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 BASE16[bright_black]="b0b0b0"
-
-# Lighter Background (Used for status bars)
-BASE16[01]="303030"
-BASE16[lighter_background]=$BASE16[01]
-
-# Selection Background
-BASE16[02]="505050"
-BASE16[selection_background]=$BASE16[02]
-
-# Comments, Invisibles, Line Highlighting
-BASE16[03]="b0b0b0"
-BASE16[comments]=$BASE16[03]
-
-# Dark Foreground (Used for status bars)
-BASE16[04]="d0d0d0"
-BASE16[dark_foreground]=$BASE16[04]
-
-# Default Foreground, Caret, Delimiters, Operators
-BASE16[05]="e0e0e0"
-BASE16[default_foreground]=$BASE16[05]
-BASE16[white]=$BASE16[05]
 BASE16[bright_white]="ffffff"
-
-# Light Foreground (Not often used)
-BASE16[06]="f5f5f5"
-BASE16[light_foreground]=$BASE16[06]
-
-# Light Background (Not often used)
-BASE16[07]="ffffff"
-BASE16[light_background]=$BASE16[07]
-
-# RED Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-BASE16[08]="fb0120"
-BASE16[red]=$BASE16[08]
 BASE16[bright_red]="ff4b3f"
-
-# ORANGE Integers, Boolean, Constants, XML Attributes, Markup Link Url
-BASE16[09]="fc6d24"
-BASE16[orange]=$BASE16[09]
-
-# YELLOW Classes, Markup Bold, Search Text Background
-BASE16[0A]="fda331"
-BASE16[yellow]=$BASE16[0A]
 BASE16[bright_yellow]="ffd765"
-
-# GREEN Strings, Inherited Class, Markup Code, Diff Inserted
-BASE16[0B]="a1c659"
-BASE16[green]=$BASE16[0B]
 BASE16[bright_green]="d6fc8b"
-
-# CYAN Support, Regular Expressions, Escape Characters, Markup Quotes
-BASE16[0C]="76c7b7"
-BASE16[cyan]=$BASE16[0C]
 BASE16[bright_cyan]="aafceb"
-
-# BLUE Functions, Methods, Attribute IDs, Headings
-BASE16[0D]="6fb3d2"
-BASE16[blue]=$BASE16[0D]
 BASE16[bright_blue]="9fe3ff"
-
-# MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
-BASE16[0E]="d381c3"
-BASE16[magenta]=$BASE16[0E]
 BASE16[bright_magenta]="ffadf1"
-
-# BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
-BASE16[0F]="be643c"
-BASE16[brown]=$BASE16[0F]
 
 #
 # user then host coloured
 #
-typeset -A HL_BGS
-typeset -A HL_FGS
+typeset -A PROMPT_COL_NAMES
+typeset -A PROMPT_COL_RGBS
 
-HL_BGS[default]=$BASE16[selection_background]
-HL_FGS[default]=$BASE16[light_foreground]
+PROMPT_COL_NAMES[default]="white"
+PROMPT_COL_NAMES[root]="red"
+PROMPT_COL_NAMES[duke]="yellow"
+PROMPT_COL_NAMES[emperor]="green"
+PROMPT_COL_NAMES[lord]="cyan"
+PROMPT_COL_NAMES[gigantor]="blue"
+PROMPT_COL_NAMES[tinygod]="magenta"
 
-HL_BGS[root]=$BASE16[selection_background]
-HL_FGS[root]=$BASE16[bright_red]
+for k v in "${(@kv)PROMPT_COL_NAMES}"; do
+	PROMPT_COL_RGBS[${k}]=${BASE16[${v}]}
+done
 
-HL_BGS[duke]=$BASE16[selection_background]
-HL_FGS[duke]=$BASE16[bright_yellow]
-
-HL_BGS[emperor]=$BASE16[selection_background]
-HL_FGS[emperor]=$BASE16[bright_green]
-
-HL_BGS[lord]=$BASE16[selection_background]
-HL_FGS[root]=$BASE16[bright_cyan]
-
-HL_BGS[gigantor]=$BASE16[selection_background]
-HL_FGS[gigantor]=$BASE16[bright_blue]
-
-HL_BGS[tinygod]=$BASE16[selection_background]
-HL_FGS[tinygod]=$BASE16[bright_magenta]
-
-if [ -n "${HL_BGS[${USER}]}" ]; then
-	HL_BG="${HL_BGS[${USER}]}"
-	HL_FG=$HL_FGS[${USER}]
-elif [ -n "${HL_BGS[${HOST}]}" ]; then
-	HL_BG="${HL_BGS[${HOST}]}"
-	HL_FG=$HL_FGS[${HOST}]
+if [ -n "${PROMPT_COL_NAMES[${USER}]}" ]; then
+	export PROMPT_COL_NAME="${PROMPT_COL_NAMES[${USER}]}"
+	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[${USER}]
+elif [ -n "${PROMPT_COL_NAMES[${HOST}]}" ]; then
+	export PROMPT_COL_NAME="${PROMPT_COL_NAMES[${HOST}]}"
+	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[${HOST}]
 else
-	HL_BG=$HL_BGS[default]
-	HL_FG=$HL_FGS[default]
+	export PROMPT_COL_NAME=$PROMPT_COL_NAMES[default]
+	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[default]
 fi
-export HL_BG
-export HL_FG
+
+# font size hack scale 1 at 2560x1440 for intellij
+case "${HOST}" in
+	"gigantor")
+		;&
+	"tinygod")
+		FONT_SIZE_PT=13
+		;;
+	"emperor")
+		FONT_SIZE_PT=12
+		;;
+	*)
+		FONT_SIZE_PT=11
+		;;
+esac
+export FONT_SIZE_PT
 
 # customise various bemenu invocations
 export BEMENU_OPTS="\

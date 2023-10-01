@@ -8,7 +8,7 @@ if [ "${USER}" = "root" ]; then
 fi
 
 COL_ZSH_OFF="%k%f"
-COL_ZSH_NOR="%F{black}%K{${PROMPT_COLOUR}}"
+COL_ZSH_NOR="%F{black}%K{${PROMPT_COL_NAME}}"
 COL_ZSH_WAR="%F{black}%K{yellow}"
 COL_ZSH_ERR="%F{black}%K{red}"
 
