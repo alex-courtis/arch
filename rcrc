@@ -3,6 +3,6 @@ SYMLINK_DIRS="config/nvim config/i3 config/way-displays config/ideavim config/lu
 UNDOTTED="bin"
 
 # hooks/post-up/appearance.zsh will handle these
-export APPEARANCE_FILES="Xresources config/alacritty/alacritty.yml config/waybar/style.css config/mako/config"
+export APPEARANCE_FILES="Xresources config/alacritty/alacritty.yml config/waybar/style.css config/mako/config config/sway/config.d/appearance"
 EXCLUDES="${EXCLUDES} ${APPEARANCE_FILES}"
 
