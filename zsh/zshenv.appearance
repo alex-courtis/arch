@@ -1,40 +1,3 @@
-# base16-bright
-# greys
-export BASE00="#000000" # Default Background
-export BASE01="#303030" # Lighter Background (Used for status bars)
-export BASE02="#505050" # Selection Background
-export BASE03="#b0b0b0" # Comments, Invisibles, Line Highlighting
-export BASE04="#d0d0d0" # Dark Foreground (Used for status bars)
-export BASE05="#e0e0e0" # Default Foreground, Caret, Delimiters, Operators
-export BASE06="#f5f5f5" # Light Foreground (Not often used)
-export BASE07="#ffffff" # Light Background (Not often used)
-export BASE08="#fb0120" # RED Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-export BASE09="#fc6d24" # ORANGE Integers, Boolean, Constants, XML Attributes, Markup Link Url
-export BASE0A="#fda331" # YELLOW Classes, Markup Bold, Search Text Background
-export BASE0B="#a1c659" # GREEN Strings, Inherited Class, Markup Code, Diff Inserted
-export BASE0C="#76c7b7" # CYAN Support, Regular Expressions, Escape Characters, Markup Quotes
-export BASE0D="#6fb3d2" # BLUE Functions, Methods, Attribute IDs, Headings
-export BASE0E="#d381c3" # MAGENTA Keywords, Storage, Selector, Markup Italic, Diff Changed
-export BASE0F="#be643c" # BROWN Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
-
-export BASE16_DEFAULT_BACKGROUND="${BASE00}"
-export BASE16_LIGHTER_BACKGROUND="${BASE01}"
-export BASE16_SELECTION_BACKGROUND="${BASE02}"
-export BASE16_COMMENTS="${BASE03}"
-export BASE16_DARK_FOREGROUND="${BASE04}"
-export BASE16_DEFAULT_FOREGROUND="${BASE05}"
-export BASE16_LIGHT_FOREGROUND="${BASE06}"
-export BASE16_LIGHT_BACKGROUND="${BASE07}"
-
-export BASE16_RED="${BASE08}"
-export BASE16_ORANGE="${BASE09}"
-export BASE16_YELLOW="${BASE0A}"
-export BASE16_GREEN="${BASE0B}"
-export BASE16_CYAN="${BASE0C}"
-export BASE16_BLUE="${BASE0D}"
-export BASE16_MAGENTA="${BASE0E}"
-export BASE16_BROWN="${BASE0F}"
-
 #
 # base16 bright, bright colour variants created by multiplying LCh by 1.25 in GIMP
 #
@@ -63,6 +26,11 @@ BASE16[bright_green]="d6fc8b"
 BASE16[bright_cyan]="aafceb"
 BASE16[bright_blue]="9fe3ff"
 BASE16[bright_magenta]="ffadf1"
+
+# TODO vim use the arrays instead
+for k v in "${(@kv)BASE16}"; do
+	export BASE16_${(U)k}="#${v}"
+done
 
 #
 # user then host coloured

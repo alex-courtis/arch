@@ -7,7 +7,7 @@ local palette = {}
 
 for i = 0, 15, 1 do
   local hex = string.format("%02X", i)
-  palette["base" .. hex] = vim.env["BASE" .. hex]
+  palette["base" .. hex] = vim.env["BASE16_" .. hex]
 end
 
 mini_base16.setup({
