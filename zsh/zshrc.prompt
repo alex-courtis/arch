@@ -7,10 +7,17 @@ if [ "${USER}" = "root" ]; then
 	PROMPT_STR="${PROMPT_STR} root "
 fi
 
-COL_ZSH_OFF="%k%f"
-COL_ZSH_NOR="%F{black}%K{${PROMPT_COL_NAME}}"
-COL_ZSH_WAR="%F{black}%K{yellow}"
-COL_ZSH_ERR="%F{black}%K{red}"
+if [ "${COLORTERM}" = "truecolor" ]; then
+	COL_ZSH_OFF="%k%f"
+	COL_ZSH_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
+	COL_ZSH_WAR="%F{#${BASE16[yellow]}}%K{#${HL_BG}}"
+	COL_ZSH_ERR="%F{#${BASE16[red]}}%K{#${HL_BG}}"
+else
+	COL_ZSH_OFF="%k%f"
+	COL_ZSH_NOR="%F{black}%K{${HL_NAME}}"
+	COL_ZSH_WAR="%F{black}%K{yellow}"
+	COL_ZSH_ERR="%F{black}%K{red}"
+fi
 
 PS1="\${COL_ZSH_NOR}:\${PROMPT_STR}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
 PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "

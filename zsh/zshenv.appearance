@@ -36,32 +36,35 @@ done
 #
 # user then host coloured
 #
-typeset -A PROMPT_COL_NAMES
-typeset -A PROMPT_COL_RGBS
+typeset -A HL_NAMES
+typeset -A HL_FGS
 
-PROMPT_COL_NAMES[default]="white"
-PROMPT_COL_NAMES[root]="red"
-PROMPT_COL_NAMES[duke]="yellow"
-PROMPT_COL_NAMES[emperor]="green"
-PROMPT_COL_NAMES[lord]="cyan"
-PROMPT_COL_NAMES[gigantor]="blue"
-PROMPT_COL_NAMES[tinygod]="magenta"
-export PROMPT_COL_NAMES
+HL_NAMES[default]="white"
+HL_NAMES[root]="red"
+HL_NAMES[duke]="yellow"
+HL_NAMES[emperor]="green"
+HL_NAMES[lord]="cyan"
+HL_NAMES[gigantor]="blue"
+HL_NAMES[tinygod]="magenta"
+export HL_NAMES
 
-for k v in "${(@kv)PROMPT_COL_NAMES}"; do
-	PROMPT_COL_RGBS[${k}]=${BASE16[${v}]}
+for k v in "${(@kv)HL_NAMES}"; do
+	# prepend bright_ for RGB
+	HL_FGS[${k}]=${BASE16[${v}]}
 done
-export PROMPT_COL_RGBS
+export HL_FGS
 
-if [ -n "${PROMPT_COL_NAMES[${USER}]}" ]; then
-	export PROMPT_COL_NAME="${PROMPT_COL_NAMES[${USER}]}"
-	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[${USER}]
-elif [ -n "${PROMPT_COL_NAMES[${HOST}]}" ]; then
-	export PROMPT_COL_NAME="${PROMPT_COL_NAMES[${HOST}]}"
-	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[${HOST}]
+export HL_BG=${BASE16[selection_background]}
+
+if [ -n "${HL_NAMES[${USER}]}" ]; then
+	export HL_NAME="${HL_NAMES[${USER}]}"
+	export HL_FG=$HL_FGS[${USER}]
+elif [ -n "${HL_NAMES[${HOST}]}" ]; then
+	export HL_NAME="${HL_NAMES[${HOST}]}"
+	export HL_FG=$HL_FGS[${HOST}]
 else
-	export PROMPT_COL_NAME=$PROMPT_COL_NAMES[default]
-	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[default]
+	export HL_NAME=$HL_NAMES[default]
+	export HL_FG=$HL_FGS[default]
 fi
 
 case "${HOST}" in
