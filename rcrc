@@ -6,3 +6,4 @@ UNDOTTED="bin"
 export APPEARANCE_FILES="Xresources config/alacritty/alacritty.yml config/waybar/style.css config/mako/config config/sway/config.d/appearance config/surfingkeys.js"
 EXCLUDES="${EXCLUDES} ${APPEARANCE_FILES}"
 
+# vim:ft=sh

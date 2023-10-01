@@ -2,6 +2,13 @@
 
 # runs in ~/.dotfiles/hooks/post-up
 
+# all base16 colours
+base16sed=""
+for k v in "${(@kv)BASE16}"; do
+	base16sed="${base16sed} s/\$BASE16\[${k}\]/${v}/g ;"
+done
+base16sed="${base16sed}"
+
 for f in ${(ps: :)APPEARANCE_FILES}; do
 	src="../../${f}"
 	dst="${HOME}/.${f}"
@@ -9,11 +16,8 @@ for f in ${(ps: :)APPEARANCE_FILES}; do
 
 	cp "${src}" ${tmp} 
 
-	# all base16 colours
-	for k v in "${(@kv)BASE16}"; do
-		# TODO one sed
-		sed -i -e "s/\$BASE16\[${k}\]/${v}/g" "${tmp}"
-	done
+	# base16
+	sed -i -e "${base16sed}" "${tmp}"
 
 	# font
 	sed -i -e "s/\$FONT_SIZE_PT/${FONT_SIZE_PT}/g" "${tmp}"
