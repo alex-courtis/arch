@@ -26,10 +26,11 @@ BASE16[bright_green]="d6fc8b"
 BASE16[bright_cyan]="aafceb"
 BASE16[bright_blue]="9fe3ff"
 BASE16[bright_magenta]="ffadf1"
+export BASE16
 
-# TODO vim use the arrays instead
+# non-array
 for k v in "${(@kv)BASE16}"; do
-	export BASE16_${(U)k}="#${v}"
+	export BASE16_${k}="${v}"
 done
 
 #
@@ -45,10 +46,12 @@ PROMPT_COL_NAMES[emperor]="green"
 PROMPT_COL_NAMES[lord]="cyan"
 PROMPT_COL_NAMES[gigantor]="blue"
 PROMPT_COL_NAMES[tinygod]="magenta"
+export PROMPT_COL_NAMES
 
 for k v in "${(@kv)PROMPT_COL_NAMES}"; do
 	PROMPT_COL_RGBS[${k}]=${BASE16[${v}]}
 done
+export PROMPT_COL_RGBS
 
 if [ -n "${PROMPT_COL_NAMES[${USER}]}" ]; then
 	export PROMPT_COL_NAME="${PROMPT_COL_NAMES[${USER}]}"
@@ -61,21 +64,19 @@ else
 	export PROMPT_COL_RGB=$PROMPT_COL_RGBS[default]
 fi
 
-# font size hack scale 1 at 2560x1440 for intellij
 case "${HOST}" in
 	"gigantor")
 		;&
 	"tinygod")
-		FONT_SIZE_PT=13
+		export FONT_SIZE_PT=13
 		;;
 	"emperor")
-		FONT_SIZE_PT=12
+		export FONT_SIZE_PT=12
 		;;
 	*)
-		FONT_SIZE_PT=11
+		export FONT_SIZE_PT=11
 		;;
 esac
-export FONT_SIZE_PT
 
 # customise various bemenu invocations
 export BEMENU_OPTS="\
