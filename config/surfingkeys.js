@@ -279,40 +279,14 @@ settings.theme = `
   --font: Monospace;
   --font-size: 14;
 
-  /* base16-bright */
-  --base00: #000000; /* Default Background */
-  --base01: #303030; /* Lighter Background (Used for status bars) */
-  --base02: #505050; /* Selection Background */
-  --base03: #b0b0b0; /* Comments, Invisibles, Line Highlighting */
-  --base04: #d0d0d0; /* Dark Foreground (Used for status bars) */
-  --base05: #e0e0e0; /* Default Foreground, Caret, Delimiters, Operators */
-  --base06: #f5f5f5; /* Light Foreground (Not often used) */
-  --base07: #ffffff; /* Light Background (Not often used) */
-  /* red */
-  --base08: #fb0120; /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
-  /* orange */
-  --base09: #fc6d24; /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
-  /* yellow */
-  --base0A: #fda331; /* Classes, Markup Bold, Search Text Background */
-  /* green */
-  --base0B: #a1c659; /* Strings, Inherited Class, Markup Code, Diff Inserted */
-  /* cyan */
-  --base0C: #76c7b7; /* Support, Regular Expressions, Escape Characters, Markup Quotes */
-  /* blue */
-  --base0D: #6fb3d2; /* Functions, Methods, Attribute IDs, Headings */
-  /* magenta */
-  --base0E: #d381c3; /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
-  /* brown */
-  --base0F: #be643c; /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
-
-  --fg: var(--base05);
-  --bg: var(--base01);
-  --bg-dark: var(--base01);
-  --border: var(--base02);
-  --main-fg: var(--base0D);
-  --accent-fg: var(--base05);
-  --info-fg: var(--base0C);
-  --select: var(--base02);
+  --fg: #$BASE16[default_foreground];
+  --bg: #$BASE16[lighter_background];
+  --bg-dark: #$BASE16[lighter_background];
+  --border: #$BASE16[selection_background];
+  --main-fg: #$BASE16[blue];
+  --accent-fg: #$BASE16[default_foreground];
+  --info-fg: #$BASE16[cyan];
+  --select: #$BASE16[selection_background];
 }
 
 /* ---------- Generic ---------- */
