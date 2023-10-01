@@ -1,8 +1,8 @@
 EXCLUDES="git doc root misc README.md"
-SYMLINK_DIRS="config/nvim config/i3 config/way-displays config/ideavim config/luacheck config/river zsh"
+SYMLINK_DIRS="config/nvim config/ideavim config/luacheck config/river zsh"
 UNDOTTED="bin"
 
 # hooks/post-up/appearance.zsh will handle these
-export APPEARANCE_FILES="Xresources config/alacritty/alacritty.yml config/waybar/style.css config/mako/config config/sway/config.d/appearance config/sway/config.d/keys config/sway/config.d/startup config/surfingkeys.js"
+export APPEARANCE_FILES="Xresources config/alacritty/alacritty.yml config/waybar/style.css config/mako/config config/sway/config.d/appearance config/surfingkeys.js"
 EXCLUDES="${EXCLUDES} ${APPEARANCE_FILES}"
 

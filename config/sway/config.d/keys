@@ -74,7 +74,7 @@ bindsym $mod3+g exec volraise
 bindsym $mod3+c reload
 bindsym $mod1+l focus right
 bindsym $mod2+l move right
-bindsym $mod3+l exec swaylock -f -c $BASE16[lighter_background] > /dev/null 2>&1
+bindsym $mod3+l exec swaylock -f -c ${BASE16_lighter_background} > /dev/null 2>&1
 # /
 
 bindsym $mod3+d exec vollowermic
