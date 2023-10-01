@@ -10,8 +10,8 @@ mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1 &
 xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
 
 swayidle -w \
-	timeout 900 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
-	before-sleep 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
+	timeout 900 'swaylock -f -c #${BASE16[lighter_background]}' \
+	before-sleep 'swaylock -f -c #${BASE16[lighter_background]}' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 
 mod1="Super"
@@ -74,7 +74,7 @@ riverctl map normal $mod3 g spawn "volraise"
 
 riverctl map normal $mod1 l focus-output next
 riverctl map normal $mod2 l spawn "riverctl send-to-output next && riverctl focus-output next"
-riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE16_LIGHTER_BACKGROUND} > /dev/null 2>&1"
+riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE16[lighter_background]} > /dev/null 2>&1"
 
 riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
 riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
@@ -114,8 +114,8 @@ riverctl map normal None XF86MonBrightnessUp   spawn "sudo brightnessctl s 10%+"
 riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 
 # appearance
-riverctl background-color       "0x${BASE16_DEFAULT_BACKGROUND#*#}"
-riverctl border-color-urgent    "0x${BASE16_COMMENTS#*#}"
+riverctl background-color       "0x${BASE16[default_background]}"
+riverctl border-color-urgent    "0x${BASE16[comments]}"
 
 # ssd by default
 riverctl rule-add ssd
@@ -149,8 +149,8 @@ exec river-xmonadwm \
 	--stack dwindle \
 	--border-width 1 \
 	--border-width-monocle 1 \
-	--border-color-focused "0x${BASE16_DARK_FOREGROUND#*#}" \
-	--border-color-focused-monocle "0x${BASE16_LIGHTER_BACKGROUND#*#}" \
-	--border-color-unfocused "0x${BASE16_LIGHTER_BACKGROUND#*#}" \
+	--border-color-focused "0x${BASE16[dark_foreground]}" \
+	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
+	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \
 	--log-threshold debug
 

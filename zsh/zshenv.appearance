@@ -36,7 +36,7 @@ export BASE16_MAGENTA="${BASE0E}"
 export BASE16_BROWN="${BASE0F}"
 
 #
-# base16 bright colour variants created by multiplying LCh by 1.25 in GIMP
+# base16 bright, bright colour variants created by multiplying LCh by 1.25 in GIMP
 #
 typeset -A BASE16
 BASE16[00]="000000"; BASE16[black]=$BASE16[00]; BASE16[default_background]=$BASE16[00]   # Default Background
