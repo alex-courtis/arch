@@ -4,9 +4,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
 exec swayidle -w \
-	timeout 750 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
+	timeout 750 'swaylock -f -c $BASE16[lighter_background]' \
 	timeout 1500 'systemctl suspend' \
-	before-sleep 'swaylock -f -c ${BASE16_LIGHTER_BACKGROUND}' \
+	before-sleep 'swaylock -f -c $BASE16[lighter_background]' \
 	> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1
 
 exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
