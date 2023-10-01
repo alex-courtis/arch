@@ -118,11 +118,11 @@ export BEMENU_OPTS="\
 	--list 10 \
 	--wrap \
 	--sb '#FFFF00' --sf '#FFFFFF' \
-	--tb '${BASE16_GREEN}'                --tf '${BASE16_DEFAULT_BACKGROUND}' \
-	--fb '${BASE16_LIGHTER_BACKGROUND}'   --ff '${BASE16_DARK_FOREGROUND}' \
-	--nb '${BASE16_LIGHTER_BACKGROUND}'   --nf '${BASE16_DARK_FOREGROUND}' \
-	--ab '${BASE16_LIGHTER_BACKGROUND}'   --af '${BASE16_DARK_FOREGROUND}' \
-	--hb '${BASE16_SELECTION_BACKGROUND}' --hf '${BASE16_LIGHT_FOREGROUND}'"
+	--tb '#${BASE16[green]}'                --tf '#${BASE16[default_background]}' \
+	--fb '#${BASE16[lighter_background]}'   --ff '#${BASE16[dark_foreground]}' \
+	--nb '#${BASE16[lighter_background]}'   --nf '#${BASE16[dark_foreground]}' \
+	--ab '#${BASE16[lighter_background]}'   --af '#${BASE16[dark_foreground]}' \
+	--hb '#${BASE16[selection_background]}' --hf '#${BASE16[light_foreground]}'"
 
 # https://github.com/termstandard/colors
 case $TERM in
