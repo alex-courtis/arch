@@ -26,13 +26,20 @@ function printtermtitle() {
 
 # print git ps1, current branch, upstream URL
 function gs() {
-	git_ps1=$(__git_ps1 2>/dev/null)
-	branch_local=$(git rev-parse --abbrev-ref HEAD)
-	branch_remote=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream})
-	url=$(git remote get-url ${branch_remote/\/*/})
-	user=${${(S)url/*:/}/\/*/}
+	local git_ps1=$(__git_ps1 2>/dev/null)
+	[ -n "${git_ps1}" ] && print "${git_ps1}"
 
-	print "${git_ps1}\n${branch_local}\n${branch_remote}\n${url}\n${user}"
+	local branch_local=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+	[ -n "${branch_local}" ] && print "\n${branch_local}"
+
+	local branch_remote=$(git rev-parse --abbrev-ref --symbolic-full-name @{upstream} 2>/dev/null)
+	if [ -n "${branch_remote}" ]; then
+		print "${branch_remote}"
+		local url=$(git remote get-url ${branch_remote/\/*/})
+		if [ -n "${url}" ]; then
+			print "\n${url}\n${${(S)url/*:/}/\/*/}"
+		fi
+	fi
 }
 
 # set branch upstream to $1
