@@ -1,5 +1,5 @@
 #
-# base16 bright, bright colour variants created by multiplying LCh by 1.25 in GIMP
+# base16 bright, bright_ colour variants created by multiplying LCh by 1.25 in GIMP
 #
 typeset -A BASE16
 BASE16[00]="000000"; BASE16[black]=$BASE16[00]; BASE16[default_background]=$BASE16[00]   # Default Background
@@ -28,45 +28,61 @@ BASE16[bright_blue]="9fe3ff"
 BASE16[bright_magenta]="ffadf1"
 export BASE16
 
-# non-array
+# non-array versions
 for k v in "${(@kv)BASE16}"; do
 	export BASE16_${k}="${v}"
 done
 
 #
-# user then host coloured
+# highlights for prompt etc.
 #
-typeset -A HL_NAMES
-typeset -A HL_FGS
 
-HL_NAMES[default]="white"
-HL_NAMES[root]="red"
-HL_NAMES[duke]="yellow"
-HL_NAMES[emperor]="green"
-HL_NAMES[lord]="cyan"
-HL_NAMES[gigantor]="blue"
-HL_NAMES[tinygod]="magenta"
+# basic 8 name
+typeset -A HL_NAMES=(
+[default]="white"
+[root]="red"
+[duke]="yellow"
+[emperor]="green"
+[lord]="cyan"
+[gigantor]="blue"
+[tinygod]="magenta"
+)
 export HL_NAMES
 
-for k v in "${(@kv)HL_NAMES}"; do
-	# prepend bright_ for RGB
-	HL_FGS[${k}]=${BASE16[bright_${v}]}
-done
+# base16 FG
+typeset -A HL_FGS=(
+[default]=${BASE16[bright_white]}
+[root]=${BASE16[bright_red]}
+[duke]=${BASE16[bright_yellow]}
+[emperor]=${BASE16[bright_green]}
+[lord]=${BASE16[bright_cyan]}
+[gigantor]=${BASE16[bright_blue]}
+[tinygod]=${BASE16[bright_magenta]}
+)
 export HL_FGS
 
+# fixed BG
 export HL_BG=${BASE16[selection_background]}
 
+# map user then host then default
 if [ -n "${HL_NAMES[${USER}]}" ]; then
 	export HL_NAME="${HL_NAMES[${USER}]}"
-	export HL_FG=$HL_FGS[${USER}]
 elif [ -n "${HL_NAMES[${HOST}]}" ]; then
 	export HL_NAME="${HL_NAMES[${HOST}]}"
-	export HL_FG=$HL_FGS[${HOST}]
 else
 	export HL_NAME=$HL_NAMES[default]
+fi
+if [ -n "${HL_FGS[${USER}]}" ]; then
+	export HL_FG=$HL_FGS[${USER}]
+elif [ -n "${HL_FGS[${HOST}]}" ]; then
+	export HL_FG=$HL_FGS[${HOST}]
+else
 	export HL_FG=$HL_FGS[default]
 fi
 
+#
+# font size
+#
 case "${HOST}" in
 	"gigantor")
 		;&
@@ -81,7 +97,9 @@ case "${HOST}" in
 		;;
 esac
 
-# customise various bemenu invocations
+#
+# bemenu
+#
 export BEMENU_OPTS="\
 	--monitor focused \
 	--prefix "\>" \
@@ -96,7 +114,9 @@ export BEMENU_OPTS="\
 	--ab '#${BASE16[lighter_background]}'   --af '#${BASE16[dark_foreground]}' \
 	--hb '#${BASE16[selection_background]}' --hf '#${BASE16[light_foreground]}'"
 
+#
 # https://github.com/termstandard/colors
+#
 case $TERM in
 	linux-truecolor  |\
 	tmux-truecolor   |\
