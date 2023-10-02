@@ -1,5 +1,15 @@
 # non-interactive shell invoked functions go here
 
+# don't evaluate git ps1 e.g.
+#
+# typeset -a NO_GIT_PS1=(
+# "${HOME}/src/cmocka"
+# "${HOME}/src/linux"
+# )
+if [ -f "${HOME}/.nogitps1" ]; then
+	. "${HOME}/.nogitps1"
+fi
+
 # terminal title
 function printtermtitle() {
 
@@ -21,6 +31,15 @@ function printtermtitle() {
 
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~ "
+
+	# obey ~/.nogitps1
+	if [ "${#NO_GIT_PS1}" -gt 0 ]; then
+		for d ("${NO_GIT_PS1[@]}"); do
+			if [[ "${PWD}" =~ "^${d}" ]]; then
+				return
+			fi
+		done
+	fi
 	__git_ps1
 }
 
