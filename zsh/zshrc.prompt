@@ -7,7 +7,13 @@ if [ "${USER}" = "root" ]; then
 	PROMPT_STR="${PROMPT_STR} root "
 fi
 
-if [ "${COLORTERM}" = "truecolor" ]; then
+# use nearcolor, never matches first 16, 88 doesn't work
+if [ "${COLORTERM}" != "truecolor" -a "${COLORTERM}" != "24bit" -a "$(echotc Co 2>/dev/null)" -ge 256 ]; then
+	NC="true"
+	zmodload zsh/nearcolor
+fi
+
+if [ "${COLORTERM}" = "truecolor" -o "${NC}" = "true" ]; then
 	COL_ZSH_OFF="%k%f"
 	COL_ZSH_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
 	COL_ZSH_WAR="%F{#${BASE16[yellow]}}%K{#${HL_BG}}"
@@ -18,6 +24,7 @@ else
 	COL_ZSH_WAR="%F{black}%K{yellow}"
 	COL_ZSH_ERR="%F{black}%K{red}"
 fi
+unset NC
 
 PS1="\${COL_ZSH_NOR}:\${PROMPT_STR}\${COL_ZSH_WAR}\${PR_WAR}\${COL_ZSH_ERR}\${PR_ERR}\${COL_ZSH_NOR};\${COL_ZSH_OFF} "
 PS2="\${COL_ZSH_NOR}${PS2}\${COL_ZSH_OFF} "
