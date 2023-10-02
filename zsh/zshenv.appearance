@@ -50,7 +50,7 @@ export HL_NAMES
 
 for k v in "${(@kv)HL_NAMES}"; do
 	# prepend bright_ for RGB
-	HL_FGS[${k}]=${BASE16[${v}]}
+	HL_FGS[${k}]=${BASE16[bright_${v}]}
 done
 export HL_FGS
 
