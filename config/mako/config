@@ -1,10 +1,12 @@
-default-timeout=6000
+default-timeout=10000
 
 font=monospace $FONT_SIZE_PT
 border-size=1
 
-# base16 bright; cannot use environment variables
 text-color=#$BASE16[light_foreground]
 background-color=#$BASE16[selection_background]
 border-color=#$BASE16[comments]
+
+width=500
+height=500
 
