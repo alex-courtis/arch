@@ -8,5 +8,5 @@ background-color=#$BASE16[selection_background]
 border-color=#$BASE16[comments]
 
 width=500
-height=500
+height=300
 
