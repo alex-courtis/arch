@@ -28,6 +28,11 @@ au({ "BufWinEnter" },                                           windows.resize_q
 au({ "VimEnter" },                                              nvim_tree.vim_enter,          {})
 -- stylua: ignore end
 
+-- v/h resize windows on terminal size change
+au({ "VimResized" }, function()
+  vim.cmd.wincmd("=")
+end)
+
 --- no way to remap fugitive and tpope will not add
 ft({ "fugitive" }, function(data)
   vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
