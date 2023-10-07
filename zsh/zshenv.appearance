@@ -41,10 +41,10 @@ done
 typeset -A HL_NAMES=(
 [default]="white"
 [root]="red"
-[duke]="yellow"
-[emperor]="cyan"
+[duke]="blue"
+[emperor]="yellow"
 [lord]="green"
-[gigantor]="blue"
+[gigantor]="cyan"
 [tinygod]="magenta"
 )
 export HL_NAMES
@@ -53,10 +53,10 @@ export HL_NAMES
 typeset -A HL_FGS=(
 [default]=${BASE16[bright_white]}
 [root]=${BASE16[bright_red]}
-[duke]=${BASE16[bright_yellow]}
-[emperor]=${BASE16[bright_cyan]}
+[duke]=${BASE16[bright_blue]}
+[emperor]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
-[gigantor]=${BASE16[bright_blue]}
+[gigantor]=${BASE16[bright_cyan]}
 [tinygod]=${BASE16[bright_magenta]}
 )
 export HL_FGS
