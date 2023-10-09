@@ -1,6 +1,6 @@
 * {
 	font-family: Monospace;
-	font-size: $FONT_SIZE_PTpt;
+	font-size: $FONT_SIZE_PT_EVENpt;
 	min-height: 0pt;
 	padding: 0 0 0 0;
 	border: none;
@@ -48,15 +48,9 @@ window#waybar {
 #layout {
 	color: #$BASE16[light_foreground];
 	background-color: #$BASE16[selection_background];
-	margin-left: 16pt;
 }
 
 #window.focused {
 	color: #$BASE16[light_foreground];
 	background-color: #$BASE16[selection_background];
-	margin-left: 16pt;
-}
-
-#custom-slstatus {
-	margin-left: 16pt;
 }

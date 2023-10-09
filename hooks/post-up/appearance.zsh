@@ -20,6 +20,7 @@ for f in ${(ps: :)APPEARANCE_FILES}; do
 	sed -i -e "${base16sed}" "${tmp}"
 
 	# font
+	sed -i -e "s/\$FONT_SIZE_PT_EVEN/${FONT_SIZE_PT_EVEN}/g" "${tmp}"
 	sed -i -e "s/\$FONT_SIZE_PT/${FONT_SIZE_PT}/g" "${tmp}"
 
 	# highlight colour

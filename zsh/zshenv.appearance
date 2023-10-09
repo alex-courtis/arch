@@ -88,12 +88,15 @@ case "${HOST}" in
 		;&
 	"tinygod")
 		export FONT_SIZE_PT=13
+		export FONT_SIZE_PT_EVEN=14
 		;;
 	"emperor")
 		export FONT_SIZE_PT=12
+		export FONT_SIZE_PT_EVEN=12
 		;;
 	*)
 		export FONT_SIZE_PT=11
+		export FONT_SIZE_PT_EVEN=12
 		;;
 esac
 

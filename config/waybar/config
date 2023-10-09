@@ -2,10 +2,13 @@
   "position": "top",
   "modules-left": [
     "river/tags",
+    "custom/space",
     "river/layout",
-    "river/window"
+    "custom/space",
+    "river/window",
   ],
   "modules-right": [
+    "custom/space",
     "custom/slstatus",
     "tray"
   ],
@@ -35,6 +38,9 @@
     "on-scroll-down": "vollower",
     "on-click-middle": "pavucontrol",
     "tooltip": false
+  },
+  "custom/space": {
+    "format": "  ",
   },
 }
 
