@@ -127,6 +127,9 @@ riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 # appearance
 riverctl background-color       "0x${BASE16[default_background]}"
 riverctl border-color-urgent    "0x${BASE16[comments]}"
+riverctl border-color-unfocused "0x${BASE16[lighter_background]#*#}"
+riverctl border-color-focused   "0x808080" 
+riverctl border-width           1
 
 # always server side decorations
 riverctl rule-add ssd
