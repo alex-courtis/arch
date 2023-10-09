@@ -155,7 +155,8 @@ fi
 riverctl default-layout river-xmonadwm
 
 # start layout manager
-valgrind --leak-check=full --show-leak-kinds=all river-xmonadwm \
+# valgrind --leak-check=full --show-leak-kinds=all river-xmonadwm \
+river-xmonadwm \
 	--stack dwindle \
 	--border-width 1 \
 	--border-width-monocle 1 \
