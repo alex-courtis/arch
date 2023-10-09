@@ -163,6 +163,5 @@ river-xmonadwm \
 	--border-color-focused "0x${BASE16[dark_foreground]}" \
 	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
 	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \
-	--log-threshold debug \
 	> "/tmp/river-xmonadwm.${XDG_VTNR}.${USER}.$(date +%Y%m%d_%H%M).log" 2>&1 &
 
