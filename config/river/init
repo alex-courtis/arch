@@ -83,7 +83,7 @@ riverctl map normal $mod3 g spawn "volraise"
 
 riverctl map normal $mod1 l focus-output next
 riverctl map normal $mod2 l spawn "riverctl send-to-output next && riverctl focus-output next"
-riverctl map normal $mod3 l spawn "swaylock -f -c \${BASE16[lighter_background]} > /dev/null 2>&1"
+riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 
 riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
 riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
