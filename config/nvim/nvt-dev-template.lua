@@ -35,11 +35,9 @@ packer.use({
 })
 
 if bootstrapping then
-  vim.api.nvim_create_autocmd({ "User PackerComplete" }, {
-    callback = function()
-      vim.cmd.exit()
-    end,
-  })
+  vim.cmd([[
+    autocmd User PackerComplete quitall
+  ]])
 
   packer.sync()
   return
