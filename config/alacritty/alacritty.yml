@@ -317,8 +317,8 @@ colors:
   #  text: CellBackground
   #  background: CellForeground
   selection:
-    text: '0x$BASE16[light_foreground]'
-    background: '0x$BASE16[selection_background]'
+    text: '0x$HL_FG'
+    background: '0x$HL_BG'
 
   # Normal colors
   #normal:

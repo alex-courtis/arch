@@ -1,38 +1,57 @@
-#!/bin/sh
+#!/bin/zsh
+
+usage() {
+	printf "usage: colours [-f]\n"
+	exit 0
+}
+
+if [ $# -gt 1 ]; then
+	usage
+elif [ $# -eq 1 ]; then
+	case "${1}" in
+		"-f")
+			FULL="true"
+			;;
+		*)
+			printf "usage: colours [-f]\n"
+			exit 0
+			;;
+	esac
+fi
 
 # Gives a color $1/255 % along HSV
 # Who knows what happens when $1 is outside 0-255
-# Echoes "$red $green $blue" where
+# Prints "$red $green $blue" where
 # $red $green and $blue are integers
 # ranging between 0 and 255 inclusive
 rainbow_color()
 {
-	let h=$1/43
-	let f=$1-43*$h
-	let t=$f*255/43
-	let q=255-t
+	typeset -i h=$1/43
+	typeset -i f=$1-43*$h
+	typeset -i t=$f*255/43
+	typeset -i q=255-t
 
 	if [ $h -eq 0 ]
 	then
-		echo "255 $t 0"
+		printf "255 $t 0"
 	elif [ $h -eq 1 ]
 	then
-		echo "$q 255 0"
+		printf "$q 255 0"
 	elif [ $h -eq 2 ]
 	then
-		echo "0 255 $t"
+		printf "0 255 $t"
 	elif [ $h -eq 3 ]
 	then
-		echo "0 $q 255"
+		printf "0 $q 255"
 	elif [ $h -eq 4 ]
 	then
-		echo "$t 0 255"
+		printf "$t 0 255"
 	elif [ $h -eq 5 ]
 	then
-		echo "255 0 $q"
+		printf "255 0 $q"
 	else
 		# execution should never reach here
-		echo "0 0 0"
+		printf "0 0 0"
 	fi
 }
 
@@ -50,53 +69,70 @@ ansi_256_block() {
 
 ansi_256_blocks() {
 	for i in $(seq $1 $(( $1 + $2))); do
-		ansi_256_block "$i"
+		ansi_256_block "$i" "$i"
 	done
 	printf "\n"
 }
 
-# red spectrum
-for i in $(seq 0 1 127); do
-	rgb_cell $i 0 0
-done
-printf "\n"
-for i in $(seq 255 -1 128); do
-	rgb_cell $i 0 0
-done
-printf "\n\n"
+if [ "${FULL}" = "true" ]; then
+	printf "\nred spectrum:\n"
+	for i in $(seq 0 1 127); do
+		rgb_cell $i 0 0
+	done
+	printf "\n"
+	for i in $(seq 255 -1 128); do
+		rgb_cell $i 0 0
+	done
+	printf "\n"
 
-# green spectrum
-for i in $(seq 0 1 127); do
-	rgb_cell 0 $i 0
-done
-printf "\n"
-for i in $(seq 255 -1 128); do
-	rgb_cell 0 $i 0
-done
-printf "\n\n"
+	printf "\ngreen spectrum:\n"
+	for i in $(seq 0 1 127); do
+		rgb_cell 0 $i 0
+	done
+	printf "\n"
+	for i in $(seq 255 -1 128); do
+		rgb_cell 0 $i 0
+	done
+	printf "\n"
 
-# blue spectrum
-for i in $(seq 0 1 127); do
-	rgb_cell 0 0 $i
-done
-printf "\n"
-for i in $(seq 255 -1 128); do
-	rgb_cell 0 0 $i
-done
-printf "\n\n"
+	printf "\nblue spectrum:\n"
+	for i in $(seq 0 1 127); do
+		rgb_cell 0 0 $i
+	done
+	printf "\n"
+	for i in $(seq 255 -1 128); do
+		rgb_cell 0 0 $i
+	done
+	printf "\n"
 
-# rainbow spectrum
-for i in $(seq 0 1 127); do
-	rgb_cell $(rainbow_color $i)
-done
-printf "\n"
-for i in $(seq 255 -1 128); do
-	rgb_cell $(rainbow_color $i)
-done
-printf "\n\n"
+	printf "\nrainbow spectrum:\n"
+	for i in $(seq 0 1 127); do
+		rgb_cell $(rainbow_color $i)
+	done
+	printf "\n"
+	for i in $(seq 255 -1 128); do
+		rgb_cell $(rainbow_color $i)
+	done
+	printf "\n"
 
+	printf "\n256 colours:\n"
+	# first 16
+	for i in $(seq 0 8 8); do
+		ansi_256_blocks $i 7
+	done
 
-echo "xterm defaults:"
+	# 216 cube
+	for i in $(seq 16 6 226); do
+		ansi_256_blocks $i 5
+	done
+
+	# greys
+	for i in $(seq 232 8 248); do
+		ansi_256_blocks $i 7
+	done
+fi
+
+printf "\nxterm defaults:\n"
 rgb_block   0   0   0 "00"
 rgb_block 205   0   0 "08"
 rgb_block   0 205   0 "0B"
@@ -114,10 +150,10 @@ rgb_block  92  92 255 "0D"
 rgb_block 255   0 255 "0E"
 rgb_block   0 255 255 "0C"
 rgb_block 255 255 255 "07"
-printf "\n\n"
+printf "\n"
 
 
-echo "base16-default-dark:"
+printf "\nbase16-default-dark:\n"
 rgb_block 0x18 0x18 0x18 "00"
 rgb_block 0xab 0x46 0x42 "08"
 rgb_block 0xa1 0xb5 0x6c "0B"
@@ -142,10 +178,10 @@ rgb_block 0x28 0x28 0x28 "01"
 rgb_block 0x38 0x38 0x38 "02"
 rgb_block 0xb8 0xb8 0xb8 "04"
 rgb_block 0xe8 0xe8 0xe8 "06"
-printf "\n\n"
+printf "\n"
 
 
-echo "base16-bright:"
+printf "\nbase16-bright:\n"
 rgb_block 0x00 0x00 0x00 "00"
 rgb_block 0xfb 0x01 0x20 "08"
 rgb_block 0xa1 0xc6 0x59 "0B"
@@ -170,10 +206,10 @@ rgb_block 0x30 0x30 0x30 "01"
 rgb_block 0x50 0x50 0x50 "02"
 rgb_block 0xd0 0xd0 0xd0 "04"
 rgb_block 0xf5 0xf5 0xf5 "06"
-printf "\n\n"
+printf "\n"
 
 
-echo "current ansi 256:"
+printf "\ncurrent:\n"
 
 # basic 16
 ansi_256_block  0 "00"
@@ -185,13 +221,13 @@ ansi_256_block  5 "0E"
 ansi_256_block  6 "0C"
 ansi_256_block  7 "05"
 printf "\n"
-ansi_256_block  8  "03"
-ansi_256_block  9  "08"
-ansi_256_block 10 "0B"
-ansi_256_block 11 "0A"
-ansi_256_block 12 "0D"
-ansi_256_block 13 "0E"
-ansi_256_block 14 "0C"
+ansi_256_block  8 "03"
+ansi_256_block  9 ""
+ansi_256_block 10 ""
+ansi_256_block 11 ""
+ansi_256_block 12 ""
+ansi_256_block 13 ""
+ansi_256_block 14 ""
 ansi_256_block 15 "07"
 printf "\n"
 
@@ -204,13 +240,61 @@ ansi_256_block 20 "04"
 ansi_256_block 21 "06"
 printf "\n"
 
-# 216 cube, with base16 extensions at the start removed
-for i in $(seq 22 6 226); do
-	ansi_256_blocks $i 5
-done
 
-# greys
-for i in $(seq 232 8 248); do
-	ansi_256_blocks $i 7
-done
+printf "\n\$BASE16[]\n"
+base16_full()
+{
+	printf "%16s %4s %-22s " "${2:+[${2}]}" "${3:+[${3}]}" "${4:+[${4}]}"
+	rgb_block "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
+	printf " %s\n" "${BASE16_DESC[$1]}"
+}
+base16_full "00" "black"        "00" "default_background"
+base16_full "01" ""             "01" "lighter_background"
+base16_full "02" ""             "02" "selection_background"
+base16_full "03" "bright_black" "03" "comments"
+base16_full "04" ""             "04" "dark_foreground"
+base16_full "05" "white"        "05" "default_foreground"
+base16_full "06" ""             "06" "light_foreground"
+base16_full "07" "bright_white" "07" "light_background"
+base16_full "08" "red"          "08" ""
+base16_full "09" "orange"       "09" ""
+base16_full "0A" "yellow"       "0A" ""
+base16_full "0B" "green"        "0B" ""
+base16_full "0C" "cyan"         "0C" ""
+base16_full "0D" "blue"         "0D" ""
+base16_full "0E" "magenta"      "0E" ""
+base16_full "0F" "brown"        "0F" ""
 printf "\n"
+
+base16_brief()
+{
+	printf "%16s %4s " "${2:+[${2}]}" "${3:+[${3}]}"
+	rgb_block "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
+	printf "\n"
+}
+
+base16_brief "00"             "black"          "00"
+base16_brief "03"             "bright_black"   "03"
+base16_brief "08"             "red"            "08"
+base16_brief "bright_red"     "bright_red"     ""
+base16_brief "0B"             "green"          "0B"
+base16_brief "bright_green"   "bright_green"   ""
+base16_brief "0A"             "yellow"         "0A"
+base16_brief "bright_yellow"  "bright_yellow"  ""
+base16_brief "0D"             "blue"           "0D"
+base16_brief "bright_blue"    "bright_blue"    ""
+base16_brief "0E"             "magenta"        "0E"
+base16_brief "bright_magenta" "bright_magenta" ""
+base16_brief "0C"             "cyan"           "0C"
+base16_brief "bright_cyan"    "bright_cyan"    ""
+base16_brief "05"             "white"          "05"
+base16_brief "07"             "bright_white"   "07"
+
+printf "\n\$HL_FG   "
+rgb_block "0x${HL_FG[1,2]}" "0x${HL_FG[3,4]}" "0x${HL_FG[5,6]}"
+printf "\n\$HL_BG   "
+rgb_block "0x${HL_BG[1,2]}" "0x${HL_BG[3,4]}" "0x${HL_BG[5,6]}"
+printf "\n\$HL_NAME ${HL_NAME}"
+printf "\n"
+
+exit 0
