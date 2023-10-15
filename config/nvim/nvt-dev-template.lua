@@ -29,6 +29,7 @@ packer.init({
 
 packer.use("wbthomason/packer.nvim")
 packer.use({
+  "neovim/nvim-lspconfig",
   "nvim-tree/nvim-web-devicons",
   -- 'nvim-tree/nvim-tree.lua',
   -- NVIM_TREE_DIR
@@ -44,6 +45,7 @@ if bootstrapping then
 end
 
 local api = require("nvim-tree.api")
+local log = require("nvim-tree.log")
 
 -- stylua: ignore start
 vim.keymap.set("n", ";",        ":",                                   { noremap = true })
@@ -63,6 +65,16 @@ function M.on_attach(bufnr)
   vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
   -- stylua: ignore end
 end
+
+api.events.subscribe(api.events.Event.NodeRenamed, function(data)
+  log.line("dev", "Event.NodeRenamed %s %s", data.old_name, data.new_name)
+end)
+
+vim.cmd([[
+:hi NvimTreeRootFolder guifg=magenta
+]])
+
+require("lspconfig").lua_ls.setup({})
 
 require("nvim-tree").setup({
   -- DEFAULT_OPTS

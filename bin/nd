@@ -70,6 +70,14 @@ function init() {
 		s/truncate = false/truncate = true/
 		s/dev = false/dev = true/
 	" "${INIT}"
+
+	# enable diagnostics
+	sed -i -e "
+		/diagnostics = {/{
+			n
+			s/enable = false/enable = true/
+		}
+	" "${INIT}"
 }
 
 case "${1}" in
