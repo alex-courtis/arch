@@ -1,0 +1,5 @@
+[Default]
+save_dir=$HOME/.ss
+save_filename_format=%Y%m%d_%H%M%S-swappy.png
+show_panel=true
+paint_mode=rectangle

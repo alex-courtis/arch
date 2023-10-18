@@ -383,6 +383,7 @@ scrot
 slock
 slurp
 sqlite3
+swappy
 swayidle
 swaylock
 sysstat
