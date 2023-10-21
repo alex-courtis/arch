@@ -14,7 +14,7 @@ local start_client_flags = {
 
 local config_ccls = {
   flags = start_client_flags,
-  capabilities = cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities() or nil,
+  capabilities = cmp_nvim_lsp.default_capabilities(),
   root_dir = lspconfig and lspconfig.util.root_pattern(".ccls", "build/compile_commands.json") or nil,
   init_options = {
     compilationDatabaseDirectory = "build",
@@ -32,8 +32,12 @@ local config_ccls = {
 
 local config_lua = {
   flags = start_client_flags,
+  capabilities = cmp_nvim_lsp.default_capabilities(),
   settings = {
     Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
       diagnostics = {
         globals = {
           "vim",
@@ -95,14 +99,6 @@ local config_lua = {
           ["unused-vararg"] = "Any",
         },
       },
-      workspace = {
-        library = {
-          -- 2023 04 24 incomplete
-          -- [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          -- [vim.fn.expand("$VIMRUNTIME/lua/vim")] = true,
-          -- [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        },
-      },
       semantic = {
         -- ugly and takes time to set
         variable = false,
@@ -113,6 +109,7 @@ local config_lua = {
 
 local config_zls = {
   flags = start_client_flags,
+  capabilities = cmp_nvim_lsp.default_capabilities(),
 }
 
 function M.goto_definition_or_tag()
