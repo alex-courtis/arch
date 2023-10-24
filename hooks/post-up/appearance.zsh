@@ -10,6 +10,8 @@ done
 base16sed="${base16sed}"
 
 for f in ${(ps: :)APPEARANCE_FILES}; do
+	mkdir -vp "${HOME}/.$(dirname ${f})"
+
 	src="../../${f}"
 	dst="${HOME}/.${f}"
 	tmp="/tmp/$(basename ${f})"
