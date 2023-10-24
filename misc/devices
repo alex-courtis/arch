@@ -10,8 +10,8 @@ tinygod tinygod1		70:85:C2:59:E2:7D	192.168.1.141	Desktop Top Port
 tinygod2				70:85:C2:59:E2:7F	192.168.1.142	Desktop Bottom Port
 deckw					50:5A:65:60:76:61	192.168.1.151	Steam Deck
 gigantor deck dock		B4:45:06:B6:69:64	192.168.1.161	Dell Dock
-zima1					00:E0:4C:22:7F:76	192.168.1.151	Zima Left
-zima2					00:E0:4C:22:7F:77	192.168.1.152	Zima Right
+zima1					00:E0:4C:22:7F:76	192.168.1.171	Zima Left
+zima2					00:E0:4C:22:7F:77	192.168.1.172	Zima Right
 						64:A2:F9:12:F0:EA					Oneplus 6
 						58:B0:D4:69:29:56					kobo
 						A8:51:AB:0F:13:A0					Apple TV
