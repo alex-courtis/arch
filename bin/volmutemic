@@ -3,7 +3,15 @@
 pactl get-source-volume @DEFAULT_SOURCE@ | grep " 0%" > /dev/null 2>&1
 if [ $? -eq 0 ]; then
 	pactl set-source-mute @DEFAULT_SOURCE@ 0
-	pactl set-source-volume @DEFAULT_SOURCE@ 100%
+	# base or 100%
+	case "${HOST}" in
+		"duke")
+			pactl set-source-volume @DEFAULT_SOURCE@ 46%
+			;;
+		*)
+			pactl set-source-volume @DEFAULT_SOURCE@ 100%
+			;;
+	esac
 else
 	case "${HOST}" in
 		"duke")
