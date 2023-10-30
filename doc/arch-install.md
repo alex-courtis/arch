@@ -207,6 +207,13 @@ Install the CPU microcode for amd or intel:
 pacman -S amd-ucode
 ```
 
+### Btrfs Scrub
+
+Enable monthly scrub for device at root path using convention over configuration. Specifying a devices is not supported.
+```sh
+systemctl enable btrfs-scrub@$(systemd-escape -p /).timer
+```
+
 ## Users
 
 Invoke `visudo` and uncomment the following:
