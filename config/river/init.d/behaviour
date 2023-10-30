@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# always server side decorations
+riverctl rule-add ssd
+
+# specific client side decorations
+riverctl rule-add csd -app-id zoom
+
+# floating
+riverctl rule-add float -title "Open File"
+riverctl rule-add float -title "Open Folder"
+riverctl rule-add float -app-id nm-openconnect-auth-dialog
+riverctl rule-add float -app-id zoom
+
+# behaviour
+riverctl attach-mode bottom
+riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-focus-change
+

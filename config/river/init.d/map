@@ -1,0 +1,111 @@
+#!/bin/zsh
+
+mod1="Super"
+mod2="$mod1+Shift"
+mod3="$mod2+Control"
+
+#
+# mouse
+#
+riverctl map-pointer normal $mod1 BTN_LEFT move-view
+riverctl map-pointer normal $mod1 BTN_RIGHT resize-view
+riverctl map-pointer normal $mod1 BTN_MIDDLE toggle-float
+riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
+
+#
+# thumbs
+#
+riverctl map normal $mod1 BackSpace toggle-float
+riverctl map normal $mod2 BackSpace toggle-fullscreen
+riverctl map normal $mod1 Escape swap next
+riverctl map normal $mod2 Escape swap previous
+riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
+riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
+riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
+riverctl map normal $mod2 Delete spawn "browser > /dev/null 2>&1 &!"
+riverctl map normal $mod1 Return focus-view next
+riverctl map normal $mod2 Return focus-view previous
+riverctl map normal $mod1 Space send-layout-cmd river-xmonadwm "--layout-toggle"
+riverctl map normal $mod2 Space send-layout-cmd river-xmonadwm "--layout monocle"
+
+#
+# left
+#
+tag=1
+for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
+
+	riverctl map normal $mod1 $k set-focused-tags $tag
+	riverctl map normal $mod2 $k spawn "riverctl set-view-tags ${tag} ; riverctl set-focused-tags ${tag}"
+	riverctl map normal $mod3 $k set-view-tags $tag
+	tag=$(($tag << 1))
+done
+
+riverctl map normal $mod1 q close
+riverctl map normal $mod2 q spawn "steam -shutdown"
+
+if [ "${HOST}" = "gigantor" ]; then
+	# if exiting wayland cleanly: gigantor will sleep when lid closed
+	riverctl map normal $mod3 q spawn "pkill -9 river"
+else
+	riverctl map normal $mod3 q exit
+fi
+
+riverctl map normal $mod1 equal send-layout-cmd river-xmonadwm "--ratio-master 0.5"
+riverctl map normal $mod2 equal send-layout-cmd river-xmonadwm "--count-master 1"
+
+#
+# right
+#
+riverctl map normal $mod1 plus send-layout-cmd river-xmonadwm "--ratio-master +0.025"
+riverctl map normal $mod2 plus send-layout-cmd river-xmonadwm "--count-master +1"
+
+riverctl map normal $mod1 minus send-layout-cmd river-xmonadwm "--ratio-master -0.025"
+riverctl map normal $mod2 minus send-layout-cmd river-xmonadwm "--count-master -1"
+
+riverctl map normal $mod3 f spawn "volraisemic"
+
+riverctl map normal $mod3 g spawn "volraise"
+
+riverctl map normal $mod1 l focus-output next
+riverctl map normal $mod2 l spawn "riverctl send-to-output next && riverctl focus-output next"
+riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
+
+riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
+riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
+riverctl map normal $mod3 d spawn "vollowermic"
+
+riverctl map normal $mod1 h focus-output previous
+riverctl map normal $mod2 h spawn "riverctl send-to-output previous && riverctl focus-output previous"
+riverctl map normal $mod3 h spawn "vollower"
+
+riverctl map normal $mod3 n spawn "ssa"
+
+riverctl map normal $mod3 s spawn "sss"
+
+riverctl map normal $mod3 minus spawn "sudo systemctl suspend"
+
+riverctl map normal $mod3 b spawn "volmutemic"
+
+riverctl map normal $mod3 m spawn "volmute"
+
+riverctl map normal $mod3 v spawn "way-displays -s SCALING on"
+
+riverctl map normal $mod3 z spawn "way-displays -s SCALING off"
+
+riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
+
+riverctl map normal $mod1 left send-layout-cmd river-xmonadwm "--layout left"
+riverctl map normal $mod1 right send-layout-cmd river-xmonadwm "--layout right"
+riverctl map normal $mod1 up send-layout-cmd river-xmonadwm "--layout top"
+riverctl map normal $mod1 down send-layout-cmd river-xmonadwm "--layout bottom"
+
+#
+# special
+#
+riverctl map normal None XF86AudioMute         spawn "volmute"
+riverctl map normal None XF86AudioMicMute      spawn "volmutemic"
+riverctl map normal None XF86AudioRaiseVolume  spawn "volraise"
+riverctl map normal None XF86AudioLowerVolume  spawn "vollower"
+riverctl map normal None XF86MonBrightnessUp   spawn "sudo brightnessctl s 10%+"
+riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
+

@@ -1,7 +1,7 @@
 lord					D0:50:99:C2:80:DF	192.168.1.11	NAS LAN1 - Right Port
 lord-ipmi-shared		D0:50:99:E1:73:68	192.168.1.12	NAS IPMI Shared
 lord-ipmi-dedicated		D0:50:99:E1:74:8D	192.168.1.13	NAS IPMI Dedicated - Top Port
-gigantor deck dock		B4:45:06:B6:69:64	192.168.1.21	Dell Dock
+gigantor deck dock duke	B4:45:06:B6:69:64	192.168.1.21	Dell Dock
 emperor					10:7B:44:93:A5:6D	192.168.1.31	Desktop Wired
 dukew					3C:58:C2:F0:D4:F8	192.168.1.41	Lenovo Laptop
 duke					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired

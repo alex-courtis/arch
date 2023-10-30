@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+# used by xdg-desktop-portal-wlr
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
+
+way-displays > "/tmp/way-displays.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+mako > "/tmp/mako.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+if [ "${USER}" != "alex" ]; then
+	swayidle -w \
+		timeout 900 'swaylock -f -c "#${BASE16_lighter_background}"' \
+		before-sleep 'swaylock -f -c "#${BASE16_lighter_background}"' \
+		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
+fi
+
+# set the first X display to primary, for proton: https://github.com/swaywm/sway/issues/6422
+xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
+

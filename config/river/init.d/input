@@ -26,3 +26,7 @@ for t in "${PAD[@]}"; do
 	riverctl input "${t}" natural-scroll enabled
 done
 
+# this is slow hence background it
+if [ "$(whence libinput-gestures-setup)" ]; then
+	libinput-gestures-setup restart &
+fi

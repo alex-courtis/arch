@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# appearance
+riverctl background-color       "0x${BASE16[default_background]}"
+riverctl border-color-urgent    "0x${BASE16[comments]}"
+riverctl border-color-unfocused "0x${BASE16[lighter_background]#*#}"
+riverctl border-color-focused   "0x808080" 
+riverctl border-width           1

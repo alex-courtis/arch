@@ -11,16 +11,16 @@ fi
 # maybe start a GUI if one isn't running; flavour depends on which virtual terminal we are on
 if [ "${USER}" != "root" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" -a -n "${XDG_VTNR}" ]; then
 	case "${XDG_VTNR}" in
-		1)
+		[12])
 			. startwm river
 			;;
-		2)
+		3)
 			. startwm x dwm
 			;;
-		3)
+		4)
 			. startwm hyprland
 			;;
-		4)
+		5)
 			. startwm sway
 			;;
 	esac
