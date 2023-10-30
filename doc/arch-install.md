@@ -209,9 +209,9 @@ pacman -S amd-ucode
 
 ### Btrfs Scrub
 
-Enable monthly scrub for device at root path using convention over configuration. Specifying a devices is not supported.
+Enable monthly scrub for a device mount point using convention over configuration. Directly specifying a device is not supported.
 ```sh
-systemctl enable btrfs-scrub@$(systemd-escape -p /).timer
+systemctl enable btrfs-scrub@$(systemd-escape -p /home).timer
 ```
 
 ## Users
