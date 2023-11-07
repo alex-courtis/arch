@@ -1,5 +1,5 @@
 local util = require("amc.util")
-local formatter = require("amc.plugins.formatter")
+local formatter = util.require_or_nil("amc.plugins.formatter")
 local stylua = util.require_or_nil("stylua-nvim")
 
 local M = {}
@@ -105,7 +105,7 @@ function M.format()
     return
   end
 
-  if formatter.format and formatter.format() then
+  if formatter and formatter.format and formatter.format() then
     return
   end
 

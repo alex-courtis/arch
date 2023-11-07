@@ -1,6 +1,5 @@
 local util = require("amc.util")
-local windows = require("amc.windows")
-
+local windows = util.require("amc.windows")
 local telescope = util.require_or_nil("telescope")
 local actions = util.require_or_nil("telescope.actions")
 local action_set = util.require_or_nil("telescope.actions.set")

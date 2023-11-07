@@ -1,4 +1,5 @@
-local buffers = require("amc.buffers")
+local util = require("amc.util")
+local buffers = util.require("amc.buffers")
 
 local M = {}
 

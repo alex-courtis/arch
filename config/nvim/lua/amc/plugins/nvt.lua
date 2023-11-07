@@ -1,12 +1,10 @@
 local util = require("amc.util")
-local telescope = require("amc.plugins.telescope")
+local env = util.require("amc.env")
+local telescope = util.require_or_nil("amc.plugins.telescope")
 local tree = util.require_or_nil("nvim-tree")
 local api = util.require_or_nil("nvim-tree.api")
 
-local M = {
-  -- maybe set by dirs.lua
-  startup_dir = nil,
-}
+local M = {}
 
 if not tree or not api then
   return M
@@ -33,6 +31,9 @@ local function node_path_dir()
 end
 
 local function find_files()
+  if not telescope then
+    return
+  end
   local _, dir = node_path_dir()
   if dir then
     telescope.find_files({ search_dirs = { dir } })
@@ -40,6 +41,9 @@ local function find_files()
 end
 
 local function live_grep()
+  if not telescope then
+    return
+  end
   local _, dir = node_path_dir()
   if dir then
     telescope.live_grep({ search_dirs = { dir } })
@@ -290,7 +294,7 @@ function M.vim_enter(data)
 
   local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
 
-  if (real_file and not ignored_ft) or M.startup_dir then
+  if (real_file and not ignored_ft) or env.startup_dir then
     -- open the tree but don't focus it
     api.tree.toggle({ focus = false })
 
