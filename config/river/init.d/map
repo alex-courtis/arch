@@ -43,26 +43,20 @@ riverctl map normal $mod1 q close
 riverctl map normal $mod2 q spawn "steam -shutdown"
 riverctl map normal $mod3 q exit
 
-riverctl map normal $mod1 equal send-layout-cmd river-xmonadwm "--ratio-master 0.5"
-riverctl map normal $mod2 equal send-layout-cmd river-xmonadwm "--count-master 1"
-
 #
 # right
 #
-riverctl map normal $mod1 plus send-layout-cmd river-xmonadwm "--ratio-master +0.025"
-riverctl map normal $mod2 plus send-layout-cmd river-xmonadwm "--count-master +1"
-
-riverctl map normal $mod1 minus send-layout-cmd river-xmonadwm "--ratio-master -0.025"
-riverctl map normal $mod2 minus send-layout-cmd river-xmonadwm "--count-master -1"
-
 riverctl map normal $mod3 f spawn "volraisemic"
 
 riverctl map normal $mod1 g send-layout-cmd river-xmonadwm "--layout left"
+riverctl map normal $mod2 g send-layout-cmd river-xmonadwm "--ratio -0.025"
 riverctl map normal $mod3 g spawn "volraise"
 
 riverctl map normal $mod1 c send-layout-cmd river-xmonadwm "--layout mid"
+riverctl map normal $mod2 c send-layout-cmd river-xmonadwm "--ratio 0.5"
 
 riverctl map normal $mod1 r send-layout-cmd river-xmonadwm "--layout right"
+riverctl map normal $mod2 r send-layout-cmd river-xmonadwm "--ratio +0.025"
 
 riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 
@@ -70,13 +64,15 @@ riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
 riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
 riverctl map normal $mod3 d spawn "vollowermic"
 
-riverctl map normal $mod1 h send-layout-cmd river-xmonadwm "--count-master +1" # TODO add mid param
+riverctl map normal $mod1 h focus-view previous
+riverctl map normal $mod2 h send-layout-cmd river-xmonadwm "--count +1"
 riverctl map normal $mod3 h spawn "vollower"
 
 riverctl map normal $mod1 t send-layout-cmd river-xmonadwm "--layout monocle"
+riverctl map normal $mod2 t send-layout-cmd river-xmonadwm "--count 1"
 
-riverctl map normal $mod1 n send-layout-cmd river-xmonadwm "--count-master -1" # TODO add mid param
-riverctl map normal $mod3 n spawn "ssa"
+riverctl map normal $mod1 n focus-view next
+riverctl map normal $mod2 n send-layout-cmd river-xmonadwm "--count -1"
 
 riverctl map normal $mod3 s spawn "sss"
 
@@ -86,19 +82,15 @@ riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
 
-riverctl map normal $mod3 v spawn "way-displays -s SCALING on"
-
-riverctl map normal $mod3 z spawn "way-displays -s SCALING off"
-
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
-riverctl map normal $mod1 left focus-output left
-riverctl map normal $mod2 left spawn "riverctl send-to-output next && riverctl focus-output left"
-riverctl map normal $mod3 left send-to-output left
+riverctl map normal $mod1 left focus-output previous
+riverctl map normal $mod2 left spawn "riverctl send-to-output previous && riverctl focus-output previous"
+riverctl map normal $mod3 left send-to-output previous
 
-riverctl map normal $mod1 right focus-output right
-riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output right"
-riverctl map normal $mod3 right send-to-output right
+riverctl map normal $mod1 right focus-output next
+riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output next"
+riverctl map normal $mod3 right send-to-output next
 
 #
 # special
