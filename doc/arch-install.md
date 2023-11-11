@@ -354,6 +354,8 @@ AUR packages are at the end.
 alacritty
 autofs
 bemenu-wayland
+bluez
+blueman
 calc
 dmenu
 dnsutils

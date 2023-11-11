@@ -11,6 +11,7 @@ riverctl rule-add float -title "Open File"
 riverctl rule-add float -title "Open Folder"
 riverctl rule-add float -app-id nm-openconnect-auth-dialog
 riverctl rule-add float -app-id zoom
+riverctl rule-add float -app-id "blueman-*"
 
 # behaviour
 riverctl attach-mode bottom
