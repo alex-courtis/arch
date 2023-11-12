@@ -25,12 +25,14 @@ if [ "$(whence display-init)" ]; then
 fi
 
 # slock the screen after 5 mins
-if [ "$(whence xautolock)" -a "$(whence slock)" ]; then
+if [ "${USER}" = "acourtis" -a "$(whence xautolock)" -a "$(whence slock)" ]; then
 	xautolock -locker slock -time 5 &
 fi
 
 # numlock on
-numlockx
+if [ "$(whence numlockx)" ]; then
+	numlockx
+fi
 
 # start window manager
 case "${X_WM}" in
