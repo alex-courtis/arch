@@ -1,8 +1,8 @@
 ARRANGE: ROW
 ALIGN: BOTTOM
 ORDER:
+  - LG Display 0x05EF
   - Sharp Corporation 0x148D
-  - Unknown 0x05EF
   - ASUS XG32V
   - Ancor Communications Inc ROG PG27AQ
   - Samsung Electric Company C34J79x
