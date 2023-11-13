@@ -1,0 +1,101 @@
+#!/bin/lua
+
+--- Attempt to read  pactl list
+--- @return string raw_list
+local function read_list()
+  local h = io.popen("pactl list")
+  if not h then
+    os.exit(1)
+  end
+
+  local raw_list = h:read("*a")
+
+  h:close()
+
+  return raw_list
+end
+
+--- Create a source
+--- @param raw string
+--- @return table source
+local function parse_source(raw)
+	local source = {}
+
+	source.raw = raw
+
+	source.name = raw:match("Name: ([^\n]*)\n")
+	source.description = raw:match("Description: ([^\n]*)\n")
+
+	source.mute = raw:match("Mute: yes\n") and true or false
+
+	return source
+end
+
+--- Create a sink
+--- @param raw string
+--- @return table sink
+local function parse_sink(raw)
+	local sink = {}
+
+	sink.raw = raw
+
+	sink.name = raw:match("Name: ([^\n]*)\n")
+	sink.description = raw:match("Description: ([^\n]*)\n")
+
+	sink.mute = raw:match("Mute: yes\n") and true or false
+
+	return sink
+end
+
+--- Separate the output of list by newline-newline-header and extract interesting bits.
+--- @param raw_list string
+--- @return table sources
+--- @return table sinks
+local function parse_list(raw_list)
+  local sources = {}
+  local sinks = {}
+
+  local from = 0
+  local to = raw_list:find("\n\n[^%s]", 0)
+  while to do
+    local raw = raw_list:sub(from, to)
+
+    if raw:match("^Source #") then
+      local n = raw:match("^Source #([0-9]+)")
+      if n then
+        sources[n] = parse_source(raw)
+      end
+    elseif raw:match("^Sink #") then
+      local n = raw:match("^Sink #([0-9]+)")
+      if n then
+        sinks[n] = parse_sink(raw)
+      end
+    end
+
+    from = to + 2
+    to = raw_list:find("\n\n[^%s]", from)
+  end
+
+  return sources, sinks
+end
+
+local list_raw = read_list()
+
+local sources, sinks = parse_list(list_raw)
+
+print("\nsources:")
+for n, source in pairs(sources) do
+  print("  N:" .. n)
+  print("    name:  " .. source.name)
+  print("    desc:  " .. source.description)
+  print("    muted: " .. tostring(source.mute))
+end
+
+print("\nsinks:")
+for n, sink in pairs(sinks) do
+  print("  N:" .. n)
+  print("    name:  " .. sink.name)
+  print("    desc:  " .. sink.description)
+  print("    muted: " .. tostring(sink.mute))
+end
+

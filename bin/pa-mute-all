@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+local sources=("${(@f)$(pactl list sources | sed -E -n 's/^Source #([0-9]+)$/\1/gp')}")
+local sinks=("${(@f)$(pactl list sinks | sed -E -n 's/^Sink #([0-9]+)$/\1/gp')}")
+
+for s (${(@)sources}); do
+	pactl set-source-mute "${s}" 1
+done
+
+for s (${(@)sinks}); do
+	pactl set-sink-mute "${s}" 1
+done
+

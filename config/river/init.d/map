@@ -43,6 +43,8 @@ riverctl map normal $mod1 q close
 riverctl map normal $mod2 q spawn "steam -shutdown"
 riverctl map normal $mod3 q exit
 
+riverctl map normal $mod3 x spawn "pa-mute-all"
+
 #
 # right
 #
