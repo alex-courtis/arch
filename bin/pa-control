@@ -1,101 +1,229 @@
 #!/bin/lua
 
---- Attempt to read  pactl list
---- @return string raw_list
-local function read_list()
-  local h = io.popen("pactl list")
+PREF_SOURCE_DESC = {
+  "Comet Lake PCH-LP cAVS Headphones Stereo Microphone",
+  "Comet Lake PCH-LP cAVS Digital Microphone",
+}
+
+---@class Source
+---@field default boolean
+---@field name string|nil
+---@field desc string|nil
+---@field vol number|nil
+---@field mute boolean
+---@field ports string[]
+---@field active_port string|nil
+---@field available_active boolean
+
+---@class Sink
+---@field default boolean
+---@field name string|nil
+---@field desc string|nil
+---@field vol number|nil
+---@field mute boolean
+---@field ports string[]
+---@field active_port string|nil
+---@field available_active boolean
+
+--- Execute a pactl command. User is responsible for closing.
+--- @param cmd string
+--- @return file* handle
+local function execute_cmd(cmd)
+  if not cmd then
+    os.exit(1)
+  end
+  local h = io.popen(string.format("pactl %s", cmd))
   if not h then
     os.exit(1)
   end
+  return h
+end
 
-  local raw_list = h:read("*a")
+--- Retrieve defaults from "pactl info"
+--- @return string source_default
+--- @return string sink_default
+local function read_defaults()
+  local default_source, default_sink
+
+  local h = execute_cmd("info")
+
+  local l = h:read("*l")
+  while l do
+    default_source = default_source or l:match("^Default Source: (.*)")
+    default_sink = default_sink or l:match("^Default Sink: (.*)")
+    l = h:read("*l")
+  end
 
   h:close()
 
-  return raw_list
+  return default_source, default_sink
 end
 
---- Create a source
---- @param raw string
---- @return table source
-local function parse_source(raw)
-	local source = {}
+--- Populate source from a line
+--- @param source Source|nil to populate otherwise create
+--- @param line string
+--- @param source_name_default string default name
+--- @return Source
+local function populate_source(source, line, source_name_default)
+  if not source then
+    source = {
+      default = false,
+      mute = false,
+      available_active = false,
+      ports = {},
+    }
+  end
 
-	source.raw = raw
+  source.name = source.name or line:match("Name: (.*)")
+  source.desc = source.desc or line:match("Description: (.*)")
+  source.vol = source.vol or line:match("Volume.-([%d]+)%%")
+  source.mute = source.mute or (line:match("Mute: yes\n") and true or false)
 
-	source.name = raw:match("Name: ([^\n]*)\n")
-	source.description = raw:match("Description: ([^\n]*)\n")
+  table.insert(source.ports, line:match("^%s+(%[In%].*)$"))
 
-	source.mute = raw:match("Mute: yes\n") and true or false
+  source.active_port = source.active_port or line:match("Active Port: (%[In%].*)")
 
-	return source
-end
-
---- Create a sink
---- @param raw string
---- @return table sink
-local function parse_sink(raw)
-	local sink = {}
-
-	sink.raw = raw
-
-	sink.name = raw:match("Name: ([^\n]*)\n")
-	sink.description = raw:match("Description: ([^\n]*)\n")
-
-	sink.mute = raw:match("Mute: yes\n") and true or false
-
-	return sink
-end
-
---- Separate the output of list by newline-newline-header and extract interesting bits.
---- @param raw_list string
---- @return table sources
---- @return table sinks
-local function parse_list(raw_list)
-  local sources = {}
-  local sinks = {}
-
-  local from = 0
-  local to = raw_list:find("\n\n[^%s]", 0)
-  while to do
-    local raw = raw_list:sub(from, to)
-
-    if raw:match("^Source #") then
-      local n = raw:match("^Source #([0-9]+)")
-      if n then
-        sources[n] = parse_source(raw)
-      end
-    elseif raw:match("^Sink #") then
-      local n = raw:match("^Sink #([0-9]+)")
-      if n then
-        sinks[n] = parse_sink(raw)
+  -- assumes ports before active
+  if source.active_port then
+    for _, port in ipairs(source.ports) do
+      if not port:match("not available") and port:find(source.active_port, 0, true) == 1 then
+        source.available_active = true
       end
     end
-
-    from = to + 2
-    to = raw_list:find("\n\n[^%s]", from)
   end
+
+  if source.name == source_name_default then
+    source.default = true
+  end
+
+  return source
+end
+
+--- Populate sink from a line
+--- @param sink Sink|nil to populate otherwise create
+--- @param line string
+--- @param sink_name_default string default name
+--- @return Sink
+local function populate_sink(sink, line, sink_name_default)
+  if not sink then
+    sink = {
+      default = false,
+      mute = false,
+      available_active = false,
+      ports = {},
+    }
+  end
+
+  sink.name = sink.name or line:match("Name: (.*)")
+  sink.desc = sink.desc or line:match("Description: (.*)")
+  sink.vol = sink.vol or line:match("Volume.-([%d]+)%%")
+  sink.mute = sink.mute or (line:match("Mute: yes\n") and true or false)
+
+  table.insert(sink.ports, line:match("^%s+(%[Out%].*)$"))
+
+  sink.active_port = sink.active_port or line:match("Active Port: (%[Out%].*)")
+
+  -- assumes ports before active
+  if sink.active_port then
+    for _, port in ipairs(sink.ports) do
+      if not port:match("not available") and port:find(sink.active_port, 0, true) == 1 then
+        sink.available_active = true
+      end
+    end
+  end
+
+  if sink.name == sink_name_default then
+    sink.default = true
+  end
+
+  return sink
+end
+
+--- Retrieve sources and sinks from "pactl list"
+--- @param source_default string name
+--- @param sink_default string name
+--- @return Source[] sources
+--- @return Sink[] sinks
+local function read_ss(source_default, sink_default)
+  local sources = {} ---@cast sources Source[]
+  local sinks = {} ---@cast sinks Sink[]
+
+  local nsource, nsink
+
+  local h = execute_cmd("list")
+
+  local line = h:read("*l")
+  while line do
+    -- sink or source block started
+    if line:match("^[^%s]") then
+      nsink = nil
+      nsource = nil
+      nsink = line:match("^Sink #([%d+])$")
+      nsource = line:match("^Source #([%d+])$")
+    end
+
+    if nsource then
+      sources[nsource] = populate_source(sources[nsource], line, source_default)
+    elseif nsink then
+      sinks[nsink] = populate_sink(sinks[nsink], line, sink_default)
+    end
+
+    line = h:read("*l")
+  end
+
+  h:close()
 
   return sources, sinks
 end
 
-local list_raw = read_list()
+--- First preferred source if port available
+--- @param sources Source[]
+--- @return Source|nil
+local function find_preferred_source(sources)
+  for _, pref_desc in ipairs(PREF_SOURCE_DESC) do
+    for _, source in pairs(sources) do
+      if source.desc == pref_desc then
+        -- for _, port in pairs(source.ports)
+        return source
+      end
+    end
+  end
+end
 
-local sources, sinks = parse_list(list_raw)
+local source_default, sink_default = read_defaults()
+local sources, sinks = read_ss(source_default, sink_default)
 
-print("\nsources:")
 for n, source in pairs(sources) do
-  print("  N:" .. n)
-  print("    name:  " .. source.name)
-  print("    desc:  " .. source.description)
+  print("Source# " .. n)
+  print("    default: " .. tostring(source.default))
+  print("    name:  " .. tostring(source.name))
+  print("    desc:  " .. tostring(source.desc))
+  print("    volume: " .. tostring(source.vol))
   print("    muted: " .. tostring(source.mute))
+  for _, port in ipairs(source.ports) do
+    print("      port: " .. tostring(port))
+  end
+  print("    active port: " .. tostring(source.active_port))
+  print("    available_active: " .. tostring(source.available_active))
 end
 
-print("\nsinks:")
 for n, sink in pairs(sinks) do
-  print("  N:" .. n)
-  print("    name:  " .. sink.name)
-  print("    desc:  " .. sink.description)
+  print("Sink #" .. n)
+  print("    default: " .. tostring(sink.default))
+  print("    name:  " .. tostring(sink.name))
+  print("    desc:  " .. tostring(sink.desc))
+  print("    vol: " .. tostring(sink.vol))
   print("    muted: " .. tostring(sink.mute))
+  for _, port in ipairs(sink.ports) do
+    print("      port: " .. tostring(port))
+  end
+  print("    active port: " .. tostring(sink.active_port))
+  print("    available_active: " .. tostring(sink.available_active))
 end
 
+local preferred_source = find_preferred_source(sources)
+if preferred_source then
+  print("Preferred Source: " .. preferred_source.desc)
+end
+
+-- vim:ft=lua:ts=2:sw=2:et
