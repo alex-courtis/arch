@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker run --rm --volume "${PWD}:/data" --user $(id -u):$(id -g) pandoc/latex $@
+docker run --rm --volume "${PWD}:/data" --user "$(id -u):$(id -g)" pandoc/latex "$@"
 
