@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ansi_block() {
-	for i in $(seq $1 $(( $1 + 7))); do
+	for i in $(seq "$1" $(( $1 + 7))); do
 		printf "\033[%d;%dm%-10s\033[m" "$2" "$i" "$3"
 	done
 	printf "\n"
