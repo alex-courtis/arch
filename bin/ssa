@@ -4,22 +4,22 @@ OUT="${HOME}/.ss"
 
 mkdir -p "${OUT}"
 
-if [ "$(basename ${0})" == "sss" ]; then
+if [ "$(basename "${0}")" = "sss" ]; then
 	SEL="true"
-elif [ "$(basename ${0})" == "ssa" ]; then 
+elif [ "$(basename "${0}")" = "ssa" ]; then 
 	MON="true"
 fi
 
 if [ -n "${WAYLAND_DISPLAY}" ]; then
-	if [ "${SEL}" == "true" ]; then
+	if [ "${SEL}" = "true" ]; then
 		grim -g "$(slurp)" - | swappy -f - -o "${OUT}/$(date +%Y%m%d_%H%M%S).png"
-	elif [ "${MON}" == "true" ]; then
+	elif [ "${MON}" = "true" ]; then
 		grim - | swappy -f - -o "${OUT}/$(date +%Y%m%d_%H%M%S).png"
 	else
 		grim -g "$(slurp -r -o -s FFFFFF40)" - | swappy -f - -o "${OUT}/$(date +%Y%m%d_%H%M%S).png"
 	fi
 elif [ -n "${DISPLAY}" ]; then
-	if [ "${SEL}" == "true" ]; then
+	if [ "${SEL}" = "true" ]; then
 		scrot -s "${OUT}/%Y%m%d_%H%M%S.\$wx\$h.png"
 	else
 		scrot "${OUT}/%Y%m%d_%H%M%S.\$wx\$h.png"
