@@ -6,7 +6,7 @@ case "${1}" in
 	"enable")
 		;;
 	*)
-		echo "usage: $(basename ${0}) <enable|disable>" 1>&2
+		echo "usage: $(basename "${0}") <enable|disable>" 1>&2
 		exit 1
 		;;
 esac
