@@ -63,7 +63,7 @@ alias egrep="grep -E"
 alias jqc="jq --color-output"
 alias jqp="wl-paste | jqc"
 
-alias yqc="yq --color-output"
+alias yqc="yq --colors"
 alias yqp="wl-paste | yqc"
 
 alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
