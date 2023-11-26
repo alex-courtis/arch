@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Open a term that runs vim with the arguments supplied.
-# Useful for xdg-open and open-in-your-editor browser extensions.
-
-unset VIM
-unset VIMRUNTIME
-term -e vi ${@} &
-
