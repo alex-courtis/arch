@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
-firefox --new-window http://calendar.google.com &!
+firefox --new-window http://calendar.google.com &
 
