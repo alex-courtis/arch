@@ -5,6 +5,8 @@ local util = require("amc.util")
 log.line("---- init options")
 util.require_or_nil("amc.init.options")
 
+util.nvt_plugin_dir()
+
 -- installs but does not load
 log.line("---- init pack")
 local bootstrapped = require("amc.init.pack")({
@@ -28,8 +30,7 @@ local bootstrapped = require("amc.init.pack")({
   "nvim-lualine/lualine.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-telescope/telescope-smart-history.nvim",
-  "nvim-tree/nvim-tree.lua",
-  -- "/home/alex/src/nvim-tree/master",
+  util.nvt_plugin_dir(),
   "nvim-tree/nvim-web-devicons",
   "qpkorr/vim-bufkill",
   "tpope/vim-commentary",
