@@ -8,6 +8,9 @@ Host gigantor gigantorw gigantori gigantord tinygod tinygod1 tinygod2
 Host deck deckw deckd
   User deck
 
+Host pidp11
+  User pi
+
 Host *
   User alex
 
