@@ -66,6 +66,12 @@ function M.on_attach(bufnr)
   -- stylua: ignore end
 end
 
+vim.api.nvim_create_autocmd("DirChanged", {
+  callback = function(data)
+    print(vim.inspect(data))
+  end,
+})
+
 api.events.subscribe(api.events.Event.NodeRenamed, function(data)
   log.line("dev", "Event.NodeRenamed %s %s", data.old_name, data.new_name)
 end)
