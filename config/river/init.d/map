@@ -94,6 +94,9 @@ riverctl map normal $mod1 right focus-output next
 riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 right send-to-output next
 
+riverctl map normal $mod1 up send-layout-cmd river-xmonadwm "--layout top"
+riverctl map normal $mod1 down send-layout-cmd river-xmonadwm "--layout bottom"
+
 #
 # special
 #
