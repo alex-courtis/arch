@@ -118,7 +118,9 @@ function M.goto_definition_or_tag()
     vim.lsp.buf.definition()
   else
     local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
-    local ok, err = pcall(vim.cmd, cmd)
+    local ok, err = pcall(function()
+      return vim.cmd(cmd)
+    end)
     if not ok then
       vim.api.nvim_notify(err, vim.log.levels.WARN, {})
     end
