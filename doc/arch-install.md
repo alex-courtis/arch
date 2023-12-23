@@ -497,14 +497,22 @@ Test that hardware acceleration is available via `vainfo` and `vdpauinfo`.
 
 Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
-Install the X driver and (re)generate the boot image:
-
+Install the X, va, vdpau and vulkan drivers and (re)generate the boot image:
 ```sh
-yay -S xf86-video-amdgpu libva-mesa-driver linux
+yay -S xf86-video-amdgpu libva-mesa-driver mesa-vdpau vulkan-radeon linux
+```
+
+Ensure the performant RADV vulkan implementation is used rather than the slower AMDVLK:
+```sh
+vulkaninfo | grep "^GPU "
+```
+
+vdpau test needs to know the driver:
+```sh
+VDPAU_DRIVER=radeonsi vdpauinfo
 ```
 
 Create `/etc/modprobe.d/no_ucsi_ccg.conf`
-
 ```
 # nvidia specific usb c
 blacklist ucsi_ccg
