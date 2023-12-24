@@ -63,7 +63,4 @@ util.require_or_nil("amc.init.autocmds")
 util.require_or_nil("amc.init.commands")
 util.require_or_nil("amc.init.mappings")
 
-log.line("---- vimscripts")
-vim.cmd.source(vim.fn.stdpath("config") .. "/vim/xxd.vim")
-
 log.line("---- init done")
