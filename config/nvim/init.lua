@@ -13,6 +13,7 @@ local bootstrapped = require("amc.init.pack")({
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "farmergreg/vim-lastplace",
+  "fidian/hexmode",
   "GutenYe/json5.vim",
   "hashivim/vim-terraform",
   "haya14busa/vim-asterisk",
