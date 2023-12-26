@@ -34,6 +34,11 @@ if [ "$(whence numlockx)" ]; then
 	numlockx
 fi
 
+# notifications
+if [ "$(whence dunst)" ]; then
+	dunst &
+fi
+
 # start window manager
 case "${X_WM}" in
 	"dwm")
