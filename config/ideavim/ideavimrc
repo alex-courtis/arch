@@ -59,8 +59,7 @@ nm <Space>a :NERDTreeFocus<CR>
 nm <Space>A <Action>(ActivateStructureToolWindow)
 nm <Space>' <Action>(RestoreDefaultLayout)
 
-nm <Space>, <Action>(ActivateVersionControlToolWindow)
-nm <Space>< <Action>(CheckinProject)
+nm <Space>, <Action>(CheckinProject)
 nm <Space>o <Action>(NextTab)
 nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
@@ -74,7 +73,8 @@ nm <Space>p <Action>(GotoPreviousError)
 nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
-nm <Space>y <Action>(ActivateVersionControlToolWindow)
+nm <BS>y <Action>(CopyPathFromRepositoryRootProvider)
+nm <BS>Y <Action>(CopyReference)
 nm <Space>i <Action>(Switcher)
 nm <Space>x <Action>(SwitcherForward)
 
@@ -119,8 +119,9 @@ nm <BS>N  <Action>(ShowSettingsAndFindUsages)
 vm <BS>N  <Action>(ShowSettingsAndFindUsages)
 nm <BS>v  :put<CR>
 
-nm <BS>l <Action>(CopyPathFromRepositoryRootProvider)
-nm <BS>L <Action>(CopyReference)
+nm <BS>l <Action>(EditorToggleShowWhitespaces)
+nm <BS>L :%s/\\s\\+$//e<CR>
+
 nm <BS>s  viw<Action>(FindInPath)<Esc>
 vm <BS>s  <Action>(FindInPath)<Esc>
 nm <BS>z  <Action>(ReformatCode)
@@ -130,7 +131,6 @@ nm <BS>/  viw<Action>(Find)<Esc>
 vm <BS>/  <Action>(Find)<Esc>
 " -
 nm <BS>\ <Action>(CloseContent)
-nm <BS>\ <Action>(CloseAllEditorsButActive)
 
 nm <BS><Down> <Action>(NextTab)
 nm <BS><Up> <Action>(PreviousTab)
