@@ -12,8 +12,9 @@ riverctl default-layout river-xmonadwm
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all river-xmonadwm \
 river-xmonadwm \
-	--layout monocle \
-	--layout-alt left \
+	--layout mid \
+	--layout-alt monocle \
+	--ratio-mid 0.45 \
 	--stack dwindle \
 	--border-width 1 \
 	--border-width-monocle 1 \
