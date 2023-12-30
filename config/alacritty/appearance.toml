@@ -72,8 +72,8 @@ background = "0x$BASE16[orange]"
 foreground = "0x$BASE16[default_background]"
 
 [colors.selection]
-background = "0x$HL_FG"
-text = "0x$HL_BG"
+background = "0x$HL_BG"
+text = "0x$HL_FG"
 
 [colors.vi_mode_cursor]
 cursor = "0x$BASE16[default_foreground]"
