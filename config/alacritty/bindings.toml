@@ -1,0 +1,133 @@
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+
+[keyboard.bindings.command]
+program = "term"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;2u"
+key = "Return"
+mode = "Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mode = "Alt"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Space"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "Space"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "H"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "H"
+mode = "Vi"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Return"
+mode = "~Search|Vi"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "Return"
+mode = "~Search|Vi"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "C"
+mode = "Vi"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "C"
+mode = "Vi"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "L"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "L"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "Return"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "Return"
+mode = "Vi"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+key = "L"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control|Shift"
+
+[keyboard.bindings.command]
+program = "alacritty-clear"
+
+[[keyboard.bindings]]
+key = "Return"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control|Shift"
+
+[keyboard.bindings.command]
+program = "alacritty-clear"
+
+[[keyboard.bindings]]
+action = "First"
+key = 8
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "Last"
+key = 41
+mode = "Vi|~Search"
+
+[[keyboard.bindings]]
+action = "FirstOccupied"
+key = 27
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "Bracket"
+key = 2
+mode = "Vi|~Search"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Equals"
+mods = "Control"
+
