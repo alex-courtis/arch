@@ -14,6 +14,7 @@ riverctl default-layout river-xmonadwm
 river-xmonadwm \
 	--layout mid \
 	--layout-alt monocle \
+	--count-mid 0 \
 	--ratio-mid 0.45 \
 	--stack dwindle \
 	--border-width 1 \
