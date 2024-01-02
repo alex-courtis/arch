@@ -172,8 +172,8 @@ bind -f common / search-start
 bind -f common n search-next
 bind -f common N search-prev
 
-bind -f common enter shell cmus-play
-bind -f common mlb_click_selected shell cmus-play
+bind -f common enter shell cmus-play >/dev/null 2>&1
+bind -f common mlb_click_selected shell cmus-play >/dev/null 2>&1
 
 bind -f common backspace win-toggle
 
