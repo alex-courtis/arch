@@ -8,6 +8,6 @@
 #
 # parecord --device=recording.monitor --file-format=flac out.flac
 #
-load-module module-null-sink    sink_name=recording sink_properties=device.description=Recording-Null-Output
-load-module module-combine-sink sink_name=combined  slaves=recording,@DEFAULT_SINK@
+#load-module module-null-sink    sink_name=recording sink_properties=device.description=Recording-Null-Output
+#load-module module-combine-sink sink_name=combined  slaves=recording,@DEFAULT_SINK@
 
