@@ -73,8 +73,8 @@ nm <Space>p <Action>(GotoPreviousError)
 nm <Space>u <Action>(PreviousOccurence)
 nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
-nm <BS>y <Action>(CopyPathFromRepositoryRootProvider)
-nm <BS>Y <Action>(CopyReference)
+nm <Space>y <Action>(CopyPathFromRepositoryRootProvider)
+nm <Space>Y <Action>(CopyReference)
 nm <Space>i <Action>(Switcher)
 nm <Space>x <Action>(SwitcherForward)
 
