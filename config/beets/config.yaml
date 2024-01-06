@@ -1,3 +1,5 @@
+# easytag can be used for single file edits
+#
 # - rm -rf ~/music-beets ~/.config/beets/musiclibrary.db ~/.config/beets/state.pickle ; mkdir ~/music-beets ; cd ~/music-beets
 # - import, use --noautotag for compilations/various artists
 # - twiddle
