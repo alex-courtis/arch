@@ -33,7 +33,7 @@
 	email = alex@courtis.org
 [core]
 	excludesfile = ~/.gitignore
-	pager = less -F -x4
+	pager = less --tabs=4
 [push]
 	default = current
 	autoSetupRemote = true
