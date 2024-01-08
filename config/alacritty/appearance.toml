@@ -1,51 +1,44 @@
 [font]
 size = $FONT_SIZE_PT
 
-[[colors.indexed_colors]]
-color = "0x$BASE16[orange]"
-index = 16
-
-[[colors.indexed_colors]]
-color = "0x$BASE16[brown]"
-index = 17
-
-[[colors.indexed_colors]]
-color = "0x$BASE16[lighter_background]"
-index = 18
-
-[[colors.indexed_colors]]
-color = "0x$BASE16[selection_background]"
-index = 19
-
-[[colors.indexed_colors]]
-color = "0x$BASE16[dark_foreground]"
-index = 20
-
-[[colors.indexed_colors]]
-color = "0x$BASE16[light_foreground]"
-index = 21
-
-[colors.bright]
-black =   "0x$BASE16[bright_black]"
-blue =    "0x$BASE16[bright_blue]"
-cyan =    "0x$BASE16[bright_cyan]"
-green =   "0x$BASE16[bright_green]"
-magenta = "0x$BASE16[bright_magenta]"
-red =     "0x$BASE16[bright_red]"
-white =   "0x$BASE16[bright_white]"
-yellow =  "0x$BASE16[bright_yellow]"
 
 [colors.cursor]
 cursor = "0x$BASE16[default_foreground]"
-text = "0x$BASE16[default_background]"
+text =   "0x$BASE16[default_background]"
+
+[colors.vi_mode_cursor]
+cursor = "0x$BASE16[default_foreground]"
+text =   "0x$BASE16[default_background]"
+
+
+[colors.selection]
+background = "0x$HL_BG"
+text =       "0x$HL_FG"
+
 
 [colors.footer_bar]
 background = "0x$HL_FG"
 foreground = "0x$HL_BG"
 
+
+[colors.search.matches]
+background = "0x$BASE16[orange]"
+foreground = "0x$BASE16[default_background]"
+
+[colors.search.focused_match]
+background = "0x$BASE16[yellow]"
+foreground = "0x$BASE16[default_background]"
+
 [colors.line_indicator]
 background = "0x$HL_FG"
 foreground = "0x$HL_BG"
+
+
+[colors.primary]
+background =        "0x$BASE16[default_background]"
+bright_foreground = "0x$BASE16[light_foreground]"
+dim_foreground =    "0x$BASE16[dark_foreground]"
+foreground =        "0x$BASE16[default_foreground]"
 
 [colors.normal]
 black =   "0x$BASE16[black]"
@@ -57,25 +50,37 @@ red =     "0x$BASE16[red]"
 white =   "0x$BASE16[white]"
 yellow =  "0x$BASE16[yellow]"
 
-[colors.primary]
-background = "0x$BASE16[default_background]"
-bright_foreground = "0x$BASE16[light_foreground]"
-dim_foreground = "0x$BASE16[dark_foreground]"
-foreground = "0x$BASE16[default_foreground]"
+[colors.bright]
+black =   "0x$BASE16[bright_black]"
+blue =    "0x$BASE16[bright_blue]"
+cyan =    "0x$BASE16[bright_cyan]"
+green =   "0x$BASE16[bright_green]"
+magenta = "0x$BASE16[bright_magenta]"
+red =     "0x$BASE16[bright_red]"
+white =   "0x$BASE16[bright_white]"
+yellow =  "0x$BASE16[bright_yellow]"
 
-[colors.search.focused_match]
-background = "0x$BASE16[yellow]"
-foreground = "0x$BASE16[default_background]"
+[[colors.indexed_colors]]
+index = 16
+color = "0x$BASE16[orange]"
 
-[colors.search.matches]
-background = "0x$BASE16[orange]"
-foreground = "0x$BASE16[default_background]"
+[[colors.indexed_colors]]
+index = 17
+color = "0x$BASE16[brown]"
 
-[colors.selection]
-background = "0x$HL_BG"
-text = "0x$HL_FG"
+[[colors.indexed_colors]]
+index = 18
+color = "0x$BASE16[lighter_background]"
 
-[colors.vi_mode_cursor]
-cursor = "0x$BASE16[default_foreground]"
-text = "0x$BASE16[default_background]"
+[[colors.indexed_colors]]
+index = 19
+color = "0x$BASE16[selection_background]"
+
+[[colors.indexed_colors]]
+index = 20
+color = "0x$BASE16[dark_foreground]"
+
+[[colors.indexed_colors]]
+index = 21
+color = "0x$BASE16[light_foreground]"
 

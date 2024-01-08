@@ -1,9 +1,7 @@
 [[keyboard.bindings]]
 key = "N"
 mods = "Control|Shift"
-
-[keyboard.bindings.command]
-program = "term"
+command.program = "term"
 
 [[keyboard.bindings]]
 chars = "\u001B[13;2u"
@@ -91,17 +89,13 @@ mods = "Control|Shift"
 key = "L"
 mode = "~AppCursor|~AppKeypad|~Alt"
 mods = "Control|Shift"
-
-[keyboard.bindings.command]
-program = "alacritty-clear"
+command.program = "alacritty-clear"
 
 [[keyboard.bindings]]
 key = "Return"
 mode = "~AppCursor|~AppKeypad|~Alt"
 mods = "Control|Shift"
-
-[keyboard.bindings.command]
-program = "alacritty-clear"
+command.program = "alacritty-clear"
 
 [[keyboard.bindings]]
 action = "First"
