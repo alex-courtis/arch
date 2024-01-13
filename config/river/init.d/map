@@ -84,6 +84,10 @@ riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod3 m spawn "volmute"
 
+riverctl map normal $mod3 v spawn "way-displays -s scaling on"
+
+riverctl map normal $mod3 z spawn "way-displays -s scaling off"
+
 riverctl map normal $mod3 backslash spawn "sudo systemctl hibernate"
 
 riverctl map normal $mod1 left focus-output previous
