@@ -3,6 +3,9 @@ fpath=(${XDG_DATA_HOME}/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 
+# yq does not autocomplete files reliably
+compdef -d yq
+
 if [ "$(whence dircolors)" ]; then
 	eval $(dircolors)
 

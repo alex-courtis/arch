@@ -63,6 +63,8 @@ alias egrep="grep -E"
 alias jqc="jq --color-output"
 alias jqp="wl-paste | jqc"
 
+# default yaml output to stop needless warnings
+alias yq="yq -oy"
 alias yqc="yq --colors"
 alias yqp="wl-paste | yqc"
 
