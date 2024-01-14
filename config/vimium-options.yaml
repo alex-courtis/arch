@@ -2,13 +2,14 @@ keyMappings: |-
   map h previousTab
   map l nextTab
 newTabUrl: pages/blank.html
+scrollStepSize: 30
 searchEngines: |-
   ap: https://archlinux.org/packages/?q=%s Arch Packages
-  au https://aur.archlinux.org/packages?K=%s AUR Packages
-  aw https://wiki.archlinux.org/index.php?search=%s Arch Wiki
+  au: https://aur.archlinux.org/packages?K=%s AUR Packages
+  aw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
   d: https://duckduckgo.com/?q=%s DuckDuckGo
   g: https://www.google.com/search?q=%s Google
-  hi https://hello.atlassian.net/browse/%s Hello Issue
+  hi: https://hello.atlassian.net/browse/%s Hello Issue
   hs: https://hello.atlassian.net/wiki/search?text=%s Hello Search
   n: https://github.com/nvim-tree/nvim-tree.lua/issues/%s nvim-tree Issue
   o: http://go/%s Go
