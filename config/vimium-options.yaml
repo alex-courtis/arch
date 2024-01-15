@@ -1,6 +1,11 @@
 keyMappings: |-
   map h previousTab
   map l nextTab
+  map H moveTabLeft
+  map L moveTabRight
+  map , goBack
+  map . goForward
+linkHintCharacters: ;,.pyaoeui'qjkx
 newTabUrl: pages/blank.html
 scrollStepSize: 30
 searchEngines: |-
