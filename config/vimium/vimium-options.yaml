@@ -1,0 +1,30 @@
+keyMappings: |-
+  map h previousTab
+  map l nextTab
+  map H moveTabLeft
+  map L moveTabRight
+  map , goBack
+  map . goForward
+linkHintCharacters: pyaoeuiqjkx
+newTabUrl: pages/blank.html
+scrollStepSize: 30
+searchEngines: |-
+  ap: https://archlinux.org/packages/?q=%s Arch Packages
+  au: https://aur.archlinux.org/packages?K=%s AUR Packages
+  aw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
+  d: https://duckduckgo.com/?q=%s DuckDuckGo
+  g: https://www.google.com/search?q=%s Google
+  hi: https://hello.atlassian.net/browse/%s Hello Issue
+  hs: https://hello.atlassian.net/wiki/search?text=%s Hello Search
+  n: https://github.com/nvim-tree/nvim-tree.lua/issues/%s nvim-tree Issue
+  o: http://go/%s Go
+  pd: https://www.protondb.com/search?q=%s Proton DB
+  sd: https://steamdb.info/instantsearch/?query=%s Steam DB
+  ss: https://store.steampowered.com/search/?term=%s Steam Store
+  w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+  y: https://www.youtube.com/results?search_query=%s Youtube
+searchUrl: https://duckduckgo.com/?q=%s
+settingsVersion: 2.0.6
+userDefinedLinkHintCss: |-2
+STYLESHEET
+exclusionRules: []
