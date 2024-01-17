@@ -22,6 +22,9 @@
   <action id="ActivateCoverageToolWindow">
     <keyboard-shortcut first-keystroke="alt o" />
   </action>
+  <action id="ActivateDatabaseToolWindow">
+    <keyboard-shortcut first-keystroke="alt e" />
+  </action>
   <action id="ActivateDebugToolWindow">
     <keyboard-shortcut first-keystroke="alt d" />
   </action>
