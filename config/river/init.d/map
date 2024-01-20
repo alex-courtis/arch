@@ -21,7 +21,7 @@ riverctl map normal $mod1 Escape swap next
 riverctl map normal $mod2 Escape swap previous
 riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
 riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
-riverctl map normal $mod1 Delete spawn "term > /dev/null 2>&1 &!"
+riverctl map normal $mod1 Delete spawn term
 riverctl map normal $mod2 Delete spawn b
 riverctl map normal $mod3 Delete spawn bp
 riverctl map normal $mod1 Return focus-view next
@@ -81,9 +81,13 @@ riverctl map normal $mod3 s spawn "sss"
 
 riverctl map normal $mod3 minus spawn "ssa"
 
+riverctl map normal $mod1 b spawn b
 riverctl map normal $mod3 b spawn "volmutemic"
 
+riverctl map normal $mod1 m spawn bp
 riverctl map normal $mod3 m spawn "volmute"
+
+riverctl map normal $mod1 w spawn term
 
 riverctl map normal $mod3 v spawn "way-displays -s scaling on"
 

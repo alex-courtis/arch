@@ -1,4 +1,4 @@
 #!/bin/sh
 
-alacritty "${@}" &
+alacritty "$@" >/dev/null 2>&1 &!
 
