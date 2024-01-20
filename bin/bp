@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+/usr/bin/firefox --private-window "$@" >/dev/null 2>&1 &!
+
