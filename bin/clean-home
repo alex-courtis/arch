@@ -3,8 +3,8 @@
 rm -rf "${HOME}/Downloads" 2>/dev/null || true
 rm -rf "${HOME}/.local/share/Trash" 2>/dev/null || true
 
-find "${HOME}/.dl" ! -newermt yesterday -delete 2>/dev/null
-find "${HOME}/.ss" ! -newermt yesterday -delete 2>/dev/null
+find "${HOME}/.dl/" -mindepth 1 ! -newermt yesterday -delete 2>/dev/null
+find "${HOME}/.ss/" -mindepth 1 ! -newermt yesterday -delete 2>/dev/null
 
 find /tmp -maxdepth 1 -type d -name '.maven-bazel*' ! -newermt '-1 hours' -exec rm -rf {} \;
 
