@@ -13,6 +13,10 @@ end
 mini_base16.setup({
   palette = palette,
   use_cterm = true,
+  plugins = {
+    default = true,
+    ['nvim-tree/nvim-tree.lua'] = false,
+  },
 })
 
 vim.g.colors_name = "base16"
