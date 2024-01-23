@@ -32,11 +32,13 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 	tag=$(($tag << 1))
 done
 
-riverctl map normal $mod1 apostrophe spawn bp
-riverctl map normal $mod1 q spawn b
+riverctl map normal $mod1 apostrophe spawn "bemenu-run > /dev/null 2>&1"
+riverctl map normal $mod2 apostrophe spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
+# annoying, to get out of the cmd-Q habit for macOS
+riverctl map normal $mod1 q set-focused-tags 512
 riverctl map normal $mod1 j spawn term
-riverctl map normal $mod1 k spawn "bemenu-run > /dev/null 2>&1"
-riverctl map normal $mod1 x spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
+riverctl map normal $mod1 k spawn b
+riverctl map normal $mod2 k spawn bp
 
 #
 # right
