@@ -15,7 +15,7 @@ river-xmonadwm \
 	--layout mid \
 	--layout-alt monocle \
 	--count-mid 0 \
-	--ratio-mid 0.45 \
+	--ratio-mid 0.35 \
 	--stack dwindle \
 	--border-width 1 \
 	--border-width-monocle 1 \

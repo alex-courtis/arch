@@ -15,18 +15,10 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 #
 # thumbs
 #
-riverctl map normal $mod1 BackSpace toggle-float
-riverctl map normal $mod2 BackSpace toggle-fullscreen
-riverctl map normal $mod1 Escape swap next
-riverctl map normal $mod2 Escape swap previous
-riverctl map normal $mod1 Tab spawn "bemenu-run > /dev/null 2>&1"
-riverctl map normal $mod2 Tab spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
-riverctl map normal $mod1 Delete spawn term
-riverctl map normal $mod2 Delete spawn b
-riverctl map normal $mod3 Delete spawn bp
-riverctl map normal $mod1 Return focus-view next
-riverctl map normal $mod2 Return focus-view previous
+riverctl map normal $mod1 Tab toggle-fullscreen
 riverctl map normal $mod1 Space send-layout-cmd river-xmonadwm "--layout-toggle"
+riverctl map normal $mod1 Delete toggle-float
+riverctl map normal $mod1 Return focus-previous-tags
 
 #
 # left
@@ -40,54 +32,59 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 	tag=$(($tag << 1))
 done
 
-riverctl map normal $mod1 q close
-riverctl map normal $mod2 q spawn "steam -shutdown"
-riverctl map normal $mod3 q exit
-
-riverctl map normal $mod3 x spawn "pa-mute-all"
+riverctl map normal $mod1 apostrophe spawn bp
+riverctl map normal $mod1 q spawn b
+riverctl map normal $mod1 j spawn term
+riverctl map normal $mod1 k spawn "bemenu-run > /dev/null 2>&1"
+riverctl map normal $mod1 x spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
 
 #
 # right
 #
+riverctl map normal $mod1 f spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout mid'"
+riverctl map normal $mod2 f send-layout-cmd river-xmonadwm "--stack even"
 riverctl map normal $mod3 f spawn "volraisemic"
 
-riverctl map normal $mod1 g send-layout-cmd river-xmonadwm "--layout left"
-riverctl map normal $mod2 g send-layout-cmd river-xmonadwm "--ratio -0.025"
+riverctl map normal $mod1 g send-layout-cmd river-xmonadwm "--count +1"
+riverctl map normal $mod2 g send-layout-cmd river-xmonadwm "--count 1"
 riverctl map normal $mod3 g spawn "volraise"
 
-riverctl map normal $mod1 c send-layout-cmd river-xmonadwm "--layout mid"
-riverctl map normal $mod2 c send-layout-cmd river-xmonadwm "--ratio 0.5"
+riverctl map normal $mod1 c send-layout-cmd river-xmonadwm "--ratio +0.025"
+riverctl map normal $mod2 c send-layout-cmd river-xmonadwm "--ratio 0.35"
 
-riverctl map normal $mod1 r send-layout-cmd river-xmonadwm "--layout right"
-riverctl map normal $mod2 r send-layout-cmd river-xmonadwm "--ratio +0.025"
+riverctl map normal $mod1 r send-layout-cmd river-xmonadwm "--count -1"
+riverctl map normal $mod2 r send-layout-cmd river-xmonadwm "--count 1"
 
 riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 
-riverctl map normal $mod1 d send-layout-cmd river-xmonadwm "--stack dwindle"
-riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack diminish"
+riverctl map normal $mod3 slash spawn "pa-mute-all"
+
+riverctl map normal $mod1 d spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout left'"
+riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack dwindle"
 riverctl map normal $mod3 d spawn "vollowermic"
 
 riverctl map normal $mod1 h focus-view previous
-riverctl map normal $mod2 h send-layout-cmd river-xmonadwm "--count +1"
+riverctl map normal $mod2 h swap previous
 riverctl map normal $mod3 h spawn "vollower"
 
-riverctl map normal $mod1 t send-layout-cmd river-xmonadwm "--layout monocle"
-riverctl map normal $mod2 t send-layout-cmd river-xmonadwm "--count 1"
+riverctl map normal $mod1 t send-layout-cmd river-xmonadwm "--ratio -0.025"
+riverctl map normal $mod2 t send-layout-cmd river-xmonadwm "--ratio 0.35"
 
 riverctl map normal $mod1 n focus-view next
-riverctl map normal $mod2 n send-layout-cmd river-xmonadwm "--count -1"
+riverctl map normal $mod2 n swap next
 
 riverctl map normal $mod3 s spawn "sss"
 
 riverctl map normal $mod3 minus spawn "ssa"
 
-riverctl map normal $mod1 b spawn b
+riverctl map normal $mod2 b send-layout-cmd river-xmonadwm "--stack diminish"
 riverctl map normal $mod3 b spawn "volmutemic"
 
-riverctl map normal $mod1 m spawn bp
 riverctl map normal $mod3 m spawn "volmute"
 
-riverctl map normal $mod1 w spawn term
+riverctl map normal $mod1 w close
+riverctl map normal $mod2 w spawn "steam -shutdown"
+riverctl map normal $mod3 w exit
 
 riverctl map normal $mod3 v spawn "way-displays -s scaling on"
 
@@ -102,9 +99,6 @@ riverctl map normal $mod3 left send-to-output previous
 riverctl map normal $mod1 right focus-output next
 riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 right send-to-output next
-
-riverctl map normal $mod1 up send-layout-cmd river-xmonadwm "--layout top"
-riverctl map normal $mod1 down send-layout-cmd river-xmonadwm "--layout bottom"
 
 #
 # special
