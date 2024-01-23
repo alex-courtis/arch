@@ -72,7 +72,7 @@ alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 
 alias nin="ninja -C build"
 
-alias vg="valgrind --leak-check=full --show-leak-kinds=all --enable-debuginfod=no"
+alias vg="valgrind --leak-check=full --show-leak-kinds=all"
 alias vgg="vg --gen-suppressions=all"
 alias vgs="vg --suppressions=/tmp/vg.supp"
 alias vgsg="vgs --gen-suppressions=all"
