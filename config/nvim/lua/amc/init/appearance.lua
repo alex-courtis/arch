@@ -23,7 +23,7 @@ vim.cmd("highlight! link NvimTreeSpecialFile Normal")
 vim.cmd("highlight! link NvimTreeExecFile Normal")
 
 -- nvim-tree override
-vim.cmd("highlight! link NvimTreeRootFolder Identifier")
+vim.cmd("highlight! link NvimTreeRootFolder Comment")
 vim.cmd("highlight! link NvimTreeSymLink Italic")
 vim.cmd("highlight! link NvimTreeModifiedIcon NvimTreeOpenedHL")
 
