@@ -1,5 +1,5 @@
 [[keyboard.bindings]]
-key = "N"
+key = "J"
 mods = "Control|Shift"
 command.program = "term"
 
