@@ -78,7 +78,7 @@ riverctl map normal $mod3 s spawn "sss"
 
 riverctl map normal $mod3 minus spawn "ssa"
 
-riverctl map normal $mod1 b spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout mid'"
+riverctl map normal $mod1 b spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout wide'"
 riverctl map normal $mod2 b send-layout-cmd river-xmonadwm "--stack diminish"
 riverctl map normal $mod3 b spawn "volmutemic"
 

@@ -12,11 +12,8 @@ riverctl default-layout river-xmonadwm
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all river-xmonadwm \
 river-xmonadwm \
-	--layout mid \
+	--layout wide \
 	--layout-alt monocle \
-	--count-mid 0 \
-	--ratio-mid 0.35 \
-	--stack dwindle \
 	--border-width 1 \
 	--border-width-monocle 1 \
 	--border-color-focused "0x${BASE16[dark_foreground]}" \
