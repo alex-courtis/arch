@@ -1,11 +1,31 @@
 keyMappings: |-
+  # previousTab, nextTab
+  unmap J
+  unmap gT
+  unmap K
+  unmap gt
+  # moveTabLeft, moveTabRight
+  unmap <<
+  unmap >>
+  # scrollLeft, scrollRight
+  unmap h
+  unmap l
+  # goBack, goForward
+  unmap H
+  unmap L
+
   map h previousTab
   map l nextTab
-  map H moveTabLeft
-  map L moveTabRight
-  map , goBack
-  map . goForward
-linkHintCharacters: pyaoeuiqjkx
+  map H goBack
+  map L goForward
+  map < moveTabLeft
+  map > moveTabRight
+  map <C-u> scrollPageUp
+  map <C-d> scrollPageDown
+  map ch closeTabsOnLeft
+  map cl closeTabsOnRight
+  map co closeOtherTabs
+linkHintCharacters: pgcrlaoeuhtnsqjkmwvz
 newTabUrl: pages/blank.html
 scrollStepSize: 30
 searchEngines: |-

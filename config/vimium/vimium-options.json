@@ -1,6 +1,6 @@
 {
-  "keyMappings": "map h previousTab\nmap l nextTab\nmap H moveTabLeft\nmap L moveTabRight\nmap , goBack\nmap . goForward",
-  "linkHintCharacters": "pyaoeuiqjkx",
+  "keyMappings": "# previousTab, nextTab\nunmap J\nunmap gT\nunmap K\nunmap gt\n# moveTabLeft, moveTabRight\nunmap <<\nunmap >>\n# scrollLeft, scrollRight\nunmap h\nunmap l\n# goBack, goForward\nunmap H\nunmap L\n\nmap h previousTab\nmap l nextTab\nmap H goBack\nmap L goForward\nmap < moveTabLeft\nmap > moveTabRight\nmap <C-u> scrollPageUp\nmap <C-d> scrollPageDown\nmap ch closeTabsOnLeft\nmap cl closeTabsOnRight\nmap co closeOtherTabs",
+  "linkHintCharacters": "pgcrlaoeuhtnsqjkmwvz",
   "newTabUrl": "pages/blank.html",
   "scrollStepSize": 30,
   "searchEngines": "ap: https://archlinux.org/packages/?q=%s Arch Packages\nau: https://aur.archlinux.org/packages?K=%s AUR Packages\naw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki\nd: https://duckduckgo.com/?q=%s DuckDuckGo\ng: https://www.google.com/search?q=%s Google\nhi: https://hello.atlassian.net/browse/%s Hello Issue\nhs: https://hello.atlassian.net/wiki/search?text=%s Hello Search\nn: https://github.com/nvim-tree/nvim-tree.lua/issues/%s nvim-tree Issue\no: http://go.atlassian.com/%s Go\npd: https://www.protondb.com/search?q=%s Proton DB\nsd: https://steamdb.info/instantsearch/?query=%s Steam DB\nss: https://store.steampowered.com/search/?term=%s Steam Store\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ny: https://www.youtube.com/results?search_query=%s Youtube",
