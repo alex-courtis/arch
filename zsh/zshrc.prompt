@@ -2,20 +2,15 @@ setopt promptsubst
 
 PS1_PRE=": "
 PS1_SUF=";"
-if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
+if [ -n "${SSH_CONNECTION}" ] || [ "${USER}" = "root" ]; then
     PS1_PRE="${PS1_PRE}${HOST} "
 fi
-if [ "${USER}" = "root" ]; then
-	PS1_PRE="${PS1_PRE}root "
+
+if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ]; then
+	PS1_PRE="${PS1_PRE}${USER} "
 fi
 
-# use nearcolor, never matches first 16, 88 doesn't work
-if [ "${COLORTERM}" != "truecolor" -a "${COLORTERM}" != "24bit" -a "$(echotc Co 2>/dev/null)" -ge 256 ]; then
-	NC="true"
-	zmodload zsh/nearcolor
-fi
-
-if [ "${COLORTERM}" = "truecolor" -o "${NC}" = "true" ]; then
+if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
 	PS1_HL_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
 	PS1_HL_ERR="%F{#${BASE16[red]}}%K{#${HL_BG}}"
 	PS1_HL_OFF="%k%f"
@@ -24,7 +19,6 @@ else
 	PS1_HL_ERR="%F{black}%K{red}"
 	PS1_HL_OFF="%k%f"
 fi
-unset NC
 
 PS1="${PS1_HL_NOR}${PS1_PRE}\${PS1_ERR}${PS1_SUF}${PS1_HL_OFF} "
 PS2="${PS1_HL_NOR}${PS2}${PS1_HL_OFF} "
@@ -37,7 +31,7 @@ function precmd() {
 	PS1_ERR=
 
 	# set PS1_ERR only if the last execution failed; ignore ^C or empty executions
-	if [ "${PREEXEC_D}" = "true" -a "${rc}" -ne 0 ]; then
+	if [ "${PREEXEC_D}" = "true" ] && [ "${rc}" -ne 0 ]; then
 		PS1_ERR="${PS1_HL_ERR}${rc}${PS1_HL_NOR} "
 	fi
 	PREEXEC_D="false"
