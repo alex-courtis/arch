@@ -26,6 +26,14 @@
 # remove album cruft from db:
 #   beet modify -a albumartist_sort= albumartist_credit= genre= albumtype= label= asin= catalognum= script= language= country= albumstatus= albumdisambig=
 #
+# remove mb cruft:
+#   beet modify -a mb_trackid= mb_releasetrackid= mb_albumid= mb_artistid= mb_albumartistid= mb_releasegroupid= acoustid_fingerprint= acoustid_id= mtime= added=
+#   beet modify mb_trackid= mb_releasetrackid= mb_albumid= mb_artistid= mb_albumartistid= mb_releasegroupid= acoustid_fingerprint= acoustid_id= mtime= added=
+#
+# remove comment cruft:
+#   beet modify -a comments=
+#   beet modify comments=
+#
 # remove dodgey lyrics:
 #   beet modify New Album lyrics=''
 #
