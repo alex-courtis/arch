@@ -139,7 +139,6 @@ local config = {
     full_name = true,
     group_empty = true,
     root_folder_label = ":~",
-    special_files = {},
     symlink_destination = false,
     indent_markers = {
       enable = true,
