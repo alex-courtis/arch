@@ -45,6 +45,7 @@ searchEngines: |-
   y: https://www.youtube.com/results?search_query=%s Youtube
 searchUrl: https://duckduckgo.com/?q=%s
 settingsVersion: 2.0.6
-userDefinedLinkHintCss: |-2
-STYLESHEET
+userDefinedLinkHintCss: ""
+# userDefinedLinkHintCss: |-2
+# STYLESHEEEEEEET
 exclusionRules: []
