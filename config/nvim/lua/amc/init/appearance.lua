@@ -21,9 +21,11 @@ vim.cmd("highlight IncSearch guibg=#" .. vim.env.BASE16_yellow) -- default orang
 vim.cmd("highlight! link NvimTreeImageFile NONE")
 vim.cmd("highlight! link NvimTreeSpecialFile NONE")
 vim.cmd("highlight! link NvimTreeModifiedIcon NONE")
+vim.cmd("highlight! link NvimTreeExecFile NONE")
+vim.cmd("highlight! link NvimTreeRootFolder NONE")
 
 -- nvim-tree override
-vim.cmd("highlight! link NvimTreeRootFolder NvimTreeOpenedHL")
+vim.cmd("highlight! link NvimTreeNormal Comment")
+vim.cmd("highlight NvimTreeOpenedHL guifg=#" .. vim.env.BASE16_default_foreground)
 vim.cmd("highlight! link NvimTreeSymLink Italic")
-vim.cmd("highlight! link NvimTreeExecFile Bold")
 
