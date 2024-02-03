@@ -14,6 +14,11 @@ riverctl default-layout river-xmonadwm
 river-xmonadwm \
 	--layout wide \
 	--layout-alt monocle \
+	--stack dwindle \
+	--count-master 1 \
+	--ratio-master 0.5 \
+	--count-wide-left 0 \
+	--ratio-wide 0.35 \
 	--border-width 1 \
 	--border-width-monocle 1 \
 	--border-color-focused "0x${BASE16[dark_foreground]}" \
