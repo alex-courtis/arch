@@ -71,6 +71,25 @@ local function git_restore()
   end
 end
 
+local VIEW_WIDTH_FIXED = 30
+local view_width_max = VIEW_WIDTH_FIXED -- fixed to start, -1 for adaptive
+
+-- toggle the width and redraw
+local function toggle_width_adaptive()
+  if view_width_max == -1 then
+    view_width_max = VIEW_WIDTH_FIXED
+  else
+    view_width_max = -1
+  end
+
+  require("nvim-tree.api").tree.reload()
+end
+
+-- get current view width
+local function get_view_width_max()
+  return view_width_max
+end
+
 local function on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -113,6 +132,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', "'",        api.node.navigate.parent_close,               opts('Close Directory'))
   vim.keymap.set('n', '?',        api.tree.toggle_help,                         opts('Help'))
   vim.keymap.set('n', 'O',        api.node.navigate.parent_close,               opts('Close Directory'))
+  vim.keymap.set('n', 'A',        toggle_width_adaptive,                        opts('Toggle Adaptive Width'))
   vim.keymap.set('n', 'gr',       git_restore,                                  opts('Git Restore'))
   vim.keymap.set('n', 'gs',       git_stage,                                    opts('Git Stage'))
   vim.keymap.set('n', 'gu',       git_unstage,                                  opts('Git Unstage'))
@@ -129,6 +149,11 @@ local config = {
   sync_root_with_cwd = true,
   prefer_startup_root = true,
   on_attach = on_attach,
+  view = {
+    width = {
+      max = get_view_width_max,
+    }
+  },
   renderer = {
     highlight_git = "none",
     highlight_diagnostics = "name",
