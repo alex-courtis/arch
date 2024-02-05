@@ -9,7 +9,7 @@
     --font-weight-medium: medium;
     --font-weight-bold: bold;
 
-    --font: "Helvetica Neue", "Helvetica", "Arial", sans-serif; /* Font used in the UI */
+    --font: "Monospace", monospace; /* Font used in the UI */
   
     --padding: 2px;
     --padding-vomnibar: 6px;
