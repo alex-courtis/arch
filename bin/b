@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-/usr/bin/firefox "$@" >/dev/null 2>&1 &!
+/usr/bin/firefox --new-window "$@" >/dev/null 2>&1 &!
 
