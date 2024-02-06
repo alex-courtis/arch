@@ -1,11 +1,9 @@
 /* https://github.com/zfhg/vimium-dark-theme */
 
 :root {
-    --font-size: 11pt;
-    --font-size-hints: 11pt;
-    --font-size-url: 10pt;
-    --font-size-help: 10pt;
-    --font-size-search: 12pt;
+    --font-size: 14;
+    --font-size-hints: 12;
+    --font-size-url: 12;
 
     --font-weight: normal;
     --font-weight-medium: medium;
@@ -134,7 +132,7 @@
 #vomnibar li .vomnibarSource {
     color: var(--fg-dark);
     font-family: var(--font);
-    font-size: var(--font-size-url);
+    font-size: 12;
     font-weight: var(--font-weight-bold);
     text-transform: uppercase; /* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original */
 }
@@ -189,7 +187,7 @@ div.vimiumHUD span#hud-find-input,
 div.vimiumHUD .vimiumHUDSearchAreaInner {
     color: var(--fg);
     font-family: var(--font);
-    font-size: var(--font-size-search);
+    font-size: 13;
     font-weight: var(--font-weight-medium);
 }
 
@@ -238,15 +236,9 @@ span.vimiumHelpDialogKey {
   text-shadow: none;
 }
 
-div#vimiumHelpDialog td.vimiumHelpDescription {
-  font-family: var(--font);
-  font-size: var(--font-size-help);
-}
-
-div#vimiumHelpDialog td.vimiumHelpSectionTitle {
+td.vimiumHelpSectionTitle, td.vimiumHelpDescription {
   color: var(--fg);
   font-family: var(--font);
-  font-size: var(--font-size);
 }
 
 div.vimiumColumn {
