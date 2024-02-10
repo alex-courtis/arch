@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mangohud gamescope-run-native --fullscreen -- "${@}"
+

@@ -17,7 +17,11 @@ echo "height: ${HEIGHT}"
 # launch arguments with gamescope
 gamescope \
 	--prefer-output "${NAME}" \
-	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
 	--nested-width "${WIDTH}" --nested-height "${HEIGHT}" \
 	--adaptive-sync \
 	"${@}"
+
+exit
+
+# river gets upset
+--output-width "${WIDTH}" --output-height "${HEIGHT}" \
