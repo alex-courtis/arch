@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# they can lurk
+for p in $(pgrep gamescope-wl) $(pgrep pressure-vessel) $(pgrep .*.exe) $(pgrep d3ddriver); do
+	echo "killing $p..."
+	kill -9 $p
+done
+
+# remove pipes etc.
+rm -v ${XDG_RUNTIME_DIR}/sdl-shared*
+rm -v ${XDG_RUNTIME_DIR}/gamescope-*
+

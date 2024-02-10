@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -o pipefail
+
+# fetch the first display
+if ! VARS="$(way-displays -y -g | yq '.STATE.HEADS[0] | "NAME=\"" + .NAME + "\" DESCRIPTION=\"" + .DESCRIPTION + "\" WIDTH=" + .CURRENT.MODE.WIDTH + " HEIGHT=" + .CURRENT.MODE.HEIGHT')"; then
+	exit 1
+fi
+
+eval "${VARS}"
+
+echo "name:   ${NAME}"
+echo "desc:   ${DESCRIPTION}"
+echo "width:  ${WIDTH}"
+echo "height: ${HEIGHT}"
+
+# launch arguments with gamescope
+gamescope \
+	--prefer-output "${NAME}" \
+	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
+	--nested-width "${WIDTH}" --nested-height "${HEIGHT}" \
+	--adaptive-sync \
+	"${@}"
