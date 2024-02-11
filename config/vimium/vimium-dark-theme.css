@@ -43,7 +43,7 @@
     background: var(--bg-hints);
     border: 1px solid var(--border-hints);
     box-shadow: var(--shadow);
-    padding: 2px 3px;
+    padding: 0px 1px;
 }
 
 #vimiumHintMarkerContainer div span {
@@ -228,7 +228,7 @@ span.vimiumHelpDialogKey {
   background-color: var(--bg-hints);
   border: 1px solid var(--border-hints);
   box-shadow: var(--shadow);
-  padding: 2px 3px;
+  padding: 0px 1px;
   color: var(--fg-hints);
   font-family: var(--font-hints);
   font-size: var(--font-size-hints);
