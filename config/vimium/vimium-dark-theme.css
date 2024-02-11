@@ -1,18 +1,13 @@
-/* https://github.com/zfhg/vimium-dark-theme */
-
 :root {
-    --font-size: 11pt; /* 14px */
-    --font-size-hints: 10pt; /* 12px */
-    --font-size-url: 10pt; /* 12px */
-    --font-size-search: 13pt; /* 13px */
+    --font-size: 14;
+    --font-size-hints: 12;
+    --font-size-url: 12;
 
     --font-weight: normal;
     --font-weight-medium: medium;
     --font-weight-bold: bold;
 
-    --font: sans-serif; /* Font used in the UI */
-    --font-hints: monospace;
-    --font-search: monospace;
+    --font: "Helvetica Neue", "Helvetica", "Arial", sans-serif; /* Font used in the UI */
   
     --padding: 2px;
     --padding-vomnibar: 6px;
@@ -50,7 +45,7 @@
 
 #vimiumHintMarkerContainer div span {
     color: var(--fg-hints);
-    font-family: var(--font-hints);
+    font-family: var(--font);
     font-size: var(--font-size-hints);
     font-weight: var(--font-weight-bold);
     text-shadow: none;
@@ -135,9 +130,9 @@
 #vomnibar li .vomnibarSource {
     color: var(--fg-dark);
     font-family: var(--font);
-    font-size: var(--font-size);
+    font-size: 12;
     font-weight: var(--font-weight-bold);
-    /* text-transform: uppercase; /1* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original *1/ */
+    text-transform: uppercase; /* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original */
 }
 
 #vomnibar li em,
@@ -189,8 +184,8 @@ div.vimiumHUD {
 div.vimiumHUD span#hud-find-input,
 div.vimiumHUD .vimiumHUDSearchAreaInner {
     color: var(--fg);
-    font-family: var(--font-search);
-    font-size: var(--font-size-search);
+    font-family: var(--font);
+    font-size: 13;
     font-weight: var(--font-weight-medium);
 }
 
@@ -233,7 +228,7 @@ span.vimiumHelpDialogKey {
   box-shadow: var(--shadow);
   padding: 2px 3px;
   color: var(--fg-hints);
-  font-family: var(--font-hints);
+  font-family: var(--font);
   font-size: var(--font-size-hints);
   font-weight: var(--font-weight-bold);
   text-shadow: none;
