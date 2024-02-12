@@ -1,9 +1,10 @@
 :root {
-    --font-size: 16px;
-    --font-size-hints: 16px;
-    --font-size-url: 14px;
-    --font-size-hud: 14px;
-    --font-size-source: 11px;
+	--font-size: 14px;
+	--font-size-hints: 15px;
+	--font-size-title: 13px;
+	--font-size-url: 13px;
+	--font-size-hud: 14px;
+	--font-size-source: 11px;
 
     --font-weight: normal;
     --font-weight-medium: medium;
@@ -16,7 +17,7 @@
     --font-hud: monospace;
   
     --padding: 2px;
-    --padding-vomnibar: 6px;
+    --padding-vomnibar: 4px;
     --shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 /* -------- VOMNIBAR & HUD -------- */
@@ -105,8 +106,8 @@
 }
 
 #vomnibar .vomnibarSearchArea {
-    padding: 8px 30px;
-    border-radius: 6px;
+    padding: 8px 26px;
+    border-radius: var(--padding-vomnibar);
 }
 
 #vomnibar input {
@@ -123,10 +124,10 @@
 
 #vomnibar li {
     border-bottom: none;
-    padding-top: 8px;
+    padding-top: var(--padding-vomnibar);
     padding-left: var(--padding-vomnibar);
     padding-right: var(--padding-vomnibar);
-    padding-bottom: 8px;
+    padding-bottom: var(--padding-vomnibar);
 }
 
 #vomnibar li .vomnibarTopHalf {
@@ -150,7 +151,7 @@
 #vomnibar li .vomnibarTitle {
     color: var(--fg-title);
     font-family: var(--font);
-    font-size: var(--font-size);
+    font-size: var(--font-size-title);
     font-weight: var(--font-weight-medium);
 }
 
