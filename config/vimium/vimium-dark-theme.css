@@ -27,11 +27,13 @@
     --fg-match: #$BASE16[orange];
     --fg-source: #$BASE16[brown];
     --fg-hud: #$BASE16[default_background];
+    --fg-hud-search: #$BASE16[default_background];
 
     --bg: #$BASE16[default_background];
     --bg-searcharea: #$BASE16[lighter_background];
     --bg-selected: #$BASE16[selection_background];
-    --bg-hud: #$BASE16[yellow];
+    --bg-hud: #$BASE16[blue];
+    --bg-hud-search: #$BASE16[yellow];
 
     --border: #$BASE16[default_foreground];
 	--border-hud: #$BASE16[default_background];
@@ -195,11 +197,16 @@ div.vimiumHUD .vimiumHUDSearchAreaInner {
     color: var(--fg-hud);
     font-family: var(--font-hud);
     font-size: var(--font-size-hud);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-bold);
+}
+
+div.vimiumHUD span#hud-find-input {
+    color: var(--fg-hud-search);
+	font-weight: var(--font-weight);
 }
 
 div.vimiumHUD .hud-find {
-    background-color: transparent;
+	background-color: var(--bg-hud-search);
     border: none;
 }
 
@@ -210,6 +217,7 @@ div.vimiumHUD .vimiumHUDSearchArea {
 
 div.vimiumHUD span#hud-match-count {
 	color: #$BASE16[selection_background];
+	font-weight: var(--font-weight);
 }
 
 /* -------- HELP DIALOG -------- */
