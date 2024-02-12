@@ -51,6 +51,9 @@ local cfg = actions
         },
         git_status = {
           initial_mode = "normal",
+          path_display = {
+            truncate = 3,
+          },
         },
         buffers = {
           ignore_current_buffer = true,
@@ -68,6 +71,9 @@ local cfg = actions
         },
       },
       defaults = {
+        path_display = {
+          truncate = 1,
+        },
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
