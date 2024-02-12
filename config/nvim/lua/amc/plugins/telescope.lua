@@ -49,6 +49,10 @@ local cfg = actions
         live_grep = {
           attach_mappings = attach_quickfix_select,
         },
+        grep_string = {
+          initial_mode = "normal",
+          attach_mappings = attach_quickfix_select,
+        },
         git_status = {
           initial_mode = "normal",
           path_display = {
