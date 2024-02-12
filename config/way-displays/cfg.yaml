@@ -12,6 +12,8 @@ SCALE:
     SCALE: 2
   - NAME_DESC: Sharp Corporation 0x148D
     SCALE: 2
+  - NAME_DESC: XG349C
+    SCALE: 1.25
 MODE:
   - NAME_DESC: MAG274QRF-QD
     WIDTH: 2560
