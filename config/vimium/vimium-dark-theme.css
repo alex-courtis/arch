@@ -3,6 +3,7 @@
     --font-size-hints: 14px;
     --font-size-url: 14px;
     --font-size-search: 18px;
+    --font-size-source: 12px;
 
     --font-weight: normal;
     --font-weight-medium: medium;
@@ -17,23 +18,24 @@
     --shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 /* -------- VOMNIBAR & HUD -------- */
-    --fg: #FFFFFF;
-    --fg-dark: #ffffff65;
-    --fg-url: #84BFFA; 
-    --fg-match: #d4e7ff;
+    --fg: #$BASE16[default_foreground];
+    --fg-dark: #$BASE16[comments];
+    --fg-url: #$BASE16[bright_blue];
+    --fg-match: #$BASE16[yellow];
+    --fg-source: #$BASE16[comments];
     /* ALTERNATIVE `--fg-match' COLOR: 
     --fg-match: #F29A4A; */
 
-    --bg: #2A2A2E;
-    --bg-searcharea: #222225;
-    --bg-selected: #2165D9;
+    --bg: #$BASE16[default_background];
+    --bg-searcharea: #$BASE16[lighter_background];
+    --bg-selected: #$BASE16[selection_background];
 
-    --border: #404046;
+    --border: #$BASE16[default_foreground];
 
 /* -------- HINTS -------- */
-    --bg-hints: #FFD752;      /* Background color of link hints */
-    --border-hints: #F4CA46;  /* Border color of link hints */
-    --fg-hints: #000000;      /* Text color of link hints, (don't forget to change `#vimiumHintMarkerContainer div > .matchingCharacter ~ span`) */
+    --bg-hints: #$BASE16[bright_yellow];      /* Background color of link hints */
+    --border-hints: #$BASE16[default_background];  /* Border color of link hints */
+    --fg-hints: #$BASE16[default_background];      /* Text color of link hints, (don't forget to change `#vimiumHintMarkerContainer div > .matchingCharacter ~ span`) */
 }
 
 /* --------------------------------- CSS --------------------------------- */
@@ -133,8 +135,9 @@
 #vomnibar li .vomnibarSource {
     color: var(--fg-dark);
     font-family: var(--font);
-    font-size: var(--font-size);
+    font-size: var(--font-size-source);
     font-weight: var(--font-weight-bold);
+    text-transform: uppercase; /* `.vomnibarSource` will be in all uppercase letters. Delete to revert to original */
 }
 
 #vomnibar li em,
@@ -158,7 +161,7 @@
 }
 
 #vomnibar li .vomnibarTitle .vomnibarMatch {
-    color: var(--fg);
+    color: var(--fg-match);
     font-weight: bold;  
 }
 
@@ -167,13 +170,13 @@
     border-radius: 3px;
 }
 
-#vomnibar li.vomnibarSelected .vomnibarUrl { /* Changes '.vomnibarURL' to '--fg-match' when selected */
-    color: var(--fg-match);
-}
+/* #vomnibar li.vomnibarSelected .vomnibarUrl { /1* Changes '.vomnibarURL' to '--fg-match' when selected *1/ */
+/*     color: var(--fg-match); */
+/* } */
 
-#vomnibar li.vomnibarSelected .vomnibarMatch {  /* Changes '.vomnibarMatch' to '--fg' when selected */
-    color: var(--fg);
-}
+/* #vomnibar li.vomnibarSelected .vomnibarMatch {  /1* Changes '.vomnibarMatch' to '--fg' when selected *1/ */
+/*     color: var(--fg); */
+/* } */
 
 /* -------- HUD -------- */
 div.vimiumHUD {
