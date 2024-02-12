@@ -3,26 +3,15 @@ ALIGN: BOTTOM
 ORDER:
   - LG Display 0x05EF
   - Sharp Corporation 0x148D
-  - ASUS XG32V
   - Ancor Communications Inc ROG PG27AQ
   - Samsung Electric Company C34J79x
 SCALING: TRUE
 AUTO_SCALE: TRUE
 SCALE:
-  - NAME_DESC: ASUS XG32V
-    SCALE: 1
   - NAME_DESC: LG Display 0x05EF
     SCALE: 2
-  - NAME_DESC: MAG274QRF-QD
-    SCALE: 1
-  - NAME_DESC: M28U
-    SCALE: 1.75
   - NAME_DESC: Sharp Corporation 0x148D
     SCALE: 2
-  - NAME_DESC: Samsung Electric Company C34J79x
-    SCALE: 1
-  - NAME_DESC: ASUSTek COMPUTER INC XG349C
-    SCALE: 1
 MODE:
   - NAME_DESC: MAG274QRF-QD
     WIDTH: 2560
