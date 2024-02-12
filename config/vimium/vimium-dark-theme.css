@@ -13,7 +13,7 @@
     --font-hints: monospace;
     --font-url: monospace;
     --font-search: monospace;
-	--font-hud: monospace;
+    --font-hud: monospace;
   
     --padding: 2px;
     --padding-vomnibar: 6px;
@@ -22,10 +22,10 @@
 /* -------- VOMNIBAR & HUD -------- */
     --fg: #$BASE16[default_foreground];
     --fg-dark: #$BASE16[comments];
-    --fg-url: #$BASE16[blue];
-	--fg-title: #$BASE16[magenta];
+    --fg-url: #$BASE16[bright_blue];
+    --fg-title: #$BASE16[default_foreground];
     --fg-match: #$BASE16[orange];
-    --fg-source: #$BASE16[brown];
+    --fg-source: #$BASE16[cyan];
     --fg-hud: #$BASE16[default_background];
     --fg-hud-search: #$BASE16[default_background];
 
@@ -33,10 +33,10 @@
     --bg-searcharea: #$BASE16[lighter_background];
     --bg-selected: #$BASE16[selection_background];
     --bg-hud: #$BASE16[blue];
-    --bg-hud-search: #$BASE16[yellow];
+    --bg-hud-search: #$BASE16[bright_yellow];
 
     --border: #$BASE16[default_foreground];
-	--border-hud: #$BASE16[default_background];
+    --border-hud: #$BASE16[default_background];
 
 /* -------- HINTS -------- */
     --bg-hints: #$BASE16[bright_yellow];      /* Background color of link hints */
@@ -198,26 +198,27 @@ div.vimiumHUD .vimiumHUDSearchAreaInner {
     font-family: var(--font-hud);
     font-size: var(--font-size-hud);
     font-weight: var(--font-weight-bold);
+    border-radius: 5px;
 }
 
 div.vimiumHUD span#hud-find-input {
     color: var(--fg-hud-search);
-	font-weight: var(--font-weight);
+    font-weight: var(--font-weight);
 }
 
 div.vimiumHUD .hud-find {
-	background-color: var(--bg-hud-search);
+    background-color: var(--bg-hud-search);
     border: none;
 }
 
 div.vimiumHUD .vimiumHUDSearchArea {
     background-color: transparent;
-    padding: 1px;
+    padding: 0;
 }
 
 div.vimiumHUD span#hud-match-count {
-	color: #$BASE16[selection_background];
-	font-weight: var(--font-weight);
+    color: #$BASE16[selection_background];
+    font-weight: var(--font-weight);
 }
 
 /* -------- HELP DIALOG -------- */
