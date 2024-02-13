@@ -134,6 +134,7 @@ K.nmsl("l", buffers.toggle_trailing_space)
 K.nmsl("L", ":%s/\\s\\+$//e<CR>")
 K.nm_l("s", telescope.grep_string)
 K.vm_l("s", telescope.grep_string)
+K.nm_l("S", telescope.builtin)
 K.nmsl("z", dev.format)
 
 K.nm__("#", "<Plug>(asterisk-z#)")
