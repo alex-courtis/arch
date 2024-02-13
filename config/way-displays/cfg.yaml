@@ -22,5 +22,5 @@ MODE:
   - NAME_DESC: M28U
     MAX: TRUE
 VRR_OFF:
-  - MAG274QRF-QD
+  - LG Display 0x05EF
 
