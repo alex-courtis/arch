@@ -65,6 +65,7 @@ K.nmsl("u", windows.cprev)
 -- =
 K.nmsl("y", telescope.git_status)
 K.nmsl("i", telescope.buffers)
+K.nm_l("I", telescope.builtin)
 K.nmsl("x", buffers.safe_hash)
 
 K.nms_("<Space><BS>", buffers.back)
