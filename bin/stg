@@ -1,4 +1,9 @@
 #!/bin/sh
 
-gamescope-run-native --steam -- steam
+# extra XWayland servers are needed to have steam follow window size
+
+gamescope-run-native \
+	--xwayland-count 5 \
+	--steam \
+	-- steam
 
