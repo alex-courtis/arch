@@ -7,21 +7,15 @@ if ! VARS="$(way-displays -y -g | yq '.STATE.HEADS[0] | "NAME=\"" + .NAME + "\" 
 	exit 1
 fi
 
+# extract info
 eval "${VARS}"
-
-echo "name:   ${NAME}"
-echo "desc:   ${DESCRIPTION}"
-echo "width:  ${WIDTH}"
-echo "height: ${HEIGHT}"
+printf "name:   %s\ndesc:   %s\nwidth:  %d\nheight: %d\n" "${NAME}" "${DESCRIPTION}" "${WIDTH}" "${HEIGHT}"
 
 # launch arguments with gamescope
 gamescope \
 	--prefer-output "${NAME}" \
+	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
 	--nested-width "${WIDTH}" --nested-height "${HEIGHT}" \
 	--adaptive-sync \
 	"${@}"
 
-exit
-
-# river gets upset
---output-width "${WIDTH}" --output-height "${HEIGHT}" \
