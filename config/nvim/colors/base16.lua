@@ -1,3 +1,8 @@
+-- halt when no gui available
+if tonumber(vim.o.t_Co) < 256 then
+  return
+end
+
 local ok, mini_base16 = pcall(require, "mini.base16")
 if not ok then
   return
@@ -15,7 +20,7 @@ mini_base16.setup({
   use_cterm = true,
   plugins = {
     default = true,
-    ['nvim-tree/nvim-tree.lua'] = false,
+    ["nvim-tree/nvim-tree.lua"] = false,
   },
 })
 

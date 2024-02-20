@@ -1,8 +1,18 @@
-if vim.env.TERM == "linux" then
+vim.o.background = "dark"
+
+-- halt when no cterm available
+if tonumber(vim.o.t_Co) < 16 then
   return
 end
 
-vim.o.background = "dark"
+-- linux term does not do this gracefully
+vim.o.cursorline = true
+
+-- halt when no gui available
+if tonumber(vim.o.t_Co) < 256 then
+  return
+end
+
 vim.o.termguicolors = true
 
 vim.cmd("colorscheme base16")

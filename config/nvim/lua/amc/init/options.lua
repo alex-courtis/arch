@@ -6,7 +6,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.o.autowriteall = true
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noselect"
-vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.history = 500 -- applies to shada
 vim.o.listchars = vim.o.listchars .. ",space:·"
