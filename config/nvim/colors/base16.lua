@@ -1,5 +1,5 @@
 -- halt when no gui available
-if tonumber(vim.o.t_Co) < 256 then
+if tonumber(vim.o.t_Co) < 256 or vim.env.TERM == "linux" then
   return
 end
 
