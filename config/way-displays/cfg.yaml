@@ -21,10 +21,6 @@ MODE:
     HZ: 120
   - NAME_DESC: M28U
     MAX: TRUE
-  - NAME_DESC: XG349C
-    WIDTH: 3440
-    HEIGHT: 1440
-    HZ: 120
 VRR_OFF:
   - LG Display 0x05EF
 
