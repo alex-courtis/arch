@@ -1,4 +1,6 @@
 #!/bin/sh
 
-mangohud gamescope-run-native --fullscreen -- "${@}"
+echo "${0} ${@}" > /tmp/mhgs.log
+
+mangohud gamescope-run-native --fullscreen -- "${@}" >> /tmp/mhgs.log 2>&1
 

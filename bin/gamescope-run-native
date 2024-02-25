@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# 2024 02 25
+# adaptive sync only works from a tty session: https://github.com/ValveSoftware/gamescope/issues/975
+# vsync results in low framerates, a little of a half
+# extra XWayland servers appear to be needed:
+# - steam correct window size
+# - fullscreen switches
+# - change tag
+
+echo "${0} ${@}"
+
 set -o pipefail
 
 # fetch the first display
@@ -16,6 +26,7 @@ gamescope \
 	--prefer-output "${NAME}" \
 	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
 	--nested-width "${WIDTH}" --nested-height "${HEIGHT}" \
+	--xwayland-count 2 \
 	--adaptive-sync \
 	"${@}"
 
