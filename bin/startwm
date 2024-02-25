@@ -9,28 +9,29 @@ nknown libinput event\
 
 case "${1}" in
 	"sway")
-		if [ "$(whence river)" ]; then
-			exec sway -V \
-				> >(eval "${LOG_FILTER_CMD}" > "/tmp/sway.${XDG_VTNR}.${USER}.log") 2>&1
-		fi
+		exec sway -V \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	"river")
-		if [ "$(whence river)" ]; then
-			exec river \
-				> >(eval "${LOG_FILTER_CMD}" > "/tmp/river.${XDG_VTNR}.${USER}.log") 2>&1
-		fi
+		exec river \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	"hyprland")
 		if [ "$(whence Hyprland)" ]; then
-			exec Hyprland > "/tmp/hyprland.${XDG_VTNR}.${USER}.log" 2>&1
+			exec Hyprland > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		fi
 		;;
+	"steam")
+		gamescope \
+			--xwayland-count 2 \
+			--adaptive-sync \
+			--steam \
+			-- steam > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
+		;;
 	"x")
-		if [ "$(whence startx)" ]; then
-			export X_WM="${2}"
-			exec startx \
-				> >(eval "${LOG_FILTER_CMD}" > "/tmp/${X_WM}.x.${XDG_VTNR}.${USER}.log") 2>&1
-		fi
+		export X_WM="${2}"
+		exec startx \
+			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${X_WM}.${XDG_VTNR}.${USER}.log") 2>&1
 		;;
 	*)
 		print "unknown wm ${1}" 1>&2
