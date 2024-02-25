@@ -1,7 +1,0 @@
-#!/bin/sh
-
-way-displays -s scaling off
-
-/usr/lib/steam/steam -console "$@" > /tmp/steam.log 2>&1
-
-way-displays -s scaling on
