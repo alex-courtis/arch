@@ -47,20 +47,20 @@ riverctl map normal $mod2 f send-layout-cmd river-xmonadwm "--stack even"
 riverctl map normal $mod3 f spawn "volraisemic"
 
 riverctl map normal $mod1 g send-layout-cmd river-xmonadwm "--count +1"
-riverctl map normal $mod2 g send-layout-cmd river-xmonadwm "--count 1"
+riverctl map normal $mod2 g spawn "riverctl send-layout-cmd river-xmonadwm '--count +1' && riverctl focus-view next"
 riverctl map normal $mod3 g spawn "volraise"
 
 riverctl map normal $mod1 c send-layout-cmd river-xmonadwm "--ratio +0.025"
 riverctl map normal $mod2 c send-layout-cmd river-xmonadwm "--ratio 0.35"
 
 riverctl map normal $mod1 r send-layout-cmd river-xmonadwm "--count -1"
-riverctl map normal $mod2 r send-layout-cmd river-xmonadwm "--count 1"
+riverctl map normal $mod2 r spawn "riverctl send-layout-cmd river-xmonadwm '--count -1' && riverctl focus-view previous"
 
 riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 
 riverctl map normal $mod3 slash spawn "pa-mute-all"
 
-riverctl map normal $mod1 d spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout left'"
+riverctl map normal $mod1 d spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout left --count 1 --ratio 0.5'"
 riverctl map normal $mod2 d send-layout-cmd river-xmonadwm "--stack dwindle"
 riverctl map normal $mod3 d spawn "vollowermic"
 
@@ -78,7 +78,7 @@ riverctl map normal $mod3 s spawn "sss"
 
 riverctl map normal $mod3 minus spawn "ssa"
 
-riverctl map normal $mod1 b spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout wide'"
+riverctl map normal $mod1 b spawn "riverctl send-layout-cmd river-xmonadwm '--layout monocle' && riverctl send-layout-cmd river-xmonadwm '--layout wide --count 1 --ratio 0.35'"
 riverctl map normal $mod2 b send-layout-cmd river-xmonadwm "--stack diminish"
 riverctl map normal $mod3 b spawn "volmutemic"
 
