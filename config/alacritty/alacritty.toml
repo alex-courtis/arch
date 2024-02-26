@@ -1,4 +1,4 @@
-# TODO mouse wheel scrolls history but does not enter search mode
+# TODO https://github.com/alacritty/alacritty/issues/4754
 
 import = [
 "~/.config/alacritty/appearance.toml",

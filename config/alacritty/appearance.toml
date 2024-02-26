@@ -1,6 +1,6 @@
 [font]
 size = $FONT_SIZE_PT
-
+normal.family = "Monospace"
 
 [colors.cursor]
 cursor = "0x$BASE16[default_foreground]"
