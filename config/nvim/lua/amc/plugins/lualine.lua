@@ -1,11 +1,9 @@
-local util = require("amc.util")
-local log = util.require("amc.log")
-local lualine = util.require_or_nil("lualine")
+local log = require("amc.log")
 
-local M = {}
+local lualine_ok, lualine = pcall(require, "lualine")
 
-if not lualine then
-  return M
+if not lualine_ok then
+  return
 end
 
 local filename = {
@@ -168,5 +166,3 @@ local config = {
 
 -- init
 lualine.setup(config)
-
-return M

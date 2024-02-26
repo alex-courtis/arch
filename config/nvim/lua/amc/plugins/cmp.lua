@@ -1,10 +1,7 @@
-local util = require("amc.util")
-local cmp = util.require_or_nil("cmp")
+local cmp_ok, cmp = pcall(require, "cmp")
 
-local M = {}
-
-if not cmp then
-  return M
+if not cmp_ok then
+  return
 end
 
 local config = {
@@ -32,5 +29,3 @@ local config = {
 
 --init
 cmp.setup(config)
-
-return M

@@ -3,9 +3,7 @@ local log = require("amc.log")
 local util = require("amc.util")
 
 log.line("---- init options")
-util.require_or_nil("amc.init.options")
-
-util.nvt_plugin_dir()
+require("amc.init.options")
 
 -- installs but does not load
 log.line("---- init pack")
@@ -46,22 +44,22 @@ if bootstrapped then
 end
 
 log.line("---- init early")
-util.require_or_nil("amc.init.appearance")
-util.require_or_nil("amc.init.dirs")
+require("amc.init.appearance")
+require("amc.init.dirs")
 
 log.line("---- init plugins")
-util.require_or_nil("amc.plugins.cmp")
-util.require_or_nil("amc.plugins.gitsigns")
-util.require_or_nil("amc.plugins.formatter")
-util.require_or_nil("amc.plugins.lsp")
-util.require_or_nil("amc.plugins.lualine")
-util.require_or_nil("amc.plugins.nvt")
-util.require_or_nil("amc.plugins.stylua")
-util.require_or_nil("amc.plugins.telescope")
+require("amc.plugins.cmp")
+require("amc.plugins.gitsigns")
+require("amc.plugins.formatter")
+require("amc.plugins.lsp")
+require("amc.plugins.lualine")
+require("amc.plugins.nvt")
+require("amc.plugins.stylua")
+require("amc.plugins.telescope")
 
 log.line("---- init late")
-util.require_or_nil("amc.init.autocmds")
-util.require_or_nil("amc.init.commands")
-util.require_or_nil("amc.init.mappings")
+require("amc.init.autocmds")
+require("amc.init.commands")
+require("amc.init.mappings")
 
 log.line("---- init done")

@@ -1,14 +1,15 @@
-local util = require("amc.util")
-local env = util.require("amc.env")
-local telescope = util.require_or_nil("amc.plugins.telescope")
-local tree = util.require_or_nil("nvim-tree")
-local api = util.require_or_nil("nvim-tree.api")
-
 local M = {}
 
-if not tree or not api then
+local env = require("amc.env")
+
+local tree_ok, tree = pcall(require, "nvim-tree")
+local telescope_ok, telescope = pcall(require, "amc.plugins.telescope")
+
+if not tree_ok then
   return M
 end
+
+local api = require("nvim-tree.api")
 
 local IGNORED_FT = {
   "gitcommit",
@@ -31,22 +32,20 @@ local function node_path_dir()
 end
 
 local function find_files()
-  if not telescope then
-    return
-  end
-  local _, dir = node_path_dir()
-  if dir then
-    telescope.find_files({ search_dirs = { dir } })
+  if telescope_ok then
+    local _, dir = node_path_dir()
+    if dir then
+      telescope.find_files({ search_dirs = { dir } })
+    end
   end
 end
 
 local function live_grep()
-  if not telescope then
-    return
-  end
-  local _, dir = node_path_dir()
-  if dir then
-    telescope.live_grep({ search_dirs = { dir } })
+  if telescope_ok then
+    local _, dir = node_path_dir()
+    if dir then
+      telescope.live_grep({ search_dirs = { dir } })
+    end
   end
 end
 
@@ -82,7 +81,7 @@ local function toggle_width_adaptive()
     view_width_max = -1
   end
 
-  require("nvim-tree.api").tree.reload()
+  api.tree.reload()
 end
 
 -- get current view width
@@ -152,7 +151,7 @@ local config = {
   view = {
     width = {
       max = get_view_width_max,
-    }
+    },
   },
   renderer = {
     highlight_git = "none",
@@ -258,19 +257,14 @@ if vim.env.NVIM_TREE_PROFILE then
 end
 
 --- open and find
---- @param update_root boolean
-local function open_find(update_root)
+--- @param update_root boolean|nil
+function M.open_find(update_root)
   api.tree.open({ find_file = true, update_root = update_root })
 end
 
---- maybe open and find
-function M.open_find()
-  open_find(false)
-end
-
---- mapbe open, find and update root
+--- maybe open, find and update root
 function M.open_find_update_root()
-  open_find(true)
+  M.open_find(true)
 end
 
 --- collapse then open and find

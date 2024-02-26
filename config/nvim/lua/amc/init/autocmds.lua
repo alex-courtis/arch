@@ -1,8 +1,7 @@
-local util = require("amc.util")
-local buffers = util.require("amc.buffers")
-local env = util.require("amc.env")
-local windows = util.require("amc.windows")
-local nvim_tree = util.require_or_nil("amc.plugins.nvt") or {}
+local buffers = require("amc.buffers")
+local env = require("amc.env")
+local windows = require("amc.windows")
+local nvim_tree_amc = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
@@ -26,7 +25,7 @@ au({ "WinClosed" },                                             buffers.wipe_unw
 au({ "BufLeave", "FocusLost" },                                 buffers.update,               { nested = true })
 au({ "QuickFixCmdPost" },                                       windows.open_qf_loc_win,      { nested = true })
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
-au({ "VimEnter" },                                              nvim_tree.vim_enter,          {})
+au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,          {})
 -- stylua: ignore end
 
 -- v/h resize windows on terminal size change

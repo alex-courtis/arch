@@ -1,11 +1,8 @@
-local util = require("amc.util")
-local formatter = util.require_or_nil("formatter")
-local formatter_format = util.require_or_nil("formatter.format")
-local formatter_util = util.require_or_nil("formatter.util")
-
 local M = {}
 
-if not formatter or not formatter_format or not formatter_util then
+local formatter_ok, formatter = pcall(require, "formatter")
+
+if not formatter_ok then
   return M
 end
 

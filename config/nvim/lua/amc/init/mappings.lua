@@ -1,14 +1,12 @@
-local util = require("amc.util")
+local K = require("amc.keymap")
 
-local K = util.require("amc.keymap")
+local buffers = require("amc.buffers")
+local dev = require("amc.dev")
+local windows = require("amc.windows")
 
-local buffers = util.require("amc.buffers")
-local dev = util.require("amc.dev")
-local windows = util.require("amc.windows")
-
-local nvim_tree = util.require_or_nil("amc.plugins.nvt") or {}
-local telescope = util.require_or_nil("amc.plugins.telescope") or {}
-local lsp = util.require_or_nil("amc.plugins.lsp") or {}
+local nvim_tree_amc = require("amc.plugins.nvt")
+local telescope_amc = require("amc.plugins.telescope")
+local lsp_amc = require("amc.plugins.lsp")
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 K.vm__("<LeftRelease>", '"*ygv')
@@ -41,8 +39,8 @@ end)
 -- fn
 
 -- [
-K.nmsl("a", nvim_tree.open_find)
-K.nmsl("A", nvim_tree.open_find_update_root)
+K.nmsl("a", nvim_tree_amc.open_find)
+K.nmsl("A", nvim_tree_amc.open_find_update_root)
 K.nmsl("'", windows.close_inc)
 K.nmsl('"', windows.close_others)
 
@@ -53,19 +51,19 @@ K.nmsl("O", vim.cmd.only)
 K.nmsl("q", windows.close)
 
 -- }
-K.nmsl(".", lsp.goto_next)
+K.nmsl(".", lsp_amc.goto_next)
 K.nmsl("e", windows.cnext)
 -- j gitsigns.next_hunk
 
 -- (
-K.nmsl("p", lsp.goto_prev)
+K.nmsl("p", lsp_amc.goto_prev)
 K.nmsl("u", windows.cprev)
 -- k gitsigns.prev_hunk
 
 -- =
-K.nmsl("y", telescope.git_status)
-K.nmsl("i", telescope.buffers)
-K.nm_l("I", telescope.builtin)
+K.nmsl("y", telescope_amc.git_status)
+K.nmsl("i", telescope_amc.buffers)
+K.nm_l("I", telescope_amc.builtin)
 K.nmsl("x", buffers.safe_hash)
 
 K.nms_("<Space><BS>", buffers.back)
@@ -87,8 +85,8 @@ K.nmsl("<Right>", ":wincmd l<CR>")
 
 K.nm__("*", "<Plug>(asterisk-z*)")
 K.nm_l("*", "*")
-K.nmsl("f", telescope.find_files)
-K.nmsl("F", telescope.find_files_hidden)
+K.nmsl("f", telescope_amc.find_files)
+K.nmsl("F", telescope_amc.find_files_hidden)
 K.nmsl("da", vim.lsp.buf.code_action)
 K.nmsl("dq", vim.diagnostic.setqflist)
 K.nmsl("df", vim.diagnostic.open_float)
@@ -98,8 +96,8 @@ K.nmsl("b", ":%y<CR>")
 K.nmsl("B", ":%d_<CR>")
 
 -- )
-K.nmsl("g", telescope.live_grep)
-K.nmsl("G", telescope.live_grep_hidden)
+K.nmsl("g", telescope_amc.live_grep)
+K.nmsl("G", telescope_amc.live_grep_hidden)
 K.nmsl("hb", ":G blame<CR>")
 -- h* gitsigns
 K.nmsl("mc", dev.clean)
@@ -114,7 +112,7 @@ K.nmsl("cc", "<Plug>CommentaryLine")
 K.omsl("c", "<Plug>Commentary")
 K.nmsl("c", "<Plug>Commentary")
 K.xmsl("c", "<Plug>Commentary")
-K.nmsl("t", lsp.goto_definition_or_tag)
+K.nmsl("t", lsp_amc.goto_definition_or_tag)
 K.nmsl("T", vim.lsp.buf.declaration)
 K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw")
 K.xmsl("w", "<Plug>ReplaceWithRegisterVisual")
@@ -125,7 +123,7 @@ K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/")
 K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
 K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/')
 K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>')
-K.nmsl("n", telescope.lsp_references)
+K.nmsl("n", telescope_amc.lsp_references)
 K.nmsl("N", vim.diagnostic.setqflist)
 K.nmsl("v", ":put<CR>'[v']=")
 K.nmsl("V", ":put!<CR>'[v']=")

@@ -1,7 +1,6 @@
-local util = require("amc.util")
-local buffers = util.require("amc.buffers")
-local log = util.require("amc.log")
-local env = util.require("amc.env")
+local buffers = require("amc.buffers")
+local log = require("amc.log")
+local env = require("amc.env")
 
 --- wipe directory buffers
 for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do

@@ -1,10 +1,7 @@
-local util = require("amc.util")
-local gitsigns = util.require_or_nil("gitsigns")
+local gitsigns_ok, gitsigns = pcall(require, "gitsigns")
 
-local M = {}
-
-if not gitsigns then
-  return M
+if not gitsigns_ok then
+  return
 end
 
 local on_attach = function(bufnr)
@@ -65,5 +62,3 @@ local config = {
 
 -- init
 gitsigns.setup(config)
-
-return M
