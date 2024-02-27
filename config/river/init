@@ -7,11 +7,11 @@ ${XDG_CONFIG_HOME}/river/init.d/map
 ${XDG_CONFIG_HOME}/river/init.d/behaviour
 
 # set layout manager
-riverctl default-layout river-xmonadwm
+riverctl default-layout wideriver
 
 # start layout manager
-# valgrind --leak-check=full --show-leak-kinds=all river-xmonadwm \
-river-xmonadwm \
+# valgrind --leak-check=full --show-leak-kinds=all wideriver \
+wideriver \
 	--layout wide \
 	--layout-alt monocle \
 	--stack dwindle \
@@ -25,5 +25,5 @@ river-xmonadwm \
 	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
 	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \
 	--log-threshold debug \
-	> "/tmp/river-xmonadwm.${XDG_VTNR}.${USER}.log" 2>&1 &
+	> "/tmp/wideriver.${XDG_VTNR}.${USER}.log" 2>&1 &
 
