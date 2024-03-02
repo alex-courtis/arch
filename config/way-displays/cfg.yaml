@@ -3,6 +3,7 @@ ALIGN: BOTTOM
 ORDER:
   - LG Display 0x05EF
   - Sharp Corporation 0x148D
+  - Samsung Display Corp. 0x4165
   - Ancor Communications Inc ROG PG27AQ
   - Samsung Electric Company C34J79x
 SCALING: TRUE
@@ -14,6 +15,8 @@ SCALE:
     SCALE: 2
   - NAME_DESC: XG349C
     SCALE: 1.25
+  - NAME_DESC: Samsung Display Corp. 0x4165
+    SCALE: 2.5
 MODE:
   - NAME_DESC: MAG274QRF-QD
     WIDTH: 2560
@@ -23,4 +26,5 @@ MODE:
     MAX: TRUE
 VRR_OFF:
   - LG Display 0x05EF
+  - Samsung Display Corp. 0x4165
 
