@@ -1,5 +1,5 @@
 EXCLUDES="git doc root misc README.md"
-SYMLINK_DIRS="config/nvim config/ideavim config/luacheck config/river zsh"
+SYMLINK_DIRS="config/htop config/ideavim config/luacheck config/nvim config/river zsh"
 UNDOTTED="bin"
 
 # hooks/post-up/appearance.zsh will handle these
