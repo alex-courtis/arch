@@ -43,11 +43,6 @@ export XDG_STATE_HOME=$HOME/.local/state
 # they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
-# don't use DRM modifiers for better compatibility; unsure what the cost is
-if [ "${HOST}" != "emperor" ]; then
-	export WLR_DRM_NO_MODIFIERS=1
-fi
-
 # moar history
 HISTFILE=~/.histfile
 HISTSIZE=100000
