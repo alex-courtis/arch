@@ -13,5 +13,5 @@ wl-paste --no-newline --primary | wl-copy
 ydotool key 42:1 110:1 110:0 42:0
 
 # restore clipboard
-cat /tmp/wl.clipboard | wl-copy
+wl-copy < /tmp/wl.clipboard
 
