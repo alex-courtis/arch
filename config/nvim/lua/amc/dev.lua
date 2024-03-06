@@ -105,7 +105,7 @@ function M.format()
     end
   end
 
-  vim.cmd([[silent norm! gg=G``]])
+  vim.cmd([[silent! norm! gg=G``]])
 end
 
 return M
