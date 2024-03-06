@@ -102,6 +102,8 @@ riverctl map normal $mod1 right focus-output next
 riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output next"
 riverctl map normal $mod3 right send-to-output next
 
+riverctl map normal $mod1 F12 spawn primary-paste
+
 #
 # special
 #
