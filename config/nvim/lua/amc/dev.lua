@@ -1,6 +1,5 @@
 local M = {}
 
-local formatter_amc = require("amc.plugins.formatter")
 local stylua_ok, stylua = pcall(require, "stylua-nvim")
 
 --- @enum dev.build_type
@@ -104,8 +103,13 @@ function M.format()
     return
   end
 
-  if formatter_amc.format and formatter_amc.format() then
-    return
+  if vim.lsp.buf.server_ready() then
+    for _, client in ipairs(vim.lsp.get_active_clients()) do
+      if client.server_capabilities.documentFormattingProvided then
+        vim.lsp.buf.format()
+        return
+      end
+    end
   end
 
   vim.cmd([[silent norm! gg=G``]])

@@ -11,7 +11,7 @@ local start_client_flags = {
   debounce_text_changes = 500,
 }
 
-local config_ccls = {
+lspconfig.ccls.setup({
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
   root_dir = lspconfig and lspconfig.util.root_pattern(".ccls", "build/compile_commands.json") or nil,
@@ -27,9 +27,15 @@ local config_ccls = {
       },
     },
   },
-}
+})
 
-local config_lua = {
+local config_jsonls = {
+  capabilities = vim.lsp.protocol.make_client_capabilities(),
+}
+config_jsonls.capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.jsonls.setup(config_jsonls)
+
+lspconfig.lua_ls.setup({
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
   settings = {
@@ -104,12 +110,22 @@ local config_lua = {
       },
     },
   },
-}
+})
 
-local config_zls = {
+lspconfig.yamlls.setup({
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+    },
+  },
+})
+
+lspconfig.zls.setup({
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
-}
+})
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
@@ -135,8 +151,5 @@ function M.goto_next()
 end
 
 -- init
-lspconfig.ccls.setup(config_ccls)
-lspconfig.lua_ls.setup(config_lua)
-lspconfig.zls.setup(config_zls)
 
 return M
