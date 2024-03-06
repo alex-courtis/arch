@@ -8,7 +8,6 @@ require("amc.init.options")
 -- installs but does not load
 log.line("---- init pack")
 local bootstrapped = require("amc.init.pack")({
-  "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "farmergreg/vim-lastplace",
   "fidian/hexmode",
@@ -52,7 +51,6 @@ require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")
 require("amc.plugins.nvt")
-require("amc.plugins.stylua")
 require("amc.plugins.telescope")
 
 log.line("---- init late")

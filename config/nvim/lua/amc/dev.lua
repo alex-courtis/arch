@@ -1,7 +1,5 @@
 local M = {}
 
-local stylua_ok, stylua = pcall(require, "stylua-nvim")
-
 --- @enum dev.build_type
 M.build_type = {
   MAKE = 0,
@@ -98,11 +96,6 @@ function M.lsp_rename()
 end
 
 function M.format()
-  if stylua_ok and vim.bo.filetype == "lua" then
-    stylua.format_file()
-    return
-  end
-
   if vim.lsp.buf.server_ready() then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
       if client.server_capabilities.documentFormattingProvided then
