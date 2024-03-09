@@ -48,6 +48,7 @@ require("amc.init.dirs")
 
 log.line("---- init plugins")
 require("amc.plugins.cmp")
+require("amc.plugins.fugitive")
 require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")

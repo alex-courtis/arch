@@ -4,6 +4,7 @@ local buffers = require("amc.buffers")
 local dev = require("amc.dev")
 local windows = require("amc.windows")
 
+local fugitive_amc = require("amc.plugins.fugitive")
 local nvim_tree_amc = require("amc.plugins.nvt")
 local telescope_amc = require("amc.plugins.telescope")
 local lsp_amc = require("amc.plugins.lsp")
@@ -45,7 +46,7 @@ K.nmsl("'", windows.close_inc)
 K.nmsl('"', windows.close_others)
 
 -- {
-K.nmsl(",", vim.cmd.Git)
+K.nmsl(",", fugitive_amc.open)
 K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", vim.cmd.only)
 K.nmsl("q", windows.close)

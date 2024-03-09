@@ -1,6 +1,7 @@
 local buffers = require("amc.buffers")
 local env = require("amc.env")
 local windows = require("amc.windows")
+local fugitive_amc = require("amc.plugins.fugitive")
 local nvim_tree_amc = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
@@ -27,17 +28,13 @@ au({ "QuickFixCmdPost" },                                       windows.open_qf_
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
 au({ "BufWinEnter" },                                           windows.position_doc_window,  {})
 au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,      {})
+
+ft({ "fugitive" },                                              fugitive_amc.attach,          {})
 -- stylua: ignore end
 
 -- v/h resize windows on terminal size change
 au({ "VimResized" }, function()
   vim.cmd.wincmd("=")
-end)
-
---- no way to remap fugitive and tpope will not add
-ft({ "fugitive" }, function(data)
-  vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
-  vim.keymap.set("n", "x", "X", { buffer = data.buf, remap = true })
 end)
 
 -- man is not useful, vim help usually is
@@ -56,10 +53,4 @@ ft({ "lua", "json", "yml", "yaml", "ts", "tf" }, function(data)
   vim.bo[data.buf].shiftwidth = 2
   vim.bo[data.buf].softtabstop = 2
   vim.bo[data.buf].tabstop = 2
-end)
-
-au({ "BufWinEnter" }, function()
-  if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
-    vim.cmd.wincmd("L")
-  end
 end)
