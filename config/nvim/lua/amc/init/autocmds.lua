@@ -25,7 +25,8 @@ au({ "WinClosed" },                                             buffers.wipe_unw
 au({ "BufLeave", "FocusLost" },                                 buffers.update,               { nested = true })
 au({ "QuickFixCmdPost" },                                       windows.open_qf_loc_win,      { nested = true })
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
-au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,          {})
+au({ "BufWinEnter" },                                           windows.position_doc_window,  {})
+au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,      {})
 -- stylua: ignore end
 
 -- v/h resize windows on terminal size change
@@ -55,4 +56,10 @@ ft({ "lua", "json", "yml", "yaml", "ts", "tf" }, function(data)
   vim.bo[data.buf].shiftwidth = 2
   vim.bo[data.buf].softtabstop = 2
   vim.bo[data.buf].tabstop = 2
+end)
+
+au({ "BufWinEnter" }, function()
+  if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
+    vim.cmd.wincmd("L")
+  end
 end)

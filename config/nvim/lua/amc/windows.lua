@@ -144,4 +144,12 @@ function M.resize_qf_loc_win(data)
   end
 end
 
+--- help, man vertical right
+--- au BufWinEnter
+function M.position_doc_window()
+  if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
+    vim.cmd.wincmd("L")
+  end
+end
+
 return M
