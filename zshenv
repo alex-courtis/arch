@@ -15,7 +15,7 @@ export TERMINAL="alacritty"
 export PAGER="less"
 
 # git core.pager applies additional options
-export LESS="--RAW-CONTROL-CHARS --ignore-case --redraw-on-quit"
+export LESS="--RAW-CONTROL-CHARS --ignore-case"
 export SYSTEMD_LESS="${LESS}"
 
 # tell intellij that we're using a non-reparenting window manager
