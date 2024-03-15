@@ -1,5 +1,3 @@
-fpath=(${XDG_DATA_HOME}/zsh/site-functions $fpath)
-
 autoload -Uz compinit
 compinit
 

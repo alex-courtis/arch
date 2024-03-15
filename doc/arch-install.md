@@ -434,6 +434,7 @@ wev
 xlayoutdisplay
 ydotool
 zig-static
+zsh-system-clipboard-git
 `
 
 Clean any unnecessary packages:

@@ -1,5 +1,7 @@
 zmodload zsh/complist
 
+. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null 2>&1
+
 # vim zle mode
 bindkey -v
 
