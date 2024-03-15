@@ -29,7 +29,10 @@ if tonumber(vim.o.t_Co) < 256 then
   return
 end
 
-vim.o.termguicolors = true
+-- only when explicitly advertised
+if vim.env.COLORTERM then
+  vim.o.termguicolors = true
+end
 
 vim.cmd("colorscheme base16")
 

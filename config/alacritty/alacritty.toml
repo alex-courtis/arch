@@ -5,8 +5,8 @@ import = [
 "~/.config/alacritty/bindings.toml",
 ]
 
-[env]
-TERM = "alacritty-direct"
+# [env]
+# TERM = "alacritty-direct"
 
 [window]
 decorations = "None"
