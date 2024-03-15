@@ -1,42 +1,10 @@
-! extended base16-bright from https://github.com/chriskempson/base16-shell
-! sync with st config.h et al
+XTerm.vt100.reverseVideo: true
 
-*foreground:   #$BASE16[default_foreground]
-*background:   #$BASE16[default_background]
-*cursorColor:  #$BASE16[light_foreground]
-
-*color0:       #$BASE16[black]
-*color1:       #$BASE16[red]
-*color2:       #$BASE16[green]
-*color3:       #$BASE16[yellow]
-*color4:       #$BASE16[blue]
-*color5:       #$BASE16[magenta]
-*color6:       #$BASE16[cyan]
-*color7:       #$BASE16[white]
-
-*color8:       #$BASE16[bright_black]
-*color9:       #$BASE16[bright_red]
-*color10:      #$BASE16[bright_green]
-*color11:      #$BASE16[bright_yellow]
-*color12:      #$BASE16[bright_blue]
-*color13:      #$BASE16[bright_magenta]
-*color14:      #$BASE16[bright_cyan]
-*color15:      #$BASE16[bright_white]
-
-! these are not read by xterm when it starts
-! man page states "Resources past color15 are available as a compile-time option"
-*color16:      #$BASE16[orange]
-*color17:      #$BASE16[brown]
-*color18:      #$BASE16[lighter_background]
-*color19:      #$BASE16[selection_background]
-*color20:      #$BASE16[dark_foreground]
-*color21:      #$BASE16[light_foreground]
-
-! xterm
 XTerm.termName: xterm-256color
+
 XTerm.vt100.faceName: Monospace
 XTerm.vt100.faceSize: $FONT_SIZE_PT
-XTerm.saveLines: 0
+
 XTerm*VT100.Translations:       #override\n\
 		Shift Ctrl <KeyPress> v: insert-selection(CLIPBOARD)\n\
 		Shift Ctrl <KeyPress> c: copy-selection(CLIPBOARD)\n
