@@ -1,4 +1,13 @@
-local K = require("amc.keymap")
+local K = {}
+
+-- stylua: ignore start
+for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
+  K[mode .. "m" .. "__"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false }) end end
+  K[mode .. "m" .. "s_"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true }) end end
+  K[mode .. "m" .. "_l"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "__"](leader .. lhs, rhs) end end end
+  K[mode .. "m" .. "sl"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "s_"](leader .. lhs, rhs) end end end
+end
+-- stylua: ignore end
 
 local buffers = require("amc.buffers")
 local dev = require("amc.dev")

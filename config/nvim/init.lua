@@ -59,6 +59,6 @@ require("amc.plugins.telescope")
 log.line("---- init late")
 require("amc.init.autocmds")
 require("amc.init.commands")
-require("amc.init.mappings")
+require("amc.init.map")
 
 log.line("---- init done")
