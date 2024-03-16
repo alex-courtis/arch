@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 TEMPLATE="${XDG_CONFIG_HOME}/nvim/nd-template.lua"
-ROOT="/tmp/nvt-dev"
-INIT="${ROOT}/nvt-dev.lua"
+ROOT="/tmp/nd"
+INIT="${ROOT}/nd.lua"
 PACKPATH="${ROOT}/site"
 
 function edit() {
