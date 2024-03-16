@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-TEMPLATE="${XDG_CONFIG_HOME}/nvim/nvt-dev-template.lua"
+TEMPLATE="${XDG_CONFIG_HOME}/nvim/nd-template.lua"
 ROOT="/tmp/nvt-dev"
 INIT="${ROOT}/nvt-dev.lua"
 PACKPATH="${ROOT}/site"

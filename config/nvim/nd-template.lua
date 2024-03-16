@@ -8,7 +8,7 @@ vim.opt.cursorline = true
 
 vim.opt.statusline = "b%{bufnr()} w%{winnr()} i%{win_getid()} %y %F"
 
-vim.o.packpath = "/tmp/nvt-dev/site"
+vim.o.packpath = "/tmp/nd/site"
 local package_root = vim.o.packpath .. "/pack"
 local install_path = vim.o.packpath .. "/pack/packer/start/packer.nvim"
 local compile_path = vim.o.packpath .. "/pack/packer/start/packer.nvim/plugin/packer_compiled.lua"
