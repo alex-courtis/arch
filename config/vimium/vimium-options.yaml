@@ -32,10 +32,12 @@ searchEngines: |-
   ap: https://archlinux.org/packages/?q=%s Arch Packages
   au: https://aur.archlinux.org/packages?K=%s AUR Packages
   aw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
-  d: https://duckduckgo.com/?q=%s DuckDuckGo
-  g: https://www.google.com/search?q=%s Google
+  d: https://duckduckgo.com/?q=%s DuckDuckGo Search
+  di: https://duckduckgo.com/?iar=images&q=%s DuckDuckGo Images
+  g: https://google.com/search?q=%s Google Search
+  gi: https://images.google.com/search?q=%s Google Images
+  h: https://hello.atlassian.net/wiki/search?text=%s Hello Search
   hi: https://hello.atlassian.net/browse/%s Hello Issue
-  hs: https://hello.atlassian.net/wiki/search?text=%s Hello Search
   n: https://github.com/nvim-tree/nvim-tree.lua/issues/%s nvim-tree Issue
   o: http://go.atlassian.com/%s Go
   pd: https://www.protondb.com/search?q=%s Proton DB
