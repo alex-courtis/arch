@@ -144,11 +144,13 @@ function M.resize_qf_loc_win(data)
   end
 end
 
---- help, man vertical right
+--- help, man vertical right when >=160 columns
 --- au BufWinEnter
 function M.position_doc_window()
-  if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
-    vim.cmd.wincmd("L")
+  if vim.o.columns >= 160 then
+    if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
+      vim.cmd.wincmd("L")
+    end
   end
 end
 
