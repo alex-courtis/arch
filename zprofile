@@ -2,7 +2,7 @@ if [ "$(uname)" = "Darwin" ]; then
 	# OSX moves these to the end of the path between zshenv and zprofile
 	path=(~/bin ~/.local/bin $path)
 
-	eval "$(/usr/local/bin/brew shellenv)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # maybe start a GUI if one isn't running; flavour depends on which virtual terminal we are on
