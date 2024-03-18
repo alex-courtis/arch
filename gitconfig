@@ -27,7 +27,8 @@
 
 	sh = show --oneline
 	shn = sh --name-status
-	st = status --short
+	ss = status --short
+	st = status
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
