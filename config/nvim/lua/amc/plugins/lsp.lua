@@ -1,3 +1,5 @@
+local lsp = require("vim.lsp")
+
 local M = {}
 
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
@@ -30,7 +32,7 @@ lspconfig.ccls.setup({
 })
 
 local config_jsonls = {
-  capabilities = vim.lsp.protocol.make_client_capabilities(),
+  capabilities = lsp.protocol.make_client_capabilities(),
 }
 config_jsonls.capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.jsonls.setup(config_jsonls)
@@ -44,9 +46,6 @@ lspconfig.lua_ls.setup({
         callSnippet = "Replace",
       },
       diagnostics = {
-        globals = {
-          "vim",
-        },
         neededFileStatus = {
           ["ambiguity-1"] = "Any",
           ["assign-type-mismatch"] = "Any",
@@ -129,8 +128,8 @@ lspconfig.zls.setup({
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
-  if vim.lsp.buf.server_ready() then
-    vim.lsp.buf.definition()
+  if lsp.buf.server_ready() then
+    lsp.buf.definition()
   else
     local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
     local ok, err = pcall(function()
