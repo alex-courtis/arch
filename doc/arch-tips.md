@@ -18,16 +18,7 @@ When invoking makepkg, the results are xz'd by default. This is unnecessary, as 
 (yes, I know what I'm doing)
 
 ```sh
-#########################################################################
-# EXTENSION DEFAULTS
-#########################################################################
-#
-# WARNING: Do NOT modify these variables unless you know what you are
-#          doing.
-#
-#PKGEXT='.pkg.tar.xz'
 PKGEXT='.pkg.tar'
-#SRCEXT='.src.tar.gz'
 SRCEXT='.src.tar'
 ```
 
@@ -38,9 +29,7 @@ We live on the stable edge in Arch land; I've _never_ had to boot to a "default 
 `vi /etc/mkinitcpio.d/linux.preset`
 
 ```sh
-
 PRESETS=('default')
-
 ```
 
 ## Don't Compress Your Kernel Image
@@ -52,14 +41,6 @@ This doesn't make booting any faster, but it does make new image installation a 
 `vi /etc/mkinitcpio.conf`
 
 ```sh
-# COMPRESSION
-# Use this to compress the initramfs image. By default, gzip compression
-# is used. Use 'cat' to create an uncompressed image.
-#COMPRESSION="gzip"
-#COMPRESSION="bzip2"
-#COMPRESSION="lzma"
-#COMPRESSION="xz"
-#COMPRESSION="lzop"
-#COMPRESSION="lz4"
 COMPRESSION=cat
+MODULES_DECOMPRESS="yes"
 ```
