@@ -157,7 +157,7 @@ arch-chroot /mnt /bin/bash
 ### Packages Needed For Installation
 
 ```sh
-pacman -S btrfs-progs efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo terminus-font zsh
+pacman -S btrfs-progs efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
 ```
 
 ### Locale And Time
@@ -219,6 +219,7 @@ systemctl enable btrfs-scrub@$(systemd-escape -p /home).timer
 Invoke `visudo` and uncomment the following:
 
 ```sh
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 %wheel ALL=(ALL) ALL
 ```
 
@@ -260,6 +261,7 @@ HOOKS=(
 (Re)generate the boot image:
 
 ```sh
+rm /boot/initramfs*
 pacman -S linux
 ```
 
@@ -283,7 +285,11 @@ title Arch Linux
 linux /vmlinuz-linux
 initrd /amd-ucode.img
 initrd /initramfs-linux.img
-options root=UUID= resume=UUID= rootflags=subvol=/@root rw quiet
+options root=UUID=
+ resume=UUID=
+ rootflags=subvol=/@root rw quiet
+
+
 ```
 Change amd to intel as needed.
 
