@@ -326,10 +326,11 @@ Apply the hostname e.g.:
 hostnamectl set-hostname gigantor
 ```
 
-Add the hostname to `/etc/hosts` first, as IPv4 local:
+Add the localhosts to `/etc/hosts` first:
 
 ```
-127.0.0.1	gigantor
+127.0.0.1 localhost
+::1       localhost
 ```
 
 ### Enable NTP Sync
@@ -468,11 +469,14 @@ Everything should start in your X environment... check `~/.local/share/xorg/Xorg
 
 ## USB Firmware
 
-`WARNING: Possibly missing firmware for module: xhci_pci` during kernel image build indicates missing USB firmware.
+`WARNING: Possibly missing firmware for module: xxx` during kernel image build indicates missing firmware.
 
 ```sh
 yay -S upd72020x-fw
+yay -S ast-firmware
 ```
+
+See [Possibly_missing_firmware_for_module_XXXX](https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX)
 
 ## Audio Drivers
 
