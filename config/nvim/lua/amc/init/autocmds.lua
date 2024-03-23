@@ -39,12 +39,12 @@ end)
 
 -- man is not useful, vim help usually is
 ft({ "lua" }, function(data)
-  vim.api.nvim_buf_set_option(data.buf, "keywordprg", ":help")
+  vim.api.nvim_set_option_value("keywordprg", ":help", { buf = data.buf })
 end)
 
 -- line comments please
 ft({ "c", "cpp" }, function(data)
-  vim.api.nvim_buf_set_option(data.buf, "commentstring", "// %s")
+  vim.api.nvim_set_option_value("commentstring", "// %s", { buf = data.buf })
 end)
 
 -- keep these roughly in sync with ~/.editorconfig, which will not be found outside of ~
