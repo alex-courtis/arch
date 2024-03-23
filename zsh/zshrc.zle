@@ -1,6 +1,8 @@
 zmodload zsh/complist
 
-. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null 2>&1
+if [ -n "${WAYLAND_DISPLAY}" -o -n "${DISPLAY}" ]; then
+	. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null 2>&1
+fi
 
 # vim zle mode
 bindkey -v
