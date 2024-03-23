@@ -1,13 +1,9 @@
-local diagnostic = require("vim.diagnostic")
-local keymap = require("vim.keymap")
-local lsp = require("vim.lsp")
-
 local K = {}
 
 -- stylua: ignore start
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
-  K[mode .. "m" .. "__"] = function(lhs, rhs) if rhs then keymap.set(mode, lhs, rhs, { remap = false }) end end
-  K[mode .. "m" .. "s_"] = function(lhs, rhs) if rhs then keymap.set(mode, lhs, rhs, { remap = false, silent = true }) end end
+  K[mode .. "m" .. "__"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false }) end end
+  K[mode .. "m" .. "s_"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true }) end end
   K[mode .. "m" .. "_l"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "__"](leader .. lhs, rhs) end end end
   K[mode .. "m" .. "sl"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "s_"](leader .. lhs, rhs) end end end
 end
@@ -101,10 +97,10 @@ K.nm__("*", "<Plug>(asterisk-z*)")
 K.nm_l("*", "*")
 K.nmsl("f", telescope_amc.find_files)
 K.nmsl("F", telescope_amc.find_files_hidden)
-K.nmsl("da", lsp.buf.code_action)
-K.nmsl("dq", diagnostic.setqflist)
-K.nmsl("df", diagnostic.open_float)
-K.nmsl("dh", lsp.buf.hover)
+K.nmsl("da", vim.lsp.buf.code_action)
+K.nmsl("dq", vim.diagnostic.setqflist)
+K.nmsl("df", vim.diagnostic.open_float)
+K.nmsl("dh", vim.lsp.buf.hover)
 K.nmsl("dr", dev.lsp_rename)
 K.nmsl("b", ":%y<CR>")
 K.nmsl("B", ":%d_<CR>")
@@ -127,7 +123,7 @@ K.omsl("c", "<Plug>Commentary")
 K.nmsl("c", "<Plug>Commentary")
 K.xmsl("c", "<Plug>Commentary")
 K.nmsl("t", lsp_amc.goto_definition_or_tag)
-K.nmsl("T", lsp.buf.declaration)
+K.nmsl("T", vim.lsp.buf.declaration)
 K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw")
 K.xmsl("w", "<Plug>ReplaceWithRegisterVisual")
 K.nmsl("W", "<Plug>ReplaceWithRegisterLine")
@@ -138,7 +134,7 @@ K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
 K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/')
 K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>')
 K.nmsl("n", telescope_amc.lsp_references)
-K.nmsl("N", diagnostic.setqflist)
+K.nmsl("N", vim.diagnostic.setqflist)
 K.nmsl("v", ":put<CR>'[v']=")
 K.nmsl("V", ":put!<CR>'[v']=")
 
