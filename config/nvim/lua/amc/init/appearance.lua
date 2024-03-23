@@ -18,6 +18,10 @@ if vim.fn.has "nvim-0.10" == 0 and vim.env.COLORTERM then
   vim.o.termguicolors = true
 end
 
+if not vim.env.TERM:match("^linux") then
+  vim.o.cursorline = true
+end
+
 vim.cmd("colorscheme base16")
 
 vim.cmd("highlight TrailingSpace cterm=undercurl gui=undercurl guisp=#" .. vim.env.BASE16_red)
