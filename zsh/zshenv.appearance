@@ -116,6 +116,12 @@ export BEMENU_OPTS="\
 	--ab '#${BASE16[lighter_background]}'   --af '#${BASE16[dark_foreground]}' \
 	--hb '#${BASE16[selection_background]}' --hf '#${BASE16[light_foreground]}'"
 
+case $TERM in
+	linux)
+		export TERM=linux-16color
+		;;
+esac
+
 #
 # https://github.com/termstandard/colors
 #

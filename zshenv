@@ -8,9 +8,6 @@ source "${HOME}/.zsh/zshenv.function"
 export EDITOR="vi"
 export VISUAL="vi"
 
-# terminal preference
-export TERMINAL="alacritty"
-
 # better paging
 export PAGER="less"
 

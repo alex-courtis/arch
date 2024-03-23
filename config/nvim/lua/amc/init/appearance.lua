@@ -1,8 +1,5 @@
 vim.o.background = "dark"
 
--- changing MsgArea clears messages: https://github.com/neovim/neovim/issues/17832
-vim.cmd("highlight clear MsgArea")
-
 vim.cmd("highlight CursorLineNr cterm=bold gui=bold")
 
 -- nvim-tree clear
@@ -16,21 +13,8 @@ vim.cmd("highlight! link NvimTreeRootFolder NONE")
 vim.cmd("highlight! link NvimTreeNormal Comment")
 vim.cmd("highlight! link NvimTreeSymLink Italic")
 
--- halt when no cterm available
-if tonumber(vim.o.t_Co) < 16 or vim.env.TERM == "linux" then
-  return
-end
-
--- linux term does not do this gracefully
-vim.o.cursorline = true
-
--- halt when no gui available
-if tonumber(vim.o.t_Co) < 256 then
-  return
-end
-
--- only when explicitly advertised
-if vim.env.COLORTERM then
+-- only when explicitly advertised, nvim 0.10 will automatically use this
+if vim.fn.has "nvim-0.10" == 0 and vim.env.COLORTERM then
   vim.o.termguicolors = true
 end
 
