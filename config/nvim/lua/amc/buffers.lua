@@ -171,9 +171,11 @@ function M.write_scratch(text)
   local bufnr = vim.api.nvim_create_buf(true, true)
 
   local line = 0
-  for s in text:gmatch("[^\r\n]+") do
-    vim.fn.appendbufline(bufnr, line, s)
-    line = line + 1
+  if text then
+    for s in text:gmatch("[^\r\n]+") do
+      vim.fn.appendbufline(bufnr, line, s)
+      line = line + 1
+    end
   end
 
   vim.cmd.buffer(bufnr)

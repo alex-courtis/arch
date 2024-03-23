@@ -129,27 +129,31 @@ lspconfig.zls.setup({
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
-  -- TODO 0.10 server_ready does not exist
-  -- if lsp.buf.server_ready() then
-  -- if vim.lsp.buf.server_ready() then
-    vim.lsp.buf.definition()
-  -- else
-  --   local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
-  --   local ok, err = pcall(function()
-  --     return vim.cmd(cmd)
-  --   end)
-  --   if not ok then
-  --     vim.api.nvim_notify(err, vim.log.levels.WARN, {})
-  --   end
-  -- end
+
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    if client.server_capabilities.definitionProvider then
+      vim.lsp.buf.definition()
+      return
+    end
+  end
+
+  local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
+  local ok, err = pcall(function()
+    return vim.cmd(cmd)
+  end)
+  if not ok then
+    vim.api.nvim_notify(err, vim.log.levels.WARN, {})
+  end
 end
 
 function M.goto_prev()
-  vim.diagnostic.goto_prev({ wrap = false })
+  local opts = { wrap = false }
+  vim.diagnostic.goto_prev(opts)
 end
 
 function M.goto_next()
-  vim.diagnostic.goto_next({ wrap = false })
+  local opts = { wrap = false }
+  vim.diagnostic.goto_next(opts)
 end
 
 -- init
