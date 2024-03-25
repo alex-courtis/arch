@@ -193,7 +193,7 @@ local config = {
       "fugitiveblame",
     },
     exclude = function(event)
-      return event.file:find(vim.fn.getcwd() .. "/.git") == 1
+      return event.file:find(vim.fn.getcwd() .. "/.git/", 1, true) == 1
     end,
   },
   git = {
