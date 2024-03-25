@@ -1,0 +1,7 @@
+#!/bin/sh
+
+way-displays -s scaling off > /tmp/sts.log 2>&1
+
+/usr/lib/steam/steam -console "$@" >> /tmp/sts.log 2>&1
+
+way-displays -s scaling on >> /tmp/sts.log 2>&1
