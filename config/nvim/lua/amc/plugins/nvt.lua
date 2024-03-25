@@ -11,7 +11,7 @@ end
 
 local api = require("nvim-tree.api")
 
-local IGNORED_FT = {
+local NO_STARTUP_FT = {
   "gitcommit",
 }
 
@@ -192,6 +192,9 @@ local config = {
       -- bufname
       "fugitiveblame",
     },
+    exclude = function(event)
+      return event.file:find(vim.fn.getcwd() .. "/.git") == 1
+    end,
   },
   git = {
     timeout = 800,
@@ -208,7 +211,6 @@ local config = {
   },
   filters = {
     custom = {
-      "^.git$",
       "^\\~formatter",
     },
   },
@@ -278,7 +280,7 @@ end
 function M.vim_enter(data)
   local real_file = vim.fn.filereadable(data.file) == 1
 
-  local ignored_ft = vim.tbl_contains(IGNORED_FT, vim.bo[data.buf].ft)
+  local ignored_ft = vim.tbl_contains(NO_STARTUP_FT, vim.bo[data.buf].ft)
 
   if (real_file and not ignored_ft) or env.startup_dir then
     -- open the tree but don't focus it
