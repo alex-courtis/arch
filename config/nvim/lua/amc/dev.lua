@@ -112,7 +112,7 @@ function M.format()
     end
   elseif vim.lsp.buf.server_ready() then
     for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.server_capabilities.documentFormattingProvided then
+      if client.server_capabilities.documentFormattingProvider then
         vim.lsp.buf.format()
         return
       end
