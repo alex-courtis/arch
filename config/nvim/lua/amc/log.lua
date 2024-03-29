@@ -1,9 +1,14 @@
 local M = {}
+local FILE = "/tmp/nvim.log"
 
-M.enabled = false
+M.enabled = vim.env.NVIM_LOG ~= nil
 
-local function log(fmt, ...)
-  local file = io.open("/tmp/nvim.log", "a")
+function M.line(fmt, ...)
+  if not M.enabled then
+    return
+  end
+
+  local file = io.open(FILE, "a")
   if file then
     io.output(file)
     io.write(string.format(string.format("[%s] %s\n", os.date("%Y-%m-%d %H:%M:%S"), fmt or ""), ...))
@@ -11,16 +16,10 @@ local function log(fmt, ...)
   end
 end
 
-if vim.env.NVIM_LOG then
-  M.enabled = true
-
-  vim.notify("logging to /tmp/nvim.log")
-
-  M.line = log
-
+if M.enabled then
+  vim.notify("logging to " .. FILE)
+  os.remove(FILE)
   M.line("----------------")
-else
-  function M.line() end
 end
 
 return M

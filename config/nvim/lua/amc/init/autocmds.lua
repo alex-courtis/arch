@@ -1,8 +1,8 @@
 local buffers = require("amc.buffers")
 local env = require("amc.env")
 local windows = require("amc.windows")
-local fugitive_amc = require("amc.plugins.fugitive")
 local nvim_tree_amc = require("amc.plugins.nvt")
+local neogit_amc = require("amc.plugins.neogit")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
@@ -28,8 +28,8 @@ au({ "QuickFixCmdPost" },                                       windows.open_qf_
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
 au({ "BufWinEnter" },                                           windows.position_doc_window,  {})
 au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,      {})
+au({ "CursorMoved" },                                           neogit_amc.log_view_cur_moved,{ pattern = { "NeogitLogView" }})
 
-ft({ "fugitive" },                                              fugitive_amc.attach,          {})
 -- stylua: ignore end
 
 -- v/h resize windows on terminal size change

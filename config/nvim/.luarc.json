@@ -4,7 +4,8 @@
   "workspace": {
     "library": [
       "$VIMRUNTIME",
-      "${3rd}/luv/library"
+      "${3rd}/luv/library",
+      "$XDG_DATA_HOME/nvim/site/pack/packer/start"
     ]
   }
 }

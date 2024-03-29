@@ -10,7 +10,7 @@ M.Special = {
   HELP = 1,
   QUICK_FIX = 2,
   MAN = 3,
-  FUGITIVE = 4,
+  NEOGIT = 4,
   NVIM_TREE = 5,
   DIR = 6,
   OTHER = 7,
@@ -86,8 +86,8 @@ function M.special(bufnr)
     return M.Special.QUICK_FIX
   elseif filetype == "man" then
     return M.Special.MAN
-  elseif filetype:match("^fugitive") then
-    return M.Special.FUGITIVE
+  elseif filetype:match("^Neogit.*") then
+    return M.Special.NEOGIT
   elseif filetype == "NvimTree" then
     return M.Special.NVIM_TREE
   elseif vim.fn.isdirectory(bufname) ~= 0 then

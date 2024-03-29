@@ -4,7 +4,7 @@ local M = {}
 
 local CLOSE_INC_ORDER = {
   [buffers.Special.QUICK_FIX] = 1,
-  [buffers.Special.FUGITIVE] = 2,
+  [buffers.Special.NEOGIT] = 2,
   [buffers.Special.HELP] = 3,
   [buffers.Special.NVIM_TREE] = 4,
 }

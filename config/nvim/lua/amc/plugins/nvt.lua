@@ -190,7 +190,6 @@ local config = {
       "help",
       "git",
       -- bufname
-      "fugitiveblame",
     },
     exclude = function(event)
       return event.file:find(vim.fn.getcwd() .. "/.git/", 1, true) == 1
