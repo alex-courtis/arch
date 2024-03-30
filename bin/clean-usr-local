@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# remove empty directories
+rc=0
+while [ "${rc}" -eq 0 ]; do
+	sudo find "/usr/local" -type d -empty -delete -print | grep .
+	rc="${?}"
+done
+
+# create filesystem expected directories
+for d in $(pacman -Qlq filesystem | grep "/usr/local"); do 
+	sudo mkdir -pv "${d}"
+done
