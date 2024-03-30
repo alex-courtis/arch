@@ -91,7 +91,7 @@ case "${1}" in
 		init "${2}"
 		;;
 	*)
-		nvim -nu "${INIT}" ${@}
+		${NVIM-vi} -nu "${INIT}" ${@}
 		;;
 esac
 
