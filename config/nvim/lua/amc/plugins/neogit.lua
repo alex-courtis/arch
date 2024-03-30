@@ -23,6 +23,8 @@ opts.graph_style = "unicode"
 opts.remember_settings = false
 opts.use_per_project_settings = false
 
+opts.mappings.status["<Space>"] = "Toggle"
+
 neogit.setup(opts)
 
 --- no way to remap NeogitLogView mappings, this is the earliest event in which the mappings have been set
