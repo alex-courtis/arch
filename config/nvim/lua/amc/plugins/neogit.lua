@@ -23,7 +23,9 @@ opts.graph_style = "unicode"
 opts.remember_settings = false
 opts.use_per_project_settings = false
 
-opts.mappings.status["<Space>"] = "Toggle"
+opts.mappings.status["<tab>"] = false
+opts.mappings.status["<enter>"] = "Toggle"
+opts.mappings.status["o"] = "GoToFile"
 
 neogit.setup(opts)
 
