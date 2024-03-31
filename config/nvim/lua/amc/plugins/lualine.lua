@@ -105,7 +105,7 @@ local theme = {
     c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
   },
 }
--- stylua: ignore start
+-- stylua: ignore end
 
 local config = {
   options = {
@@ -134,7 +134,7 @@ local config = {
 
     -- filetype is name
     {
-      filetypes = { "NvimTree" },
+      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit", "NvimTree" },
       sections = {
         lualine_a = { "filetype" },
         lualine_c = { win_buf_info },

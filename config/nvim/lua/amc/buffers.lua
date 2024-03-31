@@ -10,10 +10,11 @@ M.Special = {
   HELP = 1,
   QUICK_FIX = 2,
   MAN = 3,
-  NEOGIT = 4,
-  NVIM_TREE = 5,
-  DIR = 6,
-  OTHER = 7,
+  FUGITIVE = 4,
+  NEOGIT = 5,
+  NVIM_TREE = 6,
+  DIR = 7,
+  OTHER = 8,
 }
 
 --- &buftype is empty, name is empty, not modified
@@ -86,7 +87,9 @@ function M.special(bufnr)
     return M.Special.QUICK_FIX
   elseif filetype == "man" then
     return M.Special.MAN
-  elseif filetype:match("^Neogit.*") then
+  elseif filetype:match("^fugitive") then
+    return M.Special.FUGITIVE
+  elseif filetype:match("^Neogit") then
     return M.Special.NEOGIT
   elseif filetype == "NvimTree" then
     return M.Special.NVIM_TREE

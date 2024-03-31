@@ -30,9 +30,9 @@ opts.mappings.status["o"] = "GoToFile"
 neogit.setup(opts)
 
 --- no way to remap NeogitLogView mappings, this is the earliest event in which the mappings have been set
---- TODO PR 
+--- TODO PR
 function M.log_view_cur_moved()
-    pcall(vim.keymap.del, "n", ";", { buffer = 0 })
+  pcall(vim.keymap.del, "n", ";", { buffer = 0 })
 end
 
 function M.open()

@@ -34,6 +34,7 @@ local bootstrapped = require("amc.init.pack")({
   "qpkorr/vim-bufkill",
   "sindrets/diffview.nvim",
   "tpope/vim-commentary",
+  "tpope/vim-fugitive",
   "tpope/vim-repeat",
   "vim-scripts/ReplaceWithRegister",
   "Yohannfra/Vim-Goto-Header",
@@ -49,6 +50,7 @@ require("amc.init.dirs")
 
 log.line("---- init plugins")
 require("amc.plugins.cmp")
+require("amc.plugins.fugitive")
 require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")
