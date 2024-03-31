@@ -154,18 +154,27 @@ function M.toggle_list()
   vim.api.nvim_set_option_value("list", not list, { scope = "local" })
 end
 
-local buf_trailing = {}
+---@type table<number, number>
+local trailing_win_match_id = {}
 
---- toggle TrailingSpace for buffer
-function M.toggle_trailing_space()
-  local buf = vim.api.nvim_get_current_buf()
-  if buf_trailing[buf] then
-    vim.cmd.syntax("clear TrailingSpace")
-    buf_trailing[buf] = nil
+--- toggle TrailingSpace and list for window scope
+function M.toggle_whitespace()
+  local winid = vim.api.nvim_get_current_win()
+
+  if trailing_win_match_id[winid] then
+    vim.api.nvim_set_option_value("list", false, { scope = "local" })
+    pcall(vim.fn.matchdelete, trailing_win_match_id[winid])
+    trailing_win_match_id[winid] = nil
   else
-    vim.cmd.syntax("match TrailingSpace /\\s\\+$/")
-    buf_trailing[buf] = true
+    vim.api.nvim_set_option_value("list", true, { scope = "local" })
+    trailing_win_match_id[winid] = vim.fn.matchadd("TrailingSpace", "\\s\\+$")
   end
+end
+
+--- clear trailing whitespace and last searched
+function M.trim_whitespace()
+  vim.cmd("%s/\\s\\+$//e")
+  vim.fn.setreg("/", "")
 end
 
 --- write to a new scratch buffer
