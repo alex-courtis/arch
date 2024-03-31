@@ -1,3 +1,8 @@
+-- exit on inexistent cwd
+if #(vim.fn.getcwd()) == 0 then
+  vim.cmd.cquit({ count = 127 })
+end
+
 local log = require("amc.log")
 
 local util = require("amc.util")
