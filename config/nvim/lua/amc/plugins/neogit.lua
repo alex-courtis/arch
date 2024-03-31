@@ -27,6 +27,9 @@ opts.mappings.status["<tab>"] = false
 opts.mappings.status["<enter>"] = "Toggle"
 opts.mappings.status["o"] = "GoToFile"
 
+opts.mappings.commit_editor["<c-b>"] = "PrevMessage"
+opts.mappings.commit_editor["<c-f>"] = "NextMessage"
+
 neogit.setup(opts)
 
 --- no way to remap NeogitLogView mappings, this is the earliest event in which the mappings have been set

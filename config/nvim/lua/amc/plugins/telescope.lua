@@ -122,9 +122,9 @@ local cfg = actions
             ["<C-d>"] = actions.preview_scrolling_down,
 
             ["<C-j>"] = actions.cycle_history_next,
-            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-f>"] = actions.cycle_history_next,
             ["<C-k>"] = actions.cycle_history_prev,
-            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<C-b>"] = actions.cycle_history_prev,
 
             ["?"] = actions.which_key,
           },
@@ -147,9 +147,9 @@ local cfg = actions
             ["<C-l>"] = actions.results_scrolling_right,
 
             ["<C-j>"] = actions.cycle_history_next,
-            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-f>"] = actions.cycle_history_next,
             ["<C-k>"] = actions.cycle_history_prev,
-            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<C-b>"] = actions.cycle_history_prev,
 
             ["<C-/>"] = actions.which_key,
           },
