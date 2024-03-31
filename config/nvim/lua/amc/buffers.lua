@@ -125,7 +125,7 @@ function M.wipe()
 end
 
 --- Wipe all buffers but the current
-function M.wipe_all()
+function M.wipe_others()
   local cur = vim.api.nvim_get_current_buf()
 
   local buffers = vim.api.nvim_list_bufs()
@@ -148,24 +148,25 @@ function M.forward()
   end
 end
 
---- :setlocal list/nolist
-function M.toggle_list()
-  local list = vim.api.nvim_get_option_value("list", { scope = "local" })
-  vim.api.nvim_set_option_value("list", not list, { scope = "local" })
+local buf_whitespace = {}
+
+--- toggle local list, TrailingSpace
+function M.toggle_whitespace()
+  local buf = vim.api.nvim_get_current_buf()
+
+  if buf_whitespace[buf] then
+    buf_whitespace[buf] = nil
+    vim.api.nvim_set_option_value("list", buf_whitespace[buf], { scope = "local" })
+    vim.cmd.syntax("clear TrailingSpace")
+  else
+    buf_whitespace[buf] = true
+    vim.api.nvim_set_option_value("list", true, { scope = "local" })
+    vim.cmd.syntax("match TrailingSpace /\\s\\+$/")
+  end
 end
 
-local buf_trailing = {}
+function M.trim_trailing_whitespace()
 
---- toggle TrailingSpace for buffer
-function M.toggle_trailing_space()
-  local buf = vim.api.nvim_get_current_buf()
-  if buf_trailing[buf] then
-    vim.cmd.syntax("clear TrailingSpace")
-    buf_trailing[buf] = nil
-  else
-    vim.cmd.syntax("match TrailingSpace /\\s\\+$/")
-    buf_trailing[buf] = true
-  end
 end
 
 --- write to a new scratch buffer
