@@ -19,9 +19,14 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 # Escape
 riverctl map normal $mod1 BackSpace close
 riverctl map normal $mod2 BackSpace spawn "steam -shutdown"
+riverctl map normal $mod3 BackSpace exit
+
 riverctl map normal $mod1 Tab toggle-fullscreen
+
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
+
 riverctl map normal $mod1 Delete toggle-float
+
 riverctl map normal $mod1 Return focus-previous-tags
 
 #
@@ -110,10 +115,9 @@ riverctl map normal $mod3 h spawn "vollower"
 riverctl map normal $mod3 s spawn "sss"
 riverctl map normal $mod3 minus spawn "ssa"
 
-#
+# w
 riverctl map normal $mod3 b spawn "volmutemic"
 riverctl map normal $mod3 m spawn "volmute"
-riverctl map normal $mod3 w exit
 riverctl map normal $mod3 v spawn "way-displays -s scaling on"
 riverctl map normal $mod3 z spawn "way-displays -s scaling off"
 riverctl map normal $mod3 backslash spawn "sudo systemctl suspend"
