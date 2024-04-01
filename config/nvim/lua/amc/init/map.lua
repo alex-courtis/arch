@@ -79,12 +79,6 @@ K.nmsl("x", buffers.safe_hash)
 K.nms_("<Space><BS>", buffers.back)
 K.nms_("<BS><BS>", buffers.back)
 
-K.nmsl("<Tab>", ":wincmd t<CR>")
-K.nmsl("<Esc>", ":wincmd p<CR>")
-
-K.nmsl("<Left>", ":wincmd h<CR>")
-K.nmsl("<Right>", ":wincmd l<CR>")
-
 --
 -- end left
 --
@@ -156,15 +150,25 @@ K.nmsl("|", buffers.wipe_all)
 K.nms_("<BS><Space>", buffers.forward)
 K.nms_("<Space><Space>", buffers.forward)
 
-K.nmsl("<Del>", ":wincmd W<CR>")
-K.nmsl("<CR>", ":wincmd w<CR>")
-
-K.nmsl("<Up>", ":wincmd k<CR>")
-K.nmsl("<Down>", ":wincmd j<CR>")
-
 --
 -- end right
 --
+
+--
+-- wincmd overrides
+--
+
+K.nms_("<C-w>t", ":wincmd j<CR>")
+K.nms_("<C-w><C-t>", ":wincmd j<CR>")
+
+K.nms_("<C-w>c", ":wincmd k<CR>")
+-- K.nm__("<C-w><C-c>", ":wincmd k<CR>") doc states this does not work as <C-c> cancels the command
+
+K.nms_("<C-w>n", ":wincmd l<CR>")
+K.nms_("<C-w><C-n>", ":wincmd l<CR>")
+
+K.nms_("<C-w>m", ":wincmd p<CR>")
+K.nms_("<C-w><C-m>", ":wincmd p<CR>")
 
 -- stop vim-commentary from creating the default mappings
 K.nm__("gc", "<NOP>")
