@@ -15,6 +15,7 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 #
 # thumbs
 #
+
 # Escape
 riverctl map normal $mod1 BackSpace close
 riverctl map normal $mod2 BackSpace spawn "steam -shutdown"
@@ -26,6 +27,8 @@ riverctl map normal $mod1 Return focus-previous-tags
 #
 # left
 #
+
+# $@
 tag=1
 for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 
@@ -35,6 +38,7 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 	tag=$(($tag << 1))
 done
 
+# x
 riverctl map normal $mod1 apostrophe spawn "bemenu-run > /dev/null 2>&1"
 riverctl map normal $mod2 apostrophe spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
 # annoying, to get out of the cmd-Q habit for macOS
@@ -46,6 +50,8 @@ riverctl map normal $mod2 k spawn bp
 #
 # right
 #
+
+# /
 riverctl map normal $mod2 f send-layout-cmd wideriver "--stack even"
 
 riverctl map normal $mod1 g send-layout-cmd wideriver "--count +1"
@@ -57,6 +63,10 @@ riverctl map normal $mod2 c send-layout-cmd wideriver "--ratio 0.35"
 riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 riverctl map normal $mod2 r spawn "riverctl send-layout-cmd wideriver '--count -1' && riverctl focus-view previous"
 
+riverctl map normal $mod1 l focus-view next
+riverctl map normal $mod2 l swap next
+
+# s-
 riverctl map normal $mod1 d spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left --count 1 --ratio 0.5'"
 riverctl map normal $mod2 d send-layout-cmd wideriver "--stack dwindle"
 
@@ -69,21 +79,20 @@ riverctl map normal $mod2 t send-layout-cmd wideriver "--ratio 0.35"
 riverctl map normal $mod1 n focus-view next
 riverctl map normal $mod2 n swap next
 
+# z\
 riverctl map normal $mod1 b spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide --count 1 --ratio 0.35'"
 riverctl map normal $mod2 b send-layout-cmd wideriver "--stack diminish"
+
+riverctl map normal $mod1 m focus-output previous
+riverctl map normal $mod2 m spawn "riverctl send-to-output previous && riverctl focus-output previous"
+riverctl map normal $mod3 m send-to-output previous
 
 riverctl map normal $mod1 w set-focused-tags 1024
 riverctl map normal $mod2 w set-focused-tags 1024
 
-riverctl map normal $mod1 left focus-output previous
-riverctl map normal $mod2 left spawn "riverctl send-to-output previous && riverctl focus-output previous"
-riverctl map normal $mod3 left send-to-output previous
-
-riverctl map normal $mod1 right focus-output next
-riverctl map normal $mod2 right spawn "riverctl send-to-output next && riverctl focus-output next"
-riverctl map normal $mod3 right send-to-output next
-
-riverctl map normal $mod1 F12 spawn primary-paste
+riverctl map normal $mod1 v focus-output next
+riverctl map normal $mod2 v spawn "riverctl send-to-output next && riverctl focus-output next"
+riverctl map normal $mod3 v send-to-output next
 
 #
 # big right
@@ -119,3 +128,7 @@ riverctl map normal None XF86AudioLowerVolume  spawn "vollower"
 riverctl map normal None XF86MonBrightnessUp   spawn "sudo brightnessctl s 10%+"
 riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 
+#
+# meta
+#
+riverctl map normal $mod1 F12 spawn primary-paste
