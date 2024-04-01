@@ -13,15 +13,18 @@ local auto = "auto"
 
 local opts = require("neogit.config").get_default_values()
 
+opts.graph_style = "unicode"
+
+opts.disable_insert_on_commit = true
+
+opts.use_per_project_settings = false
+
+opts.remember_settings = false
+
 opts.kind = auto
 opts.commit_select_view.kind = auto
 opts.log_view.kind = auto
 opts.reflog_view.kind = auto
-
-opts.graph_style = "unicode"
-
-opts.remember_settings = false
-opts.use_per_project_settings = false
 
 opts.mappings.status["<tab>"] = false
 opts.mappings.status["<enter>"] = "Toggle"
