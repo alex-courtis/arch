@@ -363,6 +363,7 @@ autofs
 bemenu-wayland
 bluez
 blueman
+brave-bin
 calc
 dmenu
 dnsutils
@@ -371,7 +372,6 @@ gpm
 hunspell-en_AU
 hunspell-en_GB
 fd
-firefox
 fwupd
 fzf
 grim
