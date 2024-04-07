@@ -92,3 +92,5 @@ alias todo="todo.sh"
 compdef todo="todo.sh"
 
 alias riverctl-list-rules='for r in dimensions float fullscreen output position ssd tags; do echo "--$r--"; riverctl list-rules "${r}"; done'
+
+alias lrp='eval "$(luarocks path)"'
