@@ -1,0 +1,163 @@
+{
+  "33000": [
+    "BrowserBack"
+  ],
+  "33001": [
+    "BrowserForward"
+  ],
+  "33002": [
+    "Control+KeyR",
+    "F5",
+    "BrowserRefresh"
+  ],
+  "33003": [
+    "BrowserHome"
+  ],
+  "33007": [
+    "Control+Shift+KeyR",
+    "Control+F5",
+    "Shift+F5",
+    "Control+BrowserRefresh",
+    "Shift+BrowserRefresh"
+  ],
+  "34000": [
+    "Control+KeyN"
+  ],
+  "34001": [
+    "Control+Shift+KeyN"
+  ],
+  "34012": [
+    "Control+Shift+KeyW"
+  ],
+  "34014": [
+    "AppNew",
+    "Control+KeyT"
+  ],
+  "34015": [
+    "Control+KeyW",
+    "AppClose"
+  ],
+  "34016": [],
+  "34017": [],
+  "34018": [],
+  "34019": [],
+  "34020": [],
+  "34021": [],
+  "34022": [],
+  "34023": [],
+  "34024": [],
+  "34025": [],
+  "34026": [],
+  "34028": [
+    "Control+Shift+KeyT"
+  ],
+  "34030": [
+    "F11",
+    "Control+Shift+KeyF"
+  ],
+  "34031": [
+    "Control+KeyQ"
+  ],
+  "34032": [],
+  "34033": [],
+  "34048": [],
+  "34053": [],
+  "34054": [],
+  "34062": [],
+  "35000": [],
+  "35001": [],
+  "35002": [],
+  "35003": [],
+  "35004": [],
+  "35007": [],
+  "36001": [
+    "Control+Shift+KeyC"
+  ],
+  "36003": [
+    "Control+Shift+KeyV"
+  ],
+  "37000": [
+    "Control+KeyF"
+  ],
+  "37001": [
+    "Control+KeyG",
+    "F3"
+  ],
+  "37002": [
+    "Control+Shift+KeyG",
+    "Shift+F3"
+  ],
+  "37003": [
+    "Escape"
+  ],
+  "38001": [
+    "Control+Digit9"
+  ],
+  "38002": [
+    "Control+Digit7"
+  ],
+  "38003": [
+    "Control+Minus"
+  ],
+  "39000": [],
+  "39001": [
+    "Control+KeyL"
+  ],
+  "39002": [],
+  "39003": [
+    "Alt"
+  ],
+  "39004": [],
+  "39005": [],
+  "39006": [],
+  "39007": [],
+  "39009": [],
+  "40000": [
+    "Control+KeyO"
+  ],
+  "40004": [
+    "Control+Shift+KeyI"
+  ],
+  "40005": [
+    "Control+Shift+KeyJ"
+  ],
+  "40006": [
+    "Shift+Escape"
+  ],
+  "40009": [
+    "BrowserFavorites",
+    "Control+Shift+KeyB"
+  ],
+  "40010": [
+    "Control+KeyH"
+  ],
+  "40011": [
+    "Control+Shift+KeyO"
+  ],
+  "40012": [
+    "Control+KeyJ"
+  ],
+  "40013": [],
+  "40019": [],
+  "40021": [],
+  "40023": [],
+  "40134": [],
+  "40237": [],
+  "40259": [],
+  "40260": [],
+  "51006": [],
+  "52420": [
+    "Control+Shift+KeyS"
+  ],
+  "52500": [],
+  "56003": [],
+  "56005": [],
+  "56041": [
+    "Control+KeyM"
+  ],
+  "56044": [
+    "Control+KeyB"
+  ],
+  "56300": [],
+  "56301": []
+}

@@ -1,0 +1,27 @@
+{
+  "linux:Alt+B": {
+    "command_name": "_execute_browser_action",
+    "extension": "nngceckbapebfimnlniiiahkandclblb",
+    "global": false
+  },
+  "linux:Alt+D": {
+    "command_name": "addSite",
+    "extension": "eimadpbcbfnmbkopoojfekhnkhdbieeh",
+    "global": false
+  },
+  "linux:Alt+G": {
+    "command_name": "generate_password",
+    "extension": "nngceckbapebfimnlniiiahkandclblb",
+    "global": false
+  },
+  "linux:Alt+L": {
+    "command_name": "autofill_login",
+    "extension": "nngceckbapebfimnlniiiahkandclblb",
+    "global": false
+  },
+  "linux:Alt+O": {
+    "command_name": "lock_vault",
+    "extension": "nngceckbapebfimnlniiiahkandclblb",
+    "global": false
+  }
+}
