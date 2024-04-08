@@ -1,4 +1,4 @@
-EXCLUDES="git doc root misc README.md"
+EXCLUDES="git doc root misc README.md config/BraveSoftware/Brave-Browser/Default"
 SYMLINK_DIRS="config/htop config/ideavim config/luacheck config/nvim config/river zsh"
 UNDOTTED="bin"
 
