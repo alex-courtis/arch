@@ -247,6 +247,7 @@ HOOKS=(
     base
     udev
     autodetect
+    microcode
     modconf
     kms
     keyboard
@@ -283,7 +284,6 @@ Create `/boot/loader/entries/arch.conf`:
 ```
 title Arch Linux
 linux /vmlinuz-linux
-initrd /amd-ucode.img
 initrd /initramfs-linux.img
 options root=UUID=
  resume=UUID=
