@@ -63,7 +63,7 @@ riverctl map normal $mod1 g send-layout-cmd wideriver "--count +1"
 riverctl map normal $mod2 g spawn "riverctl send-layout-cmd wideriver '--count +1' && riverctl focus-view next"
 
 riverctl map normal $mod1 c send-layout-cmd wideriver "--ratio +0.025"
-riverctl map normal $mod2 c send-layout-cmd wideriver "--ratio 0.35"
+riverctl map normal $mod2 c send-layout-cmd wideriver "--ratio 0.5"
 
 riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 riverctl map normal $mod2 r spawn "riverctl send-layout-cmd wideriver '--count -1' && riverctl focus-view previous"
@@ -72,7 +72,7 @@ riverctl map normal $mod1 l focus-view next
 riverctl map normal $mod2 l swap next
 
 # s-
-riverctl map normal $mod1 d spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left --count 1 --ratio 0.5'"
+riverctl map normal $mod1 d spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
 riverctl map normal $mod2 d send-layout-cmd wideriver "--stack dwindle"
 
 riverctl map normal $mod1 h focus-view previous
@@ -85,7 +85,7 @@ riverctl map normal $mod1 n focus-view next
 riverctl map normal $mod2 n swap next
 
 # z\
-riverctl map normal $mod1 b spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide --count 1 --ratio 0.35'"
+riverctl map normal $mod1 b spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
 riverctl map normal $mod2 b send-layout-cmd wideriver "--stack diminish"
 
 riverctl map normal $mod1 m focus-output previous
