@@ -1,4 +1,0 @@
-#!/bin/sh
-
-xlayoutdisplay --primary HDMI-1-0
-

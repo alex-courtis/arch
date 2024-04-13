@@ -16,7 +16,7 @@ then
 	esac
 else
 	case "${HOST}" in
-		duke|tinygod)
+		duke)
 			pactl set-source-volume @DEFAULT_SOURCE@ 0%
 			;;
 		*)

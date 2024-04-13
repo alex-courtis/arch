@@ -2,9 +2,6 @@ Host aur.archlinux.org
   IdentityFile ~/.ssh/id_rsa.aur
   User aur
 
-Host gigantor gigantorw gigantori gigantord tinygod tinygod1 tinygod2
-  User acourtis
-
 Host deck deckw deckd
   User deck
 

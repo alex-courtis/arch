@@ -43,8 +43,6 @@ typeset -A HL_NAMES=(
 [duke]="blue"
 [emperor]="yellow"
 [lord]="green"
-[gigantor]="cyan"
-[tinygod]="magenta"
 )
 export HL_NAMES
 
@@ -55,8 +53,6 @@ typeset -A HL_FGS=(
 [duke]=${BASE16[bright_blue]}
 [emperor]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
-[gigantor]=${BASE16[bright_cyan]}
-[tinygod]=${BASE16[bright_magenta]}
 )
 export HL_FGS
 
@@ -83,12 +79,6 @@ fi
 # font size
 #
 case "${HOST}" in
-	"gigantor")
-		;&
-	"tinygod")
-		export FONT_SIZE_PT=13
-		export FONT_SIZE_PT_EVEN=14
-		;;
 	"emperor")
 		export FONT_SIZE_PT=11
 		export FONT_SIZE_PT_EVEN=12
