@@ -1,0 +1,3 @@
+# all mount points under the root
+
+* -fstype=nfs4 lord:/&
