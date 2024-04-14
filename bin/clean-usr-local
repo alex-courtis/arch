@@ -7,7 +7,7 @@ while [ "${rc}" -eq 0 ]; do
 	rc="${?}"
 done
 
-# create filesystem expected directories
-for d in $(pacman -Qlq filesystem | grep "/usr/local"); do 
+# create filesystem expected directories except for the man link
+for d in $(pacman -Qlq filesystem | grep "/usr/local" | grep -v "/usr/local/share/man"); do 
 	sudo mkdir -pv "${d}"
 done
