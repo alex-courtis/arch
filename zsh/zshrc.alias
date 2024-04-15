@@ -97,3 +97,5 @@ alias lrp='eval "$(luarocks path)"'
 
 alias enc="gpg --symmetric"
 alias dec="gpg --decrypt-files"
+
+alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
