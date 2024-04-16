@@ -98,6 +98,11 @@ function M.lsp_rename()
 end
 
 function M.format()
+  if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
+    vim.cmd([[silent! norm! gg=G``]])
+    return
+  end
+
   if stylua_ok and vim.bo.filetype == "lua" then
     stylua.format_file()
     return
