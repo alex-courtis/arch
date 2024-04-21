@@ -126,13 +126,13 @@
   ],
   "40009": [
     "BrowserFavorites",
-    "Control+Shift+KeyB"
+    "Control+KeyB"
   ],
   "40010": [
     "Control+KeyH"
   ],
   "40011": [
-    "Control+Shift+KeyO"
+    "Control+Shift+KeyB"
   ],
   "40012": [
     "Control+KeyJ"
@@ -156,7 +156,7 @@
     "Control+KeyM"
   ],
   "56044": [
-    "Control+KeyB"
+    "Control+Shift+KeyS"
   ],
   "56300": [],
   "56301": []
