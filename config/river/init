@@ -5,25 +5,8 @@ ${XDG_CONFIG_HOME}/river/init.d/startup
 ${XDG_CONFIG_HOME}/river/init.d/input
 ${XDG_CONFIG_HOME}/river/init.d/map
 ${XDG_CONFIG_HOME}/river/init.d/behaviour
+${XDG_CONFIG_HOME}/river/init.d/layout
 
 # set layout manager
 riverctl default-layout wideriver
-
-# start layout manager
-# valgrind --leak-check=full --show-leak-kinds=all wideriver \
-wideriver \
-	--layout wide \
-	--layout-alt monocle \
-	--stack dwindle \
-	--count-master 1 \
-	--ratio-master 0.5 \
-	--count-wide-left 0 \
-	--ratio-wide 0.35 \
-	--border-width 1 \
-	--border-width-monocle 1 \
-	--border-color-focused "0x${BASE16[dark_foreground]}" \
-	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
-	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \
-	--log-threshold debug \
-	> "/tmp/wideriver.${XDG_VTNR}.${USER}.log" 2>&1 &
 
