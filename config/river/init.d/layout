@@ -3,11 +3,8 @@
 # # 000000 results in artifacts in the gaps
 riverctl background-color       "0x${BASE16[lighter_background]#*#}" 
 
-# overridden
+# others are overridden
 riverctl border-color-urgent    "0x${BASE16[comments]}"
-riverctl border-color-unfocused "0x${BASE16[lighter_background]#*#}"
-riverctl border-color-focused   "0x808080" 
-riverctl border-width           1
 
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all wideriver \
