@@ -1,5 +1,14 @@
 #!/bin/zsh
 
+# # 000000 results in artifacts in the gaps
+riverctl background-color       "0x${BASE16[lighter_background]#*#}" 
+
+# overridden
+riverctl border-color-urgent    "0x${BASE16[comments]}"
+riverctl border-color-unfocused "0x${BASE16[lighter_background]#*#}"
+riverctl border-color-focused   "0x808080" 
+riverctl border-width           1
+
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all wideriver \
 wideriver \
@@ -21,3 +30,5 @@ wideriver \
 	--log-threshold debug \
 	> "/tmp/wideriver.${XDG_VTNR}.${USER}.log" 2>&1 &
 
+# set layout manager
+riverctl default-layout wideriver

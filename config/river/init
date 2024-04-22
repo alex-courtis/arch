@@ -1,12 +1,8 @@
 #!/bin/zsh
 
-${XDG_CONFIG_HOME}/river/init.d/appearance
 ${XDG_CONFIG_HOME}/river/init.d/startup
 ${XDG_CONFIG_HOME}/river/init.d/input
 ${XDG_CONFIG_HOME}/river/init.d/map
 ${XDG_CONFIG_HOME}/river/init.d/behaviour
 ${XDG_CONFIG_HOME}/river/init.d/layout
-
-# set layout manager
-riverctl default-layout wideriver
 
