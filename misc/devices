@@ -2,8 +2,9 @@ lord0					D0:50:99:C2:80:DF	192.168.1.11	NAS LAN1 - Right Port
 lord0-ipmi-shared		D0:50:99:E1:73:68	192.168.1.12	NAS IPMI Shared
 lord0-ipmi-dedicated	D0:50:99:E1:74:8D	192.168.1.13	NAS IPMI Dedicated - Top Port
 lord-ipmi-dedicated		D0:50:99:F7:55:26	192.168.1.14	NAS IPMI Dedicated - Solo
+lord-cdc				AE:55:4C:B1:CC:DB					NAS Internal
 lord-ipmi-shared		D0:50:99:F7:52:B1	192.168.1.15	NAS IPMI Shared - Bottom
-lord					D0:50:99:FD:76:FD	192.168.1.16	NAS Bottom
+lord					D0:50:99:FD:76:FD	192.168.1.16	NAS Bottom IPMI
 lord					D0:50:99:FD:76:FE	192.168.1.17	NAS Top
 dock					B4:45:06:B6:69:64	192.168.1.21	Dell Dock
 emperor					08:BF:B8:76:4B:C0	192.168.1.31	Desktop Wired
