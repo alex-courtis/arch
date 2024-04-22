@@ -11,10 +11,10 @@ wideriver \
 	--count-wide-left 0 \
 	--inner-gaps 1 \
 	--outer-gaps 1 \
-	--smart-gaps on \
+	--smart-gaps off \
 	--ratio-wide 0.35 \
 	--border-width 1 \
-	--border-width-monocle 2 \
+	--border-width-monocle 1 \
 	--border-color-focused "0x${BASE16[dark_foreground]}" \
 	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
 	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \

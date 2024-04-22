@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # appearance
-riverctl background-color       "0x${BASE16[default_background]}"
+riverctl background-color       "0x${BASE16[lighter_background]#*#}" # 000000 results in artifacts in the gaps
 riverctl border-color-urgent    "0x${BASE16[comments]}"
 riverctl border-color-unfocused "0x${BASE16[lighter_background]#*#}"
 riverctl border-color-focused   "0x808080" 
