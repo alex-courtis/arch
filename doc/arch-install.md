@@ -38,6 +38,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [yay Package Manager](#yay-package-manager)
   * [Install Packages](#install-packages)
   * [CLI User Environment](#cli-user-environment)
+  * [Disable systemd-userdbd](#disable-systemd-userdbd)
   * [Done](#done)
 - [Firmware](#firmware)
   * [USB](#usb)
@@ -462,6 +463,17 @@ ln -s /home/alex/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 mkdir .ssh
 cp /home/alex/.ssh/authorized_keys .ssh
+```
+
+### Disable systemd-userdbd
+
+This was [recently added](https://gitlab.archlinux.org/archlinux/packaging/packages/systemd/-/commit/8545926672960dc46a51d03baa8263f5a16faa44) and of questionable value. Remove it.
+
+```sh
+systemctl disable systemd-userdbd.socket
+systemctl stop systemd-userdbd.socket
+systemctl disable systemd-userdbd.service
+systemctl stop systemd-userdbd.service
 ```
 
 ### Done
