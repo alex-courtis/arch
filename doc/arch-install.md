@@ -416,7 +416,9 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 
 Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/i3.x.${XDG_VTNR}.${USER}.log`, `/tmp/sway.${XDG_VTNR}.${USER}.log`, `dmesg --human` and any console errors for oddities.
 
-## USB Firmware
+## Firmware
+
+### USB
 
 `WARNING: Possibly missing firmware for module: xxx` during kernel image build indicates missing firmware.
 
@@ -427,7 +429,18 @@ yay -S ast-firmware
 
 See [Possibly_missing_firmware_for_module_XXXX](https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX)
 
-## Audio Drivers
+### Intel Audio
+
+```sh
+lspci | grep "Intel Corporation Comet Lake PCH-LP cAVS"
+```
+
+Firmware:
+```sh
+yay -S sof-firmware
+```
+
+## Audio
 
 Enable pulseaudio:
 ```sh
@@ -439,22 +452,11 @@ Add user to the audio group to allow alsa access to sound devices when headless.
 sudo usermod -a -G audio alex
 ```
 
-### Intel Corporation Comet Lake PCH-LP cAVS
-
-```sh
-lspci | grep "Intel Corporation Comet Lake PCH-LP cAVS"
-```
-
-Firmware:
-```sh
-yay -S sof-firmware
-```
-
-## Video Drivers
+## Video
 
 Test that hardware acceleration is available via `vainfo` and `vdpauinfo`.
 
-### Modern AMD
+### AMD
 
 Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
 
@@ -479,51 +481,10 @@ Create `/etc/modprobe.d/no_ucsi_ccg.conf`
 blacklist ucsi_ccg
 ```
 
-### Intel Only (lightweight laptop)
+### Intel
 
 KMS will automatically be used.
 
 ```sh
 yay -S xf86-video-intel libva-intel-driver intel-media-driver
 ```
-
-### Nvidia Only (desktop)
-
-Unfortunately, the nouveau drivers aren't feature complete or performant, so use the dirty, proprietary ones. Linus extends the middle finger to nvidia.
-
-```sh
-yay -S nvidia libva-vdpau-driver libva-vdpau-driver-chromium
-```
-
-### Nvidia + Intel (heavy laptop)
-
-#### Switching GPUs
-
-[Optimus](https://wiki.archlinux.org/index.php/NVIDIA_Optimus) [Prime](https://wiki.archlinux.org/index.php/PRIME) will switch between the integrated Intel GPU and the discrete Nvidia one.
-
-The discrete one will only be used automagically on demand when, say, launching a game.
-
-If the magic doesn't happen, use `prime-run` to launch the app.
-
-```sh
-yay -S xf86-video-intel libva-intel-driver nvidia nvidia-prime
-```
-
-#### Turn Off Nvidia GPU
-
-Install `bbswitch`.
-
-Create `/etc/modprobe.d/bbswitch.conf`:
-
-```
-blacklist nouveau
-options bbswitch load_state=0 unload_state=1
-```
-
-Create `/etc/modules-load.d/bbswitch.conf`:
-
-```sh
-bbswitch
-```
-
-Rebuild initramfs and reboot.
