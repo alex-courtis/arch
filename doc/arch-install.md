@@ -11,7 +11,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Preparation](#preparation)
   * [Boot](#boot)
   * [Keymap](#keymap)
-  * [Start SSHD for easier installation from a remote system](#start-sshd-for-easier-installation-from-a-remote-system)
+  * [Start SSHD](#start-sshd)
 - [Filesystems](#filesystems)
   * [Partitions](#partitions)
   * [Fat32 Boot](#fat32-boot)
@@ -21,11 +21,10 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Bootstrap](#bootstrap)
   * [Setup /etc/fstab](#setup-etcfstab)
   * [Chroot](#chroot)
-  * [Packages Needed For Installation](#packages-needed-for-installation)
+  * [Basic Packages](#basic-packages)
   * [Locale And Time](#locale-and-time)
-  * [Update Packages And Installations To Current](#update-packages-and-installations-to-current)
-  * [Install And Enable Basic Networking](#install-and-enable-basic-networking)
-  * [Virtual Console Configuration](#virtual-console-configuration)
+  * [Networking](#networking)
+  * [Virtual Console](#virtual-console)
   * [Microcode](#microcode)
 - [Users](#users)
 - [Tweaks](#tweaks)
@@ -36,9 +35,9 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Post Install](#post-install)
   * [Set Hostname](#set-hostname)
   * [Enable NTP Sync](#enable-ntp-sync)
-  * [Install [yay](https://github.com/Jguer/yay)](#install-yayhttpsgithubcomjgueryay)
+  * [yay Package Manager](#yay-package-manager)
   * [Install Packages](#install-packages)
-  * [Setup CLI User Environment](#setup-cli-user-environment)
+  * [CLI User Environment](#cli-user-environment)
   * [Done](#done)
 - [Firmware](#firmware)
   * [USB](#usb)
@@ -64,14 +63,15 @@ You can use [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) to connect t
 loadkeys dvorak-programmer
 ```
 
-### Start SSHD for easier installation from a remote system
+### Start SSHD
 
 ```sh
 passwd
 systemctl start sshd
 ip addr
 ```
-Connect from a remote machine
+
+Install from a remote machine
 
 ```sh
 ssh root@some.ip.address
@@ -156,7 +156,7 @@ Modify `/boot` for second fsck by setting to 2.
 arch-chroot /mnt /bin/bash
 ```
 
-### Packages Needed For Installation
+### Basic Packages
 
 ```sh
 pacman -S efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
@@ -182,20 +182,14 @@ ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 hwclock --systohc --utc
 ```
 
-### Update Packages And Installations To Current
-
-```sh
-pacman -Suy
-```
-
-### Install And Enable Basic Networking
+### Networking
 
 ```sh
 systemctl enable sshd
 systemctl enable NetworkManager
 ```
 
-### Virtual Console Configuration
+### Virtual Console
 
 Add the following to `/etc/vconsole.conf`
 ```
@@ -339,7 +333,9 @@ You can check this with:
 timedatectl status
 ```
 
-### Install [yay](https://github.com/Jguer/yay)
+### yay Package Manager
+
+[yay](https://github.com/Jguer/yay)
 
 ```sh
 cd /tmp
@@ -446,21 +442,31 @@ yay -Rns $(yay -Qdtq)
 
 Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
 
-### Setup CLI User Environment
+### CLI User Environment
 
 Install your public/private keys into `~/.ssh`, from a remote machine:
 ```sh
 scp -pr .ssh gigantor:/home/alex
 ```
 
+User:
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 ```
 
+Root:
+```sh
+su -
+ln -s /home/alex/.dotfiles
+RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+mkdir .ssh
+cp /home/alex/.ssh/authorized_keys .ssh
+```
+
 ### Done
 
-Everything should start in your X environment... check `~/.local/share/xorg/Xorg.0.log`, `/tmp/i3.x.${XDG_VTNR}.${USER}.log`, `/tmp/sway.${XDG_VTNR}.${USER}.log`, `dmesg --human` and any console errors for oddities.
+Log in via tty1
 
 ## Firmware
 
