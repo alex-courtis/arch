@@ -58,7 +58,7 @@ name 1 boot
 mkpart primary 513MiB 33281MiB
 name 2 swap
 mkpart primary 33281MiB 100%
-name 3 btrfs
+name 3 root
 quit
 ```
 
@@ -75,40 +75,13 @@ mkswap /dev/nvme0n1p2 -L swap
 swapon /dev/nvme0n1p2
 ```
 
-### Btrfs Root and Subvolumes
+### Root Filesystem
 
 ```sh
-mkfs.btrfs /dev/nvme0n1p3 -L btrfs
-```
-
-```sh
+mkfs.ext4 /dev/nvme0n1p3 -L root
 mount /dev/nvme0n1p3 /mnt
-btrfs subvolume create /mnt/@root
-btrfs subvolume create /mnt/@home
-btrfs subvolume create ...
-umount /mnt
-```
-
-### Mount All
-
-```sh
-mount /dev/nvme0n1p3 /mnt -o subvol=/@root
-mkdir -p /mnt/home /mnt/boot
-mount /dev/nvme0n1p3 /mnt/home -o subvol=/@home
+mkdir /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
-```
-
-`lsblk -f` should show something like this:
-```
-NAME        FSTYPE   FSVER LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINT
-loop0       squashfs 4.0                                                          0   100% /run/archiso/sfs/airootfs
-sda         iso9660        ARCH_202006 2020-06-01-09-52-35-00
-├─sda1      iso9660        ARCH_202006 2020-06-01-09-52-35-00                     0   100% /run/archiso/bootmnt
-└─sda2      vfat     FAT16 ARCHISO_EFI FB44-50CD
-nvme0n1
-├─nvme0n1p1 vfat     FAT32 boot        226B-B351                               511M     0% /mnt/boot
-├─nvme0n1p2 swap     1     swap        872db85f-9279-472b-ae4e-eee08d01796a
-└─nvme0n1p3 btrfs          btrfs       4eb9de2a-5c04-4914-931d-081bbf9b8713    222G     0% /mnt/home
 ```
 
 ## Installation
@@ -129,24 +102,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 Modify `/` for first fsck by setting the last field to 1.
 
-Modify `/home` and `/boot` for second fsck by setting to 2.
-
-Remove the extraneous subvolid and subvol entries from the btrfs volumes.
-
-`/mnt/etc/fstab` should look something like:
-```
-# /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /               btrfs           rw,relatime,ssd,space_cache,subvol=/@root     0 1
-
-# /dev/nvme0n1p1 LABEL=boot
-UUID=226B-B351          /boot           vfat            rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro       0 2
-
-# /dev/nvme0n1p3 LABEL=btrfs
-UUID=4eb9de2a-5c04-4914-931d-081bbf9b8713       /home           btrfs           rw,relatime,ssd,space_cache,subvol=/@home     0 2
-
-# /dev/nvme0n1p2 LABEL=swap
-UUID=c32b0c6b-e413-4eff-a873-6eab329dd245       none            swap            defaults        0 0
-```
+Modify `/boot` for second fsck by setting to 2.
 
 ### Chroot
 
@@ -157,7 +113,7 @@ arch-chroot /mnt /bin/bash
 ### Packages Needed For Installation
 
 ```sh
-pacman -S btrfs-progs efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
+pacman -S efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
 ```
 
 ### Locale And Time
@@ -205,13 +161,6 @@ KEYMAP=dvorak-programmer
 Install the CPU microcode for amd or intel:
 ```sh
 pacman -S amd-ucode
-```
-
-### Btrfs Scrub
-
-Enable monthly scrub for a device mount point using convention over configuration. Directly specifying a device is not supported.
-```sh
-systemctl enable btrfs-scrub@$(systemd-escape -p /home).timer
 ```
 
 ## Users
