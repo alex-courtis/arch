@@ -4,6 +4,52 @@ This is very much the copy and paste guide to installation.
 
 Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/installation_guide) for reference.
 
+<!-- markdown-toc -i arch-install.md -->
+
+<!-- toc -->
+
+- [Preparation](#preparation)
+  * [Boot](#boot)
+  * [Keymap](#keymap)
+  * [Start SSHD for easier installation from a remote system](#start-sshd-for-easier-installation-from-a-remote-system)
+- [Filesystems](#filesystems)
+  * [Partitions](#partitions)
+  * [Fat32 Boot](#fat32-boot)
+  * [Swap](#swap)
+  * [Root Filesystem](#root-filesystem)
+- [Installation](#installation)
+  * [Bootstrap](#bootstrap)
+  * [Setup /etc/fstab](#setup-etcfstab)
+  * [Chroot](#chroot)
+  * [Packages Needed For Installation](#packages-needed-for-installation)
+  * [Locale And Time](#locale-and-time)
+  * [Update Packages And Installations To Current](#update-packages-and-installations-to-current)
+  * [Install And Enable Basic Networking](#install-and-enable-basic-networking)
+  * [Virtual Console Configuration](#virtual-console-configuration)
+  * [Microcode](#microcode)
+- [Users](#users)
+- [Tweaks](#tweaks)
+- [Booting](#booting)
+  * [Create Boot Image](#create-boot-image)
+  * [systemd-boot](#systemd-boot)
+  * [Reboot](#reboot)
+- [Post Install](#post-install)
+  * [Set Hostname](#set-hostname)
+  * [Enable NTP Sync](#enable-ntp-sync)
+  * [Install [yay](https://github.com/Jguer/yay)](#install-yayhttpsgithubcomjgueryay)
+  * [Install Packages](#install-packages)
+  * [Setup CLI User Environment](#setup-cli-user-environment)
+  * [Done](#done)
+- [Firmware](#firmware)
+  * [USB](#usb)
+  * [Intel Audio](#intel-audio)
+- [Audio](#audio)
+- [Video](#video)
+  * [AMD](#amd)
+  * [Intel](#intel)
+
+<!-- tocstop -->
+
 ## Preparation
 
 ### Boot
