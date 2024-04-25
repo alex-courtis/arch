@@ -12,11 +12,14 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Boot](#boot)
   * [Keymap](#keymap)
   * [Start SSHD](#start-sshd)
-- [Filesystems](#filesystems)
+- [Disks](#disks)
   * [Partitions](#partitions)
-  * [Fat32 Boot](#fat32-boot)
-  * [Swap](#swap)
-  * [Root Filesystem](#root-filesystem)
+  * [Filesystems](#filesystems)
+    + [Swap](#swap)
+    + [Root](#root)
+    + [Boot](#boot-1)
+    + [Docker](#docker)
+    + [Home](#home)
 - [Installation](#installation)
   * [Bootstrap](#bootstrap)
   * [Setup /etc/fstab](#setup-etcfstab)
@@ -78,7 +81,7 @@ Install from a remote machine
 ssh root@some.ip.address
 ```
 
-## Filesystems
+## Disks
 
 ### Partitions
 
@@ -97,38 +100,56 @@ Create partitions, with swap size matching physical RAM
 ```sh
 parted /dev/nvme0n1
 ```
-```
+
+```sh
+unit GiB
 mktable GPT
-mkpart ESP fat32 1MiB 513MiB
+mkpart ESP fat32 1MiB 1GiB
 set 1 boot on
-name 1 boot
-mkpart primary 513MiB 33281MiB
-name 2 swap
-mkpart primary 33281MiB 100%
-name 3 root
+mkpart swap linux-swap 1GiB 65GiB
+mkpart root 65GiB 20%
+mkpart docker 20% 30%
+mkpart home 30% 100%
 quit
 ```
 
-### Fat32 Boot
+### Filesystems
 
-```sh
-mkfs.vfat -n boot -F32 /dev/nvme0n1p1
-```
-
-### Swap
+#### Swap
 
 ```sh
 mkswap /dev/nvme0n1p2 -L swap
 swapon /dev/nvme0n1p2
 ```
 
-### Root Filesystem
+#### Root
 
 ```sh
 mkfs.ext4 /dev/nvme0n1p3 -L root
 mount /dev/nvme0n1p3 /mnt
+```
+
+#### Boot
+
+```sh
+mkfs.vfat -n boot -F32 /dev/nvme0n1p1
 mkdir /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
+```
+
+#### Docker
+
+```sh
+mkfs.ext4 /dev/nvme0n1p4 -L docker
+mkdir -p /mnt/var/lib/docker
+mount /dev/nvme0n1p4 /mnt/var/lib/docker
+```
+
+#### Home
+```sh
+mkfs.ext4 /dev/nvme0n1p5 -L home
+mkdir /mnt/home
+mount /dev/nvme0n1p5 /mnt/home
 ```
 
 ## Installation
@@ -154,7 +175,9 @@ Modify `/boot` for second fsck by setting to 2.
 ### Chroot
 
 ```sh
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt
+set -o vi
+alias vi=vim
 ```
 
 ### Basic Packages
@@ -214,6 +237,11 @@ Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 ```
 
 Secure root first with `passwd`
+
+Root shell:
+```sh
+chsh -s /usr/bin/zsh
+```
 
 Add a user e.g.
 ```sh
@@ -277,7 +305,7 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options root=UUID=
  resume=UUID=
- rootflags=subvol=/@root rw quiet
+ rw
 
 
 ```
@@ -296,9 +324,11 @@ Cleanly reboot:
 ```sh
 exit
 swapoff /dev/nvme0n1p2
+umount /mnt/var/lib/docker
 umount /mnt/home
 umount /mnt/boot
 umount /mnt
+sync
 reboot
 ```
 
@@ -441,8 +471,6 @@ Clean any unnecessary packages:
 yay -Rns $(yay -Qdtq)
 ```
 
-Install [Audio Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#audio-drivers) and [Video Drivers](https://github.com/alex-courtis/arch/blob/master/doc/arch-install.md#video-drivers) this point.
-
 ### CLI User Environment
 
 Install your public/private keys into `~/.ssh`, from a remote machine:
@@ -454,6 +482,7 @@ User:
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+ln -fs /usr/bin/nvim ~/bin/vi
 ```
 
 Root:
@@ -463,6 +492,7 @@ ln -s /home/alex/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 mkdir .ssh
 cp /home/alex/.ssh/authorized_keys .ssh
+ln -fs /usr/bin/vim ~/bin/vi
 ```
 
 ### Disable systemd-userdbd
