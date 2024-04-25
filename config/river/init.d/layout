@@ -16,7 +16,8 @@ wideriver \
 	--ratio-master 0.5 \
 	--count-wide-left 0 \
 	--inner-gaps 1 \
-	--outer-gaps 0 \
+	--outer-gaps 1 \
+	--smart-gaps \
 	--ratio-wide 0.35 \
 	--border-width 1 \
 	--border-width-monocle 1 \
