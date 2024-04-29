@@ -172,6 +172,8 @@ Modify `/` for first fsck by setting the last field to 1.
 
 Modify `/boot` for second fsck by setting to 2.
 
+Secure `/boot` `fmask=0077,dmask=0077`
+
 ### Chroot
 
 ```sh
