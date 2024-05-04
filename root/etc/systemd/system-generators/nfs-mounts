@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# automount triggers mount lazily but is explicitly started
+
+server=lord
+points="archive download misc movie music save tmp tv"
+
+for point in ${points}; do
+
+	cat << EOM > "${1}/${server}-${point}.mount"
+[Unit]
+Description=Mount ${server}:/${point}
+[Mount]
+What=${server}:/${point}
+Where=/${server}/${point}
+Options=vers=4,noauto
+Type=nfs
+TimeoutSec=5
+ForceUnmount=true
+EOM
+
+
+	cat << EOA > "${1}/${server}-${point}.automount"
+[Unit]
+Description=Automount /${server}/${point}
+[Automount]
+Where=/${server}/${point}
+EOA
+
+
+	# need to link ourselves; WantedBy has no effect
+	mkdir -p "${1}/multi-user.target.wants"
+	ln -s "${1}/${server}-${point}.automount" "${1}/multi-user.target.wants"
+done
