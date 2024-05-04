@@ -229,6 +229,13 @@ Install the CPU microcode for amd or intel:
 pacman -S amd-ucode
 ```
 
+### SSD Trimming
+
+Run ~once weekly for all devices that support it. See `fstrim --fstab --dry-run`
+```sh
+systemctl enable fstrim.timer
+```
+
 ## Users
 
 Invoke `visudo` and uncomment the following:
@@ -383,7 +390,6 @@ AUR packages are at the end.
 
 `yay -S
 alacritty
-autofs
 bemenu-wayland
 bluez
 blueman
