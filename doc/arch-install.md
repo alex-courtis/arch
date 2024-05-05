@@ -490,17 +490,18 @@ User:
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+
 ln -fs /usr/bin/nvim ~/bin/vi
 ```
 
 Root:
 ```sh
-su -
 ln -s /home/alex/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
-mkdir .ssh
-cp /home/alex/.ssh/authorized_keys .ssh
-ln -fs /usr/bin/vim ~/bin/vi
+
+ln -fs /usr/bin/nvim ~/bin/vi
+
+ln -s /home/alex/.ssh .
 ```
 
 ### Disable systemd-userdbd
