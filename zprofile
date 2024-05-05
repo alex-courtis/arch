@@ -1,6 +1,3 @@
-# remove duplicates resulting from /etc/profile.d
-typeset -U path
-
 if [ "$(uname)" = "Darwin" ]; then
 	# OSX moves these to the end of the path between zshenv and zprofile
 	path=(~/bin ~/.local/bin $path)
