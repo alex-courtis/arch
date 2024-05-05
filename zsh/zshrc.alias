@@ -1,5 +1,9 @@
 setopt complete_aliases
 
+# executes non-interactive $SHELL passing -c arguments
+# final space allows aliases to be used, as root's .zshrc is not executed
+alias sudo="sudo -s "
+
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
