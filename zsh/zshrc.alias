@@ -78,11 +78,10 @@ alias rgh="rg --no-ignore --hidden"
 
 alias yayn="yay --noconfirm"
 
-alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /net/lord/music/"
-alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /net/lord/music/ \${HOME}/.music/"
+alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /lord/music/"
+alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /lord/music/ \${HOME}/.music/"
 alias music-home-to-android="adb-sync --delete \${HOME}/.music/ /sdcard/Music"
-alias music-lord-to-android="adb-sync --delete /net/lord/music/ /sdcard/Music"
-alias music-android-to-home="adb-sync --delete --reverse /sdcard/Music/ \${HOME}/.music"
+alias music-lord-to-android="adb-sync --delete /lord/music/ /sdcard/Music"
 
 # bash style targets that cannot play well with complete_aliases
 alias todo="todo.sh"
