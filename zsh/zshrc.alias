@@ -25,9 +25,6 @@ alias pdiff="diff -Naur"
 
 alias tailf="tail -n 0 -F"
 
-alias agh="ag --hidden"
-alias agu="ag --unrestricted"
-
 alias pt="pstree -TapU -C age"
 alias ptl="pt -l | less"
 alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
@@ -48,11 +45,6 @@ alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
-
-alias k="kill"
-alias _fzf_complete_k="_fzf_complete_kill"
-alias kk="kill -9"
-alias _fzf_complete_kk="_fzf_complete_kill"
 
 alias pg="pgrep --list-full --full"
 alias pk="pkill --full"
