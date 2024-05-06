@@ -434,7 +434,6 @@ swayidle
 swaylock
 sysstat
 terminus-font
-thunderbird
 ttf-dejavu
 ttf-hack-nerd
 ttf-inter
