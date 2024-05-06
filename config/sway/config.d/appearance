@@ -37,9 +37,4 @@ smart_gaps on
 smart_borders on
 default_border normal 1
 
-# zoom meeting window gets upset when:
-# - the cursor is over it when it starts
-# - the main window is tiled
-for_window [app_id="zoom"] floating enable, floating_maximum_size 800 x 600
-
 # vim: set filetype=swayconfig :

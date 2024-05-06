@@ -3,14 +3,10 @@
 # always server side decorations
 riverctl rule-add ssd
 
-# specific client side decorations
-riverctl rule-add -app-id zoom csd
-
 # floating
 riverctl rule-add -title "Open File" float
 riverctl rule-add -title "Open Folder" float
 riverctl rule-add -app-id nm-openconnect-auth-dialog float
-riverctl rule-add -app-id zoom float
 riverctl rule-add -app-id "blueman-*" float
 riverctl rule-add -app-id gamescope fullscreen
 
