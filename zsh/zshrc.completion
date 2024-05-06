@@ -1,9 +1,6 @@
 autoload -Uz compinit
 compinit
 
-# yq does not autocomplete files reliably
-compdef -d yq
-
 if [ "$(whence dircolors)" ]; then
 	eval $(dircolors)
 
