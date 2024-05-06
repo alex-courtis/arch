@@ -437,6 +437,7 @@ terminus-font
 thunderbird
 ttf-dejavu
 ttf-hack-nerd
+ttf-inter
 udisks2
 usbutils
 unzip
