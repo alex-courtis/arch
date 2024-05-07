@@ -13,7 +13,7 @@ yay -S ast-firmware
 
 Mask the ACPI interrupt, see [High CPU usage due to kworker](https://sudoremember.blogspot.com/2013/05/high-cpu-usage-due-to-kworker.html)
 
-Check which of interrupt is overloaded:
+Check which interrupt is overloaded:
 ```sh
 for intr in /sys/firmware/acpi/interrupts/*; do
 	printf "%s %s\n" "$(cat ${intr})" "${intr}"

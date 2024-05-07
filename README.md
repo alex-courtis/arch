@@ -5,6 +5,7 @@ My [dotfiles](http://dotfiles.github.io), managed by [rcm](https://github.com/th
 # Documentation
 
 [Arch Installation](doc/arch-install.md)
+[Arch Troubleshooting](doc/arch-troubleshooting.md)
 
 # Note To Users
 

@@ -32,7 +32,6 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Microcode](#microcode)
   * [SSD Trimming](#ssd-trimming)
 - [Users](#users)
-- [Tweaks](#tweaks)
 - [Booting](#booting)
   * [Create Boot Image](#create-boot-image)
   * [systemd-boot](#systemd-boot)
@@ -195,7 +194,7 @@ pacman -S efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
 
 Setup better defaults:
 ```sh
-vi /etc/pacman.conf`
+vi /etc/pacman.conf
 ```
 ```
 Color
@@ -204,7 +203,7 @@ ParallelDownloads = 10
 
 Tell makepkg not to (xz) compress packages:
 ```sh
-vi /etc/makepkg.conf`
+vi /etc/makepkg.conf
 ```
 ```
 PKGEXT='.pkg.tar'
@@ -288,10 +287,6 @@ useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
-## Tweaks
-
-[Arch Top Tips From Alex](arch-tips.md).
-
 ## Booting
 
 ### Create Boot Image
@@ -347,18 +342,7 @@ Install:
 bootctl --path=/boot install
 ```
 
-Link:
-```sh
-vi /boot/loader/loader.conf
-```
-```
-timeout 2
-default Arch Linux
-```
-
-Try `console-mode max` to use native resolution.
-
-Entry
+Boot entry:
 ```sh
 cat << EOF > /boot/loader/entries/arch.conf
 title Arch Linux
@@ -377,6 +361,18 @@ blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/arch.conf
 blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
 ```
 Move them into their correct places: root and resume.
+
+
+Activate it:
+```sh
+vi /boot/loader/loader.conf
+```
+```
+timeout 2
+default Arch Linux
+```
+
+Try `console-mode max` to use native resolution.
 
 ### Reboot
 
@@ -406,21 +402,10 @@ Apply the hostname e.g.:
 hostnamectl set-hostname gigantor
 ```
 
-Add the localhosts to `/etc/hosts` first:
-
-```
-127.0.0.1 localhost
-::1       localhost
-```
-
 ### Enable NTP Sync
 
 ```sh
 timedatectl set-ntp true
-```
-
-You can check this with:
-```sh
 timedatectl status
 ```
 
