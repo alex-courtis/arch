@@ -46,7 +46,6 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
   * [Done](#done)
 - [Firmware](#firmware)
-  * [USB](#usb)
   * [Intel Audio](#intel-audio)
 - [Audio](#audio)
 - [Video](#video)
@@ -572,17 +571,6 @@ systemctl stop systemd-userdbd.service
 Log in via tty1
 
 ## Firmware
-
-### USB
-
-`WARNING: Possibly missing firmware for module: xxx` during kernel image build indicates missing firmware.
-
-```sh
-yay -S upd72020x-fw
-yay -S ast-firmware
-```
-
-See [Possibly_missing_firmware_for_module_XXXX](https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX)
 
 ### Intel Audio
 
