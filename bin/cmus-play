@@ -12,9 +12,9 @@ else
 	fi
 fi
 
+cmus-remote -C "win-activate"
+
 if [ -n "${VOL}" ]; then
 	cmus-remote -C "vol ${VOL}%"
 fi
-
-cmus-remote -C win-activate
 
