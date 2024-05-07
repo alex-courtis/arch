@@ -5,6 +5,7 @@ My [dotfiles](http://dotfiles.github.io), managed by [rcm](https://github.com/th
 # Documentation
 
 [Arch Installation](doc/arch-install.md)
+
 [Arch Troubleshooting](doc/arch-troubleshooting.md)
 
 # Note To Users
@@ -36,7 +37,9 @@ Tools:
 ```sh
 git clone git@github.com:alex-courtis/arch.git ~/.dotfiles
 RCRC="${HOME}/.dotfiles/rcrc" rcup -v
+
 rcup-root
+
 su -
 chsh -s /bin/zsh
 ln -s /home/alex/.dotfiles .
