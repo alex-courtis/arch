@@ -11,7 +11,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Preparation](#preparation)
   * [Boot](#boot)
   * [Keymap](#keymap)
-  * [Start SSHD](#start-sshd)
+  * [SSHD](#sshd)
 - [Disks](#disks)
   * [Partitions](#partitions)
   * [Filesystems](#filesystems)
@@ -25,10 +25,12 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Setup /etc/fstab](#setup-etcfstab)
   * [Chroot](#chroot)
   * [Basic Packages](#basic-packages)
+  * [Pacman Config](#pacman-config)
   * [Locale And Time](#locale-and-time)
   * [Networking](#networking)
   * [Virtual Console](#virtual-console)
   * [Microcode](#microcode)
+  * [SSD Trimming](#ssd-trimming)
 - [Users](#users)
 - [Tweaks](#tweaks)
 - [Booting](#booting)
@@ -67,18 +69,17 @@ You can use [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl) to connect t
 loadkeys dvorak-programmer
 ```
 
-### Start SSHD
+### SSHD
 
+Root passwd:
 ```sh
 passwd
-systemctl start sshd
-ip addr
 ```
 
-Install from a remote machine
-
+sshd should already be started:
 ```sh
-ssh root@some.ip.address
+systemctl start sshd
+ip addr
 ```
 
 ## Disks
@@ -86,22 +87,20 @@ ssh root@some.ip.address
 ### Partitions
 
 Find your destination disk:
-
 ```sh
 lsblk -f
 ```
 
-Wipe everything
+Wipe everything:
 ```sh
 wipefs --all /dev/nvme0n1
 ```
 
-Create partitions, with swap size matching physical RAM
+Create partitions, with swap size matching physical RAM:
 ```sh
 parted /dev/nvme0n1
 ```
-
-```sh
+```
 unit GiB
 mktable GPT
 mkpart ESP fat32 1MiB 1GiB
@@ -156,8 +155,12 @@ mount /dev/nvme0n1p5 /mnt/home
 
 ### Bootstrap
 
-Edit `/etc/pacman.d/mirrorlist` and put a local one on top
+Put a local mirror on top:
+```sh
+vim /etc/pacman.d/mirrorlist
+```
 
+Bootstrap:
 ```sh
 pacstrap -i /mnt base base-devel linux linux-firmware
 ```
@@ -166,6 +169,7 @@ pacstrap -i /mnt base base-devel linux linux-firmware
 
 ```sh
 genfstab -U /mnt >> /mnt/etc/fstab
+vim /mnt/etc/fstab
 ```
 
 Modify `/` for first fsck by setting the last field to 1.
@@ -188,23 +192,42 @@ alias vi=vim
 pacman -S efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
 ```
 
-### Locale And Time
+### Pacman Config
 
-Uncomment your desired UTF8 locale in `/etc/locale.gen`. Also `en_US` as too many things expect it :sigh:.
-
+Setup better defaults:
 ```sh
-locale-gen
+vi /etc/pacman.conf`
+```
+```
+Color
+ParallelDownloads = 10
 ```
 
+Tell makepkg not to (xz) compress packages:
 ```sh
+vi /etc/makepkg.conf`
+```
+```
+PKGEXT='.pkg.tar'
+SRCEXT='.src.tar'
+```
+
+### Locale And Time
+
+Set your desired UTF8 locale. Also `en_US`, as many things expect it:
+```sh
+vi /etc/locale.gen
+```
+
+Generate and set locale:
+```sh
+locale-gen
 echo LANG=en_AU.UTF-8 > /etc/locale.conf
 ```
 
+Time:
 ```sh
 ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
-```
-
-```sh
 hwclock --systohc --utc
 ```
 
@@ -217,7 +240,10 @@ systemctl enable NetworkManager
 
 ### Virtual Console
 
-Add the following to `/etc/vconsole.conf`
+Keymap:
+```sh
+vi /etc/vconsole.conf
+```
 ```
 KEYMAP=dvorak-programmer
 ```
@@ -238,21 +264,26 @@ systemctl enable fstrim.timer
 
 ## Users
 
-Invoke `visudo` and uncomment the following:
-
-```sh
+sudo secure defaults:
+```
+visudo
+```
+```
 Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 %wheel ALL=(ALL) ALL
 ```
 
-Secure root first with `passwd`
+Secure root:
+```sh
+passwd
+```
 
 Root shell:
 ```sh
 chsh -s /usr/bin/zsh
 ```
 
-Add a user e.g.
+Add a user:
 ```sh
 useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
@@ -266,7 +297,18 @@ passwd alex
 
 ### Create Boot Image
 
-Update the boot image configuration: `/etc/mkinitcpio.conf`
+Remove fallback image:
+```sh
+vi /etc/mkinitcpio.d/linux.preset
+```
+```
+PRESETS=('default')
+```
+
+Update the boot image configuration:
+```sh
+vi /etc/mkinitcpio.conf
+```
 
 Add hooks. It's fine to use multiple lines, which makes for easier change detection.
 ```
@@ -286,6 +328,12 @@ HOOKS=(
 )
 ```
 
+Don't compress the image or modules.
+```
+COMPRESSION=cat
+MODULES_DECOMPRESS="yes"
+```
+
 (Re)generate the boot image:
 
 ```sh
@@ -295,11 +343,15 @@ pacman -S linux
 
 ### systemd-boot
 
+Install:
 ```sh
 bootctl --path=/boot install
 ```
 
-Edit `/boot/loader/loader.conf` and change its contents to:
+Link:
+```sh
+vi /boot/loader/loader.conf
+```
 ```
 timeout 2
 default Arch Linux
@@ -307,8 +359,9 @@ default Arch Linux
 
 Try `console-mode max` to use native resolution.
 
-Create `/boot/loader/entries/arch.conf`:
-```
+Entry
+```sh
+cat << EOF > /boot/loader/entries/arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
@@ -316,9 +369,8 @@ options root=UUID=
  resume=UUID=
  rw
 
-
+EOF
 ```
-Change amd to intel as needed.
 
 Inject the UUIDs of the root and swap partitions:
 ```sh
@@ -561,7 +613,10 @@ Test that hardware acceleration is available via `vainfo` and `vdpauinfo`.
 
 ### AMD
 
-Add `amdgpu` to MODULES in `/etc/mkinitcpio.conf`
+Add amdgpu module:
+```sh
+vi /etc/mkinitcpio.conf
+```
 
 Install the X, va, vdpau and vulkan drivers and (re)generate the boot image:
 ```sh
@@ -578,10 +633,12 @@ vdpau test needs to know the driver:
 VDPAU_DRIVER=radeonsi vdpauinfo
 ```
 
-Create `/etc/modprobe.d/no_ucsi_ccg.conf`
-```
+Blacklist:
+```sh
+cat << EOF > /etc/modprobe.d/no_ucsi_ccg.conf
 # nvidia specific usb c
 blacklist ucsi_ccg
+EOF
 ```
 
 ### Intel
