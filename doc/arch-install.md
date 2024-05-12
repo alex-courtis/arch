@@ -105,8 +105,8 @@ mkpart ESP fat32 1MiB 1GiB
 set 1 boot on
 mkpart swap linux-swap 1GiB 65GiB
 mkpart root 65GiB 20%
-mkpart docker 20% 30%
-mkpart home 30% 100%
+mkpart home 20% 90%
+mkpart docker 90% 100%
 quit
 ```
 
@@ -134,19 +134,19 @@ mkdir /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
 ```
 
+#### Home
+```sh
+mkfs.ext4 /dev/nvme0n1p4 -L home
+mkdir /mnt/home
+mount /dev/nvme0n1p4 /mnt/home
+```
+
 #### Docker
 
 ```sh
-mkfs.ext4 /dev/nvme0n1p4 -L docker
+mkfs.ext4 /dev/nvme0n1p5 -L docker
 mkdir -p /mnt/var/lib/docker
-mount /dev/nvme0n1p4 /mnt/var/lib/docker
-```
-
-#### Home
-```sh
-mkfs.ext4 /dev/nvme0n1p5 -L home
-mkdir /mnt/home
-mount /dev/nvme0n1p5 /mnt/home
+mount /dev/nvme0n1p5 /mnt/var/lib/docker
 ```
 
 ## Installation
@@ -422,66 +422,75 @@ makepkg -sri
 
 ### Install Packages
 
-AUR packages are at the end.
+AUR packages are at the end of each section.
 
+Minimum:
 `yay -S
-alacritty
-bemenu-wayland
-bluez
-blueman
-brave-bin
 calc
-dmenu
 dnsutils
 efibootmgr
-gpm
-hunspell-en_AU
-hunspell-en_GB
 fd
 fwupd
 fzf
-grim
 inetutils
-interception-dual-function-keys
-inter-font
 jq
 keychain
-libva-utils
 man-db
 man-pages
 neovim
-nm-connection-editor
 nfs-utils
-noto-fonts
-noto-fonts-emoji
-noto-fonts-extra
 pacman-contrib
-pavucontrol
-pulseaudio
 pwgen
 ripgrep
 rsync
-scrot
-slock
-slurp
 sqlite3
-swappy
-swayidle
-swaylock
 sysstat
-terminus-font
-ttf-dejavu
-ttf-hack-nerd
-ttf-inter
 udisks2
 usbutils
 unzip
+xmlstarlet
+go-yq
+htop-vim
+lemonade-git
+rcm
+`
+
+GUI:
+`yay -S
+alacritty
+bemenu-wayland
+brave-bin
+gpm
+grim
+inter-font
+libva-utils
+pavucontrol
+pulseaudio
+slurp
+swappy
+ttf-hack-nerd
+ttf-inter
 vdpauinfo
 wl-clipboard
-xautolock
 xdg-desktop-portal-wlr
 xdg-utils
-xmlstarlet
+zsh-completions
+lswt
+menjar
+nerd-fonts-hack
+river-git
+rivercarro
+todotxt
+way-displays
+wev
+zig-static
+zsh-system-clipboard-git
+`
+
+X:
+`yay -S
+dmenu
+scrot
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-misc
@@ -490,24 +499,16 @@ xorg-xbacklight
 xorg-xinit
 xorg-xrandr
 xsel
-zsh-completions
-go-yq
-htop-vim
-lemonade-git
-libinput-gestures
-lswt
-menjar
-nerd-fonts-hack
-rcm
-river-git
-rivercarro
-todotxt
-way-displays
-wev
 xlayoutdisplay
+`
+
+Optional:
+`yay -S
+bluez
+blueman
+libinput-gestures
+interception-dual-function-keys
 ydotool
-zig-static
-zsh-system-clipboard-git
 `
 
 Clean any unnecessary packages:
