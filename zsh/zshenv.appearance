@@ -127,3 +127,7 @@ case $TERM in
 	vte*)
 esac
 
+# orange standout: propmpts, matches and long line marker
+export LESS_TERMCAP_so=$(tput setaf 0; tput setab 16)
+export LESS_TERMCAP_se=$(tput sgr0)
+
