@@ -462,7 +462,6 @@ bemenu-wayland
 brave-bin
 gpm
 grim
-inter-font
 libva-utils
 pavucontrol
 pulseaudio
@@ -477,13 +476,12 @@ xdg-utils
 zsh-completions
 lswt
 menjar
-nerd-fonts-hack
 river-git
-rivercarro
 todotxt
 way-displays
 wev
-zig-static
+wideriver
+zig-bin
 zsh-system-clipboard-git
 `
 
