@@ -264,10 +264,10 @@ systemctl enable fstrim.timer
 
 sudo secure defaults:
 ```
-visudo
+EDITOR=vim visudo
 ```
 ```
-Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/bin"
 %wheel ALL=(ALL) ALL
 ```
 
