@@ -471,6 +471,7 @@ swappy
 ttf-hack-nerd
 ttf-inter
 vdpauinfo
+vulkan-tools
 wl-clipboard
 xdg-desktop-portal-wlr
 xdg-utils
@@ -582,7 +583,7 @@ sudo usermod -a -G audio alex
 
 ## Video
 
-Test that hardware acceleration is available via `vainfo` and `vdpauinfo`.
+Test that hardware acceleration is available via `vainfo` and `vdpauinfo`. RC 0 is OK.
 
 ### AMD
 
@@ -591,9 +592,9 @@ Add amdgpu module:
 vi /etc/mkinitcpio.conf
 ```
 
-Install the X, va, vdpau and vulkan drivers and (re)generate the boot image:
+Install the mesa opengl and vulkan drivers then (re)generate the boot image:
 ```sh
-yay -S xf86-video-amdgpu libva-mesa-driver mesa-vdpau vulkan-radeon linux
+yay -S libva-mesa-driver mesa-vdpau vulkan-radeon linux
 ```
 
 Ensure the performant RADV vulkan implementation is used rather than the slower AMDVLK:
