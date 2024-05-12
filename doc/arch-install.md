@@ -463,6 +463,7 @@ brave-bin
 gpm
 grim
 libva-utils
+libnotify
 pavucontrol
 pulseaudio
 slurp
