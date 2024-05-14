@@ -4,21 +4,25 @@ if not configs_ok then
   return
 end
 
+-- most of these do not look good
+-- install explicitly e.g. :TSInstall cpp
+
+-- :TSBufToggle highlight
+
 configs.setup({
   modules = {},
+
   sync_install = false,
+
   ensure_installed = {},
 
-  -- alternative to highlight.disable;  :TSInstall vimdoc  :TSUninstall vimdoc
-  ignore_install = {}, -- { "vimdoc", "markdown" },
+  ignore_install = {},
 
-  -- eventually turn this off and add to ignore_install or highlight.disable
-  auto_install = true,
+  auto_install = false,
 
   highlight = {
     enable = true,
 
-    -- alternative to not installing
-    disable = { "vimdoc", "markdown" },
+    disable = {},
   },
 })
