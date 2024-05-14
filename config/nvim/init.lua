@@ -34,6 +34,7 @@ local bootstrapped = require("amc.init.pack")({
   "nvim-lualine/lualine.nvim",
   "nvim-telescope/telescope-smart-history.nvim",
   "nvim-telescope/telescope.nvim",
+  "nvim-treesitter/nvim-treesitter",
   util.nvt_plugin_dir(),
   "nvim-tree/nvim-web-devicons",
   "qpkorr/vim-bufkill",
@@ -62,6 +63,7 @@ require("amc.plugins.lualine")
 require("amc.plugins.neogit")
 require("amc.plugins.nvt")
 require("amc.plugins.stylua")
+require("amc.plugins.treesitter")
 require("amc.plugins.telescope")
 
 log.line("---- init late")
