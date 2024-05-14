@@ -210,6 +210,8 @@ PKGEXT='.pkg.tar'
 SRCEXT='.src.tar'
 ```
 
+Remove `debug` from `OPTIONS` to prevent `-debug` package generation.
+
 ### Locale And Time
 
 Set your desired UTF8 locale. Also `en_US`, as many things expect it:
