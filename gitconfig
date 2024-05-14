@@ -43,6 +43,9 @@
 [color]
 	ui = auto
 
+[remote]
+	tagopt = --tags
+
 [mergetool "idea"]
 	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
 	trustExitCode = true
@@ -52,4 +55,3 @@
 	#renameLimit = 9999
 #[diff]
 	#renameLimit = 9999
-
