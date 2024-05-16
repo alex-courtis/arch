@@ -1,5 +1,6 @@
 [font]
 size = $FONT_SIZE_PT
+normal = { family = "Hack Nerd Font", style = "Regular" }
 
 [colors.cursor]
 cursor = "0x$BASE16[default_foreground]"

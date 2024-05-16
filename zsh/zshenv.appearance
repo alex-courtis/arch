@@ -83,6 +83,10 @@ case "${HOST}" in
 		export FONT_SIZE_PT=11
 		export FONT_SIZE_PT_EVEN=12
 		;;
+	"gigantor.local")
+		export FONT_SIZE_PT=13
+		export FONT_SIZE_PT_EVEN=14
+		;;
 	*)
 		export FONT_SIZE_PT=11
 		export FONT_SIZE_PT_EVEN=12
