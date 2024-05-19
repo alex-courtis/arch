@@ -13,3 +13,7 @@ decorations = "None"
 
 [cursor]
 vi_mode_style = "Block"
+
+[shell]
+program = "/bin/zsh"
+args = [ "-l" ]
