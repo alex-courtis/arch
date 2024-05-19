@@ -43,6 +43,7 @@ typeset -A HL_NAMES=(
 [duke]="blue"
 [emperor]="yellow"
 [lord]="green"
+[gigantor]="magenta"
 )
 export HL_NAMES
 
@@ -53,6 +54,7 @@ typeset -A HL_FGS=(
 [duke]=${BASE16[bright_blue]}
 [emperor]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
+[gigantor]=${BASE16[bright_magenta]}
 )
 export HL_FGS
 
@@ -122,7 +124,7 @@ case $TERM in
 	xterm-truecolor  |\
 	xterm-direct*    |\
 	alacritty*       )
-		export COLORTERM="truecolor"
+		export COLORTERM="na"
 		;;
 	vte*)
 esac
