@@ -1,8 +1,16 @@
+# TODO extract to host-
+# execute in zprofile to override /etc/profile on macos
 if [ "$(uname)" = "Darwin" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+
+	path=($(brew --prefix)/opt/util-linux/sbin $(brew --prefix)/opt/util-linux/bin $path)
+
+	path=(~/.jenv/bin $path)
+
+	eval "$(jenv init -)"
+
 	# OSX moves these to the end of the path between zshenv and zprofile
 	path=(~/bin ~/.local/bin $path)
-
-	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # maybe start a GUI if one isn't running; flavour depends on which virtual terminal we are on
