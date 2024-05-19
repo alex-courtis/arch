@@ -79,12 +79,8 @@ fi
 # font size
 #
 case "${HOST}" in
-	"emperor")
-		export FONT_SIZE_PT=11
-		export FONT_SIZE_PT_EVEN=12
-		;;
-	"gigantor.local")
-		export FONT_SIZE_PT=13
+	gigantor*)
+		export FONT_SIZE_PT=14
 		export FONT_SIZE_PT_EVEN=14
 		;;
 	*)
