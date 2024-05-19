@@ -3,17 +3,11 @@
 import = [
 "~/.config/alacritty/appearance.toml",
 "~/.config/alacritty/bindings.toml",
+"~/.config/alacritty/host.toml",
 ]
 
 # [env]
 # TERM = "alacritty-direct"
 
-[window]
-decorations = "None"
-
 [cursor]
 vi_mode_style = "Block"
-
-[shell]
-program = "/bin/zsh"
-args = [ "-l" ]

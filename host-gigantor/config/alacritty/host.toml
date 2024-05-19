@@ -1,0 +1,9 @@
+[window]
+decorations = "Full"
+
+[selection]
+save_to_clipboard = true
+
+[shell]
+program = "/bin/zsh"
+args = [ "-l" ]
