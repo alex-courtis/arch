@@ -15,14 +15,20 @@ function printtermtitle() {
 
 	# lazy load __git_ps1
 	if ! type __git_ps1 > /dev/null 2>&1; then
-		if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+		if [ -f "/opt/homebrew/etc/bash_completion.d/git-prompt.sh" ]; then
+			git_ps1_script="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
+		elif [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
+			git_ps1_script="/usr/share/git/completion/git-prompt.sh"
+		fi
+		if [ -f "${git_ps1_script}" ]; then
 			GIT_PS1_SHOWDIRTYSTATE="true"
 			GIT_PS1_SHOWSTASHSTATE="true"
 			GIT_PS1_SHOWUPSTREAM="auto"
-			. /usr/share/git/completion/git-prompt.sh
+			. /opt/homebrew/etc/bash_completion.d/git-prompt.sh
 		else
 			function __git_ps1() { : }
 		fi
+		unset git_ps1_script
 	fi
 
 	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
