@@ -71,7 +71,7 @@ profiles:
                     - control
                     - option
               to:
-                - shell_command: '"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" --new-window > /dev/null 2>&1 &'
+                - shell_command: '"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" --new-window'
               type: basic
         - description: term
           manipulators:
@@ -83,7 +83,7 @@ profiles:
                     - control
                     - option
               to:
-                - shell_command: /opt/homebrew/bin/alacritty msg create-window > /dev/null 2>&1 || /opt/homebrew/bin/alacritty > /dev/null 2>&1 &
+                - shell_command: /opt/homebrew/bin/alacritty msg create-window
               type: basic
     simple_modifications:
       - from:
