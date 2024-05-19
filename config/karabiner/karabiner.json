@@ -115,7 +115,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "\"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser\" --new-window"
+                                        "shell_command": "open -n \"/Applications/Brave Browser.app\""
                                     }
                                 ],
                                 "type": "basic"
@@ -138,7 +138,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "/opt/homebrew/bin/alacritty msg create-window"
+                                        "shell_command": "/opt/homebrew/bin/alacritty msg create-window || open /Applications/Alacritty.app"
                                     }
                                 ],
                                 "type": "basic"

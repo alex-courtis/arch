@@ -1,5 +1,7 @@
 # yq karabiner.json --output-format yaml > karabiner.yaml
+#
 # yq karabiner.yaml --output-format json --indent 4 > karabiner.json
+# rcup
 global:
   ask_for_confirmation_before_quitting: true
   check_for_updates_on_startup: true
@@ -71,7 +73,7 @@ profiles:
                     - control
                     - option
               to:
-                - shell_command: '"/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" --new-window'
+                - shell_command: open -n "/Applications/Brave Browser.app"
               type: basic
         - description: term
           manipulators:
@@ -83,7 +85,7 @@ profiles:
                     - control
                     - option
               to:
-                - shell_command: /opt/homebrew/bin/alacritty msg create-window
+                - shell_command: /opt/homebrew/bin/alacritty msg create-window || open /Applications/Alacritty.app
               type: basic
     simple_modifications:
       - from:
