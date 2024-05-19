@@ -124,7 +124,7 @@ case $TERM in
 	xterm-truecolor  |\
 	xterm-direct*    |\
 	alacritty*       )
-		export COLORTERM="na"
+		export COLORTERM="truecolor"
 		;;
 	vte*)
 esac
