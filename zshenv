@@ -15,11 +15,13 @@ export PAGER="less"
 export LESS="--RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --chop-long-lines"
 export SYSTEMD_LESS="${LESS}"
 
-# tell intellij that we're using a non-reparenting window manager
-# maybe set suppress.focus.stealing=false custom setting
-# pin any badly behaved popups
-export _JAVA_AWT_NONREPARENTING=1
-export _JAVA_AWT_WM_NONREPARENTING=1
+if [ "$(uname)" != "Darwin" ]; then
+	# tell intellij that we're using a non-reparenting window manager
+	# maybe set suppress.focus.stealing=false custom setting
+	# pin any badly behaved popups
+	export _JAVA_AWT_NONREPARENTING=1
+	export _JAVA_AWT_WM_NONREPARENTING=1
+fi
 
 # some java build systems seem to like having JAVA_HOME set
 if [ -L /usr/lib/jvm/default ]; then
