@@ -1,13 +1,4 @@
 <keymap version="1" name="AMC" parent="Default for XWin">
-  <action id="$Copy">
-    <keyboard-shortcut first-keystroke="shift ctrl c" />
-  </action>
-  <action id="$Cut">
-    <keyboard-shortcut first-keystroke="shift ctrl x" />
-  </action>
-  <action id="$Paste">
-    <keyboard-shortcut first-keystroke="shift ctrl v" />
-  </action>
   <action id="ActivateBigDataToolWindowToolWindow" />
   <action id="ActivateBookmarksToolWindow" />
   <action id="ActivateBuildToolWindow">
@@ -56,39 +47,36 @@
   <action id="DatabaseView.CopyAction" />
   <action id="DatabaseView.CopyDdlAction" />
   <action id="Diff.ShowDiff" />
-  <action id="Editor Copy">
-    <keyboard-shortcut first-keystroke="shift ctrl c" />
-  </action>
-  <action id="Editor Paste">
-    <keyboard-shortcut first-keystroke="shift ctrl v" />
-  </action>
+  <action id="EditorChooseLookupItemReplace" />
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
     <keyboard-shortcut first-keystroke="j" />
+    <keyboard-shortcut first-keystroke="tab" />
   </action>
   <action id="EditorDuplicate" />
+  <action id="EditorNextWordWithSelection" />
   <action id="EditorPageDown">
     <keyboard-shortcut first-keystroke="ctrl d" />
   </action>
   <action id="EditorPageUp">
     <keyboard-shortcut first-keystroke="ctrl u" />
   </action>
+  <action id="EditorPreviousWordWithSelection" />
   <action id="EditorSelectWord" />
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="k" />
+    <keyboard-shortcut first-keystroke="shift tab" />
   </action>
   <action id="ExportToTextFile" />
   <action id="FileChooser.GotoDesktop" />
-  <action id="FindNext">
-    <keyboard-shortcut first-keystroke="f3" />
-  </action>
   <action id="Git.Commit.Stage" />
   <action id="GotoAction">
     <keyboard-shortcut first-keystroke="alt a" />
   </action>
   <action id="GotoDeclaration" />
   <action id="GotoSuperMethod" />
+  <action id="InsertInlineCompletionAction" />
   <action id="InsertLiveTemplate" />
   <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
@@ -104,9 +92,7 @@
   <action id="Rerun" />
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
-  <action id="ShowSettings">
-    <keyboard-shortcut first-keystroke="alt s" />
-  </action>
+  <action id="ShowBookmarks" />
   <action id="SwitcherBackward">
     <keyboard-shortcut first-keystroke="ctrl l" />
   </action>
