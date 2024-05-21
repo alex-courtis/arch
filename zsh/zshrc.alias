@@ -21,11 +21,21 @@ alias uudiff="diff --unified=10000"
 alias uudiffc="diffc --unified=10000"
 alias pdiff="diff -Naur"
 
+# unclear why this is needed
+if [ "$(uname)" = "Darwin" ]; then
+	compdef -d diff
+fi
+
 alias tailf="tail -n 0 -F"
 
-alias pt="pstree -TapU -C age"
-alias ptl="pt -l | less"
-alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
+if [ "$(uname)" = "Darwin" ]; then
+	alias pt="pstree"
+	alias ptl="pstree | less"
+else
+	alias pt="pstree -TapU -C age"
+	alias ptl="pt -l | less"
+	alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
+fi
 
 alias s="cd ~/src"
 alias d="cd ~/.dotfiles"
@@ -44,28 +54,43 @@ alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
-alias pg="pgrep --list-full --full"
-alias pk="pkill --full"
-alias pkk="pkill -9 --full"
+if [ "$(uname)" != "Darwin" ]; then
+	alias pg="pgrep --list-full --full"
+	alias pk="pkill --full"
+	alias pkk="pkill -9 --full"
+fi
 
 alias sun="sort | uniq -c | sort -n"
-
-alias glances="glances --disable-left-sidebar"
 
 alias egrep="grep -E"
 
 alias jqc="jq --color-output"
-alias jqp="wl-paste | jqc"
+
+if [ "$(uname)" = "Darwin" ]; then
+	alias jqp="pbpaste | jqc"
+else
+	alias jqp="wl-paste | jqc"
+fi
 
 # default yaml output to stop needless warnings
 alias yq="yq -oy"
 alias yqc="yq --colors"
-alias yqp="wl-paste | yqc"
+
+if [ "$(uname)" = "Darwin" ]; then
+	alias jqp="pbpaste | yqc"
+else
+	alias yqp="wl-paste | yqc"
+fi
+
 
 # yq does not autocomplete files reliably
 compdef -d yq
 
-alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
+if [ "$(uname)" = "Darwin" ]; then
+	alias xsp="pbpaste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
+else
+	alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
+fi
 
 alias nin="ninja -C build"
 
