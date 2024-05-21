@@ -7,3 +7,6 @@ save_to_clipboard = true
 [shell]
 program = "/bin/zsh"
 args = [ "-l" ]
+
+[font]
+offset = { y = 1 }

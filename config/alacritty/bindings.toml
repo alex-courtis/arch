@@ -125,3 +125,7 @@ action = "ResetFontSize"
 key = "Equals"
 mods = "Control"
 
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Equals"
+mods = "Command"
