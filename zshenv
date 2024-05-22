@@ -4,6 +4,8 @@ path=(~/bin ~/.local/bin $path)
 source "${HOME}/.zsh/zshenv.appearance"
 source "${HOME}/.zsh/zshenv.function"
 
+export UNAME="$(uname)"
+
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
 export VISUAL="vi"
@@ -14,23 +16,6 @@ export PAGER="less"
 # git core.pager applies additional options
 export LESS="--RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --chop-long-lines"
 export SYSTEMD_LESS="${LESS}"
-
-if [ "$(uname)" != "Darwin" ]; then
-	# tell intellij that we're using a non-reparenting window manager
-	# maybe set suppress.focus.stealing=false custom setting
-	# pin any badly behaved popups
-	export _JAVA_AWT_NONREPARENTING=1
-	export _JAVA_AWT_WM_NONREPARENTING=1
-fi
-
-# some java build systems seem to like having JAVA_HOME set
-if [ -L /usr/lib/jvm/default ]; then
-	export JAVA_HOME=/usr/lib/jvm/default
-fi
-
-# allow use of "dev version" libraries under /usr/local/lib
-export LD_LIBRARY_PATH="/usr/local/lib"
-export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
 
 # XDG_RUNTIME_DIR and others set by systemd
 export XDG_CACHE_HOME=$HOME/.cache
@@ -46,9 +31,6 @@ export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-
-# it falls back to X successfully
-export MOZ_ENABLE_WAYLAND=1
 
 # suggest make behaviour
 export MAKEFLAGS="-j"

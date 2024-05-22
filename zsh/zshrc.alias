@@ -1,3 +1,13 @@
+if [ "${UNAME}" = "Darwin" ]; then
+	alias o="open"
+	paste="pbpaste"
+elif [ "${UNAME}" = "Linux" ]; then
+	alias o="xdg-open"
+	paste="wl-paste"
+else
+	paste="false"
+fi
+
 # executes non-interactive $SHELL passing -c arguments
 # final space allows aliases to be used, as root's .zshrc is not executed
 alias sudo="sudo -s "
@@ -21,31 +31,18 @@ alias uudiff="diff --unified=10000"
 alias uudiffc="diffc --unified=10000"
 alias pdiff="diff -Naur"
 
-# unclear why this is needed
-if [ "$(uname)" = "Darwin" ]; then
-	compdef -d diff
-fi
+# unclear why this is needed for macos
+compdef -d diff
 
 alias tailf="tail -n 0 -F"
-
-if [ "$(uname)" = "Darwin" ]; then
-	alias pt="pstree"
-	alias ptl="pstree | less"
-else
-	alias pt="pstree -TapU -C age"
-	alias ptl="pt -l | less"
-	alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
-fi
 
 alias s="cd ~/src"
 alias d="cd ~/.dotfiles"
 alias v="cd ~/.dotfiles/config/nvim"
-alias n="cd ${HOME}/src/nvim-tree"
-alias p="cd $XDG_DATA_HOME/nvim/site/pack/packer/start"
+alias n="cd ~/src/nvim-tree"
+alias p="cd ${XDG_DATA_HOME}/nvim/site/pack/packer/start"
 alias j="cd ~/src/jira"
 alias mc="cd ~/Library/Application\ Support"
-
-alias o="xdg-open"
 
 alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
 # COPY_ALWAYS does not work
@@ -55,45 +52,36 @@ alias rcdn-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcdn"
 alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
-if [ "$(uname)" != "Darwin" ]; then
-	alias pg="pgrep --list-full --full"
-	alias pk="pkill --full"
-	alias pkk="pkill -9 --full"
-fi
-
 alias sun="sort | uniq -c | sort -n"
 
 alias egrep="grep -E"
 
 alias jqc="jq --color-output"
 
-if [ "$(uname)" = "Darwin" ]; then
-	alias jqp="pbpaste | jqc"
-else
-	alias jqp="wl-paste | jqc"
-fi
+alias jqp="${paste} | jqc"
 
 # default yaml output to stop needless warnings
 alias yq="yq -oy"
 alias yqc="yq --colors"
-
-if [ "$(uname)" = "Darwin" ]; then
-	alias jqp="pbpaste | yqc"
-else
-	alias yqp="wl-paste | yqc"
-fi
-
+alias jqp="${paste} | yqc"
 
 # yq does not autocomplete files reliably
 compdef -d yq
 
-if [ "$(uname)" = "Darwin" ]; then
-	alias xsp="pbpaste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
-else
-	alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
-fi
+alias xsp="${paste} | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 
-alias nin="ninja -C build"
+if [ "${UNAME}" = "Darwin" ]; then
+	alias pt="pstree"
+	alias ptl="pstree | less"
+elif [ "${UNAME}" = "Linux" ]; then
+	alias pt="pstree -TapU -C age"
+	alias ptl="pt -l | less"
+	alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
+
+	alias pg="pgrep --list-full --full"
+	alias pk="pkill --full"
+	alias pkk="pkill -9 --full"
+fi
 
 alias vg="valgrind --leak-check=full --show-leak-kinds=all"
 alias vgg="vg --gen-suppressions=all"
@@ -121,3 +109,5 @@ alias enc="gpg --symmetric"
 alias dec="gpg --decrypt-files"
 
 alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
+
+unset paste

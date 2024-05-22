@@ -4,7 +4,7 @@
 
 doOpen()
 {
-  case "$(uname)" in
+  case "${UNAME}" in
   Darwin*)
     open "$@"
     ;;

@@ -1,6 +1,6 @@
 # TODO extract to host-
 # OSX moves these to the end of the path between zshenv and zprofile
-if [ "$(uname)" = "Darwin" ]; then
+if [ "${UNAME}" = "Darwin" ]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 
 	path=($(brew --prefix)/opt/util-linux/sbin $(brew --prefix)/opt/util-linux/bin $path)
