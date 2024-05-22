@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # # 000000 results in artifacts in the gaps
-riverctl background-color       "0x${BASE16[lighter_background]#*#}" 
+riverctl background-color       "0x010101"
 
 # others are overridden
 riverctl border-color-urgent    "0x${BASE16[comments]}"
@@ -24,7 +24,7 @@ wideriver \
 	--border-color-focused "0x${BASE16[dark_foreground]}" \
 	--border-color-focused-monocle "0x${BASE16[lighter_background]#*#}" \
 	--border-color-unfocused "0x${BASE16[lighter_background]#*#}" \
-	--log-threshold debug \
+	--log-threshold info \
 	> "/tmp/wideriver.${XDG_VTNR}.${USER}.log" 2>&1 &
 
 # set layout manager
