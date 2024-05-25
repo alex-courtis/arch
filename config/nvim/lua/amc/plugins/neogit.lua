@@ -22,12 +22,12 @@ opts.use_per_project_settings = false
 opts.remember_settings = false
 
 opts.kind = auto
+opts.commit_editor.kind = auto
 opts.commit_select_view.kind = auto
 opts.log_view.kind = auto
 opts.reflog_view.kind = auto
 
-opts.mappings.status["<tab>"] = false
-opts.mappings.status["<enter>"] = "Toggle"
+opts.mappings.status["t"] = "Toggle"
 opts.mappings.status["o"] = "GoToFile"
 
 opts.mappings.commit_editor["<c-b>"] = "PrevMessage"
