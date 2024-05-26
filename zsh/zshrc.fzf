@@ -1,9 +1,8 @@
 [ "$(whence fzf)" ] || return
 
 export FZF_DEFAULT_OPTS="\
-	--height=15 \
 	--exact \
-	--multi \
+	--height=60% \
 	--info=inline \
 	--layout=reverse \
 	--bind tab:down,shift-tab:up,del:toggle,left-click:select,right-click:deselect \
