@@ -5,9 +5,8 @@ local M = {}
 local CLOSE_INC_ORDER = {
   [buffers.Special.QUICK_FIX] = 1,
   [buffers.Special.FUGITIVE] = 2,
-  [buffers.Special.NEOGIT] = 3,
-  [buffers.Special.HELP] = 4,
-  [buffers.Special.NVIM_TREE] = 5,
+  [buffers.Special.HELP] = 3,
+  [buffers.Special.NVIM_TREE] = 4,
 }
 
 --- go to first nonspecial window, nuke if none found
