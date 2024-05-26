@@ -13,11 +13,6 @@ vim.cmd("highlight! link NvimTreeRootFolder NONE")
 vim.cmd("highlight! link NvimTreeNormal Comment")
 vim.cmd("highlight! link NvimTreeSymLink Italic")
 
--- only when explicitly advertised, nvim 0.10 will automatically use this
-if vim.fn.has "nvim-0.10" == 0 and vim.env.COLORTERM then
-  vim.o.termguicolors = true
-end
-
 if not vim.env.TERM:match("^linux") then
   vim.o.cursorline = true
 end

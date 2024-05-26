@@ -108,19 +108,10 @@ function M.format()
     return
   end
 
-  if vim.fn.has("nvim-0.10") == 1 then
-    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      if client.server_capabilities.documentFormattingProvider then
-        vim.lsp.buf.format()
-        return
-      end
-    end
-  elseif vim.lsp.buf.server_ready() then
-    for _, client in ipairs(vim.lsp.get_active_clients()) do
-      if client.server_capabilities.documentFormattingProvider then
-        vim.lsp.buf.format()
-        return
-      end
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    if client.server_capabilities.documentFormattingProvider then
+      vim.lsp.buf.format()
+      return
     end
   end
 

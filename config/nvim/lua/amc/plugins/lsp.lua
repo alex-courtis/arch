@@ -130,16 +130,11 @@ lspconfig.zls.setup({
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
 
-  if vim.fn.has("nvim-0.10") == 1 then
-    for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      if client.server_capabilities.definitionProvider then
-        vim.lsp.buf.definition()
-        return
-      end
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    if client.server_capabilities.definitionProvider then
+      vim.lsp.buf.definition()
+      return
     end
-  elseif vim.lsp.buf.server_ready() then
-    vim.lsp.buf.definition()
-    return
   end
 
   local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
