@@ -70,6 +70,10 @@ local cfg = actions
           attach_mappings = attach_quickfix_select,
           initial_mode = "normal",
         },
+        diagnostics = {
+          attach_mappings = attach_quickfix_select,
+          initial_mode = "normal",
+        },
       },
       defaults = {
         path_display = {
