@@ -104,10 +104,6 @@ lspconfig.lua_ls.setup({
           ["unused-vararg"] = "Any",
         },
       },
-      semantic = {
-        -- ugly and takes time to set
-        variable = false,
-      },
     },
   },
 })
