@@ -1,5 +1,7 @@
 [window]
-decorations = "Full"
+decorations = "Transparent"
+padding = { x = 0, y = 18 }
+dynamic_padding = true
 
 [selection]
 save_to_clipboard = true

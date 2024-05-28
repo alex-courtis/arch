@@ -36,8 +36,9 @@ function printtermtitle() {
 	fi
 
 	# don't include __git_ps1 in the print lest it be prompt substituted
-	print -Pn "%~ "
+	print -Pn "%~"
 
+	# TODO load this once
 	# obey ~/.nogitps1
 	if [ "${#NO_GIT_PS1}" -gt 0 ]; then
 		for d ("${NO_GIT_PS1[@]}"); do

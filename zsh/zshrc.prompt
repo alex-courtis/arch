@@ -10,6 +10,10 @@ if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ]; then
 	PS1_PRE="${PS1_PRE}${USER} "
 fi
 
+if [ "${UNAME}" = "Darwin" ]; then
+	PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
+fi
+
 if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
 	PS1_HL_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
 	PS1_HL_ERR="%F{#${BASE16[red]}}%K{#${HL_BG}}"
@@ -36,10 +40,13 @@ function precmd() {
 	fi
 	PREEXEC_D="false"
 
-	# no terminfo references as they are not reliable e.g. xterm missing fsl
-	print -n "\E]0;"
-	printtermtitle
-	print -n ""
+	# macos shows title before prompt
+	if [ "${UNAME}" != "Darwin" ]; then
+		# no terminfo references as they are not reliable e.g. xterm missing fsl
+		print -n "\E]0;"
+		printtermtitle
+		print -n ""
+	fi
 
 	# clear ^C for use by zle abort-buffer
 	stty intr undef
