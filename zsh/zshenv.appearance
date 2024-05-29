@@ -82,8 +82,8 @@ fi
 #
 case "${HOST}" in
 	gigantor*)
-		export FONT_SIZE_PT=14
-		export FONT_SIZE_PT_EVEN=14
+		export FONT_SIZE_PT=13
+		export FONT_SIZE_PT_EVEN=13
 		;;
 	*)
 		export FONT_SIZE_PT=11
