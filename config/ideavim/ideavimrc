@@ -63,7 +63,6 @@ nm <Space>, <Action>(CheckinProject)
 nm <Space>o <Action>(NextTab)
 nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
-nm <Space>Q <Action>(CloseAllEditorsButActive)
 
 nm <Space>. <Action>(GotoNextError)
 nm <Space>e <Action>(NextOccurence)
@@ -131,6 +130,7 @@ nm <BS>/  viw<Action>(Find)<Esc>
 vm <BS>/  <Action>(Find)<Esc>
 " -
 nm <BS>\ <Action>(CloseContent)
+nm <BS>\| <Action>(CloseAllEditorsButActive)
 
 nm <BS><Down> <Action>(NextTab)
 nm <BS><Up> <Action>(PreviousTab)
