@@ -41,8 +41,12 @@ alias d="cd ~/.dotfiles"
 alias v="cd ~/.dotfiles/config/nvim"
 alias n="cd ~/src/nvim-tree"
 alias p="cd ${XDG_DATA_HOME}/nvim/site/pack/packer/start"
-alias j="cd ~/src/jira"
-alias mc="cd ~/Library/Application\ Support"
+
+if [ "${UNAME}" = "Darwin" ]; then
+	alias s="cd ~/atlassian/src"
+	alias j="cd ~/atlassian/src/jira"
+	alias mc="cd ~/Library/Application\ Support"
+fi
 
 alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
 # COPY_ALWAYS does not work
