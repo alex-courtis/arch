@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+# derived from https://gitlab.archlinux.org/archlinux/packaging/packages/lua-language-server/-/blob/3.9.1-1/wrapper?ref_type=tags
+
+# system install scans /usr/lib - expensive and useless
+
+TMPPATH="/tmp/lua-language-server-$(id -u)"
+INSTANCEPATH="$TMPPATH/$(date +%Y%m%d_%H%M%S)"
+mkdir -p "${INSTANCEPATH}"
+
+"${HOME}/.local/lib/lua-language-server/bin/lua-language-server" \
+  --logpath="${INSTANCEPATH}/log" --metapath="${INSTANCEPATH}/meta" \
+  "$@"
+
+rm -rf "${INSTANCEPATH}"
