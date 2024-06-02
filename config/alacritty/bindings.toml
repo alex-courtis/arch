@@ -89,13 +89,25 @@ mods = "Control|Shift"
 key = "L"
 mode = "~AppCursor|~AppKeypad|~Alt"
 mods = "Control|Shift"
-command.program = "alacritty-clear"
+chars = "\u000c"
+
+[[keyboard.bindings]]
+key = "L"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control|Shift"
+action = "ClearHistory"
 
 [[keyboard.bindings]]
 key = "Return"
 mode = "~AppCursor|~AppKeypad|~Alt"
 mods = "Control|Shift"
-command.program = "alacritty-clear"
+chars = "\u000c"
+
+[[keyboard.bindings]]
+key = "Return"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Control|Shift"
+action = "ClearHistory"
 
 [[keyboard.bindings]]
 action = "First"
