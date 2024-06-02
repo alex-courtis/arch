@@ -1,4 +1,21 @@
 <keymap version="1" name="AMC" parent="Default for XWin">
+  <action id="$Copy">
+    <keyboard-shortcut first-keystroke="ctrl c" />
+    <keyboard-shortcut first-keystroke="meta c" />
+  </action>
+  <action id="$Cut">
+    <keyboard-shortcut first-keystroke="ctrl x" />
+    <keyboard-shortcut first-keystroke="shift delete" />
+    <keyboard-shortcut first-keystroke="meta x" />
+  </action>
+  <action id="$Paste">
+    <keyboard-shortcut first-keystroke="ctrl v" />
+    <keyboard-shortcut first-keystroke="meta v" />
+  </action>
+  <action id="$SelectAll">
+    <keyboard-shortcut first-keystroke="ctrl a" />
+    <keyboard-shortcut first-keystroke="meta a" />
+  </action>
   <action id="ActivateBigDataToolWindowToolWindow" />
   <action id="ActivateBookmarksToolWindow" />
   <action id="ActivateBuildToolWindow">
@@ -47,6 +64,18 @@
   <action id="DatabaseView.CopyAction" />
   <action id="DatabaseView.CopyDdlAction" />
   <action id="Diff.ShowDiff" />
+  <action id="Editor Copy">
+    <keyboard-shortcut first-keystroke="meta c" />
+  </action>
+  <action id="Editor Cut">
+    <keyboard-shortcut first-keystroke="meta x" />
+  </action>
+  <action id="Editor Paste">
+    <keyboard-shortcut first-keystroke="meta v" />
+  </action>
+  <action id="Editor SelectAll">
+    <keyboard-shortcut first-keystroke="meta a" />
+  </action>
   <action id="EditorChooseLookupItemReplace" />
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
