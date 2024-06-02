@@ -77,6 +77,10 @@ alias xsp="${paste} | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 if [ "${UNAME}" = "Darwin" ]; then
 	alias pt="pstree"
 	alias ptl="pstree | less"
+
+	alias pg="pgrep -lif"
+	alias pk="pkill -lif"
+	alias pkk="pkill -9 -lif"
 elif [ "${UNAME}" = "Linux" ]; then
 	alias pt="pstree -TapU -C age"
 	alias ptl="pt -l | less"
