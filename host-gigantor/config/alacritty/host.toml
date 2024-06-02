@@ -12,3 +12,15 @@ args = [ "-l" ]
 
 [font]
 offset = { y = 1 }
+
+[[keyboard.bindings]]
+key = "L"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Command"
+chars = "\u000c"
+
+[[keyboard.bindings]]
+key = "L"
+mode = "~AppCursor|~AppKeypad|~Alt"
+mods = "Command"
+action = "ClearHistory"
