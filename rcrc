@@ -1,7 +1,6 @@
 EXCLUDES="git doc root misc README.md config/BraveSoftware/Brave-Browser/Default"
 SYMLINK_DIRS="config/htop config/ideavim config/luacheck config/nvim config/river zsh"
 UNDOTTED="bin Library"
-COPY_ALWAYS="Library/*"
 
 # hooks/post-up/appearance.zsh will handle these
 export APPEARANCE_FILES="Xresources config/alacritty/appearance.toml config/waybar/style.css config/mako/config config/sway/config.d/appearance"
