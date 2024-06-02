@@ -64,6 +64,10 @@
   <action id="ChangesView.ToggleCommitUi" />
   <action id="CheckinProject" />
   <action id="CompareTwoFiles" />
+  <action id="Console.Execute.Multiline">
+    <keyboard-shortcut first-keystroke="ctrl enter" />
+    <keyboard-shortcut first-keystroke="meta enter" />
+  </action>
   <action id="CopyPaths" />
   <action id="CopyReference" />
   <action id="DatabaseView.CopyAction" />
