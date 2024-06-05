@@ -13,6 +13,7 @@ local api = require("nvim-tree.api")
 
 local NO_STARTUP_FT = {
   "gitcommit",
+  "gitrebase",
 }
 
 --- Absolute paths of the node.
