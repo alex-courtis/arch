@@ -10,6 +10,7 @@
   },
   "diagnostics": {
     "libraryFiles": "Disable",
+    "globals": [],
     "severity": {
       "deprecated": "Warning"
     },

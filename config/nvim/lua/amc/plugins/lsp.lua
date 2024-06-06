@@ -40,6 +40,15 @@ lspconfig.lua_ls.setup({
   capabilities = cmp_nvim_lsp.default_capabilities(),
   settings = {
     Lua = {
+      runtime = {
+        version = "Lua 5.1",
+      },
+      workspace = {
+        library = {
+          "$VIMRUNTIME/lua/vim",
+          "${3rd}/luv/library",
+        },
+      },
       completion = {
         callSnippet = "Replace",
       },
