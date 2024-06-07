@@ -3,10 +3,9 @@ compinit
 
 if [ "$(whence dircolors)" ]; then
 	eval $(dircolors)
-
 	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-	zstyle ':completion:*' menu select
-
 	unset LS_COLORS
 fi
 
+zstyle ':completion:*' completer _expand_alias _complete
+zstyle ':completion:*' menu select
