@@ -31,6 +31,9 @@ alias uudiff="diff --unified=10000"
 alias uudiffc="diffc --unified=10000"
 alias pdiff="diff -Naur"
 
+alias findh="find .      -path '*/\.*'"
+alias findv="find . -not -path '*/\.*'"
+
 # unclear why this is needed for macos
 compdef -d diff
 
