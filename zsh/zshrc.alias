@@ -104,4 +104,7 @@ alias dec="gpg --decrypt-files"
 
 alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
 
+alias mt="xdg-mime query filetype"
+alias ma="xdg-mime query default"
+
 unset paste

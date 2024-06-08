@@ -1,0 +1,12 @@
+#!/bin/sh
+
+files="$(mktemp /tmp/files.XXXXXX)"
+find . -not -path '*/\.*' > "${files}"
+
+while IFS= read -r file; do
+	type="$(xdg-mime query filetype "${file}")"
+	app="$(xdg-mime query default "${type}")"
+	printf "%-35.35s %-25.25s %s\n" "${type}" "${app}" "${file}"
+done < "${files}"
+
+rm "${files}"
