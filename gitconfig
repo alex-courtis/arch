@@ -56,3 +56,5 @@
 	#renameLimit = 9999
 #[diff]
 	#renameLimit = 9999
+
+# vim:ft=gitconfig
