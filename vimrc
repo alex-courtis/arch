@@ -19,19 +19,24 @@ nm	<Space>x	:b#<CR>
 
 syntax on
 
+set clipboard=unnamedplus,autoselect
 set cursorline
 set hlsearch
 set ignorecase
-set nowrapscan
+set number
 set smartcase
 set title
 set undofile
+set nowrapscan
 
-" stick to 16, no base16 extensions
-if &t_Co > 8
-	set term=xterm-16color
+" stick to 256, no base16 extensions
+if stridx(&term, "linux") != 0
+ 	set term=xterm-256color
 endif
 set bg=dark
 
 set listchars=tab:>\ ,trail:-,nbsp:+,space:·
 
+hi! link CursorLine CursorColumn
+hi! link CursorLineNr CursorColumn
+hi! link LineNr CursorColumn
