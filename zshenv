@@ -9,6 +9,8 @@ export UNAME="$(uname)"
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
 export VISUAL="vi"
+# except git commit, rebase etc.
+export GIT_EDITOR="vim"
 
 # better paging
 export PAGER="less"
