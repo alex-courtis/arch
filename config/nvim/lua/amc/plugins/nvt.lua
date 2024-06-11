@@ -16,6 +16,10 @@ local NO_STARTUP_FT = {
   "gitrebase",
 }
 
+local GIT_IGNORE_PATHS = {
+  vim.env.HOME .. "/atlassian/src/jira",
+}
+
 --- Absolute paths of the node.
 --- @return string|nil file node
 --- @return string|nil dir parent node of file otherwise node
@@ -69,6 +73,15 @@ local function git_restore()
   if path and dir then
     vim.fn.system({ "git", "-C", dir, "restore", path })
   end
+end
+
+local function ignore_path(path)
+  for _, p in ipairs(GIT_IGNORE_PATHS) do
+    if path:find(p, 1, true) == 1 then
+      return true
+    end
+  end
+  return false
 end
 
 local VIEW_WIDTH_FIXED = 30
@@ -200,6 +213,7 @@ local config = {
   git = {
     timeout = 800,
     show_on_open_dirs = false,
+    disable_for_dirs = ignore_path,
   },
   diagnostics = {
     enable = true,
