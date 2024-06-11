@@ -92,7 +92,6 @@
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
     <keyboard-shortcut first-keystroke="j" />
-    <keyboard-shortcut first-keystroke="tab" />
   </action>
   <action id="EditorDuplicate" />
   <action id="EditorLineEnd">
@@ -117,7 +116,6 @@
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="k" />
-    <keyboard-shortcut first-keystroke="shift tab" />
   </action>
   <action id="ExportToTextFile" />
   <action id="FileChooser.GotoDesktop" />
@@ -149,12 +147,8 @@
   <action id="RunDashboard.CopyConfiguration" />
   <action id="SendEOF" />
   <action id="ShowBookmarks" />
-  <action id="SwitcherBackward">
-    <keyboard-shortcut first-keystroke="ctrl l" />
-  </action>
   <action id="SwitcherForward">
     <keyboard-shortcut first-keystroke="ctrl x" />
-    <keyboard-shortcut first-keystroke="ctrl h" />
   </action>
   <action id="TypeHierarchy" />
   <action id="TypeHierarchyBase.BaseOnThisType" />
