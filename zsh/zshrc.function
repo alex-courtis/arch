@@ -65,6 +65,7 @@ make_chdir_sub wr "${HOME}/src/wideriver"
 make_chdir_sub pa "${XDG_DATA_HOME}/nvim/site/pack/packer/start"
 
 if [ "${UNAME}" = "Darwin" ]; then
+	make_chdir_sub a  "${HOME}/atlassian"
 	make_chdir_sub s  "${HOME}/atlassian/src"
 	make_chdir_sub j  "${HOME}/atlassian/src/jira"
 	make_chdir_sub mc "${HOME}/Library/Application\ Support"
