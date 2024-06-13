@@ -3,6 +3,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
 
 set clipboard+=unnamed
+set hlsearch
 set ideajoin
 set idearefactormode=keep
 set ignorecase
@@ -46,6 +47,8 @@ sethandler <C-X> a:ide
 sethandler <C-Y> a:vim
 sethandler <C-[> a:vim
 sethandler <C-]> a:vim
+
+nm <ESC> :nohls<CR><ESC>
 
 " idea does not like setting mapleader to <BS>
 
