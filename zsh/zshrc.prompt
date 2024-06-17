@@ -2,8 +2,12 @@ setopt promptsubst
 
 PS1_PRE=": "
 PS1_SUF=";"
-if [ "${USER}" = "root" ]; then
-    PS1_PRE="${PS1_PRE}${HOST} "
+if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
+	if [ -n "${RDE_PROFILE_NAME}" ]; then
+		PS1_PRE="${PS1_PRE}RDE:${RDE_PROFILE_NAME} "
+	else
+		PS1_PRE="${PS1_PRE}${HOST} "
+	fi
 fi
 
 if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then

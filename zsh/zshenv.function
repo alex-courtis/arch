@@ -32,7 +32,11 @@ function printtermtitle() {
 	fi
 
 	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
-		print -n "${HOST}  "
+		if [ -n "${RDE_PROFILE_NAME}" ]; then
+			print -n "RDE:${RDE_PROFILE_NAME}  "
+		else
+			print -n "${HOST}  "
+		fi
 	fi
 
 	# don't include __git_ps1 in the print lest it be prompt substituted
