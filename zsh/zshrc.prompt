@@ -2,11 +2,11 @@ setopt promptsubst
 
 PS1_PRE=": "
 PS1_SUF=";"
-if [ -n "${SSH_CONNECTION}" ] || [ "${USER}" = "root" ]; then
+if [ "${USER}" = "root" ]; then
     PS1_PRE="${PS1_PRE}${HOST} "
 fi
 
-if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ]; then
+if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
 	PS1_PRE="${PS1_PRE}${USER} "
 fi
 
