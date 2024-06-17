@@ -31,7 +31,7 @@ function printtermtitle() {
 		unset git_ps1_script
 	fi
 
-	if [ "${USER}" = "root" ]; then
+	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
 		print -n "${HOST}  "
 	fi
 
