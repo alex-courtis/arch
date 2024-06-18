@@ -3,23 +3,15 @@ setopt promptsubst
 PS1_PRE=": "
 PS1_SUF=";"
 if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
-	if [ -n "${RDE_PROFILE_NAME}" ]; then
-		PS1_PRE="${PS1_PRE}RDE:${RDE_PROFILE_NAME} "
-	else
-		PS1_PRE="${PS1_PRE}${HOST} "
-	fi
+	PS1_PRE="${PS1_PRE}${HOST} "
 fi
 
 if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
 	PS1_PRE="${PS1_PRE}${USER} "
 fi
 
-# macos shows title before prompt unless in a tmux session; title bar is not readable
-if [ "${UNAME}" = "Darwin" -a -z "${TMUX}" ]; then
-	PS1_TITLE="true"
+if [ "${PS1_TITLE}" = "true" ]; then
 	PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
-else
-	PS1_TITLE="false"
 fi
 
 if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
