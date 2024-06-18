@@ -1,12 +1,5 @@
 fpath=(${XDG_DATA_HOME}/zsh/site-functions /opt/homebrew/share/zsh/site-functions $fpath)
 
-PS1_TITLE="false"
-if [ "${UNAME}" = "Darwin" ] || [ -z "${RDE_PROFILE_NAME}" ]; then
-	if [ -z "${TMUX}" ]; then
-		PS1_TITLE="true"
-	fi
-fi
-
 source "${HOME}/.zsh/zshrc.completion"
 source "${HOME}/.zsh/zshrc.zle"
 source "${HOME}/.zsh/zshrc.fzf"
