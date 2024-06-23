@@ -1,31 +1,11 @@
 setopt promptsubst
 
-PS1_TITLE="false"
-if [ "${UNAME}" = "Darwin" ] || [ -n "${RDE_PROFILE_NAME}" ]; then
-	if [ -z "${TMUX}" ]; then
-		PS1_TITLE="true"
-	fi
-fi
-
-PS1_HOST="false"
-if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ] && [ -z "${RDE_PROFILE_NAME}" ]; then
-	PS1_HOST="true"
-fi
-
 PS1_PRE=": "
 PS1_SUF=";"
 
-if [ "${PS1_HOST}" = "true" ]; then
-	PS1_PRE="${PS1_PRE}${HOST} "
-fi
-
-if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
-	PS1_PRE="${PS1_PRE}${USER} "
-fi
-
-if [ "${PS1_TITLE}" = "true" ]; then
-	PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
-fi
+[ -n "${PS1_HOST}"   ] && PS1_PRE="${PS1_PRE}${HOST} "
+[ -n "${PS1_USER}"   ] && PS1_PRE="${PS1_PRE}${USER} "
+[ -z "${TERM_TITLE}" ] && PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
 
 if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
 	PS1_HL_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
@@ -53,7 +33,7 @@ function precmd() {
 	fi
 	PREEXEC_D="false"
 
-	if [ "${PS1_TITLE}" = "false" ]; then
+	if [ -n "${TERM_TITLE}" ]; then
 		# no terminfo references as they are not reliable e.g. xterm missing fsl
 		print -n "\E]0;"
 		printtermtitle

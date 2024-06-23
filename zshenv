@@ -65,3 +65,13 @@ if [ "$(whence luarocks)" ]; then
 	eval "$(luarocks path)"
 fi
 
+if [ "${UNAME}" != "Darwin" ] && [ -z "${RDE_PROFILE_NAME}" ] || [ -z "${TMUX}" ]; then
+	export TERM_TITLE="true"
+fi
+if [ -n "${SSH_CONNECTION}" ] && [ -z "${RDE_PROFILE_NAME}" ]; then
+	export PS1_HOST="true"
+fi
+if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
+	export PS1_USER="true"
+fi
+
