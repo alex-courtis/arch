@@ -16,7 +16,11 @@ local NO_STARTUP_FT = {
   "gitrebase",
 }
 
-local GIT_IGNORE_PATHS = {
+local GIT_DISABLE_FOR_DIRS = {
+  vim.env.HOME .. "/atlassian/src/jira",
+}
+
+local FILESYSTEM_WATCHERS_IGNORE_DIRS = {
   vim.env.HOME .. "/atlassian/src/jira",
 }
 
@@ -75,8 +79,17 @@ local function git_restore()
   end
 end
 
-local function ignore_path(path)
-  for _, p in ipairs(GIT_IGNORE_PATHS) do
+local function git_disable_for_dirs(path)
+  for _, p in ipairs(GIT_DISABLE_FOR_DIRS) do
+    if path:find(p, 1, true) == 1 then
+      return true
+    end
+  end
+  return false
+end
+
+local function filesystem_watchers_ignore_dirs(path)
+  for _, p in ipairs(FILESYSTEM_WATCHERS_IGNORE_DIRS) do
     if path:find(p, 1, true) == 1 then
       return true
     end
@@ -213,7 +226,7 @@ local config = {
   git = {
     timeout = 800,
     show_on_open_dirs = false,
-    disable_for_dirs = ignore_path,
+    disable_for_dirs = git_disable_for_dirs,
   },
   diagnostics = {
     enable = true,
@@ -232,6 +245,9 @@ local config = {
   modified = {
     enable = true,
     show_on_open_dirs = false,
+  },
+  filesystem_watchers = {
+    ignore_dirs = filesystem_watchers_ignore_dirs,
   },
   actions = {
     change_dir = {
