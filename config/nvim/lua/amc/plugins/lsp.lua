@@ -52,6 +52,10 @@ lspconfig.lua_ls.setup({
       completion = {
         callSnippet = "Replace",
       },
+      semantic = {
+        -- ugly and takes time to set
+        variable = false,
+      },
     },
   },
 })
