@@ -72,6 +72,7 @@ if [ -n "${SSH_CONNECTION}" ] && [ -z "${RDE_PROFILE_NAME}" ]; then
 	export PS1_HOST="true"
 fi
 if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
+	export PS1_HOST="true"
 	export PS1_USER="true"
 fi
 
