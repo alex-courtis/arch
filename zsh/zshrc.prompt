@@ -3,7 +3,7 @@ setopt promptsubst
 PS1_PRE=": "
 PS1_SUF=";"
 
-[ -n "${PS1_HOST}"   ] && PS1_PRE="${PS1_PRE}${HOST} "
+[ -n "${PS1_HOST}"   ] && PS1_PRE="${PS1_PRE}${HOST/.*/} "
 [ -n "${PS1_USER}"   ] && PS1_PRE="${PS1_PRE}${USER} "
 [ -z "${TERM_TITLE}" ] && PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
 

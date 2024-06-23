@@ -31,14 +31,6 @@ function printtermtitle() {
 		unset git_ps1_script
 	fi
 
-	if [ -n "${SSH_CONNECTION}" -o "${USER}" = "root" ]; then
-		if [ -n "${RDE_PROFILE_NAME}" ]; then
-			print -n "RDE:${RDE_PROFILE_NAME}  "
-		else
-			print -n "${HOST}  "
-		fi
-	fi
-
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~"
 
