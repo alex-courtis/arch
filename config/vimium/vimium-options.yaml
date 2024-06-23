@@ -34,6 +34,7 @@ searchEngines: |-
   aw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
   d: https://duckduckgo.com/?q=%s DuckDuckGo Search
   di: https://duckduckgo.com/?iar=images&q=%s DuckDuckGo Images
+  ew: https://eldenring.fandom.com/wiki/Special:Search?query=%s Elden Ring Wiki
   g: https://google.com/search?q=%s Google Search
   gi: https://images.google.com/search?q=%s Google Images
   h: https://hello.atlassian.net/wiki/search?text=%s Hello Search
