@@ -5,6 +5,14 @@ if [ $# -ne 1 ]; then
 	exit 1
 fi
 
+if [ "${UNAME}" = "Darwin" ]; then
+	PG_CMD="pgrep -lif "
+	PK_CMD="pkill -lif "
+else
+	PG_CMD="pgrep ${PG_CMD}"
+	PK_CMD="pkill --echo --full"
+fi
+
 HOST="${1}"
 
 PORT_REMOTE=2489
@@ -14,21 +22,21 @@ PAT_SERVER="lemonade server"
 PAT_TUNNEL="${HOST}.*${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
 
 # kill server
-pkill --echo --full "${PAT_SERVER}"
+${PK_CMD}"${PAT_SERVER}"
 
 # kill tunnel
-pkill --echo --full "${PAT_TUNNEL}"
+${PK_CMD}"${PAT_TUNNEL}"
 
 # start server
 lemonade server --port=${PORT_LOCAL} --allow="127.0.0.1,::1" > /tmp/lem.log 2>&1 &
-if ! pgrep --list-full --full "${PAT_SERVER}"; then
+if ! ${PG_CMD} "${PAT_SERVER}"; then
 	cat /tmp/lem.log
 	exit 1
 fi
 
 # start tunnel
 ssh "${HOST}" -f -N -R "${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
-if ! pgrep --list-full --full "${PAT_TUNNEL}"; then
+if ! ${PG_CMD} "${PAT_TUNNEL}"; then
 	exit 1
 fi
 
