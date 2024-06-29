@@ -431,7 +431,6 @@ Minimum:
 calc
 dnsutils
 efibootmgr
-fd
 fwupd
 fzf
 inetutils
