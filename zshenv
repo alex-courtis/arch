@@ -1,3 +1,6 @@
+echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.log
+[ "${UNAME}" = "Linux" ] && bell2
+
 typeset -U path
 path=(~/bin ~/.local/bin $path)
 

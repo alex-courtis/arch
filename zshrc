@@ -1,3 +1,6 @@
+echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.log
+[ "${UNAME}" = "Linux" ] && bell4
+
 fpath=(${XDG_DATA_HOME}/zsh/site-functions /opt/homebrew/share/zsh/site-functions $fpath)
 
 source "${HOME}/.zsh/zshrc.completion"

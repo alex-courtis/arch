@@ -1,3 +1,6 @@
+echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.log
+[ "${UNAME}" = "Linux" ] && bell
+
 # TODO extract to host-
 # OSX moves these to the end of the path between zshenv and zprofile
 if [ "${UNAME}" = "Darwin" ]; then
