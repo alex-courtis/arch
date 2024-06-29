@@ -19,6 +19,7 @@ local function ft(pattern, callback, opts)
 end
 
 -- stylua: ignore start
+au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
 au({ "BufEnter" },                                              buffers.wipe_alt_no_name_new, {})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,        {})
@@ -30,10 +31,6 @@ au({ "VimEnter" },                                              nvim_tree_amc.vi
 
 ft({ "fugitive" },                                              fugitive_amc.attach,          {})
 -- stylua: ignore end
-
-if vim.env.TERM_TITLE then
-  au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title, {})
-end
 
 -- v/h resize windows on terminal size change
 au({ "VimResized" }, function()
