@@ -1,0 +1,9 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+path=($(brew --prefix)/opt/util-linux/sbin $(brew --prefix)/opt/util-linux/bin $path)
+
+eval "$(mise activate zsh)"
+
+path=(~/bin ~/.local/bin $path)
+
+# vim:ft=zsh
