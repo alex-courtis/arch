@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pacmd play-file /usr/share/sounds/freedesktop/stereo/dialog-warning.oga @DEFAULT_SINK@
+

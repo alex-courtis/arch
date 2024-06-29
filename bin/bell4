@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pacmd play-file /usr/share/sounds/freedesktop/stereo/complete.oga @DEFAULT_SINK@
+
