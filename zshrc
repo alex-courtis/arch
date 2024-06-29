@@ -1,5 +1,5 @@
-echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.log
-[ "${UNAME}" = "Linux" ] && bell4
+echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
+[ "${UNAME}" = "Linux" ] && [ "${USER}" != "root" ] && bell4
 
 fpath=(${XDG_DATA_HOME}/zsh/site-functions /opt/homebrew/share/zsh/site-functions $fpath)
 
