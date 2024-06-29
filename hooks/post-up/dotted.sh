@@ -2,6 +2,6 @@
 
 # rcup just cannot handle dotted files
 
-ln -s \
+ln -fs \
 	"${HOME}/.dotfiles/local/share/nvim/site/pack/packer/start/.luarc.json" \
 	"${HOME}/.local/share/nvim/site/pack/packer/start/.luarc.json"
