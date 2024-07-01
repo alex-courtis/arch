@@ -18,10 +18,12 @@ local NO_STARTUP_FT = {
 
 local GIT_DISABLE_FOR_DIRS = {
   vim.env.HOME .. "/atlassian/src/jira",
+  vim.env.HOME .. "/jira",
 }
 
 local FILESYSTEM_WATCHERS_IGNORE_DIRS = {
   vim.env.HOME .. "/atlassian/src/jira",
+  vim.env.HOME .. "/jira",
 }
 
 --- Absolute paths of the node.
