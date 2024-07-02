@@ -371,10 +371,19 @@ vi /boot/loader/loader.conf
 ```
 ```
 timeout 2
-default Arch Linux
+default arch.conf
 ```
 
 Try `console-mode max` to use native resolution.
+
+Add memtest86+:
+```sh
+vi /boot/loader/entries/memtest.conf
+```
+```
+title Memtest86+
+efi /memtest86+/memtest.efi
+```
 
 ### Reboot
 
@@ -438,6 +447,7 @@ jq
 keychain
 man-db
 man-pages
+memtest86+-efi
 neovim
 nfs-utils
 pacman-contrib
