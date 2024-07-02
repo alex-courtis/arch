@@ -378,6 +378,7 @@ Try `console-mode max` to use native resolution.
 
 Add memtest86+:
 ```sh
+pacman -S memtest86+-efi
 vi /boot/loader/entries/memtest.conf
 ```
 ```
