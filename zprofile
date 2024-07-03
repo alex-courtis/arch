@@ -1,5 +1,4 @@
 echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
-[ "${UNAME}" = "Linux" ] && [ "${USER}" != "root" ] && bell
 
 [ -f "${HOME}/.zprofile.host" ] && . "${HOME}/.zprofile.host"
 

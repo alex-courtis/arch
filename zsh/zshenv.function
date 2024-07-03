@@ -23,7 +23,6 @@ function printtermtitle() {
 		if [ "${UNAME}" = "Darwin" ]; then
 			git_ps1_script="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
 		else
-			bell5
 			git_ps1_script="/usr/share/git/completion/git-prompt.sh"
 		fi
 		if [ -f "${git_ps1_script}" ]; then
