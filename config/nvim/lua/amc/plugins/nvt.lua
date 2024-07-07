@@ -269,7 +269,13 @@ local config = {
   notify = {
     absolute_path = false,
   },
-  experimental = {},
+  experimental = {
+    actions = {
+      open_file = {
+        relative_path = true,
+      },
+    },
+  },
   log = {
     enable = false,
     truncate = true,
