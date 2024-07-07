@@ -550,7 +550,9 @@ RCRC="${HOME}/.dotfiles/rcrc" rcup -v
 
 ln -fs /usr/bin/nvim ~/bin/vi
 
-ln -s /home/alex/.ssh .
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+cp /home/alex/.ssh/id_* /home/alex/.ssh/authorized_keys .ssh
 ```
 
 ### Disable systemd-userdbd
