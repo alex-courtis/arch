@@ -7,14 +7,19 @@ if not lspconfig_ok or not cmp_nvim_lsp_ok then
   return M
 end
 
+--- @type vim.lsp.Client.Flags
 local start_client_flags = {
   debounce_text_changes = 500,
+  exit_timeout = false,
 }
 
-lspconfig.ccls.setup({
+--
+-- cc
+--
+--- @type lspconfig.Config
+local ccls = {
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
-  root_dir = lspconfig and lspconfig.util.root_pattern(".ccls", "build/compile_commands.json") or nil,
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -27,15 +32,24 @@ lspconfig.ccls.setup({
       },
     },
   },
-})
+}
+lspconfig.ccls.setup(ccls)
 
-local config_jsonls = {
+--
+-- json
+--
+--- @type lspconfig.Config
+local jsonls = {
   capabilities = vim.lsp.protocol.make_client_capabilities(),
 }
-config_jsonls.capabilities.textDocument.completion.completionItem.snippetSupport = true
-lspconfig.jsonls.setup(config_jsonls)
+jsonls.capabilities.textDocument.completion.completionItem.snippetSupport = true
+lspconfig.jsonls.setup(jsonls)
 
-lspconfig.lua_ls.setup({
+--
+-- lua
+--
+--- @type lspconfig.Config
+local luals = {
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
   settings = {
@@ -58,9 +72,14 @@ lspconfig.lua_ls.setup({
       },
     },
   },
-})
+}
+lspconfig.lua_ls.setup(luals)
 
-lspconfig.yamlls.setup({
+--
+-- yaml
+--
+--- @type lspconfig.Config
+local yamlls = {
   settings = {
     yaml = {
       schemas = {
@@ -68,12 +87,18 @@ lspconfig.yamlls.setup({
       },
     },
   },
-})
+}
+lspconfig.yamlls.setup(yamlls)
 
-lspconfig.zls.setup({
+--
+-- zig
+--
+--- @type lspconfig.Config
+local zls = {
   flags = start_client_flags,
   capabilities = cmp_nvim_lsp.default_capabilities(),
-})
+}
+lspconfig.zls.setup(zls)
 
 function M.goto_definition_or_tag()
   vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
