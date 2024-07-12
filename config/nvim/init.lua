@@ -10,9 +10,21 @@ local util = require("amc.util")
 log.line("---- init options")
 require("amc.init.options")
 
--- installs but does not load
-log.line("---- init pack")
-local bootstrapped = require("amc.init.pack")({
+log.line("---- pckr bootstrap")
+local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
+if not vim.loop.fs_stat(pckr_path) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/lewis6991/pckr.nvim",
+    pckr_path,
+  })
+end
+vim.opt.rtp:prepend(pckr_path)
+
+log.line("---- pckr add")
+require("pckr").add({
   "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "farmergreg/vim-lastplace",
@@ -43,9 +55,6 @@ local bootstrapped = require("amc.init.pack")({
   "vim-scripts/ReplaceWithRegister",
   "ziglang/zig.vim",
 })
-if bootstrapped then
-  return
-end
 
 log.line("---- init early")
 require("amc.init.appearance")
