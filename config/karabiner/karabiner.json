@@ -50,13 +50,12 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "x",
+                                    "key_code": "escape",
                                     "modifiers": {
                                         "mandatory": [
                                             "command",
                                             "control",
-                                            "option",
-                                            "shift"
+                                            "option"
                                         ]
                                     }
                                 },

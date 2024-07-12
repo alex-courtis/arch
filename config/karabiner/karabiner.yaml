@@ -38,13 +38,12 @@ profiles:
         - description: lock
           manipulators:
             - from:
-                key_code: x
+                key_code: escape
                 modifiers:
                   mandatory:
                     - command
                     - control
                     - option
-                    - shift
               to:
                 - key_code: x
                   modifiers:
