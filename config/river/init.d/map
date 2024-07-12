@@ -16,7 +16,8 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 # thumbs
 #
 
-# Escape
+riverctl map normal $mod1 Escape spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
+
 riverctl map normal $mod1 BackSpace close
 riverctl map normal $mod2 BackSpace spawn "steam -shutdown"
 riverctl map normal $mod3 BackSpace exit
@@ -44,13 +45,11 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 done
 
 # x
-riverctl map normal $mod1 apostrophe spawn "bemenu-run > /dev/null 2>&1"
-riverctl map normal $mod2 apostrophe spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
-# annoying, to get out of the cmd-Q habit for macOS
-riverctl map normal $mod1 q set-focused-tags 1024
+riverctl map normal $mod1 apostrophe spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
+riverctl map normal $mod2 apostrophe spawn "bemenu-run > /dev/null 2>&1"
+riverctl map normal $mod1 q spawn bp
 riverctl map normal $mod1 j spawn term
 riverctl map normal $mod1 k spawn b
-riverctl map normal $mod2 k spawn bp
 
 #
 # right
@@ -81,16 +80,13 @@ riverctl map normal $mod2 h swap previous
 riverctl map normal $mod1 t send-layout-cmd wideriver "--ratio -0.025"
 riverctl map normal $mod2 t send-layout-cmd wideriver "--ratio 0.35"
 
-# z\
+# wz\
 riverctl map normal $mod1 b spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
 riverctl map normal $mod2 b send-layout-cmd wideriver "--stack diminish"
 
 riverctl map normal $mod1 m focus-output previous
 riverctl map normal $mod2 m spawn "riverctl send-to-output previous && riverctl focus-output previous"
 riverctl map normal $mod3 m send-to-output previous
-
-riverctl map normal $mod1 w set-focused-tags 1024
-riverctl map normal $mod2 w set-focused-tags 1024
 
 riverctl map normal $mod1 v focus-output next
 riverctl map normal $mod2 v spawn "riverctl send-to-output next && riverctl focus-output next"
@@ -100,10 +96,9 @@ riverctl map normal $mod3 v send-to-output next
 # big right
 #
 
-# cr
+# crl
 riverctl map normal $mod3 f spawn "volraisemic"
 riverctl map normal $mod3 g spawn "volraise"
-riverctl map normal $mod3 l spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 riverctl map normal $mod3 slash spawn "pa-mute-all"
 
 # tn
