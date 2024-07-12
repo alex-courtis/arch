@@ -88,8 +88,8 @@ case "${HOST}" in
 		export FONT_SIZE_PT_EVEN=13
 		;;
 	*)
-		export FONT_SIZE_PT=11
-		export FONT_SIZE_PT_EVEN=12
+		export FONT_SIZE_PT=13
+		export FONT_SIZE_PT_EVEN=14
 		;;
 esac
 
