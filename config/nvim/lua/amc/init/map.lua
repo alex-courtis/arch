@@ -27,9 +27,6 @@ K.vm__(";", ":")
 K.nm__("q;", "q:")
 K.vm__("q;", "q:")
 
-K.nmsl(":", vim.cmd.cclose)
-K.nmsl(";", vim.cmd.copen)
-
 K.cm__("<C-j>", "<Down>")
 K.cm__("<C-k>", "<Up>")
 
@@ -50,6 +47,8 @@ end)
 -- fn
 
 -- [
+K.nmsl(";", vim.cmd.copen)
+K.nmsl(":", vim.cmd.cclose)
 K.nmsl("a", nvim_tree_amc.open_find)
 K.nmsl("A", nvim_tree_amc.open_find_update_root)
 K.nmsl("'", windows.close_inc)
@@ -61,12 +60,14 @@ K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", vim.cmd.only)
 K.nmsl("q", windows.close)
 
--- }
+K.nm_l("}", ": <C-r>=expand('%:p')<CR><Home>")
+K.nm_l("3", ": <C-r>=expand('%:.')<CR><Home>")
 K.nmsl(".", lsp_amc.goto_next)
 K.nmsl("e", windows.cnext)
 -- j gitsigns.next_hunk
 
--- (
+K.nm_l("(", ": <C-r>=expand('<cword>')<CR><Home>")
+K.vm_l("(", '"*y: <C-r>=getreg("*")<CR><Home>')
 K.nmsl("p", lsp_amc.goto_prev)
 K.nmsl("u", windows.cprev)
 -- k gitsigns.prev_hunk
