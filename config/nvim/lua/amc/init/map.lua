@@ -71,8 +71,10 @@ K.nmsl("p", lsp_amc.goto_prev)
 K.nmsl("u", windows.cprev)
 -- k gitsigns.prev_hunk
 
--- =
-K.nmsl("y", telescope_amc.git_status)
+K.nmsl("=", telescope_amc.git_status)
+K.nmsl("yn", ':let @+ = expand("%:t")<CR>')
+K.nmsl("yr", ':let @+ = expand("%:.")<CR>')
+K.nmsl("yy", ':let @+ = expand("%:p")<CR>')
 K.nmsl("i", telescope_amc.buffers)
 K.nm_l("I", telescope_amc.builtin)
 K.nmsl("x", buffers.safe_hash)
