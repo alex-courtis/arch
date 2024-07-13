@@ -205,4 +205,14 @@ function M.find_files_hidden()
   M.find_files({ hidden = true })
 end
 
+-- grep in directory
+vim.api.nvim_create_user_command("RD", function(cmd)
+  M.live_grep({ search_dirs = cmd.fargs })
+end, { nargs = "+", complete = "dir" })
+
+-- grep by filetype
+vim.api.nvim_create_user_command("RT", function(cmd)
+  M.live_grep({ type_filter = cmd.args })
+end, { nargs = 1 })
+
 return M

@@ -29,8 +29,9 @@ function M.update_title()
   vim.o.titlestring = vim.fn.system("printtermtitle")
 end
 
-function M.cd_init_cwd()
+-- return to initial cwd
+vim.api.nvim_create_user_command("CD", function()
   vim.cmd.cd(M.init_cwd)
-end
+end, {})
 
 return M
