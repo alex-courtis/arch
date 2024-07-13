@@ -22,8 +22,7 @@ local config = {
   }),
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    { name = "vsnip" },
-    { name = "nvim_lua" }, -- '_G.', 'vim.`
+    -- { name = "vsnip" }, -- not sure what this did
   }),
 }
 

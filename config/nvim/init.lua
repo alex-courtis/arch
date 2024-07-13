@@ -33,7 +33,6 @@ require("pckr").add({
   { "hashivim/vim-terraform" },
   { "haya14busa/vim-asterisk" },
   { "hrsh7th/cmp-nvim-lsp", requires = { "hrsh7th/nvim-cmp" } },
-  { "hrsh7th/cmp-nvim-lua", requires = { "hrsh7th/nvim-cmp" } },
   { "hrsh7th/cmp-vsnip", requires = { "hrsh7th/nvim-cmp" } },
   { "hrsh7th/vim-vsnip" },
   { "kkharji/sqlite.lua" },
