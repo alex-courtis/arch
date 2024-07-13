@@ -1,3 +1,4 @@
+local map = require("amc.init.map")
 local buffers = require("amc.buffers")
 local env = require("amc.env")
 local windows = require("amc.windows")
@@ -21,6 +22,7 @@ end
 -- stylua: ignore start
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
+au({ "BufEnter" },                                              map.reset_mappings,           {})
 au({ "BufEnter" },                                              buffers.wipe_alt_no_name_new, {})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,        {})
 au({ "BufLeave", "FocusLost" },                                 buffers.update,               { nested = true })
