@@ -168,7 +168,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'tg',       live_grep,                                    opts('Live Grep'))
   vim.keymap.set('n', 'yn',       api.fs.copy.filename,                         opts('Copy Name'))
   vim.keymap.set('n', 'yr',       api.fs.copy.relative_path,                    opts('Copy Relative Path'))
-  vim.keymap.set('n', 'yy',       api.fs.copy.absolute_path,                    opts('Copy Absolute Path'))
+  vim.keymap.set('n', 'ya',       api.fs.copy.absolute_path,                    opts('Copy Absolute Path'))
   -- stylua: ignore end
 end
 
