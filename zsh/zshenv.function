@@ -23,7 +23,11 @@ function printtermtitle() {
 		if [ "${UNAME}" = "Darwin" ]; then
 			git_ps1_script="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
 		else
-			git_ps1_script="/usr/share/git/completion/git-prompt.sh"
+			if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
+				git_ps1_script="/usr/share/git/completion/git-prompt.sh"
+			elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
+				git_ps1_script="/usr/lib/git-core/git-sh-prompt"
+			fi
 		fi
 		if [ -f "${git_ps1_script}" ]; then
 			GIT_PS1_SHOWDIRTYSTATE="true"
