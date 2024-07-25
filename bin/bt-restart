@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -x
+
+# intel AX210 is flakey
+# removing the loaded module seems to be the key
+# service seems to cope
+sudo rmmod btusb
+sudo modprobe btusb
+
