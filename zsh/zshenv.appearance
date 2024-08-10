@@ -85,11 +85,11 @@ fi
 case "${HOST}" in
 	gigantor*)
 		export FONT_SIZE_PT=16
-		export FONT_SIZE_PT_EVEN=16
+		export FONT_SIZE_PT_BAR=16
 		;;
 	*)
-		export FONT_SIZE_PT=13
-		export FONT_SIZE_PT_EVEN=14
+		export FONT_SIZE_PT=12
+		export FONT_SIZE_PT_BAR=14
 		;;
 esac
 
