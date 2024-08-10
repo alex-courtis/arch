@@ -135,8 +135,6 @@ local function on_attach(bufnr)
   vim.keymap.del('n', 'D',     { buffer = bufnr }) -- api.fs.trash,
   vim.keymap.del('n', ']e',    { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
   vim.keymap.del('n', '[e',    { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
-  vim.keymap.del('n', 'F',     { buffer = bufnr }) -- api.live_filter.clear,
-  vim.keymap.del('n', 'f',     { buffer = bufnr }) -- api.live_filter.start,
   vim.keymap.del('n', 'g?',    { buffer = bufnr }) -- api.tree.toggle_help,
   vim.keymap.del('n', 'gy',    { buffer = bufnr }) -- api.fs.copy.absolute_path,
   vim.keymap.del('n', 'y',     { buffer = bufnr }) -- api.fs.copy.filename,
