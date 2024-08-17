@@ -80,10 +80,10 @@ K.nmsl("u", windows.cprev)
 K.nmsl("y", telescope_amc.git_status)
 K.nmsl("i", telescope_amc.buffers)
 K.nm_l("I", telescope_amc.builtin)
-K.nmsl("x", buffers.safe_hash)
+K.nmsl("x", ":silent BA<CR>")
 
-K.nms_("<Space><BS>", buffers.back)
-K.nms_("<BS><BS>", buffers.back)
+K.nms_("<Space><BS>", ":silent BF<CR>")
+K.nms_("<BS><BS>", ":silent BB<CR>")
 
 --
 -- end left
@@ -151,7 +151,7 @@ K.nm_l("#", "#")
 -- /
 K.nm_l("-", ":GotoHeaderSwitch<CR>")
 K.nm_l("_", ":GotoHeader<CR>")
-K.nmsl("\\", buffers.wipe)
+K.nmsl("\\", ":silent BW!<CR>")
 K.nmsl("|", buffers.wipe_all)
 
 K.nms_("<BS><Space>", buffers.forward)

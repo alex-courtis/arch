@@ -99,28 +99,6 @@ function M.special(bufnr)
   return nil
 end
 
---- b# if # exists and % and # are not special
-function M.safe_hash()
-  local prev = vim.fn.bufnr("#")
-  if prev == -1 or M.special(prev) then
-    return
-  end
-
-  local cur = vim.fn.bufnr("%")
-  if M.special(cur) then
-    return
-  end
-
-  vim.cmd.buffer("#")
-end
-
---- Wipe the current buffer via vim-bufkill, silently fails
-function M.wipe()
-  if not M.special(0) then
-    pcall(vim.cmd.BW, { bang = true })
-  end
-end
-
 --- Wipe all buffers but the current
 function M.wipe_all()
   local cur = vim.api.nvim_get_current_buf()
@@ -130,18 +108,6 @@ function M.wipe_all()
     if not M.special(buf) and buf ~= cur then
       vim.api.nvim_buf_delete(buf, { force = true })
     end
-  end
-end
-
-function M.back()
-  if not M.special(0) then
-    vim.cmd("silent BB")
-  end
-end
-
-function M.forward()
-  if not M.special(0) then
-    vim.cmd("silent BF")
   end
 end
 
