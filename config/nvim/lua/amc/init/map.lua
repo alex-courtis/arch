@@ -82,7 +82,7 @@ K.nmsl("i", telescope_amc.buffers)
 K.nm_l("I", telescope_amc.builtin)
 K.nmsl("x", ":silent BA<CR>")
 
-K.nms_("<Space><BS>", ":silent BF<CR>")
+K.nms_("<Space><BS>", ":silent BB<CR>")
 K.nms_("<BS><BS>", ":silent BB<CR>")
 
 --
@@ -154,8 +154,8 @@ K.nm_l("_", ":GotoHeader<CR>")
 K.nmsl("\\", ":silent BW!<CR>")
 K.nmsl("|", buffers.wipe_all)
 
-K.nms_("<BS><Space>", buffers.forward)
-K.nms_("<Space><Space>", buffers.forward)
+K.nms_("<BS><Space>", ":silent BF<CR>")
+K.nms_("<Space><Space>", ":silent BF<CR>")
 
 --
 -- end right
