@@ -18,6 +18,7 @@ local nvim_tree_amc = require("amc.plugins.nvt")
 local telescope_amc = require("amc.plugins.telescope")
 local lsp_amc = require("amc.plugins.lsp")
 local fugitive_amc = require("amc.plugins.fugitive")
+local rainbow_amc = require("amc.plugins.rainbow")
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 K.vm__("<LeftRelease>", '"*ygv')
@@ -117,7 +118,7 @@ K.nmsl("mm", dev.build)
 K.nmsl("mt", dev.test)
 K.nmsl("ms", dev.source)
 
--- +
+K.nmsl("+", rainbow_amc.toggle)
 K.nmsl("cu", "<Plug>Commentary<Plug>Commentary")
 K.nmsl("cc", "<Plug>CommentaryLine")
 K.omsl("c", "<Plug>Commentary")
@@ -139,6 +140,7 @@ K.nmsl("N", vim.diagnostic.setqflist)
 K.nmsl("v", ":put<CR>'[v']=")
 K.nmsl("V", ":put!<CR>'[v']=")
 
+-- !
 K.nmsl("l", buffers.toggle_whitespace)
 K.nmsl("L", buffers.trim_whitespace)
 K.nm_l("s", ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>")

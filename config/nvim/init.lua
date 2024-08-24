@@ -32,6 +32,7 @@ require("pckr").add({
   { "GutenYe/json5.vim" },
   { "hashivim/vim-terraform" },
   { "haya14busa/vim-asterisk" },
+  { "HiPhish/rainbow-delimiters.nvim" },
   { "hrsh7th/cmp-nvim-lsp", requires = { "hrsh7th/nvim-cmp" } },
   { "hrsh7th/cmp-vsnip", requires = { "hrsh7th/nvim-cmp" } },
   { "hrsh7th/vim-vsnip" },
