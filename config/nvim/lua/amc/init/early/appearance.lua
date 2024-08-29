@@ -19,8 +19,6 @@ end
 
 vim.cmd("colorscheme base16")
 
-vim.cmd("highlight TrailingSpace ctermbg=Red guibg=#" .. vim.env.BASE16_red)
-
 vim.cmd("highlight Search guibg=#" .. vim.env.BASE16_orange) -- default yellow
 vim.cmd("highlight IncSearch guibg=#" .. vim.env.BASE16_yellow) -- default orange
 

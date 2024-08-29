@@ -108,29 +108,6 @@ function M.toggle_list()
   vim.api.nvim_set_option_value("list", not list, { scope = "local" })
 end
 
----@type table<number, boolean>
-local buf_list_trailing = {}
-
---- toggle TrailingSpace and list for buffer
-function M.toggle_whitespace()
-  local buf = vim.api.nvim_get_current_buf()
-
-  if buf_list_trailing[buf] then
-    vim.api.nvim_set_option_value("list", false, { scope = "local" })
-    pcall(vim.fn.matchdelete, buf_list_trailing[buf])
-    buf_list_trailing[buf] = nil
-  else
-    vim.api.nvim_set_option_value("list", true, { scope = "local" })
-    vim.fn.matchadd("TrailingSpace", "\\s\\+$")
-    buf_list_trailing[buf] = true
-  end
-end
-
---- clear list_trailing_buf
-function M.purge_whitespace_data(data)
-  buf_list_trailing[data.buf] = nil
-end
-
 --- clear trailing whitespace and last searched
 function M.trim_whitespace()
   vim.cmd("%s/\\s\\+$//e")
