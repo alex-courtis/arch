@@ -21,7 +21,3 @@ fi
 # set the first X display to primary, for proton: https://github.com/swaywm/sway/issues/6422
 xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
 
-# hacky restart btusb and service; intel AX210 is flakey
-if [ "${HOST}" = "emperor" ]; then
-	bt-restart &!
-fi

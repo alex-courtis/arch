@@ -4,6 +4,10 @@ echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
 
 # maybe start a GUI if one isn't running; flavour depends on which virtual terminal we are on
 if [ "${USER}" != "root" -a "${HOST}" != "lord" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" -a -n "${XDG_VTNR}" ]; then
+
+	# hacky restart btusb; intel AX210 is flakey
+	[ "${HOST}" = "emperor" ] && bt-restart > "/tmp/bt-restart.${XDG_VTNR}.log" 2>&1 &!
+
 	case "${XDG_VTNR}" in
 		1)
 			. startwm river
