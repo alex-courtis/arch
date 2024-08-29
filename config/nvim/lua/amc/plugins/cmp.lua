@@ -1,6 +1,8 @@
-local cmp_ok, cmp = pcall(require, "cmp")
+local require = require("amc.require_or_nil")
 
-if not cmp_ok then
+local cmp = require("cmp")
+
+if not cmp then
   return
 end
 

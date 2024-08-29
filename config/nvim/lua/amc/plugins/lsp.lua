@@ -1,15 +1,17 @@
+local require = require("amc.require_or_nil")
+
 local M = {}
 
-local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+local lspconfig = require("lspconfig")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-if not lspconfig_ok then
+if not lspconfig then
   return M
 end
 
 --- @type lsp.ClientCapabilities
 local capabilities
-if cmp_nvim_lsp_ok then
+if cmp_nvim_lsp then
   capabilities = cmp_nvim_lsp.default_capabilities()
 else
   capabilities = vim.lsp.protocol.make_client_capabilities()

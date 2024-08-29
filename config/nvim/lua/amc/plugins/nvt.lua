@@ -1,15 +1,16 @@
+local env = require("amc.env")
+local require = require("amc.require_or_nil")
+
 local M = {}
 
-local env = require("amc.env")
+local tree = require("nvim-tree")
+local api = require("nvim-tree.api")
 
-local tree_ok, tree = pcall(require, "nvim-tree")
-local telescope_ok, telescope = pcall(require, "amc.plugins.telescope")
-
-if not tree_ok then
+if not tree or not api then
   return M
 end
 
-local api = require("nvim-tree.api")
+local telescope = require("amc.plugins.telescope")
 
 local NO_STARTUP_FT = {
   "gitcommit",
@@ -43,7 +44,7 @@ local function node_path_dir()
 end
 
 local function find_files()
-  if telescope_ok then
+  if telescope then
     local _, dir = node_path_dir()
     if dir then
       telescope.find_files({ search_dirs = { dir } })
@@ -52,7 +53,7 @@ local function find_files()
 end
 
 local function live_grep()
-  if telescope_ok then
+  if telescope then
     local _, dir = node_path_dir()
     if dir then
       telescope.live_grep({ search_dirs = { dir } })

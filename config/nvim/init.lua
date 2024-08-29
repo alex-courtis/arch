@@ -4,11 +4,11 @@ if #(vim.fn.getcwd()) == 0 then
 end
 
 local log = require("amc.log")
-
 local util = require("amc.util")
+local require_or_nil = require("amc.require_or_nil")
 
-log.line("---- init options")
-require("amc.init.options")
+log.line("---- options")
+require_or_nil("amc.options")
 
 log.line("---- pckr bootstrap")
 local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
@@ -56,23 +56,12 @@ require("pckr").add({
 })
 
 log.line("---- init early")
-require("amc.init.appearance")
-require("amc.init.dirs")
+require("amc.init.early")
 
 log.line("---- init plugins")
-require("amc.plugins.cmp")
-require("amc.plugins.fugitive")
-require("amc.plugins.gitsigns")
-require("amc.plugins.lsp")
-require("amc.plugins.lualine")
-require("amc.plugins.nvt")
-require("amc.plugins.stylua")
-require("amc.plugins.treesitter")
-require("amc.plugins.telescope")
+require("amc.plugins")
 
 log.line("---- init late")
-require("amc.init.autocmds")
-require("amc.init.commands")
-require("amc.init.map")
+require("amc.init.late")
 
 log.line("---- init done")

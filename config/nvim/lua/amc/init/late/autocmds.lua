@@ -1,9 +1,12 @@
-local map = require("amc.init.map")
-local buffers = require("amc.buffers")
 local env = require("amc.env")
-local windows = require("amc.windows")
-local fugitive_amc = require("amc.plugins.fugitive")
-local nvim_tree_amc = require("amc.plugins.nvt")
+local util = require("amc.util")
+
+local require = require("amc.require_or_nil")
+
+local buffers = require("amc.buffers") or {}
+local windows = require("amc.windows") or {}
+local fugitive = require("amc.plugins.fugitive") or {}
+local nvt = require("amc.plugins.nvt") or {}
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
@@ -22,7 +25,7 @@ end
 -- stylua: ignore start
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
-au({ "BufEnter" },                                              map.reset_mappings,           {})
+au({ "BufEnter" },                                              util.reset_mappings,          {})
 au({ "BufEnter" },                                              buffers.wipe_alt_no_name_new, {})
 au({ "BufDelete", "BufWipeout" },                               buffers.purge_whitespace_data,{})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,        {})
@@ -30,9 +33,9 @@ au({ "BufLeave", "FocusLost" },                                 buffers.update, 
 au({ "QuickFixCmdPost" },                                       windows.open_qf_loc_win,      { nested = true })
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
 au({ "BufWinEnter" },                                           windows.position_doc_window,  {})
-au({ "VimEnter" },                                              nvim_tree_amc.vim_enter,      {})
+au({ "VimEnter" },                                              nvt.vim_enter,                {})
 
-ft({ "fugitive" },                                              fugitive_amc.attach,          {})
+ft({ "fugitive" },                                              fugitive.attach,              {})
 -- stylua: ignore end
 
 -- v/h resize windows on terminal size change

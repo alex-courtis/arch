@@ -1,13 +1,10 @@
+local CLOSE_INC = require("amc.enum").CLOSE_INC
+
+local require = require("amc.require_or_nil")
+
 local buffers = require("amc.buffers")
 
 local M = {}
-
-local CLOSE_INC_ORDER = {
-  [buffers.Special.QUICK_FIX] = 1,
-  [buffers.Special.FUGITIVE] = 2,
-  [buffers.Special.HELP] = 3,
-  [buffers.Special.NVIM_TREE] = 4,
-}
 
 --- go to first nonspecial window, nuke if none found
 --- @param wins table preferred order
@@ -79,7 +76,7 @@ function M.close_others()
   end
 end
 
---- close lowest window: CLOSE_INC_ORDER, special, normal
+--- close lowest window: CLOSE_INC, special, normal
 function M.close_inc()
   -- find lowest special by order
   local lowest
@@ -87,7 +84,7 @@ function M.close_inc()
     local buf = vim.api.nvim_win_get_buf(winid)
     local special = buffers.special(buf)
     if special then
-      local order = CLOSE_INC_ORDER[special] or 999
+      local order = CLOSE_INC[special] or 999
       if not lowest or order < lowest.order then
         lowest = lowest or {}
         lowest.winid = winid

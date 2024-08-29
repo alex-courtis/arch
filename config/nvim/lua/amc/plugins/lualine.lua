@@ -1,8 +1,9 @@
 local log = require("amc.log")
+local require = require("amc.require_or_nil")
 
-local lualine_ok, lualine = pcall(require, "lualine")
+local lualine = require("lualine")
 
-if not lualine_ok then
+if not lualine then
   return
 end
 

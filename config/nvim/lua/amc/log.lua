@@ -1,5 +1,5 @@
 local M = {}
-local FILE = "/tmp/nvim.log"
+local FILE = "/tmp/nvim." .. vim.fn.getpid() .. ".log"
 
 M.enabled = vim.env.NVIM_LOG ~= nil
 

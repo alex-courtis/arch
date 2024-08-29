@@ -1,6 +1,8 @@
 local M = {}
 
-local stylua_ok, stylua = pcall(require, "stylua-nvim")
+local require = require("amc.require_or_nil")
+
+local stylua = require("amc.plugins.stylua")
 
 --- @enum dev.build_type
 M.build_type = {
@@ -103,7 +105,7 @@ function M.format()
     return
   end
 
-  if stylua_ok and vim.bo.filetype == "lua" then
+  if stylua and vim.bo.filetype == "lua" then
     stylua.format_file()
     return
   end

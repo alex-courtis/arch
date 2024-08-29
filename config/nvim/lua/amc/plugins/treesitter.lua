@@ -1,6 +1,8 @@
-local configs_ok, configs = pcall(require, "nvim-treesitter.configs")
+local require = require("amc.require_or_nil")
 
-if not configs_ok then
+local configs = require("nvim-treesitter.configs")
+
+if not configs then
   return
 end
 

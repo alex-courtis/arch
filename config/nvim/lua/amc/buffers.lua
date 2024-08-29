@@ -1,19 +1,10 @@
+local SPECIAL = require("amc.enum").SPECIAL
+
 local M = {}
 
 -- unwanted buffers after they go away
 local UNWANTED_NAMES = {
   "^man://",
-}
-
---- @enum buffers.Special
-M.Special = {
-  HELP = 1,
-  QUICK_FIX = 2,
-  MAN = 3,
-  FUGITIVE = 4,
-  NVIM_TREE = 5,
-  DIR = 6,
-  OTHER = 7,
 }
 
 --- &buftype is empty, name is empty, not modified
@@ -67,7 +58,7 @@ end
 
 --- &buftype set or otherwise not a normal buffer
 --- @param bufnr number
---- @return buffers.Special|nil
+--- @return SPECIAL|nil
 function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local bufhidden = vim.bo[bufnr].bufhidden
@@ -81,19 +72,19 @@ function M.special(bufnr)
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
   if buftype == "help" then
-    return M.Special.HELP
+    return SPECIAL.help
   elseif buftype == "quickfix" then
-    return M.Special.QUICK_FIX
+    return SPECIAL.quick_fix
   elseif filetype == "man" then
-    return M.Special.MAN
+    return SPECIAL.man
   elseif filetype:match("^fugitive") then
-    return M.Special.FUGITIVE
+    return SPECIAL.fugitive
   elseif filetype == "NvimTree" then
-    return M.Special.NVIM_TREE
+    return SPECIAL.nvim_tree
   elseif vim.fn.isdirectory(bufname) ~= 0 then
-    return M.Special.DIR
+    return SPECIAL.dir
   elseif buftype ~= "" then
-    return M.Special.OTHER
+    return SPECIAL.other
   end
 
   return nil
@@ -160,6 +151,14 @@ function M.write_scratch(text)
   end
 
   vim.cmd.buffer(bufnr)
+end
+
+--- au BufEnter
+--- @param data table
+function M.reset_mappings(data)
+  --- vim maps K to vim.lsp.buf.hover() in Normal mode
+  --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration
+  pcall(vim.keymap.del, "n", "K", { buffer = data.buf })
 end
 
 return M

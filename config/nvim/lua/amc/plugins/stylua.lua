@@ -1,7 +1,11 @@
-local stylua_ok, stylua = pcall(require, "stylua-nvim")
+local require = require("amc.require_or_nil")
 
-if not stylua_ok then
-  return
+local M = {}
+
+local stylua = require("stylua-nvim")
+
+if not stylua then
+  return M
 end
 
 local config = {
@@ -10,3 +14,7 @@ local config = {
 
 -- init
 stylua.setup(config)
+
+M.format_file = stylua.format_file
+
+return M
