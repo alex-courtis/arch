@@ -1,7 +1,6 @@
 #!/bin/zsh
 
-# # 000000 results in artifacts in the gaps
-riverctl background-color       "0x010101"
+riverctl background-color       "0x000000"
 
 # others are overridden
 riverctl border-color-urgent    "0x${BASE16[comments]}"
