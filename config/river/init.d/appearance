@@ -1,0 +1,7 @@
+#!/bin/sh
+
+riverctl background-color       "0x000000"
+
+# others are overridden
+riverctl border-color-urgent    "0x${BASE16[comments]}"
+

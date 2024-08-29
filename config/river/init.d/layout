@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-riverctl background-color       "0x000000"
-
-# others are overridden
-riverctl border-color-urgent    "0x${BASE16[comments]}"
-
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all wideriver \
 wideriver \
