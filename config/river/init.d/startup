@@ -17,7 +17,3 @@ if [ "${USER}" != "alex" ]; then
 		before-sleep 'swaylock -f -c "#${BASE16_lighter_background}"' \
 		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
 fi
-
-# set the first X display to primary, for proton: https://github.com/swaywm/sway/issues/6422
-xrandr --output $(xrandr | grep ' connected ' | head -n 1 | sed -e 's/ connected.*//g') --primary
-
