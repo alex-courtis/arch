@@ -1,4 +1,4 @@
-echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
+echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR}.${USER}.log
 
 fpath=(${XDG_DATA_HOME}/zsh/site-functions /opt/homebrew/share/zsh/site-functions $fpath)
 

@@ -1,37 +1,26 @@
 #!/bin/zsh
 
-LOG_FILTER_CMD="grep --line-buffered -v -E '\
-ould not resolve keysym|\
-your system is too slow|\
-ouch jump detected and discarded|\
-nknown libinput event\
-'"
-
 case "${1}" in
 	"sway")
-		exec sway -V \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${XDG_VTNR}.${USER}.log") 2>&1
+		exec sway > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"river")
-		exec river \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${XDG_VTNR}.${USER}.log") 2>&1
+		exec river > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"hyprland")
-		if [ "$(whence Hyprland)" ]; then
-			exec Hyprland > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
-		fi
+		exec Hyprland > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"steam")
-		gamescope \
+		exec gamescope \
 			--xwayland-count 2 \
 			--adaptive-sync \
+		 	--hdr-enabled \
 			--steam \
 			-- steam > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"x")
 		export X_WM="${2}"
-		exec startx \
-			> >(eval "${LOG_FILTER_CMD}" > "/tmp/${1}.${X_WM}.${XDG_VTNR}.${USER}.log") 2>&1
+		exec startx > "/tmp/${1}.${X_WM}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	*)
 		print "unknown wm ${1}" 1>&2

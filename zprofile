@@ -1,4 +1,4 @@
-echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
+echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR}.${USER}.log
 
 [ -f "${HOME}/.zprofile.host" ] && . "${HOME}/.zprofile.host"
 

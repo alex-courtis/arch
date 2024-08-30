@@ -1,4 +1,4 @@
-echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh_sessions.${USER}.log
+echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR}.${USER}.log
 
 typeset -U path
 path=(~/bin ~/.local/bin $path)
