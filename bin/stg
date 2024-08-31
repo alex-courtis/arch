@@ -1,6 +1,0 @@
-#!/bin/sh
-
-gamescope-run-native \
-	--steam \
-	-- steam >> /tmp/stg.log 2>&1
-

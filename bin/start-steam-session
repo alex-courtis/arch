@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# 2024 08 31, 3.14.29
+# -nested-refresh needed to increase above default 60
+# -console is needed for quit command
+# -gamepadui is required, will not show when launched from normal version until big picture selected
+# adaptive sync functional: vsync must be disabled
+# HDR appears functional: shows disabled in game
+# HDR prevents adaptive sync
+# game must be explicitly set to native resolution, output and nested resolution args not needed
+
+gamescope \
+	--xwayland-count 2 \
+	--nested-refresh 144 \
+	--hdr-enabled \
+	--adaptive-sync \
+	--steam \
+	-- steam -gamepadui -console

@@ -11,12 +11,7 @@ case "${1}" in
 		exec Hyprland > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"steam")
-		exec gamescope \
-			--xwayland-count 2 \
-			--adaptive-sync \
-		 	--hdr-enabled \
-			--steam \
-			-- steam > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
+		exec start-steam-session > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"x")
 		export X_WM="${2}"
