@@ -11,7 +11,7 @@ for i = 0, 15, 1 do
   palette["base" .. hex] = "#" .. vim.env["BASE16_" .. hex]
 end
 
--- TODO add a 16 color palette for linux term as cterm are no longer supplied by nvim
+-- TODO add cterm 16 (falls back to 8) color palette for linux term
 
 mini_base16.setup({
   palette = palette,

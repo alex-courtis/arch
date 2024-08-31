@@ -25,3 +25,8 @@ vim.cmd("highlight IncSearch guibg=#" .. vim.env.BASE16_yellow) -- default orang
 -- nvim-tree override
 vim.cmd("highlight NvimTreeOpenedHL guifg=#" .. vim.env.BASE16_default_foreground)
 
+-- linux terminal hacks awaiting a proper 8/16 colour cterm palette for base16
+if vim.env.TERM:match("^linux") then
+  vim.cmd("highlight Visual ctermfg=0 ctermbg=15")
+end
+
