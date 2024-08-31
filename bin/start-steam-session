@@ -1,18 +1,25 @@
 #!/bin/zsh
 
 # 2024 08 31, 3.14.29
+# Inconsistent rarely functional. Big time waster.
+# 
 # -nested-refresh needed to increase above default 60
 # -console is needed for quit command
-# -gamepadui is required, will not show when launched from normal version until big picture selected
-# adaptive sync functional: vsync must be disabled
-# HDR appears functional: shows disabled in game
-# HDR prevents adaptive sync
-# game must be explicitly set to native resolution, output and nested resolution args not needed
+# -gamepadui is required, will not show game when launched from normal version until big picture selected
+# -fullscreen appears to be needed for adaptive sync
+# adaptive sync sometimes functional: vsync must be disabled
+# HDR appears sometimes functional: shows disabled in game
+#
+# game must be explicitly set to native resolution, output and nested resolution args not needed, don't seem to work
+
+export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
 
 gamescope \
 	--xwayland-count 2 \
 	--nested-refresh 144 \
 	--hdr-enabled \
 	--adaptive-sync \
+	--fullscreen \
+	--mangoapp \
 	--steam \
 	-- steam -gamepadui -console
