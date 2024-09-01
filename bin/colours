@@ -59,23 +59,38 @@ rgb_cell() {
 	printf "\033[48;2;%d;%d;%dm \033[m" "$1" "$2" "$3"
 }
 
-rgb_block() {
+rgb_block_fg() {
+	printf "\033[38;2;%d;%d;%dm %-9s\033[m" "$1" "$2" "$3" "$4"
+}
+
+rgb_block_bg() {
 	printf "\033[48;2;%d;%d;%dm %-9s\033[m" "$1" "$2" "$3" "$4"
 }
 
-ansi_256_block() {
+ansi_256_block_fg() {
+	printf "\033[38;5;%dm %-9s\033[0m" "$1" "$2"
+}
+
+ansi_256_block_bg() {
 	printf "\033[48;5;%dm %-9s\033[0m" "$1" "$2"
 }
 
-ansi_256_blocks() {
+ansi_256_blocks_fg() {
 	for i in $(seq $1 $(( $1 + $2))); do
-		ansi_256_block "$i" "$i"
+		ansi_256_block_fg "$i" "$i"
+	done
+	printf "\n"
+}
+
+ansi_256_blocks_bg() {
+	for i in $(seq $1 $(( $1 + $2))); do
+		ansi_256_block_bg "$i" "$i"
 	done
 	printf "\n"
 }
 
 if [ "${FULL}" = "true" ]; then
-	printf "\nred spectrum:\n"
+	printf "\nRGB red spectrum:\n"
 	for i in $(seq 0 1 127); do
 		rgb_cell $i 0 0
 	done
@@ -85,7 +100,7 @@ if [ "${FULL}" = "true" ]; then
 	done
 	printf "\n"
 
-	printf "\ngreen spectrum:\n"
+	printf "\nRGB green spectrum:\n"
 	for i in $(seq 0 1 127); do
 		rgb_cell 0 $i 0
 	done
@@ -95,7 +110,7 @@ if [ "${FULL}" = "true" ]; then
 	done
 	printf "\n"
 
-	printf "\nblue spectrum:\n"
+	printf "\nRGB blue spectrum:\n"
 	for i in $(seq 0 1 127); do
 		rgb_cell 0 0 $i
 	done
@@ -105,7 +120,7 @@ if [ "${FULL}" = "true" ]; then
 	done
 	printf "\n"
 
-	printf "\nrainbow spectrum:\n"
+	printf "\nRGB rainbow spectrum:\n"
 	for i in $(seq 0 1 127); do
 		rgb_cell $(rainbow_color $i)
 	done
@@ -115,136 +130,183 @@ if [ "${FULL}" = "true" ]; then
 	done
 	printf "\n"
 
-	printf "\n256 colours:\n"
+	printf "\nANSI 256 colours:\n"
 	# first 16
 	for i in $(seq 0 8 8); do
-		ansi_256_blocks $i 7
+		ansi_256_blocks_fg $i 7
 	done
 
 	# 216 cube
 	for i in $(seq 16 6 226); do
-		ansi_256_blocks $i 5
+		ansi_256_blocks_fg $i 5
 	done
 
 	# greys
 	for i in $(seq 232 8 248); do
-		ansi_256_blocks $i 7
+		ansi_256_blocks_fg $i 7
+	done
+
+	printf "\nANSI 256 colours:\n"
+	# first 16
+	for i in $(seq 0 8 8); do
+		ansi_256_blocks_bg $i 7
+	done
+
+	# 216 cube
+	for i in $(seq 16 6 226); do
+		ansi_256_blocks_bg $i 5
+	done
+
+	# greys
+	for i in $(seq 232 8 248); do
+		ansi_256_blocks_bg $i 7
 	done
 fi
 
-printf "\nxterm defaults:\n"
-rgb_block   0   0   0 "00"
-rgb_block 205   0   0 "08"
-rgb_block   0 205   0 "0B"
-rgb_block 205 205   0 "0A"
-rgb_block   0   0 238 "0D"
-rgb_block 205   0 205 "0E"
-rgb_block   0 205 205 "0C"
-rgb_block 229 229 229 "05"
+printf "\nRGB xterm defaults:\n"
+rgb_block_bg   0   0   0 "00"
+rgb_block_bg 205   0   0 "08"
+rgb_block_bg   0 205   0 "0B"
+rgb_block_bg 205 205   0 "0A"
+rgb_block_bg   0   0 238 "0D"
+rgb_block_bg 205   0 205 "0E"
+rgb_block_bg   0 205 205 "0C"
+rgb_block_bg 229 229 229 "05"
 printf "\n"
-rgb_block 127 127 127 "03"
-rgb_block 255   0   0 "08"
-rgb_block   0 255   0 "0B"
-rgb_block 255 255   0 "0A"
-rgb_block  92  92 255 "0D"
-rgb_block 255   0 255 "0E"
-rgb_block   0 255 255 "0C"
-rgb_block 255 255 255 "07"
-printf "\n"
-
-
-printf "\nbase16-default-dark:\n"
-rgb_block 0x18 0x18 0x18 "00"
-rgb_block 0xab 0x46 0x42 "08"
-rgb_block 0xa1 0xb5 0x6c "0B"
-rgb_block 0xf7 0xca 0x88 "0A"
-rgb_block 0x7c 0xaf 0xc2 "0D"
-rgb_block 0xba 0x8b 0xaf "0E"
-rgb_block 0x86 0xc1 0xb9 "0C"
-rgb_block 0xd8 0xd8 0xd8 "05"
-printf "\n"
-rgb_block 0x58 0x58 0x58 "03"
-rgb_block 0xab 0x46 0x42 "08"
-rgb_block 0xa1 0xb5 0x6c "0B"
-rgb_block 0xf7 0xca 0x88 "0A"
-rgb_block 0x7c 0xaf 0xc2 "0D"
-rgb_block 0xba 0x8b 0xaf "0E"
-rgb_block 0x86 0xc1 0xb9 "0C"
-rgb_block 0xf8 0xf8 0xf8 "07"
-printf "\n"
-rgb_block 0xdc 0x96 0x56 "09"
-rgb_block 0xa1 0x69 0x46 "0F"
-rgb_block 0x28 0x28 0x28 "01"
-rgb_block 0x38 0x38 0x38 "02"
-rgb_block 0xb8 0xb8 0xb8 "04"
-rgb_block 0xe8 0xe8 0xe8 "06"
+rgb_block_bg 127 127 127 "03"
+rgb_block_bg 255   0   0 "08"
+rgb_block_bg   0 255   0 "0B"
+rgb_block_bg 255 255   0 "0A"
+rgb_block_bg  92  92 255 "0D"
+rgb_block_bg 255   0 255 "0E"
+rgb_block_bg   0 255 255 "0C"
+rgb_block_bg 255 255 255 "07"
 printf "\n"
 
 
-printf "\nbase16-bright:\n"
-rgb_block 0x00 0x00 0x00 "00"
-rgb_block 0xfb 0x01 0x20 "08"
-rgb_block 0xa1 0xc6 0x59 "0B"
-rgb_block 0xfd 0xa3 0x31 "0A"
-rgb_block 0x6f 0xb3 0xd2 "0D"
-rgb_block 0xd3 0x81 0xc3 "0E"
-rgb_block 0x76 0xc7 0xb7 "0C"
-rgb_block 0xe0 0xe0 0xe0 "05"
+printf "\nRGB base16-default-dark:\n"
+rgb_block_bg 0x18 0x18 0x18 "00"
+rgb_block_bg 0xab 0x46 0x42 "08"
+rgb_block_bg 0xa1 0xb5 0x6c "0B"
+rgb_block_bg 0xf7 0xca 0x88 "0A"
+rgb_block_bg 0x7c 0xaf 0xc2 "0D"
+rgb_block_bg 0xba 0x8b 0xaf "0E"
+rgb_block_bg 0x86 0xc1 0xb9 "0C"
+rgb_block_bg 0xd8 0xd8 0xd8 "05"
 printf "\n"
-rgb_block 0xb0 0xb0 0xb0 "03"
-rgb_block 0xfb 0x01 0x20 "08"
-rgb_block 0xa1 0xc6 0x59 "0B"
-rgb_block 0xfd 0xa3 0x31 "0A"
-rgb_block 0x6f 0xb3 0xd2 "0D"
-rgb_block 0xd3 0x81 0xc3 "0E"
-rgb_block 0x76 0xc7 0xb7 "0C"
-rgb_block 0xff 0xff 0xff "07"
+rgb_block_bg 0x58 0x58 0x58 "03"
+rgb_block_bg 0xab 0x46 0x42 "08"
+rgb_block_bg 0xa1 0xb5 0x6c "0B"
+rgb_block_bg 0xf7 0xca 0x88 "0A"
+rgb_block_bg 0x7c 0xaf 0xc2 "0D"
+rgb_block_bg 0xba 0x8b 0xaf "0E"
+rgb_block_bg 0x86 0xc1 0xb9 "0C"
+rgb_block_bg 0xf8 0xf8 0xf8 "07"
 printf "\n"
-rgb_block 0xfc 0x6d 0x24 "09"
-rgb_block 0xbe 0x64 0x3c "0F"
-rgb_block 0x30 0x30 0x30 "01"
-rgb_block 0x50 0x50 0x50 "02"
-rgb_block 0xd0 0xd0 0xd0 "04"
-rgb_block 0xf5 0xf5 0xf5 "06"
+rgb_block_bg 0xdc 0x96 0x56 "09"
+rgb_block_bg 0xa1 0x69 0x46 "0F"
+rgb_block_bg 0x28 0x28 0x28 "01"
+rgb_block_bg 0x38 0x38 0x38 "02"
+rgb_block_bg 0xb8 0xb8 0xb8 "04"
+rgb_block_bg 0xe8 0xe8 0xe8 "06"
 printf "\n"
 
 
-printf "\ncurrent:\n"
+printf "\nRGB base16-bright:\n"
+rgb_block_bg 0x00 0x00 0x00 "00"
+rgb_block_bg 0xfb 0x01 0x20 "08"
+rgb_block_bg 0xa1 0xc6 0x59 "0B"
+rgb_block_bg 0xfd 0xa3 0x31 "0A"
+rgb_block_bg 0x6f 0xb3 0xd2 "0D"
+rgb_block_bg 0xd3 0x81 0xc3 "0E"
+rgb_block_bg 0x76 0xc7 0xb7 "0C"
+rgb_block_bg 0xe0 0xe0 0xe0 "05"
+printf "\n"
+rgb_block_bg 0xb0 0xb0 0xb0 "03"
+rgb_block_bg 0xfb 0x01 0x20 "08"
+rgb_block_bg 0xa1 0xc6 0x59 "0B"
+rgb_block_bg 0xfd 0xa3 0x31 "0A"
+rgb_block_bg 0x6f 0xb3 0xd2 "0D"
+rgb_block_bg 0xd3 0x81 0xc3 "0E"
+rgb_block_bg 0x76 0xc7 0xb7 "0C"
+rgb_block_bg 0xff 0xff 0xff "07"
+printf "\n"
+rgb_block_bg 0xfc 0x6d 0x24 "09"
+rgb_block_bg 0xbe 0x64 0x3c "0F"
+rgb_block_bg 0x30 0x30 0x30 "01"
+rgb_block_bg 0x50 0x50 0x50 "02"
+rgb_block_bg 0xd0 0xd0 0xd0 "04"
+rgb_block_bg 0xf5 0xf5 0xf5 "06"
+printf "\n"
+
+
+printf "\nANSI 256 current:\n"
 
 # basic 16
-ansi_256_block  0 "00"
-ansi_256_block  1 "08"
-ansi_256_block  2 "0B"
-ansi_256_block  3 "0A"
-ansi_256_block  4 "0D"
-ansi_256_block  5 "0E"
-ansi_256_block  6 "0C"
-ansi_256_block  7 "05"
+ansi_256_block_fg  0 "00"
+ansi_256_block_fg  1 "08"
+ansi_256_block_fg  2 "0B"
+ansi_256_block_fg  3 "0A"
+ansi_256_block_fg  4 "0D"
+ansi_256_block_fg  5 "0E"
+ansi_256_block_fg  6 "0C"
+ansi_256_block_fg  7 "05"
 printf "\n"
-ansi_256_block  8 "03"
-ansi_256_block  9 ""
-ansi_256_block 10 ""
-ansi_256_block 11 ""
-ansi_256_block 12 ""
-ansi_256_block 13 ""
-ansi_256_block 14 ""
-ansi_256_block 15 "07"
+ansi_256_block_fg  8 "03"
+ansi_256_block_fg  9 "08"
+ansi_256_block_fg 10 "0B"
+ansi_256_block_fg 11 "0A"
+ansi_256_block_fg 12 "0D"
+ansi_256_block_fg 13 "0E"
+ansi_256_block_fg 14 "0C"
+ansi_256_block_fg 15 "07"
 printf "\n"
 
 # base16 extensions
-ansi_256_block 16 "09"
-ansi_256_block 17 "0F"
-ansi_256_block 18 "01"
-ansi_256_block 19 "02"
-ansi_256_block 20 "04"
-ansi_256_block 21 "06"
+ansi_256_block_fg 16 "09"
+ansi_256_block_fg 17 "0F"
+ansi_256_block_fg 18 "01"
+ansi_256_block_fg 19 "02"
+ansi_256_block_fg 20 "04"
+ansi_256_block_fg 21 "06"
+printf "\n"
+
+printf "\nANSI 256 current:\n"
+
+# basic 16
+ansi_256_block_bg  0 "00"
+ansi_256_block_bg  1 "08"
+ansi_256_block_bg  2 "0B"
+ansi_256_block_bg  3 "0A"
+ansi_256_block_bg  4 "0D"
+ansi_256_block_bg  5 "0E"
+ansi_256_block_bg  6 "0C"
+ansi_256_block_bg  7 "05"
+printf "\n"
+ansi_256_block_bg  8 "03"
+ansi_256_block_bg  9 "08"
+ansi_256_block_bg 10 "0B"
+ansi_256_block_bg 11 "0A"
+ansi_256_block_bg 12 "0D"
+ansi_256_block_bg 13 "0E"
+ansi_256_block_bg 14 "0C"
+ansi_256_block_bg 15 "07"
+printf "\n"
+
+# base16 extensions
+ansi_256_block_bg 16 "09"
+ansi_256_block_bg 17 "0F"
+ansi_256_block_bg 18 "01"
+ansi_256_block_bg 19 "02"
+ansi_256_block_bg 20 "04"
+ansi_256_block_bg 21 "06"
 printf "\n"
 
 
 printf "\n\$HL_FG   "
-rgb_block "0x${HL_FG[1,2]}" "0x${HL_FG[3,4]}" "0x${HL_FG[5,6]}"
+rgb_block_fg "0x${HL_FG[1,2]}" "0x${HL_FG[3,4]}" "0x${HL_FG[5,6]}" "$HL_FG"
 printf "\n\$HL_BG   "
-rgb_block "0x${HL_BG[1,2]}" "0x${HL_BG[3,4]}" "0x${HL_BG[5,6]}"
+rgb_block_bg "0x${HL_BG[1,2]}" "0x${HL_BG[3,4]}" "0x${HL_BG[5,6]}" "$HL_BG"
 printf "\n\$HL_NAME ${HL_NAME}"
 printf "\n"
 
@@ -252,11 +314,11 @@ printf "\n"
 base16()
 {
 	if [ "${FULL}" = "true" ]; then
-		rgb_block "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
+		rgb_block_bg "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
 		printf " %3d %3d %3d #%s " "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}" "${BASE16[$1]}"
 	fi
 	printf "%16s %22s %4s " "${2:+[${2}]}" "${4:+[${4}]}" "${3:+[${3}]}"
-	rgb_block "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
+	rgb_block_bg "0x${BASE16[$1][1,2]}" "0x${BASE16[$1][3,4]}" "0x${BASE16[$1][5,6]}"
 	printf " %s\n" "${5:+${BASE16_DESC[$1]}}"
 }
 
