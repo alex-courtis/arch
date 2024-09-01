@@ -73,40 +73,79 @@ local function win_buf_info()
   return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
 end
 
--- stylua: ignore start
-local theme = {
+local theme
 
-  -- z/y/x inherits a/b/c
-  normal = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_comments,            gui = "bold" },
-    b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_lighter_background                },
-    c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-  },
+if vim.env.TERM:match("^linux") then
+  theme = {
 
-  -- inherits normal
-  replace = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_yellow,              gui = "bold" },
-  },
-  insert = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_blue,                gui = "bold" },
-  },
-  visual = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_magenta,             gui = "bold" },
-  },
-  command = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_red,                 gui = "bold" },
-  },
-  terminal = {
-    a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_green,               gui = "bold" },
-  },
+    -- z/y/x inherits a/b/c
+    normal = {
+      a = { fg = 0, bg = 7 },
+      b = { fg = 7, bg = 0 },
+      c = { fg = 7, bg = 0 },
+    },
 
-  inactive = {
-    a = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-    b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-    c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-  },
-}
--- stylua: ignore end
+    -- inherits normal
+    replace = {
+      a = { fg = 7, bg = 3 },
+    },
+    insert = {
+      a = { fg = 7, bg = 4 },
+    },
+    visual = {
+      a = { fg = 7, bg = 5 },
+    },
+    command = {
+      a = { fg = 7, bg = 1 },
+    },
+    terminal = {
+      a = { fg = 7, bg = 1 },
+    },
+
+    inactive = {
+      a = { fg = 7, bg = 0 },
+      b = { fg = 7, bg = 0 },
+      c = { fg = 7, bg = 0 },
+    },
+  }
+else
+  theme = {
+
+    -- stylua: ignore start
+
+    -- z/y/x inherits a/b/c
+    normal = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_comments,            gui = "bold" },
+      b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_lighter_background                },
+      c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+    },
+
+    -- inherits normal
+    replace = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_yellow,              gui = "bold" },
+    },
+    insert = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_blue,                gui = "bold" },
+    },
+    visual = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_magenta,             gui = "bold" },
+    },
+    command = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_red,                 gui = "bold" },
+    },
+    terminal = {
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_green,               gui = "bold" },
+    },
+
+    inactive = {
+      a = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+      b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+      c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+    },
+
+    -- stylua: ignore end
+  }
+end
 
 local config = {
   options = {

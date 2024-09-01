@@ -26,8 +26,8 @@ if vim.env.TERM:match("^linux") then
   -- change the low grey backgrounds to white
   local hl = vim.api.nvim_get_hl(0, {})
   for name, h in pairs(hl) do
-    if type(h.ctermbg) == "number" and tonumber(h.ctermbg) >= 236 and tonumber(h.ctermbg) <= 243 then
-      h.ctermbg = 244
+    if type(h.ctermbg) == "number" and tonumber(h.ctermbg) >= 236 and tonumber(h.ctermbg) < 255 then
+      h.ctermbg = 7
       vim.api.nvim_set_hl(0, name, h)
     end
   end
@@ -41,11 +41,13 @@ if vim.env.TERM:match("^linux") then
   vim.cmd("highlight LineNrAbove ctermfg=0")
   vim.cmd("highlight LineNrBelow ctermfg=0")
   vim.cmd("highlight SignColumn ctermfg=0")
-  vim.cmd("highlight StatusLine ctermfg=0")
+  vim.cmd("highlight StatusLine ctermfg=15")
   vim.cmd("highlight StatusLineNC ctermfg=0")
   vim.cmd("highlight TabLine ctermfg=0")
   vim.cmd("highlight TabLineFill ctermfg=0")
   vim.cmd("highlight Visual ctermfg=0")
   vim.cmd("highlight WinBar ctermfg=0")
   vim.cmd("highlight WinBarNC ctermfg=0")
+  vim.cmd("highlight WinSeparator ctermfg=7")
+  vim.cmd("highlight VertSplit ctermfg=7")
 end
