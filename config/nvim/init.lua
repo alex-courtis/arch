@@ -23,8 +23,7 @@ if not vim.loop.fs_stat(pckr_path) then
 end
 vim.opt.rtp:prepend(pckr_path)
 
-log.line("---- pckr add")
-require("pckr").add({
+local plugins = {
   { "ckipp01/stylua-nvim" },
   { "echasnovski/mini.base16" },
   { "farmergreg/vim-lastplace" },
@@ -46,14 +45,20 @@ require("pckr").add({
   { "nvim-telescope/telescope.nvim" },
   { "nvim-treesitter/nvim-treesitter" },
   { util.nvt_plugin_dir() },
-  { "nvim-tree/nvim-web-devicons" },
   { "qpkorr/vim-bufkill" },
   { "tpope/vim-commentary" },
   { "tpope/vim-fugitive" },
   { "tpope/vim-repeat" },
   { "vim-scripts/ReplaceWithRegister" },
   { "ziglang/zig.vim" },
-})
+}
+
+if not vim.env.TERM:match("^linux") then
+  table.insert(plugins, { "nvim-tree/nvim-web-devicons" })
+end
+
+log.line("---- pckr add")
+require("pckr").add(plugins)
 
 log.line("---- init early")
 require("amc.init.early")

@@ -202,10 +202,11 @@ local config = {
         file = true,
         folder = false,
         folder_arrow = false,
-        modified = true,
         git = true,
-        diagnostics = false,
-        bookmarks = false,
+        modified = true,
+        hidden = false,
+        diagnostics = true,
+        bookmarks = true,
       },
       glyphs = {
         modified = "[+]",
@@ -291,6 +292,26 @@ local config = {
     },
   },
 }
+
+if vim.env.TERM:match("^linux") then
+  config.renderer.icons.show.file = false
+  config.renderer.icons.glyphs.bookmark = "m"
+  config.renderer.icons.glyphs.git = {
+    unstaged = "M",
+    staged = "S",
+    unmerged = "U",
+    renamed = "R",
+    untracked = "A",
+    deleted = "D",
+    ignored = "I",
+  }
+  config.diagnostics.icons = {
+    hint = "h",
+    info = "i",
+    warning = "w",
+    error = "e",
+  }
+end
 
 if vim.env.NVIM_TREE_PROFILE then
   config.log.enable = true

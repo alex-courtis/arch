@@ -73,9 +73,12 @@ local function win_buf_info()
   return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
 end
 
-local theme
+local theme, section_separators, component_separators
 
 if vim.env.TERM:match("^linux") then
+  section_separators = { left = "", right = "" }
+  component_separators = { left = "", right = "" }
+
   theme = {
 
     -- z/y/x inherits a/b/c
@@ -109,6 +112,9 @@ if vim.env.TERM:match("^linux") then
     },
   }
 else
+  section_separators = { left = "", right = "" }
+  component_separators = { left = "", right = "" }
+
   theme = {
 
     -- stylua: ignore start
@@ -150,8 +156,8 @@ end
 local config = {
   options = {
     theme = theme,
-    section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
+    section_separators = section_separators,
+    component_separators = component_separators,
   },
 
   sections = {
