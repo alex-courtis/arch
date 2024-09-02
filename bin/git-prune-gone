@@ -4,7 +4,7 @@ case "${1}" in
 	"")
 		;;
 	--dry-run|-n)
-		DRY_RUN="--dry-run"
+		DRY_RUN="true"
 		;;
 	*)
 		printf "usage: %s [--dry-run|-n]\n" "${0}"
@@ -14,7 +14,11 @@ case "${1}" in
 		;;
 esac
 
-git fetch --prune "${DRY_RUN}"
+if [ "${DRY_RUN}" ]; then
+	git fetch --prune --dry-run
+else
+	git fetch --prune
+fi
 
 GONE="$(git branch -vv | grep gone | sed -E 's#^ *([^ ]*) .*$#\1#g')"
 
