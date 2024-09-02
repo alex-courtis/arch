@@ -62,7 +62,7 @@ make_chdir_sub ni "${HOME}/src/nvim-web-devicons"
 make_chdir_sub nt "${HOME}/src/nvim-tree"
 make_chdir_sub wd "${HOME}/src/way-displays"
 make_chdir_sub wr "${HOME}/src/wideriver"
-make_chdir_sub pa "${XDG_DATA_HOME}/nvim/site/pack/pckr/opt"
+make_chdir_sub pa "${XDG_DATA_HOME}/nvim/site/pack/packer/start"
 
 if [ "${UNAME}" = "Darwin" ]; then
 	make_chdir_sub a  "${HOME}/atlassian"

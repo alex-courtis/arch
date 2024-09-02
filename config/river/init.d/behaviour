@@ -14,7 +14,11 @@ riverctl rule-add -app-id gamescope fullscreen
 
 # vsync unavailable for VRR and compositor must do it via a window
 # elden ring
-riverctl rule-add -app-id "ELDEN RING™" no-float
+riverctl rule-add -app-id "steam_app_1245620" ssd
+riverctl rule-add -app-id "steam_app_1245620" float
+riverctl rule-add -app-id "steam_app_1245620" no-fullscreen
+riverctl rule-add -app-id "steam_app_1245620" position 0 0
+riverctl rule-add -app-id "steam_app_1245620" dimensions 3840 2160
 
 # behaviour
 riverctl attach-mode bottom

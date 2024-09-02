@@ -4,4 +4,4 @@
 
 ln -fs \
 	"${HOME}/.dotfiles/local/share/nvim/site/pack/packer/start/.luarc.json" \
-	"${HOME}/.local/share/nvim/site/pack/pckr/opt/.luarc.json"
+	"${HOME}/.local/share/nvim/site/pack/packer/start/.luarc.json"
