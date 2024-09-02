@@ -11,6 +11,7 @@ local rainbow = require("amc.plugins.rainbow") or {}
 local telescope = require("amc.plugins.telescope") or {}
 
 local K = {}
+local M = {}
 
 -- stylua: ignore start
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
@@ -164,25 +165,6 @@ K.nms_("<Space><Space>", ":silent BF<CR>")
 -- end right
 --
 
---
--- wincmd overrides
---
-
-K.nms_("<C-w>t", ":wincmd j<CR>")
-K.nms_("<C-w><C-t>", ":wincmd j<CR>")
-
-K.nms_("<C-w>c", ":wincmd k<CR>")
--- K.nm__("<C-w><C-c>", ":wincmd k<CR>") doc states this does not work as <C-c> cancels the command
-
-K.nms_("<C-w>n", ":wincmd l<CR>")
-K.nms_("<C-w><C-n>", ":wincmd l<CR>")
-
-K.nms_("<C-w>m", ":wincmd p<CR>")
-K.nms_("<C-w><C-m>", ":wincmd p<CR>")
-
--- stop vim-commentary from creating the default mappings
-K.nm__("gc", "<NOP>")
-
 -- vim-vsnip - <Plug> links to the wrong place
 vim.cmd([[
 imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
@@ -190,3 +172,23 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)' : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 ]])
+
+--
+-- functions
+--
+--- au VimEnter
+function M.clear_default_mappings()
+  -- commentary defaults
+  pcall(vim.keymap.del,{"n", "o", "v"}, "gc")
+  pcall(vim.keymap.del,"n", "gcc")
+end
+
+--- au BufEnter
+--- @param data table
+function M.reset_mappings(data)
+  --- vim maps K to vim.lsp.buf.hover() in Normal mode
+  --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration
+  pcall(vim.keymap.del, "n", "K", { buffer = data.buf })
+end
+
+return M

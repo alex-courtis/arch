@@ -1,9 +1,9 @@
 local env = require("amc.env")
-local util = require("amc.util")
 
 local require = require("amc.require_or_nil")
 
 local buffers = require("amc.buffers") or {}
+local map = require("amc.init.late.map") or {}
 local windows = require("amc.windows") or {}
 local fugitive = require("amc.plugins.fugitive") or {}
 local nvt = require("amc.plugins.nvt") or {}
@@ -25,7 +25,7 @@ end
 -- stylua: ignore start
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
-au({ "BufEnter" },                                              util.reset_mappings,          {})
+au({ "BufEnter" },                                              map.reset_mappings,           {})
 au({ "BufEnter" },                                              buffers.wipe_alt_no_name_new, {})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,        {})
 au({ "BufLeave", "FocusLost" },                                 buffers.update,               { nested = true })
@@ -33,6 +33,7 @@ au({ "QuickFixCmdPost" },                                       windows.open_qf_
 au({ "BufWinEnter" },                                           windows.resize_qf_loc_win,    { pattern = { "quickfix" } })
 au({ "BufWinEnter" },                                           windows.position_doc_window,  {})
 au({ "VimEnter" },                                              nvt.vim_enter,                {})
+au({ "VimEnter" },                                              map.clear_default_mappings,   {})
 
 ft({ "fugitive" },                                              fugitive.attach,              {})
 -- stylua: ignore end
