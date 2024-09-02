@@ -1,0 +1,28 @@
+#!/bin/sh
+
+case "${1}" in
+	"")
+		;;
+	--dry-run|-n)
+		DRY_RUN="--dry-run"
+		;;
+	*)
+		printf "usage: %s [--dry-run|-n]\n" "${0}"
+		printf "  git fetch --prune [--dry-run]\n"
+		printf "  git branch -D  branches where remote is gone\n"
+		exit 1
+		;;
+esac
+
+git fetch --prune "${DRY_RUN}"
+
+GONE="$(git branch -vv | grep gone | sed -E 's#^ *([^ ]*) .*$#\1#g')"
+
+for b in ${GONE}; do
+	if [ "${DRY_RUN}" ]; then
+		printf "%s\n" "${b}"
+	else
+		git branch -D "${b}"
+	fi
+done
+
