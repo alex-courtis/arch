@@ -13,12 +13,19 @@ riverctl rule-add -app-id "blueman-*" float
 riverctl rule-add -app-id gamescope fullscreen
 
 # vsync unavailable for VRR and compositor must do it via a window
-# elden ring
-riverctl rule-add -app-id "steam_app_1245620" ssd
+#
+# elden ring, likes to run at 3840x2140, window can be dragged up or down to align cursors, need 0 borders
+# TODO add a border toggle to wideriver
+riverctl rule-add -app-id "steam_app_1245620" csd
 riverctl rule-add -app-id "steam_app_1245620" float
 riverctl rule-add -app-id "steam_app_1245620" no-fullscreen
 riverctl rule-add -app-id "steam_app_1245620" position 0 0
-riverctl rule-add -app-id "steam_app_1245620" dimensions 3840 2160
+riverctl rule-add -app-id "steam_app_1245620" dimensions 3840 2140
+riverctl rule-add -app-id 'ELDEN RING™' csd
+riverctl rule-add -app-id 'ELDEN RING™' float
+riverctl rule-add -app-id 'ELDEN RING™' no-fullscreen
+riverctl rule-add -app-id 'ELDEN RING™' position 0 0
+riverctl rule-add -app-id 'ELDEN RING™' dimensions 3840 2140
 
 # behaviour
 riverctl attach-mode bottom
