@@ -82,7 +82,7 @@ nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 nm <Space>y <Action>(ActivateCommitToolWindow)
 nm <Space>i <Action>(Switcher)
-nm <Space>x <Action>(SwitcherForward)
+nm <Space>x :b#<CR>
 
 nm <Space><Down> <Action>(NextTab)
 nm <Space><Up> <Action>(PreviousTab)
