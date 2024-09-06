@@ -1,1 +1,3 @@
 --one-file-system
+--show-itemcount
+--threads 8
