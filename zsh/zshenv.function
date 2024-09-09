@@ -82,3 +82,15 @@ function stylua {
 
 	$(whence -p stylua) "${ARGS}" "${@}"
 }
+
+function boot {
+	BOOT_NUM=$(efibootmgr | grep "${1}" | head -n 1 | sed -E "s/^Boot([[:xdigit:]]*).*$/\1/g")
+
+	if [ -n "${BOOT_NUM}" ]; then
+		sudo efibootmgr -n "${BOOT_NUM}"
+		sudo systemctl reboot
+	else
+		efibootmgr
+		printf "\nno %s\n" "${1}"
+	fi
+}

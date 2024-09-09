@@ -1,12 +1,3 @@
-#!/bin/sh
+#!/bin/zsh
 
-BOOT_NUM=$(efibootmgr | grep "Windows Boot Manager" | head -n 1 | sed -E "s/^Boot([[:xdigit:]]*).*$/\1/g")
-
-if [ -n "${BOOT_NUM}" ]; then
-	sudo efibootmgr -n "${BOOT_NUM}"
-	sudo systemctl reboot
-else
-	efibootmgr
-	echo
-	echo "no win"
-fi
+boot "Windows Boot Manager"
