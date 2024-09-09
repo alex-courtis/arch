@@ -1,32 +1,50 @@
-#!/bin/sh
+#!/bin/bash
+
+# TODO
+# optional prompt to delete any branches without upstream, not just gone
+# rename to git-prune or create other scripts: one for all worktrees, one for all branches
 
 case "${1}" in
 	"")
 		;;
-	--dry-run|-n)
-		DRY_RUN="true"
-		;;
 	*)
-		printf "usage: %s [--dry-run|-n]\n" "${0}"
+		printf "usage: %s\n" "${0}"
 		printf "  git fetch --prune [--dry-run]\n"
-		printf "  git branch -D  branches where remote is gone\n"
+		printf "  git remote -v update --prune\n"
+		printf "  git branch -D\n"
+		printf "  git worktree remove -f\n"
 		exit 1
 		;;
 esac
 
-if [ "${DRY_RUN}" ]; then
-	git fetch --prune --dry-run
-else
-	git fetch --prune
-fi
+(set -x; git fetch --prune)
+printf "\n"
 
-GONE="$(git branch -vv | grep gone | sed -E 's#^ *([^ ]*) .*$#\1#g')"
 
+(set -x; git remote -v update --prune)
+printf "\n"
+
+
+(set -x; git --no-pager branch -vv | grep -E "gone|$")
+printf "\n"
+
+GONE="$(git --no-pager branch -vv | grep gone | sed -E 's#^..([^ ]*) .*$#\1#g')"
 for b in ${GONE}; do
-	if [ "${DRY_RUN}" ]; then
-		printf "%s\n" "${b}"
-	else
-		git branch -D "${b}"
+	IFS= read -r -p "git branch -D ${b} ? " yn
+	if [ "${yn}" = "y" ]; then
+		(set -x; git branch -D "${b}")
+	fi
+done
+
+
+(set -x; git --no-pager worktree list)
+printf "\n"
+
+WORKTREES="$(git --no-pager worktree list | sed -E 's#^.*\[([^ ]*)\]$#\1#g')"
+for w in ${WORKTREES}; do
+	IFS= read -r -p "git worktree remove -f ${w} ? " yn
+	if [ "${yn}" = "y" ]; then
+		(set -x; git worktree remove -f "${w}")
 	fi
 done
 
