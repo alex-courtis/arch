@@ -2,6 +2,8 @@
 
 riverctl background-color       "0x000000"
 
+riverctl border-width 0
+
 # others are overridden
 riverctl border-color-urgent    "0x${BASE16[comments]}"
 
