@@ -1,0 +1,35 @@
+#!/bin/bash
+
+case "${1}" in
+	"")
+		;;
+	*)
+		printf "usage: %s\n" "${0}"
+		printf "  branches with no remote will prompt\n"
+		printf "    git branch -D\n"
+		exit 1
+		;;
+esac
+
+(set -x; git --no-pager branch -r)
+printf "\n"
+
+(set -x; git --no-pager branch --list --format="%(refname:lstrip=2)")
+printf "\n"
+
+BRANCHES="$(git --no-pager branch --list --format="%(refname:lstrip=2)")"
+for b in ${BRANCHES}; do
+	if ! git --no-pager branch --remote --format="%(refname:lstrip=3)" | grep -E "^${b}$" > /dev/null; then
+
+		echo "${b}"
+		git --no-pager show --no-patch "${b}"
+		printf "\n"
+
+		IFS= read -r -p "git branch -D ${b} ? " yn
+		if [ "${yn}" = "y" ]; then
+			(set -x; git branch -D "${b}")
+		fi
+
+		printf "\n"
+	fi
+done
