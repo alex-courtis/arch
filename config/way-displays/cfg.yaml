@@ -1,6 +1,7 @@
 ARRANGE: ROW
 ALIGN: BOTTOM
 ORDER:
+  - M28U
   - LG Display 0x05EF
   - Sharp Corporation 0x148D
   - Samsung Display Corp. 0x4165
