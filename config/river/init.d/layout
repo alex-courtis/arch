@@ -3,7 +3,7 @@
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all wideriver \
 wideriver \
-	--layout wide \
+	--layout left \
 	--layout-alt monocle \
 	--stack dwindle \
 	--count-master 1 \
