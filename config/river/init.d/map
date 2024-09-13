@@ -50,6 +50,16 @@ riverctl map normal $mod2 apostrophe spawn "bemenu-run > /dev/null 2>&1"
 riverctl map normal $mod1 q spawn bp
 riverctl map normal $mod1 j spawn term
 riverctl map normal $mod1 k spawn b
+riverctl map normal $mod1 x toggle-view-tags
+
+#
+riverctl map normal $mod1 Left focus-output previous
+riverctl map normal $mod2 Left spawn "riverctl send-to-output -current-tags previous && riverctl focus-output previous"
+riverctl map normal $mod3 Left send-to-output previous
+
+riverctl map normal $mod1 Right focus-output next
+riverctl map normal $mod2 Right spawn "riverctl send-to-output -current-tags next && riverctl focus-output next"
+riverctl map normal $mod3 Right send-to-output next
 
 #
 # right
@@ -80,17 +90,9 @@ riverctl map normal $mod2 h swap previous
 riverctl map normal $mod1 t send-layout-cmd wideriver "--ratio -0.025"
 riverctl map normal $mod2 t send-layout-cmd wideriver "--ratio 0.35"
 
-# wz\
+# mwvz\
 riverctl map normal $mod1 b spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
 riverctl map normal $mod2 b send-layout-cmd wideriver "--stack diminish"
-
-riverctl map normal $mod1 m focus-output previous
-riverctl map normal $mod2 m spawn "riverctl send-to-output previous && riverctl focus-output previous"
-riverctl map normal $mod3 m send-to-output previous
-
-riverctl map normal $mod1 v focus-output next
-riverctl map normal $mod2 v spawn "riverctl send-to-output next && riverctl focus-output next"
-riverctl map normal $mod3 v send-to-output next
 
 #
 # big right
