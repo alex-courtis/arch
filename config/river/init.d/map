@@ -125,8 +125,3 @@ riverctl map normal None XF86AudioRaiseVolume  spawn "volraise"
 riverctl map normal None XF86AudioLowerVolume  spawn "vollower"
 riverctl map normal None XF86MonBrightnessUp   spawn "sudo brightnessctl s 10%+"
 riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
-
-#
-# meta
-#
-riverctl map normal $mod1 F12 spawn primary-paste
