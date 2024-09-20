@@ -8,12 +8,13 @@ return function(modname)
   if ok then
     return module
   else
-    local err = string.format("%s\n%s", module, debug.traceback())
-    log.line(err)
+    local file = log.err(string.format("%s\n%s", module, debug.traceback()))
+
+    local mess = string.format("%s:\n%s\nlog:\n\t%s", module:gsub(":\n.*", ""), debug.traceback(), file)
 
     -- print renders ^I
-    err = err:gsub("\t", "    ")
-    print(err)
+    mess = mess:gsub("\t", "    ")
+    print(mess)
 
     return nil
   end
