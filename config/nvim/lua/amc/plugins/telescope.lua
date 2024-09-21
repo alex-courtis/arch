@@ -53,6 +53,7 @@ local cfg = actions
           attach_mappings = attach_quickfix_select,
         },
         git_status = {
+          attach_mappings = attach_quickfix_select,
           initial_mode = "normal",
           path_display = {
             truncate = 3,
