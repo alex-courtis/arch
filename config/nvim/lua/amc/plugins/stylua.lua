@@ -15,6 +15,8 @@ local config = {
 -- init
 stylua.setup(config)
 
-M.format_file = stylua.format_file
+M.format_file = function()
+  stylua.format_file({ error_display_strategy = "none" })
+end
 
 return M
