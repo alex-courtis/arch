@@ -16,9 +16,12 @@
 	wb = "!f() { git worktree add ../$1 -b $1 ; }; f"
 	wc = "!f() { git worktree add ../$1 $1 ; }; f"
 
-	l =  log --pretty='format:%C(yellow)%H%C(blue)%d%C(reset) %s %C(white) %C(green)%an %C(cyan)%ai%C(reset) %C(magenta)%ar%C(reset)'
-	lm = log --pretty='format:%C(yellow)%H%C(blue)%d%C(reset) %s %C(white) %C(green)%an %C(cyan)%ai%C(reset) %C(magenta)%ar%C(reset)' --merges
-	lg = l  --graph
+	l =   log --pretty='format:%C(yellow)%h%C(reset)%C(blue)%d%C(reset) %s %C(magenta)%ar%C(reset) %C(green)%an%C(reset)'
+	ll =  log --pretty='format:%C(yellow)%H%C(reset)%C(blue)%d%C(reset) %s %C(magenta)%ar%C(reset) %C(green)%an%C(reset) %C(cyan)%ai%C(reset)'
+	lm =  l --merges
+	llm = ll --merges
+	lg =  l --graph
+	llg = ll --graph
 
 	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
