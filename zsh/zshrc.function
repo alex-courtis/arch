@@ -44,7 +44,7 @@ function pyenv_init() {
 }
 
 typeset -A chdir_subs
-function make_chdir_sub {
+function make_chdir_sub_vi {
 	chdir_subs[${1}]="${2}"
 	function "${1}" { 
 		cd "${chdir_subs[${0}]}/${1}"
@@ -53,25 +53,27 @@ function make_chdir_sub {
 		((CURRENT == 2)) && _files -/ -W "${chdir_subs[${0:1}]}"
 	}
 	compdef "_${1}" "${1}"
+
+	alias "${1}vi"="cd \"${2}\" && vi"
 }
 
-make_chdir_sub s  "${HOME}/src"
-make_chdir_sub d  "${HOME}/.dotfiles"
-make_chdir_sub v  "${HOME}/.dotfiles/config/nvim"
-make_chdir_sub ni "${HOME}/src/nvim-web-devicons"
-make_chdir_sub nt "${HOME}/src/nvim-tree"
-make_chdir_sub wd "${HOME}/src/way-displays"
-make_chdir_sub wr "${HOME}/src/wideriver"
-make_chdir_sub pa "${XDG_DATA_HOME}/nvim/site/pack/packer/start"
+make_chdir_sub_vi s  "${HOME}/src"
+make_chdir_sub_vi d  "${HOME}/.dotfiles"
+make_chdir_sub_vi v  "${HOME}/.dotfiles/config/nvim"
+make_chdir_sub_vi ni "${HOME}/src/nvim-web-devicons"
+make_chdir_sub_vi nt "${HOME}/src/nvim-tree"
+make_chdir_sub_vi wd "${HOME}/src/way-displays"
+make_chdir_sub_vi wr "${HOME}/src/wideriver"
+make_chdir_sub_vi pa "${XDG_DATA_HOME}/nvim/site/pack/packer/start"
 
 if [ "${UNAME}" = "Darwin" ]; then
-	make_chdir_sub a  "${HOME}/atlassian"
-	make_chdir_sub s  "${HOME}/atlassian/src"
-	make_chdir_sub j  "${HOME}/atlassian/src/jira"
-	make_chdir_sub mc "${HOME}/Library/Application Support"
-	make_chdir_sub jb "${HOME}/Library/Application Support/JetBrains/IntelliJIdea2024.1"
+	make_chdir_sub_vi a  "${HOME}/atlassian"
+	make_chdir_sub_vi s  "${HOME}/atlassian/src"
+	make_chdir_sub_vi j  "${HOME}/atlassian/src/jira"
+	make_chdir_sub_vi mc "${HOME}/Library/Application Support"
+	make_chdir_sub_vi jb "${HOME}/Library/Application Support/JetBrains/IntelliJIdea2024.1"
 fi
 if [ -n "${RDE_PROFILE_NAME}" ]; then
-	make_chdir_sub j  "${HOME}/jira"
+	make_chdir_sub_vi j  "${HOME}/jira"
 fi
 
