@@ -7,8 +7,20 @@ indent_size = 4
 indent_style = tab
 trim_trailing_whitespace = false
 
-[*.{lua,json,yml,yaml,ts,tf,js}]
+[*.{json,yml,yaml,ts,tf,js}]
 indent_style = space
 indent_size = 2
+
+[*.lua]
+indent_style = space
+max_line_length = 140
+indent_size = 2
+
+# EmmyLuaCodeStyle specific, see
+# https://github.com/CppCXY/EmmyLuaCodeStyle/blob/master/lua.template.editorconfig
+continuation_indent = 2
+quote_style = double
+call_arg_parentheses = always
+space_before_closure_open_parenthesis = false
 
 # vim:ft=editorconfig

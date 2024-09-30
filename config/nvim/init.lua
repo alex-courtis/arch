@@ -13,7 +13,6 @@ require_or_nil("amc.options")
 -- installs but does not load
 log.line("---- packer")
 local plugins = {
-  "ckipp01/stylua-nvim",
   "echasnovski/mini.base16",
   "farmergreg/vim-lastplace",
   "fidian/hexmode",

@@ -1,9 +1,5 @@
 local M = {}
 
-local require = require("amc.require_or_nil")
-
-local stylua = require("amc.plugins.stylua")
-
 --- @enum dev.build_type
 M.build_type = {
   MAKE = 0,
@@ -102,11 +98,6 @@ end
 function M.format()
   if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
     vim.cmd([[silent! norm! gg=G``]])
-    return
-  end
-
-  if stylua and vim.bo.filetype == "lua" then
-    stylua.format_file()
     return
   end
 

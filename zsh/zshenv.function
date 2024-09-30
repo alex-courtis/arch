@@ -71,18 +71,6 @@ function gu {
 	git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
 }
 
-# search parents / .config
-function stylua {
-	local ARGS=""
-
-	if [ -z "${@[(r)--search-parent-directories]}" -a -z "${@[(r)-s]}" ]; then
-		ARGS="--search-parent-directories"
-		$(whence -p stylua)  "${@}"
-	fi
-
-	$(whence -p stylua) "${ARGS}" "${@}"
-}
-
 function boot {
 	BOOT_NUM=$(efibootmgr \
 		| grep -Ei "^Boot[[:xdigit:]]*\* *${1}" \
