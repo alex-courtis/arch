@@ -22,7 +22,6 @@ local function ft(pattern, callback, opts)
   end
 end
 
--- stylua: ignore start
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
 au({ "BufEnter" },                                              map.reset_mappings,           {})
@@ -36,7 +35,6 @@ au({ "VimEnter" },                                              nvt.vim_enter,  
 au({ "VimEnter" },                                              map.clear_default_mappings,   {})
 
 ft({ "fugitive" },                                              fugitive.attach,              {})
--- stylua: ignore end
 
 -- v/h resize windows on terminal size change
 au({ "VimResized" }, function()
