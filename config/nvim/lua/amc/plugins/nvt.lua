@@ -126,49 +126,47 @@ local function on_attach(bufnr)
 
   api.config.mappings.default_on_attach(bufnr)
 
-  -- stylua: ignore start
-  vim.keymap.del('n', '<C-]>', { buffer = bufnr }) -- api.tree.change_root_to_node,
-  vim.keymap.del('n', '<C-e>', { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
-  vim.keymap.del('n', '<C-t>', { buffer = bufnr }) -- api.node.open.tab,
-  vim.keymap.del('n', '<BS>',  { buffer = bufnr }) -- api.node.navigate.parent_close,
-  vim.keymap.del('n', '[c',    { buffer = bufnr }) -- api.node.navigate.git.prev,
-  vim.keymap.del('n', ']c',    { buffer = bufnr }) -- api.node.navigate.git.next,
-  vim.keymap.del('n', 'D',     { buffer = bufnr }) -- api.fs.trash,
-  vim.keymap.del('n', ']e',    { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
-  vim.keymap.del('n', '[e',    { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
-  vim.keymap.del('n', 'g?',    { buffer = bufnr }) -- api.tree.toggle_help,
-  vim.keymap.del('n', 'gy',    { buffer = bufnr }) -- api.fs.copy.absolute_path,
-  vim.keymap.del('n', 'y',     { buffer = bufnr }) -- api.fs.copy.filename,
-  vim.keymap.del('n', 'Y',     { buffer = bufnr }) -- api.fs.copy.relative_path,
+  vim.keymap.del("n", "<C-]>",    { buffer = bufnr }) -- api.tree.change_root_to_node,
+  vim.keymap.del("n", "<C-e>",    { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
+  vim.keymap.del("n", "<C-t>",    { buffer = bufnr }) -- api.node.open.tab,
+  vim.keymap.del("n", "<BS>",     { buffer = bufnr }) -- api.node.navigate.parent_close,
+  vim.keymap.del("n", "[c",       { buffer = bufnr }) -- api.node.navigate.git.prev,
+  vim.keymap.del("n", "]c",       { buffer = bufnr }) -- api.node.navigate.git.next,
+  vim.keymap.del("n", "D",        { buffer = bufnr }) -- api.fs.trash,
+  vim.keymap.del("n", "]e",       { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
+  vim.keymap.del("n", "[e",       { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
+  vim.keymap.del("n", "g?",       { buffer = bufnr }) -- api.tree.toggle_help,
+  vim.keymap.del("n", "gy",       { buffer = bufnr }) -- api.fs.copy.absolute_path,
+  vim.keymap.del("n", "y",        { buffer = bufnr }) -- api.fs.copy.filename,
+  vim.keymap.del("n", "Y",        { buffer = bufnr }) -- api.fs.copy.relative_path,
 
-  vim.keymap.set('n', '<C-t>',    api.tree.change_root_to_parent,               opts('Up'))
-  vim.keymap.set('n', '<Space>t', api.tree.change_root_to_node,                 opts('CD'))
-  vim.keymap.set('n', '<BS>t',    api.tree.change_root_to_node,                 opts('CD'))
-  vim.keymap.set('n', '<Space>p', api.node.navigate.diagnostics.prev_recursive, opts('Prev Diagnostic'))
-  vim.keymap.set('n', '<BS>p',    api.node.navigate.diagnostics.prev_recursive, opts('Prev Diagnostic'))
-  vim.keymap.set('n', '<Space>.', api.node.navigate.diagnostics.next_recursive, opts('Next Diagnostic'))
-  vim.keymap.set('n', '<BS>.',    api.node.navigate.diagnostics.next_recursive, opts('Next Diagnostic'))
-  vim.keymap.set('n', '<Space>u', api.node.navigate.opened.prev,                opts('Prev Opened'))
-  vim.keymap.set('n', '<BS>u',    api.node.navigate.opened.prev,                opts('Prev Opened'))
-  vim.keymap.set('n', '<Space>e', api.node.navigate.opened.next,                opts('Next Opened'))
-  vim.keymap.set('n', '<BS>e',    api.node.navigate.opened.next,                opts('Next Opened'))
-  vim.keymap.set('n', '<Space>k', api.node.navigate.git.prev_recursive,         opts('Prev Git'))
-  vim.keymap.set('n', '<BS>k',    api.node.navigate.git.prev_recursive,         opts('Prev Git'))
-  vim.keymap.set('n', '<Space>j', api.node.navigate.git.next_recursive,         opts('Next Git'))
-  vim.keymap.set('n', '<BS>j',    api.node.navigate.git.next_recursive,         opts('Next Git'))
-  vim.keymap.set('n', "'",        api.node.navigate.parent_close,               opts('Close Directory'))
-  vim.keymap.set('n', '?',        api.tree.toggle_help,                         opts('Help'))
-  vim.keymap.set('n', 'O',        api.node.navigate.parent_close,               opts('Close Directory'))
-  vim.keymap.set('n', 'A',        toggle_width_adaptive,                        opts('Toggle Adaptive Width'))
-  vim.keymap.set('n', 'gr',       git_restore,                                  opts('Git Restore'))
-  vim.keymap.set('n', 'gs',       git_stage,                                    opts('Git Stage'))
-  vim.keymap.set('n', 'gu',       git_unstage,                                  opts('Git Unstage'))
-  vim.keymap.set('n', 'tf',       find_files,                                   opts('Find Files'))
-  vim.keymap.set('n', 'tg',       live_grep,                                    opts('Live Grep'))
-  vim.keymap.set('n', 'yn',       api.fs.copy.filename,                         opts('Copy Name'))
-  vim.keymap.set('n', 'yr',       api.fs.copy.relative_path,                    opts('Copy Relative Path'))
-  vim.keymap.set('n', 'ya',       api.fs.copy.absolute_path,                    opts('Copy Absolute Path'))
-  -- stylua: ignore end
+  vim.keymap.set("n", "<C-t>",    api.tree.change_root_to_parent,               opts("Up"))
+  vim.keymap.set("n", "<Space>t", api.tree.change_root_to_node,                 opts("CD"))
+  vim.keymap.set("n", "<BS>t",    api.tree.change_root_to_node,                 opts("CD"))
+  vim.keymap.set("n", "<Space>p", api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
+  vim.keymap.set("n", "<BS>p",    api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
+  vim.keymap.set("n", "<Space>.", api.node.navigate.diagnostics.next_recursive, opts("Next Diagnostic"))
+  vim.keymap.set("n", "<BS>.",    api.node.navigate.diagnostics.next_recursive, opts("Next Diagnostic"))
+  vim.keymap.set("n", "<Space>u", api.node.navigate.opened.prev,                opts("Prev Opened"))
+  vim.keymap.set("n", "<BS>u",    api.node.navigate.opened.prev,                opts("Prev Opened"))
+  vim.keymap.set("n", "<Space>e", api.node.navigate.opened.next,                opts("Next Opened"))
+  vim.keymap.set("n", "<BS>e",    api.node.navigate.opened.next,                opts("Next Opened"))
+  vim.keymap.set("n", "<Space>k", api.node.navigate.git.prev_recursive,         opts("Prev Git"))
+  vim.keymap.set("n", "<BS>k",    api.node.navigate.git.prev_recursive,         opts("Prev Git"))
+  vim.keymap.set("n", "<Space>j", api.node.navigate.git.next_recursive,         opts("Next Git"))
+  vim.keymap.set("n", "<BS>j",    api.node.navigate.git.next_recursive,         opts("Next Git"))
+  vim.keymap.set("n", "'",        api.node.navigate.parent_close,               opts("Close Directory"))
+  vim.keymap.set("n", "?",        api.tree.toggle_help,                         opts("Help"))
+  vim.keymap.set("n", "O",        api.node.navigate.parent_close,               opts("Close Directory"))
+  vim.keymap.set("n", "A",        toggle_width_adaptive,                        opts("Toggle Adaptive Width"))
+  vim.keymap.set("n", "gr",       git_restore,                                  opts("Git Restore"))
+  vim.keymap.set("n", "gs",       git_stage,                                    opts("Git Stage"))
+  vim.keymap.set("n", "gu",       git_unstage,                                  opts("Git Unstage"))
+  vim.keymap.set("n", "tf",       find_files,                                   opts("Find Files"))
+  vim.keymap.set("n", "tg",       live_grep,                                    opts("Live Grep"))
+  vim.keymap.set("n", "yn",       api.fs.copy.filename,                         opts("Copy Name"))
+  vim.keymap.set("n", "yr",       api.fs.copy.relative_path,                    opts("Copy Relative Path"))
+  vim.keymap.set("n", "ya",       api.fs.copy.absolute_path,                    opts("Copy Absolute Path"))
 end
 
 local config = {
