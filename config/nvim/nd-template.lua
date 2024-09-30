@@ -47,12 +47,10 @@ end
 local api = require("nvim-tree.api")
 local log = require("nvim-tree.log")
 
--- stylua: ignore start
 vim.keymap.set("n", ";",        ":",                                   { noremap = true })
 vim.keymap.set("n", "<space>a", function() api.tree.open({}) end,      { noremap = true })
 vim.keymap.set("n", "<space>'", function() api.tree.find_file({}) end, { noremap = true })
 vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,    { noremap = true })
--- stylua: ignore end
 
 function M.on_attach(bufnr)
   local function opts(desc)
@@ -61,9 +59,7 @@ function M.on_attach(bufnr)
 
   api.config.mappings.default_on_attach(bufnr)
 
-  -- stylua: ignore start
-  vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
-  -- stylua: ignore end
+  vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
 
 vim.api.nvim_create_autocmd("DirChanged", {
