@@ -28,7 +28,7 @@ vim.o.wrapscan = false
 
 -- error format
 vim.o.errorformat = "%.%#[   LINE   ] --- %f:%l:%m," .. vim.o.errorformat -- cmocka
-vim.o.errorformat = "make%.%#: *** [%f:%l:%m," .. vim.o.errorformat -- errors in makefiles themselves
+vim.o.errorformat = "make%.%#: *** [%f:%l:%m," .. vim.o.errorformat       -- errors in makefiles themselves
 
 -- legacy plugin options
 vim.g["asterisk#keeppos"] = 1

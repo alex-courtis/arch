@@ -47,122 +47,122 @@ local function attach_quickfix_select(prompt_bufnr)
 end
 
 local cfg = actions
-    and {
-      pickers = {
-        live_grep = {
-          attach_mappings = attach_quickfix_select,
-        },
-        git_status = {
-          attach_mappings = attach_quickfix_select,
-          initial_mode = "normal",
-          path_display = {
-            truncate = 3,
-          },
-        },
-        buffers = {
-          ignore_current_buffer = true,
-          initial_mode = "normal",
-          sort_mru = true,
-          mappings = {
-            n = {
-              ["d"] = actions.delete_buffer,
-            },
-          },
-        },
-        lsp_references = {
-          attach_mappings = attach_quickfix_select,
-          initial_mode = "normal",
-        },
-        diagnostics = {
-          attach_mappings = attach_quickfix_select,
-          initial_mode = "normal",
-        },
+  and {
+    pickers = {
+      live_grep = {
+        attach_mappings = attach_quickfix_select,
       },
-      defaults = {
+      git_status = {
+        attach_mappings = attach_quickfix_select,
+        initial_mode = "normal",
         path_display = {
-          truncate = 1,
+          truncate = 3,
         },
-        sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
-        layout_config = {
-          height = 0.95,
-          width = 0.9,
-          horizontal = {
-            preview_cutoff = 160,
-            prompt_position = "top",
-          },
-          vertical = {
-            preview_cutoff = 55,
-            prompt_position = "top",
-            mirror = true,
-          },
-        },
-        history = {
-          path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
-          limit = 100,
-        },
-        default_mappings = {
+      },
+      buffers = {
+        ignore_current_buffer = true,
+        initial_mode = "normal",
+        sort_mru = true,
+        mappings = {
           n = {
-            ["<ESC>"] = actions.close,
-            ["<C-c>"] = actions.close,
-
-            ["<CR>"] = actions.select_default,
-
-            ["j"] = actions.move_selection_next,
-            ["<C-n>"] = actions.move_selection_next,
-            ["<Tab>"] = actions.move_selection_next,
-            ["<Down>"] = actions.move_selection_next,
-            ["k"] = actions.move_selection_previous,
-            ["<C-p>"] = actions.move_selection_previous,
-            ["<S-Tab>"] = actions.move_selection_previous,
-            ["<Up>"] = actions.move_selection_previous,
-
-            ["h"] = actions.results_scrolling_left,
-            ["<C-h>"] = actions.results_scrolling_left,
-            ["l"] = actions.results_scrolling_right,
-            ["<C-l>"] = actions.results_scrolling_right,
-
-            ["gg"] = actions.move_to_top,
-            ["G"] = actions.move_to_bottom,
-
-            ["<C-u>"] = actions.preview_scrolling_up,
-            ["<C-d>"] = actions.preview_scrolling_down,
-
-            ["<C-j>"] = actions.cycle_history_next,
-            ["<C-f>"] = actions.cycle_history_next,
-            ["<C-k>"] = actions.cycle_history_prev,
-            ["<C-b>"] = actions.cycle_history_prev,
-
-            ["?"] = actions.which_key,
-          },
-          i = {
-            ["<C-c>"] = actions.close,
-
-            ["<CR>"] = actions.select_default,
-
-            ["<C-n>"] = actions.move_selection_next,
-            ["<Tab>"] = actions.move_selection_next,
-            ["<Down>"] = actions.move_selection_next,
-            ["<C-p>"] = actions.move_selection_previous,
-            ["<S-Tab>"] = actions.move_selection_previous,
-            ["<Up>"] = actions.move_selection_previous,
-
-            ["<C-u>"] = actions.preview_scrolling_up,
-            ["<C-d>"] = actions.preview_scrolling_down,
-
-            ["<C-h>"] = actions.results_scrolling_left,
-            ["<C-l>"] = actions.results_scrolling_right,
-
-            ["<C-j>"] = actions.cycle_history_next,
-            ["<C-f>"] = actions.cycle_history_next,
-            ["<C-k>"] = actions.cycle_history_prev,
-            ["<C-b>"] = actions.cycle_history_prev,
-
-            ["<C-/>"] = actions.which_key,
+            ["d"] = actions.delete_buffer,
           },
         },
       },
-    }
+      lsp_references = {
+        attach_mappings = attach_quickfix_select,
+        initial_mode = "normal",
+      },
+      diagnostics = {
+        attach_mappings = attach_quickfix_select,
+        initial_mode = "normal",
+      },
+    },
+    defaults = {
+      path_display = {
+        truncate = 1,
+      },
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+        height = 0.95,
+        width = 0.9,
+        horizontal = {
+          preview_cutoff = 160,
+          prompt_position = "top",
+        },
+        vertical = {
+          preview_cutoff = 55,
+          prompt_position = "top",
+          mirror = true,
+        },
+      },
+      history = {
+        path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
+        limit = 100,
+      },
+      default_mappings = {
+        n = {
+          ["<ESC>"] = actions.close,
+          ["<C-c>"] = actions.close,
+
+          ["<CR>"] = actions.select_default,
+
+          ["j"] = actions.move_selection_next,
+          ["<C-n>"] = actions.move_selection_next,
+          ["<Tab>"] = actions.move_selection_next,
+          ["<Down>"] = actions.move_selection_next,
+          ["k"] = actions.move_selection_previous,
+          ["<C-p>"] = actions.move_selection_previous,
+          ["<S-Tab>"] = actions.move_selection_previous,
+          ["<Up>"] = actions.move_selection_previous,
+
+          ["h"] = actions.results_scrolling_left,
+          ["<C-h>"] = actions.results_scrolling_left,
+          ["l"] = actions.results_scrolling_right,
+          ["<C-l>"] = actions.results_scrolling_right,
+
+          ["gg"] = actions.move_to_top,
+          ["G"] = actions.move_to_bottom,
+
+          ["<C-u>"] = actions.preview_scrolling_up,
+          ["<C-d>"] = actions.preview_scrolling_down,
+
+          ["<C-j>"] = actions.cycle_history_next,
+          ["<C-f>"] = actions.cycle_history_next,
+          ["<C-k>"] = actions.cycle_history_prev,
+          ["<C-b>"] = actions.cycle_history_prev,
+
+          ["?"] = actions.which_key,
+        },
+        i = {
+          ["<C-c>"] = actions.close,
+
+          ["<CR>"] = actions.select_default,
+
+          ["<C-n>"] = actions.move_selection_next,
+          ["<Tab>"] = actions.move_selection_next,
+          ["<Down>"] = actions.move_selection_next,
+          ["<C-p>"] = actions.move_selection_previous,
+          ["<S-Tab>"] = actions.move_selection_previous,
+          ["<Up>"] = actions.move_selection_previous,
+
+          ["<C-u>"] = actions.preview_scrolling_up,
+          ["<C-d>"] = actions.preview_scrolling_down,
+
+          ["<C-h>"] = actions.results_scrolling_left,
+          ["<C-l>"] = actions.results_scrolling_right,
+
+          ["<C-j>"] = actions.cycle_history_next,
+          ["<C-f>"] = actions.cycle_history_next,
+          ["<C-k>"] = actions.cycle_history_prev,
+          ["<C-b>"] = actions.cycle_history_prev,
+
+          ["<C-/>"] = actions.which_key,
+        },
+      },
+    },
+  }
   or nil
 
 local function opts(o)
