@@ -117,39 +117,35 @@ else
 
   theme = {
 
-    -- stylua: ignore start
-
     -- z/y/x inherits a/b/c
     normal = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_comments,            gui = "bold" },
-      b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_lighter_background                },
-      c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_comments, gui = "bold" },
+      b = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_lighter_background },
+      c = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_selection_background },
     },
 
     -- inherits normal
     replace = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_yellow,              gui = "bold" },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_yellow, gui = "bold" },
     },
     insert = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_blue,                gui = "bold" },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_blue, gui = "bold" },
     },
     visual = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_magenta,             gui = "bold" },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_magenta, gui = "bold" },
     },
     command = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_red,                 gui = "bold" },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_red, gui = "bold" },
     },
     terminal = {
-      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_green,               gui = "bold" },
+      a = { fg = "#" .. vim.env.BASE16_lighter_background, bg = "#" .. vim.env.BASE16_green, gui = "bold" },
     },
 
     inactive = {
-      a = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-      b = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
-      c = { fg = "#" .. vim.env.BASE16_dark_foreground,    bg = "#" .. vim.env.BASE16_selection_background              },
+      a = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_selection_background },
+      b = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_selection_background },
+      c = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_selection_background },
     },
-
-    -- stylua: ignore end
   }
 end
 
