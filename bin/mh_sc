@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "${0} ${@}" > /tmp/mh_sc.log
+
+way-displays -s scaling off >> /tmp/mh_sc.log 2>&1
+
+mangohud "${@}" >> /tmp/mh_sc.log 2>&1
+
+way-displays -s scaling on >> /tmp/mh_sc.log 2>&1
+
