@@ -18,8 +18,8 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
     + [Swap](#swap)
     + [Root](#root)
     + [Boot](#boot-1)
-    + [Docker](#docker)
     + [Home](#home)
+    + [Docker](#docker)
 - [Installation](#installation)
   * [Bootstrap](#bootstrap)
   * [Setup /etc/fstab](#setup-etcfstab)
@@ -35,6 +35,8 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Booting](#booting)
   * [Create Boot Image](#create-boot-image)
   * [systemd-boot](#systemd-boot)
+  * [memtest86+](#memtest86)
+  * [UEFI Shell](#uefi-shell)
   * [Reboot](#reboot)
 - [Post Install](#post-install)
   * [Set Hostname](#set-hostname)
@@ -44,6 +46,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [CLI User Environment](#cli-user-environment)
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
   * [Done](#done)
+- [Boot Other OS](#boot-other-os)
 - [Firmware](#firmware)
   * [Intel Audio](#intel-audio)
 - [Audio](#audio)
@@ -186,8 +189,8 @@ alias vi=vim
 
 ### Basic Packages
 
-```sh
-pacman -S efibootmgr git vim mkinitcpio networkmanager openssh pkgfile sudo zsh
+ ```sh
+pacman -S edk2-shell efibootmgr git vim memtest86+-efi mkinitcpio networkmanager openssh pkgfile sudo zsh
 ```
 
 ### Pacman Config
@@ -344,9 +347,11 @@ Install:
 bootctl --path=/boot install
 ```
 
+Entries appear to be ordered by reverse numeric sort.
+
 Boot entry:
 ```sh
-cat << EOF > /boot/loader/entries/arch.conf
+cat << EOF > /boot/loader/entries/99-arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
@@ -359,8 +364,8 @@ EOF
 
 Inject the UUIDs of the root and swap partitions:
 ```sh
-blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/arch.conf
-blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/arch.conf
+blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/99-arch.conf
+blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/99-arch.conf
 ```
 Move them into their correct places: root and resume.
 
@@ -371,19 +376,25 @@ vi /boot/loader/loader.conf
 ```
 ```
 timeout 2
-default arch.conf
+default 99-arch.conf
 ```
 
 Try `console-mode max` to use native resolution.
 
-Add memtest86+:
+### memtest86+
+
 ```sh
-pacman -S memtest86+-efi
 vi /boot/loader/entries/memtest.conf
 ```
 ```
 title Memtest86+
 efi /memtest86+/memtest.efi
+```
+
+### UEFI Shell
+
+```sh
+cp /usr/share/edk2-shell/x64/Shell.efi /boot/shellx64.efi
 ```
 
 ### Reboot
@@ -448,7 +459,6 @@ jq
 keychain
 man-db
 man-pages
-memtest86+-efi
 neovim
 nfs-utils
 pacman-contrib
@@ -569,6 +579,33 @@ systemctl stop systemd-userdbd.service
 ### Done
 
 Log in via tty1
+
+## Boot Other OS
+
+Boot into UEFI shell and use `map` to find the FS alias.
+
+Map that to
+```sh
+blkid -s PARTUUID -o value /dev/nvme2n1p1
+```
+
+```sh
+vi /boot/loader/entries/98-bazzite.conf
+```
+```
+title Bazzite
+efi /shellx64.efi
+options -nointerrupt HDXX:\EFI\fedora\shimx64.efi
+```
+
+```sh
+vi /boot/loader/entries/97-windows.conf
+```
+```
+title Windows
+efi /shellx64.efi
+options -nointerrupt HD1b:\EFI\Boot\bootx64.efi
+```
 
 ## Firmware
 
