@@ -1,6 +1,11 @@
 [[keyboard.bindings]]
 key = "J"
-mods = "Super|Shift"
+mods = "Control|Shift"
+command.program = "term"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
 command.program = "term"
 
 [[keyboard.bindings]]

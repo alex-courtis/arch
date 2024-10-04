@@ -24,3 +24,14 @@ key = "L"
 mode = "~AppCursor|~AppKeypad|~Alt"
 mods = "Command"
 action = "ClearHistory"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "J"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "N"
+mods = "Control|Shift"
+
