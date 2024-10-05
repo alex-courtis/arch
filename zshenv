@@ -37,7 +37,7 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 # suggest make behaviour
-export MAKEFLAGS="-j"
+export MAKEFLAGS="-j12"
 
 # man colours
 #  errors:    reverse as normal
