@@ -13,25 +13,13 @@ args = [ "-l" ]
 [font]
 offset = { y = 1 }
 
-[[keyboard.bindings]]
-key = "L"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Command"
-chars = "\u000c"
+[keyboard]
+bindings = [
 
-[[keyboard.bindings]]
-key = "L"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Command"
-action = "ClearHistory"
+{ key = "J", mods = "Control|Shift", action = "CreateNewWindow"                                     },
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow"                                     },
 
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "J"
-mods = "Control|Shift"
+{ key = "L", mods = "Command",       chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "L", mods = "Command",       action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
 
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "N"
-mods = "Control|Shift"
-
+]

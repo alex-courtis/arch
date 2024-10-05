@@ -1,136 +1,34 @@
-[[keyboard.bindings]]
-key = "J"
-mods = "Control|Shift"
-command.program = "term"
+[keyboard]
+bindings = [
 
-[[keyboard.bindings]]
-key = "N"
-mods = "Control|Shift"
-command.program = "term"
+{ key = "J",      mods = "Control|Shift", command.program = "term"                                                 },
+{ key = "N",      mods = "Control|Shift", command.program = "term"                                                 },
 
-[[keyboard.bindings]]
-chars = "\u001B[13;2u"
-key = "Return"
-mode = "Alt"
-mods = "Shift"
+{ key = "Equals", mods = "Control",       action = "ResetFontSize"                                                 },
+{ key = "Equals", mods = "Command",       action = "ResetFontSize"                                                 },
 
-[[keyboard.bindings]]
-chars = "\u001B[13;5u"
-key = "Return"
-mode = "Alt"
-mods = "Control"
+{ key = "Space",  mods = "Control|Shift", action = "ToggleViMode",             mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "H",      mods = "Control",       action = "ToggleViMode",             mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "L",      mods = "Control|Shift", command.program = "alacritty-clear", mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "Return", mods = "Control|Shift", command.program = "alacritty-clear", mode = "~AppCursor|~AppKeypad|~Alt" },
 
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "Space"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Control|Shift"
+{ key = "C",      mods = "Control",       action = "ScrollToBottom",           mode = "Vi"                         },
+{ key = "C",      mods = "Control",       action = "ToggleViMode",             mode = "Vi"                         },
+{ key = "H",      mods = "Control",       action = "ScrollToBottom",           mode = "Vi"                         },
+{ key = "L",      mods = "Control|Shift", action = "ScrollToBottom",           mode = "Vi"                         },
+{ key = "L",      mods = "Control|Shift", action = "ToggleViMode",             mode = "Vi"                         },
+{ key = "Return", mods = "Control|Shift", action = "ScrollToBottom",           mode = "Vi"                         },
+{ key = "Return", mods = "Control|Shift", action = "ToggleViMode",             mode = "Vi"                         },
+{ key = "Space",  mods = "Control|Shift", action = "ScrollToBottom",           mode = "Vi"                         },
 
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "Space"
-mode = "Vi"
-mods = "Control|Shift"
+{ key = "Return",                         action = "ToggleViMode",             mode = "Vi|~Search"                 },
+{ key = "Return",                         action = "ScrollToBottom",           mode = "Vi|~Search"                 },
+{ key = 8,        mods = "Shift",         action = "First",                    mode = "Vi|~Search"                 },
+{ key = 41,                               action = "Last",                     mode = "Vi|~Search"                 },
+{ key = 27,       mods = "Shift",         action = "FirstOccupied",            mode = "Vi|~Search"                 },
+{ key = 2,        mods = "Shift",         action = "Bracket",                  mode = "Vi|~Search"                 },
 
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "H"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Control"
+{ key = "Return", mods = "Shift",         chars = "\u001B[13;2u",              mode = "Alt"                        },
+{ key = "Return", mods = "Control",       chars = "\u001B[13;5u",              mode = "Alt"                        },
 
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "H"
-mode = "Vi"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "Return"
-mode = "~Search|Vi"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "Return"
-mode = "~Search|Vi"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "C"
-mode = "Vi"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "C"
-mode = "Vi"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "L"
-mode = "Vi"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "L"
-mode = "Vi"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "Return"
-mode = "Vi"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "Return"
-mode = "Vi"
-mods = "Control|Shift"
-
-[[keyboard.bindings]]
-key = "L"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Control|Shift"
-command.program = "alacritty-clear"
-
-[[keyboard.bindings]]
-key = "Return"
-mode = "~AppCursor|~AppKeypad|~Alt"
-mods = "Control|Shift"
-command.program = "alacritty-clear"
-
-[[keyboard.bindings]]
-action = "First"
-key = 8
-mode = "Vi|~Search"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "Last"
-key = 41
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "FirstOccupied"
-key = 27
-mode = "Vi|~Search"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "Bracket"
-key = 2
-mode = "Vi|~Search"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ResetFontSize"
-key = "Equals"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ResetFontSize"
-key = "Equals"
-mods = "Command"
+]
