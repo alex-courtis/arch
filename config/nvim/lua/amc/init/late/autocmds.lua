@@ -23,6 +23,7 @@ local function ft(pattern, callback, opts)
 end
 
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,             {})
+au({ "User" },                                                  env.update_title,             { pattern = { "FugitiveChanged" } })
 au({ "DirChanged", "VimEnter" },                                env.update_path,              {})
 au({ "BufEnter" },                                              map.reset_mappings,           {})
 au({ "BufEnter" },                                              buffers.wipe_alt_no_name_new, {})
