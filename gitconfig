@@ -1,12 +1,13 @@
 [alias]
 	d = diff
 	dn = d --name-only
+	dns = d --name-status
 	dw = d --ignore-all-space
 	du = d --unified=10000
 	duw = du --ignore-all-space
 
 	ds = d --staged
-	dsn = dn --staged
+	dsns = dns --staged
 	dsw = dw --staged
 	dsu = du --staged
 	dsuw = duw --staged
