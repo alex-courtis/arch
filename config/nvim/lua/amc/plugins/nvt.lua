@@ -22,11 +22,6 @@ local GIT_DISABLE_FOR_DIRS = {
   vim.env.HOME .. "/jira",
 }
 
-local FILESYSTEM_WATCHERS_IGNORE_DIRS = {
-  vim.env.HOME .. "/atlassian/src/jira",
-  vim.env.HOME .. "/jira",
-}
-
 --- Absolute paths of the node.
 --- @return string|nil file node
 --- @return string|nil dir parent node of file otherwise node
@@ -84,15 +79,6 @@ end
 
 local function git_disable_for_dirs(path)
   for _, p in ipairs(GIT_DISABLE_FOR_DIRS) do
-    if path:find(p, 1, true) == 1 then
-      return true
-    end
-  end
-  return false
-end
-
-local function filesystem_watchers_ignore_dirs(path)
-  for _, p in ipairs(FILESYSTEM_WATCHERS_IGNORE_DIRS) do
     if path:find(p, 1, true) == 1 then
       return true
     end
@@ -248,7 +234,7 @@ local config = {
     show_on_open_dirs = false,
   },
   filesystem_watchers = {
-    ignore_dirs = filesystem_watchers_ignore_dirs,
+    ignore_dirs = { "/.ccls-cache", "/build", "/node_modules", "/target", "/atlassian/src/jira" }
   },
   actions = {
     change_dir = {
