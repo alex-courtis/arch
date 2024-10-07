@@ -1,6 +1,3 @@
-lord0					D0:50:99:C2:80:DF	192.168.1.11	NAS LAN1 - Right Port
-lord0-ipmi-shared		D0:50:99:E1:73:68	192.168.1.12	NAS IPMI Shared
-lord0-ipmi-dedicated	D0:50:99:E1:74:8D	192.168.1.13	NAS IPMI Dedicated - Top Port
 lord-ipmi-dedicated		D0:50:99:F7:55:26	192.168.1.14	NAS IPMI Dedicated - Solo
 lord-cdc				AE:55:4C:B1:CC:DB					NAS Internal
 lord-ipmi-shared		D0:50:99:F7:52:B1	192.168.1.15	NAS IPMI Shared - Bottom
@@ -13,6 +10,7 @@ duke					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired
 deckw					50:5A:65:60:76:61	192.168.1.71	Steam Deck
 zima1					00:E0:4C:22:7F:76	192.168.1.81	Zima Left
 zima2					00:E0:4C:22:7F:77	192.168.1.82	Zima Right
+pidp11					b8:27:eb:55:08:80	192.168.1.91	Pi 3 B+
 						64:A2:F9:12:F0:EA					Oneplus 6
 						58:B0:D4:69:29:56					kobo
 						A8:51:AB:0F:13:A0					Apple TV
