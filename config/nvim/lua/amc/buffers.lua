@@ -130,6 +130,15 @@ function M.write_scratch(text)
   vim.cmd.buffer(bufnr)
 end
 
+---Execute vimscript and write output to scratch buffer
+---@param command table as per vim.api.nvim_create_user_command
+function M.exec_to_buffer(command)
+  local out = vim.api.nvim_exec2(command.args, { output = true })
+  if out then
+    M.write_scratch(out.output)
+  end
+end
+
 --- au BufEnter
 --- @param data table
 function M.reset_mappings(data)

@@ -30,8 +30,8 @@ function M.update_title()
 end
 
 -- return to initial cwd
-vim.api.nvim_create_user_command("CD", function()
+function M.cd()
   vim.cmd.cd(M.init_cwd)
-end, {})
+end
 
 return M

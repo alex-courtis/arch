@@ -1,9 +1,11 @@
 local require = require("amc.require_or_nil")
 
+local M = {}
+
 local configs = require("nvim-treesitter.configs")
 
 if not configs then
-  return
+  return M
 end
 
 -- most of these do not look good
@@ -32,7 +34,7 @@ configs.setup(opts)
 vim.opt.runtimepath:append(opts.parser_install_dir)
 
 -- expensive, only do on demand
-vim.api.nvim_create_user_command("TSInstallBase", function()
+function M.install_base()
   vim.cmd.TSInstall({
     bang = true,
     args = {
@@ -87,4 +89,6 @@ vim.api.nvim_create_user_command("TSInstallBase", function()
       "zig",
     },
   })
-end, {})
+end
+
+return M

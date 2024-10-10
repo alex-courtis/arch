@@ -1,5 +1,6 @@
 local require = require("amc.require_or_nil")
 
+local env = require("amc.env") or {}
 local dev = require("amc.dev") or {}
 local buffers = require("amc.buffers") or {}
 local windows = require("amc.windows") or {}
@@ -9,18 +10,48 @@ local lsp = require("amc.plugins.lsp") or {}
 local nvt = require("amc.plugins.nvt") or {}
 local rainbow = require("amc.plugins.rainbow") or {}
 local telescope = require("amc.plugins.telescope") or {}
+local treesitter = require("amc.plugins.treesitter") or {}
 
 local K = {}
 local M = {}
 
--- stylua: ignore start
+---nil safe wrappers around vim.keymap.set() rhs
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
-  K[mode .. "m" .. "__"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false }) end end
-  K[mode .. "m" .. "s_"] = function(lhs, rhs) if rhs then vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true }) end end
-  K[mode .. "m" .. "_l"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "__"](leader .. lhs, rhs) end end end
-  K[mode .. "m" .. "sl"] = function(lhs, rhs) if rhs then for _, leader in ipairs({ "<Space>", "<BS>" }) do K[mode .. "m" .. "s_"](leader .. lhs, rhs) end end end
+  K[mode .. "m" .. "__"] = function(lhs, rhs)
+    if rhs then
+      vim.keymap.set(mode, lhs, rhs, { remap = false })
+    end
+  end
+  K[mode .. "m" .. "s_"] = function(lhs, rhs)
+    if rhs then
+      vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true })
+    end
+  end
+  K[mode .. "m" .. "_l"] = function(lhs, rhs)
+    if rhs then
+      for _, leader in ipairs({ "<Space>", "<BS>" }) do
+        K[mode .. "m" .. "__"](leader .. lhs, rhs)
+      end
+    end
+  end
+  K[mode .. "m" .. "sl"] = function(lhs, rhs)
+    if rhs then
+      for _, leader in ipairs({ "<Space>", "<BS>" }) do
+        K[mode .. "m" .. "s_"](leader .. lhs, rhs)
+      end
+    end
+  end
 end
--- stylua: ignore end
+
+---nil safe wrapper around vim.api.nvim_create_user_command()
+---@param name string
+---@param command any
+---@param opts vim.api.keyset.user_command
+local function uc(name, command, opts)
+  if command then
+    vim.api.nvim_create_user_command(name, command, opts)
+  end
+end
 
 -- normal mode escape clears highlight
 local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
@@ -171,5 +202,16 @@ function M.reset_mappings(data)
   --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration
   pcall(vim.keymap.del, "n", "K", { buffer = data.buf })
 end
+
+---
+--- commands
+---
+
+uc("CD",     env.cd,                      {})
+uc("PS",     "PackerSync",                {})
+uc("RD",     telescope.grep_in_directory, { nargs = "+", complete = "dir" })
+uc("RT",     telescope.grep_by_filetype,  { nargs = 1 })
+uc("S",      buffers.exec_to_buffer,      { nargs = "+", complete = "expression" })
+uc("TSBase", treesitter.install_base,     {})
 
 return M
