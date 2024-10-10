@@ -6,8 +6,8 @@ local buffers = require("amc.buffers")
 
 local M = {}
 
---- go to first nonspecial window, nuke if none found
---- @param wins table preferred order
+---go to first nonspecial window, nuke if none found
+---@param wins table preferred order
 local function home(wins)
   for _, w in ipairs(wins) do
     local buf = vim.api.nvim_win_get_buf(w)
@@ -21,15 +21,15 @@ local function home(wins)
   M.close_others()
 end
 
---- if current window is special go to the topleftest non special window
---- :new and nukes when none available
+---if current window is special go to the topleftest non special window
+---:new and nukes when none available
 function M.go_home()
   if buffers.special(0) then
     home(vim.api.nvim_list_wins())
   end
 end
 
---- go_home if window is special otherwise go to the next topleftest non special window
+---go_home if window is special otherwise go to the next topleftest non special window
 function M.go_home_or_next()
   if buffers.special(0) then
     M.go_home()
@@ -60,13 +60,13 @@ function M.go_home_or_next()
   home(pref)
 end
 
---- close current window and return home
+---close current window and return home
 function M.close()
   vim.cmd.quit()
   M.go_home()
 end
 
---- close windows other than the current
+---close windows other than the current
 function M.close_others()
   local win = vim.api.nvim_get_current_win()
   for _, w in ipairs(vim.api.nvim_list_wins()) do
@@ -76,7 +76,7 @@ function M.close_others()
   end
 end
 
---- close lowest window: CLOSE_INC, special, normal
+---close lowest window: CLOSE_INC, special, normal
 function M.close_inc()
   -- find lowest special by order
   local lowest
@@ -117,8 +117,8 @@ function M.cnext()
   pcall(vim.cmd.cnext)
 end
 
---- au QuickFixCmdPost
---- @param data table
+---au QuickFixCmdPost
+---@param data table
 function M.open_qf_loc_win(data)
   -- open quickfix or location
   -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
@@ -129,8 +129,8 @@ function M.open_qf_loc_win(data)
   end
 end
 
---- au BufWinEnter
---- @param data table
+---au BufWinEnter
+---@param data table
 function M.resize_qf_loc_win(data)
   --- resize quickfix and loclist
   if data.file == "quickfix" then
@@ -141,8 +141,8 @@ function M.resize_qf_loc_win(data)
   end
 end
 
---- help, man vertical right when >=160 columns
---- au BufWinEnter
+---help, man vertical right when >=160 columns
+---au BufWinEnter
 function M.position_doc_window()
   if vim.o.columns >= 160 then
     if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then

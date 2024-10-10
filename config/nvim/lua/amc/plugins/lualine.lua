@@ -14,9 +14,9 @@ local filename = {
   },
 }
 
---- loclist or quickfix title
---- replaces :setXXlist() which can happen after list manipulation
---- @return string|nil
+---loclist or quickfix title
+---replaces :setXXlist() which can happen after list manipulation
+---@return string|nil
 local function qf_name()
   local loclist = vim.fn.getloclist(0, { title = 0, filewinid = 0 })
   if loclist.filewinid ~= 0 then
@@ -41,8 +41,8 @@ local function qf_title()
   end
 end
 
---- quickfix cur/total
---- @return string|nil
+---quickfix cur/total
+---@return string|nil
 local function qf_progress()
   local list = vim.fn.getqflist({ idx = 0, items = 0 })
   if not list then
@@ -63,8 +63,8 @@ local function qf_progress()
   return string.format("%d/%d", cur, total)
 end
 
---- only when logging
---- @return string bufnr winnr winid
+---only when logging
+---@return string bufnr winnr winid
 local function win_buf_info()
   if not log.enabled then
     return ""

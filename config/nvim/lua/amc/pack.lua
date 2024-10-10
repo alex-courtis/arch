@@ -6,8 +6,8 @@ local function bootstrap()
   vim.cmd.packadd("packer.nvim")
 end
 
---- @param plugins table
---- @return boolean packer was installed
+---@param plugins table
+---@return boolean packer was installed
 return function(plugins)
   local present, packer = pcall(require, "packer")
 

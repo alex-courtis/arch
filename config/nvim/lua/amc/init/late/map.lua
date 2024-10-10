@@ -188,24 +188,24 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 -- functions
 --
 
---- au VimEnter
+---au VimEnter
 function M.clear_default_mappings()
   -- commentary defaults
   pcall(vim.keymap.del, { "n", "o", "v" }, "gc")
   pcall(vim.keymap.del, "n",               "gcc")
 end
 
---- au BufEnter
---- @param data table
+---au BufEnter
+---@param data table
 function M.reset_mappings(data)
   --- vim maps K to vim.lsp.buf.hover() in Normal mode
   --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration
   pcall(vim.keymap.del, "n", "K", { buffer = data.buf })
 end
 
----
---- commands
----
+--
+-- commands
+--
 
 uc("CD",     env.cd,                      {})
 uc("PS",     "PackerSync",                {})

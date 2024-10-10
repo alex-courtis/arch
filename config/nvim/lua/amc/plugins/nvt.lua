@@ -22,9 +22,9 @@ local GIT_DISABLE_FOR_DIRS = {
   vim.env.HOME .. "/jira",
 }
 
---- Absolute paths of the node.
---- @return string|nil file node
---- @return string|nil dir parent node of file otherwise node
+---Absolute paths of the node.
+---@return string|nil file node
+---@return string|nil dir parent node of file otherwise node
 local function node_path_dir()
   local node = api.tree.get_node_under_cursor()
   if not node then
@@ -302,25 +302,25 @@ if vim.env.NVIM_TREE_PROFILE then
   config.log.types.profile = true
 end
 
---- open and find
---- @param update_root boolean|nil
+---open and find
+---@param update_root boolean|nil
 function M.open_find(update_root)
   api.tree.open({ find_file = true, update_root = update_root })
 end
 
---- maybe open, find and update root
+---maybe open, find and update root
 function M.open_find_update_root()
   M.open_find(true)
 end
 
---- collapse then open and find
+---collapse then open and find
 function M.collapse_find()
   api.tree.collapse_all(false)
   api.tree.open({ find_file = true })
 end
 
---- Open nvim-tree for real files or startup directory
---- @param data table from autocommand
+---Open nvim-tree for real files or startup directory
+---@param data table from autocommand
 function M.vim_enter(data)
   local real_file = vim.fn.filereadable(data.file) == 1
 

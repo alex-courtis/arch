@@ -9,7 +9,7 @@ if not lspconfig then
   return M
 end
 
---- @type lsp.ClientCapabilities
+---@type lsp.ClientCapabilities
 local capabilities
 if cmp_nvim_lsp then
   capabilities = cmp_nvim_lsp.default_capabilities()
@@ -17,7 +17,7 @@ else
   capabilities = vim.lsp.protocol.make_client_capabilities()
 end
 
---- @type vim.lsp.Client.Flags
+---@type vim.lsp.Client.Flags
 local flags = {
   debounce_text_changes = 500,
   exit_timeout = false,
@@ -26,7 +26,7 @@ local flags = {
 --
 -- cc
 --
---- @type lspconfig.Config
+---@type lspconfig.Config
 local ccls = {
   flags = flags,
   capabilities = capabilities,
@@ -48,7 +48,7 @@ lspconfig.ccls.setup(ccls)
 --
 -- json
 --
---- @type lspconfig.Config
+---@type lspconfig.Config
 local jsonls = {
   flags = flags,
   capabilities = capabilities,
@@ -59,7 +59,7 @@ lspconfig.jsonls.setup(jsonls)
 --
 -- lua
 --
---- @type lspconfig.Config
+---@type lspconfig.Config
 local luals = {
   flags = flags,
   capabilities = capabilities,
@@ -89,7 +89,7 @@ lspconfig.lua_ls.setup(luals)
 --
 -- yaml
 --
---- @type lspconfig.Config
+---@type lspconfig.Config
 local yamlls = {
   flags = flags,
   capabilities = capabilities,
@@ -106,7 +106,7 @@ lspconfig.yamlls.setup(yamlls)
 --
 -- zig
 --
---- @type lspconfig.Config
+---@type lspconfig.Config
 local zls = {
   flags = flags,
   capabilities = capabilities,

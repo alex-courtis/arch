@@ -7,9 +7,9 @@ local UNWANTED_NAMES = {
   "^man://",
 }
 
---- &buftype is empty, name is empty, not modified
---- @param bufnr number
---- @return boolean
+---&buftype is empty, name is empty, not modified
+---@param bufnr number
+---@return boolean
 local function is_no_name_new(bufnr)
   if vim.bo[bufnr].buftype ~= "" then
     return false
@@ -18,9 +18,9 @@ local function is_no_name_new(bufnr)
   return vim.api.nvim_buf_get_name(bufnr) == "" and not vim.bo[bufnr].modified
 end
 
---- au WinClosed
---- wipe unwanted buffers by name
---- @param data table
+---au WinClosed
+---wipe unwanted buffers by name
+---@param data table
 function M.wipe_unwanted(data)
   local name = vim.api.nvim_buf_get_name(data.buf)
 
@@ -32,9 +32,9 @@ function M.wipe_unwanted(data)
   end
 end
 
---- au BufEnter
---- wipe # when it's a no-name new not visible anywhere
---- @param data table
+---au BufEnter
+---wipe # when it's a no-name new not visible anywhere
+---@param data table
 function M.wipe_alt_no_name_new(data)
   local bufnr_alt = vim.fn.bufnr("#")
   local winnr_alt = vim.fn.bufwinnr(bufnr_alt)
@@ -45,10 +45,10 @@ function M.wipe_alt_no_name_new(data)
   end
 end
 
---- au BufLeave
---- au FocusLost
---- autowriteall doesn't cover all cases
---- @param data table
+---au BufLeave
+---au FocusLost
+---autowriteall doesn't cover all cases
+---@param data table
 function M.update(data)
   local bo = vim.bo[data.buf]
   if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(data.buf) ~= "" then
@@ -56,9 +56,9 @@ function M.update(data)
   end
 end
 
---- &buftype set or otherwise not a normal buffer
---- @param bufnr number
---- @return SPECIAL|nil
+---&buftype set or otherwise not a normal buffer
+---@param bufnr number
+---@return SPECIAL|nil
 function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local bufhidden = vim.bo[bufnr].bufhidden
@@ -90,7 +90,7 @@ function M.special(bufnr)
   return nil
 end
 
---- Wipe all buffers but the current
+---Wipe all buffers but the current
 function M.wipe_all()
   local cur = vim.api.nvim_get_current_buf()
 
@@ -102,20 +102,20 @@ function M.wipe_all()
   end
 end
 
---- :setlocal list/nolist
+---:setlocal list/nolist
 function M.toggle_list()
   local list = vim.api.nvim_get_option_value("list", { scope = "local" })
   vim.api.nvim_set_option_value("list", not list, { scope = "local" })
 end
 
---- clear trailing whitespace and last searched
+---clear trailing whitespace and last searched
 function M.trim_whitespace()
   vim.cmd("%s/\\s\\+$//e")
   vim.fn.setreg("/", "")
 end
 
---- write to a new scratch buffer
---- @param text string newline delimited
+---write to a new scratch buffer
+---@param text string newline delimited
 function M.write_scratch(text)
   local bufnr = vim.api.nvim_create_buf(true, true)
 
@@ -139,8 +139,8 @@ function M.exec_to_buffer(command)
   end
 end
 
---- au BufEnter
---- @param data table
+---au BufEnter
+---@param data table
 function M.reset_mappings(data)
   --- vim maps K to vim.lsp.buf.hover() in Normal mode
   --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration

@@ -16,11 +16,11 @@ if buffers then
   end
 end
 
---- change directory to the first buffer if it is a directory
+---change directory to the first buffer if it is a directory
 if env.startup_dir then
   log.line("cd %s", env.startup_dir)
   vim.cmd.cd(env.startup_dir)
 end
 
---- record the initial cwd
+---record the initial cwd
 env.init_cwd = vim.loop.cwd()

@@ -1,6 +1,6 @@
 local M = {}
 
---- @enum dev.build_type
+---@enum dev.build_type
 M.build_type = {
   MAKE = 0,
   MESON = 1,
@@ -14,8 +14,8 @@ local FILES_TO_TYPES = {
   ["meson.build"] = M.build_type.MESON,
 }
 
---- scan for files that indicate build type
---- @return dev.build_type|nil
+---scan for files that indicate build type
+---@return dev.build_type|nil
 local function build_type()
   for f, t in pairs(FILES_TO_TYPES) do
     if vim.loop.fs_stat(f) then
