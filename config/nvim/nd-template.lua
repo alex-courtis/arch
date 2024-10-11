@@ -3,8 +3,9 @@ local M = {}
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.opt.ignorecase = true
+vim.opt.termguicolors = true
 
 vim.opt.statusline = "b%{bufnr()} w%{winnr()} i%{win_getid()} %y %F"
 
@@ -47,10 +48,11 @@ end
 local api = require("nvim-tree.api")
 local log = require("nvim-tree.log")
 
-vim.keymap.set("n", ";",        ":",                                   { noremap = true })
-vim.keymap.set("n", "<space>a", function() api.tree.open({}) end,      { noremap = true })
-vim.keymap.set("n", "<space>'", function() api.tree.find_file({}) end, { noremap = true })
-vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,    { noremap = true })
+vim.keymap.set("n", ";",        ":",                                                { noremap = true })
+vim.keymap.set("n", "<space>;", function() api.tree.open({}) end,                   { noremap = true })
+vim.keymap.set("n", "<space>a", function() api.tree.open({ find_file = true }) end, { noremap = true })
+vim.keymap.set("n", "<space>'", function() api.tree.find_file({ open = true }) end,              { noremap = true })
+vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,                 { noremap = true })
 
 function M.on_attach(bufnr)
   local function opts(desc)
@@ -67,6 +69,8 @@ vim.api.nvim_create_autocmd("DirChanged", {
     print(vim.inspect(data))
   end,
 })
+
+vim.api.nvim_create_user_command("PS", "PackerSync", {})
 
 api.events.subscribe(api.events.Event.NodeRenamed, function(data)
   log.line("dev", "Event.NodeRenamed %s %s", data.old_name, data.new_name)
