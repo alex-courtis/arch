@@ -23,5 +23,6 @@ quote_style = double
 call_arg_parentheses = always
 space_before_closure_open_parenthesis = false
 align_continuous_similar_call_args = true
+line_space_around_block = keep
 
 # vim:ft=editorconfig
