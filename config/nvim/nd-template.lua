@@ -51,7 +51,7 @@ local log = require("nvim-tree.log")
 vim.keymap.set("n", ";",        ":",                                                { noremap = true })
 vim.keymap.set("n", "<space>;", function() api.tree.open({}) end,                   { noremap = true })
 vim.keymap.set("n", "<space>a", function() api.tree.open({ find_file = true }) end, { noremap = true })
-vim.keymap.set("n", "<space>'", function() api.tree.find_file({ open = true }) end,              { noremap = true })
+vim.keymap.set("n", "<space>'", function() api.tree.find_file({ open = true }) end, { noremap = true })
 vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,                 { noremap = true })
 
 function M.on_attach(bufnr)

@@ -34,6 +34,9 @@ function init() {
 	mkdir "${ROOT}"
 	cp "${TEMPLATE}" "${INIT}"
 
+	# style
+	cp "${HOME}/.editorconfig" "${ROOT}"
+
 	# nvim-tree plugin path
 	sed -i -e "
 		s#-- NVIM_TREE_DIR#\"${SRC}\",#
