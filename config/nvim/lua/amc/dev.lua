@@ -1,3 +1,5 @@
+local buffers = require("amc.buffers")
+
 local M = {}
 
 ---@enum dev.build_type
@@ -104,6 +106,7 @@ function M.format()
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
     if client.server_capabilities.documentFormattingProvider then
       vim.lsp.buf.format()
+      buffers.update()
       return
     end
   end

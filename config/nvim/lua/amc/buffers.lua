@@ -48,10 +48,19 @@ end
 ---au BufLeave
 ---au FocusLost
 ---autowriteall doesn't cover all cases
----@param data table
+---@param data table|number|nil table for autocommand otherwise bufnr
 function M.update(data)
-  local bo = vim.bo[data.buf]
-  if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(data.buf) ~= "" then
+  local bufnr
+  if type(data) == "table" then
+    bufnr = data.buf
+  elseif type(data) == "number" then
+    bufnr = data
+  else
+    bufnr = 0
+  end
+
+  local bo = vim.bo[bufnr]
+  if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(bufnr) ~= "" then
     vim.cmd.update()
   end
 end
