@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+# ${1} mimeinfo.cache path
+# ${2} format
+function print_apps_by_type() {
+
+	typeset -A apps_by_type
+
+	# read entire cache
+	while read -r line; do
+		if [ "${line}" = "[MIME Cache]" ]; then
+			continue
+		fi
+
+		# type
+		type="${line%=*}"
+
+		# first app
+		app="${${line#*=}%%;*}"
+		apps_by_type[${type}]="${app}"
+
+	done < "${1}"
+
+	# print in order 
+	for type app in "${(@kv)apps_by_type}"; do
+		printf "${2}" "${type}" "${app}"
+	done
+}
+
+sort \
+	<(print_apps_by_type "/usr/share/applications/mimeinfo.cache" "%-80s%s\n") \
+	<(print_apps_by_type "${HOME}/.local/share/applications/mimeinfo.cache" "%-50s%s\n")
