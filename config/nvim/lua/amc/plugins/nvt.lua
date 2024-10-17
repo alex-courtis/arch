@@ -253,6 +253,7 @@ local config = {
   },
   notify = {
     absolute_path = false,
+    threshold = vim.log.levels.WARN,
   },
   experimental = {
     actions = {
