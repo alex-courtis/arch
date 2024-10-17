@@ -50,10 +50,10 @@ sethandler <C-]> a:vim
 
 nm <ESC> :nohls<CR><ESC>
 
+nm ya <Action>(CopyAbsolutePath)
+nm yj <Action>(CopyReference)
 nm yn <Action>(CopyFileName)
 nm yr <Action>(CopyPathFromRepositoryRootProvider)
-nm ya <Action>(CopyAbsolutePath)
-nm yc <Action>(CopyReference)
 
 " idea does not like setting mapleader to <BS>
 

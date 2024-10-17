@@ -77,9 +77,10 @@ K.vm__(";",     ":")
 K.nm__("q;",    "q:")
 K.vm__("q;",    "q:")
 
+K.nms_("ya",    ':let @+ = expand("%:p")<CR>')
+K.nms_("yc",    ':let @+ = getcwd()<CR>')
 K.nms_("yn",    ':let @+ = expand("%:t")<CR>')
 K.nms_("yr",    ':let @+ = expand("%:.")<CR>')
-K.nms_("ya",    ':let @+ = expand("%:p")<CR>')
 
 K.cm__("<C-j>", "<Down>")
 K.cm__("<C-k>", "<Up>")
