@@ -53,9 +53,10 @@ local function uc(name, command, opts)
   end
 end
 
--- normal mode escape clears highlight
+-- normal mode escape clears highlight and snippets
 local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 K.nm__("<Esc>", function()
+  vim.snippet.stop()
   vim.cmd.nohlsearch()
   vim.api.nvim_feedkeys(ESC, "n", false)
 end)
@@ -191,8 +192,8 @@ local function jump(lhs, direction)
   end
 end
 
-vim.keymap.set({ "i", "s" }, "<Tab>",   function() jump("<Tab>", 1) end,    { expr = true })
-vim.keymap.set({ "i", "s" }, "<S-Tab>", function() jump("<S-Tab>", -1) end, { expr = true })
+vim.keymap.set({ "i", "s" }, "<Tab>",   function() return jump("<Tab>", 1) end,    { expr = true })
+vim.keymap.set({ "i", "s" }, "<S-Tab>", function() return jump("<S-Tab>", -1) end, { expr = true })
 
 --
 -- functions
