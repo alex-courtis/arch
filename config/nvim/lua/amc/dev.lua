@@ -114,4 +114,17 @@ function M.format()
   vim.cmd([[silent! norm! gg=G``]])
 end
 
+function M.ft_lua(data)
+  -- let emmylua apply [*.lua] without globals, for when filename is not *.lua
+  vim.b[data.buf].editorconfig = false
+
+  -- man is not useful, vim help usually is
+  vim.api.nvim_set_option_value("keywordprg", ":help", { buf = data.buf })
+end
+
+function M.ft_c(data)
+  -- line comments please
+  vim.api.nvim_set_option_value("commentstring", "// %s", { buf = data.buf })
+end
+
 return M

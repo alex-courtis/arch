@@ -151,4 +151,10 @@ function M.position_doc_window()
   end
 end
 
+---VimResized
+-- v/h resize windows on terminal size change
+function M.equalise_windows()
+  vim.cmd.wincmd("=")
+end
+
 return M
