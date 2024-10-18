@@ -9,19 +9,28 @@ if not lspconfig then
   return M
 end
 
+---
+--- Capabilities
+---
 ---@type lsp.ClientCapabilities
-local capabilities
-if cmp_nvim_lsp then
-  capabilities = cmp_nvim_lsp.default_capabilities()
-else
-  capabilities = vim.lsp.protocol.make_client_capabilities()
-end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+---
+--- Flags
+---
 ---@type vim.lsp.Client.Flags
 local flags = {
   debounce_text_changes = 500,
   exit_timeout = false,
 }
+
+--
+-- Completion
+--
+if cmp_nvim_lsp then
+  -- hrsh7th/cmp-nvim-lsp helper adds lsp capabilities for hrsh7th/nvim-cmp
+  capabilities.textDocument.completion = cmp_nvim_lsp.default_capabilities().textDocument.completion
+end
 
 --
 -- cc
@@ -53,7 +62,6 @@ local jsonls = {
   flags = flags,
   capabilities = capabilities,
 }
-jsonls.capabilities.textDocument.completion.completionItem.snippetSupport = true
 lspconfig.jsonls.setup(jsonls)
 
 --
