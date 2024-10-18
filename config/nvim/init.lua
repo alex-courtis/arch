@@ -20,6 +20,7 @@ local plugins = {
   "hashivim/vim-terraform",
   "haya14busa/vim-asterisk",
   "HiPhish/rainbow-delimiters.nvim",
+  "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/nvim-cmp",
   "kkharji/sqlite.lua",

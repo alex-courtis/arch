@@ -175,6 +175,25 @@ K.nm_l("_",  ":GotoHeader<CR>")
 K.nmsl("\\", ":silent BW!<CR>")
 K.nmsl("|",  buffers.wipe_all)
 
+---
+--- snippets
+---
+
+---Jump if snippet active otherwise feed key
+---@param lhs string
+---@param direction vim.snippet.Direction
+---@return string|nil
+local function jump(lhs, direction)
+  if vim.snippet.active({ direction = direction }) then
+    return vim.snippet.jump(direction)
+  else
+    return lhs
+  end
+end
+
+vim.keymap.set({ "i", "s" }, "<Tab>",   function() jump("<Tab>", 1) end,    { expr = true })
+vim.keymap.set({ "i", "s" }, "<S-Tab>", function() jump("<S-Tab>", -1) end, { expr = true })
+
 --
 -- functions
 --
