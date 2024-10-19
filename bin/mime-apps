@@ -1,0 +1,51 @@
+#!/bin/lua
+
+---@type table<string, table<"locals"|"globals", string[]>>
+local apps_by_scope_type = {}
+
+---@param mime_cache string absolute path
+---@param scope "locals"|"globals"
+local function parse_apps_by_type(mime_cache, scope)
+  for line in io.lines(mime_cache) do
+    local type, apps = line:gmatch("(.*)=(.*)")()
+    if type then
+      for app in apps:gmatch("([^;]*);") do
+        apps_by_scope_type[type] = apps_by_scope_type[type] or {}
+        apps_by_scope_type[type][scope] = apps_by_scope_type[type][scope] or {}
+        table.insert(apps_by_scope_type[type][scope], app)
+      end
+    end
+  end
+end
+
+--- parse
+parse_apps_by_type(os.getenv("HOME") .. "/.local/share/applications/mimeinfo.cache", "locals")
+parse_apps_by_type("/usr/share/applications/mimeinfo.cache",                         "globals")
+
+--- count lengths, sort alpha
+local sorted_types = {}
+local type_max = 0
+local app_local_max = 0
+for type, type_by_scope in pairs(apps_by_scope_type) do
+  table.insert(sorted_types, type)
+  type_max = math.max(type_max, #type)
+  for _, app in ipairs(type_by_scope.locals or {}) do
+    app_local_max = math.max(app_local_max, #app)
+  end
+end
+table.sort(sorted_types)
+local fmt = string.format("%%-%d.%ds\t%%-%d.%ds\t%%s", type_max, type_max, app_local_max, app_local_max)
+
+--- print
+for _, type in ipairs(sorted_types) do
+  local locals = apps_by_scope_type[type].locals or {}
+  local globals = apps_by_scope_type[type].globals or {}
+
+  for i = 1, math.max(#locals, #globals), 1 do
+    print(string.format(fmt,
+      i == 1 and type or "",
+      locals[i] or "-",
+      globals[i] or "-"
+    ))
+  end
+end
