@@ -71,7 +71,7 @@ if [ "${UNAME}" = "Darwin" ]; then
 	make_chdir_sub_vi s  "${HOME}/atlassian/src"
 	make_chdir_sub_vi j  "${HOME}/atlassian/src/jira"
 	make_chdir_sub_vi mc "${HOME}/Library/Application Support"
-	make_chdir_sub_vi jb "${HOME}/Library/Application Support/JetBrains/IntelliJIdea2024.1"
+	make_chdir_sub_vi jb "${HOME}/Library/Application Support/JetBrains"
 fi
 if [ -n "${RDE_PROFILE_NAME}" ]; then
 	make_chdir_sub_vi j  "${HOME}/jira"
