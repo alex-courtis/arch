@@ -1,9 +1,10 @@
 # TODO https://github.com/alacritty/alacritty/issues/4754
 
+[general]
 import = [
-"~/.config/alacritty/appearance.toml",
-"~/.config/alacritty/bindings.toml",
-"~/.config/alacritty/host.toml",
+	"~/.config/alacritty/appearance.toml",
+	"~/.config/alacritty/bindings.toml",
+	"~/.config/alacritty/host.toml",
 ]
 
 # [env]
