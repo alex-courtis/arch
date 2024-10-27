@@ -182,6 +182,7 @@ local config = {
     },
     icons = {
       git_placement = "signcolumn",
+      diagnostics_placement = "right_align",
       show = {
         file = true,
         folder = false,
@@ -223,6 +224,12 @@ local config = {
       min = vim.diagnostic.severity.HINT,
       max = vim.diagnostic.severity.ERROR,
     },
+    icons = {
+      hint = "H",
+      info = "I",
+      warning = "W",
+      error = "E"
+    }
   },
   filters = {
     custom = {
