@@ -15,8 +15,9 @@ end
 vim.diagnostic.config({
   signs = false,
   virtual_text = {
-    virt_text_pos = "right_align"
+    virt_text_pos = "right_align",
   },
+  severity_sort = true, -- error before warn on virtual text
 }, nil)
 
 ---
