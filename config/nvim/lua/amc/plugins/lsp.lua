@@ -10,13 +10,20 @@ if not lspconfig then
 end
 
 ---
---- Capabilities
+--- Global config
+---
+vim.diagnostic.config({
+  signs = false,
+}, nil)
+
+---
+--- Base Capabilities
 ---
 ---@type lsp.ClientCapabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 ---
---- Flags
+--- Common Flags
 ---
 ---@type vim.lsp.Client.Flags
 local flags = {
