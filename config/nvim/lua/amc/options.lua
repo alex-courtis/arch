@@ -18,6 +18,7 @@ vim.o.shiftwidth = 4
 vim.o.shortmess = vim.o.shortmess .. "S" -- no search count
 vim.o.showcmd = false
 vim.o.showmode = false
+vim.o.signcolumn = "yes"
 vim.o.smartcase = true
 vim.o.switchbuf = "useopen,uselast"
 vim.o.tabstop = 4
