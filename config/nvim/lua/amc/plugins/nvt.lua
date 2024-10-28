@@ -102,7 +102,7 @@ end
 
 -- get current view width
 local function get_view_width_max()
-  return view_width_max
+  return view_width_max + 1
 end
 
 local function on_attach(bufnr)
@@ -296,12 +296,6 @@ if vim.env.TERM:match("^linux") then
     untracked = "A",
     deleted = "D",
     ignored = "I",
-  }
-  config.diagnostics.icons = {
-    hint = "h",
-    info = "i",
-    warning = "w",
-    error = "e",
   }
 end
 
