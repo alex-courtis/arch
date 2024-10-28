@@ -81,9 +81,6 @@ local luals = {
   capabilities = capabilities,
   settings = {
     Lua = {
-      runtime = {
-        version = "Lua 5.1",
-      },
       workspace = {
         library = {
           "$VIMRUNTIME/lua/vim",
