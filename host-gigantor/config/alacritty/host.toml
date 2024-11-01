@@ -16,7 +16,6 @@ offset = { y = 1 }
 [keyboard]
 bindings = [
 
-{ key = "J", mods = "Control|Shift", action = "CreateNewWindow"                                     },
 { key = "N", mods = "Control|Shift", action = "CreateNewWindow"                                     },
 
 { key = "L", mods = "Command",       chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
