@@ -1,7 +1,6 @@
 [keyboard]
 bindings = [
 
-{ key = "J",      mods = "Control|Shift", command.program = "term"                                                 },
 { key = "N",      mods = "Control|Shift", command.program = "term"                                                 },
 
 { key = "Equals", mods = "Control",       action = "ResetFontSize"                                                 },
@@ -31,4 +30,4 @@ bindings = [
 { key = "Return", mods = "Shift",         chars = "\u001B[13;2u",              mode = "Alt"                        },
 { key = "Return", mods = "Control",       chars = "\u001B[13;5u",              mode = "Alt"                        },
 
-]
+	]
