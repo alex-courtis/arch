@@ -22,6 +22,7 @@ local plugins = {
   "HiPhish/rainbow-delimiters.nvim",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-path",
   "hrsh7th/nvim-cmp",
   "kkharji/sqlite.lua",
   "lewis6991/gitsigns.nvim",
