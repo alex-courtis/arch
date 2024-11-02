@@ -11,9 +11,18 @@ end
 ---
 ---cmdline
 ---
-local preset_cmdline = cmp.mapping.preset.cmdline()
 cmp.setup.cmdline(":", {
-  mapping = preset_cmdline,
+  mapping = cmp.mapping.preset.cmdline({
+    ["<Down>"] = {
+      c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    },
+    ["<Up>"] = {
+      c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    },
+    ["<CR>"] = {
+      c = cmp.mapping.confirm({ select = true }),
+    },
+  }),
   sources = cmp.config.sources({
     {
       name = "path"
