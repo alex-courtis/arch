@@ -30,5 +30,5 @@ VRR_OFF:
   - Samsung Display Corp. 0x4165
 CHANGE_SUCCESS_CMD: |
   bell2
-  notify-send way-displays "CHANGE_SUCCESS_CMD"
+  notify-send way-displays "${WD_MESSAGE}"
 
