@@ -171,10 +171,8 @@ K.nmsl("z",  dev.format)
 
 K.nm__("#",  "<Plug>(asterisk-z#)")
 K.nm_l("#",  "#")
-K.nm_l("-",  ":GotoHeaderSwitch<CR>")
-K.nm_l("_",  ":GotoHeader<CR>")
+K.nmsl("-",  buffers.wipe_all)
 K.nmsl("\\", ":silent BW!<CR>")
-K.nmsl("|",  buffers.wipe_all)
 
 ---
 --- snippets
