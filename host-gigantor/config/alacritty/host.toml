@@ -6,7 +6,7 @@ dynamic_padding = true
 [selection]
 save_to_clipboard = true
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = [ "-l" ]
 
