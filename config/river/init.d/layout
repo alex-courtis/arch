@@ -3,12 +3,12 @@
 # start layout manager
 # valgrind --leak-check=full --show-leak-kinds=all wideriver \
 wideriver \
-	--layout left \
+	--layout wide \
 	--layout-alt monocle \
 	--stack dwindle \
 	--count-master 1 \
 	--ratio-master 0.5 \
-	--count-wide-left 0 \
+	--count-wide-left 1 \
 	--inner-gaps 1 \
 	--outer-gaps 0 \
 	--smart-gaps \
