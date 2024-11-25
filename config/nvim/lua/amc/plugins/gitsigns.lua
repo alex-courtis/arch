@@ -6,6 +6,14 @@ if not gitsigns then
   return
 end
 
+local function next_hunk()
+  gitsigns.nav_hunk("next")
+end
+
+local function prev_hunk()
+  gitsigns.nav_hunk("prev")
+end
+
 local on_attach = function(bufnr)
   local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
@@ -16,11 +24,11 @@ local on_attach = function(bufnr)
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     vim.keymap.set("n", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
     vim.keymap.set("v", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
-    vim.keymap.set("n", leader .. "j",  gitsigns.next_hunk,                 desc("Next Hunk"))
+    vim.keymap.set("n", leader .. "j",  next_hunk,                          desc("Next Hunk"))
 
     vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview Hunk Inline"))
     vim.keymap.set("n", leader .. "hu", gitsigns.undo_stage_hunk,           desc("Undo Stage Hunk"))
-    vim.keymap.set("n", leader .. "k",  gitsigns.prev_hunk,                 desc("Previous Hunk"))
+    vim.keymap.set("n", leader .. "k",  prev_hunk,                          desc("Previous Hunk"))
 
     vim.keymap.set("n", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
     vim.keymap.set("v", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
