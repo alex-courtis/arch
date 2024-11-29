@@ -75,8 +75,6 @@ K.nms_("<Space><Space>", ":silent BF<CR>")
 --
 K.nm__(";",     ":")
 K.vm__(";",     ":")
-K.nm__("q;",    "q:")
-K.vm__("q;",    "q:")
 
 K.nms_("ya",    ':let @+ = expand("%:p")<CR>')
 K.nms_("yc",    ':let @+ = getcwd()<CR>')
