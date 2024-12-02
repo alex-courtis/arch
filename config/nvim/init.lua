@@ -29,6 +29,7 @@ local plugins = {
   "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
+  "nvim-pack/nvim-spectre",
   "nvim-telescope/telescope-smart-history.nvim",
   "nvim-telescope/telescope.nvim",
   "nvim-treesitter/nvim-treesitter",
