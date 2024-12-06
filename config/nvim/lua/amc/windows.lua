@@ -1,4 +1,5 @@
 local CLOSE_INC = require("amc.enum").CLOSE_INC
+local SPECIAL = require("amc.enum").SPECIAL
 
 local require = require("amc.require_or_nil")
 
@@ -119,7 +120,7 @@ end
 
 ---au QuickFixCmdPost
 ---@param data table
-function M.open_qf_loc_win(data)
+function M.qf_open(data)
   -- open quickfix or location
   -- https://vim.fandom.com/wiki/Automatically_open_the_quickfix_window_on_:make
   if data.match:sub(1, 1) == "l" then
@@ -131,7 +132,7 @@ end
 
 ---au BufWinEnter
 ---@param data table
-function M.resize_qf_loc_win(data)
+function M.qf_height(data)
   --- resize quickfix and loclist
   if data.file == "quickfix" then
     local winid = vim.fn.bufwinid(data.buf)
@@ -141,12 +142,23 @@ function M.resize_qf_loc_win(data)
   end
 end
 
+---if current win buf is man, vertically resize to $MANWIDTH + 2 for signcolumn
+function M.man_width()
+  if buffers.special(vim.api.nvim_win_get_buf(0)) == SPECIAL.man then
+    -- from:  vim.api.nvim_parse_cmd("wincmd 82 |", {})
+    vim.cmd.wincmd({ args = { "|" }, range = { vim.env.MANWIDTH + 2 } })
+  end
+end
+
 ---help, man vertical right when >=160 columns
 ---au BufWinEnter
-function M.position_doc_window()
+---@param data table
+function M.doc_position(data)
   if vim.o.columns >= 160 then
-    if vim.o.filetype == "help" and vim.o.buftype == "help" or vim.o.filetype == "man" and vim.o.buftype == "nofile" then
-      vim.cmd.wincmd("L")
+    local special = buffers.special(data.buf)
+    if special == SPECIAL.help or special == SPECIAL.man then
+      vim.cmd.wincmd({ args = { "L" } })
+      M.man_width()
     end
   end
 end
