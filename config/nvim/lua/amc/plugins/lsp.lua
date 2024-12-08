@@ -2,8 +2,11 @@ local require = require("amc.require_or_nil")
 
 local M = {}
 
+local dev = require("amc.dev") or {}
+
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local telescope = require("amc.plugins.telescope") or {}
 
 if not lspconfig then
   return M
@@ -41,11 +44,28 @@ if cmp_nvim_lsp then
 end
 
 ---
---- Clear unwanted mappings
+--- Map
 ---
 --- @param bufnr number
-local function on_attach(_, bufnr)
+--- @param client vim.lsp.Client
+local function on_attach(client, bufnr)
   vim.keymap.del("n", "K", { buffer = bufnr })
+
+  print("on_attach" .. tostring(bufnr))
+  for _, leader in ipairs({ "<space>", "<bs>" }) do
+    if client.server_capabilities.definitionProvider then
+      vim.keymap.set("n", leader .. "t", vim.lsp.buf.definition, { buffer = bufnr })
+    end
+    if client.server_capabilities.declarationProvider then
+      vim.keymap.set("n", leader .. "T", vim.lsp.buf.declaration, { buffer = bufnr })
+    end
+    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr })
+    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr })
+    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr })
+    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr })
+    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr })
+    vim.keymap.set("n", leader .. "dr", dev.lsp_rename,            { buffer = bufnr })
+  end
 end
 
 --
@@ -139,33 +159,12 @@ local zls = {
 }
 lspconfig.zls.setup(zls)
 
-function M.goto_definition_or_tag()
-  vim.fn.settagstack(vim.fn.win_getid(), { items = {} })
-
-  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-    if client.server_capabilities.definitionProvider then
-      vim.lsp.buf.definition()
-      return
-    end
-  end
-
-  local cmd = vim.api.nvim_replace_termcodes("normal <C-]>", true, true, true)
-  local ok, err = pcall(function()
-    return vim.cmd(cmd)
-  end)
-  if not ok then
-    vim.api.nvim_notify(err, vim.log.levels.WARN, {})
-  end
-end
-
 function M.goto_prev()
-  local opts = { wrap = false }
-  vim.diagnostic.goto_prev(opts)
+  vim.diagnostic.goto_prev({ wrap = false })
 end
 
 function M.goto_next()
-  local opts = { wrap = false }
-  vim.diagnostic.goto_next(opts)
+  vim.diagnostic.goto_next({ wrap = false })
 end
 
 -- init
