@@ -167,6 +167,7 @@ end
 -- v/h resize windows on terminal size change
 function M.equalise_windows()
   vim.cmd.wincmd("=")
+  M.man_width()
 end
 
 return M
