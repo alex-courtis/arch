@@ -32,12 +32,20 @@ local flags = {
   exit_timeout = false,
 }
 
---
--- Completion
---
+---
+--- Completion
+---
 if cmp_nvim_lsp then
   -- hrsh7th/cmp-nvim-lsp helper adds lsp capabilities for hrsh7th/nvim-cmp
   capabilities.textDocument.completion = cmp_nvim_lsp.default_capabilities().textDocument.completion
+end
+
+---
+--- Clear unwanted mappings
+---
+--- @param bufnr number
+local function on_attach(_, bufnr)
+  vim.keymap.del("n", "K", { buffer = bufnr })
 end
 
 --
@@ -47,6 +55,7 @@ end
 local ccls = {
   flags = flags,
   capabilities = capabilities,
+  on_attach = on_attach,
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -69,6 +78,7 @@ lspconfig.ccls.setup(ccls)
 local jsonls = {
   flags = flags,
   capabilities = capabilities,
+  on_attach = on_attach,
 }
 lspconfig.jsonls.setup(jsonls)
 
@@ -79,6 +89,7 @@ lspconfig.jsonls.setup(jsonls)
 local luals = {
   flags = flags,
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     Lua = {
       workspace = {
@@ -106,6 +117,7 @@ lspconfig.lua_ls.setup(luals)
 local yamlls = {
   flags = flags,
   capabilities = capabilities,
+  on_attach = on_attach,
   settings = {
     yaml = {
       schemas = {
@@ -123,6 +135,7 @@ lspconfig.yamlls.setup(yamlls)
 local zls = {
   flags = flags,
   capabilities = capabilities,
+  on_attach = on_attach,
 }
 lspconfig.zls.setup(zls)
 

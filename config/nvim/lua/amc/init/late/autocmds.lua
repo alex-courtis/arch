@@ -19,7 +19,7 @@ end
 
 au({ "BufWritePost", "DirChanged", "FocusGained", "VimEnter" }, env.update_title,           {})
 au({ "DirChanged", "VimEnter" },                                env.update_path,            {})
-au({ "BufEnter" },                                              buffers.buf_enter,          {})
+au({ "BufEnter" },                                              buffers.wipe_no_name_new,   {})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,      {})
 au({ "BufLeave", "FocusLost" },                                 buffers.update,             { nested = true })
 au({ "QuickFixCmdPost" },                                       windows.qf_open,            { nested = true })

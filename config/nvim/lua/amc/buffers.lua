@@ -32,21 +32,16 @@ function M.wipe_unwanted(data)
   end
 end
 
----Assorted BufEnter actions
+---wipe # when it's a no-name new not visible anywhere
 ---au BufEnter
 ---@param data table
-function M.buf_enter(data)
+function M.wipe_no_name_new(data)
 
-  ---wipe # when it's a no-name new not visible anywhere
   local bufnr_alt = vim.fn.bufnr("#")
   if bufnr_alt ~= -1 and data.buf ~= bufnr_alt and vim.fn.bufwinnr(bufnr_alt) == -1 and is_no_name_new(bufnr_alt) then
     vim.cmd.bwipeout(bufnr_alt)
     return
   end
-
-  --- vim maps K to vim.lsp.buf.hover() in Normal mode
-  --- https://github.com/neovim/nvim-lspconfig/blob/b972e7154bc94ab4ecdbb38c8edbccac36f83996/README.md#configuration
-  pcall(vim.keymap.del, "n", "K", { buffer = data.buf })
 end
 
 ---au BufLeave
