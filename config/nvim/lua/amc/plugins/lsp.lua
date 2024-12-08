@@ -49,7 +49,7 @@ end
 --- @param bufnr number
 --- @param client vim.lsp.Client
 local function on_attach(client, bufnr)
-  vim.keymap.del("n", "K", { buffer = bufnr })
+  pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
 
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     if client.server_capabilities.definitionProvider then
