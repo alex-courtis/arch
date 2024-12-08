@@ -51,7 +51,6 @@ end
 local function on_attach(client, bufnr)
   vim.keymap.del("n", "K", { buffer = bufnr })
 
-  print("on_attach" .. tostring(bufnr))
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     if client.server_capabilities.definitionProvider then
       vim.keymap.set("n", leader .. "t", vim.lsp.buf.definition, { buffer = bufnr })
@@ -59,6 +58,9 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.declarationProvider then
       vim.keymap.set("n", leader .. "T", vim.lsp.buf.declaration, { buffer = bufnr })
     end
+
+    vim.keymap.set("n", leader .. "n", telescope.lsp_references, { buffer = bufnr })
+
     vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr })
     vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr })
     vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr })

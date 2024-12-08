@@ -119,13 +119,13 @@ K.nmsl("x", ":silent BA<CR>")
 --
 
 -- 0D
-K.nm__("*",  "<Plug>(asterisk-z*)")
-K.nm_l("*",  "*")
-K.nmsl("f",  telescope.find_files)
-K.nmsl("F",  telescope.find_files_hidden)
+K.nm__("*", "<Plug>(asterisk-z*)")
+K.nm_l("*", "*")
+K.nmsl("f", telescope.find_files)
+K.nmsl("F", telescope.find_files_hidden)
 -- d lsp
-K.nmsl("b",  ":%y<CR>")
-K.nmsl("B",  ":%d_<CR>")
+K.nmsl("b", ":%y<CR>")
+K.nmsl("B", ":%d_<CR>")
 
 -- 2HM
 K.nm_l(")",  "])")
@@ -156,15 +156,14 @@ K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
 K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/")
 K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>')
 K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/')
-K.nmsl("n", telescope.lsp_references)
-K.nmsl("N", vim.diagnostic.setqflist)
+-- n lsp
 K.nmsl("v", ":put<CR>'[v']=")
 K.nmsl("V", ":put!<CR>'[v']=")
 
 -- Z
-K.nm_l("!",     ": <C-r>=expand('%:.')<CR><Home>")
-K.vm_l("!",     '"*y: <C-r>=getreg("*")<CR><Home>')
-K.nm_l("8",     ": <C-r>=expand('%:p')<CR><Home>")
+K.nm_l("!", ": <C-r>=expand('%:.')<CR><Home>")
+K.vm_l("!", '"*y: <C-r>=getreg("*")<CR><Home>')
+K.nm_l("8", ": <C-r>=expand('%:p')<CR><Home>")
 K.nmsl("l", buffers.toggle_list)
 K.nmsl("L", buffers.trim_whitespace)
 K.nm_l("s",
