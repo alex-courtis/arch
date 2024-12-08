@@ -81,6 +81,9 @@ function init() {
 			s/enable = false/enable = true/
 		}
 	" "${INIT}"
+
+	# clean up
+	rm ${ROOT}/DEFAULT_OPTS.lua
 }
 
 case "${1}" in
