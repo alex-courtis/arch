@@ -19,4 +19,10 @@ M.CLOSE_INC = {
   [M.SPECIAL.nvim_tree] = 4,
 }
 
+---@enum BUILD_TYPE
+M.BUILD_TYPE = {
+  make = 0,
+  meson = 1,
+}
+
 return M

@@ -137,6 +137,7 @@ K.nmsl("mc", dev.clean)
 K.nmsl("mi", dev.install)
 K.nmsl("mm", dev.build)
 K.nmsl("mt", dev.test)
+K.nmsl("mT", dev.test_all)
 K.nmsl("ms", dev.source)
 
 -- 4C
