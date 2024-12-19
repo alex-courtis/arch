@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-source <(cat $XDG_CONFIG_HOME/river/init.d/*)
+source <(cat $XDG_CONFIG_HOME/river/init.d/*) &
