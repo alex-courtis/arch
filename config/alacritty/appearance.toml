@@ -2,6 +2,11 @@
 size = $FONT_SIZE_PT
 normal = { family = "Hack Nerd Font", style = "Regular" }
 
+
+[cursor]
+vi_mode_style = "Block"
+
+
 [colors.cursor]
 cursor = "0x$BASE16[default_foreground]"
 text =   "0x$BASE16[default_background]"

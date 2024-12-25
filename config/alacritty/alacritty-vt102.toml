@@ -2,8 +2,8 @@
 
 [general]
 import = [
-	"~/.config/alacritty/appearance.toml",
-	"~/.config/alacritty/env.toml",
+	"~/.config/alacritty/appearance-vt102.toml",
+	"~/.config/alacritty/env-vt102.toml",
 	"~/.config/alacritty/bindings.toml",
 	"~/.config/alacritty/host.toml",
 ]

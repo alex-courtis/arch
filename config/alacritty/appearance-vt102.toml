@@ -1,0 +1,49 @@
+[font]
+size = 18
+normal = { family = "vt52", style = "Medium" }
+
+[cursor]
+style = { blinking = "Always", shape = "Block" }
+vi_mode_style = "Block"
+
+[colors.selection]
+background = "0x73cef4"
+text =       "0x000000"
+
+[colors.footer_bar]
+background = "0x73cef4"
+foreground = "0x000000"
+
+[colors.search.matches]
+background = "0x73cef4"
+foreground = "0x000000"
+
+[colors.search.focused_match]
+background = "0x73cef4"
+foreground = "0x000000"
+
+[colors.primary]
+background =     "0x000000"
+dim_foreground = "0x73cef4"
+foreground =     "0x73cef4"
+
+[colors.normal]
+black =   "0x000000"
+blue =    "0x73cef4"
+cyan =    "0x73cef4"
+green =   "0x73cef4"
+magenta = "0x73cef4"
+red =     "0x73cef4"
+white =   "0x73cef4"
+yellow =  "0x73cef4"
+
+[colors.bright]
+black =   "0x000000"
+blue =    "0x73cef4"
+cyan =    "0x73cef4"
+green =   "0x73cef4"
+magenta = "0x73cef4"
+red =     "0x73cef4"
+white =   "0x73cef4"
+yellow =  "0x73cef4"
+
