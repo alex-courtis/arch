@@ -1,0 +1,3 @@
+#!/bin/sh
+
+alacritty --config-file="${HOME}/.config/alacritty/alacritty-vt102.toml"
