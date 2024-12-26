@@ -1,10 +1,10 @@
-127.0.0.1	localhost
+127.0.0.1	localhost	HOSTNAME
 
-::1			localhost ip6-localhost ip6-loopback
+::1		localhost	ip6-localhost ip6-loopback	HOSTNAME
 ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 
-192.168.1.1		router
+192.168.1.1	router
 
 192.168.1.14	lord-ipmi-dedicated
 192.168.1.15	lord-ipmi-shared
@@ -24,3 +24,4 @@ ff02::2		ip6-allrouters
 
 192.168.1.91	pidp11
 
+# vim:ts=8

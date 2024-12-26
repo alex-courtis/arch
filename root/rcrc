@@ -4,3 +4,5 @@ DOTFILES_DIRS=".dotfiles/root"
 EXCLUDES="rcrc"
 UNDOTTED="etc usr"
 
+EXCLUDES="${EXCLUDES} etc/hosts"
+
