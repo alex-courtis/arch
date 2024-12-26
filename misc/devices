@@ -6,7 +6,7 @@ lord					D0:50:99:FD:76:FE	192.168.1.17	NAS Top
 dock					B4:45:06:B6:69:64	192.168.1.21	Dell Dock
 emperor					08:BF:B8:76:4B:C0	192.168.1.31	Desktop Wired
 dukew					3C:58:C2:F0:D4:F8	192.168.1.41	Lenovo Laptop
-duke					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired
+duke1					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired
 deckw					50:5A:65:60:76:61	192.168.1.71	Steam Deck
 zima1					00:E0:4C:22:7F:76	192.168.1.81	Zima Left
 zima2					00:E0:4C:22:7F:77	192.168.1.82	Zima Right

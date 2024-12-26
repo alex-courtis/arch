@@ -1,0 +1,26 @@
+127.0.0.1	localhost
+
+::1			localhost ip6-localhost ip6-loopback
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+192.168.1.1		router
+
+192.168.1.14	lord-ipmi-dedicated
+192.168.1.15	lord-ipmi-shared
+192.168.1.16	lord
+
+192.168.1.21	dock	duke	deck
+
+192.168.1.31	emperor
+
+192.168.1.41	dukew
+192.168.1.42	duke1
+
+192.168.1.71	deckw
+
+192.168.1.81	zima1
+192.168.1.82	zima2
+
+192.168.1.91	pidp11
+
