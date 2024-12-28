@@ -18,15 +18,15 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 #
 riverctl map normal $mod1 BackSpace spawn "ydotool key 29:1 51:1 51:0 29:0" #  <c-,>  ->  <c-w>
 riverctl map normal $mod2 BackSpace close
-riverctl map normal $mod3 BackSpace spawn "steam -shutdown"
 riverctl map normal $mod3 BackSpace exit
 
 riverctl map normal $mod1 Escape spawn term
-riverctl map normal $mod2 Escape spawn b
-riverctl map normal $mod3 Escape spawn bp
+riverctl map normal $mod2 Escape spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
+riverctl map normal $mod3 Escape spawn "bemenu-run > /dev/null 2>&1"
 
-riverctl map normal $mod1 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
-riverctl map normal $mod2 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
+riverctl map normal $mod1 Tab spawn b
+riverctl map normal $mod2 Tab spawn bp
+riverctl map normal $mod3 Tab spawn "steam -shutdown"
 
 riverctl map normal $mod1 Delete focus-view previous
 
@@ -49,13 +49,7 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 	tag=$(($tag << 1))
 done
 
-# x
-riverctl map normal $mod1 apostrophe spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications) > /dev/null 2>&1"
-riverctl map normal $mod2 apostrophe spawn "bemenu-run > /dev/null 2>&1"
-
-riverctl map normal $mod1 q spawn b
-riverctl map normal $mod2 q spawn bp
-
+# 'qx
 riverctl map normal $mod1 j focus-view next
 riverctl map normal $mod2 j swap next
 
@@ -75,16 +69,16 @@ riverctl map normal $mod3 Right send-to-output next
 # right
 #
 
-# c/
+# /
 riverctl map normal $mod1 f toggle-fullscreen
 riverctl map normal $mod3 f spawn "volraisemic"
 
-riverctl map normal $mod1 g swap previous
-riverctl map normal $mod2 g spawn "riverctl send-layout-cmd wideriver '--count +1' && riverctl focus-view next"
+riverctl map normal $mod1 g send-layout-cmd wideriver "--count +1"
 riverctl map normal $mod3 g spawn "volraise"
 
-riverctl map normal $mod1 r swap next
-riverctl map normal $mod2 r spawn "riverctl send-layout-cmd wideriver '--count -1' && riverctl focus-view previous"
+riverctl map normal $mod1 c send-layout-cmd wideriver "--count 1"
+
+riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 
 riverctl map normal $mod1 l send-layout-cmd wideriver "--stack dwindle"
 riverctl map normal $mod2 l send-layout-cmd wideriver "--stack even"
@@ -94,13 +88,15 @@ riverctl map normal $mod3 l send-layout-cmd wideriver "--stack diminish"
 riverctl map normal $mod1 d toggle-float
 riverctl map normal $mod3 d spawn "vollowermic"
 
-riverctl map normal $mod1 h send-layout-cmd wideriver "--ratio -0.025"
+riverctl map normal $mod1 h swap previous
+riverctl map normal $mod2 h spawn "riverctl send-layout-cmd wideriver '--count +1' && riverctl focus-view next"
 riverctl map normal $mod3 h spawn "vollower"
 
-riverctl map normal $mod1 t send-layout-cmd wideriver "--ratio 0.5"
-riverctl map normal $mod2 t send-layout-cmd wideriver "--ratio 0.35"
+riverctl map normal $mod1 t spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
+riverctl map normal $mod2 t spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
 
-riverctl map normal $mod1 n send-layout-cmd wideriver "--ratio +0.025"
+riverctl map normal $mod1 n swap next
+riverctl map normal $mod2 n spawn "riverctl send-layout-cmd wideriver '--count -1' && riverctl focus-view previous"
 
 riverctl map normal $mod1 s spawn "sss"
 
@@ -109,12 +105,13 @@ riverctl map normal $mod1 Minus spawn "ssa"
 # bz
 riverctl map normal $mod3 b spawn "volmutemic"
 
-riverctl map normal $mod1 m send-layout-cmd wideriver "--count +1"
+riverctl map normal $mod1 m send-layout-cmd wideriver "--ratio -0.025"
 riverctl map normal $mod3 m spawn "volmute"
 
-riverctl map normal $mod1 w send-layout-cmd wideriver "--count 1"
+riverctl map normal $mod1 w send-layout-cmd wideriver "--ratio 0.5"
+riverctl map normal $mod2 w send-layout-cmd wideriver "--ratio 0.35"
 
-riverctl map normal $mod1 v send-layout-cmd wideriver "--count -1"
+riverctl map normal $mod1 v send-layout-cmd wideriver "--ratio +0.025"
 riverctl map normal $mod3 v spawn "way-displays -s scaling on"
 
 riverctl map normal $mod3 z spawn "way-displays -s scaling off"
