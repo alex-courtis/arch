@@ -7,14 +7,11 @@ bindings = [
 { key = "Equals", mods = "Control",       action = "ResetFontSize"                                                 },
 { key = "Equals", mods = "Command",       action = "ResetFontSize"                                                 },
 
-{ key = "Space",  mods = "Control|Shift", action = "ToggleViMode",             mode = "~AppCursor|~AppKeypad|~Alt" },
-{ key = "H",      mods = "Control",       action = "ToggleViMode",             mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "Return", mods = "Control|Shift", action = "ToggleViMode",             mode = "~AppCursor|~AppKeypad|~Alt" },
 { key = "L",      mods = "Control|Shift", command.program = "alacritty-clear", mode = "~AppCursor|~AppKeypad|~Alt" },
-{ key = "Return", mods = "Control|Shift", command.program = "alacritty-clear", mode = "~AppCursor|~AppKeypad|~Alt" },
 
 { key = "C",      mods = "Control",       action = "ScrollToBottom",           mode = "Vi"                         },
 { key = "C",      mods = "Control",       action = "ToggleViMode",             mode = "Vi"                         },
-{ key = "H",      mods = "Control",       action = "ScrollToBottom",           mode = "Vi"                         },
 { key = "L",      mods = "Control|Shift", action = "ScrollToBottom",           mode = "Vi"                         },
 { key = "L",      mods = "Control|Shift", action = "ToggleViMode",             mode = "Vi"                         },
 { key = "Return", mods = "Control|Shift", action = "ScrollToBottom",           mode = "Vi"                         },
