@@ -16,24 +16,24 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 # thumbs
 #
 #
-riverctl map normal $mod1 Escape spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
-riverctl map normal $mod2 Escape spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
-
-riverctl map normal $mod1 BackSpace close
-riverctl map normal $mod2 BackSpace spawn "steam -shutdown"
+riverctl map normal $mod1 BackSpace spawn "ydotool key 29:1 51:1 51:0 29:0" #  <c-,>  ->  <c-w>
+riverctl map normal $mod2 BackSpace close
+riverctl map normal $mod3 BackSpace spawn "steam -shutdown"
 riverctl map normal $mod3 BackSpace exit
 
-# tab
+riverctl map normal $mod1 Escape spawn term
+riverctl map normal $mod2 Escape spawn b
+riverctl map normal $mod3 Escape spawn bp
+
+riverctl map normal $mod1 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
+riverctl map normal $mod2 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
+
+riverctl map normal $mod1 Delete focus-view previous
+
+riverctl map normal $mod1 Return focus-view next
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
 riverctl map normal $mod2 Space focus-previous-tags
-
-riverctl map normal $mod1 Delete spawn term
-riverctl map normal $mod2 Delete spawn b
-riverctl map normal $mod3 Delete spawn bp
-
-riverctl map normal $mod1 Return focus-view next
-riverctl map normal $mod2 Return focus-view previous
 
 #
 # left
