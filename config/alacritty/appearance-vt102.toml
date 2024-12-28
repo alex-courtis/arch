@@ -5,6 +5,7 @@ normal = { family = "vt52", style = "Medium" }
 
 [window]
 dynamic_padding = true
+dimensions = { columns = 80, lines = 24 }
 
 [cursor]
 style = { blinking = "Always", shape = "Block" }
