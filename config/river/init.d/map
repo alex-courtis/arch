@@ -29,8 +29,10 @@ riverctl map normal $mod2 Tab spawn bp
 riverctl map normal $mod3 Tab spawn "steam -shutdown"
 
 riverctl map normal $mod1 Delete focus-view previous
+riverctl map normal $mod2 Delete swap previous
 
 riverctl map normal $mod1 Return focus-view next
+riverctl map normal $mod2 Return swap next
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
 riverctl map normal $mod2 Space focus-previous-tags
