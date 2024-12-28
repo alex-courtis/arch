@@ -3,7 +3,6 @@
 mod1="Super"
 mod2="$mod1+Shift"
 mod3="$mod2+Control"
-mod4="$mod1+Alt"
 
 #
 # mouse
@@ -17,15 +16,14 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 # thumbs
 #
 #
-riverctl map normal $mod1 Escape focus-view previous
-riverctl map normal $mod2 Escape swap previous
+riverctl map normal $mod1 Escape spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
+riverctl map normal $mod2 Escape spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
 
 riverctl map normal $mod1 BackSpace close
 riverctl map normal $mod2 BackSpace spawn "steam -shutdown"
 riverctl map normal $mod3 BackSpace exit
 
-riverctl map normal $mod1 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
-riverctl map normal $mod2 Tab spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
+# tab
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
 riverctl map normal $mod2 Space focus-previous-tags
@@ -35,7 +33,7 @@ riverctl map normal $mod2 Delete spawn b
 riverctl map normal $mod3 Delete spawn bp
 
 riverctl map normal $mod1 Return focus-view next
-riverctl map normal $mod2 Return swap next
+riverctl map normal $mod2 Return focus-view previous
 
 #
 # left
@@ -57,7 +55,6 @@ riverctl map normal $mod2 apostrophe spawn "bemenu-run > /dev/null 2>&1"
 
 riverctl map normal $mod1 q spawn b
 riverctl map normal $mod2 q spawn bp
-riverctl map normal $mod4 q spawn bp
 
 riverctl map normal $mod1 j focus-view next
 riverctl map normal $mod2 j swap next
