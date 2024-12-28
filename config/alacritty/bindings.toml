@@ -2,6 +2,7 @@
 bindings = [
 
 { key = "N",      mods = "Control|Shift", command.program = "term"                                                 },
+{ key = "Escape", mods = "Command|Shift", command.program = "term"                                                 },
 
 { key = "Equals", mods = "Control",       action = "ResetFontSize"                                                 },
 { key = "Equals", mods = "Command",       action = "ResetFontSize"                                                 },
