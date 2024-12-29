@@ -1,0 +1,45 @@
+#!/bin/sh
+
+top_bottom() {
+	printf "%s" "${1}"
+	for i in $(seq 20 10 "${2}"); do
+		printf "%s" "---------|"
+	done
+}
+
+col_numbers() {
+	printf "%s" "${1}"
+	for i in $(seq 20 10 "${2}"); do
+		printf "%10s" "${i}"
+	done
+}
+
+# 80x24 box
+top_bottom  "|--1-----|" 80
+printf "\n"
+col_numbers "|  2    10" 80
+printf "\n"
+for i in $(seq 3 1 22); do
+	printf "%-2s%2s%76s\n" "|" "${i}" "|"
+done
+col_numbers "| 23    10" 80
+printf "\n"
+top_bottom  "|-24-----|" 80
+
+# wait for input
+read -r _
+printf "\n"
+
+# tty info
+stty -a
+printf "\n"
+
+# check for horizontal overflow
+col_numbers "        10" 80
+printf "\n"
+top_bottom  "|--------|" 80
+printf "%s\n\n" "-----"
+
+# should agree with stty
+printf "COLUMNS=%s\n" "${COLUMNS}"
+printf "LINES=%s\n" "${LINES}"

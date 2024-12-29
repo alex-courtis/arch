@@ -1,0 +1,5 @@
+#!/bin/sh
+
+stty rows 24 columns 80
+
+vt102-check
