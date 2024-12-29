@@ -4,4 +4,4 @@ stty rows 24 columns 80
 
 export TERM="vt102"
 
-vt102-check
+. vt102-check
