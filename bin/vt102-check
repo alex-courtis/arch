@@ -42,4 +42,6 @@ printf "%s\n\n" "-----"
 
 # should agree with stty
 printf "COLUMNS=%s\n" "${COLUMNS}"
-printf "LINES=%s\n" "${LINES}"
+printf "LINES=%s\n\n" "${LINES}"
+
+printf "TERM=%s\n\n" "${TERM}"
