@@ -24,4 +24,7 @@ bindings = [
 { key = "L", mods = "Command",                           chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
 { key = "L", mods = "Command",                           action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
 
+{ key = "W", mods = "Command",                           chars = "" },
+{ key = "W", mods = "Command|Shift",                     action = "Quit" },
+
 ]
