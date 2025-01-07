@@ -16,9 +16,12 @@ offset = { y = 1 }
 [keyboard]
 bindings = [
 
-{ key = "N", mods = "Control|Shift", action = "CreateNewWindow"                                     },
+# { key = "Escape", mods = "Command|Option|Shift|Control", action = "CreateNewWindow"                                     },
+{ key = "Escape", mods = "Command",                      action = "CreateNewWindow"                                     },
 
-{ key = "L", mods = "Command",       chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
-{ key = "L", mods = "Command",       action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "Return", mods = "Command",                      action = "ToggleViMode",   mode = "~AppCursor|~AppKeypad|~Alt" },
+
+{ key = "L", mods = "Command",                           chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "L", mods = "Command",                           action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
 
 ]
