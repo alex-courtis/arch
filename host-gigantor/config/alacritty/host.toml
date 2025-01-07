@@ -16,15 +16,16 @@ offset = { y = 1 }
 [keyboard]
 bindings = [
 
-# { key = "Escape", mods = "Command|Option|Shift|Control", action = "CreateNewWindow"                                     },
-{ key = "Escape", mods = "Command",                      action = "CreateNewWindow"                                     },
+# mapped by karabiner querty l
+# not sure why C|C|O|S does not work directly
+{ key = "N",      mods = "Command|Control|Shift",             action = "CreateNewWindow"                                     },
 
-{ key = "Return", mods = "Command",                      action = "ToggleViMode",   mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "Return", mods = "Command",                           action = "ToggleViMode",   mode = "~AppCursor|~AppKeypad|~Alt" },
 
-{ key = "L", mods = "Command",                           chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
-{ key = "L", mods = "Command",                           action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "L",      mods = "Command",                           chars = "\u000c",          mode = "~AppCursor|~AppKeypad|~Alt" },
+{ key = "L",      mods = "Command",                           action = "ClearHistory",   mode = "~AppCursor|~AppKeypad|~Alt" },
 
-{ key = "W", mods = "Command",                           chars = "" },
-{ key = "W", mods = "Command|Shift",                     action = "Quit" },
+{ key = "W",      mods = "Command",                           chars = "" },
+{ key = "W",      mods = "Command|Shift",                     action = "Quit" },
 
 ]

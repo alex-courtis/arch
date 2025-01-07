@@ -11,6 +11,35 @@
                 },
                 "rules": [
                     {
+                        "description": "alacritty CreateNewWindow",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "l",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "spotlight",
                         "manipulators": [
                             {

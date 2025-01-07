@@ -12,6 +12,23 @@ profiles:
         basic.to_if_alone_timeout_milliseconds: 200
         basic.to_if_held_down_threshold_milliseconds: 0
       rules:
+        - description: alacritty CreateNewWindow
+          manipulators:
+            - from:
+                key_code: escape
+                modifiers:
+                  mandatory:
+                    - command
+                    - control
+                    - option
+                    - shift
+              to:
+                - key_code: l
+                  modifiers:
+                    - command
+                    - control
+                    - shift
+              type: basic
         - description: spotlight
           manipulators:
             - from:
