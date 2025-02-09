@@ -106,7 +106,7 @@ alias enc="gpg --symmetric"
 alias dec="gpg --decrypt-files"
 
 alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
-alias ehx="HYPRLAND_INSTANCE_SIGNATURE=$(cat /tmp/hyp.sig)"
+alias ehx="HYPRLAND_INSTANCE_SIGNATURE=\$(cat /tmp/hyp.sig)"
 
 alias mt="xdg-mime query filetype"
 alias ma="xdg-mime query default"
