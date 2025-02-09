@@ -28,7 +28,4 @@ MODE:
 VRR_OFF:
   - LG Display 0x05EF
   - Samsung Display Corp. 0x4165
-CHANGE_SUCCESS_CMD: |
-  bell2
-  notify-send way-displays "${WD_MESSAGE}"
-
+CHANGE_SUCCESS_CMD: notify-send way-displays "${WD_CHANGE_SUCCESS_MSG}"

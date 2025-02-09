@@ -8,6 +8,7 @@ case "${1}" in
 		exec river > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"hyprland")
+		rm -rf "${XDG_RUNTIME_DIR}/hypr"
 		exec Hyprland > "/tmp/${1}.${XDG_VTNR}.${USER}.log" 2>&1
 		;;
 	"steam")
