@@ -64,6 +64,26 @@ end)
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 K.vm__("<LeftRelease>",  '"*ygv')
 
+K.nm__("<C-j>",          "<C-w>j")
+K.nm__("<C-k>",          "<C-w>k")
+K.nm__("<C-l>",          "<C-w>l")
+K.nm__("<C-h>",          "<C-w>h")
+K.nm__("<C-Space>",      "<C-w>w")
+K.nm__("<C-S-Space>",    "<C-w>W")
+-- remove once above is trained
+K.nm__("<C-w><C-j>",     "<NOP>")
+K.nm__("<C-w>j",         "<NOP>")
+K.nm__("<C-w><C-k>",     "<NOP>")
+K.nm__("<C-w>k",         "<NOP>")
+K.nm__("<C-w><C-l>",     "<NOP>")
+K.nm__("<C-w>l",         "<NOP>")
+K.nm__("<C-w><C-h>",     "<NOP>")
+K.nm__("<C-w>h",         "<NOP>")
+K.nm__("<C-w>w",         "<NOP>")
+K.nm__("<C-w><C-w>",     "<NOP>")
+K.nm__("<C-w>W",         "<NOP>")
+K.nm__("<C-w><C-W>",     "<NOP>")
+
 K.nms_("<BS><BS>",       ":silent BB<CR>")
 K.nms_("<Space><Space>", ":silent BF<CR>")
 

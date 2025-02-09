@@ -114,6 +114,7 @@ local function on_attach(bufnr)
 
   vim.keymap.del("n", "<C-]>",    { buffer = bufnr }) -- api.tree.change_root_to_node,
   vim.keymap.del("n", "<C-e>",    { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
+  vim.keymap.del("n", "<C-k>",    { buffer = bufnr }) -- api.node.show_info_popup
   vim.keymap.del("n", "<C-t>",    { buffer = bufnr }) -- api.node.open.tab,
   vim.keymap.del("n", "<BS>",     { buffer = bufnr }) -- api.node.navigate.parent_close,
   vim.keymap.del("n", "[c",       { buffer = bufnr }) -- api.node.navigate.git.prev,
@@ -127,6 +128,7 @@ local function on_attach(bufnr)
   vim.keymap.del("n", "Y",        { buffer = bufnr }) -- api.fs.copy.relative_path,
 
   vim.keymap.set("n", "<C-t>",    api.tree.change_root_to_parent,               opts("Up"))
+  vim.keymap.set("n", "<C-i>",    api.node.show_info_popup,                     opts("Info"))
   vim.keymap.set("n", "<Space>t", api.tree.change_root_to_node,                 opts("CD"))
   vim.keymap.set("n", "<BS>t",    api.tree.change_root_to_node,                 opts("CD"))
   vim.keymap.set("n", "<Space>p", api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
