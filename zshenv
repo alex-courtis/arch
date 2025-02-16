@@ -61,7 +61,7 @@ export MANROFFOPT="-P -c"
 export XKB_DEFAULT_MODEL="pc105"
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT="dvp,"
-export XKB_DEFAULT_OPTIONS="caps:escape,grp:shift_caps_toggle"
+export XKB_DEFAULT_OPTIONS="caps:escape,grp:alt_caps_toggle"
 
 if [ "$(whence luarocks)" ]; then
 	eval "$(luarocks path)"
