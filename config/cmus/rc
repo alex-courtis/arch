@@ -25,7 +25,7 @@ unbind -f common 9
 unbind -f common A
 unbind -f common B
 unbind -f common C
-unbind -f common D
+# unbind -f common D
 unbind -f common E
 unbind -f common F
 unbind -f common G
@@ -108,7 +108,7 @@ unbind -f common down
 unbind -f common left
 unbind -f common right
 
-unbind -f common delete
+# unbind -f common delete
 unbind -f common end
 unbind -f common enter
 unbind -f common home
