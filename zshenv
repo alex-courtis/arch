@@ -14,6 +14,9 @@ export VISUAL="vi"
 # except git commit, rebase etc.
 export GIT_EDITOR="vim"
 
+# fallback for xdg-open
+export BROWSER="b"
+
 # better paging
 export PAGER="less"
 
