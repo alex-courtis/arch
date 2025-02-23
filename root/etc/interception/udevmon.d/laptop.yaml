@@ -1,6 +1,0 @@
-- JOB: "intercept -g $DEVNODE | keycodemapper | uinput -d $DEVNODE"
-  DEVICE:
-    NAME: "AT Translated Set 2 keyboard"
-    EVENTS:
-      EV_KEY: [ KEY_LEFTSHIFT ]
-
