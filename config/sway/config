@@ -1,3 +1,13 @@
-include ~/.config/i3/config.d/*
-include ~/.config/sway/config.d/*
+exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
+
+exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
+
+bindsym Mod4+M exec bemenu-run
+bindsym Mod4+Q exec swaymsg exit
+bindsym Mod4+T exec term > /dev/null 2>&1
+
+bar {
+    position top
+    status_command slstatus -s
+}
 
