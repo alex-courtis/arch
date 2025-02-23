@@ -495,7 +495,6 @@ ttf-inter
 vdpauinfo
 vulkan-tools
 wl-clipboard
-xdg-desktop-portal-wlr
 xdg-utils
 zsh-completions
 lswt
