@@ -499,13 +499,14 @@ xdg-utils
 zsh-completions
 lswt
 menjar
-river-git
+river
 todotxt
 way-displays
 wev
 wideriver
 zig-bin
 zsh-system-clipboard-git
+ydotool
 `
 
 X:
@@ -523,13 +524,11 @@ xsel
 xlayoutdisplay
 `
 
-Optional:
+Situational:
 `yay -S
-bluez
 blueman
+bluez
 libinput-gestures
-interception-dual-function-keys
-ydotool
 `
 
 Clean any unnecessary packages:
