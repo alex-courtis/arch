@@ -1,7 +1,0 @@
-/* These are not always enabled by default */
-polkit.addRule(function(action, subject) {
-	if (action.id.startsWith("org.freedesktop.NetworkManager.") && subject.isInGroup("wheel")) {
-		return polkit.Result.YES;
-	}
-});
-
