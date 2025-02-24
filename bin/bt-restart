@@ -2,11 +2,11 @@
 
 set -x
 
-sudo systemctl stop bluetooth
-
 # intel AX210 is flakey
 # removing the loaded module seems to be the key
 sudo rmmod btusb
 sudo modprobe btusb
 
-sudo systemctl start bluetooth
+sleep 1
+
+sudo systemctl restart bluetooth
