@@ -1,3 +1,0 @@
-[screencast]
-chooser_type = simple
-chooser_cmd = slurp -f %o -r -o -s FFFFFF40
