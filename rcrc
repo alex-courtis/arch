@@ -3,7 +3,7 @@ SYMLINK_DIRS="config/htop config/ideavim config/luacheck config/nvim config/rive
 UNDOTTED="bin Library"
 
 # hooks/post-up/appearance.zsh will handle these
-export APPEARANCE_FILES="Xresources config/alacritty/appearance.toml config/waybar/style.css config/mako/config config/sway/config.d/appearance"
+export APPEARANCE_FILES="Xresources config/alacritty/appearance.toml config/waybar/style.css config/mako/config"
 EXCLUDES="${EXCLUDES} ${APPEARANCE_FILES}"
 
 # vim:ft=sh
