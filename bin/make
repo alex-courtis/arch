@@ -1,5 +1,13 @@
 #!/bin/sh
 
+case "${@}" in
+	*clean*)
+		MAKEFLAGS=-j1
+		;;
+	*)
+		;;
+esac
+
 case "${PWD}" in
 	*wideriver*|*way-displays*|*xlayoutdisplay*)
 		/usr/bin/make CC="clang" CXX"=clang++" "${@}"
