@@ -69,7 +69,7 @@ make_chdir_sub_vi pa "${XDG_DATA_HOME}/nvim/site/pack/packer/start"
 if [ "${UNAME}" = "Darwin" ]; then
 	make_chdir_sub_vi a  "${HOME}/atlassian"
 	make_chdir_sub_vi s  "${HOME}/atlassian/src"
-	make_chdir_sub_vi j  "${HOME}/atlassian/src/jira"
+	make_chdir_sub_vi j  "${HOME}/atlassian/src/j"
 	make_chdir_sub_vi mc "${HOME}/Library/Application Support"
 	make_chdir_sub_vi jb "${HOME}/Library/Application Support/JetBrains"
 fi

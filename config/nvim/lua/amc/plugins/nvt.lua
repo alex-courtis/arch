@@ -18,8 +18,9 @@ local NO_STARTUP_FT = {
 }
 
 local GIT_DISABLE_FOR_DIRS = {
-  vim.env.HOME .. "/atlassian/src/jira",
-  vim.env.HOME .. "/jira",
+  vim.env.HOME .. "/atlassian/src/jira/",
+  vim.env.HOME .. "/atlassian/src/j/",
+  vim.env.HOME .. "/jira/",
 }
 
 ---Absolute paths of the node.
@@ -243,7 +244,7 @@ local config = {
     show_on_open_dirs = false,
   },
   filesystem_watchers = {
-    ignore_dirs = { "/.ccls-cache", "/build", "/node_modules", "/target", "/atlassian/src/jira" }
+    ignore_dirs = { "/.ccls-cache", "/build", "/node_modules", "/target", "/atlassian/src/jira", "/atlassian/src/j" }
   },
   actions = {
     change_dir = {
