@@ -1,0 +1,3 @@
+#!/bin/sh
+
+update-desktop-database "${XDG_DATA_HOME}/applications"

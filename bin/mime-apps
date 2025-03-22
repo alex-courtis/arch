@@ -19,8 +19,8 @@ local function parse_apps_by_type(mime_cache, scope)
 end
 
 --- parse
-parse_apps_by_type(os.getenv("HOME") .. "/.local/share/applications/mimeinfo.cache", "locals")
-parse_apps_by_type("/usr/share/applications/mimeinfo.cache",                         "globals")
+parse_apps_by_type(os.getenv("XDG_DATA_HOME") .. "/applications/mimeinfo.cache", "locals")
+parse_apps_by_type("/usr/share/applications/mimeinfo.cache",                     "globals")
 
 --- count lengths, sort alpha
 local sorted_types = {}
