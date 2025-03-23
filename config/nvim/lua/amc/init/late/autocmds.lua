@@ -4,7 +4,6 @@ local require = require("amc.require_or_nil")
 
 local buffers = require("amc.buffers") or {}
 local dev = require("amc.dev") or {}
-local map = require("amc.init.late.map") or {}
 local windows = require("amc.windows") or {}
 local fugitive = require("amc.plugins.fugitive") or {}
 local nvt = require("amc.plugins.nvt") or {}
