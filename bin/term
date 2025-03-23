@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 alacritty "$@" >/dev/null 2>&1 &!
 
