@@ -162,6 +162,7 @@ local zls = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = { 'zls' },
 }
 lspconfig.zls.setup(zls)
 
