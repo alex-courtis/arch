@@ -9,7 +9,6 @@ mkdir "${DIR}"
 
 # link everything
 for f in /usr/lib/lua-language-server/*; do
-	BASE=$(basename ${f})
 	ln -sv "${f}" "${DIR}/$(basename "${f}")"
 done
 

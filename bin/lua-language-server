@@ -1,10 +1,11 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 # uses ~/.local/lib/lua-language-server
 # cleans temp dir after
 
 TMPPATH="/tmp/lua-language-server-$(id -u)"
-INSTANCEPATH="$TMPPATH/$(date +%Y%m%d_%H%M%S)_${PWD//[^a-zA-Z0-9]/_}"
+PWD_SUB="$(echo "${PWD}" | sed -E 's/[^a-zA-Z0-9]/_/g')"
+INSTANCEPATH="$TMPPATH/$(date +%Y%m%d_%H%M%S)_${PWD_SUB}"
 
 "${HOME}/.local/lib/lua-language-server/bin/lua-language-server" \
   --loglevel=warn --logpath="${INSTANCEPATH}/log" --metapath="${INSTANCEPATH}/meta" \
