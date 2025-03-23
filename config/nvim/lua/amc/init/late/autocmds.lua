@@ -28,7 +28,6 @@ au({ "BufWinEnter" },                                           windows.qf_heigh
 au({ "BufWinEnter" },                                           windows.doc_position,       {})
 au({ "VimResized" },                                            windows.equalise_windows,   {})
 au({ "VimEnter" },                                              nvt.vim_enter,              {})
-au({ "VimEnter" },                                              map.clear_default_mappings, {})
 
 au({ "User" },                                                  env.update_title,           { pattern = { "FugitiveChanged" } })
 

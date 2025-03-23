@@ -34,7 +34,6 @@ local plugins = {
   "nvim-telescope/telescope.nvim",
   "nvim-treesitter/nvim-treesitter",
   "qpkorr/vim-bufkill",
-  "tpope/vim-commentary",
   "tpope/vim-fugitive",
   "tpope/vim-repeat",
   "vim-scripts/ReplaceWithRegister",

@@ -168,13 +168,8 @@ K.nmsl("mt", dev.test)
 K.nmsl("mT", dev.test_all)
 K.nmsl("ms", dev.source)
 
--- 4C
+-- 4cC
 K.nmsl("+",  rainbow.toggle)
-K.nmsl("cu", "<Plug>Commentary<Plug>Commentary")
-K.nmsl("cc", "<Plug>CommentaryLine")
-K.omsl("c",  "<Plug>Commentary")
-K.nmsl("c",  "<Plug>Commentary")
-K.xmsl("c",  "<Plug>Commentary")
 K.nmsl("t",  "<C-]>")
 K.nmsl("w",  "<Plug>ReplaceWithRegisterOperatoriw")
 K.xmsl("w",  "<Plug>ReplaceWithRegisterVisual")
@@ -229,17 +224,6 @@ end
 
 vim.keymap.set({ "i", "s" }, "<Tab>",   function() return jump("<Tab>", 1) end,    { expr = true })
 vim.keymap.set({ "i", "s" }, "<S-Tab>", function() return jump("<S-Tab>", -1) end, { expr = true })
-
---
--- functions
---
-
----au VimEnter
-function M.clear_default_mappings()
-  -- commentary defaults
-  pcall(vim.keymap.del, { "n", "o", "v" }, "gc")
-  pcall(vim.keymap.del, "n",               "gcc")
-end
 
 --
 -- commands
