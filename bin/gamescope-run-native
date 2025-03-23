@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 2024 02 25
 # 3.13.19 with e8bfeb1 applied
@@ -9,9 +9,7 @@
 # - fullscreen switches
 # - change tag
 
-echo "${0} ${@}"
-
-set -o pipefail
+echo "${*}"
 
 # fetch the first display
 if ! VARS="$(way-displays -y -g | yq '.STATE.HEADS[0] | "NAME=\"" + .NAME + "\" DESCRIPTION=\"" + .DESCRIPTION + "\" WIDTH=" + .CURRENT.MODE.WIDTH + " HEIGHT=" + .CURRENT.MODE.HEIGHT')"; then
