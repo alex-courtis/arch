@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 case "${1}" in
 	"")
@@ -34,7 +34,7 @@ for b in ${GONE}; do
 	(set -x; git show "${b}" --oneline --no-patch)
 	printf "\n"
 
-	IFS= read -r -p "git branch -D ${b} ? " yn
+	printf "git branch -D %s ? " "${b}" ; read -r yn
 	if [ "${yn}" = "y" ]; then
 		(set -x; git branch -D "${b}")
 	fi
@@ -60,7 +60,7 @@ for b in ${BRANCHES}; do
 		printf "%s\n\n" "${b}"
 		(set -x; git show "${b}" --oneline --no-patch) ; printf "\n"
 
-		IFS= read -r -p "git branch -D ${b} ? " yn
+		printf "git branch -D %s ? " "${b}" ; read -r yn
 		if [ "${yn}" = "y" ]; then
 			(set -x; git branch -D "${b}")
 		fi
