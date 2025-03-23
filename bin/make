@@ -2,7 +2,7 @@
 
 case "${@}" in
 	*clean*)
-		MAKEFLAGS=-j1
+		export MAKEFLAGS=-j1
 		;;
 	*)
 		;;
