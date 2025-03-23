@@ -25,9 +25,9 @@ printf "==== fetching and pruning ====\n\n"
 
 printf "==== deleting gone ====\n\n"
 
-(set -x; git --no-pager branch -vv | grep --color -E "gone|$") ; printf "\n"
+(set -x; git --no-pager branch -vv | grep --color -E ": gone\]|$") ; printf "\n"
 
-GONE="$(git --no-pager branch -vv | grep gone | sed -E 's#^..([^ ]*) .*$#\1#g')"
+GONE="$(git --no-pager branch -vv | grep -E ": gone\]" | sed -E 's#^..([^ ]*) .*$#\1#g')"
 for b in ${GONE}; do
 
 	printf "%s\n\n" "${b}"
