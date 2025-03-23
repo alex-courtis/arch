@@ -59,7 +59,7 @@ local function on_attach(client, bufnr)
       vim.keymap.set("n", leader .. "T", vim.lsp.buf.declaration, { buffer = bufnr })
     end
 
-    vim.keymap.set("n", leader .. "n", telescope.lsp_references, { buffer = bufnr })
+    vim.keymap.set("n", leader .. "n",  telescope.lsp_references,  { buffer = bufnr })
 
     vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr })
     vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr })
@@ -78,6 +78,7 @@ local ccls = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = { "ccls" },
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -101,6 +102,7 @@ local jsonls = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = { "vscode-json-language-server", "--stdio" },
 }
 lspconfig.jsonls.setup(jsonls)
 
@@ -112,6 +114,7 @@ local luals = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = { "lua-language-server" },
   settings = {
     Lua = {
       workspace = {
@@ -140,6 +143,7 @@ local yamlls = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
+  cmd = { "yaml-language-server", "--stdio" },
   settings = {
     yaml = {
       schemas = {
