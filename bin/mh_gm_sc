@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "${0} ${@}" > /tmp/mh_gm_sc.log
+echo "${0} ${*}" > /tmp/mh_gm_sc.log
+
+# shellcheck disable=SC2129
 
 way-displays -s scaling off >> /tmp/mh_gm_sc.log 2>&1
 
