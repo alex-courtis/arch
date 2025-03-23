@@ -5,31 +5,36 @@ case "${1}" in
 		;;
 	*)
 		printf "usage: %s\n" "${0}"
-		printf "  git worktree remove -f\n"
+		printf "  worktrees will prompt:\n"
+		printf "    git worktree remove -f ...\n"
 		exit 1
 		;;
 esac
 
-(set -x; git --no-pager branch -r)
-printf "\n"
+(set -x; git --no-pager branch -r) ; printf "\n"
 
-(set -x; git --no-pager branch --list --format="%(refname:lstrip=2)")
-printf "\n"
+(set -x; git --no-pager branch --list --format="%(refname:lstrip=2)") ; printf "\n"
 
-(set -x; git --no-pager worktree list)
-printf "\n"
+(set -x; git --no-pager worktree list) ; printf "\n"
 
 WORKTREES="$(git --no-pager worktree list | sed -E 's#^.*\[([^ ]*)\]$#\1#g')"
 for w in ${WORKTREES}; do
 
-	echo "${w}"
-	git --no-pager show --no-patch "${w}"
-	printf "\n"
+	case "${w}" in
+		master|main)
+			printf "skipping %s\n\n" "${w}"
+			;;
+		*)
+			printf "%s\n\n" "${w}"
+			(set -x; git show "${w}" --oneline --no-patch) ; printf "\n"
 
-	IFS= read -r -p "git worktree remove -f ${w} ? " yn
-	if [ "${yn}" = "y" ]; then
-		(set -x; git worktree remove -f "${w}")
-	fi
+			IFS= read -r -p "git worktree remove -f ${w} ? " yn
+			if [ "${yn}" = "y" ]; then
+				(set -x; git worktree remove -f "${w}")
+			fi
 
-	printf "\n"
+			printf "\n"
+			;;
+	esac
+
 done
