@@ -27,7 +27,6 @@ local on_attach = function(bufnr)
     vim.keymap.set("n", leader .. "j",  next_hunk,                          desc("Next Hunk"))
 
     vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview Hunk Inline"))
-    vim.keymap.set("n", leader .. "hu", gitsigns.undo_stage_hunk,           desc("Undo Stage Hunk"))
     vim.keymap.set("n", leader .. "k",  prev_hunk,                          desc("Previous Hunk"))
 
     vim.keymap.set("n", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
@@ -36,8 +35,6 @@ local on_attach = function(bufnr)
 
     vim.keymap.set("n", leader .. "hd", gitsigns.diffthis,                  desc("Diff This"))
     vim.keymap.set("n", leader .. "hB", gitsigns.blame_line,                desc("Blame Line"))
-
-    vim.keymap.set("n", leader .. "ht", gitsigns.toggle_deleted,            desc("Toggle Deleted"))
 
     vim.keymap.set("n", leader .. "hl", gitsigns.toggle_current_line_blame, desc("Toggle Current Blame Line"))
     vim.keymap.set("n", leader .. "hs", gitsigns.stage_hunk,                desc("Stage Hunk"))
