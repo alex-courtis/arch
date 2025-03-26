@@ -49,8 +49,6 @@ end
 --- @param bufnr number
 --- @param client vim.lsp.Client
 local function on_attach(client, bufnr)
-  pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
-
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     if client.server_capabilities.definitionProvider then
       vim.keymap.set("n", leader .. "t", vim.lsp.buf.definition, { buffer = bufnr })
@@ -65,7 +63,6 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", leader .. "db", vim.cmd.LspRestart,        { buffer = bufnr })
     vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr })
     vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr })
-    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr })
     vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr })
     vim.keymap.set("n", leader .. "dr", dev.lsp_rename,            { buffer = bufnr })
   end
