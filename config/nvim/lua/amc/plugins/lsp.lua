@@ -142,13 +142,6 @@ local yamlls = {
   capabilities = capabilities,
   on_attach = on_attach,
   cmd = { "yaml-language-server", "--stdio" },
-  settings = {
-    yaml = {
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-      },
-    },
-  },
 }
 lspconfig.yamlls.setup(yamlls)
 
