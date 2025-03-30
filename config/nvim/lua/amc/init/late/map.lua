@@ -15,6 +15,9 @@ local treesitter = require("amc.plugins.treesitter") or {}
 local K = {}
 local M = {}
 
+local function nop()
+end
+
 ---nil safe wrappers around vim.keymap.set() rhs
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
   K[mode .. "m" .. "__"] = function(lhs, rhs)
@@ -170,6 +173,11 @@ K.nmsl("ms", dev.source)
 
 -- 4cC
 K.nmsl("+", rainbow.toggle)
+K.nmsl("cu", nop)
+K.nmsl("cc", nop)
+K.omsl("c",  nop)
+K.nmsl("c",  nop)
+K.xmsl("c",  nop)
 K.nmsl("t", "<C-]>")
 K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw")
 K.xmsl("w", "<Plug>ReplaceWithRegisterVisual")
