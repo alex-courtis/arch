@@ -108,9 +108,6 @@ nm <BS>mt <Action>(RunClass)
 nm <BS>mr <Action>(Rerun)
 nm <BS>mu <Action>(UpdateRunningApplication)
 
-nm <BS>c  <Plug>(CommentMotion)
-nm <BS>cc <Plug>(CommentLine)
-vm <BS>c  <Plug>(CommentMotionV)
 " this uses vim's tag navigation history, not intellij's, so we can use <C-t>
 nm <BS>t  <C-]>
 nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
