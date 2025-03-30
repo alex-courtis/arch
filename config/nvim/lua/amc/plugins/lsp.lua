@@ -153,16 +153,16 @@ local zls = {
   flags = flags,
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = { 'zls' },
+  cmd = { "zls" },
 }
 lspconfig.zls.setup(zls)
 
 function M.goto_prev()
-  vim.diagnostic.goto_prev({ wrap = false })
+  vim.diagnostic.jump({ count = -1, float = true })
 end
 
 function M.goto_next()
-  vim.diagnostic.goto_next({ wrap = false })
+  vim.diagnostic.jump({ count = 1, float = true })
 end
 
 -- init
