@@ -3,7 +3,7 @@
   "runtime.version": "Lua 5.1",
   "workspace": {
     "library": [
-      "$VIMRUNTIME",
+      "$VIMRUNTIME/lua",
       "${3rd}/luv/library",
       "$XDG_DATA_HOME/nvim/site/pack/packer/start"
     ]
