@@ -14,7 +14,19 @@ local config = {
     find = {
       options = {}, -- no ignore-case
     },
-  }
+  },
+  mapping = {
+    ["run_current_replace"] = {
+      map = "r",
+      cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
+      desc = "replace current line"
+    },
+    ["run_replace"] = {
+      map = "R",
+      cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+      desc = "replace all"
+    },
+  },
 }
 
 spectre.setup(config)
