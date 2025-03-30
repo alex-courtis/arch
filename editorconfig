@@ -11,9 +11,6 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
-# keep these in sync with .luarc.json
-#   .editorconfig is used within nvim, overriding .luarc.json
-#   .luarc.json is used by style check
 [*.lua]
 charset = utf-8
 end_of_line = lf

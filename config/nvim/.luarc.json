@@ -8,19 +8,6 @@
       "$XDG_DATA_HOME/nvim/site/pack/packer/start"
     ]
   },
-  "format": {
-    "defaultConfig": {
-      "indent_style": "space",
-      "max_line_length": "160",
-      "indent_size": "2",
-      "continuation_indent": "2",
-      "quote_style": "double",
-      "call_arg_parentheses": "always",
-      "space_before_closure_open_parenthesis": "false",
-      "align_continuous_similar_call_args": "true",
-      "line_space_around_block": "keep"
-    }
-  },
   "diagnostics": {
     "libraryFiles": "Disable",
     "globals": [],
