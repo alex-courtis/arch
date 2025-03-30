@@ -172,16 +172,16 @@ K.nmsl("mT", dev.test_all)
 K.nmsl("ms", dev.source)
 
 -- 4cC
-K.nmsl("+", rainbow.toggle)
+K.nmsl("+",  rainbow.toggle)
 K.nmsl("cu", nop)
 K.nmsl("cc", nop)
 K.omsl("c",  nop)
 K.nmsl("c",  nop)
 K.xmsl("c",  nop)
-K.nmsl("t", "<C-]>")
-K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw")
-K.xmsl("w", "<Plug>ReplaceWithRegisterVisual")
-K.nmsl("W", "<Plug>ReplaceWithRegisterLine")
+K.nmsl("t",  "<C-]>")
+K.nmsl("w",  "<Plug>ReplaceWithRegisterOperatoriw")
+K.xmsl("w",  "<Plug>ReplaceWithRegisterVisual")
+K.nmsl("W",  "<Plug>ReplaceWithRegisterLine")
 
 -- ]6N
 K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
