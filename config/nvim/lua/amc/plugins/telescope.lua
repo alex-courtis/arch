@@ -109,29 +109,32 @@ local cfg = actions
           ["<CR>"] = actions.select_default,
 
           ["j"] = actions.move_selection_next,
-          ["<C-n>"] = actions.move_selection_next,
           ["<Tab>"] = actions.move_selection_next,
           ["<Down>"] = actions.move_selection_next,
           ["k"] = actions.move_selection_previous,
-          ["<C-p>"] = actions.move_selection_previous,
           ["<S-Tab>"] = actions.move_selection_previous,
           ["<Up>"] = actions.move_selection_previous,
 
           ["h"] = actions.results_scrolling_left,
-          ["<C-h>"] = actions.results_scrolling_left,
           ["l"] = actions.results_scrolling_right,
-          ["<C-l>"] = actions.results_scrolling_right,
 
           ["gg"] = actions.move_to_top,
           ["G"] = actions.move_to_bottom,
 
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
+          ["<C-u>"] = function(prompt_bufnr)
+            action_set.shift_selection(prompt_bufnr, -25)
+          end,
+          ["<C-d>"] = function(prompt_bufnr)
+            action_set.shift_selection(prompt_bufnr, 25)
+          end,
+
+          ["H"] = actions.preview_scrolling_left,
+          ["L"] = actions.preview_scrolling_right,
+          ["K"] = actions.preview_scrolling_up,
+          ["J"] = actions.preview_scrolling_down,
 
           ["<C-j>"] = actions.cycle_history_next,
-          ["<C-f>"] = actions.cycle_history_next,
           ["<C-k>"] = actions.cycle_history_prev,
-          ["<C-b>"] = actions.cycle_history_prev,
 
           ["?"] = actions.which_key,
         },
@@ -140,23 +143,13 @@ local cfg = actions
 
           ["<CR>"] = actions.select_default,
 
-          ["<C-n>"] = actions.move_selection_next,
           ["<Tab>"] = actions.move_selection_next,
           ["<Down>"] = actions.move_selection_next,
-          ["<C-p>"] = actions.move_selection_previous,
           ["<S-Tab>"] = actions.move_selection_previous,
           ["<Up>"] = actions.move_selection_previous,
 
-          ["<C-u>"] = actions.preview_scrolling_up,
-          ["<C-d>"] = actions.preview_scrolling_down,
-
-          ["<C-h>"] = actions.results_scrolling_left,
-          ["<C-l>"] = actions.results_scrolling_right,
-
           ["<C-j>"] = actions.cycle_history_next,
-          ["<C-f>"] = actions.cycle_history_next,
           ["<C-k>"] = actions.cycle_history_prev,
-          ["<C-b>"] = actions.cycle_history_prev,
 
           ["<C-/>"] = actions.which_key,
         },
