@@ -84,6 +84,7 @@ local cfg = actions
       },
       sorting_strategy = "ascending",
       layout_strategy = "horizontal",
+      scroll_strategy = "limit",
       layout_config = {
         height = 0.95,
         width = 0.9,
