@@ -11,24 +11,22 @@ case "${1}" in
 		;;
 esac
 
-(set -x; git --no-pager branch -r) ; printf "\n"
-
-(set -x; git --no-pager branch --list --format="%(refname:lstrip=2)") ; printf "\n"
-
 (set -x; git --no-pager worktree list) ; printf "\n"
 
-WORKTREES="$(git --no-pager worktree list | sed -E 's#^.*\[([^ ]*)\]$#\1#g')"
+WORKTREES="$(git --no-pager worktree list | sed -E 's#(^[^ ]+).*$#\1#g')"
 for w in ${WORKTREES}; do
 
-	case "${w}" in
+	b="$(git --no-pager worktree list | grep "^${w}" | sed -E 's#^.*\[([^ ]*)\]$#\1#g')"
+
+	case "${b}" in
 		master|main)
-			printf "skipping %s\n\n" "${w}"
+			printf "skipping %s [%s]\n\n" "${w}" "${b}"
 			;;
 		*)
-			printf "%s\n\n" "${w}"
-			(set -x; git show "${w}" --oneline --no-patch) ; printf "\n"
+			printf "%s\n\n" "${b}"
+			(set -x; git --no-pager show "${b}" --oneline --no-patch) ; printf "\n"
 
-			printf "git worktree remove -f %s ? " "${w}" ; read -r yn
+			printf "git worktree remove -f %s [%s] ? " "${w}" "${b}" ; read -r yn
 			if [ "${yn}" = "y" ]; then
 				(set -x; git worktree remove -f "${w}")
 			fi
