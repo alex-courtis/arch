@@ -1,3 +1,7 @@
+if [ -n "${INTELLIJ_ENVIRONMENT_READER}" ]; then
+	exit
+fi
+
 zmodload zsh/complist
 
 if [ -n "${WAYLAND_DISPLAY}" -o -n "${DISPLAY}" ]; then
