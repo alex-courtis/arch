@@ -6,4 +6,8 @@ eval "$(mise activate zsh)"
 
 path=(~/bin ~/.local/bin $path)
 
+if [ -d ~/.orbit/bin ]; then
+	path=(~/.orbit/bin $path)
+fi
+
 # vim:ft=zsh
