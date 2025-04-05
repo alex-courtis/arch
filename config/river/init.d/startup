@@ -10,10 +10,3 @@ update-desktop-database "${HOME}/.local/share/applications"
 mako > "/tmp/mako.${XDG_VTNR}.${USER}.log" 2>&1 &
 
 waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
-
-if [ "${USER}" != "alex" ]; then
-	swayidle -w \
-		timeout 900 'swaylock -f -c "#${BASE16_lighter_background}"' \
-		before-sleep 'swaylock -f -c "#${BASE16_lighter_background}"' \
-		> /tmp/swayidle.${XDG_VTNR}.${USER}.log 2>&1 &
-fi
