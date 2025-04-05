@@ -161,11 +161,19 @@ local zls = {
 lspconfig.zls.setup(zls)
 
 function M.goto_prev()
-  vim.diagnostic.goto_prev({ wrap = false })
+  if vim.fn.has("nvim-0.11") == 1 then
+    vim.diagnostic.jump({ count = -1, float = true })
+  else
+    vim.diagnostic.goto_prev({ wrap = false }) ---@diagnostic disable-line: deprecated
+  end
 end
 
 function M.goto_next()
-  vim.diagnostic.goto_next({ wrap = false })
+  if vim.fn.has("nvim-0.11") == 1 then
+    vim.diagnostic.jump({ count = 1, float = true })
+  else
+    vim.diagnostic.goto_next({ wrap = false }) ---@diagnostic disable-line: deprecated
+  end
 end
 
 -- init
