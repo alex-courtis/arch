@@ -66,6 +66,8 @@ end
 function M.test()
   local bt = build_type()
 
+  buffers.update()
+
   if bt == BUILD_TYPE.make then
     local bufnr = vim.api.nvim_get_current_buf()
     local buf_name = vim.api.nvim_buf_get_name(bufnr)
@@ -82,6 +84,8 @@ end
 function M.test_all()
   local bt = build_type()
 
+  buffers.update()
+
   if bt == BUILD_TYPE.make then
     make_test_target = "test"
     vim.cmd.make({ args = { make_test_target } })
@@ -92,6 +96,8 @@ end
 
 function M.build()
   local bt = build_type()
+
+  buffers.update()
 
   if bt == BUILD_TYPE.make then
     vim.cmd.make()
@@ -108,9 +114,9 @@ function M.source()
 end
 
 function M.lsp_rename()
-  vim.cmd.wall()
+  buffers.update()
   vim.lsp.buf.rename()
-  vim.cmd.wall()
+  buffers.update()
 end
 
 function M.format()
