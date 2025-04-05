@@ -143,7 +143,7 @@ end
 function M.exec_to_buffer(command)
   local out = vim.api.nvim_exec2(command.args, { output = true })
   if out then
-    M.write_scratch(out.output)
+    M.write_scratch(out["output"])
   end
 end
 
