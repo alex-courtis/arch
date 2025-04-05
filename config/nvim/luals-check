@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "${VIMRUNTIME}" ]; then
+	export VIMRUNTIME="/usr/share/nvim/runtime"
+fi
+
+echo "VIMRUNTIME=${VIMRUNTIME}"
+
+lua-language-server --check=.
+
