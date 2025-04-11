@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/alex-courtis/way-displays/refs/heads/master/schema/cfg-1.0.0.yaml
 ARRANGE: ROW
 ALIGN: BOTTOM
 ORDER:
@@ -9,6 +10,8 @@ ORDER:
   - Samsung Electric Company C34J79x
 SCALING: TRUE
 AUTO_SCALE: TRUE
+AUTO_SCALE_MIN: 1
+AUTO_SCALE_MAX: -1
 SCALE:
   - NAME_DESC: LG Display 0x05EF
     SCALE: 2
@@ -28,3 +31,5 @@ MODE:
 VRR_OFF:
   - LG Display 0x05EF
   - Samsung Display Corp. 0x4165
+CALLBACK_CMD: notify-send "way-displays ${CALLBACK_LEVEL}" "${CALLBACK_MSG}"
+
