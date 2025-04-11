@@ -14,7 +14,7 @@ function printtermtitle() {
 	print -Pn "%~"
 
 	# obey ~/.nogitps1
-	if [[ "${PWD}" =~ "${NO_GIT_PS1}" ]]; then
+	if [[ -n "${NO_GIT_PS1}" && "${PWD}" =~ "${NO_GIT_PS1}" ]]; then
 		return
 	fi
 
