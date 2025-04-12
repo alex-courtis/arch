@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-alacritty --config-file="${HOME}/.config/alacritty/alacritty-vt102.toml" "$@" >/dev/null 2>&1 &!
