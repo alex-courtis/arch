@@ -162,7 +162,7 @@ lspconfig.zls.setup(zls)
 
 function M.goto_prev()
   if vim.fn.has("nvim-0.11") == 1 then
-    vim.diagnostic.jump({ count = -1, float = true })
+    vim.diagnostic.jump({ count = -1, float = true, wrap = false, })
   else
     vim.diagnostic.goto_prev({ wrap = false }) ---@diagnostic disable-line: deprecated
   end
@@ -170,7 +170,7 @@ end
 
 function M.goto_next()
   if vim.fn.has("nvim-0.11") == 1 then
-    vim.diagnostic.jump({ count = 1, float = true })
+    vim.diagnostic.jump({ count = 1, float = true, wrap = false, })
   else
     vim.diagnostic.goto_next({ wrap = false }) ---@diagnostic disable-line: deprecated
   end
