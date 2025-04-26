@@ -13,6 +13,8 @@ export EDITOR="vi"
 export VISUAL="vi"
 # except git commit, rebase etc.
 export GIT_EDITOR="vim"
+# looks like just visudo
+export SUDO_EDITOR="vim"
 
 # fallback for xdg-open
 export BROWSER="b"
