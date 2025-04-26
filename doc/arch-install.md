@@ -490,7 +490,7 @@ pavucontrol
 pulseaudio
 slurp
 swappy
-ttf-hack-nerd
+ttf-google-fonts-typewolf
 ttf-inter
 vdpauinfo
 vulkan-tools
@@ -641,9 +641,9 @@ Add amdgpu module:
 vi /etc/mkinitcpio.conf
 ```
 
-Install the mesa opengl and vulkan drivers then (re)generate the boot image:
+Install the mesa radv vulkan libs then (re)generate the boot image:
 ```sh
-yay -S libva-mesa-driver mesa-vdpau vulkan-radeon linux
+yay -S vulkan-radeon linux
 ```
 
 Ensure the performant RADV vulkan implementation is used rather than the slower AMDVLK:
