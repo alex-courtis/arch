@@ -103,7 +103,7 @@ end
 
 -- get current view width
 local function get_view_width_max()
-  return view_width_max + 1
+  return view_width_max
 end
 
 local function on_attach(bufnr)
