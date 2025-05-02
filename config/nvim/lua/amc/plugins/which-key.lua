@@ -17,6 +17,11 @@ local opts = {
   delay = 1000,
   win = helix.win,
   layout = helix.layout,
+  icons = {
+    rules = {
+      { pattern = "fugitive", cat = "filetype", name = "git" },
+    },
+  }
 }
 
 which_key.setup(opts)

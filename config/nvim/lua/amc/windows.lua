@@ -163,6 +163,18 @@ function M.doc_position(data)
   end
 end
 
+---Find first winid that matches special
+---@param special SPECIAL
+---@return integer? winid
+function M.winid_special(special)
+  for _, w in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(w)
+    if buffers.special(buf) == special then
+      return w
+    end
+  end
+end
+
 ---VimResized
 -- v/h resize windows on terminal size change
 function M.equalise_windows()

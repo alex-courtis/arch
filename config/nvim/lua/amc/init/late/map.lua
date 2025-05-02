@@ -120,9 +120,10 @@ K.nmsl("A", nvt.open_find_update_root, "Open nvim-tree")
 K.nmsl("'", windows.close_inc, "Close Lowest Window")
 K.nmsl('"', windows.close_others, "Close Other Windows")
 
--- 5<Q
+-- 5Q
 K.nm_l("{", "[{")
-K.nmsl(",", fugitive.open)
+K.nmsl(",", fugitive.open_only, "Open Only Fugitive")
+K.nmsl("<", fugitive.open, "Open Fugitive")
 K.nmsl("o", windows.go_home_or_next)
 K.nmsl("O", vim.cmd.only)
 K.nmsl("q", windows.close)
