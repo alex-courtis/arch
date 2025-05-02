@@ -20,27 +20,27 @@ end
 
 ---nil safe wrappers around vim.keymap.set() rhs
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
-  K[mode .. "m" .. "__"] = function(lhs, rhs)
+  K[mode .. "m" .. "__"] = function(lhs, rhs, desc)
     if rhs then
-      vim.keymap.set(mode, lhs, rhs, { remap = false })
+      vim.keymap.set(mode, lhs, rhs, { desc = desc, remap = false, })
     end
   end
-  K[mode .. "m" .. "s_"] = function(lhs, rhs)
+  K[mode .. "m" .. "s_"] = function(lhs, rhs, desc)
     if rhs then
-      vim.keymap.set(mode, lhs, rhs, { remap = false, silent = true })
+      vim.keymap.set(mode, lhs, rhs, { desc = desc, remap = false, silent = true, })
     end
   end
-  K[mode .. "m" .. "_l"] = function(lhs, rhs)
+  K[mode .. "m" .. "_l"] = function(lhs, rhs, desc)
     if rhs then
       for _, leader in ipairs({ "<Space>", "<BS>" }) do
-        K[mode .. "m" .. "__"](leader .. lhs, rhs)
+        K[mode .. "m" .. "__"](leader .. lhs, rhs, desc)
       end
     end
   end
-  K[mode .. "m" .. "sl"] = function(lhs, rhs)
+  K[mode .. "m" .. "sl"] = function(lhs, rhs, desc)
     if rhs then
       for _, leader in ipairs({ "<Space>", "<BS>" }) do
-        K[mode .. "m" .. "s_"](leader .. lhs, rhs)
+        K[mode .. "m" .. "s_"](leader .. lhs, rhs, desc)
       end
     end
   end
@@ -113,12 +113,12 @@ K.cm__("<C-j>", "<Down>")
 K.cm__("<C-k>", "<Up>")
 
 -- [7
-K.nmsl(";", vim.cmd.copen)
-K.nmsl(":", vim.cmd.cclose)
-K.nmsl("a", nvt.open_find)
-K.nmsl("A", nvt.open_find_update_root)
-K.nmsl("'", windows.close_inc)
-K.nmsl('"', windows.close_others)
+K.nmsl(";", vim.cmd.copen, "Open Quickfix")
+K.nmsl(":", vim.cmd.cclose, "Close Quickfix")
+K.nmsl("a", nvt.open_find, "Open nvim-tree Update Root")
+K.nmsl("A", nvt.open_find_update_root, "Open nvim-tree")
+K.nmsl("'", windows.close_inc, "Close Lowest Window")
+K.nmsl('"', windows.close_others, "Close Other Windows")
 
 -- 5<Q
 K.nm_l("{", "[{")

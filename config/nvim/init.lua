@@ -16,6 +16,7 @@ local plugins = {
   "echasnovski/mini.base16",
   "farmergreg/vim-lastplace",
   "fidian/hexmode",
+  "folke/which-key.nvim",
   "GutenYe/json5.vim",
   "hashivim/vim-terraform",
   "haya14busa/vim-asterisk",
