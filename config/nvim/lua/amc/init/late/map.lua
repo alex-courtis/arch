@@ -11,6 +11,7 @@ local nvt = require("amc.plugins.nvt") or {}
 local rainbow = require("amc.plugins.rainbow") or {}
 local telescope = require("amc.plugins.telescope") or {}
 local treesitter = require("amc.plugins.treesitter") or {}
+local which_key = require("amc.plugins.which-key") or {}
 
 local K = {}
 local M = {}
@@ -65,7 +66,7 @@ K.nm__("<Esc>", function()
 end)
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
-K.vm__("<LeftRelease>",  '"*ygv')
+K.vm__("<LeftRelease>",  '"*ygv',          "Autoselect")
 
 K.nm__("<C-j>",          "<C-w>j")
 K.nm__("<C-k>",          "<C-w>k")
@@ -95,8 +96,8 @@ K.nm__("<C-w>w",         "<NOP>")
 K.nm__("<C-w><C-W>",     "<NOP>")
 K.nm__("<C-w>W",         "<NOP>")
 
-K.nms_("<BS><BS>",       ":silent BB<CR>")
-K.nms_("<Space><Space>", ":silent BF<CR>")
+K.nms_("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
+K.nms_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
 --
 -- left
@@ -104,66 +105,66 @@ K.nms_("<Space><Space>", ":silent BF<CR>")
 K.nm__(";",     ":")
 K.vm__(";",     ":")
 
-K.nms_("ya",    ':let @+ = expand("%:p")<CR>')
-K.nms_("yc",    ":let @+ = getcwd()<CR>")
-K.nms_("yn",    ':let @+ = expand("%:t")<CR>')
-K.nms_("yr",    ':let @+ = expand("%:.")<CR>')
+K.nms_("ya",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
+K.nms_("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
+K.nms_("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
+K.nms_("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")
 
 K.cm__("<C-j>", "<Down>")
 K.cm__("<C-k>", "<Up>")
 
 -- [7
-K.nmsl(";", vim.cmd.copen, "Open Quickfix")
-K.nmsl(":", vim.cmd.cclose, "Close Quickfix")
-K.nmsl("a", nvt.open_find, "Open nvim-tree Update Root")
+K.nmsl(";", vim.cmd.copen,             "Open Quickfix")
+K.nmsl(":", vim.cmd.cclose,            "Close Quickfix")
+K.nmsl("a", nvt.open_find,             "Open nvim-tree Update Root")
 K.nmsl("A", nvt.open_find_update_root, "Open nvim-tree")
-K.nmsl("'", windows.close_inc, "Close Lowest Window")
-K.nmsl('"', windows.close_others, "Close Other Windows")
+K.nmsl("'", windows.close_inc,         "Close Lowest Window")
+K.nmsl('"', windows.close_others,      "Close Other Windows")
 
 -- 5Q
 K.nm_l("{", "[{")
-K.nmsl(",", fugitive.open_only, "Open Only Fugitive")
-K.nmsl("<", fugitive.open, "Open Fugitive")
-K.nmsl("o", windows.go_home_or_next)
-K.nmsl("O", vim.cmd.only)
-K.nmsl("q", windows.close)
+K.nmsl(",", fugitive.open_only,      "Open Only Fugitive")
+K.nmsl("<", fugitive.open,           "Open Fugitive")
+K.nmsl("o", windows.go_home_or_next, "Home Or Next Window")
+K.nmsl("O", vim.cmd.only,            "Only")
+K.nmsl("q", windows.close,           "Close Window")
 
 -- 3>EJ
 K.nm_l("}", "]}")
-K.nmsl(".", lsp.goto_next)
-K.nmsl("e", windows.cnext)
+K.nmsl(".", lsp.goto_next, "Next Diagnostic")
+K.nmsl("e", windows.cnext, "Next QF")
 -- j gitsigns
 
 -- 3PUK
 K.nm_l("(", "[(")
-K.nmsl("p", lsp.goto_prev)
-K.nmsl("u", windows.cprev)
+K.nmsl("p", lsp.goto_prev, "Prev Diagnostic")
+K.nmsl("u", windows.cprev, "Prev QF")
 -- k gitsigns
 
 -- =9YX
-K.nmsl("y", telescope.git_status)
-K.nmsl("i", telescope.buffers)
-K.nm_l("I", telescope.builtin)
-K.nmsl("x", ":silent BA<CR>")
+K.nmsl("y", telescope.git_status, "Telescope Git Status")
+K.nmsl("i", telescope.buffers,    "Telescope Buffers")
+K.nm_l("I", telescope.builtin,    "Telescope Builtins")
+K.nmsl("x", ":silent BA<CR>",     "Alt Buffer")
 
 --
 -- right
 --
 
 -- 0D
-K.nm__("*", "<Plug>(asterisk-z*)")
-K.nm_l("*", "*")
-K.nmsl("f", telescope.find_files)
-K.nmsl("F", telescope.find_files_hidden)
+K.nm__("*", "<Plug>(asterisk-z*)",       "z*")
+K.nm_l("*", "*",                         "*")
+K.nmsl("f", telescope.find_files,        "Telescope Files")
+K.nmsl("F", telescope.find_files_hidden, "Telescope Files Hidden")
 -- d lsp
-K.nmsl("b", ":%y<CR>")
-K.nmsl("B", ":%d_<CR>")
+K.nmsl("b", ":%y<CR>",                   "Yank Buffer")
+K.nmsl("B", ":%d_<CR>",                  "Clean Buffer")
 
 -- 2HM
-K.nm_l(")",  "])")
-K.nmsl("g",  telescope.live_grep)
-K.nmsl("G",  telescope.live_grep_hidden)
-K.nmsl("hb", ":G blame<CR>")
+K.nm_l(")",  "])",                       "Next )")
+K.nmsl("g",  telescope.live_grep,        "Telescope Grep")
+K.nmsl("G",  telescope.live_grep_hidden, "Telescope Grep Hidden")
+K.nmsl("hb", ":G blame<CR>",             "Fugitive Blame")
 -- h gitsigns
 K.nmsl("mc", dev.clean)
 K.nmsl("mi", dev.install)
@@ -173,16 +174,16 @@ K.nmsl("mT", dev.test_all)
 K.nmsl("ms", dev.source)
 
 -- 4cC
-K.nmsl("+", rainbow.toggle)
+K.nmsl("+",  rainbow.toggle)
 K.nmsl("cu", nop)
 K.nmsl("cc", nop)
 K.omsl("c",  nop)
 K.nmsl("c",  nop)
 K.xmsl("c",  nop)
-K.nmsl("t", "<C-]>")
-K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw")
-K.xmsl("w", "<Plug>ReplaceWithRegisterVisual")
-K.nmsl("W", "<Plug>ReplaceWithRegisterLine")
+K.nmsl("t",  "<C-]>")
+K.nmsl("w",  "<Plug>ReplaceWithRegisterOperatoriw")
+K.xmsl("w",  "<Plug>ReplaceWithRegisterVisual")
+K.nmsl("W",  "<Plug>ReplaceWithRegisterLine")
 
 -- ]6N
 K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
@@ -206,14 +207,15 @@ K.nm_l("S",
 K.vmsl("s", "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>")
 K.nmsl("z", dev.format)
 
--- `?-_|
-K.nm__("#",  "<Plug>(asterisk-z#)")
-K.nm_l("#",  "#")
+-- `|
+K.nm__("#",  "<Plug>(asterisk-z#)",                                             "z#")
+K.nm_l("#",  "#",                                                               "#")
 K.nm_l("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>')
 K.nm_l("?",  '<cmd>lua require("spectre").open()<CR>')
 K.vm_l("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>')
 K.nmsl("-",  buffers.wipe_all)
-K.nmsl("\\", ":silent BW!<CR>")
+K.nmsl("_",  ":silent BW!<CR>")
+K.nmsl("\\", which_key.show)
 
 ---
 --- snippets

@@ -1,10 +1,12 @@
 local require = require("amc.require_or_nil")
 
+local M = {}
+
 local which_key = require("which-key")
 local presets = require("which-key.presets")
 
 if not which_key or not presets then
-  return
+  return M
 end
 
 ---@type wk.Opts
@@ -19,9 +21,15 @@ local opts = {
   layout = helix.layout,
   icons = {
     rules = {
-      { pattern = "fugitive", cat = "filetype", name = "git" },
+      { pattern = "fugitive", name = "git" },
     },
-  }
+  },
 }
 
 which_key.setup(opts)
+
+function M.show()
+  which_key.show()
+end
+
+return M

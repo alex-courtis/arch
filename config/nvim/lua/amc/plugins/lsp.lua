@@ -53,21 +53,21 @@ local function on_attach(client, bufnr)
 
   for _, leader in ipairs({ "<space>", "<bs>" }) do
     if client.server_capabilities.definitionProvider then
-      vim.keymap.set("n", leader .. "t", vim.lsp.buf.definition, { buffer = bufnr })
+      vim.keymap.set("n", leader .. "t", vim.lsp.buf.definition, { buffer = bufnr, desc = "LSP Definition", })
     end
     if client.server_capabilities.declarationProvider then
-      vim.keymap.set("n", leader .. "T", vim.lsp.buf.declaration, { buffer = bufnr })
+      vim.keymap.set("n", leader .. "T", vim.lsp.buf.declaration, { buffer = bufnr, desc = "LSP Declaration", })
     end
 
-    vim.keymap.set("n", leader .. "n",  telescope.lsp_references,  { buffer = bufnr })
+    vim.keymap.set("n", leader .. "n",  telescope.lsp_references,  { buffer = bufnr, desc = "LSP References", })
 
-    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr })
-    vim.keymap.set("n", leader .. "db", vim.cmd.LspRestart,        { buffer = bufnr })
-    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr })
-    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr })
-    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr })
-    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr })
-    vim.keymap.set("n", leader .. "dr", dev.lsp_rename,            { buffer = bufnr })
+    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr, desc = "Action", })
+    vim.keymap.set("n", leader .. "db", vim.cmd.LspRestart,        { buffer = bufnr, desc = "Restart", })
+    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "QF", })
+    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "Float", })
+    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "Hover", })
+    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "Telescope", })
+    vim.keymap.set("n", leader .. "dr", dev.lsp_rename,            { buffer = bufnr, desc = "Rename", })
   end
 end
 
