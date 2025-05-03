@@ -1,12 +1,11 @@
 local require = require("amc.require_or_nil")
 
-local M = {}
-
+---@type wk
 local which_key = require("which-key")
 local presets = require("which-key.presets")
 
 if not which_key or not presets then
-  return M
+  return nil
 end
 
 ---@type wk.Opts
@@ -28,13 +27,10 @@ local opts = {
 
 which_key.setup(opts)
 
----@param specs wk.Spec[]
-function M.add(specs)
-  which_key.add(specs)
+for _, leader in ipairs({ "<Space>", "<BS>" }) do
+  which_key.add({ { leader .. "d", group = "diagnostics" }, })
+  which_key.add({ { leader .. "h", group = "gitsigns" }, })
+  which_key.add({ { leader .. "m", group = "make" }, })
 end
 
-function M.show()
-  which_key.show()
-end
-
-return M
+return which_key

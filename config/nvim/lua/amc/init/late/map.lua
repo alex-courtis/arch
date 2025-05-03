@@ -10,6 +10,7 @@ local lsp = require("amc.plugins.lsp") or {}
 local nvt = require("amc.plugins.nvt") or {}
 local rainbow = require("amc.plugins.rainbow") or {}
 local telescope = require("amc.plugins.telescope") or {}
+
 local treesitter = require("amc.plugins.treesitter") or {}
 local which_key = require("amc.plugins.which-key") or {}
 
@@ -135,8 +136,6 @@ K.nmsl("F", telescope.find_files_hidden, "Telescope Files Hidden")
 K.nmsl("b", ":%y<CR>",                   "Yank Buffer")
 K.nmsl("B", ":%d_<CR>",                  "Clean Buffer")
 
-which_key.add({ { "<Space>d", group = "diagnostics" }, { "<BS>d", group = "diagnostics" } })
-
 -- 2HM
 K.nm_l(")",  "])",                       "Next )")
 K.nmsl("g",  telescope.live_grep,        "Telescope Grep")
@@ -148,9 +147,6 @@ K.nmsl("mm", dev.build,                  "make")
 K.nmsl("mt", dev.test,                   "make test")
 K.nmsl("mT", dev.test_all,               "make test all")
 K.nmsl("ms", dev.source,                 "source")
-
-which_key.add({ { "<Space>h", group = "gitsigns" }, { "<BS>h", group = "gitsigns" } })
-which_key.add({ { "<Space>m", group = "make" }, { "<BS>m", group = "make" } })
 
 -- 4cC
 K.nmsl("+", rainbow.toggle,                        "Toggle Rainbow")
