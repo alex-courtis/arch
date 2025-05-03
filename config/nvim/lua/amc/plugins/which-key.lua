@@ -28,6 +28,11 @@ local opts = {
 
 which_key.setup(opts)
 
+---@param specs wk.Spec[]
+function M.add(specs)
+  which_key.add(specs)
+end
+
 function M.show()
   which_key.show()
 end

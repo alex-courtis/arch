@@ -16,9 +16,6 @@ local which_key = require("amc.plugins.which-key") or {}
 local K = {}
 local M = {}
 
-local function nop()
-end
-
 ---nil safe wrappers around vim.keymap.set() rhs
 for _, mode in ipairs({ "n", "i", "c", "v", "x", "s", "o" }) do
   K[mode .. "m" .. "__"] = function(lhs, rhs, desc)
@@ -74,27 +71,6 @@ K.nm__("<C-l>",          "<C-w>l")
 K.nm__("<C-h>",          "<C-w>h")
 K.nm__("<C-Space>",      "<C-w>w")
 K.nm__("<C-S-Space>",    "<C-w>W")
--- remove once above is trained
-K.nm__("<C-w><C-j>",     "<NOP>")
-K.nm__("<C-w>j",         "<NOP>")
-K.nm__("<C-w><C-J>",     "<NOP>")
-K.nm__("<C-w>J",         "<NOP>")
-K.nm__("<C-w><C-k>",     "<NOP>")
-K.nm__("<C-w>k",         "<NOP>")
-K.nm__("<C-w><C-K>",     "<NOP>")
-K.nm__("<C-w>K",         "<NOP>")
-K.nm__("<C-w><C-l>",     "<NOP>")
-K.nm__("<C-w>l",         "<NOP>")
-K.nm__("<C-w><C-L>",     "<NOP>")
-K.nm__("<C-w>L",         "<NOP>")
-K.nm__("<C-w><C-h>",     "<NOP>")
-K.nm__("<C-w>h",         "<NOP>")
-K.nm__("<C-w><C-H>",     "<NOP>")
-K.nm__("<C-w>H",         "<NOP>")
-K.nm__("<C-w><C-w>",     "<NOP>")
-K.nm__("<C-w>w",         "<NOP>")
-K.nm__("<C-w><C-W>",     "<NOP>")
-K.nm__("<C-w>W",         "<NOP>")
 
 K.nms_("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
 K.nms_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
@@ -122,7 +98,7 @@ K.nmsl("'", windows.close_inc,         "Close Lowest Window")
 K.nmsl('"', windows.close_others,      "Close Other Windows")
 
 -- 5Q
-K.nm_l("{", "[{")
+K.nm_l("{", "[{",                    "Prev {")
 K.nmsl(",", fugitive.open_only,      "Open Only Fugitive")
 K.nmsl("<", fugitive.open,           "Open Fugitive")
 K.nmsl("o", windows.go_home_or_next, "Home Or Next Window")
@@ -130,13 +106,13 @@ K.nmsl("O", vim.cmd.only,            "Only")
 K.nmsl("q", windows.close,           "Close Window")
 
 -- 3>EJ
-K.nm_l("}", "]}")
+K.nm_l("}", "]}",          "Next }")
 K.nmsl(".", lsp.goto_next, "Next Diagnostic")
 K.nmsl("e", windows.cnext, "Next QF")
 -- j gitsigns
 
 -- 3PUK
-K.nm_l("(", "[(")
+K.nm_l("(", "[(",          "Prev (")
 K.nmsl("p", lsp.goto_prev, "Prev Diagnostic")
 K.nmsl("u", windows.cprev, "Prev QF")
 -- k gitsigns
@@ -152,70 +128,73 @@ K.nmsl("x", ":silent BA<CR>",     "Alt Buffer")
 --
 
 -- 0D
-K.nm__("*", "<Plug>(asterisk-z*)",       "z*")
-K.nm_l("*", "*",                         "*")
+K.nm__("*", "<Plug>(asterisk-z*)",       "Word Forwards Stay")
+K.nm_l("*", "*",                         "Word Forwards")
 K.nmsl("f", telescope.find_files,        "Telescope Files")
 K.nmsl("F", telescope.find_files_hidden, "Telescope Files Hidden")
--- d lsp
 K.nmsl("b", ":%y<CR>",                   "Yank Buffer")
 K.nmsl("B", ":%d_<CR>",                  "Clean Buffer")
+
+which_key.add({ { "<Space>d", group = "diagnostics" }, { "<BS>d", group = "diagnostics" } })
 
 -- 2HM
 K.nm_l(")",  "])",                       "Next )")
 K.nmsl("g",  telescope.live_grep,        "Telescope Grep")
 K.nmsl("G",  telescope.live_grep_hidden, "Telescope Grep Hidden")
 K.nmsl("hb", ":G blame<CR>",             "Fugitive Blame")
--- h gitsigns
-K.nmsl("mc", dev.clean)
-K.nmsl("mi", dev.install)
-K.nmsl("mm", dev.build)
-K.nmsl("mt", dev.test)
-K.nmsl("mT", dev.test_all)
-K.nmsl("ms", dev.source)
+K.nmsl("mc", dev.clean,                  "make clean")
+K.nmsl("mi", dev.install,                "make install")
+K.nmsl("mm", dev.build,                  "make")
+K.nmsl("mt", dev.test,                   "make test")
+K.nmsl("mT", dev.test_all,               "make test all")
+K.nmsl("ms", dev.source,                 "source")
+
+which_key.add({ { "<Space>h", group = "gitsigns" }, { "<BS>h", group = "gitsigns" } })
+which_key.add({ { "<Space>m", group = "make" }, { "<BS>m", group = "make" } })
 
 -- 4cC
-K.nmsl("+",  rainbow.toggle)
-K.nmsl("cu", nop)
-K.nmsl("cc", nop)
-K.omsl("c",  nop)
-K.nmsl("c",  nop)
-K.xmsl("c",  nop)
-K.nmsl("t",  "<C-]>")
-K.nmsl("w",  "<Plug>ReplaceWithRegisterOperatoriw")
-K.xmsl("w",  "<Plug>ReplaceWithRegisterVisual")
-K.nmsl("W",  "<Plug>ReplaceWithRegisterLine")
+K.nmsl("+", rainbow.toggle,                        "Toggle Rainbow")
+K.nmsl("t", "<C-]>",                               "Jump To Definition")
+K.nmsl("w", "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
+K.xmsl("w", "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
+K.nmsl("W", "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
 
 -- ]6N
-K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>")
-K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/")
-K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>')
-K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/')
+K.nm_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
+K.nm_l("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
+K.vm_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
+K.vm_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
 -- n lsp
-K.nmsl("v", ":put<CR>'[v']=")
-K.nmsl("V", ":put!<CR>'[v']=")
+K.nmsl("v", ":put<CR>'[v']=",                                              "Put Format")
+K.nmsl("V", ":put!<CR>'[v']=",                                             "Put Above Format")
 
 -- Z
-K.nm_l("!", ": <C-r>=expand('%:.')<CR><Home>")
-K.vm_l("!", '"*y: <C-r>=getreg("*")<CR><Home>')
-K.nm_l("8", ": <C-r>=expand('%:p')<CR><Home>")
-K.nmsl("l", buffers.toggle_list)
-K.nmsl("L", buffers.trim_whitespace)
+K.nm_l("!", ": <C-r>=expand('%:.')<CR><Home>",  "Command Relative Filename")
+K.vm_l("!", '"*y: <C-r>=getreg("*")<CR><Home>', "Command Visual")
+K.nm_l("8", ": <C-r>=expand('%:p')<CR><Home>",  "Command Absolute Filename")
+K.nmsl("l", buffers.toggle_list,                "Toggle List")
+K.nmsl("L", buffers.trim_whitespace,            "Trim Whitespace")
 K.nm_l("s",
-  ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>")
+  ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>",
+  "Telescope Grep cword"
+)
 K.nm_l("S",
-  ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>")
-K.vmsl("s", "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>")
-K.nmsl("z", dev.format)
+  ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>",
+  "Telescope Grep cWORD")
+K.vmsl("s",
+  "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>",
+  "Telescope Grep Visual")
+K.nmsl("z", dev.format, "Format")
 
 -- `|
-K.nm__("#",  "<Plug>(asterisk-z#)",                                             "z#")
-K.nm_l("#",  "#",                                                               "#")
-K.nm_l("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>')
-K.nm_l("?",  '<cmd>lua require("spectre").open()<CR>')
-K.vm_l("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>')
-K.nmsl("-",  buffers.wipe_all)
-K.nmsl("_",  ":silent BW!<CR>")
-K.nmsl("\\", which_key.show)
+K.nm__("#",  "<Plug>(asterisk-z#)",                                             "Word Backwards Stay")
+K.nm_l("#",  "#",                                                               "Word Backwards")
+K.nm_l("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
+K.nm_l("?",  '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
+K.vm_l("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
+K.nmsl("-",  buffers.wipe_all,                                                  "Wipe All Buffers")
+K.nmsl("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
+K.nmsl("\\", which_key.show,                                                    "Show WhichKey")
 
 ---
 --- snippets
