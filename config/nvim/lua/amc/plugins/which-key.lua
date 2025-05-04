@@ -1,11 +1,11 @@
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 ---@type wk
 local which_key = require("which-key")
 local presets = require("which-key.presets")
 
 if not which_key or not presets then
-  return nil
+  return {}
 end
 
 ---@type wk.Opts

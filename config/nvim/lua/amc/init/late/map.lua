@@ -1,18 +1,18 @@
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_empty
 
-local env = require("amc.env") or {}
-local dev = require("amc.dev") or {}
-local buffers = require("amc.buffers") or {}
-local windows = require("amc.windows") or {}
+local env = require("amc.env")
+local dev = require("amc.dev")
+local buffers = require("amc.buffers")
+local windows = require("amc.windows")
 
-local fugitive = require("amc.plugins.fugitive") or {}
-local lsp = require("amc.plugins.lsp") or {}
-local nvt = require("amc.plugins.nvt") or {}
-local rainbow = require("amc.plugins.rainbow") or {}
-local telescope = require("amc.plugins.telescope") or {}
+local fugitive = require("amc.plugins.fugitive")
+local lsp = require("amc.plugins.lsp")
+local nvt = require("amc.plugins.nvt")
+local rainbow = require("amc.plugins.rainbow")
+local telescope = require("amc.plugins.telescope")
 
-local treesitter = require("amc.plugins.treesitter") or {}
-local which_key = require("amc.plugins.which-key") or {}
+local treesitter = require("amc.plugins.treesitter")
+local which_key = require("amc.plugins.which-key")
 
 local K = {}
 local M = {}

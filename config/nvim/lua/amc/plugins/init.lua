@@ -1,4 +1,4 @@
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 require("amc.plugins.cmp")
 require("amc.plugins.fugitive")

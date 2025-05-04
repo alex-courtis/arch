@@ -5,7 +5,7 @@ end
 
 local log = require("amc.log")
 local util = require("amc.util")
-local require_or_nil = require("amc.require_or_nil")
+local require_or_nil = require("amc.require").or_nil
 
 log.line("---- options")
 require_or_nil("amc.options")

@@ -1,5 +1,5 @@
 local log = require("amc.log")
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 local lualine = require("lualine")
 

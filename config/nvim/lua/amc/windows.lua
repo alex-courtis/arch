@@ -1,7 +1,7 @@
 local CLOSE_INC = require("amc.enum").CLOSE_INC
 local SPECIAL = require("amc.enum").SPECIAL
 
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 local buffers = require("amc.buffers")
 

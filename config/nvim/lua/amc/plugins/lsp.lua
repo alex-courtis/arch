@@ -1,12 +1,14 @@
-local require = require("amc.require_or_nil")
-
 local M = {}
 
-local dev = require("amc.dev") or {}
+local require = require("amc.require").or_empty
+
+local dev = require("amc.dev")
+local telescope = require("amc.plugins.telescope")
+
+require = require("amc.require").or_nil
 
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local telescope = require("amc.plugins.telescope") or {}
 
 if not lspconfig then
   return M

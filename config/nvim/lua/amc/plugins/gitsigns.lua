@@ -1,4 +1,4 @@
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 local gitsigns = require("gitsigns")
 

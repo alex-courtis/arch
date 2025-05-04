@@ -1,12 +1,12 @@
 local env = require("amc.env")
 
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_empty
 
-local buffers = require("amc.buffers") or {}
-local dev = require("amc.dev") or {}
-local windows = require("amc.windows") or {}
-local fugitive = require("amc.plugins.fugitive") or {}
-local nvt = require("amc.plugins.nvt") or {}
+local buffers = require("amc.buffers")
+local dev = require("amc.dev")
+local windows = require("amc.windows")
+local fugitive = require("amc.plugins.fugitive")
+local nvt = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 

@@ -2,7 +2,7 @@ local env = require("amc.env")
 local log = require("amc.log")
 local SPECIAL = require("amc.enum").SPECIAL
 
-local require = require("amc.require_or_nil")
+local require = require("amc.require").or_nil
 
 local buffers = require("amc.buffers")
 
