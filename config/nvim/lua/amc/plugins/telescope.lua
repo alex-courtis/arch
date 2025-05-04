@@ -16,7 +16,10 @@ local action_state = require("telescope.actions.state")
 local builtin = require("telescope.builtin")
 local config = require("telescope.config")
 
+local git_grep = require("git_grep")
+
 telescope.load_extension("smart_history")
+telescope.load_extension("git_grep")
 
 local vimgrep_arguments_hidden = vim.deepcopy(config.values.vimgrep_arguments)
 table.insert(vimgrep_arguments_hidden, "--hidden")
@@ -199,12 +202,14 @@ extend_builtins()
 function M.live_grep_hidden(o)
   o = o or {}
   o.vimgrep_arguments = vimgrep_arguments_hidden
+  o.prompt_title = "Live Grep - Hidden"
   M.live_grep(o)
 end
 
 function M.find_files_hidden(o)
   o = o or {}
   o.hidden = true
+  o.prompt_title = "Find Files - Hidden"
   M.find_files(o)
 end
 
@@ -244,13 +249,23 @@ function M.live_grep_directory_prompt()
   end)
 end
 
+---git grep extension
+function M.git_grep_live_grep(o)
+  o = o or {}
+  o.attach_mappings = attach_quickfix_select
+  git_grep.live_grep(o)
+end
+
 M.rhs_n_grep_cword =
-":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
+":              lua require('amc.plugins.telescope').live_grep({           default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
 
 M.rhs_v_grep =
-"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
+"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep({           default_text = '<C-r>=getreg(\"*\")<CR>'                                })<CR>"
 
 M.rhs_v_grep_hidden =
-"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep_hidden( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
+"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep_hidden({    default_text = '<C-r>=getreg(\"*\")<CR>'                                })<CR>"
+
+M.rhs_v_git_grep_live_grep =
+"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').git_grep_live_grep({  default_text = '<C-r>=getreg(\"*\")<CR>'                                })<CR>"
 
 return M
