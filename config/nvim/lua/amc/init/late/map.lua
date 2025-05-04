@@ -84,7 +84,7 @@ K.nm__(";", ":")
 K.vm__(";", ":")
 
 -- TODO this overrides yank around
-K.nms_("ya",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
+K.nms_("ys",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
 K.nms_("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
 K.nms_("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
 K.nms_("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")

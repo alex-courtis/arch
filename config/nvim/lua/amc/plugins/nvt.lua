@@ -130,8 +130,8 @@ local function on_attach(bufnr)
 
   vim.keymap.set("n", "<C-t>",    api.tree.change_root_to_parent,               opts("Up"))
   vim.keymap.set("n", "<C-i>",    api.node.show_info_popup,                     opts("Info"))
-  vim.keymap.set("n", "<Space>t", api.tree.change_root_to_node,                 opts("CD"))
-  vim.keymap.set("n", "<BS>t",    api.tree.change_root_to_node,                 opts("CD"))
+  vim.keymap.set("n", "<Space>c", api.tree.change_root_to_node,                 opts("CD"))
+  vim.keymap.set("n", "<BS>c",    api.tree.change_root_to_node,                 opts("CD"))
   vim.keymap.set("n", "<Space>p", api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
   vim.keymap.set("n", "<BS>p",    api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
   vim.keymap.set("n", "<Space>.", api.node.navigate.diagnostics.next_recursive, opts("Next Diagnostic"))
@@ -155,7 +155,7 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "tg",       live_grep,                                    opts("Live Grep"))
   vim.keymap.set("n", "yn",       api.fs.copy.filename,                         opts("Copy Name"))
   vim.keymap.set("n", "yr",       api.fs.copy.relative_path,                    opts("Copy Relative Path"))
-  vim.keymap.set("n", "ya",       api.fs.copy.absolute_path,                    opts("Copy Absolute Path"))
+  vim.keymap.set("n", "ys",       api.fs.copy.absolute_path,                    opts("Copy Absolute Path"))
 end
 
 local config = {
