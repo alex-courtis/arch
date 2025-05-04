@@ -54,6 +54,7 @@ local function on_attach(client, bufnr)
   pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
 
   for _, leader in ipairs({ "<space>", "<bs>" }) do
+    -- TODO go back to "t", telescope can have "c" or "y"
     if client.server_capabilities.definitionProvider then
       vim.keymap.set("n", leader .. "n", vim.lsp.buf.definition, { buffer = bufnr, desc = "Definition", })
     end
@@ -70,6 +71,9 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "QF", })
     vim.keymap.set("n", leader .. "dr", telescope.lsp_references,  { buffer = bufnr, desc = "References", })
   end
+
+  -- TODO try vim.lsp.buf.type_definition()
+  -- TODO why is c-] vim.lsp.tagfunc() different to vim.lsp.buf.definition() ? It sometimes returns less results.
 end
 
 --
