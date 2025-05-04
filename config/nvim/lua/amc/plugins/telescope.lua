@@ -208,32 +208,49 @@ function M.find_files_hidden(o)
   M.find_files(o)
 end
 
----grep in directory
----@param command table as per vim.api.nvim_create_user_command
-function M.grep_in_directory(command)
-  M.live_grep({ search_dirs = command.fargs })
-end
-
 ---grep by filetype
 ---@param command table as per vim.api.nvim_create_user_command
 function M.grep_by_filetype(command)
   M.live_grep({ type_filter = command.args })
 end
 
+---grep by buffer filetype
+function M.live_grep_filetype_buffer()
+  M.live_grep({ type_filter = vim.bo.filetype })
+end
+
+---prompt for and grep by filetype
+function M.live_grep_filetype_prompt()
+  vim.ui.input({ prompt = "filetype: ", completion = "filetype", }, function(filetype)
+    if filetype then
+      M.live_grep({ type_filter = filetype })
+    end
+  end)
+end
+
+---grep by buffer directory
+function M.live_grep_directory_buffer()
+  local path = vim.api.nvim_buf_get_name(0)
+  local head = vim.fn.fnamemodify(path, ":h")
+  M.live_grep({ search_dirs = { head } })
+end
+
+---prompt for and grep by directory
+function M.live_grep_directory_prompt()
+  vim.ui.input({ prompt = "directory: ", completion = "dir", }, function(path)
+    if path then
+      M.live_grep({ search_dirs = { path } })
+    end
+  end)
+end
+
 M.rhs_n_grep_cword =
 ":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
-
-M.rhs_n_grep_cWORD =
-":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>"
 
 M.rhs_v_grep =
 "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
 
 M.rhs_v_grep_hidden =
 "\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep_hidden( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
-
--- TODO replace with prompts
-vim.api.nvim_create_user_command("RD", M.grep_in_directory, { nargs = 1, complete = "dir", })
-vim.api.nvim_create_user_command("RT", M.grep_by_filetype,  { nargs = 1, complete = "filetype", })
 
 return M
