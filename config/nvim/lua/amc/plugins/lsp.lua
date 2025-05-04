@@ -7,6 +7,10 @@ local telescope = require("amc.plugins.telescope")
 
 require = require("amc.require").or_nil
 
+--
+-- TODO move to vim.lsp.config and vim.lsp.completion
+--
+
 local lspconfig = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
