@@ -28,9 +28,13 @@ local opts = {
 which_key.setup(opts)
 
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
-  which_key.add({ { leader .. "d", group = "diagnostics" }, })
-  which_key.add({ { leader .. "h", group = "gitsigns" }, })
+  which_key.add({ { leader .. "d", group = "diagnostics", }, })
+  which_key.add({ { leader .. "h", group = "gitsigns", }, })
   which_key.add({ { leader .. "m", group = "make" }, })
+  which_key.add({ { leader .. "t", group = "telescope" }, })
 end
+
+-- hide
+which_key.add({ { "y<C-g>", hidden = true, } }) -- fugitive
 
 return which_key

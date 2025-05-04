@@ -196,12 +196,16 @@ telescope.setup(cfg)
 extend_builtins()
 
 -- hidden variants
-function M.live_grep_hidden()
-  M.live_grep({ vimgrep_arguments = vimgrep_arguments_hidden })
+function M.live_grep_hidden(o)
+  o = o or {}
+  o.vimgrep_arguments = vimgrep_arguments_hidden
+  M.live_grep(o)
 end
 
-function M.find_files_hidden()
-  M.find_files({ hidden = true })
+function M.find_files_hidden(o)
+  o = o or {}
+  o.hidden = true
+  M.find_files(o)
 end
 
 ---grep in directory
@@ -215,5 +219,21 @@ end
 function M.grep_by_filetype(command)
   M.live_grep({ type_filter = command.args })
 end
+
+M.rhs_n_grep_cword =
+":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
+
+M.rhs_n_grep_cWORD =
+":lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=expand('<cWORD>')<CR>', initial_mode = \"normal\" })<CR>"
+
+M.rhs_v_grep =
+"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
+
+M.rhs_v_grep_hidden =
+"\"*y<Esc>:<C-u>lua require('amc.plugins.telescope').live_grep_hidden( { default_text = '<C-r>=getreg(\"*\")<CR>' })<CR>"
+
+-- TODO replace with prompts
+vim.api.nvim_create_user_command("RD", M.grep_in_directory, { nargs = 1, complete = "dir", })
+vim.api.nvim_create_user_command("RT", M.grep_by_filetype,  { nargs = 1, complete = "filetype", })
 
 return M
