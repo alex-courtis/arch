@@ -19,6 +19,7 @@ local opts = {
   win = helix.win,
   layout = helix.layout,
   icons = {
+    mappings = false,
     rules = {
       { pattern = "fugitive", name = "git" },
     },
@@ -29,6 +30,8 @@ which_key.setup(opts)
 
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
   which_key.add({ { leader .. "d", group = "diagnostics", }, })
+  which_key.add({ { leader .. "f", group = "find", }, })
+  which_key.add({ { leader .. "g", group = "grep", }, })
   which_key.add({ { leader .. "h", group = "gitsigns", }, })
   which_key.add({ { leader .. "m", group = "make" }, })
   which_key.add({ { leader .. "t", group = "telescope" }, })

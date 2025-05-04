@@ -144,26 +144,37 @@ K.nmsl("x", ":silent BA<CR>",     "Alt Buffer")
 --
 
 --  0
--- fF
+--  F
 --  D
 --
-K.nm__("*", "<Plug>(asterisk-z*)", "Word Forwards Stay")
-K.nm_l("*", "*",                   "Word Forwards")
-K.nmsl("b", ":%y<CR>",             "Yank Buffer")
-K.nmsl("B", ":%d_<CR>",            "Clean Buffer")
+K.nm__("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
+K.nm_l("*",  "*",                         "Word Forwards")
+K.nmsl("ff", telescope.find_files,        "Files")
+K.nmsl("fh", telescope.find_files_hidden, "Files Hidden")
+K.nmsl("b",  ":%y<CR>",                   "Yank Buffer")
+K.nmsl("B",  ":%d_<CR>",                  "Clean Buffer")
 
 --  2
--- gG
+--  G
 --  H
 --  M
-K.nm_l(")",  "])",           "Next )")
-K.nmsl("hb", ":G blame<CR>", "Fugitive Blame")
-K.nmsl("mc", dev.clean,      "make clean")
-K.nmsl("mi", dev.install,    "make install")
-K.nmsl("mm", dev.build,      "make")
-K.nmsl("mt", dev.test,       "make test")
-K.nmsl("mT", dev.test_all,   "make test all")
-K.nmsl("ms", dev.source,     "source")
+K.nm_l(")",  "])",                                 "Next )")
+K.nmsl("gd", telescope.live_grep_directory_buffer, "Directory, Buffer")
+K.nmsl("gD", telescope.live_grep_directory_prompt, "Directory, Prompt")
+K.nmsl("gg", telescope.live_grep,                  "")
+K.nmsl("gh", telescope.live_grep_hidden,           "Hidden")
+K.nmsl("gf", telescope.live_grep_filetype_buffer,  "Filetype, Buffer")
+K.nmsl("gF", telescope.live_grep_filetype_prompt,  "Filetype, Prompt")
+K.nmsl("gw", telescope.rhs_n_grep_cword,           "cword")
+K.vmsl("gg", telescope.rhs_v_grep,                 "")
+K.vmsl("gh", telescope.rhs_v_grep_hidden,          "Grep Hidden")
+K.nmsl("hb", ":G blame<CR>",                       "Fugitive Blame")
+K.nmsl("mc", dev.clean,                            "make clean")
+K.nmsl("mi", dev.install,                          "make install")
+K.nmsl("mm", dev.build,                            "make")
+K.nmsl("mt", dev.test,                             "make test")
+K.nmsl("mT", dev.test_all,                         "make test all")
+K.nmsl("ms", dev.source,                           "source")
 
 
 --  4
@@ -171,22 +182,12 @@ K.nmsl("ms", dev.source,     "source")
 --  T
 --
 K.nmsl("+",  rainbow.toggle,                        "Toggle Rainbow")
-
 K.nmsl("tb", telescope.builtin,                     "Builtins")
-K.nmsl("tc", telescope.commands,                    "Commands")
-K.nmsl("td", telescope.live_grep_directory_buffer,  "Grep In Directory Buffer")
-K.nmsl("tD", telescope.live_grep_directory_prompt,  "Grep In Directory Prompt")
-K.nmsl("tf", telescope.find_files,                  "Files")
-K.nmsl("tF", telescope.find_files_hidden,           "Files Hidden")
-K.nmsl("tg", telescope.live_grep,                   "Grep")
-K.nmsl("tG", telescope.live_grep_hidden,            "Grep Hidden")
-K.nmsl("th", telescope.command_history,             "Command History")
-K.nmsl("ti", telescope.live_grep_filetype_buffer,   "Grep By Filetype")
-K.nmsl("tI", telescope.live_grep_filetype_prompt,   "Grep By Filetype Prompt")
+K.nmsl("tc", telescope.command_history,             "Command History")
+K.nmsl("tk", telescope.keymaps,                     "Keymaps")
+K.nmsl("to", telescope.commands,                    "Commands")
 K.nmsl("tr", telescope.resume,                      "Resume")
-K.nmsl("tw", telescope.rhs_n_grep_cword,            "Grep cword")
-K.vmsl("tg", telescope.rhs_v_grep,                  "Grep")
-K.vmsl("tG", telescope.rhs_v_grep_hidden,           "Grep Hidden")
+K.nmsl("ts", telescope.search_history,              "Search History")
 K.nmsl("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.xmsl("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
 K.nmsl("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")

@@ -123,10 +123,10 @@ local cfg = actions
           ["G"] = actions.move_to_bottom,
 
           ["<C-u>"] = function(prompt_bufnr)
-            action_set.shift_selection(prompt_bufnr, -25)
+            action_set.shift_selection(prompt_bufnr, -20)
           end,
           ["<C-d>"] = function(prompt_bufnr)
-            action_set.shift_selection(prompt_bufnr, 25)
+            action_set.shift_selection(prompt_bufnr, 20)
           end,
 
           ["H"] = actions.preview_scrolling_left,
