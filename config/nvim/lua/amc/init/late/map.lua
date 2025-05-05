@@ -52,6 +52,7 @@ K.ns_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
 K.i__("<C-space>", "<C-x><C-o>", "Omnifunc")
 -- TODO add util.K
+-- TODO mix these with the snippet navigation from b19d229b
 vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
 vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
 vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
