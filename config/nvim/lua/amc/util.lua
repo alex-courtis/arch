@@ -36,6 +36,8 @@ end
 M.K = {
   c__ = function(lhs, rhs, desc) map("c", lhs, rhs, desc, false, false) end,
 
+  i__ = function(lhs, rhs, desc) map("i", lhs, rhs, desc, false, false) end,
+
   n__ = function(lhs, rhs, desc) map("n", lhs, rhs, desc, false, false) end,
   ns_ = function(lhs, rhs, desc) map("n", lhs, rhs, desc, true, false) end,
   n_l = function(lhs, rhs, desc) map("n", lhs, rhs, desc, false, true) end,
