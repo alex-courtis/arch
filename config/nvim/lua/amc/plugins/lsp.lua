@@ -58,26 +58,31 @@ local function on_attach(client, bufnr)
   pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
 
   for _, leader in ipairs({ "<space>", "<bs>" }) do
-    -- TODO go back to "t", telescope can have "c" or "y"
     if client.server_capabilities.definitionProvider then
-      vim.keymap.set("n", leader .. "n", vim.lsp.buf.definition, { buffer = bufnr, desc = "Definition", })
+      vim.keymap.set("n", leader .. "t",  vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition", })
+      vim.keymap.set("n", leader .. "dt", vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition", })
     end
     if client.server_capabilities.declarationProvider then
-      vim.keymap.set("n", leader .. "N", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Declaration", })
+      vim.keymap.set("n", leader .. "T",  vim.lsp.buf.declaration, { buffer = bufnr, desc = "vim.lsp.buf.declaration", })
+      vim.keymap.set("n", leader .. "dT", vim.lsp.buf.declaration, { buffer = bufnr, desc = "vim.lsp.buf.declaration", })
     end
 
-    vim.keymap.set("n", leader .. "d-", vim.cmd.LspRestart,        { buffer = bufnr, desc = "Restart", })
-    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr, desc = "Action", })
-    vim.keymap.set("n", leader .. "de", dev.lsp_rename,            { buffer = bufnr, desc = "Rename", })
-    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "Float", })
-    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "Hover", })
-    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "Telescope", })
-    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "QF", })
-    vim.keymap.set("n", leader .. "dr", telescope.lsp_references,  { buffer = bufnr, desc = "References", })
+    vim.keymap.set("n", leader .. "n",  telescope.lsp_references,  { buffer = bufnr, desc = "telescope.lsp_references", })
+    vim.keymap.set("n", leader .. "N",  vim.lsp.buf.references,    { buffer = bufnr, desc = "vim.lsp.buf.references", })
+
+    vim.keymap.set("n", leader .. "d-", vim.cmd.LspRestart,        { buffer = bufnr, desc = ":LspRestart", })
+    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr, desc = "vim.lsp.buf.code_action", })
+    vim.keymap.set("n", leader .. "de", dev.lsp_rename,            { buffer = bufnr, desc = "vim.lsp.buf.rename", })
+    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float", })
+    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "vim.lsp.buf.hover", })
+    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "telescope.diagnostics", })
+    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "vim.diagnostic.setqflist", })
   end
 
   -- TODO try vim.lsp.buf.type_definition()
+
   -- TODO why is c-] vim.lsp.tagfunc() different to vim.lsp.buf.definition() ? It sometimes returns less results.
+  -- navigate to wk.Spec and the latter returns two
 end
 
 --

@@ -29,12 +29,12 @@ local opts = {
 which_key.setup(opts)
 
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
-  which_key.add({ { leader .. "d", group = "diagnostics", }, })
-  which_key.add({ { leader .. "f", group = "find", }, })
-  which_key.add({ { leader .. "g", group = "grep", }, })
-  which_key.add({ { leader .. "h", group = "gitsigns", }, })
-  which_key.add({ { leader .. "m", group = "make" }, })
-  which_key.add({ { leader .. "t", group = "telescope" }, })
+  which_key.add({ { leader .. "c", mode = { "n" }, group = "telescope" }, })
+  which_key.add({ { leader .. "d", mode = { "n" }, group = "diagnostics", }, })
+  which_key.add({ { leader .. "f", mode = { "n" }, group = "find", }, })
+  which_key.add({ { leader .. "g", mode = { "n", "v", }, group = "grep", }, })
+  which_key.add({ { leader .. "h", mode = { "n" }, group = "gitsigns", }, })
+  which_key.add({ { leader .. "m", mode = { "n" }, group = "make" }, })
 end
 
 -- hide

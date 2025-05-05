@@ -153,16 +153,17 @@ K.nsl("ms", dev.source,                           "source")
 
 
 --  4
--- cC
+--  C
 --  T
 --
 K.nsl("+",  rainbow.toggle,                        "Toggle Rainbow")
-K.nsl("tb", telescope.builtin,                     "Builtins")
-K.nsl("tc", telescope.command_history,             "Command History")
-K.nsl("tk", telescope.keymaps,                     "Keymaps")
-K.nsl("to", telescope.commands,                    "Commands")
-K.nsl("tr", telescope.resume,                      "Resume")
-K.nsl("ts", telescope.search_history,              "Search History")
+K.nsl("cb", telescope.builtin,                     "Builtins")
+K.nsl("cc", telescope.command_history,             "Command History")
+K.nsl("ck", telescope.keymaps,                     "Keymaps")
+K.nsl("co", telescope.commands,                    "Commands")
+K.nsl("cr", telescope.resume,                      "Resume")
+K.nsl("cs", telescope.search_history,              "Search History")
+K.nsl("t",  "<C-]>",                               "Jump To Definition")
 K.nsl("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.xsl("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
 K.nsl("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
