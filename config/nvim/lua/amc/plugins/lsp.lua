@@ -37,8 +37,13 @@ local function on_attach(client, bufnr)
     vim.keymap.set("n", leader .. "de", vim.lsp.buf.rename,        { buffer = bufnr, desc = "vim.lsp.buf.rename", })
     vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float", })
     vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "vim.lsp.buf.hover", })
+    -- TODO restrict to the current buffer's namespace
     vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "telescope.diagnostics", })
     vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "vim.diagnostic.setqflist", })
+  end
+
+  if client:supports_method("textDocument/completion") then
+    vim.lsp.completion.enable(true, client.id, bufnr, {})
   end
 end
 

@@ -47,6 +47,12 @@ K.n__("<C-S-Space>",    "<C-w>W")
 K.ns_("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
 K.ns_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
+-- TODO add util.K
+vim.keymap.set("i", "<C-space>", "<C-x><C-o>",                                                            { remap = false, })
+vim.keymap.set("i", "<CR>",      function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
+vim.keymap.set("i", "<Tab>",     function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
+vim.keymap.set("i", "<S-Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
+
 --
 -- left
 --
