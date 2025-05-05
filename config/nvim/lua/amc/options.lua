@@ -34,7 +34,6 @@ vim.o.errorformat = "make%.%#: *** [%f:%l:%m," .. vim.o.errorformat       -- err
 -- legacy plugin options
 vim.g["asterisk#keeppos"] = 1
 vim.g.BufKillCreateMappings = 0
-vim.g.zig_build_makeprg_params = "-Dxwayland --prefix ~/.local install"
 
 -- legacy environment variables
 vim.env.MANWIDTH = 80

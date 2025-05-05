@@ -27,10 +27,9 @@ local function uc(name, command, opts)
   end
 end
 
--- normal mode escape clears highlight and snippets
+-- normal mode escape clears highlight
 local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 K.n__("<Esc>", function()
-  vim.snippet.stop()
   vim.cmd.nohlsearch()
   vim.api.nvim_feedkeys(ESC, "n", false)
 end)
@@ -203,25 +202,6 @@ K.v_l("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "
 K.nsl("-",  buffers.wipe_all,                                                  "Wipe All Buffers")
 K.nsl("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
 K.nsl("\\", which_key.show,                                                    "Show WhichKey")
-
----
---- snippets
----
-
----Jump if snippet active otherwise feed key
----@param lhs string
----@param direction vim.snippet.Direction
----@return string|nil
-local function jump(lhs, direction)
-  if vim.snippet.active({ direction = direction }) then
-    return vim.snippet.jump(direction)
-  else
-    return lhs
-  end
-end
-
-vim.keymap.set({ "i", "s" }, "<Tab>",   function() return jump("<Tab>", 1) end,    { expr = true })
-vim.keymap.set({ "i", "s" }, "<S-Tab>", function() return jump("<S-Tab>", -1) end, { expr = true })
 
 --
 -- commands

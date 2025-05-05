@@ -10,7 +10,6 @@ local make_test_target = "test"
 local FILES_TO_TYPES = {
   Makefile = BUILD_TYPE.make,
   GNUmakefile = BUILD_TYPE.make,
-  ["build.zig"] = BUILD_TYPE.make,
 
   ["meson.build"] = BUILD_TYPE.meson,
 }
@@ -111,12 +110,6 @@ function M.source()
   if filetype == "lua" or filetype == "vim" then
     vim.cmd.source()
   end
-end
-
-function M.lsp_rename()
-  buffers.update()
-  vim.lsp.buf.rename()
-  buffers.update()
 end
 
 function M.format()

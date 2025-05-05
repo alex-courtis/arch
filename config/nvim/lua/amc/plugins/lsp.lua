@@ -2,52 +2,7 @@ local M = {}
 
 local require = require("amc.require").or_empty
 
-local dev = require("amc.dev")
 local telescope = require("amc.plugins.telescope")
-
-require = require("amc.require").or_nil
-
---
--- TODO move to vim.lsp.config and vim.lsp.completion
---
-
-local lspconfig = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-if not lspconfig then
-  return M
-end
-
----
---- Global config
----
-vim.diagnostic.config({
-  signs = false,
-  severity_sort = true, -- error before warn on virtual text
-}, nil)
-
----
---- Base Capabilities
----
----@type lsp.ClientCapabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
----
---- Common Flags
----
----@type vim.lsp.Client.Flags
-local flags = {
-  debounce_text_changes = 500,
-  exit_timeout = false,
-}
-
----
---- Completion
----
-if cmp_nvim_lsp then
-  -- hrsh7th/cmp-nvim-lsp helper adds lsp capabilities for hrsh7th/nvim-cmp
-  capabilities.textDocument.completion = cmp_nvim_lsp.default_capabilities().textDocument.completion
-end
 
 ---
 --- Map
@@ -79,7 +34,7 @@ local function on_attach(client, bufnr)
 
     vim.keymap.set("n", leader .. "d-", vim.cmd.LspRestart,        { buffer = bufnr, desc = ":LspRestart", })
     vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr, desc = "vim.lsp.buf.code_action", })
-    vim.keymap.set("n", leader .. "de", dev.lsp_rename,            { buffer = bufnr, desc = "vim.lsp.buf.rename", })
+    vim.keymap.set("n", leader .. "de", vim.lsp.buf.rename,        { buffer = bufnr, desc = "vim.lsp.buf.rename", })
     vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float", })
     vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "vim.lsp.buf.hover", })
     vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "telescope.diagnostics", })
@@ -87,15 +42,40 @@ local function on_attach(client, bufnr)
   end
 end
 
---
--- cc
---
----@type lspconfig.Config
-local ccls = {
-  flags = flags,
-  capabilities = capabilities,
+---
+--- Global diagnostics config
+---
+vim.diagnostic.config({
+  virtual_text = true,
+  severity_sort = true,
+}, nil)
+
+---
+--- base LSP config
+---
+---@type vim.lsp.Config
+vim.lsp.config["*"] = {
+
   on_attach = on_attach,
+
+  root_markers = { ".git" },
+
+  settings = {
+    -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
+    redhat = { telemetry = { enabled = false } },
+  },
+}
+
+--
+-- ccls
+--
+---@type vim.lsp.Config
+vim.lsp.config.ccls = {
+
+  filetypes = { "c", "cpp", },
+
   cmd = { "ccls" },
+
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -108,30 +88,43 @@ local ccls = {
       },
     },
   },
+
+  -- TODO textDocument/switchSourceHeader
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ccls.lua
 }
-lspconfig.ccls.setup(ccls)
+vim.lsp.enable("ccls")
 
 --
 -- json
 --
----@type lspconfig.Config
-local jsonls = {
-  flags = flags,
-  capabilities = capabilities,
-  on_attach = on_attach,
+---@type vim.lsp.Config
+vim.lsp.config.jsonls = {
+
+  filetypes = { "json", "jsonc", "json5" },
+
   cmd = { "vscode-json-language-server", "--stdio" },
+
 }
-lspconfig.jsonls.setup(jsonls)
+vim.lsp.enable("jsonls")
 
 --
 -- lua
 --
----@type lspconfig.Config
-local luals = {
-  flags = flags,
-  capabilities = capabilities,
-  on_attach = on_attach,
+---@type vim.lsp.Config
+vim.lsp.config.luals = {
+
+  filetypes = { "lua" },
+
   cmd = { "lua-language-server" },
+
+  root_markers = vim.list_extend({
+    ".luarc.json",
+    ".luarc.jsonc",
+    ".luacheckrc",
+    ".stylua.toml",
+    "stylua.toml",
+  }, vim.lsp.config["*"].root_markers),
+
   settings = {
     Lua = {
       workspace = {
@@ -140,41 +133,26 @@ local luals = {
           "${3rd}/luv/library",
         },
       },
-      completion = {
-        callSnippet = "Replace",
-      },
       semantic = {
         -- ugly and takes time to set
         variable = false,
       },
-    },
+    }
   },
 }
-lspconfig.lua_ls.setup(luals)
+vim.lsp.enable("luals")
 
 --
 -- yaml
 --
----@type lspconfig.Config
-local yamlls = {
-  flags = flags,
-  capabilities = capabilities,
-  on_attach = on_attach,
+---@type vim.lsp.Config
+vim.lsp.config.yamlls = {
+
+  filetypes = { "yaml" },
+
   cmd = { "yaml-language-server", "--stdio" },
 }
-lspconfig.yamlls.setup(yamlls)
-
---
--- zig
---
----@type lspconfig.Config
-local zls = {
-  flags = flags,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  cmd = { "zls" },
-}
-lspconfig.zls.setup(zls)
+vim.lsp.enable("yamlls")
 
 function M.goto_prev()
   if vim.fn.has("nvim-0.11") == 1 then
@@ -191,7 +169,5 @@ function M.goto_next()
     vim.diagnostic.goto_next({ wrap = false }) ---@diagnostic disable-line: deprecated
   end
 end
-
--- init
 
 return M

@@ -22,13 +22,9 @@ local plugins = {
   "hashivim/vim-terraform",
   "haya14busa/vim-asterisk",
   "HiPhish/rainbow-delimiters.nvim",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-path",
-  "hrsh7th/nvim-cmp",
   "kkharji/sqlite.lua",
   "lewis6991/gitsigns.nvim",
   "lifepillar/vim-colortemplate",
-  "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
   "nvim-pack/nvim-spectre",
@@ -39,7 +35,6 @@ local plugins = {
   "tpope/vim-fugitive",
   "tpope/vim-repeat",
   "vim-scripts/ReplaceWithRegister",
-  "ziglang/zig.vim",
   util.nvt_plugin_dir(),
 }
 if not vim.env.TERM:match("^linux") then
