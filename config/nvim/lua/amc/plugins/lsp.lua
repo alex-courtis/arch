@@ -138,6 +138,9 @@ vim.lsp.config.luals = {
           "${3rd}/luv/library",
         },
       },
+      completion = {
+        callSnippet = "Replace",
+      },
       semantic = {
         -- ugly and takes time to set
         variable = false,
