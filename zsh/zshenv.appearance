@@ -43,7 +43,7 @@ typeset -A HL_NAMES=(
 [duke]="blue"
 [emperor]="yellow"
 [lord]="green"
-[gigantor]="magenta"
+[G2XTD9VMR2]="magenta"
 [ubuntu]="cyan"
 )
 export HL_NAMES
@@ -55,7 +55,7 @@ typeset -A HL_FGS=(
 [duke]=${BASE16[bright_blue]}
 [emperor]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
-[gigantor]=${BASE16[bright_magenta]}
+[G2XTD9VMR2]=${BASE16[bright_magenta]}
 [ubuntu]=${BASE16[bright_cyan]}
 )
 export HL_FGS
