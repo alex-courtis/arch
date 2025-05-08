@@ -83,7 +83,7 @@ fi
 # font size
 #
 case "${HOST}" in
-	gigantor*)
+	G2XTD9VMR2*)
 		export FONT_SIZE_PT=14
 		export FONT_SIZE_PT_BAR=14
 		;;
