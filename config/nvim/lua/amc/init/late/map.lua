@@ -222,24 +222,24 @@ uc("TSBase", treesitter.install_base, {})
 vim.keymap.del({ "i", "s", }, "<Tab>")
 vim.keymap.del({ "i", "s", }, "<S-Tab>")
 
+--- @param direction (vim.snippet.Direction) Navigation direction. -1 for previous, 1 for next.
 local function snippet_jump(direction)
   if not snippet or not snippet._session then
     return
   end
 
-  -- don't jump beyond the last of the tabstops and wrap forwards
-  if direction == 1 and snippet._session.current_tabstop.index == table.maxn(snippet._session.tabstops) then
-    while snippet._session.current_tabstop.index > 1 do
-      vim.snippet.jump(-1)
-    end
+  local cur_tabstop = snippet._session.current_tabstop.index
+  local num_tabstops = table.maxn(snippet._session.tabstops)
+
+  -- don't jump beyond the last of the tabstops, instead wrap forwards
+  if direction == 1 and cur_tabstop >= num_tabstops then
+    vim.snippet.jump(1 - num_tabstops)
     return
   end
 
   -- wrap backwards
-  if direction == -1 and snippet._session.current_tabstop.index == 1 then
-    while snippet._session.current_tabstop.index < table.maxn(snippet._session.tabstops) do
-      vim.snippet.jump(1)
-    end
+  if direction == -1 and cur_tabstop <= 1 then
+    vim.snippet.jump(num_tabstops - 1)
     return
   end
 
@@ -255,6 +255,7 @@ vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() snippet_jump(-1) end, 
 --- omni completion
 ---
 -- TODO <BS> closes PUM, bug: https://github.com/neovim/neovim/issues/30723
+-- TODO always select first
 -- maybe workaround as per https://github.com/neovim/neovim/blob/2d11b981bfbb7816d88a69b43b758f3a3f515b96/runtime/lua/vim/_editor.lua#L1174
 
 K.i__("<C-space>", "<C-x><C-o>", "Omnifunc")
