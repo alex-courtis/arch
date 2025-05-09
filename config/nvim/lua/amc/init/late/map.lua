@@ -47,16 +47,6 @@ K.n__("<C-S-Space>",    "<C-w>W")
 K.ns_("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
 K.ns_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
--- TODO <BS> closes PUM, bug: https://github.com/neovim/neovim/issues/30723
--- maybe workaround as per https://github.com/neovim/neovim/blob/2d11b981bfbb7816d88a69b43b758f3a3f515b96/runtime/lua/vim/_editor.lua#L1174
-
-K.i__("<C-space>", "<C-x><C-o>", "Omnifunc")
--- TODO add util.K
--- TODO mix these with the snippet navigation from b19d229b
-vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
-vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
-vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
-
 --
 -- left
 --
@@ -221,5 +211,33 @@ uc("CD",     env.cd,                  {})
 uc("PS",     "PackerSync",            {})
 uc("S",      buffers.exec_to_buffer,  { nargs = "+", complete = "expression" })
 uc("TSBase", treesitter.install_base, {})
+
+---
+--- snippets
+--- gh enters select mode
+---
+
+-- remove overloaded jumps from /usr/share/nvim/runtime/lua/vim/_defaults.lua
+vim.keymap.del({ "i", "s", }, "<Tab>")
+vim.keymap.del({ "i", "s", }, "<S-Tab>")
+
+-- use simple jumps that don't feed keys
+-- TODO backwards doesn't work on reaching the end. Possibilities:
+-- - look at M._session from snippet.lua
+-- - test and try jumping forwards or backwards
+vim.keymap.set({ "n", "i", "s" }, "<C-Tab>",   function() vim.snippet.jump(1) end,  { expr = true, })
+vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() vim.snippet.jump(-1) end, { expr = true, })
+
+---
+--- omni completion
+---
+-- TODO <BS> closes PUM, bug: https://github.com/neovim/neovim/issues/30723
+-- maybe workaround as per https://github.com/neovim/neovim/blob/2d11b981bfbb7816d88a69b43b758f3a3f515b96/runtime/lua/vim/_editor.lua#L1174
+
+K.i__("<C-space>", "<C-x><C-o>", "Omnifunc")
+-- TODO add util.K
+vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
+vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
+vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
 
 return M
