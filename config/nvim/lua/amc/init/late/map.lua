@@ -5,6 +5,7 @@ local dev = require("amc.dev")
 local buffers = require("amc.buffers")
 local windows = require("amc.windows")
 local K = require("amc.util").K
+local snippet = require("vim.snippet")
 
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
@@ -221,12 +222,34 @@ uc("TSBase", treesitter.install_base, {})
 vim.keymap.del({ "i", "s", }, "<Tab>")
 vim.keymap.del({ "i", "s", }, "<S-Tab>")
 
+local function snippet_jump(direction)
+  if not snippet or not snippet._session then
+    return
+  end
+
+  -- don't jump beyond the last of the tabstops and wrap forwards
+  if direction == 1 and snippet._session.current_tabstop.index == table.maxn(snippet._session.tabstops) then
+    while snippet._session.current_tabstop.index > 1 do
+      vim.snippet.jump(-1)
+    end
+    return
+  end
+
+  -- wrap backwards
+  if direction == -1 and snippet._session.current_tabstop.index == 1 then
+    while snippet._session.current_tabstop.index < table.maxn(snippet._session.tabstops) do
+      vim.snippet.jump(1)
+    end
+    return
+  end
+
+  -- regular jump
+  vim.snippet.jump(direction)
+end
+
 -- use simple jumps that don't feed keys
--- TODO backwards doesn't work on reaching the end. Possibilities:
--- - look at M._session from snippet.lua
--- - test and try jumping forwards or backwards
-vim.keymap.set({ "n", "i", "s" }, "<C-Tab>",   function() vim.snippet.jump(1) end,  { expr = true, })
-vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() vim.snippet.jump(-1) end, { expr = true, })
+vim.keymap.set({ "n", "i", "s" }, "<C-Tab>",   function() snippet_jump(1) end,  { expr = true, })
+vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() snippet_jump(-1) end, { expr = true, })
 
 ---
 --- omni completion
