@@ -255,11 +255,13 @@ vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() snippet_jump(-1) end, 
 --- omni completion
 ---
 -- TODO <BS> closes PUM, bug: https://github.com/neovim/neovim/issues/30723
--- TODO always select first
 -- maybe workaround as per https://github.com/neovim/neovim/blob/2d11b981bfbb7816d88a69b43b758f3a3f515b96/runtime/lua/vim/_editor.lua#L1174
-
-K.i__("<C-space>", "<C-x><C-o>", "Omnifunc")
 -- TODO add util.K
+
+-- open PUM or select next
+vim.keymap.set("i", "<C-space>", function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-x><C-o>" end, { remap = false, expr = true })
+
+-- navigate and select
 vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
 vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
 vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
