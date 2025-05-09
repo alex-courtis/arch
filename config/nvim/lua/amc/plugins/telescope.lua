@@ -16,11 +16,6 @@ local action_state = require("telescope.actions.state")
 local builtin = require("telescope.builtin")
 local config = require("telescope.config")
 
-local git_grep = require("git_grep")
-
-telescope.load_extension("smart_history")
-telescope.load_extension("git_grep")
-
 local vimgrep_arguments_hidden = vim.deepcopy(config.values.vimgrep_arguments)
 table.insert(vimgrep_arguments_hidden, "--hidden")
 table.insert(vimgrep_arguments_hidden, "--no-ignore")
@@ -197,6 +192,11 @@ end
 -- init
 telescope.setup(cfg)
 extend_builtins()
+
+-- extensions after setup
+local git_grep = require("git_grep")
+telescope.load_extension("smart_history")
+telescope.load_extension("git_grep")
 
 -- hidden variants
 function M.live_grep_hidden(o)
