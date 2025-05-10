@@ -2,12 +2,14 @@ local M = {}
 
 local SPECIAL = require("amc.enum").SPECIAL
 
+local K = require("amc.util").K
+
 local windows = require("amc.windows")
 
 ---no way to remap fugitive and tpope will not add
 function M.attach(data)
-  vim.keymap.set("n", "t", "=", { buffer = data.buf, remap = true })
-  vim.keymap.set("n", "x", "X", { buffer = data.buf, remap = true })
+  K.n__b("t", "=", data.buf, "Toggle Inline Diff", { remap = true })
+  K.n__b("x", "X", data.buf, "Discard",            { remap = true })
 end
 
 function M.open()

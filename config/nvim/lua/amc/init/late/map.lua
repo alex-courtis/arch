@@ -202,6 +202,7 @@ K.v_l_("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              
 K.nsl_("-",  buffers.wipe_all,                                                  "Wipe All Buffers")
 K.nsl_("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
 K.nsl_("\\", which_key.show,                                                    "Show WhichKey")
+K.nsl_("|",  which_key.show_local,                                              "Show WhichKey Local")
 
 ---
 --- snippets

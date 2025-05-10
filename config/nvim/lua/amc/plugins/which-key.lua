@@ -1,11 +1,13 @@
 local require = require("amc.require").or_nil
 
+local M = {}
+
 ---@type wk
 local which_key = require("which-key")
 local presets = require("which-key.presets")
 
 if not which_key or not presets then
-  return {}
+  return M
 end
 
 ---@type wk.Opts
@@ -40,4 +42,12 @@ end
 -- hide
 which_key.add({ { "y<C-g>", hidden = true, } }) -- fugitive
 
-return which_key
+function M.show()
+  which_key.show({})
+end
+
+function M.show_local()
+  which_key.show({ global = false })
+end
+
+return M

@@ -1,5 +1,7 @@
 local require = require("amc.require").or_nil
 
+local K = require("amc.util").K
+
 local gitsigns = require("gitsigns")
 
 if not gitsigns then
@@ -15,32 +17,26 @@ local function prev_hunk()
 end
 
 local on_attach = function(bufnr)
-  local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
+  local opts = { nowait = true }
 
-  local function desc(d)
-    return vim.tbl_extend("keep", opts, { desc = d })
-  end
+  K.n_lb("he", gitsigns.select_hunk,               bufnr, "Select Hunk",  opts)
+  K.v_lb("he", gitsigns.select_hunk,               bufnr, "Select Hunk",  opts)
+  K.n_lb("j",  next_hunk,                          bufnr, "Next Hunk",    opts)
 
-  for _, leader in ipairs({ "<space>", "<bs>" }) do
-    vim.keymap.set("n", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
-    vim.keymap.set("v", leader .. "he", gitsigns.select_hunk,               desc("Select Hunk"))
-    vim.keymap.set("n", leader .. "j",  next_hunk,                          desc("Next Hunk"))
+  K.n_lb("hp", gitsigns.preview_hunk_inline,       bufnr, "Preview",      opts)
+  K.n_lb("k",  prev_hunk,                          bufnr, "Prev Hunk",    opts)
 
-    vim.keymap.set("n", leader .. "hp", gitsigns.preview_hunk_inline,       desc("Preview"))
-    vim.keymap.set("n", leader .. "k",  prev_hunk,                          desc("Prev Hunk"))
+  K.n_lb("hx", gitsigns.reset_hunk,                bufnr, "Reset Hunk",   opts)
+  K.v_lb("hx", gitsigns.reset_hunk,                bufnr, "Reset Hunk",   opts)
+  K.n_lb("hX", gitsigns.reset_buffer,              bufnr, "Reset Buffer", opts)
 
-    vim.keymap.set("n", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
-    vim.keymap.set("v", leader .. "hx", gitsigns.reset_hunk,                desc("Reset Hunk"))
-    vim.keymap.set("n", leader .. "hX", gitsigns.reset_buffer,              desc("Reset Buffer"))
+  K.n_lb("hd", gitsigns.diffthis,                  bufnr, "Diff This",    opts)
+  K.n_lb("hB", gitsigns.blame_line,                bufnr, "Blame Line",   opts)
 
-    vim.keymap.set("n", leader .. "hd", gitsigns.diffthis,                  desc("Diff This"))
-    vim.keymap.set("n", leader .. "hB", gitsigns.blame_line,                desc("Blame Line"))
-
-    vim.keymap.set("n", leader .. "hl", gitsigns.toggle_current_line_blame, desc("Blame Toggle"))
-    vim.keymap.set("n", leader .. "hs", gitsigns.stage_hunk,                desc("Stage Hunk"))
-    vim.keymap.set("v", leader .. "hs", gitsigns.stage_hunk,                desc("Stage Hunk"))
-    vim.keymap.set("n", leader .. "hS", gitsigns.stage_buffer,              desc("Stage Buffer"))
-  end
+  K.n_lb("hl", gitsigns.toggle_current_line_blame, bufnr, "Blame Toggle", opts)
+  K.n_lb("hs", gitsigns.stage_hunk,                bufnr, "Stage Hunk",   opts)
+  K.v_lb("hs", gitsigns.stage_hunk,                bufnr, "Stage Hunk",   opts)
+  K.n_lb("hS", gitsigns.stage_buffer,              bufnr, "Stage Buffer", opts)
 end
 
 local config = {
