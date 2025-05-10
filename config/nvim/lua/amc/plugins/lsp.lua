@@ -11,40 +11,44 @@ local snippet = require("vim.snippet")
 -- Map
 --
 
---- @param buffer number
---- @param client vim.lsp.Client
-local function on_attach(client, buffer)
+---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
+local function on_attach(client, bufnr)
 
   -- see :help lsp-defaults
-  pcall(vim.keymap.del, "n", "K", { buffer = buffer })
+  pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
 
   -- no need to rebind c-]
   -- vim.lsp.tagfunc() indicates that it calls textDocument/definition,
   -- however vim.lsp.buf.definition returns two results e.g. wk.Spec
   if client.server_capabilities.definitionProvider then
     -- K.n_lb("t",  vim.lsp.buf.definition, bufnr, "vim.lsp.buf.definition", })
-    K.n_lb("dt", vim.lsp.buf.definition, buffer, "vim.lsp.buf.definition")
+    K.n_lb("dt", vim.lsp.buf.definition, bufnr, "vim.lsp.buf.definition")
   end
 
   if client.server_capabilities.declarationProvider then
-    K.n_lb("T",  vim.lsp.buf.declaration, buffer, "vim.lsp.buf.declaration")
-    K.n_lb("dT", vim.lsp.buf.declaration, buffer, "vim.lsp.buf.declaration")
+    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "vim.lsp.buf.declaration")
+    K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "vim.lsp.buf.declaration")
   end
 
-  K.n_lb("n",  telescope.lsp_references,  buffer, "telescope.lsp_references")
-  K.n_lb("N",  vim.lsp.buf.references,    buffer, "vim.lsp.buf.references")
+  K.n_lb("n",  telescope.lsp_references,  bufnr, "telescope.lsp_references")
+  K.n_lb("N",  vim.lsp.buf.references,    bufnr, "vim.lsp.buf.references")
 
-  K.n_lb("d-", vim.cmd.LspRestart,        buffer, ":LspRestart")
-  K.n_lb("da", vim.lsp.buf.code_action,   buffer, "vim.lsp.buf.code_action")
-  K.n_lb("de", vim.lsp.buf.rename,        buffer, "vim.lsp.buf.rename")
-  K.n_lb("df", vim.diagnostic.open_float, buffer, "vim.diagnostic.open_float")
-  K.n_lb("dh", vim.lsp.buf.hover,         buffer, "vim.lsp.buf.hover")
+  K.n_lb("d-", vim.cmd.LspRestart,        bufnr, ":LspRestart")
+  K.n_lb("da", vim.lsp.buf.code_action,   bufnr, "vim.lsp.buf.code_action")
+  K.n_lb("de", vim.lsp.buf.rename,        bufnr, "vim.lsp.buf.rename")
+  K.n_lb("df", vim.diagnostic.open_float, bufnr, "vim.diagnostic.open_float")
+  K.n_lb("dh", vim.lsp.buf.hover,         bufnr, "vim.lsp.buf.hover")
   -- TODO restrict to the current buffer's namespace
-  K.n_lb("dl", telescope.diagnostics,     buffer, "telescope.diagnostics")
-  K.n_lb("dq", vim.diagnostic.setqflist,  buffer, "vim.diagnostic.setqflist")
+  K.n_lb("dl", telescope.diagnostics,     bufnr, "telescope.diagnostics")
+  K.n_lb("dq", vim.diagnostic.setqflist,  bufnr, "vim.diagnostic.setqflist")
 
   if client:supports_method("textDocument/completion") then
-    vim.lsp.completion.enable(true, client.id, buffer, {})
+    vim.lsp.completion.enable(true, client.id, bufnr, {})
+  end
+
+  -- client:supports_method  Always returns true for unknown off-spec methods
+  if client.name == "ccls" then
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, ":LspCclsSwitchSourceHeader")
   end
 end
 
@@ -61,8 +65,23 @@ vim.diagnostic.config({
 --
 ---@type vim.lsp.Config
 vim.lsp.config["*"] = {
-  on_attach = on_attach,
 }
+
+---Global and local on_attach will clobber each other so wrap them
+---@param name string
+---@return elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
+local function build_on_attach(name)
+
+  ---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
+  local config_on_attach = vim.lsp.config[name].on_attach
+
+  return function(client, bufnr)
+    if config_on_attach then
+      config_on_attach(client, bufnr)
+    end
+    on_attach(client, bufnr)
+  end
+end
 
 --
 -- Extend nvim-lspconfig from nvim-lspconfig/lsp/yamlls.lua, not lspconfig/configs/yamlls.lua
@@ -72,12 +91,9 @@ vim.lsp.config["*"] = {
 -- ccls
 --
 
--- config and local on_attach will override each other, hence we retain it
----@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
-local ccls_config_on_attach = vim.lsp.config.ccls.on_attach
-
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
+  on_attach = build_on_attach("ccls"),
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -90,12 +106,6 @@ vim.lsp.config.ccls = {
       },
     },
   },
-
-  on_attach = function(client, buffer)
-    ccls_config_on_attach(client, buffer)
-    on_attach(client, buffer)
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, buffer, ":LspCclsSwitchSourceHeader")
-  end,
 }
 vim.lsp.enable("ccls")
 
@@ -104,6 +114,7 @@ vim.lsp.enable("ccls")
 --
 ---@type vim.lsp.Config
 vim.lsp.config.jsonls = {
+  on_attach = build_on_attach("jsonls"),
   filetypes = { "json", "jsonc", "json5" },
 }
 vim.lsp.enable("jsonls")
@@ -113,6 +124,7 @@ vim.lsp.enable("jsonls")
 --
 ---@type vim.lsp.Config
 vim.lsp.config.lua_ls = {
+  on_attach = build_on_attach("lua_ls"),
   settings = {
     Lua = {
       workspace = {
@@ -137,7 +149,9 @@ vim.lsp.enable("lua_ls")
 -- yaml
 --
 ---@type vim.lsp.Config
-vim.lsp.config.yamlls = {}
+vim.lsp.config.yamlls = {
+  on_attach = build_on_attach("yamlls"),
+}
 vim.lsp.enable("yamlls")
 
 --
