@@ -36,7 +36,7 @@ local function mapl(mode, lhs, rhs, opts)
   end
 end
 
--- lua /home/alex/.dotfiles/config/nvim/lua/amc/gen-util.K.lua | wl-copy
+-- lua "${HOME}/.dotfiles/config/nvim/lua/amc/gen-util.K.lua" | wl-copy
 M.K = {
   ---@param lhs string
   ---@param rhs function|string
@@ -46,10 +46,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  n__b = function(lhs, rhs, desc, buffer, opts) map_("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  n__b = function(lhs, rhs, buffer, desc, opts) map_("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -59,10 +59,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  ns_b = function(lhs, rhs, desc, buffer, opts) map_("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  ns_b = function(lhs, rhs, buffer, desc, opts) map_("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -72,10 +72,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  n_lb = function(lhs, rhs, desc, buffer, opts) mapl("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  n_lb = function(lhs, rhs, buffer, desc, opts) mapl("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -85,10 +85,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  nslb = function(lhs, rhs, desc, buffer, opts) mapl("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  nslb = function(lhs, rhs, buffer, desc, opts) mapl("n", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -98,10 +98,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  i__b = function(lhs, rhs, desc, buffer, opts) map_("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  i__b = function(lhs, rhs, buffer, desc, opts) map_("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -111,10 +111,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  is_b = function(lhs, rhs, desc, buffer, opts) map_("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  is_b = function(lhs, rhs, buffer, desc, opts) map_("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -124,10 +124,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  i_lb = function(lhs, rhs, desc, buffer, opts) mapl("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  i_lb = function(lhs, rhs, buffer, desc, opts) mapl("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -137,10 +137,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  islb = function(lhs, rhs, desc, buffer, opts) mapl("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  islb = function(lhs, rhs, buffer, desc, opts) mapl("i", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -150,10 +150,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  c__b = function(lhs, rhs, desc, buffer, opts) map_("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  c__b = function(lhs, rhs, buffer, desc, opts) map_("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -163,10 +163,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  cs_b = function(lhs, rhs, desc, buffer, opts) map_("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  cs_b = function(lhs, rhs, buffer, desc, opts) map_("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -176,10 +176,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  c_lb = function(lhs, rhs, desc, buffer, opts) mapl("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  c_lb = function(lhs, rhs, buffer, desc, opts) mapl("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -189,10 +189,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  cslb = function(lhs, rhs, desc, buffer, opts) mapl("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  cslb = function(lhs, rhs, buffer, desc, opts) mapl("c", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -202,10 +202,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  v__b = function(lhs, rhs, desc, buffer, opts) map_("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  v__b = function(lhs, rhs, buffer, desc, opts) map_("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -215,10 +215,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  vs_b = function(lhs, rhs, desc, buffer, opts) map_("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  vs_b = function(lhs, rhs, buffer, desc, opts) map_("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -228,10 +228,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  v_lb = function(lhs, rhs, desc, buffer, opts) mapl("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  v_lb = function(lhs, rhs, buffer, desc, opts) mapl("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -241,10 +241,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  vslb = function(lhs, rhs, desc, buffer, opts) mapl("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  vslb = function(lhs, rhs, buffer, desc, opts) mapl("v", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -254,10 +254,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  x__b = function(lhs, rhs, desc, buffer, opts) map_("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  x__b = function(lhs, rhs, buffer, desc, opts) map_("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -267,10 +267,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  xs_b = function(lhs, rhs, desc, buffer, opts) map_("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  xs_b = function(lhs, rhs, buffer, desc, opts) map_("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -280,10 +280,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  x_lb = function(lhs, rhs, desc, buffer, opts) mapl("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  x_lb = function(lhs, rhs, buffer, desc, opts) mapl("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -293,10 +293,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  xslb = function(lhs, rhs, desc, buffer, opts) mapl("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  xslb = function(lhs, rhs, buffer, desc, opts) mapl("x", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -306,10 +306,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  s__b = function(lhs, rhs, desc, buffer, opts) map_("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  s__b = function(lhs, rhs, buffer, desc, opts) map_("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -319,10 +319,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  ss_b = function(lhs, rhs, desc, buffer, opts) map_("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  ss_b = function(lhs, rhs, buffer, desc, opts) map_("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -332,10 +332,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  s_lb = function(lhs, rhs, desc, buffer, opts) mapl("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  s_lb = function(lhs, rhs, buffer, desc, opts) mapl("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -345,10 +345,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  sslb = function(lhs, rhs, desc, buffer, opts) mapl("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  sslb = function(lhs, rhs, buffer, desc, opts) mapl("s", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -358,10 +358,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  o__b = function(lhs, rhs, desc, buffer, opts) map_("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  o__b = function(lhs, rhs, buffer, desc, opts) map_("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -371,10 +371,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  os_b = function(lhs, rhs, desc, buffer, opts) map_("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  os_b = function(lhs, rhs, buffer, desc, opts) map_("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -384,10 +384,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  o_lb = function(lhs, rhs, desc, buffer, opts) mapl("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
+  o_lb = function(lhs, rhs, buffer, desc, opts) mapl("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = false, buffer = buffer, })) end,
 
   ---@param lhs string
   ---@param rhs function|string
@@ -397,10 +397,10 @@ M.K = {
 
   ---@param lhs string
   ---@param rhs function|string
-  ---@param desc string
   ---@param buffer number
+  ---@param desc string
   ---@param opts vim.keymap.set.Opts?
-  oslb = function(lhs, rhs, desc, buffer, opts) mapl("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
+  oslb = function(lhs, rhs, buffer, desc, opts) mapl("o", lhs, rhs, vim.tbl_extend("keep", opts or {}, { desc = desc, silent = true, buffer = buffer, })) end,
 
 }
 
