@@ -2,48 +2,48 @@ local M = {}
 
 local require = require("amc.require").or_empty
 
+local K = require("amc.util").K
+
 local telescope = require("amc.plugins.telescope")
+local snippet = require("vim.snippet")
 
 ---
 --- Map
 ---
---- @param bufnr number
+--- @param buffer number
 --- @param client vim.lsp.Client
-local function on_attach(client, bufnr)
+local function on_attach(client, buffer)
 
   -- see :help lsp-defaults
-  pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
+  pcall(vim.keymap.del, "n", "K", { buffer = buffer })
 
-  for _, leader in ipairs({ "<space>", "<bs>" }) do
-
-    -- no need to rebind c-]
-    -- vim.lsp.tagfunc() indicates that it calls textDocument/definition,
-    -- however vim.lsp.buf.definition returns two results e.g. wk.Spec
-    if client.server_capabilities.definitionProvider then
-      -- vim.keymap.set("n", leader .. "t",  vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition", })
-      vim.keymap.set("n", leader .. "dt", vim.lsp.buf.definition, { buffer = bufnr, desc = "vim.lsp.buf.definition", })
-    end
-
-    if client.server_capabilities.declarationProvider then
-      vim.keymap.set("n", leader .. "T",  vim.lsp.buf.declaration, { buffer = bufnr, desc = "vim.lsp.buf.declaration", })
-      vim.keymap.set("n", leader .. "dT", vim.lsp.buf.declaration, { buffer = bufnr, desc = "vim.lsp.buf.declaration", })
-    end
-
-    vim.keymap.set("n", leader .. "n",  telescope.lsp_references,  { buffer = bufnr, desc = "telescope.lsp_references", })
-    vim.keymap.set("n", leader .. "N",  vim.lsp.buf.references,    { buffer = bufnr, desc = "vim.lsp.buf.references", })
-
-    vim.keymap.set("n", leader .. "d-", vim.cmd.LspRestart,        { buffer = bufnr, desc = ":LspRestart", })
-    vim.keymap.set("n", leader .. "da", vim.lsp.buf.code_action,   { buffer = bufnr, desc = "vim.lsp.buf.code_action", })
-    vim.keymap.set("n", leader .. "de", vim.lsp.buf.rename,        { buffer = bufnr, desc = "vim.lsp.buf.rename", })
-    vim.keymap.set("n", leader .. "df", vim.diagnostic.open_float, { buffer = bufnr, desc = "vim.diagnostic.open_float", })
-    vim.keymap.set("n", leader .. "dh", vim.lsp.buf.hover,         { buffer = bufnr, desc = "vim.lsp.buf.hover", })
-    -- TODO restrict to the current buffer's namespace
-    vim.keymap.set("n", leader .. "dl", telescope.diagnostics,     { buffer = bufnr, desc = "telescope.diagnostics", })
-    vim.keymap.set("n", leader .. "dq", vim.diagnostic.setqflist,  { buffer = bufnr, desc = "vim.diagnostic.setqflist", })
+  -- no need to rebind c-]
+  -- vim.lsp.tagfunc() indicates that it calls textDocument/definition,
+  -- however vim.lsp.buf.definition returns two results e.g. wk.Spec
+  if client.server_capabilities.definitionProvider then
+    -- K.n_lb("t",  vim.lsp.buf.definition, bufnr, "vim.lsp.buf.definition", })
+    K.n_lb("dt", vim.lsp.buf.definition, buffer, "vim.lsp.buf.definition")
   end
 
+  if client.server_capabilities.declarationProvider then
+    K.n_lb("T",  vim.lsp.buf.declaration, buffer, "vim.lsp.buf.declaration")
+    K.n_lb("dT", vim.lsp.buf.declaration, buffer, "vim.lsp.buf.declaration")
+  end
+
+  K.n_lb("n",  telescope.lsp_references,  buffer, "telescope.lsp_references")
+  K.n_lb("N",  vim.lsp.buf.references,    buffer, "vim.lsp.buf.references")
+
+  K.n_lb("d-", vim.cmd.LspRestart,        buffer, ":LspRestart")
+  K.n_lb("da", vim.lsp.buf.code_action,   buffer, "vim.lsp.buf.code_action")
+  K.n_lb("de", vim.lsp.buf.rename,        buffer, "vim.lsp.buf.rename")
+  K.n_lb("df", vim.diagnostic.open_float, buffer, "vim.diagnostic.open_float")
+  K.n_lb("dh", vim.lsp.buf.hover,         buffer, "vim.lsp.buf.hover")
+  -- TODO restrict to the current buffer's namespace
+  K.n_lb("dl", telescope.diagnostics,     buffer, "telescope.diagnostics")
+  K.n_lb("dq", vim.diagnostic.setqflist,  buffer, "vim.diagnostic.setqflist")
+
   if client:supports_method("textDocument/completion") then
-    vim.lsp.completion.enable(true, client.id, bufnr, {})
+    vim.lsp.completion.enable(true, client.id, buffer, {})
   end
 end
 
@@ -162,7 +162,7 @@ vim.lsp.config.yamlls = {
 }
 vim.lsp.enable("yamlls")
 
-function M.goto_prev()
+function M.prev_diagnostic()
   if vim.fn.has("nvim-0.11") == 1 then
     vim.diagnostic.jump({ count = -1, float = true, wrap = false, })
   else
@@ -170,12 +170,45 @@ function M.goto_prev()
   end
 end
 
-function M.goto_next()
+function M.next_diagnostic()
   if vim.fn.has("nvim-0.11") == 1 then
     vim.diagnostic.jump({ count = 1, float = true, wrap = false, })
   else
     vim.diagnostic.goto_next({ wrap = false }) ---@diagnostic disable-line: deprecated
   end
+end
+
+--- @param direction (vim.snippet.Direction) Navigation direction. -1 for previous, 1 for next.
+local function snippet_jump(direction)
+  if not snippet or not snippet._session then
+    return
+  end
+
+  local cur_tabstop = snippet._session.current_tabstop.index
+  local num_tabstops = table.maxn(snippet._session.tabstops)
+
+  -- don't jump beyond the last of the tabstops, instead wrap forwards
+  if direction == 1 and cur_tabstop >= num_tabstops then
+    vim.snippet.jump(1 - num_tabstops)
+    return
+  end
+
+  -- wrap backwards
+  if direction == -1 and cur_tabstop <= 1 then
+    vim.snippet.jump(num_tabstops - 1)
+    return
+  end
+
+  -- regular jump
+  vim.snippet.jump(direction)
+end
+
+function M.next_snippet()
+  snippet_jump(1)
+end
+
+function M.prev_snippet()
+  snippet_jump(-1)
 end
 
 return M

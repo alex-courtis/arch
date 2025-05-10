@@ -5,7 +5,6 @@ local dev = require("amc.dev")
 local buffers = require("amc.buffers")
 local windows = require("amc.windows")
 local K = require("amc.util").K
-local snippet = require("vim.snippet")
 
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
@@ -33,17 +32,17 @@ local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 K.n___("<Esc>", function()
   vim.cmd.nohlsearch()
   vim.api.nvim_feedkeys(ESC, "n", false)
-end)
+end, ":nohlsearch <Esc>")
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
 K.v___("<LeftRelease>",  '"*ygv',          "Autoselect")
 
-K.n___("<C-j>",          "<C-w>j")
-K.n___("<C-k>",          "<C-w>k")
-K.n___("<C-l>",          "<C-w>l")
-K.n___("<C-h>",          "<C-w>h")
-K.n___("<C-Space>",      "<C-w>w")
-K.n___("<C-S-Space>",    "<C-w>W")
+K.n___("<C-j>",          "<C-w>j",         "<C-w>j")
+K.n___("<C-k>",          "<C-w>k",         "<C-w>k")
+K.n___("<C-l>",          "<C-w>l",         "<C-w>l")
+K.n___("<C-h>",          "<C-w>h",         "<C-w>h")
+K.n___("<C-Space>",      "<C-w>w",         "<C-w>w")
+K.n___("<C-S-Space>",    "<C-w>W",         "<C-w>W")
 
 K.ns__("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
 K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
@@ -51,16 +50,16 @@ K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 --
 -- left
 --
-K.n___(";",     ":")
-K.v___(";",     ":")
+K.n___(";",     ":",                           ":")
+K.v___(";",     ":",                           ":")
 
 K.ns__("ys",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
 K.ns__("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
 K.ns__("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
 K.ns__("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")
 
-K.c___("<C-j>", "<Down>")
-K.c___("<C-k>", "<Up>")
+K.c___("<C-j>", "<Down>",                      "<Down>")
+K.c___("<C-k>", "<Up>",                        "<Up>")
 
 -- [7
 --
@@ -88,18 +87,18 @@ K.nsl_("Q", vim.cmd.only,            "Only")
 --  >
 --  E
 --  J
-K.n_l_("}", "]}",          "Next }")
-K.nsl_(".", lsp.goto_next, "Next Diagnostic")
-K.nsl_("e", windows.cnext, "Next QF")
+K.n_l_("}", "]}",                "Next }")
+K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
+K.nsl_("e", windows.cnext,       "Next QF")
 -- j gitsigns
 
 --  1
 --  P
 --  U
 --  K
-K.n_l_("(", "[(",          "Prev (")
-K.nsl_("p", lsp.goto_prev, "Prev Diagnostic")
-K.nsl_("u", windows.cprev, "Prev QF")
+K.n_l_("(", "[(",                "Prev (")
+K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
+K.nsl_("u", windows.cprev,       "Prev QF")
 -- k gitsigns
 
 -- =9
@@ -204,15 +203,6 @@ K.nsl_("-",  buffers.wipe_all,                                                  
 K.nsl_("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
 K.nsl_("\\", which_key.show,                                                    "Show WhichKey")
 
---
--- commands
---
-
-uc("CD",     env.cd,                  {})
-uc("PS",     "PackerSync",            {})
-uc("S",      buffers.exec_to_buffer,  { nargs = "+", complete = "expression" })
-uc("TSBase", treesitter.install_base, {})
-
 ---
 --- snippets
 --- gh enters select mode
@@ -222,48 +212,35 @@ uc("TSBase", treesitter.install_base, {})
 vim.keymap.del({ "i", "s", }, "<Tab>")
 vim.keymap.del({ "i", "s", }, "<S-Tab>")
 
---- @param direction (vim.snippet.Direction) Navigation direction. -1 for previous, 1 for next.
-local function snippet_jump(direction)
-  if not snippet or not snippet._session then
-    return
-  end
-
-  local cur_tabstop = snippet._session.current_tabstop.index
-  local num_tabstops = table.maxn(snippet._session.tabstops)
-
-  -- don't jump beyond the last of the tabstops, instead wrap forwards
-  if direction == 1 and cur_tabstop >= num_tabstops then
-    vim.snippet.jump(1 - num_tabstops)
-    return
-  end
-
-  -- wrap backwards
-  if direction == -1 and cur_tabstop <= 1 then
-    vim.snippet.jump(num_tabstops - 1)
-    return
-  end
-
-  -- regular jump
-  vim.snippet.jump(direction)
-end
-
 -- use simple jumps that don't feed keys
-vim.keymap.set({ "n", "i", "s" }, "<C-Tab>",   function() snippet_jump(1) end,  { expr = true, })
-vim.keymap.set({ "n", "i", "s" }, "<C-S-Tab>", function() snippet_jump(-1) end, { expr = true, })
+K.n___("<C-Tab>",   lsp.next_snippet, "Prev Snippet", { expr = true, })
+K.i___("<C-Tab>",   lsp.next_snippet, "Prev Snippet", { expr = true, })
+K.s___("<C-Tab>",   lsp.next_snippet, "Prev Snippet", { expr = true, })
+K.n___("<C-S-Tab>", lsp.prev_snippet, "Next Snippet", { expr = true, })
+K.i___("<C-S-Tab>", lsp.prev_snippet, "Next Snippet", { expr = true, })
+K.s___("<C-S-Tab>", lsp.prev_snippet, "Next Snippet", { expr = true, })
 
 ---
 --- omni completion
 ---
 -- TODO <BS> closes PUM, bug: https://github.com/neovim/neovim/issues/30723
 -- maybe workaround as per https://github.com/neovim/neovim/blob/2d11b981bfbb7816d88a69b43b758f3a3f515b96/runtime/lua/vim/_editor.lua#L1174
--- TODO add util.K
 
 -- open PUM or select next
-vim.keymap.set("i", "<C-space>", function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-x><C-o>" end, { remap = false, expr = true })
+K.i___("<C-space>", function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-x><C-o>" end, "Omnicomplete", { expr = true })
 
 -- navigate and select
-vim.keymap.set("i", "<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    { remap = false, expr = true })
-vim.keymap.set("i", "<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   { remap = false, expr = true })
-vim.keymap.set("i", "<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, { remap = false, expr = true })
+K.i___("<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>" end,    "Accept Match", { expr = true })
+K.i___("<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   "Next Match",   { expr = true })
+K.i___("<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, "Prev Match",   { expr = true })
+
+--
+-- commands
+--
+
+uc("CD",     env.cd,                  {})
+uc("PS",     "PackerSync",            {})
+uc("S",      buffers.exec_to_buffer,  { nargs = "+", complete = "expression" })
+uc("TSBase", treesitter.install_base, {})
 
 return M
