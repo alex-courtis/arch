@@ -30,6 +30,8 @@ local opts = {
 
 which_key.setup(opts)
 
+which_key.add({ { "<BS>", mode = { "n", "v", }, group = "leader" }, })
+which_key.add({ { "<Space>", mode = { "n", "v", }, group = "leader" }, })
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
   which_key.add({ { leader .. "c", mode = { "n" }, group = "telescope" }, })
   which_key.add({ { leader .. "d", mode = { "n" }, group = "diagnostics", }, })

@@ -102,11 +102,12 @@ K.nsl_("u", windows.cprev,       "Prev QF")
 -- k gitsigns
 
 -- =9
--- yY
+--  Y
 --  I
 --  X
-K.nsl_("i", telescope.buffers, "Telescope Buffers")
-K.nsl_("x", ":silent BA<CR>",  "Alt Buffer")
+K.nsl_("y", telescope.git_status, "Dirty Buffers")
+K.nsl_("i", telescope.buffers,    "Open Buffers")
+K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 
 --
 -- right
@@ -118,7 +119,6 @@ K.nsl_("x", ":silent BA<CR>",  "Alt Buffer")
 --
 K.n___("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
 K.n_l_("*",  "*",                         "Word Forwards")
-K.nsl_("fd", telescope.git_status,        "Dirty")
 K.nsl_("ff", telescope.find_files,        "")
 K.nsl_("fg", telescope.git_files,         "Git")
 K.nsl_("fh", telescope.find_files_hidden, "Hidden")
