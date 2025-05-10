@@ -30,17 +30,17 @@ local function on_attach(client, bufnr)
     K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "vim.lsp.buf.declaration")
   end
 
-  K.n_lb("n",  telescope.lsp_references,  bufnr, "telescope.lsp_references")
-  K.n_lb("N",  vim.lsp.buf.references,    bufnr, "vim.lsp.buf.references")
+  K.n_lb("n",  telescope.lsp_references,        bufnr, "telescope.lsp_references")
+  K.n_lb("N",  vim.lsp.buf.references,          bufnr, "vim.lsp.buf.references")
 
-  K.n_lb("d-", vim.cmd.LspRestart,        bufnr, ":LspRestart")
-  K.n_lb("da", vim.lsp.buf.code_action,   bufnr, "vim.lsp.buf.code_action")
-  K.n_lb("de", vim.lsp.buf.rename,        bufnr, "vim.lsp.buf.rename")
-  K.n_lb("df", vim.diagnostic.open_float, bufnr, "vim.diagnostic.open_float")
-  K.n_lb("dh", vim.lsp.buf.hover,         bufnr, "vim.lsp.buf.hover")
-  -- TODO restrict to the current buffer's namespace
-  K.n_lb("dl", telescope.diagnostics,     bufnr, "telescope.diagnostics")
-  K.n_lb("dq", vim.diagnostic.setqflist,  bufnr, "vim.diagnostic.setqflist")
+  K.n_lb("d-", vim.cmd.LspRestart,              bufnr, ":LspRestart")
+  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "vim.lsp.buf.code_action")
+  K.n_lb("de", vim.lsp.buf.rename,              bufnr, "vim.lsp.buf.rename")
+  K.n_lb("df", vim.diagnostic.open_float,       bufnr, "vim.diagnostic.open_float")
+  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "vim.lsp.buf.hover")
+  K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "telescope.diagnostics_workspace")
+  K.n_lb("dL", telescope.diagnostics,           bufnr, "telescope.diagnostics")
+  K.n_lb("dq", vim.diagnostic.setqflist,        bufnr, "vim.diagnostic.setqflist")
 
   if client:supports_method("textDocument/completion") then
     vim.lsp.completion.enable(true, client.id, bufnr, {})

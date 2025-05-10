@@ -256,6 +256,10 @@ function M.git_grep_live_grep(o)
   git_grep.live_grep(o)
 end
 
+function M.diagnostics_workspace()
+  M.diagnostics({ root_dir = vim.lsp.buf.list_workspace_folders()[1] })
+end
+
 M.rhs_n_grep_cword =
 ":              lua require('amc.plugins.telescope').live_grep({           default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
 
