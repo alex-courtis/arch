@@ -3,6 +3,8 @@ local require = require("amc.require").or_nil
 
 local M = {}
 
+local K = require("amc.util").K
+
 local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
 
@@ -107,55 +109,51 @@ local function get_view_width_max()
 end
 
 local function on_attach(bufnr)
+
+  ---@param desc string
+  ---@return vim.keymap.set.Opts
   local function opts(desc)
-    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    return { desc = "nvim-tree: " .. desc, noremap = true, nowait = true }
   end
 
   api.config.mappings.default_on_attach(bufnr)
 
-  vim.keymap.del("n", "<C-]>",    { buffer = bufnr }) -- api.tree.change_root_to_node,
-  vim.keymap.del("n", "<C-e>",    { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
-  vim.keymap.del("n", "<C-k>",    { buffer = bufnr }) -- api.node.show_info_popup
-  vim.keymap.del("n", "<C-t>",    { buffer = bufnr }) -- api.node.open.tab,
-  vim.keymap.del("n", "<BS>",     { buffer = bufnr }) -- api.node.navigate.parent_close,
-  vim.keymap.del("n", "[c",       { buffer = bufnr }) -- api.node.navigate.git.prev,
-  vim.keymap.del("n", "]c",       { buffer = bufnr }) -- api.node.navigate.git.next,
-  vim.keymap.del("n", "D",        { buffer = bufnr }) -- api.fs.trash,
-  vim.keymap.del("n", "]e",       { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
-  vim.keymap.del("n", "[e",       { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
-  vim.keymap.del("n", "g?",       { buffer = bufnr }) -- api.tree.toggle_help,
-  vim.keymap.del("n", "gy",       { buffer = bufnr }) -- api.fs.copy.absolute_path,
-  vim.keymap.del("n", "y",        { buffer = bufnr }) -- api.fs.copy.filename,
-  vim.keymap.del("n", "Y",        { buffer = bufnr }) -- api.fs.copy.relative_path,
+  vim.keymap.del("n", "<C-]>", { buffer = bufnr }) -- api.tree.change_root_to_node,
+  vim.keymap.del("n", "<C-e>", { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
+  vim.keymap.del("n", "<C-k>", { buffer = bufnr }) -- api.node.show_info_popup
+  vim.keymap.del("n", "<C-t>", { buffer = bufnr }) -- api.node.open.tab,
+  vim.keymap.del("n", "<BS>",  { buffer = bufnr }) -- api.node.navigate.parent_close,
+  vim.keymap.del("n", "[c",    { buffer = bufnr }) -- api.node.navigate.git.prev,
+  vim.keymap.del("n", "]c",    { buffer = bufnr }) -- api.node.navigate.git.next,
+  vim.keymap.del("n", "D",     { buffer = bufnr }) -- api.fs.trash,
+  vim.keymap.del("n", "]e",    { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
+  vim.keymap.del("n", "[e",    { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
+  vim.keymap.del("n", "g?",    { buffer = bufnr }) -- api.tree.toggle_help,
+  vim.keymap.del("n", "gy",    { buffer = bufnr }) -- api.fs.copy.absolute_path,
+  vim.keymap.del("n", "y",     { buffer = bufnr }) -- api.fs.copy.filename,
+  vim.keymap.del("n", "Y",     { buffer = bufnr }) -- api.fs.copy.relative_path,
 
-  vim.keymap.set("n", "<C-t>",    api.tree.change_root_to_parent,               opts("Up"))
-  vim.keymap.set("n", "<C-i>",    api.node.show_info_popup,                     opts("Info"))
-  vim.keymap.set("n", "<Space>c", api.tree.change_root_to_node,                 opts("CD"))
-  vim.keymap.set("n", "<BS>c",    api.tree.change_root_to_node,                 opts("CD"))
-  vim.keymap.set("n", "<Space>p", api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
-  vim.keymap.set("n", "<BS>p",    api.node.navigate.diagnostics.prev_recursive, opts("Prev Diagnostic"))
-  vim.keymap.set("n", "<Space>.", api.node.navigate.diagnostics.next_recursive, opts("Next Diagnostic"))
-  vim.keymap.set("n", "<BS>.",    api.node.navigate.diagnostics.next_recursive, opts("Next Diagnostic"))
-  vim.keymap.set("n", "<Space>u", api.node.navigate.opened.prev,                opts("Prev Opened"))
-  vim.keymap.set("n", "<BS>u",    api.node.navigate.opened.prev,                opts("Prev Opened"))
-  vim.keymap.set("n", "<Space>e", api.node.navigate.opened.next,                opts("Next Opened"))
-  vim.keymap.set("n", "<BS>e",    api.node.navigate.opened.next,                opts("Next Opened"))
-  vim.keymap.set("n", "<Space>k", api.node.navigate.git.prev_recursive,         opts("Prev Git"))
-  vim.keymap.set("n", "<BS>k",    api.node.navigate.git.prev_recursive,         opts("Prev Git"))
-  vim.keymap.set("n", "<Space>j", api.node.navigate.git.next_recursive,         opts("Next Git"))
-  vim.keymap.set("n", "<BS>j",    api.node.navigate.git.next_recursive,         opts("Next Git"))
-  vim.keymap.set("n", "'",        api.node.navigate.parent_close,               opts("Close Directory"))
-  vim.keymap.set("n", "?",        api.tree.toggle_help,                         opts("Help"))
-  vim.keymap.set("n", "O",        api.node.navigate.parent_close,               opts("Close Directory"))
-  vim.keymap.set("n", "A",        toggle_width_adaptive,                        opts("Toggle Adaptive Width"))
-  vim.keymap.set("n", "gr",       git_restore,                                  opts("Git Restore"))
-  vim.keymap.set("n", "gs",       git_stage,                                    opts("Git Stage"))
-  vim.keymap.set("n", "gu",       git_unstage,                                  opts("Git Unstage"))
-  vim.keymap.set("n", "tf",       find_files,                                   opts("Find Files"))
-  vim.keymap.set("n", "tg",       live_grep,                                    opts("Live Grep"))
-  vim.keymap.set("n", "yn",       api.fs.copy.filename,                         opts("Copy Name"))
-  vim.keymap.set("n", "yr",       api.fs.copy.relative_path,                    opts("Copy Relative Path"))
-  vim.keymap.set("n", "ys",       api.fs.copy.absolute_path,                    opts("Copy Absolute Path"))
+  K.n__b("<C-t>", api.tree.change_root_to_parent,               bufnr, "", opts("Up"))
+  K.n__b("<C-i>", api.node.show_info_popup,                     bufnr, "", opts("Info"))
+  K.n_lb("c",     api.tree.change_root_to_node,                 bufnr, "", opts("CD"))
+  K.n_lb("p",     api.node.navigate.diagnostics.prev_recursive, bufnr, "", opts("Prev Diagnostic"))
+  K.n_lb(".",     api.node.navigate.diagnostics.next_recursive, bufnr, "", opts("Next Diagnostic"))
+  K.n_lb("u",     api.node.navigate.opened.prev,                bufnr, "", opts("Prev Opened"))
+  K.n_lb("e",     api.node.navigate.opened.next,                bufnr, "", opts("Next Opened"))
+  K.n_lb("k",     api.node.navigate.git.prev_recursive,         bufnr, "", opts("Prev Git"))
+  K.n_lb("j",     api.node.navigate.git.next_recursive,         bufnr, "", opts("Next Git"))
+  K.n__b("'",     api.node.navigate.parent_close,               bufnr, "", opts("Close Directory"))
+  K.n__b("?",     api.tree.toggle_help,                         bufnr, "", opts("Help"))
+  K.n__b("O",     api.node.navigate.parent_close,               bufnr, "", opts("Close Directory"))
+  K.n__b("A",     toggle_width_adaptive,                        bufnr, "", opts("Toggle Adaptive Width"))
+  K.n__b("gr",    git_restore,                                  bufnr, "", opts("Git Restore"))
+  K.n__b("gs",    git_stage,                                    bufnr, "", opts("Git Stage"))
+  K.n__b("gu",    git_unstage,                                  bufnr, "", opts("Git Unstage"))
+  K.n__b("tf",    find_files,                                   bufnr, "", opts("Find Files"))
+  K.n__b("tg",    live_grep,                                    bufnr, "", opts("Live Grep"))
+  K.n__b("yn",    api.fs.copy.filename,                         bufnr, "", opts("Copy Name"))
+  K.n__b("yr",    api.fs.copy.relative_path,                    bufnr, "", opts("Copy Relative Path"))
+  K.n__b("ys",    api.fs.copy.absolute_path,                    bufnr, "", opts("Copy Absolute Path"))
 end
 
 local config = {
