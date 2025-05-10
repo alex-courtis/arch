@@ -165,7 +165,7 @@ K.nsl("cr", telescope.resume,                      "Resume")
 K.nsl("cs", telescope.search_history,              "Search History")
 K.nsl("t",  "<C-]>",                               "Jump To Definition")
 K.nsl("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
-K.xsl("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
+K.vsl("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
 K.nsl("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
 
 -- ]6
