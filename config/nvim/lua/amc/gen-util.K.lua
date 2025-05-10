@@ -11,7 +11,7 @@ for _, mode in pairs({ "n", "i", "c", "v", "x", "s", "o", }) do
 ]]):
         format(
           buffer and "\n  ---@param buffer number" or "",
-          mode, silent and "s" or "_", leader and "l" or "_", buffer and "b" or "",
+          mode, silent and "s" or "_", leader and "l" or "_", buffer and "b" or "_",
           buffer and "buffer, " or "",
           leader and "l" or "_", mode,
           silent and "true" or "false",

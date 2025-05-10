@@ -30,84 +30,84 @@ end
 
 -- normal mode escape clears highlight
 local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
-K.n__("<Esc>", function()
+K.n___("<Esc>", function()
   vim.cmd.nohlsearch()
   vim.api.nvim_feedkeys(ESC, "n", false)
 end)
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
-K.v__("<LeftRelease>",  '"*ygv',          "Autoselect")
+K.v___("<LeftRelease>",  '"*ygv',          "Autoselect")
 
-K.n__("<C-j>",          "<C-w>j")
-K.n__("<C-k>",          "<C-w>k")
-K.n__("<C-l>",          "<C-w>l")
-K.n__("<C-h>",          "<C-w>h")
-K.n__("<C-Space>",      "<C-w>w")
-K.n__("<C-S-Space>",    "<C-w>W")
+K.n___("<C-j>",          "<C-w>j")
+K.n___("<C-k>",          "<C-w>k")
+K.n___("<C-l>",          "<C-w>l")
+K.n___("<C-h>",          "<C-w>h")
+K.n___("<C-Space>",      "<C-w>w")
+K.n___("<C-S-Space>",    "<C-w>W")
 
-K.ns_("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
-K.ns_("<Space><Space>", ":silent BF<CR>", "Next Buffer")
+K.ns__("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
+K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
 --
 -- left
 --
-K.n__(";",     ":")
-K.v__(";",     ":")
+K.n___(";",     ":")
+K.v___(";",     ":")
 
-K.ns_("ys",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
-K.ns_("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
-K.ns_("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
-K.ns_("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")
+K.ns__("ys",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
+K.ns__("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
+K.ns__("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
+K.ns__("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")
 
-K.c__("<C-j>", "<Down>")
-K.c__("<C-k>", "<Up>")
+K.c___("<C-j>", "<Down>")
+K.c___("<C-k>", "<Up>")
 
 -- [7
 --
 --
 --
-K.nsl(";", vim.cmd.copen,             "Open Quickfix")
-K.nsl(":", vim.cmd.cclose,            "Close Quickfix")
-K.nsl("a", nvt.open_find,             "Open nvim-tree Update Root")
-K.nsl("A", nvt.open_find_update_root, "Open nvim-tree")
-K.nsl("'", windows.close_inc,         "Close Lowest Window")
-K.nsl('"', windows.close_others,      "Close Other Windows")
+K.nsl_(";", vim.cmd.copen,             "Open Quickfix")
+K.nsl_(":", vim.cmd.cclose,            "Close Quickfix")
+K.nsl_("a", nvt.open_find,             "Open nvim-tree Update Root")
+K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree")
+K.nsl_("'", windows.close_inc,         "Close Lowest Window")
+K.nsl_('"', windows.close_others,      "Close Other Windows")
 
 --  5
 --
 --  O
 --
-K.n_l("{", "[{",                    "Prev {")
-K.nsl(",", fugitive.open_only,      "Open Only Fugitive")
-K.nsl("<", fugitive.open,           "Open Fugitive")
-K.nsl("o", windows.go_home_or_next, "Home Or Next Window")
-K.nsl("q", windows.close,           "Close Window")
-K.nsl("Q", vim.cmd.only,            "Only")
+K.n_l_("{", "[{",                    "Prev {")
+K.nsl_(",", fugitive.open_only,      "Open Only Fugitive")
+K.nsl_("<", fugitive.open,           "Open Fugitive")
+K.nsl_("o", windows.go_home_or_next, "Home Or Next Window")
+K.nsl_("q", windows.close,           "Close Window")
+K.nsl_("Q", vim.cmd.only,            "Only")
 
 --  3
 --  >
 --  E
 --  J
-K.n_l("}", "]}",          "Next }")
-K.nsl(".", lsp.goto_next, "Next Diagnostic")
-K.nsl("e", windows.cnext, "Next QF")
+K.n_l_("}", "]}",          "Next }")
+K.nsl_(".", lsp.goto_next, "Next Diagnostic")
+K.nsl_("e", windows.cnext, "Next QF")
 -- j gitsigns
 
 --  1
 --  P
 --  U
 --  K
-K.n_l("(", "[(",          "Prev (")
-K.nsl("p", lsp.goto_prev, "Prev Diagnostic")
-K.nsl("u", windows.cprev, "Prev QF")
+K.n_l_("(", "[(",          "Prev (")
+K.nsl_("p", lsp.goto_prev, "Prev Diagnostic")
+K.nsl_("u", windows.cprev, "Prev QF")
 -- k gitsigns
 
 -- =9
 -- yY
 --  I
 --  X
-K.nsl("i", telescope.buffers, "Telescope Buffers")
-K.nsl("x", ":silent BA<CR>",  "Alt Buffer")
+K.nsl_("i", telescope.buffers, "Telescope Buffers")
+K.nsl_("x", ":silent BA<CR>",  "Alt Buffer")
 
 --
 -- right
@@ -117,92 +117,92 @@ K.nsl("x", ":silent BA<CR>",  "Alt Buffer")
 --  F
 --  D
 --
-K.n__("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
-K.n_l("*",  "*",                         "Word Forwards")
-K.nsl("fd", telescope.git_status,        "Dirty")
-K.nsl("ff", telescope.find_files,        "")
-K.nsl("fg", telescope.git_files,         "Git")
-K.nsl("fh", telescope.find_files_hidden, "Hidden")
-K.nsl("fo", telescope.oldfiles,          "Old")
-K.nsl("b",  ":%y<CR>",                   "Yank Buffer")
-K.nsl("B",  ":%d_<CR>",                  "Clean Buffer")
+K.n___("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
+K.n_l_("*",  "*",                         "Word Forwards")
+K.nsl_("fd", telescope.git_status,        "Dirty")
+K.nsl_("ff", telescope.find_files,        "")
+K.nsl_("fg", telescope.git_files,         "Git")
+K.nsl_("fh", telescope.find_files_hidden, "Hidden")
+K.nsl_("fo", telescope.oldfiles,          "Old")
+K.nsl_("b",  ":%y<CR>",                   "Yank Buffer")
+K.nsl_("B",  ":%d_<CR>",                  "Clean Buffer")
 
 --  2
 --  G
 --  H
 --  M
-K.n_l(")",  "])",                                 "Next )")
-K.nsl("gc", telescope.rhs_n_grep_cword,           "cword")
-K.nsl("gd", telescope.live_grep_directory_buffer, "Directory, Buffer")
-K.nsl("gD", telescope.live_grep_directory_prompt, "Directory, Prompt")
-K.nsl("gg", telescope.live_grep,                  "")
-K.nsl("gi", telescope.git_grep_live_grep,         "Git Grep")
-K.nsl("gh", telescope.live_grep_hidden,           "Hidden")
-K.nsl("gf", telescope.live_grep_filetype_buffer,  "Filetype, Buffer")
-K.nsl("gF", telescope.live_grep_filetype_prompt,  "Filetype, Prompt")
-K.vsl("gg", telescope.rhs_v_grep,                 "")
-K.vsl("gh", telescope.rhs_v_grep_hidden,          "Grep Hidden")
-K.vsl("gi", telescope.rhs_v_git_grep_live_grep,   "Git Grep")
-K.nsl("hb", ":G blame<CR>",                       "Fugitive Blame")
-K.nsl("mc", dev.clean,                            "make clean")
-K.nsl("mi", dev.install,                          "make install")
-K.nsl("mm", dev.build,                            "make")
-K.nsl("mt", dev.test,                             "make test")
-K.nsl("mT", dev.test_all,                         "make test all")
-K.nsl("ms", dev.source,                           "source")
+K.n_l_(")",  "])",                                 "Next )")
+K.nsl_("gc", telescope.rhs_n_grep_cword,           "cword")
+K.nsl_("gd", telescope.live_grep_directory_buffer, "Directory, Buffer")
+K.nsl_("gD", telescope.live_grep_directory_prompt, "Directory, Prompt")
+K.nsl_("gg", telescope.live_grep,                  "")
+K.nsl_("gi", telescope.git_grep_live_grep,         "Git Grep")
+K.nsl_("gh", telescope.live_grep_hidden,           "Hidden")
+K.nsl_("gf", telescope.live_grep_filetype_buffer,  "Filetype, Buffer")
+K.nsl_("gF", telescope.live_grep_filetype_prompt,  "Filetype, Prompt")
+K.vsl_("gg", telescope.rhs_v_grep,                 "")
+K.vsl_("gh", telescope.rhs_v_grep_hidden,          "Grep Hidden")
+K.vsl_("gi", telescope.rhs_v_git_grep_live_grep,   "Git Grep")
+K.nsl_("hb", ":G blame<CR>",                       "Fugitive Blame")
+K.nsl_("mc", dev.clean,                            "make clean")
+K.nsl_("mi", dev.install,                          "make install")
+K.nsl_("mm", dev.build,                            "make")
+K.nsl_("mt", dev.test,                             "make test")
+K.nsl_("mT", dev.test_all,                         "make test all")
+K.nsl_("ms", dev.source,                           "source")
 
 
 --  4
 --  C
 --  T
 --
-K.nsl("+",  rainbow.toggle,                        "Toggle Rainbow")
-K.nsl("cb", telescope.builtin,                     "Builtins")
-K.nsl("cc", telescope.command_history,             "Command History")
-K.nsl("ck", telescope.keymaps,                     "Keymaps")
-K.nsl("co", telescope.commands,                    "Commands")
-K.nsl("cr", telescope.resume,                      "Resume")
-K.nsl("cs", telescope.search_history,              "Search History")
-K.nsl("t",  "<C-]>",                               "Jump To Definition")
-K.nsl("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
-K.vsl("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
-K.nsl("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
+K.nsl_("+",  rainbow.toggle,                        "Toggle Rainbow")
+K.nsl_("cb", telescope.builtin,                     "Builtins")
+K.nsl_("cc", telescope.command_history,             "Command History")
+K.nsl_("ck", telescope.keymaps,                     "Keymaps")
+K.nsl_("co", telescope.commands,                    "Commands")
+K.nsl_("cr", telescope.resume,                      "Resume")
+K.nsl_("cs", telescope.search_history,              "Search History")
+K.nsl_("t",  "<C-]>",                               "Jump To Definition")
+K.nsl_("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
+K.vsl_("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
+K.nsl_("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
 
 -- ]6
 --
 --
 --
-K.n_l("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
-K.n_l("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
-K.v_l("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
-K.v_l("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
-K.nsl("n", "<C-]>",                                                       "Definition")
-K.nsl("v", ":put<CR>'[v']=",                                              "Put Format")
-K.nsl("V", ":put!<CR>'[v']=",                                             "Put Above Format")
+K.n_l_("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
+K.n_l_("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
+K.v_l_("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
+K.v_l_("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
+K.nsl_("n", "<C-]>",                                                       "Definition")
+K.nsl_("v", ":put<CR>'[v']=",                                              "Put Format")
+K.nsl_("V", ":put!<CR>'[v']=",                                             "Put Above Format")
 
 --
 --
 -- sS
 --  Z
-K.n_l("!", ": <C-r>=expand('%:.')<CR><Home>",  "Command Relative Filename")
-K.v_l("!", '"*y: <C-r>=getreg("*")<CR><Home>', "Command Visual")
-K.n_l("8", ": <C-r>=expand('%:p')<CR><Home>",  "Command Absolute Filename")
-K.nsl("l", buffers.toggle_list,                "Toggle List")
-K.nsl("L", buffers.trim_whitespace,            "Trim Whitespace")
-K.nsl("z", dev.format,                         "Format")
+K.n_l_("!", ": <C-r>=expand('%:.')<CR><Home>",  "Command Relative Filename")
+K.v_l_("!", '"*y: <C-r>=getreg("*")<CR><Home>', "Command Visual")
+K.n_l_("8", ": <C-r>=expand('%:p')<CR><Home>",  "Command Absolute Filename")
+K.nsl_("l", buffers.toggle_list,                "Toggle List")
+K.nsl_("L", buffers.trim_whitespace,            "Trim Whitespace")
+K.nsl_("z", dev.format,                         "Format")
 
 --  `
 --
 --
 --  |
-K.n__("#",  "<Plug>(asterisk-z#)",                                             "Word Backwards Stay")
-K.n_l("#",  "#",                                                               "Word Backwards")
-K.n_l("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
-K.n_l("?",  '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
-K.v_l("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
-K.nsl("-",  buffers.wipe_all,                                                  "Wipe All Buffers")
-K.nsl("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
-K.nsl("\\", which_key.show,                                                    "Show WhichKey")
+K.n___("#",  "<Plug>(asterisk-z#)",                                             "Word Backwards Stay")
+K.n_l_("#",  "#",                                                               "Word Backwards")
+K.n_l_("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
+K.n_l_("?",  '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
+K.v_l_("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
+K.nsl_("-",  buffers.wipe_all,                                                  "Wipe All Buffers")
+K.nsl_("_",  ":silent BW!<CR>",                                                 "Wipe Buffer")
+K.nsl_("\\", which_key.show,                                                    "Show WhichKey")
 
 --
 -- commands
