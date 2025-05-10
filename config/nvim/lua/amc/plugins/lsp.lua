@@ -68,6 +68,14 @@ vim.lsp.config["*"] = {
 -- Extend nvim-lspconfig from nvim-lspconfig/lsp/yamlls.lua, not lspconfig/configs/yamlls.lua
 --
 
+--
+-- ccls
+--
+
+-- config and local on_attach will override each other, hence we retain it
+---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
+local ccls_config_on_attach = vim.lsp.config.ccls.on_attach
+
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
   init_options = {
@@ -83,19 +91,28 @@ vim.lsp.config.ccls = {
     },
   },
 
-  -- TODO textDocument/switchSourceHeader
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/ccls.lua
+  on_attach = function(client, buffer)
+    ccls_config_on_attach(client, buffer)
+    on_attach(client, buffer)
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, buffer, ":LspCclsSwitchSourceHeader")
+  end,
 }
 vim.lsp.enable("ccls")
 
+--
+-- json
+--
 ---@type vim.lsp.Config
 vim.lsp.config.jsonls = {
   filetypes = { "json", "jsonc", "json5" },
 }
 vim.lsp.enable("jsonls")
 
+--
+-- lua
+--
 ---@type vim.lsp.Config
-vim.lsp.config.luals = {
+vim.lsp.config.lua_ls = {
   settings = {
     Lua = {
       workspace = {
@@ -114,8 +131,11 @@ vim.lsp.config.luals = {
     }
   },
 }
-vim.lsp.enable("luals")
+vim.lsp.enable("lua_ls")
 
+--
+-- yaml
+--
 ---@type vim.lsp.Config
 vim.lsp.config.yamlls = {}
 vim.lsp.enable("yamlls")
