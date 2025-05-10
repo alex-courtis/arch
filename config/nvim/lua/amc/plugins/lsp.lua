@@ -7,9 +7,10 @@ local K = require("amc.util").K
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
----
---- Map
----
+--
+-- Map
+--
+
 --- @param buffer number
 --- @param client vim.lsp.Client
 local function on_attach(client, buffer)
@@ -47,40 +48,28 @@ local function on_attach(client, buffer)
   end
 end
 
----
---- Global diagnostics config
----
+--
+-- Global diagnostics config
+--
 vim.diagnostic.config({
   virtual_text = true,
   severity_sort = true,
 }, nil)
 
----
---- base LSP config
----
+--
+-- Base LSP config
+--
 ---@type vim.lsp.Config
 vim.lsp.config["*"] = {
-
   on_attach = on_attach,
-
-  root_markers = { ".git" },
-
-  settings = {
-    -- https://github.com/redhat-developer/vscode-redhat-telemetry#how-to-disable-telemetry-reporting
-    redhat = { telemetry = { enabled = false } },
-  },
 }
 
 --
--- ccls
+-- Extend nvim-lspconfig from nvim-lspconfig/lsp/yamlls.lua, not lspconfig/configs/yamlls.lua
 --
+
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
-
-  filetypes = { "c", "cpp", },
-
-  cmd = { "ccls" },
-
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
@@ -99,37 +88,14 @@ vim.lsp.config.ccls = {
 }
 vim.lsp.enable("ccls")
 
---
--- json
---
 ---@type vim.lsp.Config
 vim.lsp.config.jsonls = {
-
   filetypes = { "json", "jsonc", "json5" },
-
-  cmd = { "vscode-json-language-server", "--stdio" },
-
 }
 vim.lsp.enable("jsonls")
 
---
--- lua
---
 ---@type vim.lsp.Config
 vim.lsp.config.luals = {
-
-  filetypes = { "lua" },
-
-  cmd = { "lua-language-server" },
-
-  root_markers = vim.list_extend({
-    ".luarc.json",
-    ".luarc.jsonc",
-    ".luacheckrc",
-    ".stylua.toml",
-    "stylua.toml",
-  }, vim.lsp.config["*"].root_markers),
-
   settings = {
     Lua = {
       workspace = {
@@ -150,17 +116,13 @@ vim.lsp.config.luals = {
 }
 vim.lsp.enable("luals")
 
---
--- yaml
---
 ---@type vim.lsp.Config
-vim.lsp.config.yamlls = {
-
-  filetypes = { "yaml" },
-
-  cmd = { "yaml-language-server", "--stdio" },
-}
+vim.lsp.config.yamlls = {}
 vim.lsp.enable("yamlls")
+
+--
+-- Functions
+--
 
 function M.prev_diagnostic()
   if vim.fn.has("nvim-0.11") == 1 then

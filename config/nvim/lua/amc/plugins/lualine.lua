@@ -7,8 +7,6 @@ if not lualine then
   return
 end
 
--- TODO add select mode indicator to filename or separate section
-
 local filename = {
   "filename",
   symbols = {
