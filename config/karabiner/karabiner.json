@@ -41,6 +41,7 @@
                     },
                     {
                         "description": "spotlight",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
