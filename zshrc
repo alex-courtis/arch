@@ -10,8 +10,8 @@ source "${HOME}/.zsh/zshrc.function"
 source "${HOME}/.zsh/zshrc.alias"
 
 # use the keychain wrapper to start ssh-agent if needed
-if [ "$(whence keychain)" -a -f ~/.ssh/id_rsa ]; then
-	eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+if [ "$(whence keychain)" ]; then
+	eval $(keychain --eval --systemd --quiet id_rsa id_rsa.aur )
 fi
 
 setopt rmstarsilent
