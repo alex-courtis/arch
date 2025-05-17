@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-/usr/bin/brave --incognito "$@" >/dev/null 2>&1 &!
+qutebrowser --target private-window "$@" >/dev/null 2>&1 &!
 
