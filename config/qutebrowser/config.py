@@ -4,12 +4,23 @@ config.load_autoconfig(False)
 # only appears necessary when xwayland not present
 # c.qt.force_software_rendering = 'chromium'
 
-c.colors.webpage.darkmode.enabled = True
+c.auto_save.session = True
+
+c.tabs.last_close = 'close'
+
+c.colors.webpage.darkmode.enabled = False
+
+c.colors.webpage.preferred_color_scheme = 'dark'
+
+c.fonts.default_size = '13pt'
 
 c.url.start_pages  = ['about:blank']
 c.url.default_page = 'about:blank'
 
-c.tabs.position = 'top'
+c.tabs.show = 'multiple'
+
+c.colors.statusbar.private.bg = '#d381c3'
+c.tabs.title.format = '{audio}{index}:{private}{current_title}'
 
 config.unbind('q')
 config.unbind('D')
@@ -29,5 +40,8 @@ config.bind('u', 'scroll-page 0 -0.5')
 
 config.bind('<ctrl+alt+t>', 'undo -w')
 
-config.bind('<alt+l>', 'spawn --userscript qute-bitwarden')
+config.bind('<alt+b>', 'spawn --userscript qute-bitwarden')
+
+config.bind('<alt+d>', 'set colors.webpage.darkmode.enabled true')
+config.bind('<alt+l>', 'set colors.webpage.darkmode.enabled false')
 
