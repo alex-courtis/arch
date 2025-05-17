@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-qutebrowser --target window "$@" >/dev/null 2>&1 &!
+/usr/bin/brave --new-window "$@" >/dev/null 2>&1 &!
+

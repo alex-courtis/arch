@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-qutebrowser --target incognito "$@" >/dev/null 2>&1 &!
+/usr/bin/brave --incognito "$@" >/dev/null 2>&1 &!
+
