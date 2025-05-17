@@ -25,7 +25,7 @@ unbind -f common 9
 unbind -f common A
 unbind -f common B
 unbind -f common C
-# unbind -f common D
+unbind -f common D
 unbind -f common E
 unbind -f common F
 unbind -f common G
@@ -138,7 +138,7 @@ set mouse=true
 set wrap_search=false
 
 set aaa_mode=artist
-set continue_album=false
+set continue_album=true
 
 set tree_width_percent=15
 
@@ -149,41 +149,35 @@ set    format_trackwin=%3n. %{?c=""?%t?%-35%t %c} %= %y %d
 
 bind -f common j win-down
 bind -f common k win-up
+bind -f common h win-next
+bind -f common l win-next
 
 bind -f common tab win-next
 
-bind -f common down win-down
-bind -f common up win-up
-bind -f common left win-next
-bind -f common right win-next
+bind -f common enter win-toggle
 
-bind -f common u win-half-page-up
 bind -f common ^U win-half-page-up
-bind -f common d win-half-page-down
 bind -f common ^D win-half-page-down
 bind -f common g win-top
 bind -f common m win-page-middle
 bind -f common G win-bottom
-
+ 
 bind -f common ? view settings
 bind -f settings ? view tree
-
+ 
 bind -f common / search-start
 bind -f common n search-next
 bind -f common N search-prev
-
-bind -f common enter shell cmus-play >/dev/null 2>&1
+ 
+bind -f common backspace shell cmus-play >/dev/null 2>&1
 bind -f common mlb_click_selected shell cmus-play >/dev/null 2>&1
-
-bind -f common backspace win-toggle
-
 bind -f common space shell cmus-pause
+ 
+bind -f common down player-next
+bind -f common up player-prev
 
-bind -f common J player-next
-bind -f common K player-prev
-
-bind -f common H seek -5
-bind -f common L seek +5
+bind -f common left seek -5
+bind -f common right seek +5
 
 bind -f common + vol +5%
 bind -f common - vol -5%
