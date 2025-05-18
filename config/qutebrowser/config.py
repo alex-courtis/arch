@@ -45,3 +45,4 @@ config.bind('<alt+b>', 'spawn --userscript qute-bitwarden')
 config.bind('<alt+d>', 'set colors.webpage.darkmode.enabled true')
 config.bind('<alt+l>', 'set colors.webpage.darkmode.enabled false')
 
+config.bind('ww', 'tab-give')
