@@ -4,10 +4,6 @@ path=($(brew --prefix)/opt/util-linux/sbin $(brew --prefix)/opt/util-linux/bin $
 
 eval "$(mise activate zsh)"
 
-path=(~/bin ~/.local/bin $path)
-
-if [ -d ~/.orbit/bin ]; then
-	path=(~/.orbit/bin $path)
-fi
+path=(~/bin ~/.local/bin ~/.orbit/bin $path)
 
 # vim:ft=zsh
