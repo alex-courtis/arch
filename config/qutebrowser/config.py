@@ -1,4 +1,4 @@
-config.source('base16-bright.config.py')
+config.source('base16-bright.config.min.py')
 
 config.load_autoconfig(False)
 
@@ -16,8 +16,8 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 
 c.fonts.default_size = '13pt'
 
-c.url.start_pages  = ['about:blank']
-c.url.default_page = 'about:blank'
+c.url.default_page = 'file:///.blank.html'
+c.url.start_pages  = [ c.url.default_page ]
 
 c.tabs.show = 'multiple'
 
