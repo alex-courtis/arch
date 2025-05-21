@@ -157,10 +157,10 @@ c.colors.messages.info.border = cyan
 c.colors.prompts.fg = default_foreground
 
 # Border used around UI elements in prompts.
-c.colors.prompts.border = lighter_background
+c.colors.prompts.border = default_foreground
 
 # Background color for prompts.
-c.colors.prompts.bg = lighter_background
+c.colors.prompts.bg = selection_background
 
 # Background color for the selected item in filename prompts.
 c.colors.prompts.selected.bg = selection_background

@@ -62,6 +62,11 @@ config.bind('ge', 'edit-url')
 config.bind('<ctrl+alt+t>', 'undo -w')
 
 config.bind('<alt+b>', 'spawn --userscript qute-bitwarden')
+config.bind('<alt+u>', 'spawn --userscript qute-bitwarden --username-only')
+config.bind('<alt+p>', 'spawn --userscript qute-bitwarden --password-only')
+
+config.bind('<alt+u>', 'spawn --userscript qute-bitwarden --username-only', mode='prompt')
+config.bind('<alt+p>', 'spawn --userscript qute-bitwarden --password-only', mode='prompt')
 
 config.bind('<alt+d>', 'set colors.webpage.darkmode.enabled true')
 config.bind('<alt+l>', 'set colors.webpage.darkmode.enabled false')
