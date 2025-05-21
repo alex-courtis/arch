@@ -16,6 +16,10 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 
 c.fonts.default_size = '13.5pt'
 
+c.editor.command = ["alacritty", "-e", "nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
+
+c.hints.chars = 'pyaoeuiqjkx'
+
 c.url.default_page = 'file:///.blank.html'
 c.url.start_pages  = [ c.url.default_page ]
 
@@ -39,6 +43,8 @@ config.unbind('q')
 config.unbind('D')
 config.unbind('U')
 
+config.bind('<Escape>', 'clear-messages ;; clear-keychain ;; search ;; fullscreen --leave')
+
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
 
@@ -50,6 +56,8 @@ config.bind('>', 'tab-move +')
 
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
+
+config.bind('ge', 'edit-url')
 
 config.bind('<ctrl+alt+t>', 'undo -w')
 
