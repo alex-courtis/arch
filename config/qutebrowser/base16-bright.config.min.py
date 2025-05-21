@@ -10,14 +10,14 @@ default_background =   '#' + os.environ['BASE16_default_background']
 lighter_background =   '#' + os.environ['BASE16_lighter_background']
 selection_background = '#' + os.environ['BASE16_selection_background']
 comments =             '#' + os.environ['BASE16_comments']
-# dark_foreground =      '#' + os.environ['BASE16_dark_foreground']
+dark_foreground =      '#' + os.environ['BASE16_dark_foreground']
 default_foreground =   '#' + os.environ['BASE16_default_foreground']
 light_foreground =     '#' + os.environ['BASE16_light_foreground']
 # light_background =     '#' + os.environ['BASE16_light_background']
 red =                  '#' + os.environ['BASE16_red']
 orange =               '#' + os.environ['BASE16_orange']
 yellow =               '#' + os.environ['BASE16_yellow']
-# green =                '#' + os.environ['BASE16_green']
+green =                '#' + os.environ['BASE16_green']
 cyan =                 '#' + os.environ['BASE16_cyan']
 blue =                 '#' + os.environ['BASE16_blue']
 magenta =              '#' + os.environ['BASE16_magenta']
@@ -72,31 +72,31 @@ c.colors.completion.scrollbar.fg = default_foreground
 c.colors.completion.scrollbar.bg = selection_background
 
 # Background color of disabled items in the context menu.
-# c.colors.contextmenu.disabled.bg = lighter_background
+c.colors.contextmenu.disabled.bg = lighter_background
 
 # Foreground color of disabled items in the context menu.
-# c.colors.contextmenu.disabled.fg = dark_foreground
+c.colors.contextmenu.disabled.fg = comments
 
 # Background color of the context menu. If set to null, the Qt default is used.
-# c.colors.contextmenu.menu.bg = default_background
+c.colors.contextmenu.menu.bg = lighter_background
 
 # Foreground color of the context menu. If set to null, the Qt default is used.
-# c.colors.contextmenu.menu.fg =  default_foreground
+c.colors.contextmenu.menu.fg = default_foreground
 
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
-# c.colors.contextmenu.selected.bg = selection_background
+c.colors.contextmenu.selected.bg = selection_background
 
 #Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
-# c.colors.contextmenu.selected.fg = default_foreground
+c.colors.contextmenu.selected.fg = default_foreground
 
 # Background color for the download bar.
 c.colors.downloads.bar.bg = lighter_background
 
 # Color gradient start for download text.
-c.colors.downloads.start.fg = blue
+c.colors.downloads.start.fg = yellow
 
 # Color gradient start for download backgrounds.
-c.colors.downloads.start.bg = blue
+c.colors.downloads.start.bg = yellow
 
 # Color gradient end for download text.
 c.colors.downloads.stop.fg = green
@@ -217,10 +217,10 @@ c.colors.statusbar.caret.selection.fg = default_background
 c.colors.statusbar.caret.selection.bg = magenta
 
 # Background color of the progress bar.
-c.colors.statusbar.progress.bg = blue
+c.colors.statusbar.progress.bg = yellow
 
 # Default foreground color of the URL in the statusbar.
-c.colors.statusbar.url.fg = default_foreground
+c.colors.statusbar.url.fg = yellow
 
 # Foreground color of the URL in the statusbar on error.
 c.colors.statusbar.url.error.fg = red
@@ -230,35 +230,35 @@ c.colors.statusbar.url.hover.fg = orange
 
 # Foreground color of the URL in the statusbar on successful load
 # (http).
-c.colors.statusbar.url.success.http.fg = comments
+c.colors.statusbar.url.success.http.fg = light_foreground
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
-c.colors.statusbar.url.success.https.fg = comments
+c.colors.statusbar.url.success.https.fg = light_foreground
 
 # Foreground color of the URL in the statusbar when there's a warning.
 c.colors.statusbar.url.warn.fg = magenta
 
 # Background color of the tab bar.
-c.colors.tabs.bar.bg = default_background
+c.colors.tabs.bar.bg = lighter_background
 
 # Color gradient start for the tab indicator.
-c.colors.tabs.indicator.start = blue
+c.colors.tabs.indicator.start = yellow
 
 # Color gradient end for the tab indicator.
-c.colors.tabs.indicator.stop = default_foreground
+c.colors.tabs.indicator.stop = comments
 
 # Color for the tab indicator on errors.
 c.colors.tabs.indicator.error = red
 
 # Foreground color of unselected odd tabs.
-c.colors.tabs.odd.fg = default_foreground
+c.colors.tabs.odd.fg = comments
 
 # Background color of unselected odd tabs.
 c.colors.tabs.odd.bg = lighter_background
 
 # Foreground color of unselected even tabs.
-c.colors.tabs.even.fg = default_foreground
+c.colors.tabs.even.fg = comments
 
 # Background color of unselected even tabs.
 c.colors.tabs.even.bg = lighter_background
@@ -288,13 +288,13 @@ c.colors.tabs.pinned.selected.odd.bg = selection_background
 c.colors.tabs.pinned.selected.odd.fg = default_foreground
 
 # Foreground color of selected odd tabs.
-c.colors.tabs.selected.odd.fg = default_foreground
+c.colors.tabs.selected.odd.fg = light_foreground
 
 # Background color of selected odd tabs.
 c.colors.tabs.selected.odd.bg = selection_background
 
 # Foreground color of selected even tabs.
-c.colors.tabs.selected.even.fg = default_foreground
+c.colors.tabs.selected.even.fg = light_foreground
 
 # Background color of selected even tabs.
 c.colors.tabs.selected.even.bg = selection_background
