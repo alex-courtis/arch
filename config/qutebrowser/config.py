@@ -1,3 +1,5 @@
+config.source('base16-bright.config.py')
+
 config.load_autoconfig(False)
 
 # not optimal; maybe fixed ~20250517 https://github.com/qutebrowser/qutebrowser/issues/8535
