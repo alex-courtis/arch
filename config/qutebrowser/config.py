@@ -21,8 +21,8 @@ c.url.start_pages  = [ c.url.default_page ]
 
 c.tabs.show = 'multiple'
 
-c.colors.statusbar.private.bg = '#d381c3'
-c.tabs.title.format = '{audio}{index}:{private}{current_title}'
+c.tabs.title.format = '{audio}{private}{current_title}'
+c.tabs.title.format_pinned = '{audio}{private}{current_title}'
 
 config.unbind('q')
 config.unbind('D')

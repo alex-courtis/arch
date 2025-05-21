@@ -9,7 +9,7 @@ import os
 default_background =   '#' + os.environ['BASE16_default_background']
 lighter_background =   '#' + os.environ['BASE16_lighter_background']
 selection_background = '#' + os.environ['BASE16_selection_background']
-# comments =             '#' + os.environ['BASE16_comments']
+comments =             '#' + os.environ['BASE16_comments']
 # dark_foreground =      '#' + os.environ['BASE16_dark_foreground']
 default_foreground =   '#' + os.environ['BASE16_default_foreground']
 light_foreground =     '#' + os.environ['BASE16_light_foreground']
@@ -90,22 +90,22 @@ c.colors.completion.scrollbar.bg = selection_background
 # c.colors.contextmenu.selected.fg = default_foreground
 
 # Background color for the download bar.
-# c.colors.downloads.bar.bg = default_background
+c.colors.downloads.bar.bg = lighter_background
 
 # Color gradient start for download text.
-# c.colors.downloads.start.fg = default_background
+c.colors.downloads.start.fg = blue
 
 # Color gradient start for download backgrounds.
-# c.colors.downloads.start.bg = blue
+c.colors.downloads.start.bg = blue
 
 # Color gradient end for download text.
-# c.colors.downloads.stop.fg = default_background
+c.colors.downloads.stop.fg = green
 
 # Color gradient stop for download backgrounds.
-# c.colors.downloads.stop.bg = cyan
+c.colors.downloads.stop.bg = green
 
 # Foreground color for downloads with errors.
-# c.colors.downloads.error.fg = red
+c.colors.downloads.error.fg = red
 
 # Font color for hints.
 c.colors.hints.fg = default_background
@@ -145,7 +145,7 @@ c.colors.messages.warning.bg = magenta
 c.colors.messages.warning.border = magenta
 
 # Foreground color of an info message.
-c.colors.messages.info.fg = default_foreground
+c.colors.messages.info.fg = default_background
 
 # Background color of an info message.
 c.colors.messages.info.bg = cyan
@@ -154,90 +154,90 @@ c.colors.messages.info.bg = cyan
 c.colors.messages.info.border = cyan
 
 # Foreground color for prompts.
-# c.colors.prompts.fg = default_foreground
+c.colors.prompts.fg = default_foreground
 
 # Border used around UI elements in prompts.
-# c.colors.prompts.border = default_background
+c.colors.prompts.border = lighter_background
 
 # Background color for prompts.
-# c.colors.prompts.bg = default_background
+c.colors.prompts.bg = lighter_background
 
 # Background color for the selected item in filename prompts.
-# c.colors.prompts.selected.bg = selection_background
+c.colors.prompts.selected.bg = selection_background
 
 # Foreground color for the selected item in filename prompts.
-# c.colors.prompts.selected.fg = default_foreground
+c.colors.prompts.selected.fg = orange
 
 # Foreground color of the statusbar.
-# c.colors.statusbar.normal.fg = default_foreground
+c.colors.statusbar.normal.fg = default_foreground
 
 # Background color of the statusbar.
-# c.colors.statusbar.normal.bg = default_background
+c.colors.statusbar.normal.bg = lighter_background
 
 # Foreground color of the statusbar in insert mode.
-# c.colors.statusbar.insert.fg = cyan
+c.colors.statusbar.insert.fg = default_background
 
 # Background color of the statusbar in insert mode.
-# c.colors.statusbar.insert.bg = default_background
+c.colors.statusbar.insert.bg = blue
 
 # Foreground color of the statusbar in passthrough mode.
-# c.colors.statusbar.passthrough.fg = yellow
+c.colors.statusbar.passthrough.fg = default_background
 
 # Background color of the statusbar in passthrough mode.
-# c.colors.statusbar.passthrough.bg = default_background
+c.colors.statusbar.passthrough.bg = yellow
 
 # Foreground color of the statusbar in private browsing mode.
-# c.colors.statusbar.private.fg = magenta
+c.colors.statusbar.private.fg = default_background
 
 # Background color of the statusbar in private browsing mode.
-# c.colors.statusbar.private.bg = default_background
+c.colors.statusbar.private.bg = brown
 
 # Foreground color of the statusbar in command mode.
-# c.colors.statusbar.command.fg = dark_foreground
+c.colors.statusbar.command.fg = default_foreground
 
 # Background color of the statusbar in command mode.
-# c.colors.statusbar.command.bg = lighter_background
+c.colors.statusbar.command.bg = selection_background
 
 # Foreground color of the statusbar in private browsing + command mode.
-# c.colors.statusbar.command.private.fg = magenta
+c.colors.statusbar.command.private.fg = brown
 
 # Background color of the statusbar in private browsing + command mode.
-# c.colors.statusbar.command.private.bg = lighter_background
+c.colors.statusbar.command.private.bg = selection_background
 
 # Foreground color of the statusbar in caret mode.
-# c.colors.statusbar.caret.fg = blue
+c.colors.statusbar.caret.fg = default_background
 
 # Background color of the statusbar in caret mode.
-# c.colors.statusbar.caret.bg = default_background
+c.colors.statusbar.caret.bg = magenta
 
 # Foreground color of the statusbar in caret mode with a selection.
-# c.colors.statusbar.caret.selection.fg = blue
+c.colors.statusbar.caret.selection.fg = default_background
 
 # Background color of the statusbar in caret mode with a selection.
-# c.colors.statusbar.caret.selection.bg = default_background
+c.colors.statusbar.caret.selection.bg = magenta
 
 # Background color of the progress bar.
-# c.colors.statusbar.progress.bg = blue
+c.colors.statusbar.progress.bg = blue
 
 # Default foreground color of the URL in the statusbar.
-# c.colors.statusbar.url.fg = default_foreground
+c.colors.statusbar.url.fg = default_foreground
 
 # Foreground color of the URL in the statusbar on error.
-# c.colors.statusbar.url.error.fg = red
+c.colors.statusbar.url.error.fg = red
 
 # Foreground color of the URL in the statusbar for hovered links.
-# c.colors.statusbar.url.hover.fg = orange
+c.colors.statusbar.url.hover.fg = orange
 
 # Foreground color of the URL in the statusbar on successful load
 # (http).
-# c.colors.statusbar.url.success.http.fg = green
+c.colors.statusbar.url.success.http.fg = comments
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
-# c.colors.statusbar.url.success.https.fg = green
+c.colors.statusbar.url.success.https.fg = comments
 
 # Foreground color of the URL in the statusbar when there's a warning.
-# c.colors.statusbar.url.warn.fg = magenta
+c.colors.statusbar.url.warn.fg = magenta
 
 # Background color of the tab bar.
 c.colors.tabs.bar.bg = default_background
@@ -246,7 +246,7 @@ c.colors.tabs.bar.bg = default_background
 c.colors.tabs.indicator.start = blue
 
 # Color gradient end for the tab indicator.
-c.colors.tabs.indicator.stop = cyan
+c.colors.tabs.indicator.stop = default_foreground
 
 # Color for the tab indicator on errors.
 c.colors.tabs.indicator.error = red
