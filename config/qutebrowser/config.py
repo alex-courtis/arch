@@ -14,7 +14,7 @@ c.colors.webpage.darkmode.enabled = False
 
 c.colors.webpage.preferred_color_scheme = 'dark'
 
-c.fonts.default_size = '13pt'
+c.fonts.default_size = '13.5pt'
 
 c.url.default_page = 'file:///.blank.html'
 c.url.start_pages  = [ c.url.default_page ]
@@ -23,6 +23,17 @@ c.tabs.show = 'multiple'
 
 c.tabs.title.format = '{audio}{private}{current_title}'
 c.tabs.title.format_pinned = '{audio}{private}{current_title}'
+
+c.tabs.padding = {"bottom": 3, "left": 0, "right": 0, "top": 2}
+c.tabs.indicator.padding = {"bottom": 0, "left": 3, "right": 10, "top": 0}
+c.tabs.indicator.width = 5
+
+c.tabs.title.alignment = 'center'
+
+c.statusbar.position = 'top'
+c.statusbar.padding = {"bottom": 3, "left": 0, "right": 8, "top": 2}
+
+c.statusbar.widgets = ["keypress", "search_match", "history", "progress", "url"]
 
 config.unbind('q')
 config.unbind('D')
