@@ -12,64 +12,64 @@ selection_background = '#' + os.environ['BASE16_selection_background']
 # comments =             '#' + os.environ['BASE16_comments']
 # dark_foreground =      '#' + os.environ['BASE16_dark_foreground']
 default_foreground =   '#' + os.environ['BASE16_default_foreground']
-# light_foreground =     '#' + os.environ['BASE16_light_foreground']
+light_foreground =     '#' + os.environ['BASE16_light_foreground']
 # light_background =     '#' + os.environ['BASE16_light_background']
 red =                  '#' + os.environ['BASE16_red']
-# orange =               '#' + os.environ['BASE16_orange']
-# yellow =               '#' + os.environ['BASE16_yellow']
+orange =               '#' + os.environ['BASE16_orange']
+yellow =               '#' + os.environ['BASE16_yellow']
 # green =                '#' + os.environ['BASE16_green']
 cyan =                 '#' + os.environ['BASE16_cyan']
 blue =                 '#' + os.environ['BASE16_blue']
-# magenta =              '#' + os.environ['BASE16_magenta']
-# brown =                '#' + os.environ['BASE16_brown']
+magenta =              '#' + os.environ['BASE16_magenta']
+brown =                '#' + os.environ['BASE16_brown']
 
 # set qutebrowser colors
 
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
-# c.colors.completion.fg = default_foreground
+c.colors.completion.fg = default_foreground
 
 # Background color of the completion widget for odd rows.
-# c.colors.completion.odd.bg = default_background
+c.colors.completion.odd.bg = lighter_background
 
 # Background color of the completion widget for even rows.
-# c.colors.completion.even.bg = default_background
+c.colors.completion.even.bg = lighter_background
 
 # Foreground color of completion widget category headers.
-# c.colors.completion.category.fg = blue
+c.colors.completion.category.fg = blue
 
 # Background color of the completion widget category headers.
-# c.colors.completion.category.bg = default_background
+c.colors.completion.category.bg = lighter_background
 
 # Top border color of the completion widget category headers.
-# c.colors.completion.category.border.top = default_background
+c.colors.completion.category.border.top = lighter_background
 
 # Bottom border color of the completion widget category headers.
-# c.colors.completion.category.border.bottom = default_background
+c.colors.completion.category.border.bottom = lighter_background
 
 # Foreground color of the selected completion item.
-# c.colors.completion.item.selected.fg = default_foreground
+c.colors.completion.item.selected.fg = default_foreground
 
 # Background color of the selected completion item.
-# c.colors.completion.item.selected.bg = selection_background
+c.colors.completion.item.selected.bg = selection_background
 
 # Top border color of the selected completion item.
-# c.colors.completion.item.selected.border.top = selection_background
+c.colors.completion.item.selected.border.top = selection_background
 
 # Bottom border color of the selected completion item.
-# c.colors.completion.item.selected.border.bottom = selection_background
+c.colors.completion.item.selected.border.bottom = selection_background
 
 # Foreground color of the matched text in the selected completion item.
-# c.colors.completion.item.selected.match.fg = default_foreground
+c.colors.completion.item.selected.match.fg = default_foreground
 
 # Foreground color of the matched text in the completion.
-# c.colors.completion.match.fg = orange
+c.colors.completion.match.fg = orange
 
 # Color of the scrollbar handle in the completion view.
-# c.colors.completion.scrollbar.fg = default_foreground
+c.colors.completion.scrollbar.fg = default_foreground
 
 # Color of the scrollbar in the completion view.
-# c.colors.completion.scrollbar.bg = default_background
+c.colors.completion.scrollbar.bg = selection_background
 
 # Background color of disabled items in the context menu.
 # c.colors.contextmenu.disabled.bg = lighter_background
@@ -108,50 +108,50 @@ blue =                 '#' + os.environ['BASE16_blue']
 # c.colors.downloads.error.fg = red
 
 # Font color for hints.
-# c.colors.hints.fg = default_background
+c.colors.hints.fg = default_background
 
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
-# c.colors.hints.bg = yellow
+c.colors.hints.bg = yellow
 
 # Font color for the matched part of hints.
-# c.colors.hints.match.fg = default_foreground
+c.colors.hints.match.fg = brown
 
 # Text color for the keyhint widget.
-# c.colors.keyhint.fg = default_foreground
+c.colors.keyhint.fg = default_foreground
 
 # Highlight color for keys to complete the current keychain.
-# c.colors.keyhint.suffix.fg = default_foreground
+c.colors.keyhint.suffix.fg = orange
 
 # Background color of the keyhint widget.
-# c.colors.keyhint.bg = default_background
+c.colors.keyhint.bg = lighter_background
 
 # Foreground color of an error message.
-# c.colors.messages.error.fg = default_background
+c.colors.messages.error.fg = default_background
 
 # Background color of an error message.
-# c.colors.messages.error.bg = red
+c.colors.messages.error.bg = red
 
 # Border color of an error message.
-# c.colors.messages.error.border = red
+c.colors.messages.error.border = red
 
 # Foreground color of a warning message.
-# c.colors.messages.warning.fg = default_background
+c.colors.messages.warning.fg = default_background
 
 # Background color of a warning message.
-# c.colors.messages.warning.bg = magenta
+c.colors.messages.warning.bg = magenta
 
 # Border color of a warning message.
-# c.colors.messages.warning.border = magenta
+c.colors.messages.warning.border = magenta
 
 # Foreground color of an info message.
-# c.colors.messages.info.fg = default_foreground
+c.colors.messages.info.fg = default_foreground
 
 # Background color of an info message.
-# c.colors.messages.info.bg = default_background
+c.colors.messages.info.bg = cyan
 
 # Border color of an info message.
-# c.colors.messages.info.border = default_background
+c.colors.messages.info.border = cyan
 
 # Foreground color for prompts.
 # c.colors.prompts.fg = default_foreground
