@@ -18,7 +18,7 @@ c.fonts.default_size = '13.5pt'
 
 c.editor.command = ["alacritty", "-e", "nvim", "-f", "{file}", "-c", "normal {line}G{column0}l"]
 
-c.hints.chars = 'pyaoeuiqjkx'
+c.hints.chars = 'pgcrlaoeuhtnsqjkmwvz'
 
 c.url.default_page = 'file:///.blank.html'
 c.url.start_pages  = [ c.url.default_page ]
