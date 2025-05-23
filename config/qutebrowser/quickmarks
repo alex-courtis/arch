@@ -1,0 +1,44 @@
+router http://192.168.1.1/
+lord IPMI dedicated https://192.168.1.14/
+lord IPMI shared https://192.168.1.15/
+Plex http://lord:32400/web/index.html#!/
+SABnzbd http://lord:8080/sabnzbd/
+SickChill http://lord:8081/home/
+ho file:///home/alex
+ss file:///home/alex/.ss/
+dl file:///home/alex/.dl/
+tmp file:///tmp/
+gn https://github.com/notifications
+gm https://mail.google.com/
+pm https://mail.proton.me/u/0/inbox
+ca https://calendar.google.com/
+ke https://keep.google.com/
+dr https://drive.google.com/drive/my-drive
+rt https://videocall.direct/redtreepractice
+ue https://www.ubereats.com/
+nf https://www.nerdfonts.com/cheat-sheet
+gum https://mozilla.github.io/webrtc-landing/gum_test.html
+d https://github.com/alex-courtis/arch
+nt https://github.com/nvim-tree/nvim-tree.lua
+ntt https://github.com/nvim-tree/nvim-tree-team
+ni https://github.com/nvim-tree/nvim-web-devicons
+xlayoutdisplay https://github.com/alex-courtis/xlayoutdisplay
+wd https://github.com/alex-courtis/way-displays
+wr https://github.com/alex-courtis/wideriver
+dual-function-keys https://gitlab.com/interception/linux/plugins/dual-function-keys
+sway https://github.com/swaywm/sway
+sway.amc https://github.com/alex-courtis/sway
+slstatus https://github.com/alex-courtis/slstatus
+wlroots https://gitlab.freedesktop.org/wlroots/wlroots
+wlroots.amc https://gitlab.freedesktop.org/alex-courtis/wlroots
+libinput https://gitlab.freedesktop.org/libinput/libinput
+libinput.amc https://gitlab.freedesktop.org/alex-courtis/libinput
+vkd3d-proton https://github.com/HansKristian-Work/vkd3d-proton
+proton https://github.com/ValveSoftware/Proton
+river https://codeberg.org/river/river
+libuv http://docs.libuv.org/en/v1.x/
+libuv lua https://github.com/luvit/luv/blob/master/docs.md
+lua 5.1 https://www.lua.org/manual/5.1/
+lua 5.1 alt https://devdocs.io/lua~5.1/
+PIL 5.0 http://www.lua.org/pil/contents.html
+luals https://luals.github.io/
