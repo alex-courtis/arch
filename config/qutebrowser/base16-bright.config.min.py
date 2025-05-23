@@ -127,31 +127,31 @@ c.colors.keyhint.suffix.fg = orange
 c.colors.keyhint.bg = lighter_background
 
 # Foreground color of an error message.
-c.colors.messages.error.fg = default_background
+c.colors.messages.error.fg = red
 
 # Background color of an error message.
-c.colors.messages.error.bg = red
+c.colors.messages.error.bg = lighter_background
 
 # Border color of an error message.
-c.colors.messages.error.border = red
+c.colors.messages.error.border = lighter_background
 
 # Foreground color of a warning message.
-c.colors.messages.warning.fg = default_background
+c.colors.messages.warning.fg = magenta
 
 # Background color of a warning message.
-c.colors.messages.warning.bg = magenta
+c.colors.messages.warning.bg = lighter_background
 
 # Border color of a warning message.
-c.colors.messages.warning.border = magenta
+c.colors.messages.warning.border = lighter_background
 
 # Foreground color of an info message.
-c.colors.messages.info.fg = default_background
+c.colors.messages.info.fg = cyan
 
 # Background color of an info message.
-c.colors.messages.info.bg = cyan
+c.colors.messages.info.bg = lighter_background
 
 # Border color of an info message.
-c.colors.messages.info.border = cyan
+c.colors.messages.info.border = lighter_background
 
 # Foreground color for prompts.
 c.colors.prompts.fg = default_foreground
@@ -175,58 +175,58 @@ c.colors.statusbar.normal.fg = default_foreground
 c.colors.statusbar.normal.bg = lighter_background
 
 # Foreground color of the statusbar in insert mode.
-c.colors.statusbar.insert.fg = default_background
+c.colors.statusbar.insert.fg = blue
 
 # Background color of the statusbar in insert mode.
-c.colors.statusbar.insert.bg = blue
+c.colors.statusbar.insert.bg = lighter_background
 
 # Foreground color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.fg = default_background
+c.colors.statusbar.passthrough.fg = yellow
 
 # Background color of the statusbar in passthrough mode.
-c.colors.statusbar.passthrough.bg = yellow
+c.colors.statusbar.passthrough.bg = lighter_background
 
 # Foreground color of the statusbar in private browsing mode.
-c.colors.statusbar.private.fg = default_background
+c.colors.statusbar.private.fg = red
 
 # Background color of the statusbar in private browsing mode.
-c.colors.statusbar.private.bg = brown
+c.colors.statusbar.private.bg = lighter_background
 
 # Foreground color of the statusbar in command mode.
 c.colors.statusbar.command.fg = default_foreground
 
 # Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = selection_background
+c.colors.statusbar.command.bg = lighter_background
 
 # Foreground color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.fg = brown
+c.colors.statusbar.command.private.fg = default_foreground
 
 # Background color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.bg = selection_background
+c.colors.statusbar.command.private.bg = lighter_background
 
 # Foreground color of the statusbar in caret mode.
-c.colors.statusbar.caret.fg = default_background
+c.colors.statusbar.caret.fg = magenta
 
 # Background color of the statusbar in caret mode.
-c.colors.statusbar.caret.bg = magenta
+c.colors.statusbar.caret.bg = lighter_background
 
 # Foreground color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.fg = default_background
+c.colors.statusbar.caret.selection.fg = magenta
 
 # Background color of the statusbar in caret mode with a selection.
-c.colors.statusbar.caret.selection.bg = magenta
+c.colors.statusbar.caret.selection.bg = lighter_background
 
 # Background color of the progress bar.
 c.colors.statusbar.progress.bg = yellow
 
 # Default foreground color of the URL in the statusbar.
-c.colors.statusbar.url.fg = yellow
+c.colors.statusbar.url.fg = default_foreground
 
 # Foreground color of the URL in the statusbar on error.
 c.colors.statusbar.url.error.fg = red
 
 # Foreground color of the URL in the statusbar for hovered links.
-c.colors.statusbar.url.hover.fg = orange
+c.colors.statusbar.url.hover.fg = light_foreground
 
 # Foreground color of the URL in the statusbar on successful load
 # (http).

@@ -39,10 +39,15 @@ c.tabs.indicator.width = 5
 
 c.tabs.title.alignment = 'center'
 
-c.statusbar.position = 'top'
+c.statusbar.show = 'in-mode'
+
+c.statusbar.position = 'bottom'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 2}
 
 c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
+
+c.search.wrap = False
+c.search.wrap_messages = False
 
 c.url.searchengines = {
 		'DEFAULT': 'https://duckduckgo.com/?q={}',
