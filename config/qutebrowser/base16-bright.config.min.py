@@ -93,16 +93,16 @@ c.colors.contextmenu.selected.fg = default_foreground
 c.colors.downloads.bar.bg = lighter_background
 
 # Color gradient start for download text.
-c.colors.downloads.start.fg = yellow
+c.colors.downloads.start.fg = default_foreground
 
 # Color gradient start for download backgrounds.
-c.colors.downloads.start.bg = yellow
+c.colors.downloads.start.bg = selection_background
 
 # Color gradient end for download text.
 c.colors.downloads.stop.fg = green
 
 # Color gradient stop for download backgrounds.
-c.colors.downloads.stop.bg = green
+c.colors.downloads.stop.bg = selection_background
 
 # Foreground color for downloads with errors.
 c.colors.downloads.error.fg = red

@@ -23,6 +23,11 @@ c.hints.chars = 'pgcrlaoeuhtnsqjkmwvz'
 c.url.default_page = 'file:///.blank.html'
 c.url.start_pages  = [ c.url.default_page ]
 
+c.content.pdfjs = True
+
+c.downloads.position = 'bottom'
+c.downloads.remove_finished = 5
+
 c.tabs.show = 'multiple'
 
 c.tabs.title.format = '{audio}{private}{current_title}'
