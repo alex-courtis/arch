@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-qutebrowser --target private-window "$@" >/dev/null 2>&1 &!
+qutebrowser --target private-window --override-restore "$@" >/dev/null 2>&1 &!
 
