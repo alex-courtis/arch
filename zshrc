@@ -12,10 +12,10 @@ source "${HOME}/.zsh/zshrc.alias"
 
 # use the keychain wrapper to start ssh-agent if needed
 if [ "$(whence keychain)" ]; then
-	if [ "${UNAME}" = "Darwin" ]; then
-		eval $(keychain --eval --quiet id_rsa )
+	if [ "${XDG_RUNTIME_DIR}" ] && [ "${DBUS_SESSION_BUS_ADDRESS}" ]; then
+		eval $(keychain --eval --systemd --quiet id_rsa )
 	else
-		eval $(keychain --eval --systemd --quiet id_rsa id_rsa.aur )
+		eval $(keychain --eval           --quiet id_rsa )
 	fi
 fi
 
