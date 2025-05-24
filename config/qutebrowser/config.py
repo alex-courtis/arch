@@ -41,12 +41,14 @@ c.tabs.title.alignment = 'center'
 c.tabs.wrap = False
 
 # many issues exist with in-mode e.g. https://github.com/qutebrowser/qutebrowser/issues/5520
-# c.statusbar.show = 'in-mode'
+c.statusbar.show = 'in-mode'
 
-c.statusbar.position = 'bottom'
+c.statusbar.position = 'top'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 2}
 
 c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
+
+c.content.register_protocol_handler = True
 
 c.search.wrap = False
 c.search.wrap_messages = False
