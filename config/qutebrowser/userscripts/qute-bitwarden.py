@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# use this until we get the upstream fix f9933d2f3
+
 # SPDX-FileCopyrightText: Chris Braun (cryzed) <cryzed@googlemail.com>
 #
 # SPDX-License-Identifier: GPL-3.0-or-later

@@ -102,9 +102,9 @@ config.bind('ge', 'edit-url')
 
 config.bind('<ctrl+alt+t>', 'undo -w')
 
-config.bind('<alt+b>', 'spawn --userscript qute-bitwarden')
-config.bind('<alt+u>', 'spawn --userscript qute-bitwarden --username-only')
-config.bind('<alt+p>', 'spawn --userscript qute-bitwarden --password-only')
+config.bind('<alt+b>', 'spawn --userscript --verbose qute-bitwarden.py')
+config.bind('<alt+u>', 'spawn --userscript --verbose qute-bitwarden.py --username-only')
+config.bind('<alt+p>', 'spawn --userscript --verbose qute-bitwarden.py --password-only')
 
 config.bind('<alt+u>', 'spawn --userscript qute-bitwarden --username-only', mode='prompt')
 config.bind('<alt+p>', 'spawn --userscript qute-bitwarden --password-only', mode='prompt')
