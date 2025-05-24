@@ -327,9 +327,11 @@ end
 function M.vim_enter(data)
   local real_file = vim.fn.filereadable(data.file) == 1
 
+  local temp_file = real_file and data.file:match("^/tmp")
+
   local ignored_ft = vim.tbl_contains(NO_STARTUP_FT, vim.bo[data.buf].ft)
 
-  if (real_file and not ignored_ft) or env.startup_dir then
+  if (real_file and not temp_file and not ignored_ft) or env.startup_dir then
     -- open the tree but don't focus it
     api.tree.toggle({ focus = false })
 
