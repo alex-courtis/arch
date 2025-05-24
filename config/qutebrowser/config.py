@@ -1,6 +1,6 @@
 import os
 
-config.source('base16-bright.config.min.py')
+config.source('base16-bright.py')
 
 config.load_autoconfig(False)
 
