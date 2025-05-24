@@ -71,15 +71,11 @@ config.unbind('q')
 config.unbind('D')
 config.unbind('U')
 
-config.bind('<ctrl+g>',
-			'set statusbar.show in-mode ;; '
-			'set tabs.show switching ;; '
-			'fullscreen')
+config.bind('<ctrl+f>', 'fullscreen')
 
-config.bind('<ctrl+shift+g>',
-			'set statusbar.show always ;; '
-			'set tabs.show multiple ;; '
-			'fullscreen')
+config.bind('<ctrl+g>',
+			'config-cycle statusbar.show never always ;; '
+			'config-cycle tabs.show never multiple')
 
 config.bind('<Escape>', 
 			'clear-messages ;; '
