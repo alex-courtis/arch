@@ -6,7 +6,7 @@ config.load_autoconfig(False)
 # only appears necessary when xwayland not present
 # c.qt.force_software_rendering = 'chromium'
 
-c.auto_save.session = True
+c.auto_save.session = False
 
 c.tabs.last_close = 'close'
 
@@ -38,8 +38,10 @@ c.tabs.indicator.padding = {'bottom': 0, 'left': 3, 'right': 10, 'top': 0}
 c.tabs.indicator.width = 5
 
 c.tabs.title.alignment = 'center'
+c.tabs.wrap = False
 
-c.statusbar.show = 'in-mode'
+# many issues exist with in-mode e.g. https://github.com/qutebrowser/qutebrowser/issues/5520
+# c.statusbar.show = 'in-mode'
 
 c.statusbar.position = 'bottom'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 2}
@@ -69,7 +71,20 @@ config.unbind('q')
 config.unbind('D')
 config.unbind('U')
 
-config.bind('<Escape>', 'clear-messages ;; clear-keychain ;; search ;; fullscreen --leave')
+config.bind('<ctrl+g>',
+			'set statusbar.show in-mode ;; '
+			'set tabs.show switching ;; '
+			'fullscreen')
+
+config.bind('<ctrl+shift+g>',
+			'set statusbar.show always ;; '
+			'set tabs.show multiple ;; '
+			'fullscreen')
+
+config.bind('<Escape>', 
+			'clear-messages ;; '
+			'clear-keychain ;; '
+			'search ;; ')
 
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')

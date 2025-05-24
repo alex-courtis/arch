@@ -45,22 +45,22 @@ c.colors.completion.category.bg = lighter_background
 c.colors.completion.category.border.top = lighter_background
 
 # Bottom border color of the completion widget category headers.
-c.colors.completion.category.border.bottom = lighter_background
+c.colors.completion.category.border.bottom = default_foreground
 
 # Foreground color of the selected completion item.
-c.colors.completion.item.selected.fg = default_foreground
+c.colors.completion.item.selected.fg = light_foreground
 
 # Background color of the selected completion item.
 c.colors.completion.item.selected.bg = selection_background
 
 # Top border color of the selected completion item.
-c.colors.completion.item.selected.border.top = selection_background
+c.colors.completion.item.selected.border.top = lighter_background
 
 # Bottom border color of the selected completion item.
-c.colors.completion.item.selected.border.bottom = selection_background
+c.colors.completion.item.selected.border.bottom = lighter_background
 
 # Foreground color of the matched text in the selected completion item.
-c.colors.completion.item.selected.match.fg = default_foreground
+c.colors.completion.item.selected.match.fg = orange
 
 # Foreground color of the matched text in the completion.
 c.colors.completion.match.fg = orange
@@ -196,13 +196,13 @@ c.colors.statusbar.private.bg = lighter_background
 c.colors.statusbar.command.fg = default_foreground
 
 # Background color of the statusbar in command mode.
-c.colors.statusbar.command.bg = lighter_background
+c.colors.statusbar.command.bg = selection_background
 
 # Foreground color of the statusbar in private browsing + command mode.
 c.colors.statusbar.command.private.fg = default_foreground
 
 # Background color of the statusbar in private browsing + command mode.
-c.colors.statusbar.command.private.bg = lighter_background
+c.colors.statusbar.command.private.bg = selection_background
 
 # Foreground color of the statusbar in caret mode.
 c.colors.statusbar.caret.fg = magenta
