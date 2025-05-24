@@ -36,7 +36,7 @@ c.tabs.show = 'multiple'
 c.tabs.title.format = '{audio}{private}{current_title}'
 c.tabs.title.format_pinned = '{audio}{private}{current_title}'
 
-c.tabs.padding = {'bottom': 3, 'left': 0, 'right': 0, 'top': 2}
+c.tabs.padding = {'bottom': 3, 'left': 0, 'right': 0, 'top': 3}
 c.tabs.indicator.padding = {'bottom': 0, 'left': 3, 'right': 10, 'top': 0}
 c.tabs.indicator.width = 5
 
@@ -47,7 +47,7 @@ c.tabs.wrap = False
 c.statusbar.show = 'in-mode'
 
 c.statusbar.position = 'top'
-c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 2}
+c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 3}
 
 c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
 
