@@ -51,7 +51,7 @@ c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
 c.search.wrap = False
 c.search.wrap_messages = False
 
-c.completion.open_categories = [ 'history', 'bookmarks', 'searchengines', 'quickmarks' ]
+c.completion.open_categories = [ 'history', 'filesystem', 'bookmarks', 'searchengines' ]
 
 c.url.searchengines = {
 		'DEFAULT': 'https://duckduckgo.com/?q={}',
@@ -73,7 +73,7 @@ config.unbind('q')
 config.unbind('D')
 config.unbind('U')
 
-config.bind('<ctrl+f>', 'fullscreen')
+config.bind('<ctrl+f>', 'cmd-set-text /')
 
 config.bind('<ctrl+g>',
 			'config-cycle statusbar.show never always ;; '
@@ -83,6 +83,8 @@ config.bind('<Escape>',
 			'clear-messages ;; '
 			'clear-keychain ;; '
 			'search')
+
+config.bind('<ctrl+b>', 'bookmark-list')
 
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
