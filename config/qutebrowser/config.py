@@ -1,10 +1,13 @@
+import os
+
 config.source('base16-bright.config.min.py')
 
 config.load_autoconfig(False)
 
 # not optimal; maybe fixed ~20250517 https://github.com/qutebrowser/qutebrowser/issues/8535
 # only appears necessary when xwayland not present
-# c.qt.force_software_rendering = 'chromium'
+if not os.getenv('DISPLAY'):
+	c.qt.force_software_rendering = 'chromium'
 
 c.auto_save.session = False
 
