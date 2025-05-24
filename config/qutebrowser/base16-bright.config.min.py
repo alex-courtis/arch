@@ -17,6 +17,7 @@ light_foreground =     '#' + os.environ['BASE16_light_foreground']
 red =                  '#' + os.environ['BASE16_red']
 orange =               '#' + os.environ['BASE16_orange']
 yellow =               '#' + os.environ['BASE16_yellow']
+bright_yellow =        '#' + os.environ['BASE16_bright_yellow']
 green =                '#' + os.environ['BASE16_green']
 cyan =                 '#' + os.environ['BASE16_cyan']
 blue =                 '#' + os.environ['BASE16_blue']
@@ -112,10 +113,13 @@ c.colors.hints.fg = default_background
 
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
-c.colors.hints.bg = yellow
+c.colors.hints.bg = bright_yellow
 
 # Font color for the matched part of hints.
 c.colors.hints.match.fg = brown
+
+# only colour that's a setting
+c.hints.border = '1px solid ' + brown
 
 # Text color for the keyhint widget.
 c.colors.keyhint.fg = default_foreground
