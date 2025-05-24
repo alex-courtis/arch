@@ -51,6 +51,8 @@ c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
 c.search.wrap = False
 c.search.wrap_messages = False
 
+c.completion.open_categories = [ 'history', 'bookmarks', 'searchengines', 'quickmarks' ]
+
 c.url.searchengines = {
 		'DEFAULT': 'https://duckduckgo.com/?q={}',
 		'ap':      'https://archlinux.org/packages/?q={}',
@@ -80,7 +82,7 @@ config.bind('<ctrl+g>',
 config.bind('<Escape>', 
 			'clear-messages ;; '
 			'clear-keychain ;; '
-			'search ;; ')
+			'search')
 
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
