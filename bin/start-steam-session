@@ -1,18 +1,18 @@
 #!/bin/zsh
 
-# 2024 08 31, 3.14.29
-# Inconsistent rarely functional. Big time waster.
-# 
-# -nested-refresh needed to increase above default 60
-# -console is needed for quit command
-# -gamepadui is required, will not show game when launched from normal version until big picture selected
-# -fullscreen appears to be needed for adaptive sync
-# adaptive sync sometimes functional: vsync must be disabled
-# HDR appears sometimes functional: shows disabled in game
-#
-# game must be explicitly set to native resolution, output and nested resolution args not needed, don't seem to work
+# 2025 05 25, 3.16.9
+# working for talos principle 2 and returnal
+
+# unnecessary
+# --hdr-debug-force-output \
+# export STEAM_MULTIPLE_XWAYLANDS=1
+# export ENABLE_HDR_WSI=1
+
+# unsure whether nested refresh is necessary
 
 export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
+
+export DXVK_HDR=1
 
 gamescope \
 	--xwayland-count 2 \
@@ -23,3 +23,4 @@ gamescope \
 	--mangoapp \
 	--steam \
 	-- steam -gamepadui -console
+
