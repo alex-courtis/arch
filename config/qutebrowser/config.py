@@ -44,7 +44,7 @@ c.tabs.title.alignment = 'center'
 c.tabs.wrap = False
 
 # many issues exist with in-mode e.g. https://github.com/qutebrowser/qutebrowser/issues/5520
-c.statusbar.show = 'in-mode'
+c.statusbar.show = 'always'
 
 c.statusbar.position = 'top'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 3}
@@ -75,14 +75,9 @@ c.url.searchengines = {
 		}
 
 config.unbind('q')
-config.unbind('D')
 config.unbind('U')
 
 config.bind('<ctrl+f>', 'cmd-set-text /')
-
-config.bind('<ctrl+g>',
-			'config-cycle statusbar.show never always ;; '
-			'config-cycle tabs.show never multiple')
 
 config.bind('<Escape>', 
 			'clear-messages ;; '
@@ -94,8 +89,16 @@ config.bind('<ctrl+b>', 'bookmark-list')
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
 
+config.unbind('th')
+config.bind('<ctrl+h>', 'back -t')
+config.unbind('tl')
+config.bind('<ctrl+l>', 'forward -t')
+
+config.unbind('d')
 config.bind('x', 'tab-close')
-config.bind('X', 'tab-close -o')
+config.unbind('D')
+config.bind('X', 'undo')
+config.bind('<ctrl+x>', 'undo -w')
 
 config.bind('<', 'tab-move -')
 config.bind('>', 'tab-move +')
@@ -104,8 +107,35 @@ config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
 
 config.bind('ge', 'edit-url')
+config.bind('gE', 'edit-url --tab')
 
-config.bind('<ctrl+alt+t>', 'undo -w')
+config.bind('th', 'config-cycle statusbar.show in-mode always')
+config.bind('tt', 'config-cycle tabs.show switching multiple')
+
+config.bind('tn', 
+			'fullscreen --enter ;; '
+			'set statusbar.show in-mode ;;'
+			'set tabs.show switching'
+			)
+config.bind('tw', 
+			'fullscreen ;; '
+			'set statusbar.show always ;;'
+			'set tabs.show multiple')
+
+config.bind('cl', 'tab-only --prev')
+config.bind('ch', 'tab-only --next')
+
+config.unbind('pp')
+config.unbind('pP')
+config.unbind('Pp')
+config.unbind('PP')
+config.bind('p', 'open -- {clipboard}')
+config.bind('P', 'open -t -- {clipboard}')
+
+config.bind('yt', 'tab-clone')
+
+config.bind('e', 'cmd-set-text --space :tab-give')
+config.bind('E', 'cmd-set-text --space :tab-take')
 
 config.bind('<alt+b>', 'spawn --userscript --verbose qute-bitwarden.py')
 config.bind('<alt+u>', 'spawn --userscript --verbose qute-bitwarden.py --username-only')
@@ -116,5 +146,3 @@ config.bind('<alt+p>', 'spawn --userscript qute-bitwarden --password-only', mode
 
 config.bind('<alt+d>', 'set colors.webpage.darkmode.enabled true')
 config.bind('<alt+l>', 'set colors.webpage.darkmode.enabled false')
-
-config.bind('ww', 'tab-give')
