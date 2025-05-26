@@ -86,6 +86,8 @@ config.bind('<Escape>',
 
 config.bind('<ctrl+b>', 'bookmark-list')
 
+config.bind('^', 'tab-focus last')
+
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
 
