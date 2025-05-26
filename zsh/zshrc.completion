@@ -9,3 +9,7 @@ fi
 
 zstyle ':completion:*' completer _expand_alias _complete
 zstyle ':completion:*' menu select
+
+# complex git aliases
+_git-wb() { _git-branch }
+_git-wc() { _git-branch }
