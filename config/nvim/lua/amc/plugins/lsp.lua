@@ -21,26 +21,26 @@ local function on_attach(client, bufnr)
   -- vim.lsp.tagfunc() indicates that it calls textDocument/definition,
   -- however vim.lsp.buf.definition returns two results e.g. wk.Spec
   if client.server_capabilities.definitionProvider then
-    -- K.n_lb("t",  vim.lsp.buf.definition, bufnr, "vim.lsp.buf.definition", })
-    K.n_lb("dt", vim.lsp.buf.definition, bufnr, "vim.lsp.buf.definition")
+    -- K.n_lb("t",  vim.lsp.buf.definition, bufnr, "LSP: Definition", })
+    K.n_lb("dt", vim.lsp.buf.definition, bufnr, "LSP: Definition")
   end
 
   if client.server_capabilities.declarationProvider then
-    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "vim.lsp.buf.declaration")
-    K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "vim.lsp.buf.declaration")
+    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
+    K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
   end
 
-  K.n_lb("n",  telescope.lsp_references,        bufnr, "telescope.lsp_references")
-  K.n_lb("N",  vim.lsp.buf.references,          bufnr, "vim.lsp.buf.references")
+  K.n_lb("n",  telescope.lsp_references,        bufnr, "Telescope: References")
+  K.n_lb("N",  vim.lsp.buf.references,          bufnr, "LSP: References")
 
-  K.n_lb("d-", vim.cmd.LspRestart,              bufnr, ":LspRestart")
-  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "vim.lsp.buf.code_action")
-  K.n_lb("de", vim.lsp.buf.rename,              bufnr, "vim.lsp.buf.rename")
-  K.n_lb("df", vim.diagnostic.open_float,       bufnr, "vim.diagnostic.open_float")
-  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "vim.lsp.buf.hover")
-  K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "telescope.diagnostics_workspace")
-  K.n_lb("dL", telescope.diagnostics,           bufnr, "telescope.diagnostics")
-  K.n_lb("dq", vim.diagnostic.setqflist,        bufnr, "vim.diagnostic.setqflist")
+  K.n_lb("d-", vim.cmd.LspRestart,              bufnr, "LSP: Restart")
+  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "LSP: Code Action")
+  K.n_lb("de", vim.lsp.buf.rename,              bufnr, "LSP: Rename")
+  K.n_lb("df", vim.diagnostic.open_float,       bufnr, "Diagnostics: Float")
+  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "LSP: Hover")
+  K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
+  K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
+  K.n_lb("dq", vim.diagnostic.setqflist,        bufnr, "Diagnostics: QuickFix")
 
   if client:supports_method("textDocument/completion") then
     vim.lsp.completion.enable(true, client.id, bufnr, {})
@@ -48,7 +48,7 @@ local function on_attach(client, bufnr)
 
   -- client:supports_method  Always returns true for unknown off-spec methods
   if client.name == "ccls" then
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, ":LspCclsSwitchSourceHeader")
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "ccls: Switch Source Header")
   end
 end
 
