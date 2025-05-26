@@ -18,9 +18,9 @@
   "ambientLight": 0.2,
   "windowOpacity": 1,
   "fontName": "System: vt52",
-  "fontWidth": 1,
-  "margin": 0.2037,
-  "blinkingCursor": true,
+  "fontWidth": 0.91,
+  "margin": 0.1534,
+  "blinkingCursor": false,
   "frameMargin": 0,
   "name": "vt102",
   "version": 2
