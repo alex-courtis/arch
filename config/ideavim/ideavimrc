@@ -50,7 +50,7 @@ sethandler <C-]> a:vim
 
 nm <ESC> :nohls<CR><ESC>
 
-nm ya <Action>(CopyAbsolutePath)
+nm ys <Action>(CopyAbsolutePath)
 nm yj <Action>(CopyReference)
 nm yn <Action>(CopyFileName)
 nm yr <Action>(CopyPathFromRepositoryRootProvider)
@@ -62,14 +62,11 @@ nm <Space><BS> <Action>(Back)
 nm <Space><Space> <Action>(Forward)
 nm <BS><Space> <Action>(Forward)
 
-nm <Space>; <Action>(ActivateFindToolWindow)
 nm <Space>a :NERDTreeFocus<CR>
 nm <Space>A <Action>(ActivateStructureToolWindow)
 nm <Space>' <Action>(RestoreDefaultLayout)
 
 nm <Space>, <Action>(CheckinProject)
-nm <Space>o <Action>(NextTab)
-nm <Space>O <Action>(PreviousTab)
 nm <Space>q <Action>(CloseContent)
 
 nm <Space>. <Action>(GotoNextError)
@@ -82,20 +79,27 @@ nm <Space>k <Action>(VcsShowPrevChangeMarker)
 
 nm <Space>y <Action>(ActivateCommitToolWindow)
 nm <Space>i <Action>(Switcher)
+nm <Space>I <Action>(RecentlyEdited)
 nm <Space>x :b#<CR>
 
 nm <Space><Down> <Action>(NextTab)
 nm <Space><Up> <Action>(PreviousTab)
 
-nm <BS>f  <Action>(GotoFile)
-nm <BS>F  <Action>(GotoClass)
-nm <BS>dr <Action>(RenameElement)
-vm <BS>dr <Action>(RenameElement)
+nm <BS>ff <Action>(GotoFile)
+nm <BS>fc <Action>(GotoClass)
+nm <BS>da <Action>(ShowIntentionActions)
+nm <BS>de <Action>(RenameElement)
+nm <BS>df <Action>(QuickTypeDefinition)
 nm <BS>dg <Action>(Generate)
+nm <BS>dh <Action>(ShowHoverInfo)
+nm <BS>dq <Action>(QuickImplementations)
+nm <BS>du <Action>(FindUsagesInFile)
 nm <BS>b  :%y<CR>
 nm <BS>B  :%d_<CR>
 
-nm <BS>g  <Action>(FindInPath)
+nm <BS>gc viw<Action>(FindInPath)<Esc>
+nm <BS>gg <Action>(FindInPath)
+vm <BS>gg <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
 nm <BS>hd <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
@@ -125,13 +129,9 @@ nm <BS>v  :put<CR>
 nm <BS>l <Action>(EditorToggleShowWhitespaces)
 nm <BS>L :%s/\\s\\+$//e<CR>
 
-nm <BS>s  viw<Action>(FindInPath)<Esc>
-vm <BS>s  <Action>(FindInPath)<Esc>
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
 
-nm <BS>/  viw<Action>(Find)<Esc>
-vm <BS>/  <Action>(Find)<Esc>
 nm <BS>- <Action>(CloseAllEditorsButActive)
 nm <BS>\ <Action>(CloseContent)
 
