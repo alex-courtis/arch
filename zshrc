@@ -20,3 +20,7 @@ if [ "$(whence keychain)" ]; then
 fi
 
 setopt rmstarsilent
+
+if [ -d ~/.orbit/bin ]; then
+	path=(~/.orbit/bin $path)
+fi
