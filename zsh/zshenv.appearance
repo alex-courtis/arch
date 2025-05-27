@@ -84,8 +84,8 @@ fi
 #
 case "${HOST}" in
 	G2XTD9VMR2*)
-		export FONT_SIZE_PT=18
-		export FONT_SIZE_PT_BAR=18
+		export FONT_SIZE_PT=14
+		export FONT_SIZE_PT_BAR=14
 		;;
 	*)
 		export FONT_SIZE_PT=12
