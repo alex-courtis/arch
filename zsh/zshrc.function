@@ -76,4 +76,6 @@ fi
 if [ -n "${RDE_PROFILE_NAME}" ]; then
 	make_chdir_sub_vi j  "${HOME}/jira"
 fi
-
+if [ "${HOST}" = "lord" ]; then
+	make_chdir_sub_vi nfs "/srv/nfs"
+fi
