@@ -2,7 +2,7 @@
 Description=rclone sync timer
 
 [Timer]
-OnBootSec=15min
+OnBootSec=5
 OnUnitActiveSec=15min
 
 [Install]
