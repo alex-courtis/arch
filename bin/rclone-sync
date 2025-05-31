@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# copy existing  ~/.config/rclone/rclone.conf  or set one up with  rclone config
+
+# initialise sync once with 
+# rclone bisync -1 ~/.gd/qutebrowser gd:qutebrowser
+
+# TODO only log errors once this has settled
+date >> ~/rclone.log
+
+rclone \
+	bisync \
+	--verbose \
+	~/.gd/qutebrowser gd:qutebrowser >> ~/rclone.log 2>&1
+RC=$?
+
+echo "RC=${RC}" >> ~/rclone.log
+
