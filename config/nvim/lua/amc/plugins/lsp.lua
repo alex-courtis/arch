@@ -34,6 +34,7 @@ local function on_attach(client, bufnr)
   K.n_lb("N",  vim.lsp.buf.references,          bufnr, "LSP: References")
 
   K.n_lb("d-", vim.cmd.LspRestart,              bufnr, "LSP: Restart")
+  K.n_lb("d_", M.disable,                       bufnr, "LSP: Disable Active Clients")
   K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "LSP: Code Action")
   K.n_lb("de", vim.lsp.buf.rename,              bufnr, "LSP: Rename")
   K.n_lb("df", vim.diagnostic.open_float,       bufnr, "Diagnostics: Float")
@@ -157,6 +158,16 @@ vim.lsp.enable("yamlls")
 --
 -- Functions
 --
+
+-- nvim-lspconfig stop is in flux at 11.2:
+-- old and new versions have different problems, work around for now
+function M.disable()
+  vim.cmd.LspStop()
+  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    print("disabling " .. client.name)
+    vim.lsp.enable(client.name, false)
+  end
+end
 
 function M.prev_diagnostic()
   if vim.fn.has("nvim-0.11") == 1 then
