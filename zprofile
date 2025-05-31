@@ -6,19 +6,13 @@ echo "zprofile ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR-x}.${USER}.l
 if [ "${USER}" != "root" -a "${HOST}" != "lord" -a -z "${DISPLAY}" -a -z "${WAYLAND_DISPLAY}" -a -n "${XDG_VTNR}" ]; then
 	case "${XDG_VTNR}" in
 		1)
-			. startwm river
+			. de-river
 			;;
 		2)
-			. startwm x dwm
+			. de-dwm
 			;;
 		3)
-			. startwm steam
-			;;
-		4)
-			. startwm hyprland
-			;;
-		5)
-			. startwm sway
+			. de-gamescope-steam
 			;;
 	esac
 fi

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 # 2025 05 25, 3.16.9
 # working for talos principle 2 and returnal
@@ -14,7 +14,7 @@ export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
 
 export DXVK_HDR=1
 
-gamescope \
+exec gamescope \
 	--xwayland-count 2 \
 	--nested-refresh 144 \
 	--hdr-enabled \
@@ -22,5 +22,6 @@ gamescope \
 	--fullscreen \
 	--mangoapp \
 	--steam \
-	-- steam -gamepadui -console
+	-- steam -gamepadui -console \
+	> "/tmp/gamescope-steam.${XDG_VTNR}.${USER}.log" 2>&1
 

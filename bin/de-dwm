@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export X_WM="dwm"
+exec startx > "/tmp/${X_WM}.${XDG_VTNR}.${USER}.log" 2>&1
