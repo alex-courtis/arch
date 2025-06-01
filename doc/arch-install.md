@@ -504,6 +504,7 @@ todotxt
 way-displays
 wev
 wideriver
+wl-color-picker
 zig-bin
 zsh-system-clipboard-git
 ydotool
