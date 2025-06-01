@@ -134,6 +134,13 @@ config.unbind('PP')
 config.bind('p', 'open -- {clipboard}')
 config.bind('P', 'open -t -- {clipboard}')
 
+config.unbind('sf')
+config.unbind('sk')
+config.unbind('sl')
+config.unbind('ss')
+config.bind('s', 'open -- {primary}')
+config.bind('S', 'open -t -- {primary}')
+
 config.bind('yt', 'tab-clone')
 
 config.bind('e', 'cmd-set-text --space :tab-give')
