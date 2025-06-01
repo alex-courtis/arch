@@ -18,6 +18,8 @@ blue =                 '#' + os.environ['BASE16_blue']
 magenta =              '#' + os.environ['BASE16_magenta']
 brown =                '#' + os.environ['BASE16_brown']
 
+private_background =   '#3a0092' # from brave private
+
 # only colour that's a setting
 c.hints.border = '1px solid ' + brown
 
@@ -75,11 +77,11 @@ c.colors.statusbar.insert.bg = lighter_background
 c.colors.statusbar.passthrough.fg = yellow
 c.colors.statusbar.passthrough.bg = lighter_background
 c.colors.statusbar.private.fg = red
-c.colors.statusbar.private.bg = lighter_background
+c.colors.statusbar.private.bg = private_background
 c.colors.statusbar.command.fg = default_foreground
 c.colors.statusbar.command.bg = selection_background
 c.colors.statusbar.command.private.fg = default_foreground
-c.colors.statusbar.command.private.bg = selection_background
+c.colors.statusbar.command.private.bg = private_background
 c.colors.statusbar.caret.fg = magenta
 c.colors.statusbar.caret.bg = lighter_background
 c.colors.statusbar.caret.selection.fg = magenta

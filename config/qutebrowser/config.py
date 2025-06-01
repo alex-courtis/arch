@@ -418,7 +418,7 @@ config.bind('wl', 'forward --window')
 config.bind('td', 'tab-clone')
 config.bind('wd', 'tab-clone --window')
 
-config.bind('wg', 'cmd-set-text --space :tab-give')
+config.bind('tg', 'cmd-set-text --space :tab-give')
 config.bind('wt', 'cmd-set-text --space :tab-take')
 
 config.bind('p',  'open -- {clipboard}')
