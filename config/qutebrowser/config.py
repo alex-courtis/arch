@@ -45,6 +45,7 @@ c.tabs.wrap = False
 
 # many issues exist with in-mode e.g. https://github.com/qutebrowser/qutebrowser/issues/5520
 c.statusbar.show = 'always'
+c.tabs.show = 'multiple'
 
 c.statusbar.position = 'top'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 3}
@@ -402,11 +403,6 @@ config.bind('m',  'cmd-set-text --space :bookmark-load')
 config.bind('tm', 'cmd-set-text --space :bookmark-load --tab')
 config.bind('wm', 'cmd-set-text --space :bookmark-load --window')
 
-config.bind('<Ctrl-W>', 'tab-close')
-config.bind('tc', 'tab-close')
-config.bind('<Ctrl-Shift-W>', 'close')
-config.bind('wc', 'close')
-
 config.bind('tu', 'undo')
 config.bind('wu', 'undo --window')
 
@@ -444,12 +440,19 @@ config.bind('wE', 'edit-url --window')
 config.bind('tt', 'open --tab')
 config.bind('ww', 'open --window')
 
-config.bind('z', 
+config.bind('q', 'tab-close')
+config.bind('<Ctrl-W>', 'tab-close')
+config.bind('Q', 'close')
+config.bind('<Ctrl-Shift-W>', 'close')
+
+config.bind('x', 'tab-focus last')
+
+config.bind('Z', 
 			'fullscreen --enter ;; '
 			'set statusbar.show in-mode ;; '
 			'set tabs.show switching'
 			)
-config.bind('Z', 
+config.bind('z', 
 			'fullscreen ;; '
 			'set statusbar.show always ;; '
 			'set tabs.show multiple')
@@ -462,8 +465,6 @@ config.bind('<Escape>',
 			'search')
 
 config.bind('<ctrl+shift+b>', 'bookmark-list --tab')
-
-config.bind('^', 'tab-focus last')
 
 config.bind('h', 'tab-prev')
 config.bind('l', 'tab-next')
