@@ -11,6 +11,7 @@ date >> ~/rclone.log
 rclone \
 	bisync \
 	--verbose \
+	--checksum \
 	~/.gd/qutebrowser gd:qutebrowser >> ~/rclone.log 2>&1
 RC=$?
 
