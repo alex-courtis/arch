@@ -43,6 +43,8 @@ c.tabs.indicator.width = 5
 c.tabs.title.alignment = 'center'
 c.tabs.wrap = False
 
+c.tabs.background = False
+
 # many issues exist with in-mode e.g. https://github.com/qutebrowser/qutebrowser/issues/5520
 c.statusbar.show = 'always'
 c.tabs.show = 'multiple'
