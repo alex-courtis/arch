@@ -36,7 +36,7 @@ keyMappings: |-
   map ;y LinkHints.activateModeToCopyLinkUrl
 
   map o Vomnibar.activate
-  map to Vomnibar.activateEditUrlInNewTab
+  map to Vomnibar.activateInNewTab
 
   map b Vomnibar.activateBookmarks
   map tb Vomnibar.activateBookmarksInNewTab
@@ -44,6 +44,7 @@ keyMappings: |-
   map S Vomnibar.activateTabSelection
 
   map e Vomnibar.activateEditUrl
+  map te Vomnibar.activateInNewTab
 
   map / enterFindMode
 
