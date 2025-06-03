@@ -1,30 +1,87 @@
 keyMappings: |-
-  # previousTab, nextTab
-  unmap J
-  unmap gT
-  unmap K
-  unmap gt
-  # moveTabLeft, moveTabRight
-  unmap <<
-  unmap >>
-  # scrollLeft, scrollRight
-  unmap h
-  unmap l
-  # goBack, goForward
-  unmap H
-  unmap L
+  unmapAll
+
+  map j scrollDown
+  map k scrollUp
+
+  map gg scrollToTop
+  map G scrollToBottom
+
+  map d scrollPageDown
+  map <c-d> scrollPageDown
+  map u scrollPageUp
+  map <c-u> scrollPageUp
+
+  map r reload
+  map R reload hard
+
+  map yy copyCurrentUrl
+
+  map p openCopiedUrlInCurrentTab
+  map tp openCopiedUrlInNewTab
+
+  map i enterInsertMode
+
+  map v enterVisualMode
+  map V enterVisualLineMode
+
+  map I passNextKey
+
+  map gi focusInput
+
+  map f LinkHints.activateMode
+  map F LinkHints.activateModeToOpenInNewTab
+  map tf LinkHints.activateModeToOpenInNewForegroundTab
+
+  map ;y LinkHints.activateModeToCopyLinkUrl
+
+  map o Vomnibar.activate
+  map to Vomnibar.activateEditUrlInNewTab
+
+  map b Vomnibar.activateBookmarks
+  map tb Vomnibar.activateBookmarksInNewTab
+
+  map S Vomnibar.activateTabSelection
+
+  map e Vomnibar.activateEditUrl
+
+  map / enterFindMode
+
+  map n performFind
+  map N performBackwardsFind
+
+  map * findSelected
+  map # findSelectedBackwards
+
+  map H goBack
+  map L goForward
+
+  map tt createTab
 
   map h previousTab
   map l nextTab
-  map H goBack
-  map L goForward
-  map < moveTabLeft
-  map > moveTabRight
-  map <C-u> scrollPageUp
-  map <C-d> scrollPageDown
+
+  map s visitPreviousTab
+
+  map td duplicateTab
+
+  map x removeTab
+  map tu restoreTab
+
+  map tg moveTabToNewWindow
+
   map ch closeTabsOnLeft
   map cl closeTabsOnRight
-  map co closeOtherTabs
+  map ct closeOtherTabs
+
+  map <c-h> moveTabLeft
+  map <c-l> moveTabRight
+
+  map + zoomIn
+  map - zoomOut
+  map = zoomReset
+
+  map ? showHelp
 linkHintCharacters: pgcrlaoeuhtnsqjkmwvz
 newTabUrl: pages/blank.html
 scrollStepSize: 30

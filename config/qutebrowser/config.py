@@ -393,6 +393,8 @@ config.unbind('}}') # navigate next -t')
 
 # TODO 
 # - g
+# - private
+# - queue tab opens
 # - maybe c.bindings.default = {} or just clear undesirables
 
 config.bind('b',  'cmd-set-text --space :quickmark-load')
