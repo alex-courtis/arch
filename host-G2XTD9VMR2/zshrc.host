@@ -1,5 +1,6 @@
-if [ -d ~/.orbit/bin ]; then
-	path=(~/.orbit/bin $path)
-fi
+
+# zshrc.host
+
+export PATH="/Users/acourtis/.orbit/bin:$PATH"
 
 # vim:ft=zsh
