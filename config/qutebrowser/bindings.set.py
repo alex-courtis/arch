@@ -1,7 +1,3 @@
-# TODO 
-# prompt
-# passthrough escape
-
 c.bindings.key_mappings = {}
 
 c.bindings.commands = {
@@ -31,7 +27,8 @@ c.bindings.commands = {
 
 		";d": "hint links download",
 		";h": "hint all hover",
-		";i": "hint images",
+		";i": "hint inputs",
+		";m": "hint images",
 		";o": "hint links fill :open {hint-url}",
 		";to": "hint links fill :open --tab {hint-url}",
 		";wo": "hint links fill :open --window {hint-url}",
@@ -90,6 +87,8 @@ c.bindings.commands = {
 
 		"j": "scroll down",
 		"k": "scroll up",
+
+		"I": "mode-enter passthrough",
 
 		"n": "search-next",
 		"N": "search-prev",
@@ -172,19 +171,18 @@ c.bindings.commands = {
 		"<Alt-9>": None,
 		"<Alt-m>": None,
 
-		"<Ctrl-Alt-p>": None,
 		"<Ctrl-PgDown>": None,
 		"<Ctrl-PgUp>": None,
-		"<Ctrl-Return>": None,
 		"<Ctrl-Shift-Tab>": None,
-		"<Ctrl-Shift-n>": None,
-		"<Ctrl-Shift-t>": None,
 		"<Ctrl-Tab>": None,
 
 		"<Ctrl-^>": None,
 		"<Ctrl-a>": None,
 		"<Ctrl-b>": None,
+		"<Ctrl-Alt-p>": None,
 		"<Ctrl-p>": None,
+		"<Ctrl-Shift-t>": None,
+		"<Ctrl-v>": None,
 		"<Ctrl-x>": None,
 
 		"@": None,
@@ -282,5 +280,11 @@ c.bindings.commands = {
 	"prompt": {
 		"<Alt-u>": "spawn --userscript qute-bitwarden --username-only",
 		"<Alt-p>": "spawn --userscript qute-bitwarden --password-only",
+	},
+	"hint": {
+		"<Ctrl-b>": None,
+		"<Ctrl-f>": None,
+		"<Ctrl-r>": None,
+		"<Return>": None,
 	},
 }
