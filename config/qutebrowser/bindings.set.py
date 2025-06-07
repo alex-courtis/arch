@@ -1,7 +1,5 @@
 # TODO 
-# - g
 # - private
-# - queue tab opens
 
 c.bindings.commands = {
 	"normal": {
@@ -9,6 +7,7 @@ c.bindings.commands = {
 
 		"<Ctrl-Shift-b>": "bookmark-list --tab",
 		"<Ctrl-Shift-h>": "history --tab",
+		"<Ctrl-Shift-a>": "tab-select",
 
 		"<Ctrl-d>": "scroll-page 0 0.5",
 		"<Ctrl-u>": "scroll-page 0 -0.5",
@@ -186,6 +185,21 @@ c.bindings.commands = {
 		"D": None,
 		"gB": None,
 		"gb": None,
+
+		"g$": None,
+		"g0": None,
+		"g^": None,
+		"ga": None,
+		"gC": None,
+		"gD": None,
+		"gf": None,
+		"gJ": None,
+		"gK": None,
+		"gm": None,
+		"go": None,
+		"gO": None,
+		"gd": None,
+
 		"J": None,
 		"K": None,
 		"M": None,
