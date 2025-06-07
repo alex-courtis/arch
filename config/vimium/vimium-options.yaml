@@ -28,10 +28,15 @@ keyMappings: |-
   map I passNextKey
 
   map gi focusInput
+  map gu goUp
 
   map f LinkHints.activateMode
-  map F LinkHints.activateModeToOpenInNewTab
+  map tf LinkHints.activateModeToOpenInNewTab
+  map F LinkHints.activateModeWithQueue
+  map ;d LinkHints.activateModeToDownloadLink
   map tf LinkHints.activateModeToOpenInNewForegroundTab
+
+  map Wf LinkHints.activateModeToOpenIncognito
 
   map ;y LinkHints.activateModeToCopyLinkUrl
 
@@ -44,7 +49,7 @@ keyMappings: |-
   map S Vomnibar.activateTabSelection
 
   map e Vomnibar.activateEditUrl
-  map te Vomnibar.activateInNewTab
+  map te Vomnibar.activateEditUrlInNewTab
 
   map / enterFindMode
 
