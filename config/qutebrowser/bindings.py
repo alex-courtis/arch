@@ -1,3 +1,5 @@
+import re
+
 # https://codebeautify.org/python-formatter-beautifier
 
 # TODO 
@@ -8,11 +10,6 @@
 c.bindings.commands = {
     "normal": {
         "'": None,
-        "+": "zoom-in",
-        "-": "zoom-out",
-        ".": "cmd-repeat-last",
-        "/": "cmd-set-text /",
-        ":": "cmd-set-text :",
         ";I": None,
         ";O": None,
         ";R": None,
@@ -26,49 +23,36 @@ c.bindings.commands = {
         ";r": None,
         ";t": None,
         ";y": "hint links yank",
-        "<Alt+1>": None,
-        "<Alt+2>": None,
-        "<Alt+3>": None,
-        "<Alt+4>": None,
-        "<Alt+5>": None,
-        "<Alt+6>": None,
-        "<Alt+7>": None,
-        "<Alt+8>": None,
-        "<Alt+9>": None,
-        "<Alt+m>": None,
-        "<Ctrl+a>": None,
-        "<Ctrl+Alt+p>": None,
-        "<Ctrl+b>": None,
-        "<Ctrl+d>": "scroll-page 0 0.5",
-        "<Ctrl+F5>": "reload -f",
-        "<Ctrl+f>": "cmd-set-text /",
-        "<Ctrl+n>": "open --window",
-        "<Ctrl+PgDown>": None,
-        "<Ctrl+PgUp>": None,
-        "<Ctrl+q>": "quit",
-        "<Ctrl+Return>": None,
-        "<Ctrl+Shift+n>": None,
-        "<Ctrl+Shift+t>": None,
-        "<Ctrl+Shift+Tab>": None,
-        "<Ctrl+Shift+w>": "close",
-        "<Ctrl+t>": "open --tab",
-        "<Ctrl+Tab>": None,
-        "<Ctrl+u>": "scroll-page 0 -0.5",
-        "<Ctrl+v>": "mode-enter passthrough",
-        "<Ctrl+w>": "tab-close",
-        "<Ctrl+x>": None,
-        "<Ctrl+^>": None,
-        "<Ctrl+h>": "tab-move -",
-        "<Ctrl+p>": None,
-        "<Ctrl+s>": "stop",
+        "<Alt-1>": None,
+        "<Alt-2>": None,
+        "<Alt-3>": None,
+        "<Alt-4>": None,
+        "<Alt-5>": None,
+        "<Alt-6>": None,
+        "<Alt-7>": None,
+        "<Alt-8>": None,
+        "<Alt-9>": None,
+        "<Alt-m>": None,
+        "<Ctrl-a>": None,
+        "<Ctrl-Alt-p>": None,
+        "<Ctrl-b>": None,
+        "<Ctrl-d>": "scroll-page 0 0.5",
+        "<Ctrl-f>": "cmd-set-text /",
+        "<Ctrl-PgDown>": None,
+        "<Ctrl-PgUp>": None,
+        "<Ctrl-Return>": None,
+        "<Ctrl-Shift-n>": None,
+        "<Ctrl-Shift-t>": None,
+        "<Ctrl-Shift-Tab>": None,
+        "<Ctrl-t>": "open --tab",
+        "<Ctrl-Tab>": None,
+        "<Ctrl-u>": "scroll-page 0 -0.5",
+        "<Ctrl-x>": None,
+        "<Ctrl-^>": None,
+        "<Ctrl-h>": "tab-move -",
+        "<Ctrl-p>": None,
         "<Escape>": "clear-messages ;; clear-keychain ;; search",
         "<F11>": None,
-        "<F5>": "reload",
-        "<Return>": "selection-follow",
-        "<Back>": "back",
-        "<Forward>": "forward",
-        "=": "zoom",
-        "?": "cmd-set-text ?",
         "@": None,
         "B": None,
         "D": None,
@@ -213,37 +197,51 @@ c.bindings.commands = {
         ";wo": "hint links fill :open --window {hint-url}",
         "Z": "fullscreen --enter ;; set statusbar.show in-mode ;; set tabs.show switching",
         "z": "fullscreen ;; set statusbar.show always ;; set tabs.show multiple",
-        "<Ctrl+Shift+b>": "bookmark-list --tab",
-        "<Ctrl+Shift+h>": "history --tab",
+        "<Ctrl-Shift-b>": "bookmark-list --tab",
+        "<Ctrl-Shift-h>": "history --tab",
         "ct": "tab-only",
         "cw": "window-only",
         "cl": "tab-only --prev",
         "ch": "tab-only --next",
-        "<Ctrl+l>": "tab-move +",
-        "<Alt+b>": "spawn --userscript --verbose qute-bitwarden.py",
-        "<Alt+u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
-        "<Alt+p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
-        "<Alt+d>": "set colors.webpage.darkmode.enabled true",
-        "<Alt+l>": "set colors.webpage.darkmode.enabled false",
+        "<Ctrl-l>": "tab-move +",
+        "<Alt-b>": "spawn --userscript --verbose qute-bitwarden.py",
+        "<Alt-u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
+        "<Alt-p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
+        "<Alt-d>": "set colors.webpage.darkmode.enabled true",
+        "<Alt-l>": "set colors.webpage.darkmode.enabled false",
     },
     "prompt": {
-        "<Alt+u>": "spawn --userscript qute-bitwarden --username-only",
-        "<Alt+p>": "spawn --userscript qute-bitwarden --password-only",
+        "<Alt-u>": "spawn --userscript qute-bitwarden --username-only",
+        "<Alt-p>": "spawn --userscript qute-bitwarden --password-only",
     },
 }
 
 # always print defaults and user
 binds_all = {}
 
+# user bindings always come back as "<Ctrl+Shift+f" , defaults as "<Ctrl-Shift-F"
+def normalise(key):
+    if re.match('.*(shift|ctrl|alt)[+-].*', key, flags=re.IGNORECASE):
+        key = key.lower()
+        key = re.sub('ctrl[+-]', 'Ctrl-', key)
+        key = re.sub('alt[+-]', 'Alt-', key)
+        key = re.sub('shift[+-]', 'Shift-', key)
+    return key
+
 # collect default bindings
 for mode, binds in c.bindings.default.items():
     for key, cmd in binds.items():
+        key = normalise(key)
         binds_all[f'{mode}{key}'] = f'{mode:12}D  {key:18}{cmd}'
 
-# collect user bindings
+# collect user bindings, removing any unbindings
 for mode, binds in c.bindings.commands.items():
     for key, cmd in binds.items():
-        binds_all[f'{mode}{key}'] = f'{mode:12}   {key:18}{cmd}'
+        if cmd is None:
+            binds[key] = None
+        else:
+            key = normalise(key)
+            binds_all[f'{mode}{key}'] = f'{mode:12}   {key:18}{cmd}'
 
 # sort by mode/key and print
 for mode_key in sorted(binds_all, key=str.lower):

@@ -11,6 +11,9 @@ trim_trailing_whitespace = false
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = space
+
 [*.lua]
 charset = utf-8
 end_of_line = lf
