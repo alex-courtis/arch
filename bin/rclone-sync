@@ -5,15 +5,19 @@
 # initialise sync once with 
 # rclone bisync -1 ~/.gd/qutebrowser gd:qutebrowser
 
-# TODO only log errors once this has settled
-date >> ~/rclone.log
+NOW=$(date +%Y%m%d_%H%M%S)
 
 rclone \
 	bisync \
 	--verbose \
 	--checksum \
-	~/.gd/qutebrowser gd:qutebrowser >> ~/rclone.log 2>&1
+	~/.gd/qutebrowser gd:qutebrowser >> "${HOME}/rclone.fail.${NOW}.log" 2>&1
 RC=$?
 
-echo "RC=${RC}" >> ~/rclone.log
+printf "\n%s" "${NOW}" >> "${HOME}/.rclone.log"
 
+if [ "${RC}" -eq 0 ]; then
+	rm "${HOME}/rclone.fail.${NOW}.log"
+else
+	printf " failed" >> "${HOME}/.rclone.log"
+fi
