@@ -1,5 +1,10 @@
 # TODO 
-# - private
+# yesno
+# prompt
+# passthrough escape
+# command history search
+
+c.bindings.key_mappings = {}
 
 c.bindings.commands = {
 	"normal": {
@@ -32,6 +37,7 @@ c.bindings.commands = {
 		";o": "hint links fill :open {hint-url}",
 		";to": "hint links fill :open --tab {hint-url}",
 		";wo": "hint links fill :open --window {hint-url}",
+		";Wo": "hint links fill :open --private {hint-url}",
 		";y": "hint links yank",
 		";Y": "hint links yank-primary",
 
@@ -39,6 +45,7 @@ c.bindings.commands = {
 		"A": "hint --rapid all tab-bg",
 		"ta": "hint all tab",
 		"wa": "hint all window",
+		"Wa": "hint all run :open --private {hint-url}",
 
 		"b": "cmd-set-text --space :quickmark-load",
 		"tb": "cmd-set-text --space :quickmark-load --tab",
@@ -60,12 +67,15 @@ c.bindings.commands = {
 		"te": "cmd-set-text :open --tab {url:pretty}",
 		"tE": "edit-url --tab",
 		"we": "cmd-set-text :open --window {url:pretty}",
+		"We": "cmd-set-text :open --private {url:pretty}",
 		"wE": "edit-url --window",
+		"WE": "edit-url --private",
 
 		"f": "hint links",
 		"F": "hint --rapid links tab-bg",
 		"tf": "hint links tab",
 		"wf": "hint links window",
+		"Wf": "hint links run :open --private {hint-url}",
 
 		"G": "scroll-to-perc",
 
@@ -89,14 +99,17 @@ c.bindings.commands = {
 		"o": "cmd-set-text --space :open",
 		"to": "cmd-set-text --space :open --tab",
 		"wo": "cmd-set-text --space :open --window",
+		"Wo": "cmd-set-text --space :open --private",
 
 		"p": "open -- {clipboard}",
 		"tp": "open --tab -- {clipboard}",
 		"wp": "open --window -- {clipboard}",
+		"Wp": "open --private -- {clipboard}",
 
 		"P": "open -- {primary}",
 		"tP": "open --tab -- {primary}",
 		"wP": "open --window -- {primary}",
+		"WP": "open --private -- {primary}",
 
 		"r": "reload",
 		"R": "reload -f",
@@ -115,9 +128,11 @@ c.bindings.commands = {
 		"V": "mode-enter caret ;; selection-toggle --line",
 
 		"wd": "tab-clone --window",
+		"Wd": "tab-clone --private",
 		"wt": "cmd-set-text --space :tab-take",
 		"wu": "undo --window",
 		"ww": "open --window",
+		"Ww": "open --private",
 
 		"x": "tab-close",
 		"X": "close",

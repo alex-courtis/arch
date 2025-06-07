@@ -4,7 +4,7 @@ config.source('base16-bright.py')
 
 config.source('bindings.set.py')
 
-config.source('bindings.print.py')
+# config.source('bindings.print.py')
 
 config.load_autoconfig(False)
 
