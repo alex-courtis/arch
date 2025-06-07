@@ -1,8 +1,6 @@
 # TODO 
-# yesno
 # prompt
 # passthrough escape
-# command history search
 
 c.bindings.key_mappings = {}
 
@@ -273,6 +271,13 @@ c.bindings.commands = {
 		"ZZ": None,
 		"{{": None,
 		"}}": None,
+	},
+	"command": {
+		"<Ctrl-j>": "command-history-next",
+		"<Ctrl-k>": "command-history-prev",
+	},
+	"yesno": {
+		"<Return>": "prompt-accept --save yes",
 	},
 	"prompt": {
 		"<Alt-u>": "spawn --userscript qute-bitwarden --username-only",
