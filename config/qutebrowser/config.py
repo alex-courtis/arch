@@ -63,7 +63,7 @@ c.content.register_protocol_handler = True
 c.search.wrap = False
 c.search.wrap_messages = False
 
-c.completion.open_categories = [ 'history', 'filesystem', 'bookmarks', 'searchengines' ]
+c.completion.open_categories = [ 'filesystem', 'searchengines', 'bookmarks', 'quickmarks', 'history' ]
 
 c.url.searchengines = {
 		'DEFAULT': 'https://duckduckgo.com/?q={}',
