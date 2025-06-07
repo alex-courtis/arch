@@ -9,20 +9,153 @@ import re
 
 c.bindings.commands = {
     "normal": {
-        "'": None,
-        ";I": None,
-        ";O": None,
-        ";R": None,
-        ";Y": "hint links yank-primary",
-        ";b": None,
+        "<Escape>": "clear-messages ;; clear-keychain ;; search",
+
+        "<Ctrl-Shift-b>": "bookmark-list --tab",
+        "<Ctrl-Shift-h>": "history --tab",
+
+        "<Ctrl-d>": "scroll-page 0 0.5",
+        "<Ctrl-u>": "scroll-page 0 -0.5",
+
+        "<Ctrl-f>": "cmd-set-text /",
+
+        "<Ctrl-t>": "open --tab",
+
+        "<Ctrl-h>": "tab-move -",
+        "<Ctrl-l>": "tab-move +",
+
+        "<Alt-d>": "set colors.webpage.darkmode.enabled true",
+        "<Alt-l>": "set colors.webpage.darkmode.enabled false",
+
+        "<Alt-b>": "spawn --userscript --verbose qute-bitwarden.py",
+        "<Alt-p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
+        "<Alt-u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
+
         ";d": "hint links download",
-        ";f": None,
         ";h": "hint all hover",
         ";i": "hint images",
         ";o": "hint links fill :open {hint-url}",
+        ";to": "hint links fill :open --tab {hint-url}",
+        ";wo": "hint links fill :open --window {hint-url}",
+        ";y": "hint links yank",
+        ";Y": "hint links yank-primary",
+
+        "a": "hint all",
+        "A": "hint all tab-bg",
+        "ta": "hint all tab",
+        "wa": "hint all window",
+
+        "b": "cmd-set-text --space :quickmark-load",
+        "tb": "cmd-set-text --space :quickmark-load --tab",
+        "wb": "cmd-set-text --space :quickmark-load --window",
+
+        "m": "cmd-set-text --space :bookmark-load",
+        "tm": "cmd-set-text --space :bookmark-load --tab",
+        "wm": "cmd-set-text --space :bookmark-load --window",
+
+        "ct": "tab-only",
+        "ch": "tab-only --next",
+        "cl": "tab-only --prev",
+        "cw": "window-only",
+
+        "d": "scroll-page 0 0.5",
+
+        "e": "cmd-set-text :open {url:pretty}",
+        "E": "edit-url",
+        "te": "cmd-set-text :open --tab {url:pretty}",
+        "tE": "edit-url --tab",
+        "we": "cmd-set-text :open --window {url:pretty}",
+        "wE": "edit-url --window",
+
+        "f": "hint links",
+        "F": "hint links tab-bg",
+        "tf": "hint links tab",
+        "wf": "hint links window",
+
+        "G": "scroll-to-perc",
+
+        "H": "back",
+        "th": "back --tab",
+        "wh": "back --tab",
+
+        "L": "forward",
+        "tl": "forward --tab",
+        "wl": "forward --window",
+
+        "h": "tab-prev",
+
+        "l": "tab-next",
+
+        "i": "mode-enter insert",
+
+        "j": "scroll down",
+        "k": "scroll up",
+
+        "n": "search-next",
+        "N": "search-prev",
+
+        "o": "cmd-set-text --space :open",
+        "to": "cmd-set-text --space :open --tab",
+        "wo": "cmd-set-text --space :open --window",
+
+        "p": "open -- {clipboard}",
+        "tp": "open --tab -- {clipboard}",
+        "wp": "open --window -- {clipboard}",
+
+        "P": "open -- {primary}",
+        "tP": "open --tab -- {primary}",
+        "wP": "open --window -- {primary}",
+
+        "r": "reload",
+        "R": "reload -f",
+
+        "s": "tab-focus last",
+        "S": "cmd-set-text --space --run-on-count :tab-focus",
+
+        "td": "tab-clone",
+        "tg": "cmd-set-text --space :tab-give",
+        "tt": "open --tab",
+        "tu": "undo",
+
+        "u": "scroll-page 0 -0.5",
+
+        "v": "mode-enter caret",
+        "V": "mode-enter caret ;; selection-toggle --line",
+
+        "wd": "tab-clone --window",
+        "wt": "cmd-set-text --space :tab-take",
+        "wu": "undo --window",
+        "ww": "open --window",
+
+        "x": "tab-close",
+        "X": "close",
+
+        "yd": "yank domain",
+        "yD": "yank domain --sel",
+        "ym": "yank inline [{title}]({url:yank})",
+        "yM": "yank inline [{title}]({url:yank}) --sel",
+        "yp": "yank pretty-url",
+        "yP": "yank pretty-url --sel",
+        "yt": "yank title",
+        "yT": "yank title --sel",
+        "yy": "yank url",
+        "yY": "yank url --sel",
+
+        "z": "fullscreen ;; set statusbar.show always ;; set tabs.show multiple",
+        "Z": "fullscreen --enter ;; set statusbar.show in-mode ;; set tabs.show switching",
+
+        "'": None,
+
+        ";I": None,
+        ";O": None,
+        ";R": None,
+        ";b": None,
+        ";f": None,
         ";r": None,
         ";t": None,
-        ";y": "hint links yank",
+
+        "<F11>": None,
+
         "<Alt-1>": None,
         "<Alt-2>": None,
         "<Alt-3>": None,
@@ -33,106 +166,78 @@ c.bindings.commands = {
         "<Alt-8>": None,
         "<Alt-9>": None,
         "<Alt-m>": None,
-        "<Ctrl-a>": None,
+
         "<Ctrl-Alt-p>": None,
-        "<Ctrl-b>": None,
-        "<Ctrl-d>": "scroll-page 0 0.5",
-        "<Ctrl-f>": "cmd-set-text /",
         "<Ctrl-PgDown>": None,
         "<Ctrl-PgUp>": None,
         "<Ctrl-Return>": None,
+        "<Ctrl-Shift-Tab>": None,
         "<Ctrl-Shift-n>": None,
         "<Ctrl-Shift-t>": None,
-        "<Ctrl-Shift-Tab>": None,
-        "<Ctrl-t>": "open --tab",
         "<Ctrl-Tab>": None,
-        "<Ctrl-u>": "scroll-page 0 -0.5",
-        "<Ctrl-x>": None,
+
         "<Ctrl-^>": None,
-        "<Ctrl-h>": "tab-move -",
+        "<Ctrl-a>": None,
+        "<Ctrl-b>": None,
         "<Ctrl-p>": None,
-        "<Escape>": "clear-messages ;; clear-keychain ;; search",
-        "<F11>": None,
+        "<Ctrl-x>": None,
+
         "@": None,
-        "B": None,
-        "D": None,
-        "F": "hint links tab-bg",
-        "G": "scroll-to-perc",
-        "H": "back",
-        "J": None,
-        "K": None,
-        "L": "forward",
-        "M": None,
-        "N": "search-prev",
-        "O": None,
-        "PP": None,
-        "Pp": None,
-        "R": "reload -f",
-        "Sb": None,
-        "Sh": None,
-        "Sq": None,
-        "Ss": None,
-        "T": None,
-        "U": None,
-        "V": "mode-enter caret ;; selection-toggle --line",
-        "ZQ": None,
-        "ZZ": None,
         "[[": None,
         "]]": None,
         "`": None,
         "ad": None,
-        "b": "cmd-set-text --space :quickmark-load",
+        "B": None,
         "cd": None,
         "co": None,
-        "d": "scroll-page 0 0.5",
-        "f": "hint links",
+        "D": None,
         "gB": None,
         "gb": None,
-        "h": "tab-prev",
-        "i": "mode-enter insert",
-        "j": "scroll down",
-        "k": "scroll up",
-        "l": "tab-next",
-        "m": "cmd-set-text --space :bookmark-load",
-        "n": "search-next",
-        "o": "cmd-set-text --space :open",
+        "J": None,
+        "K": None,
+        "M": None,
+        "O": None,
+        "PP": None,
+        "Pp": None,
         "pP": None,
         "pp": None,
         "q": None,
-        "r": "reload",
+        "Sb": None,
         "sf": None,
+        "Sh": None,
         "sk": None,
         "sl": None,
+        "Sq": None,
+        "Ss": None,
         "ss": None,
+        "T": None,
         "tCH": None,
         "tCh": None,
-        "tCu": None,
-        "tIH": None,
-        "tIh": None,
-        "tIu": None,
-        "tPH": None,
-        "tPh": None,
-        "tPu": None,
-        "tSH": None,
-        "tSh": None,
-        "tSu": None,
         "tcH": None,
         "tch": None,
+        "tCu": None,
         "tcu": None,
-        "th": "back --tab",
+        "tIH": None,
+        "tIh": None,
         "tiH": None,
         "tih": None,
+        "tIu": None,
         "tiu": None,
-        "tl": "forward --tab",
+        "tPH": None,
+        "tPh": None,
         "tpH": None,
         "tph": None,
+        "tPu": None,
         "tpu": None,
+        "tSH": None,
+        "tSh": None,
         "tsH": None,
         "tsh": None,
+        "tSu": None,
         "tsu": None,
-        "u": "scroll-page 0 -0.5",
-        "v": "mode-enter caret",
+        "U": None,
         "wB": None,
+        "wi": None,
         "wIf": None,
         "wIh": None,
         "wIj": None,
@@ -140,84 +245,18 @@ c.bindings.commands = {
         "wIl": None,
         "wIw": None,
         "wO": None,
-        "wP": "open --window -- {primary}",
-        "wb": "cmd-set-text --space :quickmark-load --window",
-        "wf": "hint links window",
-        "wh": "back --tab",
-        "wi": None,
-        "wl": "forward --window",
-        "wo": "cmd-set-text --space :open --window",
-        "wp": "open --window -- {clipboard}",
         "xO": None,
         "xo": None,
-        "yD": "yank domain --sel",
-        "yM": "yank inline [{title}]({url:yank}) --sel",
-        "yP": "yank pretty-url --sel",
-        "yT": "yank title --sel",
-        "yY": "yank url --sel",
-        "yd": "yank domain",
-        "ym": "yank inline [{title}]({url:yank})",
-        "yp": "yank pretty-url",
-        "yt": "yank title",
-        "yy": "yank url",
+        "ZQ": None,
+        "ZZ": None,
         "{{": None,
         "}}": None,
-        "tb": "cmd-set-text --space :quickmark-load --tab",
-        "tm": "cmd-set-text --space :bookmark-load --tab",
-        "wm": "cmd-set-text --space :bookmark-load --window",
-        "tu": "undo",
-        "wu": "undo --window",
-        "td": "tab-clone",
-        "wd": "tab-clone --window",
-        "tg": "cmd-set-text --space :tab-give",
-        "wt": "cmd-set-text --space :tab-take",
-        "p": "open -- {clipboard}",
-        "tp": "open --tab -- {clipboard}",
-        "P": "open -- {primary}",
-        "tP": "open --tab -- {primary}",
-        "to": "cmd-set-text --space :open --tab",
-        "e": "cmd-set-text :open {url:pretty}",
-        "te": "cmd-set-text :open --tab {url:pretty}",
-        "we": "cmd-set-text :open --window {url:pretty}",
-        "E": "edit-url",
-        "tE": "edit-url --tab",
-        "wE": "edit-url --window",
-        "tt": "open --tab",
-        "ww": "open --window",
-        "x": "tab-close",
-        "X": "close",
-        "s": "tab-focus last",
-        "S": "cmd-set-text --space --run-on-count :tab-focus",
-        "tf": "hint links tab",
-        "a": "hint all",
-        "A": "hint all tab-bg",
-        "ta": "hint all tab",
-        "wa": "hint all window",
-        ";to": "hint links fill :open --tab {hint-url}",
-        ";wo": "hint links fill :open --window {hint-url}",
-        "Z": "fullscreen --enter ;; set statusbar.show in-mode ;; set tabs.show switching",
-        "z": "fullscreen ;; set statusbar.show always ;; set tabs.show multiple",
-        "<Ctrl-Shift-b>": "bookmark-list --tab",
-        "<Ctrl-Shift-h>": "history --tab",
-        "ct": "tab-only",
-        "cw": "window-only",
-        "cl": "tab-only --prev",
-        "ch": "tab-only --next",
-        "<Ctrl-l>": "tab-move +",
-        "<Alt-b>": "spawn --userscript --verbose qute-bitwarden.py",
-        "<Alt-u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
-        "<Alt-p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
-        "<Alt-d>": "set colors.webpage.darkmode.enabled true",
-        "<Alt-l>": "set colors.webpage.darkmode.enabled false",
     },
     "prompt": {
         "<Alt-u>": "spawn --userscript qute-bitwarden --username-only",
         "<Alt-p>": "spawn --userscript qute-bitwarden --password-only",
     },
 }
-
-# always print defaults and user
-binds_all = {}
 
 # user bindings always come back as "<Ctrl+Shift+f" , defaults as "<Ctrl-Shift-F"
 def normalise(key):
@@ -229,21 +268,28 @@ def normalise(key):
     return key
 
 # collect default bindings
+all = {}
 for mode, binds in c.bindings.default.items():
     for key, cmd in binds.items():
         key = normalise(key)
-        binds_all[f'{mode}{key}'] = f'{mode:12}D  {key:18}{cmd}'
+        all[f'{mode}{key}'] = f'{mode:12}D  {key:18}{cmd}'
+
+# sort default by mode/key and print
+print('\n--Default Bindings--')
+for mode_key in sorted(all, key=str.lower):
+    print(f'D {all[mode_key]}')
 
 # collect user bindings, removing any unbindings
 for mode, binds in c.bindings.commands.items():
     for key, cmd in binds.items():
+        key = normalise(key)
         if cmd is None:
-            binds[key] = None
+            all.pop(f'{mode}{key}', None)
         else:
-            key = normalise(key)
-            binds_all[f'{mode}{key}'] = f'{mode:12}   {key:18}{cmd}'
+            all[f'{mode}{key}'] = f'{mode:12}   {key:18}{cmd}'
 
-# sort by mode/key and print
-for mode_key in sorted(binds_all, key=str.lower):
-    print(f'{binds_all[mode_key]}')
+# sort all by mode/key and print
+print('\n--Actual Bindings--')
+for mode_key in sorted(all, key=str.lower):
+    print(f'A {all[mode_key]}')
 
