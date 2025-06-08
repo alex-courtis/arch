@@ -1,3 +1,5 @@
 #!/bin/sh
 
+export WLR_RENDERER=vulkan
+
 exec river > "/tmp/river.${XDG_VTNR}.${USER}.log" 2>&1
