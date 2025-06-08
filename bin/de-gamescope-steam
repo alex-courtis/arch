@@ -7,8 +7,10 @@
 # --hdr-debug-force-output \
 # export STEAM_MULTIPLE_XWAYLANDS=1
 # export ENABLE_HDR_WSI=1
+# --nested-refresh 144 \
 
-# unsure whether nested refresh is necessary
+# hacky
+# --xwayland-count needed for mouse look, same as deck
 
 export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
 
@@ -16,7 +18,6 @@ export DXVK_HDR=1
 
 exec gamescope \
 	--xwayland-count 2 \
-	--nested-refresh 144 \
 	--hdr-enabled \
 	--adaptive-sync \
 	--fullscreen \
