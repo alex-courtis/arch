@@ -364,8 +364,8 @@ EOF
 
 Inject the UUIDs of the root and swap partitions:
 ```sh
-blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/99-arch.conf
-blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/99-arch.conf
+blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/90-arch.conf
+blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/90-arch.conf
 ```
 Move them into their correct places: root and resume.
 
@@ -376,7 +376,7 @@ vi /boot/loader/loader.conf
 ```
 ```
 timeout 2
-default 99-arch.conf
+default 90-arch.conf
 ```
 
 Try `console-mode max` to use native resolution.
@@ -384,7 +384,7 @@ Try `console-mode max` to use native resolution.
 ### memtest86+
 
 ```sh
-vi /boot/loader/entries/memtest.conf
+vi /boot/loader/entries/70-memtest.conf
 ```
 ```
 title Memtest86+
@@ -589,16 +589,7 @@ blkid -s PARTUUID -o value /dev/nvme2n1p1
 ```
 
 ```sh
-vi /boot/loader/entries/98-bazzite.conf
-```
-```
-title Bazzite
-efi /shellx64.efi
-options -nointerrupt HDXX:\EFI\fedora\shimx64.efi
-```
-
-```sh
-vi /boot/loader/entries/97-windows.conf
+vi /boot/loader/entries/80-windows.conf
 ```
 ```
 title Windows
