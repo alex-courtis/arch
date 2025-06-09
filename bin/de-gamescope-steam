@@ -8,6 +8,7 @@
 # export STEAM_MULTIPLE_XWAYLANDS=1
 # export ENABLE_HDR_WSI=1
 # --nested-refresh 144 \
+# --fullscreen \
 
 # hacky
 # --xwayland-count needed for mouse look, same as deck
@@ -20,7 +21,6 @@ exec gamescope \
 	--xwayland-count 2 \
 	--hdr-enabled \
 	--adaptive-sync \
-	--fullscreen \
 	--mangoapp \
 	--steam \
 	-- steam -gamepadui -console \
