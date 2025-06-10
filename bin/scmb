@@ -2,6 +2,8 @@
 
 # sourced from git@bitbucket.org:robbieg/bin.git
 
+# TODO fix branch opens - they are opening as commits
+
 doOpen()
 {
   case "${UNAME}" in
@@ -62,6 +64,20 @@ githubShow ()
   doOpen "${base}/${context}"
 }
 
+codebergShow ()
+{
+  slug="${1:?}"
+  case "${2:?}" in
+    branch) context="tree/${3:?}" ;;
+    commit) context="commit/${3:?}" ;;
+    file) context="src/${3:?}/${4:?}" ;;
+    default) ;;
+    *) echo "No context format for codeberg '$2'" 1>&2 ;;
+  esac
+  base="https://codeberg.org/${slug}"
+  doOpen "${base}/${context}"
+}
+
 gitlabShow ()
 {
   slug="${1:?}"
@@ -72,7 +88,7 @@ gitlabShow ()
     default) ;;
     *) echo "No context format for gitlab '$2'" 1>&2 ;;
   esac
-  base="https://gitlab.com/${slug}"
+  base="${5}/${slug}"
   doOpen "${base}/${context}"
 }
 
@@ -120,11 +136,27 @@ gitShow ()
       ;;
     https://gitlab.com/*)
       slug=${origin#https://gitlab.com/}
-      gitlabShow "${slug%.git}" "$@"
+      gitlabShow "${slug%.git}" "$@" "https://gitlab.com/"
       ;;
     git@gitlab.com:*)
       slug=${origin#git@gitlab.com:}
-      gitlabShow "${slug%.git}" "$@"
+      gitlabShow "${slug%.git}" "$@" "https://gitlab.com/"
+      ;;
+    https://gitlab.freedesktop.org/*)
+      slug=${origin#https://gitlab.freedesktop.org/}
+      gitlabShow "${slug%.git}" "$@" "https://gitlab.freedesktop.org/"
+      ;;
+    git@ssh.gitlab.freedesktop.org:*)
+      slug=${origin#git@ssh.gitlab.freedesktop.org:}
+      gitlabShow "${slug%.git}" "$@" "https://gitlab.freedesktop.org/"
+      ;;
+    https://codeberg.org/*)
+      slug=${origin#https://codeberg.org/}
+      codebergShow "${slug%.git}" "$@"
+      ;;
+    git@codeberg.org:*)
+      slug=${origin#git@codeberg.org:}
+      codebergShow "${slug%.git}" "$@"
       ;;
     *)
       echo "Sorry, i don't know where to find ${origin}"
