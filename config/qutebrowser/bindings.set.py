@@ -182,9 +182,9 @@ c.bindings.commands = {
 		"<Alt-d>": "set colors.webpage.darkmode.enabled true",
 		"<Alt-l>": "set colors.webpage.darkmode.enabled false",
 
-		"<Alt-b>": "spawn --userscript --verbose qute-bitwarden.py",
-		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
-		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
+		"<Alt-b>": "spawn --userscript --verbose qute-bitwarden",
+		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only",
+		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only",
 
 		"$": "nop",
 		"~": "nop",
@@ -358,8 +358,8 @@ c.bindings.commands = {
 		"<Return>": "prompt-accept --save yes",
 	},
 	"prompt": {
-		"<Alt-u>": "spawn --userscript qute-bitwarden --username-only",
-		"<Alt-p>": "spawn --userscript qute-bitwarden --password-only",
+		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only",
+		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only",
 	},
 	"hint": {
 		"<Ctrl-b>": None,
