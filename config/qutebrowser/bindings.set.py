@@ -186,6 +186,15 @@ c.bindings.commands = {
 		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden.py --password-only",
 		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden.py --username-only",
 
+		"$": "nop",
+		"~": "nop",
+
+		"@": "nop",
+		"^": "nop",
+
+		"'": "nop",
+		'"': "nop",
+
 		";d": "hint links download",
 		";h": "hint all hover",
 		";i": "hint inputs",
@@ -196,10 +205,26 @@ c.bindings.commands = {
 		";Wo": "hint links fill :open --private {hint-url}",
 		";y": "hint links yank",
 		";Y": "hint links yank-primary",
+        # ":": "cmd-set-text :",
+
+        ",": "nop",
+        "<": "nop",
+
+        # ".": "cmd-repeat-last",
+		">": "nop",
+
+		# "/": "cmd-set-text /",
+		# "?": "cmd-set-text ?",
+
+		"-": "nop",
+		"_": "nop",
+
+		"\\": "nop",
+		"|": "nop",
 
 		"a": "hint all",
 		"A": "hint --rapid all tab-bg",
-		"ta": "hint all tab",
+		"ta": "hint all tab-fg",
 		"wa": "hint all window",
 		"Wa": "hint all run :open --private {hint-url}",
 
@@ -228,7 +253,7 @@ c.bindings.commands = {
 
 		"f": "hint links",
 		"F": "hint --rapid links tab-bg",
-		"tf": "hint links tab",
+		"tf": "hint links tab-fg",
 		"wf": "hint links window",
 		"Wf": "hint links run :open --private {hint-url}",
 
@@ -300,6 +325,7 @@ c.bindings.commands = {
 		"wu": "undo --window",
 		"ww": "open --window",
 		"Ww": "open --private",
+		"WW": "open --private",
 
 		"x": "tab-close",
 		"X": "close",
