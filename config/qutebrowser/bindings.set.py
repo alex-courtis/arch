@@ -223,14 +223,14 @@ c.bindings.commands = {
 		"|": "nop",
 
 		"a": "hint all",
-		"A": "hint --rapid all tab-bg",
+		"A": "hint all tab-bg",
 		"ta": "hint all tab-fg",
 		"tA": "hint all tab-bg",
 		"wa": "hint all window",
 		"Wa": "hint all run :open --private {hint-url}",
 
 		"b": "cmd-set-text --space :quickmark-load",
-		"B": "nop",
+		"B": "cmd-set-text --space :quickmark-load --tab",
 		"tb": "cmd-set-text --space :quickmark-load --tab",
 		"wb": "cmd-set-text --space :quickmark-load --window",
 
@@ -253,7 +253,7 @@ c.bindings.commands = {
 		"WE": "edit-url --private",
 
 		"f": "hint links",
-		"F": "hint --rapid links tab-bg",
+		"F": "hint links tab-bg",
 		"tf": "hint links tab-fg",
 		"tF": "hint links tab-bg",
 		"wf": "hint links window",
@@ -281,7 +281,7 @@ c.bindings.commands = {
 		"wl": "forward --window",
 
 		"m": "cmd-set-text --space :bookmark-load",
-		"M": "nop",
+		"M": "cmd-set-text --space :bookmark-load --tab",
 		"tm": "cmd-set-text --space :bookmark-load --tab",
 		"wm": "cmd-set-text --space :bookmark-load --window",
 
@@ -289,7 +289,7 @@ c.bindings.commands = {
 		"N": "search-prev",
 
 		"o": "cmd-set-text --space :open",
-		"O": "nop",
+		"O": "cmd-set-text --space :open --tab",
 		"to": "cmd-set-text --space :open --tab",
 		"wo": "cmd-set-text --space :open --window",
 		"Wo": "cmd-set-text --space :open --private",
@@ -302,6 +302,9 @@ c.bindings.commands = {
 		"wP": "open --window -- {primary}",
 		"Wp": "open --private -- {clipboard}",
 		"WP": "open --private -- {primary}",
+
+		"q": "hint --rapid links tab-bg",
+		"Q": "hint --rapid all tab-bg",
 
 		"r": "reload",
 		"R": "reload -f",

@@ -32,20 +32,23 @@ keyMappings: |-
   map gi focusInput
   map gu goUp
 
-  map f LinkHints.activateMode
+  map f  LinkHints.activateMode
   map tF LinkHints.activateModeToOpenInNewTab
+  map F  LinkHints.activateModeToOpenInNewTab
   map tf LinkHints.activateModeToOpenInNewForegroundTab
-  map F LinkHints.activateModeWithQueue
+  map q  LinkHints.activateModeWithQueue
   map ;d LinkHints.activateModeToDownloadLink
 
   map Wf LinkHints.activateModeToOpenIncognito
 
   map ;y LinkHints.activateModeToCopyLinkUrl
 
-  map o Vomnibar.activate
+  map o  Vomnibar.activate
+  map O  Vomnibar.activateInNewTab
   map to Vomnibar.activateInNewTab
 
-  map b Vomnibar.activateBookmarks
+  map b  Vomnibar.activateBookmarks
+  map B  Vomnibar.activateBookmarksInNewTab
   map tb Vomnibar.activateBookmarksInNewTab
 
   map S Vomnibar.activateTabSelection
