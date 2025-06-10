@@ -81,14 +81,14 @@ codebergShow ()
 gitlabShow ()
 {
   slug="${1:?}"
-  case "${2:?}" in
-    branch) context="-/tree/${3:?}" ;;
-    commit) context="-/commit/${3:?}" ;;
-    file) context="-/blob/${3:?}/${4:?}" ;;
+  case "${3:?}" in
+    branch) context="-/tree/${4:?}" ;;
+    commit) context="-/commit/${4:?}" ;;
+    file) context="-/blob/${4:?}/${5:?}" ;;
     default) ;;
-    *) echo "No context format for gitlab '$2'" 1>&2 ;;
+    *) echo "No context format for gitlab '$3'" 1>&2 ;;
   esac
-  base="${5}/${slug}"
+  base="${2}/${slug}"
   doOpen "${base}/${context}"
 }
 
@@ -136,19 +136,19 @@ gitShow ()
       ;;
     https://gitlab.com/*)
       slug=${origin#https://gitlab.com/}
-      gitlabShow "${slug%.git}" "$@" "https://gitlab.com/"
+      gitlabShow "${slug%.git}" "https://gitlab.com" "$@"
       ;;
     git@gitlab.com:*)
       slug=${origin#git@gitlab.com:}
-      gitlabShow "${slug%.git}" "$@" "https://gitlab.com/"
+      gitlabShow "${slug%.git}" "https://gitlab.com" "$@"
       ;;
     https://gitlab.freedesktop.org/*)
       slug=${origin#https://gitlab.freedesktop.org/}
-      gitlabShow "${slug%.git}" "$@" "https://gitlab.freedesktop.org/"
+      gitlabShow "${slug%.git}" "https://gitlab.freedesktop.org" "$@"
       ;;
     git@ssh.gitlab.freedesktop.org:*)
       slug=${origin#git@ssh.gitlab.freedesktop.org:}
-      gitlabShow "${slug%.git}" "$@" "https://gitlab.freedesktop.org/"
+      gitlabShow "${slug%.git}" "https://gitlab.freedesktop.org" "$@"
       ;;
     https://codeberg.org/*)
       slug=${origin#https://codeberg.org/}
