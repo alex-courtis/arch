@@ -225,6 +225,7 @@ c.bindings.commands = {
 		"a": "hint all",
 		"A": "hint --rapid all tab-bg",
 		"ta": "hint all tab-fg",
+		"tA": "hint all tab-bg",
 		"wa": "hint all window",
 		"Wa": "hint all run :open --private {hint-url}",
 
@@ -254,6 +255,7 @@ c.bindings.commands = {
 		"f": "hint links",
 		"F": "hint --rapid links tab-bg",
 		"tf": "hint links tab-fg",
+		"tF": "hint links tab-bg",
 		"wf": "hint links window",
 		"Wf": "hint links run :open --private {hint-url}",
 

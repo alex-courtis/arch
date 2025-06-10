@@ -2,7 +2,9 @@ keyMappings: |-
   unmapAll
 
   map j scrollDown
+  map J scrollRight
   map k scrollUp
+  map K scrollLeft
 
   map gg scrollToTop
   map G scrollToBottom
@@ -31,10 +33,10 @@ keyMappings: |-
   map gu goUp
 
   map f LinkHints.activateMode
-  map tf LinkHints.activateModeToOpenInNewTab
+  map tF LinkHints.activateModeToOpenInNewTab
+  map tf LinkHints.activateModeToOpenInNewForegroundTab
   map F LinkHints.activateModeWithQueue
   map ;d LinkHints.activateModeToDownloadLink
-  map tf LinkHints.activateModeToOpenInNewForegroundTab
 
   map Wf LinkHints.activateModeToOpenIncognito
 
@@ -88,7 +90,7 @@ keyMappings: |-
   map = zoomReset
 
   map ? showHelp
-linkHintCharacters: pgcrlaoeuhtnsqjkmwvz
+linkHintCharacters: pgcraoeuhtnsqjkmwvz
 newTabUrl: pages/blank.html
 scrollStepSize: 30
 searchEngines: |-
