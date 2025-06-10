@@ -33,9 +33,9 @@ keyMappings: |-
   map gu goUp
 
   map f  LinkHints.activateMode
-  map tF LinkHints.activateModeToOpenInNewTab
-  map F  LinkHints.activateModeToOpenInNewTab
-  map tf LinkHints.activateModeToOpenInNewForegroundTab
+  map tF LinkHints.activateModeToOpenInNewForegroundTab
+  map F  LinkHints.activateModeToOpenInNewForegroundTab
+  map tf LinkHints.activateModeToOpenInNewTab
   map q  LinkHints.activateModeWithQueue
   map ;d LinkHints.activateModeToDownloadLink
 

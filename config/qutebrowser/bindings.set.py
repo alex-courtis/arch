@@ -223,9 +223,9 @@ c.bindings.commands = {
 		"|": "nop",
 
 		"a": "hint all",
-		"A": "hint all tab-bg",
-		"ta": "hint all tab-fg",
-		"tA": "hint all tab-bg",
+		"A": "hint all tab-fg",
+		"ta": "hint all tab-bg",
+		"tA": "hint all tab-fg",
 		"wa": "hint all window",
 		"Wa": "hint all run :open --private {hint-url}",
 
@@ -253,9 +253,9 @@ c.bindings.commands = {
 		"WE": "edit-url --private",
 
 		"f": "hint links",
-		"F": "hint links tab-bg",
-		"tf": "hint links tab-fg",
-		"tF": "hint links tab-bg",
+		"F": "hint links tab-fg",
+		"tf": "hint links tab-bg",
+		"tF": "hint links tab-fg",
 		"wf": "hint links window",
 		"Wf": "hint links run :open --private {hint-url}",
 
