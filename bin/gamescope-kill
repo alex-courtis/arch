@@ -8,5 +8,5 @@ done
 
 # remove pipes etc.
 rm -v "${XDG_RUNTIME_DIR}/sdl-shared"*
-rm -v "${XDG_RUNTIME_DIR}/gamescope-"*
+rm -rfv "${XDG_RUNTIME_DIR}/gamescope"*
 
