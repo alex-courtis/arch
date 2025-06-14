@@ -1,3 +1,12 @@
+bw_args = ("--dmenu-invocation "
+		   "'bemenu --prompt Bitwarden' "
+		   "--password-prompt-invocation "
+		   "'bemenu --password indicator --prompt Master\ Password < /dev/null' "
+		   )
+
+print("bw_args")
+print(bw_args)
+
 c.bindings.key_mappings = {}
 
 c.bindings.commands = {
@@ -182,9 +191,9 @@ c.bindings.commands = {
 		"<Alt-d>": "set colors.webpage.darkmode.enabled true",
 		"<Alt-l>": "set colors.webpage.darkmode.enabled false",
 
-		"<Alt-b>": "spawn --userscript --verbose qute-bitwarden",
-		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only",
-		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only",
+		"<Alt-b>": "spawn --userscript --verbose qute-bitwarden                 " + bw_args,
+		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only " + bw_args,
+		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only " + bw_args,
 
 		"$": "nop",
 		"~": "nop",
@@ -358,8 +367,8 @@ c.bindings.commands = {
 		"<Return>": "prompt-accept --save yes",
 	},
 	"prompt": {
-		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only",
-		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only",
+		"<Alt-p>": "spawn --userscript --verbose qute-bitwarden --password-only " + bw_args,
+		"<Alt-u>": "spawn --userscript --verbose qute-bitwarden --username-only " + bw_args,
 	},
 	"hint": {
 		"<Ctrl-b>": None,

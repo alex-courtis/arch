@@ -26,6 +26,9 @@ export PAGER="less"
 export LESS="--RAW-CONTROL-CHARS --ignore-case --quit-if-one-screen --chop-long-lines"
 export SYSTEMD_LESS="${LESS}"
 
+# foreground terminal, used by -sensible-term etc.
+export TERMINAL="alacritty"
+
 # XDG_RUNTIME_DIR and others set by systemd
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_CONFIG_HOME=$HOME/.config
