@@ -54,10 +54,17 @@ c.tabs.select_on_remove = 'last-used'
 c.statusbar.show = 'always'
 c.tabs.show = 'multiple'
 
-c.statusbar.position = 'top'
-c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 8, 'top': 3}
+c.statusbar.position = 'bottom'
+c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 3, 'top': 3}
 
-c.statusbar.widgets = ['keypress', 'search_match', 'history', 'progress', 'url']
+c.statusbar.widgets = [
+		'progress',
+		'keypress',     'text:        ',
+		'search_match', 'text:        ',
+		'history',      'text:        ',
+		'tabs',         'text:        ',
+		'scroll',
+		]
 
 c.content.register_protocol_handler = True
 
