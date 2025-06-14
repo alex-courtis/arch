@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+python /usr/share/qutebrowser/userscripts/qute-bitwarden \
+	--dmenu-invocation \
+	'bemenu --center --prompt ""' \
+	--password-prompt-invocation \
+	'bemenu --center --prompt "Master Password" --password indicator < /dev/null' \
+	"$@"
+
+echo "mode-enter normal" >> "$QUTE_FIFO"
