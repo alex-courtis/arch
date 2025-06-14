@@ -1,7 +1,7 @@
 bw_args = ("--dmenu-invocation "
-		   "'bemenu --prompt Bitwarden' "
+		   "'bemenu --prompt \"\"' "
 		   "--password-prompt-invocation "
-		   "'bemenu --password indicator --prompt Master\ Password < /dev/null' "
+		   "'bemenu --prompt \"Master Password\" --password indicator < /dev/null' "
 		   )
 
 print("bw_args")

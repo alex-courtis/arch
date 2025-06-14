@@ -98,17 +98,21 @@ esac
 #
 export BEMENU_OPTS="\
 	--monitor focused \
-	--prefix "\>" \
 	--prompt ':;' \
 	--fn 'monospace ${FONT_SIZE_PT}' \
 	--list 10 \
+	--no-spacing \
 	--wrap \
-	--sb '#FFFF00' --sf '#FFFFFF' \
-	--tb '#${BASE16[green]}'                --tf '#${BASE16[default_background]}' \
-	--fb '#${BASE16[lighter_background]}'   --ff '#${BASE16[dark_foreground]}' \
+	--width 0.25 \
+	--border ${FONT_SIZE_PT} \
+	--border-radius ${FONT_SIZE_PT} \
 	--nb '#${BASE16[lighter_background]}'   --nf '#${BASE16[dark_foreground]}' \
+	--tb '#${HL_BG}'                        --tf '#${HL_FG}' \
+	--fb '#${BASE16[lighter_background]}'   --ff '#${BASE16[dark_foreground]}' \
 	--ab '#${BASE16[lighter_background]}'   --af '#${BASE16[dark_foreground]}' \
-	--hb '#${BASE16[selection_background]}' --hf '#${BASE16[light_foreground]}'"
+	--hb '#${HL_BG}'                        --hf '#${HL_FG}' \
+	--bdr '#${BASE16[blue]}' \
+	"
 
 case $TERM in
 	linux)
