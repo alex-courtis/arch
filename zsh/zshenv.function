@@ -72,6 +72,11 @@ function gu {
 }
 
 function boot {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: boot <desc>" >&2
+		return 1
+	fi
+
 	BOOT_NUM=$(efibootmgr \
 		| grep -Ei "^Boot[[:xdigit:]]*\* *${1}" \
 		| head -n 1 \
