@@ -94,9 +94,11 @@ c.url.searchengines = {
 
 # this might get annoying, maybe use global
 # c.content.javascript.clipboard = 'access-paste'
+# or
+# config.load_autoconfig(True)
 for url in {
 		'https://github.com',
 		}:
 	with config.pattern(url) as p:
-		p.content.javascript.lipboard = 'access-paste'
+		p.content.javascript.clipboard = 'access-paste'
 
