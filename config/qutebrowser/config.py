@@ -54,7 +54,7 @@ c.tabs.select_on_remove = 'last-used'
 c.statusbar.show = 'always'
 c.tabs.show = 'multiple'
 
-c.statusbar.position = 'bottom'
+c.statusbar.position = 'top'
 c.statusbar.padding = {'bottom': 3, 'left': 0, 'right': 3, 'top': 3}
 
 c.statusbar.widgets = [
