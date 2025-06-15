@@ -37,15 +37,6 @@ c.bindings.commands = {
 		"<Ctrl-Shift-Tab>": None,
 		"<Ctrl-Tab>": None,
 
-		"<Ctrl-^>": None,
-		"<Ctrl-a>": None,
-		"<Ctrl-b>": None,
-		"<Ctrl-Alt-p>": None,
-		"<Ctrl-p>": None,
-		"<Ctrl-Shift-t>": None,
-		"<Ctrl-v>": None,
-		"<Ctrl-x>": None,
-
 		"@": None,
 		"[[": None,
 		"]]": None,
@@ -131,59 +122,67 @@ c.bindings.commands = {
 		"{{": None,
 		"}}": None,
 
-        # bindings, with nops as markers
+		# bindings, using None for browser handled control keys
 		"<Escape>": "clear-messages ;; clear-keychain ;; search",
+
+		"<Shift-return>": "selection-follow --tab",
+
+		"<Ctrl-return>": None,
+
+		"<Ctrl-^>": None,
 
 		"<Ctrl-Shift-b>": "bookmark-list --tab",
 		"<Ctrl-Shift-h>": "history --tab",
 		"<Ctrl-Shift-a>": "tab-select",
 
-        "<Ctrl-a>": "nop",
-        "<Ctrl-b>": "nop",
-        "<Ctrl-c>": "nop",
+		"<Ctrl-a>": None, # select all
+		"<Ctrl-b>": None,
+		"<Ctrl-c>": None, # copy
 
 		"<Ctrl-d>": "scroll-page 0 0.5",
 
-        "<Ctrl-e>": "nop",
+		"<Ctrl-e>": None,
 
 		"<Ctrl-f>": "cmd-set-text /",
 
-        "<Ctrl-g>": "nop",
+		"<Ctrl-g>": None,
 
 		"<Ctrl-h>": "tab-move -",
 
-        "<Ctrl-i>": "nop",
-        "<Ctrl-j>": "nop",
-        "<Ctrl-k>": "nop",
+		"<Ctrl-i>": None,
+		"<Ctrl-j>": None,
+		"<Ctrl-k>": None,
 
 		"<Ctrl-l>": "tab-move +",
 
-        "<Ctrl-m>": "nop",
+		"<Ctrl-m>": None,
 
-        # "<Ctrl-n>": "open -w",
-        # "<Ctrl-Shift-n>": "open --private",
+		# "<Ctrl-n>": "open -w",
+		# "<Ctrl-Shift-n>": "open --private",
 
-        "<Ctrl-o>": "nop",
-        "<Ctrl-p>": "nop",
+		"<Ctrl-o>": None,
+		"<Ctrl-p>": None,
+		"<Ctrl-Alt-p>": None,
 
-        # "<Ctrl-q>": "quit",
+		# "<Ctrl-q>": "quit",
 
-        "<Ctrl-r>": "nop",
+		"<Ctrl-r>": None,
 
-        # "<Ctrl-s>": "stop",
+		# "<Ctrl-s>": "stop",
 
 		"<Ctrl-t>": "open --tab",
+		"<Ctrl-Shift-t>": None,
 
 		"<Ctrl-u>": "scroll-page 0 -0.5",
 
-        "<Ctrl-v>": "nop",
+		"<Ctrl-v>": None, # paste
 
-        # "<Ctrl-w>": "tab-close",
-        # "<Ctrl-Shift-w>": "close",
+		# "<Ctrl-w>": "tab-close",
+		# "<Ctrl-Shift-w>": "close",
 
-        "<Ctrl-x>": "nop",
-        "<Ctrl-y>": "nop",
-        "<Ctrl-z>": "nop",
+		"<Ctrl-x>": None, # cut
+		"<Ctrl-y>": None, # redo
+		"<Ctrl-z>": None, # undo
 
 		"<Alt-d>": "set colors.webpage.darkmode.enabled true",
 		"<Alt-l>": "set colors.webpage.darkmode.enabled false",
@@ -211,12 +210,12 @@ c.bindings.commands = {
 		";Wo": "hint links fill :open --private {hint-url}",
 		";y": "hint links yank",
 		";Y": "hint links yank-primary",
-        # ":": "cmd-set-text :",
+		# ":": "cmd-set-text :",
 
-        ",": "nop",
-        "<": "nop",
+		",": "nop",
+		"<": "nop",
 
-        # ".": "cmd-repeat-last",
+		# ".": "cmd-repeat-last",
 		">": "nop",
 
 		# "/": "cmd-set-text /",
