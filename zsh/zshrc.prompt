@@ -33,11 +33,9 @@ function precmd() {
 	fi
 	PREEXEC_D="false"
 
+	# async set the slow title
 	if [ -n "${TERM_TITLE}" ]; then
-		# no terminfo references as they are not reliable e.g. xterm missing fsl
-		print -n "\E]0;"
-		printtermtitle
-		print -n ""
+		print -n "\E]0;$(printtermtitle)" &!
 	fi
 
 	# clear ^C for use by zle abort-buffer
