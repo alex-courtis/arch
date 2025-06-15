@@ -7,9 +7,22 @@ if [ -f "${HOME}/.nogitps1" ]; then
 	. "${HOME}/.nogitps1"
 fi
 
+if [ "${UNAME}" = "Darwin" ]; then
+	GIT_PS1_SCRIPT="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
+else
+	if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
+		GIT_PS1_SCRIPT="/usr/share/git/completion/git-prompt.sh"
+	elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
+		GIT_PS1_SCRIPT="/usr/lib/git-core/git-sh-prompt"
+	fi
+fi
+
+GIT_PS1_SHOWDIRTYSTATE="true"
+GIT_PS1_SHOWSTASHSTATE="true"
+GIT_PS1_SHOWUPSTREAM="auto"
+
 # terminal title; avoid when possible as this is expensive, especially when starting a shell just for it
 function printtermtitle() {
-
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~"
 
@@ -20,24 +33,11 @@ function printtermtitle() {
 
 	# lazy load __git_ps1
 	if ! type __git_ps1 > /dev/null 2>&1; then
-		if [ "${UNAME}" = "Darwin" ]; then
-			git_ps1_script="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
-		else
-			if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
-				git_ps1_script="/usr/share/git/completion/git-prompt.sh"
-			elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
-				git_ps1_script="/usr/lib/git-core/git-sh-prompt"
-			fi
-		fi
-		if [ -f "${git_ps1_script}" ]; then
-			GIT_PS1_SHOWDIRTYSTATE="true"
-			GIT_PS1_SHOWSTASHSTATE="true"
-			GIT_PS1_SHOWUPSTREAM="auto"
-			. ${git_ps1_script}
+		if [ -f "${GIT_PS1_SCRIPT}" ]; then
+			. ${GIT_PS1_SCRIPT}
 		else
 			function __git_ps1() { : }
 		fi
-		unset git_ps1_script
 	fi
 
 	__git_ps1

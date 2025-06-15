@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# TODO clean this up
+
 # always server side decorations
 riverctl rule-add ssd
 

@@ -13,10 +13,11 @@ fi
 alias sudo="sudo -s "
 
 alias zpl="zmodload zsh/zprof"
-alias zp="zprof | sed -n '3,/^$/p'"
-alias zpc="zprof | sed -n '3,/^$/p' ; zprof -c"
-alias zpp="setopt xtrace"
-alias zps="ZSH_PROFILE_STARTUP=true zsh -l"
+alias zp="zpl ; zprof | sed -n '3,/^$/p'"
+alias zpc="zpl ; zprof -c"
+alias zpshell="ZSH_PROFILE_STARTUP=true zsh -l"
+alias zpprompt="setopt xtrace"
+alias zpnoprompt="unsetopt xtrace"
 
 alias ls="ls --color=auto"
 alias ll="ls -lh"
