@@ -13,7 +13,7 @@ config.load_autoconfig(False)
 if not os.getenv('DISPLAY'):
 	c.qt.force_software_rendering = 'chromium'
 
-c.auto_save.session = False
+c.auto_save.session = True
 
 c.tabs.last_close = 'close'
 
