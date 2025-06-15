@@ -7,14 +7,17 @@ if [ -f "${HOME}/.nogitps1" ]; then
 	. "${HOME}/.nogitps1"
 fi
 
-if [ "${UNAME}" = "Darwin" ]; then
-	GIT_PS1_SCRIPT="/opt/homebrew/etc/bash_completion.d/git-prompt.sh"
-else
-	if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
-		GIT_PS1_SCRIPT="/usr/share/git/completion/git-prompt.sh"
-	elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
-		GIT_PS1_SCRIPT="/usr/lib/git-core/git-sh-prompt"
-	fi
+# try to load a __git_ps1 otherwise create an empty function
+for s in \
+	"/opt/homebrew/etc/bash_completion.d/git-prompt.sh" \
+	"/usr/share/git/completion/git-prompt.sh" \
+	"/usr/lib/git-core/git-sh-prompt" \
+	;
+do
+	[ -f "${s}" ] && . "${s}" && break
+done
+if ! type __git_ps1 > /dev/null 2>&1; then
+	function __git_ps1() { : }
 fi
 
 GIT_PS1_SHOWDIRTYSTATE="true"
@@ -31,21 +34,12 @@ function printtermtitle() {
 		return
 	fi
 
-	# lazy load __git_ps1
-	if ! type __git_ps1 > /dev/null 2>&1; then
-		if [ -f "${GIT_PS1_SCRIPT}" ]; then
-			. ${GIT_PS1_SCRIPT}
-		else
-			function __git_ps1() { : }
-		fi
-	fi
-
 	__git_ps1
 }
 
 # print git ps1, current branch, upstream URL
 function gs() {
-	local git_ps1=$(__git_ps1 2>/dev/null)
+	local git_ps1=$(GIT_PS1_SHOWDIRTYSTATE="true" __git_ps1 2>/dev/null)
 	[ -n "${git_ps1}" ] && print "${git_ps1}"
 
 	local branch_local=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
