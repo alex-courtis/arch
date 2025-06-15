@@ -1,12 +1,5 @@
 # non-interactive shell invoked functions go here
 
-# don't evaluate git ps1
-# basic zsh =~ regex
-# e.g. export NO_GIT_PS1="${HOME}/src/cmocka|${HOME}/src/linux|${HOME}/src/yaml-cpp"
-if [ -f "${HOME}/.nogitps1" ]; then
-	. "${HOME}/.nogitps1"
-fi
-
 # try to load a __git_ps1 otherwise create an empty function
 for s in \
 	"/opt/homebrew/etc/bash_completion.d/git-prompt.sh" \
@@ -28,11 +21,6 @@ GIT_PS1_SHOWUPSTREAM="auto"
 function printtermtitle() {
 	# don't include __git_ps1 in the print lest it be prompt substituted
 	print -Pn "%~"
-
-	# obey ~/.nogitps1
-	if [[ -n "${NO_GIT_PS1}" && "${PWD}" =~ "${NO_GIT_PS1}" ]]; then
-		return
-	fi
 
 	__git_ps1
 }
