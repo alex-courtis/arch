@@ -1,3 +1,6 @@
+c.logging.level.console = 'critical'
+c.logging.level.ram = 'critical'
+
 import os
 
 config.source('base16-bright.py')
@@ -88,3 +91,12 @@ c.url.searchengines = {
 		'w':       'https://www.wikipedia.org/w/index.php?title=Special:Search&search={}',
 		'y':       'https://www.youtube.com/results?search_query={}',
 		}
+
+# this might get annoying, maybe use global
+# c.content.javascript.clipboard = 'access-paste'
+for url in {
+		'https://github.com',
+		}:
+	with config.pattern(url) as p:
+		p.content.javascript.lipboard = 'access-paste'
+
