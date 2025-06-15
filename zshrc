@@ -1,3 +1,5 @@
+[ "${ZSH_PROFILE_STARTUP}" ] && zmodload zsh/zprof
+
 echo "zshrc    ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR-x}.${USER}.log
 
 fpath=(${XDG_DATA_HOME}/zsh/site-functions /opt/homebrew/share/zsh/site-functions $fpath)
@@ -19,3 +21,5 @@ if [ "$(whence keychain)" ]; then
 fi
 
 setopt rmstarsilent
+
+[ "${ZSH_PROFILE_STARTUP}" ] && echo "====zshrc=======" && zprof && zprof -c && echo

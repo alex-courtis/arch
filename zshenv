@@ -1,3 +1,5 @@
+[ "${ZSH_PROFILE_STARTUP}" ] && zmodload zsh/zprof
+
 echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR-x}.${USER}.log
 
 typeset -U path
@@ -87,3 +89,4 @@ if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubu
 	export PS1_USER="true"
 fi
 
+[ "${ZSH_PROFILE_STARTUP}" ] && echo "====zshenv======" && zprof && zprof -c && echo
