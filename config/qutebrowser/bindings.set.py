@@ -373,5 +373,6 @@ c.bindings.commands = {
 		"<Ctrl-f>": None,
 		"<Ctrl-r>": None,
 		"<Return>": None,
+		"l": "mode-enter normal ;; tab-next",
 	},
 }
