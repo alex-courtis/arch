@@ -9,11 +9,6 @@ function M.update_path()
 end
 
 function M.update_title()
-  -- this should never be visible
-  if not vim.env.TERM_TITLE then
-    return
-  end
-
   -- execute async as this is slow
   vim.system({ "zsh", "-c", "printtermtitle", }, { text = true }, function(out)
     -- wait for main thread to write

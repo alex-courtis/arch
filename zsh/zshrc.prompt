@@ -5,7 +5,6 @@ PS1_SUF=";"
 
 [ -n "${PS1_HOST}"   ] && PS1_PRE="${PS1_PRE}${HOST/.*/} "
 [ -n "${PS1_USER}"   ] && PS1_PRE="${PS1_PRE}${USER} "
-[ -z "${TERM_TITLE}" ] && PS1_PRE="\$(printtermtitle)"$'\n'"${PS1_PRE}"
 
 if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
 	PS1_HL_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
@@ -34,9 +33,7 @@ function precmd() {
 	PREEXEC_D="false"
 
 	# async set the slow title
-	if [ -n "${TERM_TITLE}" ]; then
-		print -n "\E]0;$(printtermtitle)" &!
-	fi
+	print -n "\E]0;$(printtermtitle)" &!
 
 	# clear ^C for use by zle abort-buffer
 	stty intr undef
