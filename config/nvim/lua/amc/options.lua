@@ -2,6 +2,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- set the title string early to avoid flashing from async update
+vim.o.titlestring = vim.fn.fnamemodify(vim.loop.cwd() or "", ":~")
+
 -- general options
 vim.o.autowriteall = true
 vim.o.clipboard = "unnamedplus"
