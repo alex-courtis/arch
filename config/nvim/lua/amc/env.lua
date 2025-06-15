@@ -26,7 +26,13 @@ function M.update_title()
     end
   end
 
-  vim.o.titlestring = vim.fn.system("printtermtitle")
+  -- execute async as this is slow
+  vim.system({ "zsh", "-c", "printtermtitle", }, { text = true }, function(out)
+    -- wait for main thread to write
+    vim.schedule(function()
+      vim.o.titlestring = out.stdout
+    end)
+  end)
 end
 
 -- return to initial cwd
