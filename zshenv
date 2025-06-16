@@ -42,6 +42,11 @@ export XDG_MUSIC_DIR=$HOME/.music
 # they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
+# vdpau defaults to nvidia
+if [ "${HOST}" = "emperor" ]; then
+	export VDPAU_DRIVER="radeonsi"
+fi
+
 # moar history
 HISTFILE=~/.histfile
 HISTSIZE=100000
