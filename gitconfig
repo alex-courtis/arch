@@ -52,6 +52,9 @@
 [remote]
 	tagopt = --tags
 
+[merge]
+	tool = nvimdiff
+
 [mergetool "idea"]
 	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
 	trustExitCode = true
