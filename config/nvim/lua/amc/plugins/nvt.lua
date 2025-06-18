@@ -7,12 +7,6 @@ local K = require("amc.util").K
 
 local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
-local view = require("nvim-tree.view")
-
-if type(view.tab_line) == "function" then
-  vim.opt.tabline = "%!v:lua.require('nvim-tree.view').tab_line()"
-  vim.opt.showtabline = 2
-end
 
 if not tree or not api then
   return M
@@ -270,11 +264,7 @@ local config = {
     threshold = vim.log.levels.WARN,
   },
   experimental = {
-    actions = {
-      open_file = {
-        relative_path = true,
-      },
-    },
+    multi_instance_debug = true,
   },
   log = {
     enable = false,
