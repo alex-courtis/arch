@@ -54,6 +54,12 @@ vim.keymap.set("n", "<space>a", function() api.tree.open({ find_file = true }) e
 vim.keymap.set("n", "<space>'", function() api.tree.find_file({ open = true }) end, { noremap = true })
 vim.keymap.set("n", "<space>o", function() vim.cmd.wincmd("p") end,                 { noremap = true })
 
+vim.keymap.set("n", "tn",       ":tabnew<CR>",                                      { noremap = true })
+vim.keymap.set("n", "tc",       ":tabclose<CR>",                                    { noremap = true })
+vim.keymap.set("n", "th",       ":tabprevious<CR>",                                 { noremap = true })
+vim.keymap.set("n", "tl",       ":tabnext<CR>",                                     { noremap = true })
+vim.keymap.set("n", "to",       ":tabonly<CR>",                                     { noremap = true })
+
 function M.on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
