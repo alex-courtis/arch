@@ -264,7 +264,7 @@ local config = {
     threshold = vim.log.levels.WARN,
   },
   experimental = {
-    multi_instance_debug = true,
+    multi_instance = true,
   },
   log = {
     enable = false,
