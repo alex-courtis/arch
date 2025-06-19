@@ -82,6 +82,11 @@ function init() {
 		}
 	" "${INIT}"
 
+	# enable multi_instance
+	sed -i -e "
+		s/multi_instance = .*,/multi_instance = true,/
+	" "${INIT}"
+
 	# clean up
 	rm ${ROOT}/DEFAULT_OPTS.lua
 }

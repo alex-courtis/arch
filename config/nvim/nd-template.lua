@@ -66,7 +66,7 @@ end
 
 vim.api.nvim_create_autocmd("DirChanged", {
   callback = function(data)
-    print(vim.inspect(data))
+    print(data.event .. " " .. data.file)
   end,
 })
 
