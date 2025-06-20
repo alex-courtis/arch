@@ -39,7 +39,7 @@ which_key.add({
   { "<BS>",    mode = { "n", "v", }, group = "leader" },
   { "<Space>", mode = { "n", "v", }, group = "leader" },
   { "f",       mode = { "n", },      group = "find", },
-  { "t",       mode = { "n", "v", }, group = "grep", },
+  { ",",       mode = { "n", "v", }, group = "grep", },
 })
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
   which_key.add({

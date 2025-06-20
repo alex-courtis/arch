@@ -17,9 +17,11 @@ local which_key = require("amc.plugins.which-key")
 
 local M = {}
 
--- unused and available normal
--- fF tT ,
+--
+-- unused and available normal, leaders commented below
+-- T F
 -- & { } ( + ) ` - _ \ |
+--
 
 ---nil safe wrapper around vim.api.nvim_create_user_command()
 ---@param name string
@@ -52,7 +54,7 @@ K.ns__("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
 K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 
 --
--- left
+-- left, free leaders commented
 --
 K.n___(";",     ":",                           ":")
 K.v___(";",     ":",                           ":")
@@ -80,12 +82,23 @@ K.nsl_('"', windows.close_others,      "Close Other Windows")
 --
 --  O
 --
-K.n_l_("{", "[{",                    "Prev {")
-K.nsl_(",", fugitive.open_only,      "Open Only Fugitive")
-K.nsl_("<", fugitive.open,           "Open Fugitive")
-K.nsl_("o", windows.go_home_or_next, "Home Or Next Window")
-K.nsl_("q", windows.close,           "Close Window")
-K.nsl_("Q", vim.cmd.only,            "Only")
+K.n_l_("{",  "[{",                                 "Prev {")
+K.ns__(",c", telescope.rhs_n_grep_cword,           "Live Grep: <cword>")
+K.ns__(",d", telescope.live_grep_directory_buffer, "Live Grep: Directory, Buffer")
+K.ns__(",D", telescope.live_grep_directory_prompt, "Live Grep: Directory, Prompt")
+K.ns__(",g", telescope.live_grep,                  "Live Grep")
+K.ns__(",i", telescope.git_grep_live_grep,         "Live Grep: Git")
+K.ns__(",h", telescope.live_grep_hidden,           "Live Grep: Hidden")
+K.ns__(",f", telescope.live_grep_filetype_buffer,  "Live Grep: Filetype, Buffer")
+K.ns__(",F", telescope.live_grep_filetype_prompt,  "Live Grep: Filetype, Prompt")
+K.vs__(",g", telescope.rhs_v_grep,                 "Live Grep")
+K.vs__(",h", telescope.rhs_v_grep_hidden,          "Live Grep: Hidden")
+K.vs__(",i", telescope.rhs_v_git_grep_live_grep,   "Live Grep: Git")
+K.nsl_(",",  fugitive.open_only,                   "Open Only Fugitive")
+K.nsl_("<",  fugitive.open,                        "Open Fugitive")
+K.nsl_("o",  windows.go_home_or_next,              "Home Or Next Window")
+K.nsl_("q",  windows.close,                        "Close Window")
+K.nsl_("Q",  vim.cmd.only,                         "Only")
 
 --  3
 --  >
@@ -114,7 +127,7 @@ K.nsl_("i", telescope.buffers,    "Open Buffers")
 K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 
 --
--- right
+-- right, free leaders commented
 --
 
 --  0
@@ -146,7 +159,7 @@ K.nsl_("ms", dev.source,     ":source")
 
 --  4
 --  C
---  T
+--  tT
 --
 K.nsl_("+",  rainbow.toggle,                        "Toggle Rainbow")
 K.nsl_("cb", telescope.builtin,                     "Telescope: Builtins")
@@ -155,18 +168,8 @@ K.nsl_("ck", telescope.keymaps,                     "Telescope: Keymaps")
 K.nsl_("co", telescope.commands,                    "Telescope: Commands")
 K.nsl_("cr", telescope.resume,                      "Telescope: Resume")
 K.nsl_("cs", telescope.search_history,              "Telescope: Search History")
-K.ns__("tc", telescope.rhs_n_grep_cword,            "Live Grep: <cword>")
-K.ns__("td", telescope.live_grep_directory_buffer,  "Live Grep: Directory, Buffer")
-K.ns__("tD", telescope.live_grep_directory_prompt,  "Live Grep: Directory, Prompt")
-K.ns__("tg", telescope.live_grep,                   "Live Grep")
-K.ns__("ti", telescope.git_grep_live_grep,          "Live Grep: Git")
-K.ns__("th", telescope.live_grep_hidden,            "Live Grep: Hidden")
-K.ns__("tf", telescope.live_grep_filetype_buffer,   "Live Grep: Filetype, Buffer")
-K.ns__("tF", telescope.live_grep_filetype_prompt,   "Live Grep: Filetype, Prompt")
-K.vs__("tg", telescope.rhs_v_grep,                  "Live Grep")
-K.vs__("th", telescope.rhs_v_grep_hidden,           "Live Grep: Hidden")
-K.vs__("ti", telescope.rhs_v_git_grep_live_grep,    "Live Grep: Git")
-K.nsl_("t",  "<C-]>",                               "Jump To Definition",           { remap = true })
+K.n___("t",  "<C-]>",                               "Jump To Definition",         { remap = true })
+K.nsl_("t",  "<Nop>",                               "<Nop>")
 K.nsl_("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.vsl_("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
 K.nsl_("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
