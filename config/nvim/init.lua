@@ -20,7 +20,6 @@ local plugins = {
   "folke/which-key.nvim",
   "GutenYe/json5.vim",
   "hashivim/vim-terraform",
-  "haya14busa/vim-asterisk",
   "HiPhish/rainbow-delimiters.nvim",
   "kkharji/sqlite.lua",
   "lewis6991/gitsigns.nvim",
