@@ -166,7 +166,7 @@ K.ns__("tF", telescope.live_grep_filetype_prompt,   "Live Grep: Filetype, Prompt
 K.vs__("tg", telescope.rhs_v_grep,                  "Live Grep")
 K.vs__("th", telescope.rhs_v_grep_hidden,           "Live Grep: Hidden")
 K.vs__("ti", telescope.rhs_v_git_grep_live_grep,    "Live Grep: Git")
-K.nsl_("t",  "<C-]>",                               "Jump To Definition")
+K.nsl_("t",  "<C-]>",                               "Jump To Definition",           { remap = true })
 K.nsl_("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.vsl_("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
 K.nsl_("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
@@ -179,7 +179,7 @@ K.n_l_("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Repl
 K.n_l_("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
 K.v_l_("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
 K.v_l_("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
-K.nsl_("n", "<C-]>",                                                       "Definition")
+K.nsl_("n", "<C-]>",                                                       "Jump To Definition", { remap = true })
 K.nsl_("v", ":put<CR>'[v']=",                                              "Put Format")
 K.nsl_("V", ":put!<CR>'[v']=",                                             "Put Above Format")
 
