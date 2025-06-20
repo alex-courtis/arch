@@ -128,6 +128,8 @@ local function on_attach(bufnr)
   vim.keymap.del("n", "D",     { buffer = bufnr }) -- api.fs.trash,
   vim.keymap.del("n", "]e",    { buffer = bufnr }) -- api.node.navigate.diagnostics.next,
   vim.keymap.del("n", "[e",    { buffer = bufnr }) -- api.node.navigate.diagnostics.prev,
+  vim.keymap.del("n", "f",     { buffer = bufnr }) -- api.live_filter.start
+  vim.keymap.del("n", "F",     { buffer = bufnr }) -- api.live_filter.clear
   vim.keymap.del("n", "g?",    { buffer = bufnr }) -- api.tree.toggle_help,
   vim.keymap.del("n", "gy",    { buffer = bufnr }) -- api.fs.copy.absolute_path,
   vim.keymap.del("n", "y",     { buffer = bufnr }) -- api.fs.copy.filename,
@@ -135,6 +137,7 @@ local function on_attach(bufnr)
 
   K.n__b("<C-t>", api.tree.change_root_to_parent,               bufnr, "", opts("Up"))
   K.n__b("<C-i>", api.node.show_info_popup,                     bufnr, "", opts("Info"))
+  K.n__b("<C-]>", api.tree.change_root_to_node,                 bufnr, "", opts("CD"))
   K.n_lb("t",     api.tree.change_root_to_node,                 bufnr, "", opts("CD"))
   K.n_lb("p",     api.node.navigate.diagnostics.prev_recursive, bufnr, "", opts("Prev Diagnostic"))
   K.n_lb(".",     api.node.navigate.diagnostics.next_recursive, bufnr, "", opts("Next Diagnostic"))
@@ -149,8 +152,8 @@ local function on_attach(bufnr)
   K.n__b("gr",    git_restore,                                  bufnr, "", opts("Git Restore"))
   K.n__b("gs",    git_stage,                                    bufnr, "", opts("Git Stage"))
   K.n__b("gu",    git_unstage,                                  bufnr, "", opts("Git Unstage"))
-  K.n_lb("ft",    find_files,                                   bufnr, "", opts("Find Files"))
-  K.n_lb("gt",    live_grep,                                    bufnr, "", opts("Live Grep"))
+  K.n__b("fd",    find_files,                                   bufnr, "", opts("Find Files: Directory"))
+  K.n__b("td",    live_grep,                                    bufnr, "", opts("Live Grep: Directory"))
   K.n__b("yn",    api.fs.copy.filename,                         bufnr, "", opts("Copy Name"))
   K.n__b("yr",    api.fs.copy.relative_path,                    bufnr, "", opts("Copy Relative Path"))
   K.n__b("ys",    api.fs.copy.absolute_path,                    bufnr, "", opts("Copy Absolute Path"))

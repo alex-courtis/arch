@@ -26,19 +26,28 @@ local opts = {
       { pattern = "fugitive", name = "git" },
     },
   },
+  triggers = {
+    { "<auto>", mode = "nixsotc" },
+    { "f",      mode = { "n", "v" } },
+    { "t",      mode = { "n", "v" } },
+  }
 }
 
 which_key.setup(opts)
 
-which_key.add({ { "<BS>", mode = { "n", "v", }, group = "leader" }, })
-which_key.add({ { "<Space>", mode = { "n", "v", }, group = "leader" }, })
+which_key.add({
+  { "<BS>",    mode = { "n", "v", }, group = "leader" },
+  { "<Space>", mode = { "n", "v", }, group = "leader" },
+  { "f",       mode = { "n", },      group = "find", },
+  { "t",       mode = { "n", "v", }, group = "grep", },
+})
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
-  which_key.add({ { leader .. "c", mode = { "n" }, group = "telescope" }, })
-  which_key.add({ { leader .. "d", mode = { "n" }, group = "diagnostics", }, })
-  which_key.add({ { leader .. "f", mode = { "n" }, group = "find", }, })
-  which_key.add({ { leader .. "g", mode = { "n", "v", }, group = "grep", }, })
-  which_key.add({ { leader .. "h", mode = { "n" }, group = "git", }, })
-  which_key.add({ { leader .. "m", mode = { "n" }, group = "make" }, })
+  which_key.add({
+    { leader .. "c", mode = { "n" }, group = "telescope" },
+    { leader .. "d", mode = { "n" }, group = "diagnostics" },
+    { leader .. "h", mode = { "n" }, group = "git", },
+    { leader .. "m", mode = { "n" }, group = "make" },
+  })
 end
 
 -- hide

@@ -8,7 +8,7 @@ local windows = require("amc.windows")
 
 ---no way to remap fugitive and tpope will not add
 function M.attach(data)
-  K.n__b("t", "=", data.buf, "Toggle Inline Diff", { remap = true })
+  K.n__b("a", "=", data.buf, "Toggle Inline Diff", { remap = true })
   K.n__b("x", "X", data.buf, "Discard",            { remap = true })
 end
 
