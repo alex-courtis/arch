@@ -241,6 +241,11 @@ K.i___("<CR>",    function() return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR
 K.i___("<Tab>",   function() return vim.fn.pumvisible() == 1 and "<C-n>" or "<Tab>" end,   "Next Match",   { expr = true })
 K.i___("<S-Tab>", function() return vim.fn.pumvisible() == 1 and "<C-p>" or "<S-Tab>" end, "Prev Match",   { expr = true })
 
+-- don't let the signature help intrude
+K.s___("<C-S>",
+  function() vim.lsp.buf.signature_help({ focusable = false, close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre", "ModeChanged", } }) end,
+  "Signature Help (Quiet)")
+
 --
 -- commands
 --

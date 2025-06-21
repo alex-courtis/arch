@@ -31,35 +31,52 @@ local function on_attach(client, bufnr)
     K.n_lb("t", vim.lsp.buf.definition, bufnr, "LSP: Definition") -- textDocument/definition
   end
 
+  if client.server_capabilities.declarationProvider then
+    K.n_lb("T", vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
+  end
+
   if client.server_capabilities.typeDefinitionProvider then
     K.n_lb("dt", vim.lsp.buf.type_definition, bufnr, "LSP: Type Definition") -- textDocument/typeDefinition
   end
 
-  if client.server_capabilities.declarationProvider then
-    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "LSP: Declaration") -- textDocument/declaration
-    K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
+  if client.server_capabilities.referencesProvider then
+    K.n_lb("n", telescope.lsp_references, bufnr, "Telescope: References")
+    K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: References") -- textDocument/references
   end
-
-  K.n_lb("n", telescope.lsp_references, bufnr, "Telescope: References")
-  K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: References") -- textDocument/references
 
   if client.server_capabilities.callHierarchyProvider then
     K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: Outgoing") -- callHierarchy/outgoingCalls
     K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming") -- callHierarchy/incomingCalls
   end
 
-  K.n_lb("d-", vim.cmd.LspRestart,              bufnr, "LSP: Restart")
-  K.n_lb("d_", M.disable,                       bufnr, "LSP: Disable Active Clients")
-  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "LSP: Code Action") -- textDocument/codeAction
-  K.n_lb("df", vim.diagnostic.open_float,       bufnr, "Diagnostics: Float")
-  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "LSP: Hover")       -- textDocument/hover
+  if client.server_capabilities.implementationProvider then
+    K.n_lb("dm", vim.lsp.buf.implementation, bufnr, "LSP: Implementations") -- textDocument/implementation
+  end
+
+  K.n_lb("d-", vim.cmd.LspRestart, bufnr, "LSP: Restart")
+  K.n_lb("d_", M.disable,          bufnr, "LSP: Disable Active Clients")
+
+  if client.server_capabilities.codeActionProvider then
+    K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: Code Action") -- textDocument/codeAction
+  end
+
+  K.n_lb("df", vim.diagnostic.open_float, bufnr, "Diagnostics: Float")
+
+  if client.server_capabilities.hoverProvider then
+    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover")             -- textDocument/hover
+  end
+
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
   K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
-  K.n_lb("dr", vim.lsp.buf.rename,              bufnr, "LSP: Rename") -- textDocument/rename
-  K.n_lb("dq", vim.diagnostic.setqflist,        bufnr, "Diagnostics: QuickFix")
 
-  if client:supports_method("textDocument/completion") then
-    vim.lsp.completion.enable(true, client.id, bufnr, {})
+  if client.server_capabilities.renameProvider then
+    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: Rename") -- textDocument/rename
+  end
+
+  K.n_lb("dq", vim.diagnostic.setqflist, bufnr, "Diagnostics: QuickFix")
+
+  if client.server_capabilities.completionProvider then
+    vim.lsp.completion.enable(true, client.id, bufnr, {}) -- textDocument/completion
   end
 
   -- client:supports_method  Always returns true for unknown off-spec methods
