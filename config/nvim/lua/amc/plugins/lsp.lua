@@ -63,7 +63,7 @@ local function on_attach(client, bufnr)
   K.n_lb("df", vim.diagnostic.open_float, bufnr, "Diagnostics: Float")
 
   if client.server_capabilities.hoverProvider then
-    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover")             -- textDocument/hover
+    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover") -- textDocument/hover
   end
 
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")

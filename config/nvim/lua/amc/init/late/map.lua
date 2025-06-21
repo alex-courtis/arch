@@ -246,6 +246,9 @@ K.s___("<C-S>",
   function() vim.lsp.buf.signature_help({ focusable = false, close_events = { "CursorMoved", "CursorMovedI", "InsertCharPre", "ModeChanged", } }) end,
   "Signature Help (Quiet)")
 
+-- clear snippets
+K.n_l_("dc", vim.snippet.stop, "Stop Snippets")
+
 --
 -- commands
 --
