@@ -138,6 +138,7 @@ K.ns__("ff", telescope.find_files,        "Find Files")
 K.ns__("fg", telescope.git_files,         "Find Files: Git")
 K.ns__("fh", telescope.find_files_hidden, "Find Files: Hidden")
 K.ns__("fo", telescope.oldfiles,          "Find Files: Previously Open")
+K.n___("F",  "<Nop>",                     "<Nop>")
 K.nsl_("f",  "<Nop>",                     "<Nop>")
 K.nsl_("b",  ":%y<CR>",                   "Yank Buffer")
 K.nsl_("B",  ":%d_<CR>",                  "Clean Buffer")
@@ -159,7 +160,7 @@ K.nsl_("ms", dev.source,     ":source")
 
 --  4
 --  C
---  tT
+--  T
 --
 K.nsl_("+",  rainbow.toggle,                        "Toggle Rainbow")
 K.nsl_("cb", telescope.builtin,                     "Telescope: Builtins")
@@ -168,7 +169,8 @@ K.nsl_("ck", telescope.keymaps,                     "Telescope: Keymaps")
 K.nsl_("co", telescope.commands,                    "Telescope: Commands")
 K.nsl_("cr", telescope.resume,                      "Telescope: Resume")
 K.nsl_("cs", telescope.search_history,              "Telescope: Search History")
-K.n___("t",  "<C-]>",                               "Tag",                        { remap = true })
+K.n___("t",  "<C-]>",                               "Tag",                        { remap = true }) -- overridden by lsp
+K.n___("T",  "<C-]>",                               "Tag",                        { remap = true }) -- keep this as a backup for misbehaving lua
 K.nsl_("t",  "<Nop>",                               "<Nop>")
 K.nsl_("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.vsl_("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
@@ -182,7 +184,8 @@ K.n_l_("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Repl
 K.n_l_("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
 K.v_l_("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
 K.v_l_("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
-K.nsl_("n", "<C-]>",                                                       "Tag",              { remap = true })
+K.nsl_("n", "<C-]>",                                                       "Tag",              { remap = true }) -- overridden by lsp
+K.nsl_("N", "<C-]>",                                                       "Tag",              { remap = true }) -- overridden by lsp
 K.nsl_("v", ":put<CR>'[v']=",                                              "Put Format")
 K.nsl_("V", ":put!<CR>'[v']=",                                             "Put Above Format")
 

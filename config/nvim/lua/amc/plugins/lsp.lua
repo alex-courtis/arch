@@ -28,11 +28,11 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.server_capabilities.definitionProvider then
-    K.n_lb("t", vim.lsp.buf.definition, bufnr, "LSP: Definition") -- textDocument/definition
+    K.n__b("t", vim.lsp.buf.definition, bufnr, "LSP: Definition") -- textDocument/definition
   end
 
   if client.server_capabilities.declarationProvider then
-    K.n_lb("T", vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
+    K.n__b("T", vim.lsp.buf.declaration, bufnr, "LSP: Declaration") -- textDocument/declaration
   end
 
   if client.server_capabilities.typeDefinitionProvider then
