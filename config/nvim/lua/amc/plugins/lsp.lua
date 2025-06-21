@@ -11,36 +11,51 @@ local snippet = require("vim.snippet")
 -- Map
 --
 
+-- see /usr/share/nvim/runtime/lua/vim/lsp/protocol.lua for available methods
+
 ---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
 local function on_attach(client, bufnr)
 
   -- see :help lsp-defaults
   pcall(vim.keymap.del, "n", "K", { buffer = bufnr })
 
-  -- no need to rebind c-]
-  -- vim.lsp.tagfunc() indicates that it calls textDocument/definition,
-  -- however vim.lsp.buf.definition returns two results e.g. wk.Spec
+  -- c-] is automatically bound to vim.lsp.tagfunc() which
+  -- calls textDocument/definition, then workspace/symbol, then tags
+  -- Avoid it:
+  --  It blocks for 1s then fails back
+  --  On no results it prints two error lines
+  -- E433: No tags file
+  -- E426: Tag not found: xxx
+
   if client.server_capabilities.definitionProvider then
-    -- K.n_lb("t",  vim.lsp.buf.definition, bufnr, "LSP: Definition", })
-    K.n_lb("dt", vim.lsp.buf.definition, bufnr, "LSP: Definition")
+    K.n_lb("t", vim.lsp.buf.definition, bufnr, "LSP: Definition") -- textDocument/definition
+  end
+
+  if client.server_capabilities.typeDefinitionProvider then
+    K.n_lb("dt", vim.lsp.buf.type_definition, bufnr, "LSP: Type Definition") -- textDocument/typeDefinition
   end
 
   if client.server_capabilities.declarationProvider then
-    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
+    K.n_lb("T",  vim.lsp.buf.declaration, bufnr, "LSP: Declaration") -- textDocument/declaration
     K.n_lb("dT", vim.lsp.buf.declaration, bufnr, "LSP: Declaration")
   end
 
-  K.n_lb("n",  telescope.lsp_references,        bufnr, "Telescope: References")
-  K.n_lb("N",  vim.lsp.buf.references,          bufnr, "LSP: References")
+  K.n_lb("n", telescope.lsp_references, bufnr, "Telescope: References")
+  K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: References") -- textDocument/references
+
+  if client.server_capabilities.callHierarchyProvider then
+    K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: Outgoing") -- callHierarchy/outgoingCalls
+    K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming") -- callHierarchy/incomingCalls
+  end
 
   K.n_lb("d-", vim.cmd.LspRestart,              bufnr, "LSP: Restart")
   K.n_lb("d_", M.disable,                       bufnr, "LSP: Disable Active Clients")
-  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "LSP: Code Action")
-  K.n_lb("de", vim.lsp.buf.rename,              bufnr, "LSP: Rename")
+  K.n_lb("da", vim.lsp.buf.code_action,         bufnr, "LSP: Code Action") -- textDocument/codeAction
   K.n_lb("df", vim.diagnostic.open_float,       bufnr, "Diagnostics: Float")
-  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "LSP: Hover")
+  K.n_lb("dh", vim.lsp.buf.hover,               bufnr, "LSP: Hover")       -- textDocument/hover
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
   K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
+  K.n_lb("dr", vim.lsp.buf.rename,              bufnr, "LSP: Rename") -- textDocument/rename
   K.n_lb("dq", vim.diagnostic.setqflist,        bufnr, "Diagnostics: QuickFix")
 
   if client:supports_method("textDocument/completion") then
@@ -49,7 +64,7 @@ local function on_attach(client, bufnr)
 
   -- client:supports_method  Always returns true for unknown off-spec methods
   if client.name == "ccls" then
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "ccls: Switch Source Header")
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "ccls: Switch Source Header") -- textDocument/switchSourceHeader
   end
 end
 
