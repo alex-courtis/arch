@@ -128,12 +128,6 @@ vim.lsp.config.lua_ls = {
   on_attach = build_on_attach("lua_ls"),
   settings = {
     Lua = {
-      workspace = {
-        library = {
-          "$VIMRUNTIME/lua/vim",
-          "${3rd}/luv/library",
-        },
-      },
       completion = {
         callSnippet = "Replace",
       },
