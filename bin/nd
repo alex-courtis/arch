@@ -1,12 +1,17 @@
 #!/bin/zsh
 
 TEMPLATE="${XDG_CONFIG_HOME}/nvim/nd-template.lua"
+
 ROOT="/tmp/nd"
-INIT="${ROOT}/nd.lua"
-PACKPATH="${ROOT}/site"
+CONFIG="${ROOT}/config/nvim"
+LOCAL="${ROOT}/local/share/nvim"
+
+INIT="${CONFIG}/nd.lua"
+
+PACKPATH="${LOCAL}/site"
 
 function edit() {
-	cd "${ROOT}"
+	cd "${CONFIG}"
 	vi "${INIT}"
 }
 
@@ -31,15 +36,21 @@ function init() {
 
 	# create
 	clean
-	mkdir "${ROOT}"
+	mkdir -p "${CONFIG}" "${LOCAL}"
 	cp "${TEMPLATE}" "${INIT}"
 
 	# style
-	cp "${HOME}/.editorconfig" "${ROOT}"
+	cp "${SRC}/.editorconfig" "${CONFIG}"
+
+	# luals from nvim-tree, add it as a library, to the "as" directory specified in packer config
+	cp "${SRC}/.luarc.json" "${CONFIG}"
+	sed -i -e "
+		s#\"library\": \[#\"library\": \[ \"${LOCAL}/site/pack/packer/start/nvim-tree.lua.dev\",#
+	" "${CONFIG}/.luarc.json"
 
 	# nvim-tree plugin path
 	sed -i -e "
-		s#-- NVIM_TREE_DIR#\"${SRC}\",#
+		s#-- NVIM_TREE_DIR#{ \"${SRC}\", as = \"nvim-tree.lua.dev\", },#
 	" "${INIT}"
 
 	# scrape options
@@ -49,12 +60,12 @@ function init() {
 			/END_DEFAULT_OPTS/d
 			p
 		}
-	" "${SRC}/lua/nvim-tree.lua" > "${ROOT}/DEFAULT_OPTS.lua"
+	" "${SRC}/lua/nvim-tree.lua" > "${CONFIG}/DEFAULT_OPTS.lua"
 
 	# insert options
 	sed -i -e "
 		/DEFAULT_OPTS/{
-			r ${ROOT}/DEFAULT_OPTS.lua
+			r ${CONFIG}/DEFAULT_OPTS.lua
 			/DEFAULT_OPTS/d
 		}
 	" "${INIT}"
@@ -88,7 +99,7 @@ function init() {
 	" "${INIT}"
 
 	# clean up
-	rm ${ROOT}/DEFAULT_OPTS.lua
+	rm ${CONFIG}/DEFAULT_OPTS.lua
 }
 
 case "${1}" in

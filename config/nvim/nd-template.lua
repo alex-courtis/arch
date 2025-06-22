@@ -9,7 +9,7 @@ vim.opt.termguicolors = true
 
 vim.opt.statusline = "b%{bufnr()} w%{winnr()} i%{win_getid()} %y %F"
 
-vim.o.packpath = "/tmp/nd/site"
+vim.o.packpath = "/tmp/nd/local/share/nvim/site"
 local package_root = vim.o.packpath .. "/pack"
 local install_path = vim.o.packpath .. "/pack/packer/start/packer.nvim"
 local compile_path = vim.o.packpath .. "/pack/packer/start/packer.nvim/plugin/packer_compiled.lua"
@@ -32,7 +32,7 @@ packer.use("wbthomason/packer.nvim")
 packer.use({
   "neovim/nvim-lspconfig",
   "nvim-tree/nvim-web-devicons",
-  -- 'nvim-tree/nvim-tree.lua',
+  -- { "nvim-tree/nvim-tree.lua", as = "nvim-tree.lua.dev" },
   -- NVIM_TREE_DIR
 })
 
