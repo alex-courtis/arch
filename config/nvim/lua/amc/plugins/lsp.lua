@@ -21,56 +21,63 @@ local function on_attach(client, bufnr)
 
   -- c-] is automatically bound to vim.lsp.tagfunc() which
   -- calls textDocument/definition, then workspace/symbol, then tags
+  -- It does something completely different to vim.lsp.buf.definition
   -- Avoid it:
   --  It blocks for 1s then fails back
   --  On no results it prints two error lines
   -- E433: No tags file
   -- E426: Tag not found: xxx
 
-  if client.server_capabilities.definitionProvider then
-    K.n__b("t", vim.lsp.buf.definition, bufnr, "LSP: Definition") -- textDocument/definition
-  end
-
-  if client.server_capabilities.declarationProvider then
-    K.n__b("T", vim.lsp.buf.declaration, bufnr, "LSP: Declaration") -- textDocument/declaration
+  if client.name == "lua_ls" then
+    -- lua_ls definition returns too many results. tagfunc usually gives a single, better result.
+    -- It's fast enough once the language server is started.
+    K.n__b("T", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
+  else
+    -- regular definition/declaration
+    if client.server_capabilities.definitionProvider then
+      K.n__b("t", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
+    end
+    if client.server_capabilities.declarationProvider then
+      K.n__b("T", vim.lsp.buf.declaration, bufnr, "LSP: textDocument/declaration")
+    end
   end
 
   if client.server_capabilities.typeDefinitionProvider then
-    K.n_lb("dt", vim.lsp.buf.type_definition, bufnr, "LSP: Type Definition") -- textDocument/typeDefinition
+    K.n_lb("dt", vim.lsp.buf.type_definition, bufnr, "LSP: textDocument/typeDefinition")
   end
 
   if client.server_capabilities.referencesProvider then
     K.n_lb("n", telescope.lsp_references, bufnr, "Telescope: References")
-    K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: References") -- textDocument/references
+    K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: textDocument/references")
   end
 
   if client.server_capabilities.callHierarchyProvider then
-    K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: Outgoing") -- callHierarchy/outgoingCalls
-    K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming") -- callHierarchy/incomingCalls
+    K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: callHierarchy/outgoingCalls")
+    K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: callHierarchy/incomingCalls")
   end
 
   if client.server_capabilities.implementationProvider then
-    K.n_lb("dm", vim.lsp.buf.implementation, bufnr, "LSP: Implementations") -- textDocument/implementation
+    K.n_lb("dm", vim.lsp.buf.implementation, bufnr, "LSP: textDocument/implementation")
   end
 
   K.n_lb("d-", vim.cmd.LspRestart, bufnr, "LSP: Restart")
   K.n_lb("d_", M.disable,          bufnr, "LSP: Disable Active Clients")
 
   if client.server_capabilities.codeActionProvider then
-    K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: Code Action") -- textDocument/codeAction
+    K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: textDocument/codeAction")
   end
 
   K.n_lb("df", vim.diagnostic.open_float, bufnr, "Diagnostics: Float")
 
   if client.server_capabilities.hoverProvider then
-    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover") -- textDocument/hover
+    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: textDocument/hover")
   end
 
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
   K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
 
   if client.server_capabilities.renameProvider then
-    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: Rename") -- textDocument/rename
+    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: textDocument/rename")
   end
 
   K.n_lb("dq", vim.diagnostic.setqflist, bufnr, "Diagnostics: QuickFix")
@@ -81,7 +88,7 @@ local function on_attach(client, bufnr)
 
   -- client:supports_method  Always returns true for unknown off-spec methods
   if client.name == "ccls" then
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "ccls: Switch Source Header") -- textDocument/switchSourceHeader
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: textDocument/switchSourceHeader")
   end
 end
 
