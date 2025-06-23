@@ -25,4 +25,16 @@ ff02::2		ip6-allrouters
 192.168.1.91	pidp11
 192.168.1.92	pidp11w
 
+192.168.1.101	bambu
+
+192.168.1.111	peasant
+
+192.168.1.121	yamaha
+
+192.168.1.131	kobo
+192.168.1.132	kobo0
+
+192.168.1.141	appletv
+192.168.1.142	appletvw
+
 # vim:ts=8
