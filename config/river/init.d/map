@@ -103,7 +103,7 @@ riverctl map normal $mod2 s spawn "wl-color-picker > /dev/null 2>&1"
 
 riverctl map normal $mod1 Minus spawn "ssa"
 
-# bz
+# b
 riverctl map normal $mod3 b spawn "volmutemic"
 
 riverctl map normal $mod1 m send-layout-cmd wideriver "--ratio -0.025"
@@ -114,7 +114,7 @@ riverctl map normal $mod2 w send-layout-cmd wideriver "--ratio 0.35"
 
 riverctl map normal $mod1 v send-layout-cmd wideriver "--ratio +0.025"
 
-riverctl map normal $mod3 z spawn "way-displays --toggle SCALING"
+riverctl map normal $mod1 z spawn "way-displays --toggle SCALING"
 
 riverctl map normal $mod1 backslash spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
 riverctl map normal $mod3 backslash exit
