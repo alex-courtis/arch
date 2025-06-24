@@ -15,8 +15,8 @@ riverctl map-pointer normal $mod2 BTN_MIDDLE toggle-fullscreen
 #
 # thumbs
 #
-#
-riverctl map normal $mod1 BackSpace spawn "ydotool key 29:1 51:1 51:0 29:0" #  <c-,>  ->  <c-w>
+
+# $mod1 BackSpace hardcoded to c-w by keyd
 riverctl map normal $mod2 BackSpace close
 riverctl map normal $mod3 BackSpace spawn "steam -shutdown"
 
