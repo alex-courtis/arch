@@ -1,0 +1,19 @@
+[main]
+
+capslock = escape
+
+[meta]
+# map M-backspace to C-w (C-, keycode) releasing meta modifier
+backspace = C-,
+
+# map other meta-backspace modifiers normally, they will stack
+[meta+shift]
+backspace = M-S-backspace
+
+[meta+control]
+backspace = M-C-backspace
+
+[meta+alt]
+backspace = M-A-backspace
+
+# vim:ft=conf
