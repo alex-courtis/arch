@@ -3,7 +3,7 @@
 mod1="Super"
 mod2="$mod1+Shift"
 mod3="$mod2+Control"
-mod4="$mod2+Control+Alt"
+mod4="$mod3+Alt"
 
 #
 # mouse
