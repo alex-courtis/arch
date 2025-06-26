@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# apply qt5 styles
+# use qt5ct to set
+# don't set globally as it messes up qt6 apps like qutebrowser
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+/usr/bin/openscad "$@"
