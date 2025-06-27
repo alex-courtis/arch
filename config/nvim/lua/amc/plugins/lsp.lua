@@ -13,7 +13,7 @@ local snippet = require("vim.snippet")
 
 -- see /usr/share/nvim/runtime/lua/vim/lsp/protocol.lua for available methods
 
----@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
+---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
 local function on_attach(client, bufnr)
 
   -- see :help lsp-defaults
@@ -109,15 +109,19 @@ vim.lsp.config["*"] = {
 
 ---Global and local on_attach will clobber each other so wrap them
 ---@param name string
----@return elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
-local function build_on_attach(name)
+---@param client_on_attach elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>?
+---@return elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
+local function build_on_attach(name, client_on_attach)
 
-  ---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>>
+  ---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
   local config_on_attach = vim.lsp.config[name].on_attach
 
   return function(client, bufnr)
-    if config_on_attach then
+    if type(config_on_attach) == "function" then
       config_on_attach(client, bufnr)
+    end
+    if type(client_on_attach) == "function" then
+      client_on_attach(client, bufnr)
     end
     on_attach(client, bufnr)
   end
@@ -184,7 +188,9 @@ vim.lsp.enable("lua_ls")
 --
 ---@type vim.lsp.Config
 vim.lsp.config.openscad_lsp = {
-  on_attach = build_on_attach("openscad_lsp"),
+  on_attach = build_on_attach("openscad_lsp", function(_, bufnr)
+    vim.api.nvim_set_option_value("commentstring", "// %s", { buf = bufnr })
+  end),
 }
 vim.lsp.enable("openscad_lsp")
 
