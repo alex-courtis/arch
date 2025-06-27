@@ -180,6 +180,15 @@ vim.lsp.config.lua_ls = {
 vim.lsp.enable("lua_ls")
 
 --
+-- openscad
+--
+---@type vim.lsp.Config
+vim.lsp.config.openscad_lsp = {
+  on_attach = build_on_attach("openscad_lsp"),
+}
+vim.lsp.enable("openscad_lsp")
+
+--
 -- yaml
 --
 ---@type vim.lsp.Config
