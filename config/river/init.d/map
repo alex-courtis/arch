@@ -131,4 +131,4 @@ riverctl map normal None XF86MonBrightnessDown spawn "sudo brightnessctl s 10%-"
 #
 # meta
 #
-riverctl map normal $mod1 F12 spawn primary-paste
+riverctl map normal None XF86Paste spawn primary-paste
