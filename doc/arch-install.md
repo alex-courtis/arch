@@ -213,7 +213,32 @@ PKGEXT='.pkg.tar'
 SRCEXT='.src.tar'
 ```
 
-Remove `debug` from `OPTIONS` to prevent `-debug` package generation.
+Default `OPTIONS` in the comments do not match the actual, copy the defaults as they are more sane.
+
+Ensure these are reset:
+- `strip` we always want the symbols for debug
+- `libtool` cruft
+- `staticlibs` cruft
+- `zipman` space is cheap
+- `debug` prevent `-debug` package generation
+- `autodeps` control is desirable
+
+Set these:
+- `purge` remove cruft
+- `lto` everything should work with this now
+
+As at 2025-06-30:
+```sh
+# makepkg.conf default:
+#
+#PTIONS=( strip docs !libtool !staticlibs emptydirs  zipman  purge  debug  lto)
+
+# commented defaults:
+#PTIONS=(!strip docs  libtool  staticlibs emptydirs !zipman !purge !debug !lto !autodeps)
+
+# desired
+OPTIONS=(!strip docs !libtool !staticlibs emptydirs !zipman  purge !debug  lto !autodeps)
+```
 
 ### Locale And Time
 
