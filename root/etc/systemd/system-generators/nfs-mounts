@@ -3,7 +3,7 @@
 # automount triggers mount lazily but is explicitly started
 
 server=lord
-points="archive download misc movie music save tmp tv"
+points="archive download prn misc movie music save tmp tv"
 
 for point in ${points}; do
 
