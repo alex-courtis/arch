@@ -5,6 +5,12 @@ fi
 zmodload zsh/complist
 
 if [ -n "${WAYLAND_DISPLAY}" -o -n "${DISPLAY}" ]; then
+
+	# wayland is used regardless, if wl-copy is found; force to xsel
+	if [ -z "${WAYLAND_DISPLAY}" ]; then
+		export ZSH_SYSTEM_CLIPBOARD_METHOD="xsc"
+	fi
+
 	. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null 2>&1
 fi
 
