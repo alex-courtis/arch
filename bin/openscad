@@ -1,3 +1,7 @@
 #!/bin/sh
 
-gio launch "${XDG_DATA_HOME}/flatpak/exports/share/applications/org.openscad.OpenSCAD.desktop" "$@"
+# use qt6ct to set styles then remove cruft
+
+export QT_QPA_PLATFORMTHEME=qt6ct
+
+openscad-nightly "$@"
