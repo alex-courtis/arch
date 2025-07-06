@@ -4,4 +4,4 @@
 
 export QT_QPA_PLATFORMTHEME=qt6ct
 
-openscad-nightly "$@"
+/usr/local/bin/openscad-nightly "$@"
