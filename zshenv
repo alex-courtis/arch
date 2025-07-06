@@ -38,6 +38,10 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_MUSIC_DIR=$HOME/.music
 
+# TODO make this idempotent and not repeat
+# prefer /usr/local and /usr to flatpak
+export XDG_DATA_DIRS="${XDG_DATA_HOME}:/usr/local/share:/usr/share:${XDG_DATA_DIRS}"
+
 # don't minimise fullscreen SDL (i.e. most steam) when losing focus
 # they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0

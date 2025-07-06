@@ -493,8 +493,8 @@ rsync
 sqlite3
 sysstat
 udisks2
-usbutils
 unzip
+usbutils
 xmlstarlet
 go-yq
 htop-vim
@@ -509,8 +509,8 @@ bemenu-wayland
 brave-bin
 gpm
 grim
-libva-utils
 libnotify
+libva-utils
 pavucontrol
 pulseaudio
 slurp
@@ -522,19 +522,20 @@ vulkan-tools
 wl-clipboard
 xdg-desktop-portal
 xdg-desktop-portal-gtk
-xdg-utils
 zsh-completions
 lswt
 menjar
+mimeo
 river
 todotxt
 way-displays
 wev
 wideriver
 wl-color-picker
+xdg-utils-mimeo
+ydotool
 zig-bin
 zsh-system-clipboard-git
-ydotool
 `
 
 X:
