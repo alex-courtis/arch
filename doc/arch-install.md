@@ -520,6 +520,8 @@ ttf-inter
 vdpauinfo
 vulkan-tools
 wl-clipboard
+xdg-desktop-portal
+xdg-desktop-portal-gtk
 xdg-utils
 zsh-completions
 lswt
