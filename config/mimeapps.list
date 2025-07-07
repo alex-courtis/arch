@@ -1,6 +1,10 @@
-
 [Default Applications]
-x-scheme-handler/http=browser.desktop
-x-scheme-handler/https=browser.desktop
-text/html=browser.desktop
-text/plain=nvim-term.desktop
+text/html=browser.desktop;
+text/plain=nvim-term.desktop;
+x-scheme-handler/http=browser.desktop;
+x-scheme-handler/https=browser.desktop;
+[Added Associations]
+model/3mf=OrcaSlicer.desktop;
+model/stl=OrcaSlicer.desktop;
+x-scheme-handler/orcaslicer=OrcaSlicer.desktop;
+
