@@ -43,6 +43,20 @@ function pyenv_init() {
 	fi
 }
 
+function prn_archive() {
+	if [ ${#} -lt 1 ]; then
+		echo "Usage: ${0} FILE_PATH [DEST_PATH]" >&2
+		return 1
+	fi
+
+	local dest="${2-/lord/prn/printed}"
+
+	chmod 444 "${1}"
+	chmod 755 "${dest}"
+	mv "${1}" "${dest}"
+	chmod 555 "${dest}"
+}
+
 typeset -A chdir_subs
 function make_chdir_sub_vi {
 	chdir_subs[${1}]="${2}"
