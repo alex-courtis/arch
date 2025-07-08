@@ -30,7 +30,6 @@ profiles:
                     - shift
               type: basic
         - description: spotlight
-          enabled: false
           manipulators:
             - from:
                 key_code: delete_forward
