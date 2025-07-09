@@ -1,6 +1,6 @@
 [window]
-decorations = "Transparent"
-padding = { x = 0, y = 18 }
+decorations = "Full"
+padding = { x = 0, y = 0 }
 dynamic_padding = true
 
 [selection]
