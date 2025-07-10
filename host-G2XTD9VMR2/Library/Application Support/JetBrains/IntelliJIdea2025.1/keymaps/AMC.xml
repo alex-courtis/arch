@@ -147,13 +147,9 @@
   <action id="GotoAction">
     <keyboard-shortcut first-keystroke="alt a" />
   </action>
-  <action id="GotoClass">
-    <keyboard-shortcut first-keystroke="meta n" />
-  </action>
+  <action id="GotoClass" />
   <action id="GotoDeclaration" />
-  <action id="GotoFile">
-    <keyboard-shortcut first-keystroke="shift meta n" />
-  </action>
+  <action id="GotoFile" />
   <action id="GotoImplementation" />
   <action id="GotoLine">
     <keyboard-shortcut first-keystroke="meta g" />

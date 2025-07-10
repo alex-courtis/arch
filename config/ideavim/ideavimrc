@@ -85,21 +85,25 @@ nm <Space>x :b#<CR>
 nm <Space><Down> <Action>(NextTab)
 nm <Space><Up> <Action>(PreviousTab)
 
-nm <BS>ff <Action>(GotoFile)
-nm <BS>fc <Action>(GotoClass)
+nm     fa <Action>(GotoAction)
+nm     fe <Action>(SearchEverywhere)
+nm     ff <Action>(GotoFile)
+nm     fc <Action>(GotoClass)
+nm     fs <Action>(GotoSymbol)
+nm     ft <Action>(TextSearchAction)
 nm <BS>da <Action>(ShowIntentionActions)
 nm <BS>de <Action>(RenameElement)
 nm <BS>df <Action>(QuickTypeDefinition)
 nm <BS>dg <Action>(Generate)
 nm <BS>dh <Action>(ShowHoverInfo)
 nm <BS>dq <Action>(QuickImplementations)
+nm <BS>ds <Action>(GotoSuperMethod)
 nm <BS>du <Action>(FindUsagesInFile)
 nm <BS>b  :%y<CR>
 nm <BS>B  :%d_<CR>
 
-nm <BS>gc viw<Action>(FindInPath)<Esc>
-nm <BS>gg <Action>(FindInPath)
-vm <BS>gg <Action>(FindInPath)
+nm     ,c viw<Action>(FindInPath)<Esc>
+nm     ,, <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
 nm <BS>hd <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
@@ -113,7 +117,8 @@ nm <BS>mr <Action>(Rerun)
 nm <BS>mu <Action>(UpdateRunningApplication)
 
 " this uses vim's tag navigation history, not intellij's, so we can use <C-t>
-nm <BS>t  <C-]>
+nm t     <Action>(GotoDeclaration)
+nm T     <Action>(GotoTypeDeclaration)
 nm <BS>w <Plug>ReplaceWithRegisterOperatoriw
 xm <BS>w <Plug>ReplaceWithRegisterVisual
 nm <BS>W <Plug>ReplaceWithRegisterLine
@@ -132,8 +137,8 @@ nm <BS>L :%s/\\s\\+$//e<CR>
 nm <BS>z  <Action>(ReformatCode)
 nm <BS>Z  <Action>(OptimizeImports)
 
-nm <BS>- <Action>(CloseAllEditorsButActive)
-nm <BS>\ <Action>(CloseContent)
+nm <BS>- <Action>(CloseContent)
+nm <BS>_ <Action>(CloseAllEditorsButActive)
 
 nm <BS><Down> <Action>(NextTab)
 nm <BS><Up> <Action>(PreviousTab)
