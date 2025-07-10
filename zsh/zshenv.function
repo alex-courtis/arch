@@ -16,6 +16,7 @@ fi
 GIT_PS1_SHOWDIRTYSTATE="true"
 GIT_PS1_SHOWSTASHSTATE="true"
 GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUNTRACKEDFILES="true"
 
 # terminal title; avoid when possible as this is expensive, especially when starting a shell just for it
 function printtermtitle() {
