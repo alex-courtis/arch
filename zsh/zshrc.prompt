@@ -33,7 +33,7 @@ function precmd() {
 	PREEXEC_D="false"
 
 	# async set the slow title
-	print -n "\E]0;$(printtermtitle)" &!
+	print -n "\033]2;$(__git_ps1)\007" &!
 
 	# clear ^C for use by zle abort-buffer
 	stty intr undef
