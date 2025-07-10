@@ -1,12 +1,9 @@
-
-# zprofile.host
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 path=($(brew --prefix)/opt/util-linux/sbin $(brew --prefix)/opt/util-linux/bin $path)
 
 eval "$(mise activate zsh)"
 
-path=(~/bin ~/.local/bin $path)
+path=(~/bin ~/.local/bin ~/.orbit/bin $path)
 
 # vim:ft=zsh

@@ -10,6 +10,7 @@ source "${HOME}/.zsh/zshrc.fzf"
 source "${HOME}/.zsh/zshrc.prompt"
 source "${HOME}/.zsh/zshrc.function"
 source "${HOME}/.zsh/zshrc.alias"
+[ -f "${HOME}/.zshrc.host" ] && . "${HOME}/.zshrc.host"
 
 # use the keychain wrapper to start ssh-agent if needed
 if [ "$(whence keychain)" ]; then
