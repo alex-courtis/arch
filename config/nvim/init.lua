@@ -24,6 +24,7 @@ local plugins = {
   "kkharji/sqlite.lua",
   "lewis6991/gitsigns.nvim",
   "lifepillar/vim-colortemplate",
+  "MeanderingProgrammer/render-markdown.nvim",
   "neovim/nvim-lspconfig",
   "nvim-lua/plenary.nvim",
   "nvim-lualine/lualine.nvim",
