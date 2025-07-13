@@ -35,7 +35,9 @@ riverctl map normal $mod1 Return focus-view next
 riverctl map normal $mod2 Return focus-view previous
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
-riverctl map normal $mod2 Space focus-previous-tags
+riverctl map normal $mod2 Space spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
+riverctl map normal $mod3 Space spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
+
 
 #
 # left
@@ -52,11 +54,13 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 done
 
 # 'qx
-riverctl map normal $mod1 j focus-view next
-riverctl map normal $mod2 j swap next
+riverctl map normal $mod1 j focus-view down
+riverctl map normal $mod2 j swap down
+riverctl map normal $mod3 j swap next
 
-riverctl map normal $mod1 k focus-view previous
-riverctl map normal $mod2 k swap previous
+riverctl map normal $mod1 k focus-view up
+riverctl map normal $mod2 k swap up
+riverctl map normal $mod3 k swap previous
 
 #
 riverctl map normal $mod1 Left focus-output previous
@@ -73,43 +77,44 @@ riverctl map normal $mod3 Right send-to-output next
 
 # /
 riverctl map normal $mod1 f toggle-fullscreen
-riverctl map normal $mod3 f spawn "volraisemic"
+riverctl map normal $mod4 f spawn "volraisemic"
 
 riverctl map normal $mod1 g send-layout-cmd wideriver "--count +1"
-riverctl map normal $mod3 g spawn "volraise"
+riverctl map normal $mod4 g spawn "volraise"
 
 riverctl map normal $mod1 c send-layout-cmd wideriver "--count 1"
 
 riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 
-riverctl map normal $mod1 l send-layout-cmd wideriver "--stack dwindle"
-riverctl map normal $mod2 l send-layout-cmd wideriver "--stack even"
-riverctl map normal $mod3 l send-layout-cmd wideriver "--stack diminish"
+riverctl map normal $mod1 n send-layout-cmd wideriver "--stack dwindle"
+riverctl map normal $mod2 n send-layout-cmd wideriver "--stack diminish"
+riverctl map normal $mod3 n send-layout-cmd wideriver "--stack even"
+
+riverctl map normal $mod1 l focus-view right
+riverctl map normal $mod2 l swap right
+riverctl map normal $mod3 l swap next
 
 #
 riverctl map normal $mod1 d toggle-float
-riverctl map normal $mod3 d spawn "vollowermic"
+riverctl map normal $mod4 d spawn "vollowermic"
 
-riverctl map normal $mod1 h swap previous
-riverctl map normal $mod2 h spawn "riverctl send-layout-cmd wideriver '--count +1' && riverctl focus-view next"
-riverctl map normal $mod3 h spawn "vollower"
+riverctl map normal $mod1 h focus-view left
+riverctl map normal $mod2 h swap left
+riverctl map normal $mod3 h swap previous
+riverctl map normal $mod4 h spawn "vollower"
 
-riverctl map normal $mod1 t spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
-riverctl map normal $mod2 t spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
-
-riverctl map normal $mod1 n swap next
-riverctl map normal $mod2 n spawn "riverctl send-layout-cmd wideriver '--count -1' && riverctl focus-view previous"
+riverctl map normal $mod1 t focus-previous-tags
 
 riverctl map normal $mod1 s spawn "sss"
 riverctl map normal $mod2 s spawn "wl-color-picker > /dev/null 2>&1"
 
 riverctl map normal $mod1 Minus spawn "ssa"
 
-# b
-riverctl map normal $mod3 b spawn "volmutemic"
+# b\
+riverctl map normal $mod4 b spawn "volmutemic"
 
 riverctl map normal $mod1 m send-layout-cmd wideriver "--ratio -0.025"
-riverctl map normal $mod3 m spawn "volmute"
+riverctl map normal $mod4 m spawn "volmute"
 
 riverctl map normal $mod1 w send-layout-cmd wideriver "--ratio 0.5"
 riverctl map normal $mod2 w send-layout-cmd wideriver "--ratio 0.35"
