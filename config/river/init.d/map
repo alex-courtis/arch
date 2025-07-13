@@ -31,8 +31,7 @@ riverctl map normal $mod2 Tab spawn bp
 riverctl map normal $mod1 Delete spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications -d ${XDG_DATA_HOME}/flatpak/exports/share/applications) > /dev/null 2>&1"
 riverctl map normal $mod2 Delete spawn "bemenu-run > /dev/null 2>&1"
 
-riverctl map normal $mod1 Return focus-view next
-riverctl map normal $mod2 Return focus-view previous
+riverctl map normal $mod1 Return focus-previous-tags
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
 riverctl map normal $mod2 Space spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
@@ -103,7 +102,8 @@ riverctl map normal $mod2 h swap left
 riverctl map normal $mod3 h swap previous
 riverctl map normal $mod4 h spawn "vollower"
 
-riverctl map normal $mod1 t focus-previous-tags
+riverctl map normal $mod1 t focus-view next
+riverctl map normal $mod2 t focus-view previous
 
 riverctl map normal $mod1 s spawn "sss"
 riverctl map normal $mod2 s spawn "wl-color-picker > /dev/null 2>&1"
