@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-# TODO clean this up
-
 # always server side decorations
 riverctl rule-add ssd
 
@@ -15,7 +13,6 @@ riverctl rule-add -app-id "blueman-*" float
 riverctl rule-add -app-id gamescope fullscreen
 
 # tag
-riverctl rule-add -app-id OrcaSlicer tags 8
 riverctl rule-add -app-id brave-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default tags 32
 riverctl rule-add -app-id brave-kjbdgfilnfhdoflbpgamdcdgpehopbep-Default tags 32
 
