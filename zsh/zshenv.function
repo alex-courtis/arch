@@ -54,6 +54,20 @@ function gu {
 	git branch --set-upstream-to="${1}/${branch_local}" "${branch_local}"
 }
 
+function prn_archive() {
+	if [ ${#} -lt 1 ]; then
+		echo "Usage: ${0} FILE_PATH [DEST_PATH]" >&2
+		return 1
+	fi
+
+	local dest="${2-/lord/prn/printed}"
+
+	chmod 444 "${1}"
+	chmod 755 "${dest}"
+	mv "${1}" "${dest}"
+	chmod 555 "${dest}"
+}
+
 function boot {
 	if [ ${#} -ne 1 ]; then
 		echo "Usage: boot <desc>" >&2
