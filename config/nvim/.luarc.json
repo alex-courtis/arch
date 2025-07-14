@@ -26,6 +26,8 @@
       "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/config.lua",
       "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/types.lua",
 
+      "$XDG_DATA_HOME/nvim/site/pack/packer/start/render-markdown.nvim/lua/render-markdown",
+
       "$XDG_DATA_HOME/nvim/site/pack/packer/start/    DISABLED"
     ]
   },
