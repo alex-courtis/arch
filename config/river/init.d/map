@@ -28,7 +28,7 @@ riverctl map normal $mod1 Escape spawn term
 riverctl map normal $mod1 Tab spawn b
 riverctl map normal $mod2 Tab spawn bp
 
-riverctl map normal $mod1 Delete spawn "exec \$(menjar -d ${XDG_DATA_HOME}/applications -d ${XDG_DATA_HOME}/flatpak/exports/share/applications) > /dev/null 2>&1"
+riverctl map normal $mod1 Delete spawn "exec \$(menjar -f -d ${XDG_DATA_HOME}/applications -d ${XDG_DATA_HOME}/flatpak/exports/share/applications) > /dev/null 2>&1"
 riverctl map normal $mod2 Delete spawn "bemenu-run > /dev/null 2>&1"
 
 riverctl map normal $mod1 Return focus-previous-tags
