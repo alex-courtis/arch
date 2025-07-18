@@ -12,6 +12,39 @@ profiles:
         basic.to_if_alone_timeout_milliseconds: 200
         basic.to_if_held_down_threshold_milliseconds: 0
       rules:
+        - description: 'amethyst: move focus counter clockwise'
+          manipulators:
+            - from:
+                key_code: j
+                modifiers:
+                  mandatory:
+                    - command
+                    - control
+                    - option
+              to:
+                - key_code: k
+                  modifiers:
+                    - command
+                    - control
+                    - option
+                    - shift
+              type: basic
+        - description: 'amethyst: move focus clockwise'
+          manipulators:
+            - from:
+                key_code: p
+                modifiers:
+                  mandatory:
+                    - command
+                    - control
+                    - option
+              to:
+                - key_code: k
+                  modifiers:
+                    - command
+                    - control
+                    - option
+              type: basic
         - description: alacritty CreateNewWindow
           manipulators:
             - from:

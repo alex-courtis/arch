@@ -1,5 +1,7 @@
 {
-    "global": { "show_in_menu_bar": false },
+    "global": {
+        "show_in_menu_bar": false
+    },
     "profiles": [
         {
             "complex_modifications": {
@@ -9,17 +11,85 @@
                 },
                 "rules": [
                     {
+                        "description": "amethyst: move focus counter clockwise",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "amethyst: move focus clockwise",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "alacritty CreateNewWindow",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "escape",
-                                    "modifiers": { "mandatory": ["command", "control", "option", "shift"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "l",
-                                        "modifiers": ["command", "control", "shift"]
+                                        "modifiers": [
+                                            "command",
+                                            "control",
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -32,12 +102,20 @@
                             {
                                 "from": {
                                     "key_code": "delete_forward",
-                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "spacebar",
-                                        "modifiers": ["command"]
+                                        "modifiers": [
+                                            "command"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -50,12 +128,21 @@
                             {
                                 "from": {
                                     "key_code": "backslash",
-                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "x",
-                                        "modifiers": ["command", "control"]
+                                        "modifiers": [
+                                            "command",
+                                            "control"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -68,12 +155,22 @@
                             {
                                 "from": {
                                     "key_code": "delete_or_backspace",
-                                    "modifiers": { "mandatory": ["command", "control", "option", "shift"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option",
+                                            "shift"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "comma",
-                                        "modifiers": ["command", "shift"]
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -86,12 +183,20 @@
                             {
                                 "from": {
                                     "key_code": "delete_or_backspace",
-                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "control",
+                                            "option"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
                                         "key_code": "comma",
-                                        "modifiers": ["command"]
+                                        "modifiers": [
+                                            "command"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -102,8 +207,14 @@
             },
             "simple_modifications": [
                 {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "escape" }]
+                    "from": {
+                        "key_code": "caps_lock"
+                    },
+                    "to": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ]
                 }
             ],
             "virtual_hid_keyboard": {
