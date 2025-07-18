@@ -1,0 +1,4 @@
+# Python Config - auto-configured by Jmake
+export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
+
+# vim:ft=zsh
