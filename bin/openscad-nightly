@@ -5,4 +5,12 @@
 export QT_QPA_PLATFORMTHEME=qt6ct
 export LD_LIBRARY_PATH=/usr/local/lib
 
+sed -i -E \
+	'
+s/hideCustomizer=true/hideCustomizer=false/g ;
+s/hideConsole=true/hideConsole=false/g ;
+s/hideEditor=false/hideEditor=true/g ;
+' \
+	/home/alex/.config/OpenSCAD/OpenSCAD.conf
+
 /usr/local/bin/openscad-nightly "$@"
