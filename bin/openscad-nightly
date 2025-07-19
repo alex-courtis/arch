@@ -14,3 +14,38 @@ s/hideEditor=false/hideEditor=true/g ;
 	/home/alex/.config/OpenSCAD/OpenSCAD.conf
 
 /usr/local/bin/openscad-nightly "$@"
+
+exit $?
+
+# manual install from flatpak
+
+sudo pacman -S qt6-5compat
+sudo pacman -S qscintilla-qt6
+
+flatpak install --user flathub-beta org.openscad.OpenSCAD
+
+sudo mkdir -p /usr/local/share/applications
+sudo mkdir -p /usr/local/share/metainfo
+sudo mkdir -p /usr/local/share/mime/packages
+
+cd ${XDG_DATA_HOME}/flatpak/app/org.openscad.OpenSCAD/x86_64/beta/73ccf3d2b114fab3ef48848d5c40aad6c8c36633579e31c9a78db5fdd8569865/files
+
+sudo cp -v bin/* /usr/local/bin
+sudo cp -v lib/libboost_program_options* /usr/local/lib
+sudo cp -vr share/openscad-nightly /usr/local/share
+sudo cp -v share/applications/org.openscad.OpenSCAD.desktop /usr/local/share/applications
+sudo cp -v share/metainfo/org.openscad.OpenSCAD.metainfo.xml /usr/local/share/metainfo
+sudo cp -v share/mime/packages/org.openscad.OpenSCAD.xml /usr/local/share/mime/packages
+
+cd ${XDG_DATA_HOME}/flatpak/runtime/org.kde.Platform/x86_64/6.8/e76835555fb61fabc9a3d4e80862bb1fdf3891baa1d1ab93d7f26219fa9f66d4/files
+
+sudo cp -v lib/x86_64-linux-gnu/libxml* /usr/local/lib
+sudo cp -v lib/x86_64-linux-gnu/libpython3* /usr/local/lib
+sudo cp -v lib/x86_64-linux-gnu/libicu* /usr/local/lib
+
+sudo update-mime-database /usr/local/share/mime
+sudo update-desktop-database /usr/local/share/applications
+
+flatpak uninstall --user org.openscad.OpenSCAD
+
+flatpak uninstall --user --unused
