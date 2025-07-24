@@ -12,7 +12,7 @@ profiles:
         basic.to_if_alone_timeout_milliseconds: 200
         basic.to_if_held_down_threshold_milliseconds: 0
       rules:
-        - description: 'amethyst: move focus counter clockwise'
+        - description: 'amethyst: move focus counter clockwise: h'
           manipulators:
             - from:
                 key_code: j
@@ -29,10 +29,43 @@ profiles:
                     - option
                     - shift
               type: basic
-        - description: 'amethyst: move focus clockwise'
+        - description: 'amethyst: move focus counter clockwise: k'
+          manipulators:
+            - from:
+                key_code: v
+                modifiers:
+                  mandatory:
+                    - command
+                    - control
+                    - option
+              to:
+                - key_code: k
+                  modifiers:
+                    - command
+                    - control
+                    - option
+                    - shift
+              type: basic
+        - description: 'amethyst: move focus clockwise: l'
           manipulators:
             - from:
                 key_code: p
+                modifiers:
+                  mandatory:
+                    - command
+                    - control
+                    - option
+              to:
+                - key_code: k
+                  modifiers:
+                    - command
+                    - control
+                    - option
+              type: basic
+        - description: 'amethyst: move focus clockwise: j'
+          manipulators:
+            - from:
+                key_code: c
                 modifiers:
                   mandatory:
                     - command
