@@ -1,20 +1,26 @@
 <keymap version="1" name="AMC" parent="Default for XWin">
   <action id="$Copy">
     <keyboard-shortcut first-keystroke="meta c" />
+    <keyboard-shortcut first-keystroke="ctrl c" />
   </action>
   <action id="$Cut">
     <keyboard-shortcut first-keystroke="meta x" />
+    <keyboard-shortcut first-keystroke="ctrl x" />
   </action>
   <action id="$Paste">
     <keyboard-shortcut first-keystroke="meta v" />
+    <keyboard-shortcut first-keystroke="ctrl v" />
   </action>
   <action id="$Redo">
     <keyboard-shortcut first-keystroke="shift meta z" />
+    <keyboard-shortcut first-keystroke="ctrl y" />
   </action>
   <action id="$SelectAll">
     <keyboard-shortcut first-keystroke="meta a" />
+    <keyboard-shortcut first-keystroke="ctrl a" />
   </action>
   <action id="$Undo">
+    <keyboard-shortcut first-keystroke="ctrl z" />
     <keyboard-shortcut first-keystroke="meta z" />
   </action>
   <action id="ActivateBigDataToolWindowToolWindow" />
@@ -57,6 +63,11 @@
   <action id="ActivateVersionControlToolWindow">
     <keyboard-shortcut first-keystroke="alt g" />
   </action>
+  <action id="Back">
+    <keyboard-shortcut first-keystroke="ctrl alt left" />
+    <mouse-shortcut keystroke="button4" />
+    <keyboard-shortcut first-keystroke="ctrl h" />
+  </action>
   <action id="ChangesView.ToggleCommitUi" />
   <action id="CheckinProject" />
   <action id="CloseActiveTab">
@@ -70,6 +81,7 @@
     <keyboard-shortcut first-keystroke="ctrl enter" />
     <keyboard-shortcut first-keystroke="meta enter" />
   </action>
+  <action id="Console.TableResult.DeleteRows" />
   <action id="CopyPaths">
     <keyboard-shortcut first-keystroke="shift meta c" />
   </action>
@@ -79,23 +91,30 @@
   <action id="Diff.ShowDiff" />
   <action id="Editor Copy">
     <keyboard-shortcut first-keystroke="meta c" />
+    <keyboard-shortcut first-keystroke="ctrl c" />
   </action>
   <action id="Editor Cut">
     <keyboard-shortcut first-keystroke="meta x" />
+    <keyboard-shortcut first-keystroke="ctrl x" />
   </action>
   <action id="Editor Paste">
     <keyboard-shortcut first-keystroke="meta v" />
+    <keyboard-shortcut first-keystroke="ctrl v" />
   </action>
   <action id="Editor Redo">
     <keyboard-shortcut first-keystroke="shift meta z" />
+    <keyboard-shortcut first-keystroke="ctrl y" />
   </action>
   <action id="Editor SelectAll">
     <keyboard-shortcut first-keystroke="meta a" />
+    <keyboard-shortcut first-keystroke="ctrl a" />
   </action>
   <action id="Editor Undo">
+    <keyboard-shortcut first-keystroke="ctrl z" />
     <keyboard-shortcut first-keystroke="meta z" />
   </action>
   <action id="EditorChooseLookupItemReplace" />
+  <action id="EditorDeleteLine" />
   <action id="EditorDown">
     <keyboard-shortcut first-keystroke="down" />
     <keyboard-shortcut first-keystroke="j" />
@@ -144,6 +163,14 @@
   <action id="FindInPath">
     <keyboard-shortcut first-keystroke="shift meta f" />
   </action>
+  <action id="FindNext">
+    <keyboard-shortcut first-keystroke="f3" />
+  </action>
+  <action id="Forward">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+    <mouse-shortcut keystroke="button5" />
+    <keyboard-shortcut first-keystroke="ctrl l" />
+  </action>
   <action id="Git.Commit.Stage" />
   <action id="GotoAction">
     <keyboard-shortcut first-keystroke="alt a" />
@@ -160,6 +187,15 @@
   <action id="GotoTypeDeclaration" />
   <action id="InsertInlineCompletionAction" />
   <action id="InsertLiveTemplate" />
+  <action id="JupyterNotebookCopyCellCommandModeAction">
+    <keyboard-shortcut first-keystroke="c" />
+  </action>
+  <action id="JupyterNotebookCutCellCommandModeAction">
+    <keyboard-shortcut first-keystroke="x" />
+  </action>
+  <action id="JupyterNotebookPasteCellCommandModeAction">
+    <keyboard-shortcut first-keystroke="v" />
+  </action>
   <action id="LivePlugin.RunPlugin" />
   <action id="LivePlugin.TestPlugin" />
   <action id="NextTab">
@@ -197,6 +233,7 @@
   <action id="ShowBookmarks" />
   <action id="SwitcherIterateItems" />
   <action id="SwitcherRecentEditedChangedToggleCheckBox" />
+  <action id="Terminal.ClearPrompt" />
   <action id="Terminal.CopySelectedText">
     <keyboard-shortcut first-keystroke="ctrl insert" />
     <keyboard-shortcut first-keystroke="shift ctrl c" />

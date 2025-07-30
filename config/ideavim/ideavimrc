@@ -22,7 +22,7 @@ sethandler <C-6> a:ide
 sethandler <C-S-6> a:ide
 sethandler <C-A> a:ide
 sethandler <C-B> a:ide
-sethandler <C-C> a:vim
+sethandler <C-C> a:ide
 sethandler <C-D> a:vim
 sethandler <C-E> a:ide
 sethandler <C-F> a:ide
@@ -41,7 +41,7 @@ sethandler <C-R> a:vim
 sethandler <C-S> a:ide
 sethandler <C-T> a:vim
 sethandler <C-U> a:vim
-sethandler <C-V> a:vim
+sethandler <C-V> a:ide
 sethandler <C-W> a:ide
 sethandler <C-X> a:ide
 sethandler <C-Y> a:vim
@@ -104,6 +104,7 @@ nm <BS>B  :%d_<CR>
 
 nm     ,c viw<Action>(FindInPath)<Esc>
 nm     ,, <Action>(FindInPath)
+vm     ,, <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
 nm <BS>hd <Action>(Compare.SameVersion)
 nm <BS>hx <Action>(Vcs.RollbackChangedLines)
