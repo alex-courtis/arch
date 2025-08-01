@@ -86,23 +86,24 @@ nm <Space><Down> <Action>(NextTab)
 nm <Space><Up> <Action>(PreviousTab)
 
 nm     fa <Action>(GotoAction)
-nm     fe <Action>(SearchEverywhere)
 nm     ff <Action>(GotoFile)
 nm     fc <Action>(GotoClass)
 nm     fs <Action>(GotoSymbol)
-nm     ft <Action>(TextSearchAction)
 nm <BS>da <Action>(ShowIntentionActions)
-nm <BS>de <Action>(RenameElement)
 nm <BS>df <Action>(QuickTypeDefinition)
 nm <BS>dg <Action>(Generate)
 nm <BS>dh <Action>(ShowHoverInfo)
+nm <BS>di <Action>(GotoImplementation)
 nm <BS>dq <Action>(QuickImplementations)
+nm <BS>dr <Action>(RenameElement)
 nm <BS>ds <Action>(GotoSuperMethod)
 nm <BS>du <Action>(FindUsagesInFile)
 nm <BS>b  :%y<CR>
 nm <BS>B  :%d_<CR>
 
+nm     ,a <Action>(SearchEverywhere)
 nm     ,c viw<Action>(FindInPath)<Esc>
+nm     ,t <Action>(TextSearchAction)
 nm     ,, <Action>(FindInPath)
 vm     ,, <Action>(FindInPath)
 nm <BS>hb <Action>(Annotate)
