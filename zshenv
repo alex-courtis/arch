@@ -5,10 +5,10 @@ echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR-x}.${USER}.l
 typeset -U path
 path=(~/bin ~/.local/bin $path)
 
+export UNAME="$(uname)"
+
 source "${HOME}/.zsh/zshenv.appearance"
 source "${HOME}/.zsh/zshenv.function"
-
-export UNAME="$(uname)"
 
 # vi everywhere, symlinked to vim
 export EDITOR="vi"
