@@ -62,7 +62,7 @@ function prn_archive() {
 		return 1
 	fi
 
-	local dest="${2-/lord/prn/printed}"
+	local dest="${2-/lord/prn/archive}"
 
 	chmod 444 "${1}"
 	chmod 755 "${dest}"
