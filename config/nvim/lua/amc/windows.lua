@@ -96,7 +96,7 @@ function M.close_inc()
 
   -- close special
   if lowest then
-    vim.api.nvim_win_close(lowest.winid, true)
+    pcall(vim.api.nvim_win_close, lowest.winid, true)
     return
   end
 
@@ -104,7 +104,7 @@ function M.close_inc()
   local winid_cur = vim.api.nvim_get_current_win()
   for _, winid in ipairs(vim.api.nvim_list_wins()) do
     if winid_cur ~= winid then
-      vim.api.nvim_win_close(winid, true)
+      pcall(vim.api.nvim_win_close, winid, true)
       return
     end
   end
