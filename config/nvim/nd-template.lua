@@ -7,7 +7,7 @@ vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.termguicolors = true
 
-vim.opt.statusline = "b%{bufnr()} w%{winnr()} i%{win_getid()} %y %F"
+vim.opt.statusline = "b%{bufnr()} i%{win_getid()} %y %F"
 
 vim.o.packpath = "/tmp/nd/local/share/nvim/site"
 local package_root = vim.o.packpath .. "/pack"
