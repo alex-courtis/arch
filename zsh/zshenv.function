@@ -58,16 +58,20 @@ function gu {
 
 function prn_archive() {
 	if [ ${#} -lt 1 ]; then
-		echo "Usage: ${0} FILE_PATH [DEST_PATH]" >&2
+		echo "Usage: ${0} FILE_PATH.." >&2
 		return 1
 	fi
 
-	local dest="${2-/lord/prn/archive}"
+	local dest="/lord/prn/archive"
+	chmod -v 755 "${dest}"
 
-	chmod 444 "${1}"
-	chmod 755 "${dest}"
-	mv "${1}" "${dest}"
-	chmod 555 "${dest}"
+	for f in ${*}; do
+		echo "${f}"
+		chmod -v 444 "${f}"
+		mv -v "${f}" "${dest}"
+	done
+
+	chmod -v 555 "${dest}"
 }
 
 function boot {
