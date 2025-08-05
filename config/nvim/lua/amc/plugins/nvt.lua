@@ -266,6 +266,7 @@ local config = {
     threshold = vim.log.levels.WARN,
   },
   experimental = {
+    close_other_windows_in_tab = true,
   },
   log = {
     enable = false,
