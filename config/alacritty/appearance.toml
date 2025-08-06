@@ -7,6 +7,10 @@ normal = { family = "Hack Nerd Font", style = "Regular" }
 vi_mode_style = "Block"
 
 
+[scrolling]
+history = 100000
+
+
 [colors.cursor]
 cursor = "0x$BASE16[default_foreground]"
 text =   "0x$BASE16[default_background]"
