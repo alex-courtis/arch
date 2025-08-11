@@ -33,10 +33,10 @@ local on_attach = function(bufnr)
   K.n_lb("hd", gitsigns.diffthis,                  bufnr, "Gitsigns: Diff This",    opts)
   K.n_lb("hB", gitsigns.blame_line,                bufnr, "Gitsigns: Blame Line",   opts)
 
-  K.n_lb("hl", gitsigns.toggle_current_line_blame, bufnr, "Gitsigns: Blame Toggle", opts)
   K.n_lb("hs", gitsigns.stage_hunk,                bufnr, "Gitsigns: Stage Hunk",   opts)
   K.v_lb("hs", gitsigns.stage_hunk,                bufnr, "Gitsigns: Stage Hunk",   opts)
   K.n_lb("hS", gitsigns.stage_buffer,              bufnr, "Gitsigns: Stage Buffer", opts)
+  K.n_lb("ht", gitsigns.toggle_current_line_blame, bufnr, "Gitsigns: Blame Toggle", opts)
 end
 
 local config = {

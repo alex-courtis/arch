@@ -28,4 +28,6 @@ function M.open_only()
   vim.cmd.only({ mods = { silent = true } })
 end
 
+vim.g.fugitive_summary_format = '%s  [%an]  (%ai)'
+
 return M
