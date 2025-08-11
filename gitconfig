@@ -35,6 +35,7 @@
 	shn = sh --name-status
 	ss = status --short
 	st = status
+	si = status --ignored
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
