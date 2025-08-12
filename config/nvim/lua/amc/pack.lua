@@ -1,3 +1,8 @@
+-- segregate actual plugins from vim.pack
+vim.o.rtp = vim.o.rtp .. "," .. vim.fn.stdpath("data") .. "/site/pack.packer/*/start/*"
+local PACKAGE_ROOT = vim.fn.stdpath("data") .. "/site/pack.packer"
+
+-- but not packer itself
 local INSTALL_PATH = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 local COMPILE_PATH = vim.fn.stdpath("data") .. "/site/pack/packer/compiled/plugin/packer_compiled.lua"
 
@@ -16,7 +21,10 @@ return function(plugins)
     packer = require("packer")
   end
 
-  packer.init({ compile_path = COMPILE_PATH })
+  packer.init({
+    compile_path = COMPILE_PATH,
+    package_root = PACKAGE_ROOT,
+  })
 
   packer.reset()
 
