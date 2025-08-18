@@ -1,0 +1,11 @@
+[Unit]
+# suppress the annoying "ERROR: unsupported evdev code:" from devices like PS5 controller
+Description=key remapping daemon - quiet
+
+[Service]
+Type=simple
+Environment="KEYD_DEBUG=-1"
+ExecStart=/usr/bin/keyd
+
+[Install]
+WantedBy=multi-user.target
