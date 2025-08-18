@@ -43,6 +43,16 @@ function pyenv_init() {
 	fi
 }
 
+function sync_orca() {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: sync_orca <host>" >&2
+		return 1
+	fi
+
+	rsync -a -v --delete-after "${XDG_CONFIG_HOME}/OrcaSlicer" "${1}:${XDG_CONFIG_HOME}"
+	ssh dukew "rm -rfv ${XDG_DATA_HOME}/orca-slicer"
+}
+
 typeset -A chdir_subs
 function make_chdir_sub_vi {
 	chdir_subs[${1}]="${2}"
