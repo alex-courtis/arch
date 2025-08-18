@@ -134,6 +134,8 @@ K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 --  fF
 --  D
 --
+K.n___("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
+K.n_l_("*",  "*",                         "Word Forwards")
 K.ns__("ff", telescope.find_files,        "Find Files")
 K.ns__("fg", telescope.git_files,         "Find Files: Git")
 K.ns__("fh", telescope.find_files_hidden, "Find Files: Hidden")
@@ -206,6 +208,8 @@ K.nsl_("z", dev.format,                         "Format")
 --
 --
 --  |
+K.n___("#",  "<Plug>(asterisk-z#)",                                             "Word Backwards Stay")
+K.n_l_("#",  "#",                                                               "Word Backwards")
 K.n_l_("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
 K.n_l_("?",  '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
 K.v_l_("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
