@@ -40,3 +40,7 @@ vim.g.BufKillCreateMappings = 0
 
 -- legacy environment variables
 vim.env.MANWIDTH = 80
+
+-- clear the right-click mouse help
+vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
+vim.cmd.aunmenu("PopUp.-2-")
