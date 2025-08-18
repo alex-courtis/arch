@@ -6,29 +6,29 @@
       "$VIMRUNTIME/lua",
       "${3rd}/luv/library",
       
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/gitsigns.nvim/lua/gitsigns.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/gitsigns.nvim/lua/gitsigns/actions.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/gitsigns.nvim/lua/gitsigns.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/gitsigns.nvim/lua/gitsigns/actions.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree/api.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-tree.lua/lua/nvim-tree.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-tree.lua/lua/nvim-tree/api.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/lualine.nvim/lua/lualine.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/lualine.nvim/lua/lualine.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/rainbow-delimiters.nvim/lua/rainbow-delimiters.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/rainbow-delimiters.nvim/lua/rainbow-delimiters/setup.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/rainbow-delimiters.nvim/lua/rainbow-delimiters.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/rainbow-delimiters.nvim/lua/rainbow-delimiters/setup.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/nvim-spectre/lua/spectre/config.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-spectre/lua/spectre/config.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/nvim-treesitter/lua/nvim-treesitter/configs.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-treesitter/lua/nvim-treesitter/configs.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/init.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/presets.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/config.lua",
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/which-key.nvim/lua/which-key/types.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/which-key.nvim/lua/which-key/init.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/which-key.nvim/lua/which-key/presets.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/which-key.nvim/lua/which-key/config.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/which-key.nvim/lua/which-key/types.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/render-markdown.nvim/lua/render-markdown",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/render-markdown.nvim/lua/render-markdown",
 
-      "$XDG_DATA_HOME/nvim/site/pack/packer/start/    DISABLED"
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/    DISABLED"
     ]
   },
   "diagnostics": {
