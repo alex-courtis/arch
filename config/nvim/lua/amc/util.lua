@@ -11,7 +11,11 @@ function M.nvt_plugin_dir()
       end
     end
   end
-  return "nvim-tree/nvim-tree.lua"
+  if vim.fn.has("nvim-0.12") == 1 then
+    return "https://github.com/nvim-tree/nvim-tree.lua"
+  else
+    return "nvim-tree/nvim-tree.lua"
+  end
 end
 
 ---@param mode string
