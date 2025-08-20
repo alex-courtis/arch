@@ -20,7 +20,7 @@ keyMappings: |-
   map yy copyCurrentUrl
 
   map p openCopiedUrlInCurrentTab
-  map tp openCopiedUrlInNewTab
+  map P openCopiedUrlInNewTab
 
   map i enterInsertMode
 
@@ -30,31 +30,31 @@ keyMappings: |-
   map I passNextKey
 
   map gi focusInput
+  map gn goNext
+  map gp goPrevious
+  map gr goToRoot
   map gu goUp
 
   map f  LinkHints.activateMode
-  map tF LinkHints.activateModeToOpenInNewForegroundTab
   map F  LinkHints.activateModeToOpenInNewForegroundTab
   map tf LinkHints.activateModeToOpenInNewTab
   map q  LinkHints.activateModeWithQueue
-  map ;d LinkHints.activateModeToDownloadLink
 
   map Wf LinkHints.activateModeToOpenIncognito
 
+  map ;d LinkHints.activateModeToDownloadLink
   map ;y LinkHints.activateModeToCopyLinkUrl
 
   map o  Vomnibar.activate
   map O  Vomnibar.activateInNewTab
-  map to Vomnibar.activateInNewTab
 
   map b  Vomnibar.activateBookmarks
   map B  Vomnibar.activateBookmarksInNewTab
-  map tb Vomnibar.activateBookmarksInNewTab
 
   map S Vomnibar.activateTabSelection
 
   map e Vomnibar.activateEditUrl
-  map te Vomnibar.activateEditUrlInNewTab
+  map E Vomnibar.activateEditUrlInNewTab
 
   map / enterFindMode
 
@@ -68,6 +68,9 @@ keyMappings: |-
   map L goForward
 
   map tt createTab
+  map ww createTab window
+  map WW createTab incognito
+  map Ww createTab incognito
 
   map h previousTab
   map l nextTab
@@ -77,13 +80,13 @@ keyMappings: |-
   map td duplicateTab
 
   map x removeTab
-  map tu restoreTab
+  map X restoreTab
 
   map tg moveTabToNewWindow
 
   map ch closeTabsOnLeft
   map cl closeTabsOnRight
-  map ct closeOtherTabs
+  map co closeOtherTabs
 
   map <c-h> moveTabLeft
   map <c-l> moveTabRight
