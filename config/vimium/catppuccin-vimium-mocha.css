@@ -37,10 +37,13 @@
 #vimium-hint-marker-container div span {
     color: var(--vimium-mantle);
     text-shadow: none;
+    font-size: 16px;
+    font-family: "monospace";
 }
 
 #vimium-hint-marker-container div span.matchingCharacter {
     color: var(--vimium-surface2);
+    font-size: 12px;
 }
 
 /* vomnibar */
@@ -51,6 +54,7 @@
     animation: show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
     max-height: calc(100vh - 70px);
     overflow: hidden;
+    font-family: "monospace";
 }
 
 @keyframes show {
@@ -71,6 +75,7 @@
     box-shadow: none;
     height: unset;
     padding: 16px 30px;
+    font-family: "monospace";
 }
 
 #vomnibar #vomnibar-search-area {
@@ -127,13 +132,15 @@
 
 div#hud-container {
     background: var(--vimium-base);
-    border: 1px solid var(--vimium-text);
+    border: 3px solid var(--vimium-green);
     box-shadow: none;
+    font-family: "monospace";
 }
 
 div#hud-container span#hud-find-input,
 div#hud-container div#hud {
-    color: var(--vimium-text);
+    color: var(--vimium-green);
+    font-size: 16px;
 }
 
 div#hud-container .hud-find,
