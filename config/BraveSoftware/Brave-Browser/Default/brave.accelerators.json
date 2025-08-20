@@ -6,36 +6,20 @@
     "BrowserForward"
   ],
   "33002": [
-    "Control+KeyR",
-    "F5",
-    "BrowserRefresh"
+    "Control+KeyR"
   ],
-  "33003": [
-    "BrowserHome"
-  ],
+  "33003": [],
   "33007": [
-    "Control+Shift+KeyR",
-    "Control+F5",
-    "Shift+F5",
-    "Control+BrowserRefresh",
-    "Shift+BrowserRefresh"
+    "Control+Shift+KeyR"
   ],
-  "34000": [
-    "Control+KeyN"
-  ],
-  "34001": [
-    "Control+Shift+KeyN"
-  ],
-  "34012": [
-    "Control+Shift+KeyW"
-  ],
+  "34000": [],
+  "34001": [],
+  "34012": [],
   "34014": [
-    "AppNew",
     "Control+KeyT"
   ],
   "34015": [
-    "Control+KeyW",
-    "AppClose"
+    "Control+KeyW"
   ],
   "34016": [],
   "34017": [],
@@ -48,9 +32,7 @@
   "34024": [],
   "34025": [],
   "34026": [],
-  "34028": [
-    "Control+Shift+KeyT"
-  ],
+  "34028": [],
   "34030": [
     "F11",
     "Control+Shift+KeyF"
@@ -64,12 +46,23 @@
   "34053": [],
   "34054": [],
   "34062": [],
-  "35000": [],
+  "34100": [],
+  "34101": [],
+  "34102": [],
+  "34103": [],
+  "34104": [],
+  "35000": [
+    "Control+Shift+KeyB"
+  ],
   "35001": [],
   "35002": [],
   "35003": [],
   "35004": [],
   "35007": [],
+  "35031": [],
+  "36000": [
+    "Control+Shift+KeyX"
+  ],
   "36001": [
     "Control+Shift+KeyC"
   ],
@@ -80,11 +73,9 @@
     "Control+KeyF"
   ],
   "37001": [
-    "Control+KeyG",
     "F3"
   ],
   "37002": [
-    "Control+Shift+KeyG",
     "Shift+F3"
   ],
   "37003": [
@@ -94,14 +85,14 @@
     "Control+Digit9"
   ],
   "38002": [
-    "Control+Digit7"
+    "Control+Digit6"
   ],
   "38003": [
     "Control+Minus"
   ],
   "39000": [],
   "39001": [
-    "Control+KeyL"
+    "Control+Shift+KeyL"
   ],
   "39002": [],
   "39003": [
@@ -112,32 +103,25 @@
   "39006": [],
   "39007": [],
   "39009": [],
-  "40000": [
-    "Control+KeyO"
-  ],
-  "40004": [
-    "Control+Shift+KeyI"
-  ],
-  "40005": [
-    "Control+Shift+KeyJ"
-  ],
+  "40000": [],
+  "40004": [],
+  "40005": [],
   "40006": [
     "Shift+Escape"
   ],
+  "40007": [],
   "40009": [
-    "BrowserFavorites",
     "Control+KeyB"
   ],
   "40010": [
-    "Control+KeyH"
+    "Control+KeyY"
   ],
-  "40011": [
-    "Control+Shift+KeyB"
-  ],
-  "40012": [
-    "Control+KeyJ"
-  ],
+  "40011": [],
+  "40012": [],
   "40013": [],
+  "40015": [
+    "Alt+KeyO"
+  ],
   "40019": [],
   "40021": [],
   "40023": [],
@@ -145,6 +129,7 @@
   "40237": [],
   "40259": [],
   "40260": [],
+  "40286": [],
   "51006": [],
   "52420": [
     "Control+Shift+KeyS"
@@ -152,16 +137,11 @@
   "52500": [],
   "56003": [],
   "56005": [],
-  "56041": [
-    "Control+KeyM"
-  ],
+  "56041": [],
   "56044": [],
-  "56045": [
-    "Control+Shift+KeyA"
-  ],
-  "56215": [
-    "Control+Shift+KeyE"
-  ],
+  "56045": [],
+  "56215": [],
   "56300": [],
-  "56301": []
+  "56301": [],
+  "56350": []
 }
