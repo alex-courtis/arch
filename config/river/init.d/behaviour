@@ -6,15 +6,14 @@ riverctl rule-add ssd
 # floating
 riverctl rule-add -title "Open File" float
 riverctl rule-add -title "Open Folder" float
+riverctl rule-add -title "*references*" float
+riverctl rule-add -title "*wants to open*" float
+riverctl rule-add -title "*wants to save*" float
 riverctl rule-add -app-id nm-openconnect-auth-dialog float
 riverctl rule-add -app-id "blueman-*" float
 
 # full
 riverctl rule-add -app-id gamescope fullscreen
-
-# tag
-riverctl rule-add -app-id brave-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default tags 32
-riverctl rule-add -app-id brave-kjbdgfilnfhdoflbpgamdcdgpehopbep-Default tags 32
 
 # behaviour
 riverctl attach-mode bottom
