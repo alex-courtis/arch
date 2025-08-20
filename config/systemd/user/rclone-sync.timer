@@ -1,9 +1,0 @@
-[Unit]
-Description=rclone sync timer
-
-[Timer]
-OnBootSec=5
-OnUnitActiveSec=15min
-
-[Install]
-WantedBy=timers.target
