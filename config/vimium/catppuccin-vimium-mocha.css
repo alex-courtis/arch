@@ -37,7 +37,7 @@
 #vimium-hint-marker-container div span {
     color: var(--vimium-mantle);
     text-shadow: none;
-    font-size: 16px;
+    font-size: 15px;
     font-family: "monospace";
 }
 
@@ -76,6 +76,7 @@
     height: unset;
     padding: 16px 30px;
     font-family: "monospace";
+	font-size: 16px;
 }
 
 #vomnibar #vomnibar-search-area {
@@ -94,11 +95,16 @@
 #vomnibar li {
     padding: 10px;
     border-bottom: 1px solid var(--vimium-surface0);
+    font-size: 15px;
 }
 
 #vomnibar li .top-half,
 #vomnibar li .bottom-half {
     padding: 3px 0;
+}
+
+#vomnibar li .bottom-half {
+	font-size: 14px;
 }
 
 #vomnibar li .source {
