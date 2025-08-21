@@ -76,7 +76,7 @@
     height: unset;
     padding: 16px 30px;
     font-family: "monospace";
-	font-size: 16px;
+    font-size: 16px;
 }
 
 #vomnibar #vomnibar-search-area {
@@ -104,7 +104,7 @@
 }
 
 #vomnibar li .bottom-half {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 #vomnibar li .source {
@@ -141,12 +141,21 @@ div#hud-container {
     border: 3px solid var(--vimium-green);
     box-shadow: none;
     font-family: "monospace";
+    text-transform: uppercase;
 }
 
-div#hud-container span#hud-find-input,
+/* div#hud-container span#hud-find-input, */
 div#hud-container div#hud {
     color: var(--vimium-green);
     font-size: 16px;
+}
+
+div#hud-container span#hud-find-input {
+    color: var(--vimium-text);
+}
+
+div#hud-container .hud-find {
+    text-transform: none;
 }
 
 div#hud-container .hud-find,
