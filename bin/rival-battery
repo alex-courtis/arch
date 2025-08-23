@@ -1,6 +1,6 @@
 #!/bin/sh
 
-THRESHOLD=50
+THRESHOLD=20
 
 rm -f /tmp/rival.battery
 
