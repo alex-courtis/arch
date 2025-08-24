@@ -3,7 +3,6 @@
 # use qt5ct to set styles then remove cruft
 
 export QT_QPA_PLATFORMTHEME=qt5ct
-export LD_LIBRARY_PATH=/usr/local/lib
 
 sed -i -E \
 	'
