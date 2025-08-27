@@ -6,6 +6,7 @@ local buffers = require("amc.buffers")
 local windows = require("amc.windows")
 local K = require("amc.util").K
 
+local aerial = require("amc.plugins.aerial")
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
 local nvt = require("amc.plugins.nvt")
@@ -68,11 +69,10 @@ K.c___("<C-j>", "<Down>",                      "<Down>")
 K.c___("<C-k>", "<Up>",                        "<Up>")
 
 -- [7
+-- :
 --
 --
---
-K.nsl_(";", vim.cmd.copen,             "Open Quickfix")
-K.nsl_(":", vim.cmd.cclose,            "Close Quickfix")
+K.nsl_(";", aerial.open,               "Aerial: Open")
 K.nsl_("a", nvt.open_find,             "Open nvim-tree")
 K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree Update Root")
 K.nsl_("'", windows.close_inc,         "Close Lowest Window")
@@ -81,8 +81,7 @@ K.nsl_('"', windows.close_others,      "Close Other Windows")
 --  5
 --
 --  O
---
-K.n_l_("{",  "[{",                                 "Prev {")
+--  {
 K.ns__(",c", telescope.rhs_n_grep_cword,           "Live Grep: <cword>")
 K.ns__(",d", telescope.live_grep_directory_buffer, "Live Grep: Directory, Buffer")
 K.ns__(",D", telescope.live_grep_directory_prompt, "Live Grep: Directory, Prompt")
@@ -104,7 +103,7 @@ K.nsl_("Q",  vim.cmd.only,                         "Only")
 --  >
 --  E
 --  J
-K.n_l_("}", "]}",                "Next }")
+K.n_l_("}", aerial.next,         "Aerial: Next")
 K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
 K.nsl_("e", windows.cnext,       "Next QF")
 -- j gitsigns
@@ -113,7 +112,7 @@ K.nsl_("e", windows.cnext,       "Next QF")
 --  P
 --  U
 --  K
-K.n_l_("(", "[(",                "Prev (")
+K.n_l_("(", aerial.prev,         "Aerial: Prev")
 K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
 K.nsl_("u", windows.cprev,       "Prev QF")
 -- k gitsigns
@@ -145,11 +144,10 @@ K.nsl_("f",  "<Nop>",                     "<Nop>")
 K.nsl_("b",  ":%y<CR>",                   "Yank Buffer")
 K.nsl_("B",  ":%d_<CR>",                  "Clean Buffer")
 
---  2
+--  )2
 --  gG
 --  H
 --  M
-K.n_l_(")",  "])",           "Next )")
 K.nsl_("g",  "<Nop>",        "<Nop>")
 K.nsl_("hb", ":G blame<CR>", "Fugitive: Blame")
 K.nsl_("hl", ":GcLog!<CR>",  "Fugitive: :GcLog!")

@@ -28,6 +28,8 @@
 
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/render-markdown.nvim/lua/render-markdown",
 
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/aerial.nvim/lua/aerial",
+
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/    DISABLED"
     ]
   },

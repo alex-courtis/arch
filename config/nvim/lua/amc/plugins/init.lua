@@ -1,5 +1,6 @@
 local require = require("amc.require").or_nil
 
+require("amc.plugins.aerial")
 require("amc.plugins.fugitive")
 require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")

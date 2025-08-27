@@ -36,6 +36,8 @@
 	ss = status --short
 	st = status
 	si = status --ignored
+
+	t = stash show --patch
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
