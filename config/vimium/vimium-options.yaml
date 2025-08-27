@@ -96,17 +96,27 @@ keyMappings: |-
   map = zoomReset
 
   map ? showHelp
+filterLinkHints: false
+hideHud: false
+hideUpdateNotifications: false
 linkHintCharacters: pgcraoeuhtnsqjkmwvz
+linkHintNumbers: "0123456789"
 newTabUrl: pages/blank.html
+nextPatterns: next,more,newer,>,›,→,»,≫,>>
+previousPatterns: prev,previous,back,older,<,‹,←,«,≪,<<
+regexFindMode: true
+ignoreKeyboardLayout: false
 scrollStepSize: 30
+smoothScroll: true
+grabBackFocus: true
 searchEngines: |-
   ap: https://archlinux.org/packages/?q=%s Arch Packages
   au: https://aur.archlinux.org/packages?K=%s AUR Packages
   aw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
-  d: https://duckduckgo.com/?q=%s DuckDuckGo Search
+  d: https://duckduckgo.com/?q=%s DuckDuckGo
   di: https://duckduckgo.com/?iar=images&q=%s DuckDuckGo Images
   ew: https://eldenring.fandom.com/wiki/Special:Search?query=%s Elden Ring Wiki
-  g: https://google.com/search?q=%s Google Search
+  g: https://www.google.com/search?q=%s Google
   gi: https://images.google.com/search?q=%s Google Images
   h: https://hello.atlassian.net/wiki/search?text=%s Hello Search
   hi: https://hello.atlassian.net/browse/%s Hello Issue
@@ -117,8 +127,7 @@ searchEngines: |-
   ss: https://store.steampowered.com/search/?term=%s Steam Store
   w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
   y: https://www.youtube.com/results?search_query=%s Youtube
-searchUrl: https://duckduckgo.com/?q=%s
-settingsVersion: 2.0.6
+settingsVersion: "2.3"
 userDefinedLinkHintCss: |-2
 STYLESHEET:
 exclusionRules:
