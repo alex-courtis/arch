@@ -5,7 +5,7 @@ set -e
 # remove
 DIR="${HOME}/.local/lib/lua-language-server"
 rm -rf "${DIR}"
-mkdir "${DIR}"
+mkdir -p "${DIR}"
 
 # link everything
 for f in /usr/lib/lua-language-server/*; do
