@@ -121,6 +121,8 @@ riverctl map normal $mod1 v send-layout-cmd wideriver "--ratio +0.025"
 
 riverctl map normal $mod1 z spawn "way-displays --toggle SCALING"
 
+riverctl map normal $mod3 backslash spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
+
 #
 # special
 #
