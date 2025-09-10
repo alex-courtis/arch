@@ -13,6 +13,9 @@ ff02::2		ip6-allrouters
 192.168.1.21	dock	duke	deck
 
 192.168.1.31	emperor
+192.168.1.32	king-ipmi
+192.168.1.35	king
+192.168.1.36	king1
 
 192.168.1.41	dukew
 192.168.1.42	duke1

@@ -5,6 +5,9 @@ lord					D0:50:99:FD:76:FD	192.168.1.16	NAS Bottom IPMI
 lord					D0:50:99:FD:76:FE	192.168.1.17	NAS Top
 dock					B4:45:06:B6:69:64	192.168.1.21	Dell Dock
 emperor					08:BF:B8:76:4B:C0	192.168.1.31	Desktop Wired
+king-ipmi				90:5A:08:15:D4:81	192.168.1.32	Desktop BMC Right Dedicated, Left Shared
+king					90:5A:08:A9:2A:76	192.168.1.35	Desktop LAN1 Left
+king1					90:5A:08:A9:2A:77	192.168.1.36	Desktop LAN2 Mid
 dukew					3C:58:C2:F0:D4:F8	192.168.1.41	Lenovo Laptop
 duke1					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired
 deckw					50:5A:65:60:76:61	192.168.1.71	Steam Deck
