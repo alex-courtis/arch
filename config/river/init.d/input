@@ -3,13 +3,28 @@
 # keyboard
 riverctl set-repeat 50 400
 
+# known and detected touch/track pads
+typeset -U PAD
+PAD=("pointer-1452-782-Alex_Courtis___s_Trackpad", "pointer-1452-613-Apple_Inc._Magic_Trackpad", "pointer-76-613-Apple_Inc._Magic_Trackpad_2")
+for t in $(riverctl list-inputs | grep -Ei "^pointer-.*touch"); do
+	PAD+=("${t}")
+done
+
 # mouses
-riverctl input "*" pointer-accel 0
-riverctl input "*" accel-profile none
+for p in $(riverctl list-inputs | grep -E "^pointer-" | grep -Evi "trackpoint|keyboard|consumer|ydotoold"); do
+	if [ -z "${PAD[(r)${p}]}" ]; then
+		echo "mouse: ${p}"
+		riverctl input "$p" pointer-accel 0
+		riverctl input "$p" accel-profile none
+	fi
+done
 
 # pads
-riverctl input "*" tap enabled
-riverctl input "*" natural-scroll enabled
+for t in "${PAD[@]}"; do
+	echo "pad:   ${t}"
+	riverctl input "${t}" tap enabled
+	riverctl input "${t}" natural-scroll enabled
+done
 
 # this is slow hence background it
 if [ "$(whence libinput-gestures-setup)" ]; then
