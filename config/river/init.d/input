@@ -5,7 +5,7 @@ riverctl set-repeat 50 400
 
 # known and detected touch/track pads
 typeset -U PAD
-PAD=("pointer-1452-782-Alex_Courtis___s_Trackpad", "pointer-1452-613-Apple_Inc._Magic_Trackpad", "pointer-76-613-Apple_Inc._Magic_Trackpad_2")
+PAD=("*Magic_Trackpad*")
 for t in $(riverctl list-inputs | grep -Ei "^pointer-.*touch"); do
 	PAD+=("${t}")
 done
