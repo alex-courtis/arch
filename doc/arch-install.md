@@ -671,11 +671,6 @@ Ensure the performant RADV vulkan implementation is used rather than the slower 
 vulkaninfo | grep "^GPU "
 ```
 
-vdpau test needs to know the driver:
-```sh
-VDPAU_DRIVER=radeonsi vdpauinfo
-```
-
 Blacklist:
 ```sh
 cat << EOF > /etc/modprobe.d/no_ucsi_ccg.conf
