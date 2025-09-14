@@ -474,6 +474,7 @@ Minimum:
 `yay -S
 calc
 dnsutils
+dosfstools
 efibootmgr
 fwupd
 fzf
@@ -534,10 +535,12 @@ way-displays
 waybar
 wev
 wideriver
+wf-recorder
 wl-clipboard
 wl-color-picker
 xdg-desktop-portal
 xdg-desktop-portal-gtk
+xdg-user-dirs
 xdg-utils-mimeo
 ydotool
 zig-bin
@@ -547,14 +550,13 @@ zsh-system-clipboard-git
 
 X:
 `yay -S
-dmenu
+bemenu-x11
 scrot
 xlayoutdisplay
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-misc
 xorg-server
-xorg-xbacklight
 xorg-xinit
 xorg-xrandr
 xsel
@@ -711,6 +713,11 @@ cat << EOF > /etc/modprobe.d/no_ucsi_ccg.conf
 # nvidia specific usb c
 blacklist ucsi_ccg
 EOF
+```
+
+X:
+```sh
+yay -S xf86-video-amdgpu
 ```
 
 ### Intel
