@@ -376,7 +376,7 @@ Entries appear to be ordered by reverse numeric sort.
 
 Boot entry:
 ```sh
-cat << EOF > /boot/loader/entries/99-arch.conf
+cat << EOF > /boot/loader/entries/90-arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
@@ -563,8 +563,8 @@ xsel
 Situational:
 `yay -S
 arch-install-scripts
-blueman
 bluez
+bluez-utils
 cmus
 docker
 docker-buildx
