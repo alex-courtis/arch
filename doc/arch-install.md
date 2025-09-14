@@ -482,8 +482,11 @@ fzf
 inetutils
 jq
 keychain
+keyd
+lshw
 man-db
 man-pages
+ncdu
 neovim
 nfs-utils
 pacman-contrib
@@ -492,10 +495,13 @@ ripgrep
 rsync
 sqlite3
 sysstat
+tmux
 udisks2
 unzip
 usbutils
+wget
 xmlstarlet
+zip
 go-yq
 htop-vim
 lemonade-git
@@ -511,14 +517,17 @@ gpm
 grim
 libnotify
 libva-utils
+mako
 pavucontrol
 pulseaudio
 slurp
 swappy
+ttf-hack-nerd
 ttf-google-fonts-typewolf
 ttf-inter
 vdpauinfo
 vulkan-tools
+waybar
 wl-clipboard
 xdg-desktop-portal
 xdg-desktop-portal-gtk
@@ -555,14 +564,32 @@ xlayoutdisplay
 
 Situational:
 `yay -S
+arch-install-scripts
 blueman
 bluez
+cmus
+docker
+docker-buildx
 libinput-gestures
+rivalcfg
+sshfs
+stress
+ttf-nanum
 `
 
 Clean any unnecessary packages:
 ```sh
 yay -Rns $(yay -Qdtq)
+```
+
+### Group Membership
+
+Add as applicable:
+```sh
+sudo usermod -a -G disk alex
+sudo usermod -a -G docker alex
+sudo usermod -a -G gamemode alex
+sudo usermod -a -G uucp alex
 ```
 
 ### CLI User Environment
@@ -590,6 +617,15 @@ ln -fs /usr/bin/nvim ~/bin/vi
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 cp /home/alex/.ssh/id_* /home/alex/.ssh/authorized_keys .ssh
+```
+
+### Enable Services
+```sh
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now docker.socket
+sudo systemctl enable --now gpm
+sudo systemctl enable --now keyd.service
+sudo systemctl enable --user --now ydotool.service
 ```
 
 ### Disable systemd-userdbd
