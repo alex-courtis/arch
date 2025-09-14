@@ -470,8 +470,6 @@ makepkg -sri
 
 ### Install Packages
 
-AUR packages are at the end of each section.
-
 Minimum:
 `yay -S
 calc
@@ -479,10 +477,13 @@ dnsutils
 efibootmgr
 fwupd
 fzf
+go-yq
+htop-vim
 inetutils
 jq
 keychain
 keyd
+lemonade-git
 lshw
 man-db
 man-pages
@@ -491,6 +492,7 @@ neovim
 nfs-utils
 pacman-contrib
 pwgen
+rcm
 ripgrep
 rsync
 sqlite3
@@ -502,10 +504,6 @@ usbutils
 wget
 xmlstarlet
 zip
-go-yq
-htop-vim
-lemonade-git
-rcm
 `
 
 GUI:
@@ -517,33 +515,33 @@ gpm
 grim
 libnotify
 libva-utils
+lswt
 mako
+menjar
+mimeo
 pavucontrol
 pulseaudio
+river
 slurp
 swappy
-ttf-hack-nerd
+todotxt
 ttf-google-fonts-typewolf
+ttf-hack-nerd
 ttf-inter
 vdpauinfo
 vulkan-tools
-waybar
-wl-clipboard
-xdg-desktop-portal
-xdg-desktop-portal-gtk
-zsh-completions
-lswt
-menjar
-mimeo
-river
-todotxt
 way-displays
+waybar
 wev
 wideriver
+wl-clipboard
 wl-color-picker
+xdg-desktop-portal
+xdg-desktop-portal-gtk
 xdg-utils-mimeo
 ydotool
 zig-bin
+zsh-completions
 zsh-system-clipboard-git
 `
 
@@ -551,6 +549,7 @@ X:
 `yay -S
 dmenu
 scrot
+xlayoutdisplay
 xorg-fonts-100dpi
 xorg-fonts-75dpi
 xorg-fonts-misc
@@ -559,7 +558,6 @@ xorg-xbacklight
 xorg-xinit
 xorg-xrandr
 xsel
-xlayoutdisplay
 `
 
 Situational:
