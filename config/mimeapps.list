@@ -6,6 +6,7 @@ x-scheme-handler/http=browser.desktop;brave-browser.desktop;
 x-scheme-handler/https=browser.desktop;brave-browser.desktop;
 x-scheme-handler/mailto=browser.desktop;brave-browser.desktop;
 x-scheme-handler/unknown=browser.desktop;brave-browser.desktop;
+x-scheme-handler/webcal=browser.desktop;brave-browser.desktop;
 [Added Associations]
 model/3mf=OrcaSlicer.desktop;
 model/stl=OrcaSlicer.desktop;
