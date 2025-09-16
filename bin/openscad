@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# use qt5ct to set styles then remove cruft
+# use qt6ct to set styles then remove cruft
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 
 sed -i -E \
 	'
