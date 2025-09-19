@@ -2,6 +2,11 @@
 
 capslock = escape
 
+# these get mapped to left, but not meta
+rightshift = rightshift
+rightmeta = rightmeta
+rightcontrol = rightcontrol
+
 [meta]
 # map M-backspace to C-w (C-, keycode) releasing meta modifier
 backspace = C-,
