@@ -50,7 +50,7 @@ function sync_orca() {
 	fi
 
 	rsync -a -v --delete-after "${XDG_CONFIG_HOME}/OrcaSlicer" "${1}:${XDG_CONFIG_HOME}"
-	ssh dukew "rm -rfv ${XDG_DATA_HOME}/orca-slicer"
+	ssh "${1}" "rm -rfv ${XDG_DATA_HOME}/orca-slicer"
 }
 
 typeset -A chdir_subs
