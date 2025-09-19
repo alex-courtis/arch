@@ -54,3 +54,7 @@ window#waybar {
 	color: #$BASE16[light_foreground];
 	background-color: #$BASE16[selection_background];
 }
+
+#clock.time {
+	color: #$HL_FG;
+}
