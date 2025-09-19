@@ -40,11 +40,10 @@ done
 typeset -A HL_NAMES=(
 [default]="white"
 [root]="red"
-[duke]="blue"
-[emperor]="yellow"
+[emperor]="magenta"
+[king]="yellow"
 [lord]="green"
-[G2XTD9VMR2]="magenta"
-[ubuntu]="cyan"
+[earl]="blue"
 )
 export HL_NAMES
 
@@ -52,11 +51,11 @@ export HL_NAMES
 typeset -A HL_FGS=(
 [default]=${BASE16[bright_white]}
 [root]=${BASE16[bright_red]}
-[duke]=${BASE16[bright_blue]}
-[emperor]=${BASE16[bright_yellow]}
+[duke]=${BASE16[orange]}
+[emperor]=${BASE16[bright_magenta]}
+[king]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
-[G2XTD9VMR2]=${BASE16[bright_magenta]}
-[ubuntu]=${BASE16[bright_cyan]}
+[earl]=${BASE16[bright_blue]}
 )
 export HL_FGS
 
@@ -83,10 +82,6 @@ fi
 # font size
 #
 case "${HOST}" in
-	G2XTD9VMR2*)
-		export FONT_SIZE_PT=14
-		export FONT_SIZE_PT_BAR=14
-		;;
 	*)
 		export FONT_SIZE_PT=11.5
 		export FONT_SIZE_PT_BAR=14

@@ -43,7 +43,7 @@ export XDG_MUSIC_DIR=$HOME/.music
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 # vdpau defaults to nvidia
-if [ "${HOST}" = "emperor" ]; then
+if [ "${HOST}" = "king" ]; then
 	export VDPAU_DRIVER="radeonsi"
 fi
 
@@ -83,10 +83,10 @@ if [ "$(whence luarocks)" ]; then
 	eval "$(luarocks path)"
 fi
 
-if [ -n "${SSH_CONNECTION}" ] && [ -z "${RDE_PROFILE_NAME}" ]; then
+if [ -n "${SSH_CONNECTION}" ]; then
 	export PS1_HOST="true"
 fi
-if [ "${USER}" != "alex" ] && [ "${USER}" != "acourtis" ] && [ "${USER}" != "ubuntu" ]; then
+if [ "${USER}" != "alex" ]; then
 	export PS1_HOST="true"
 	export PS1_USER="true"
 fi
