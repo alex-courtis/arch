@@ -1,0 +1,10 @@
+[Unit]
+# suppress the annoying "ERROR: unsupported evdev code:" from devices like PS5 controller
+Description=ipmicfg CPU_VRM0 to /run/ipmi-CPU_VRM0
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ipmi-CPU_VRM0-runner
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+set -e
+
+interval=5
+
+while true; do
+	ipmi-CPU_VRM0-getter
+	sleep "${interval}"
+done
+
