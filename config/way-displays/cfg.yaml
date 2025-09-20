@@ -15,6 +15,8 @@ AUTO_SCALE_MAX: -1
 SCALE:
   - NAME_DESC: LG Display 0x05EF
     SCALE: 2
+  - NAME_DESC: BOE 0x0BCA
+    SCALE: 2
   - NAME_DESC: Sharp Corporation 0x148D
     SCALE: 2
   - NAME_DESC: XG349C
