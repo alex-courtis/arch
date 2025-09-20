@@ -10,6 +10,8 @@ king					90:5A:08:A9:2A:76	192.168.1.35	Desktop LAN1 Left
 king1					90:5A:08:A9:2A:77	192.168.1.36	Desktop LAN2 Mid
 dukew					3C:58:C2:F0:D4:F8	192.168.1.41	Lenovo Laptop
 duke1					00:2B:67:4F:AE:CA	192.168.1.42	Lenovo Laptop Wired
+earlw					ac:f2:3c:35:17:f1	192.168.1.43	Framework Laptop
+earl1					9c:bf:0d:00:c6:88	192.168.1.44	Framework Laptop Wired
 deckw					50:5A:65:60:76:61	192.168.1.71	Steam Deck
 zima1					00:E0:4C:22:7F:76	192.168.1.81	Zima Left
 zima2					00:E0:4C:22:7F:77	192.168.1.82	Zima Right
