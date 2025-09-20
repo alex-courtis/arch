@@ -625,7 +625,7 @@ sudo systemctl enable --now bluetooth.service
 sudo systemctl enable --now docker.socket
 sudo systemctl enable --now gpm
 sudo systemctl enable --now keyd.service
-sudo systemctl enable --user --now ydotool.service
+systemctl enable --user --now ydotool.service
 ```
 
 ### Disable systemd-userdbd
@@ -712,6 +712,7 @@ Blacklist:
 cat << EOF > /etc/modprobe.d/no_ucsi_ccg.conf
 # nvidia specific usb c
 blacklist ucsi_ccg
+blacklist ucsi_acpi
 EOF
 ```
 
