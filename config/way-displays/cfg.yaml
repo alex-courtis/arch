@@ -33,6 +33,7 @@ MODE:
 VRR_OFF:
   - LG Display 0x05EF
   - Samsung Display Corp. 0x4165
+  - BOE 0x0BCA
 CALLBACK_CMD: notify-send "way-displays ${CALLBACK_LEVEL}" "${CALLBACK_MSG}"
 DISABLED:
   - NAME_DESC: eDP-1
