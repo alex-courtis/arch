@@ -674,6 +674,26 @@ Firmware:
 yay -S sof-firmware
 ```
 
+## Wireless
+
+Add the regulatory domain service, uncommenting `AU`, then reboot:
+```sh
+yay -S wireless-regdb
+sudo vi /etc/conf.d/wireless-regdom
+```
+
+## Thunderbolt
+
+```sh
+yay -S bolt
+```
+
+Find the uuid and enroll it:
+```sh
+boltctl list
+boltctl enroll deadbeef-deadbeef
+```
+
 ## Audio
 
 Enable pulseaudio:
@@ -707,9 +727,9 @@ Ensure the performant RADV vulkan implementation is used rather than the slower 
 vulkaninfo | grep "^GPU "
 ```
 
-Blacklist:
+Blacklist one of these on "unknown error" kernel messages:
 ```sh
-cat << EOF > /etc/modprobe.d/no_ucsi_ccg.conf
+cat << EOF > /etc/modprobe.d/no_ucsi.conf
 # nvidia specific usb c
 blacklist ucsi_ccg
 blacklist ucsi_acpi
