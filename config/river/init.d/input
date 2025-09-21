@@ -9,9 +9,11 @@ riverctl input "*Mouse" accel-profile none
 
 # pads
 riverctl input "*Trackpad" tap enabled
+riverctl input "*Trackpad" click-method clickfinger
 riverctl input "*Trackpad" natural-scroll enabled
 
 riverctl input "*Touchpad" tap enabled
+riverctl input "*Touchpad" click-method clickfinger
 riverctl input "*Touchpad" natural-scroll enabled
 
 # this is slow hence background it
