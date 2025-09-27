@@ -48,6 +48,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
     + [X](#x)
     + [Dev](#dev)
     + [Situational](#situational)
+    + [Media](#media)
     + [Laptop](#laptop)
     + [Gaming](#gaming)
   * [Clean Unnecessary Packages](#clean-unnecessary-packages)
@@ -601,7 +602,6 @@ stylua
 valgrind
 vscode-langservers-extracted
 yaml-language-server
-zig-bin
 `
 
 #### Situational
@@ -612,7 +612,6 @@ adb-sync-git
 arch-install-scripts
 bluez
 bluez-utils
-cmus
 docker
 docker-buildx
 dos2unix
@@ -631,11 +630,21 @@ sshfs
 stress
 ttf-nanum
 unrar
-vlc
-vlc-plugin-ffmpeg
 wf-recorder
 whois
 `
+
+#### Media
+
+`yay -S
+cmus
+faad2
+libmad
+libmp4v2
+vlc
+vlc-plugin-ffmpeg
+`
+
 #### Laptop
 
 `yay -S
