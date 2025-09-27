@@ -562,6 +562,15 @@ zsh-completions
 zsh-system-clipboard-git
 `
 
+```sh
+mkdir -p "${HOME}/src"
+cd "${HOME}/src"
+git clone git@github.com:alex-courtis/slstatus.git
+cd slstatus
+make
+sudo make install
+```
+
 #### X
 
 `yay -S
@@ -576,6 +585,15 @@ xorg-xinit
 xorg-xrandr
 xsel
 `
+
+```sh
+mkdir -p "${HOME}/src"
+cd "${HOME}/src"
+git clone git@github.com:alex-courtis/dwm.git
+cd dwm
+make
+sudo make install
+```
 
 #### Dev
 
