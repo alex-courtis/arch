@@ -470,13 +470,13 @@ makepkg -sri
 
 ### Install Packages
 
-Minimum:
+#### Minimum
+
 `yay -S
 calc
 dnsutils
 dosfstools
 efibootmgr
-fwupd
 fzf
 go-yq
 htop-vim
@@ -485,7 +485,6 @@ jq
 keychain
 keyd
 lemonade-git
-lshw
 man-db
 man-pages
 ncdu
@@ -499,6 +498,7 @@ rsync
 sqlite3
 sysstat
 tmux
+todotxt
 udisks2
 unzip
 usbutils
@@ -507,7 +507,8 @@ xmlstarlet
 zip
 `
 
-GUI:
+#### GUI
+
 `yay -S
 alacritty
 bemenu-wayland
@@ -520,22 +521,22 @@ lswt
 mako
 menjar
 mimeo
+noto-fonts-emoji
 pavucontrol
 pulseaudio
 river
 slurp
 swappy
-todotxt
-ttf-google-fonts-typewolf
+swaylock
 ttf-hack-nerd
 ttf-inter
+ttf-liberation
 vdpauinfo
 vulkan-tools
 way-displays
 waybar
 wev
 wideriver
-wf-recorder
 wl-clipboard
 wl-color-picker
 xdg-desktop-portal
@@ -548,7 +549,8 @@ zsh-completions
 zsh-system-clipboard-git
 `
 
-X:
+#### X
+
 `yay -S
 bemenu-x11
 scrot
@@ -562,22 +564,97 @@ xorg-xrandr
 xsel
 `
 
-Situational:
+#### Dev
+
 `yay -S
+boost
+boost-libs
+ccls
+clang
+cmake
+cmocka
+code-format-bin
+cppcheck
+debuginfod
+gdb
+llvm
+lua-language-server
+lua51
+luarocks
+meson
+ninja
+nodejs-markdown-toc
+shellcheck-bin
+stylua
+valgrind
+vscode-langservers-extracted
+yaml-language-server
+zig-bin
+`
+
+#### Situational
+
+`yay -S
+7zip
+adb-sync-git
 arch-install-scripts
 bluez
 bluez-utils
 cmus
 docker
 docker-buildx
+dos2unix
+dosfstools
+fwupd
+fwupd-efi
 libinput-gestures
+lshw
+picocom
+qt5-wayland
+qt5ct
+qt6-wayland
+qt6ct
 rivalcfg
 sshfs
 stress
 ttf-nanum
+unrar
+vlc
+vlc-plugin-ffmpeg
+wf-recorder
+whois
+`
+#### Laptop
+
+`yay -S
+brightnessctl
+framework-system
+ipmicfg
 `
 
-Clean any unnecessary packages:
+#### Gaming
+```sh
+vi /etc/pacman.conf
+```
+
+Uncomment
+```
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
+```
+
+`yay -S
+gamemode
+gamescope
+gputest
+mangohud
+mesa-utils
+proton-ge-custom-bin
+steam
+`
+
+### Clean Unnecessary Packages
+
 ```sh
 yay -Rns $(yay -Qdtq)
 ```
