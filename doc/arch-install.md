@@ -639,6 +639,8 @@ whois
 `yay -S
 cmus
 faad2
+ffmpeg
+ffmpeg4.4
 libmad
 libmp4v2
 vlc
