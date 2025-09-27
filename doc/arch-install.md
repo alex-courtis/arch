@@ -60,7 +60,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Enable Services](#enable-services)
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
   * [Done](#done)
-- [Boot Other OS](#boot-other-os)
+- [Boot From Another Disk](#boot-from-another-disk)
 - [Firmware](#firmware)
   * [Intel Audio](#intel-audio)
 - [Wireless](#wireless)
@@ -770,22 +770,23 @@ systemctl stop systemd-userdbd.service
 
 Log in via tty1
 
-## Boot Other OS
+## Boot From Another Disk
 
-Boot into UEFI shell and use `map` to find the FS alias.
-
-Map that to
+Find the uuid for the boot partition:
 ```sh
 blkid -s PARTUUID -o value /dev/nvme2n1p1
 ```
 
+Boot into UEFI shell and use `map -b` to find the first FS alias e.g. `HD0b:`
+
+Create an entry that points to the efi binary:
+
 ```sh
-vi /boot/loader/entries/80-windows.conf
-```
-```
+cat << EOF > /boot/loader/entries/80-windows.conf
 title Windows
 efi /shellx64.efi
-options -nointerrupt HD1b:\EFI\Boot\bootx64.efi
+options -nointerrupt -exit -nomap -noversion HD0b:\EFI\Microsoft\Boot\Bootmgfw.efi
+EOF
 ```
 
 ## Firmware
