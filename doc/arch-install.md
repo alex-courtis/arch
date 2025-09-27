@@ -54,6 +54,9 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Clean Unnecessary Packages](#clean-unnecessary-packages)
   * [Group Membership](#group-membership)
   * [CLI User Environment](#cli-user-environment)
+  * [Suckless](#suckless)
+    + [Wayland And X11](#wayland-and-x11)
+    + [X11](#x11)
   * [Enable Services](#enable-services)
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
   * [Done](#done)
@@ -491,7 +494,6 @@ dnsutils
 dosfstools
 efibootmgr
 fzf
-go-yq
 htop-vim
 inetutils
 jq
@@ -562,15 +564,6 @@ zsh-completions
 zsh-system-clipboard-git
 `
 
-```sh
-mkdir -p "${HOME}/src"
-cd "${HOME}/src"
-git clone git@github.com:alex-courtis/slstatus.git
-cd slstatus
-make
-sudo make install
-```
-
 #### X
 
 `yay -S
@@ -586,15 +579,6 @@ xorg-xrandr
 xsel
 `
 
-```sh
-mkdir -p "${HOME}/src"
-cd "${HOME}/src"
-git clone git@github.com:alex-courtis/dwm.git
-cd dwm
-make
-sudo make install
-```
-
 #### Dev
 
 `yay -S
@@ -608,6 +592,7 @@ code-format-bin
 cppcheck
 debuginfod
 gdb
+go-yq
 llvm
 lua-language-server
 lua51
@@ -636,6 +621,7 @@ dos2unix
 dosfstools
 fwupd
 fwupd-efi
+ipmicfg
 libinput-gestures
 lshw
 picocom
@@ -670,7 +656,6 @@ vlc-plugin-ffmpeg
 `yay -S
 brightnessctl
 framework-system
-ipmicfg
 `
 
 #### Gaming
@@ -707,6 +692,7 @@ Add as applicable:
 sudo usermod -a -G disk alex
 sudo usermod -a -G docker alex
 sudo usermod -a -G gamemode alex
+sudo usermod -a -G games alex
 sudo usermod -a -G uucp alex
 ```
 
@@ -735,6 +721,29 @@ ln -fs /usr/bin/nvim ~/bin/vi
 mkdir ~/.ssh
 chmod 700 ~/.ssh
 cp /home/alex/.ssh/id_* /home/alex/.ssh/authorized_keys .ssh
+```
+
+### Suckless
+
+#### Wayland And X11
+```sh
+mkdir -p "${HOME}/src"
+
+cd "${HOME}/src"
+git clone git@github.com:alex-courtis/slstatus.git
+cd slstatus
+make
+sudo make install
+```
+
+#### X11
+
+```sh
+cd "${HOME}/src"
+git clone git@github.com:alex-courtis/dwm.git
+cd dwm
+make
+sudo make install
 ```
 
 ### Enable Services
