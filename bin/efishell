@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+boot "EFI Shell"

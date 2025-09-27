@@ -81,7 +81,7 @@ function boot {
 	fi
 
 	BOOT_NUM=$(efibootmgr \
-		| grep -Ei "^Boot[[:xdigit:]]*\* *${1}" \
+		| grep -Ei "^Boot[[:xdigit:]]*\*.*${1}" \
 		| head -n 1 \
 		| sed -E 's/^Boot([[:xdigit:]]*)\*.*$/\1/g' \
 	)
