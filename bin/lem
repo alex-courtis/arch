@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
-if [ $# -lt 1 ]; then
+if [ $# -gt 2 ] || [ "${1}" = "-h" ]; then
 	printf "usage: lem [-k] [<host>]\n"
 	exit 1
 fi
@@ -18,13 +18,13 @@ if [ "${1}" = "-k" ]; then
 	shift
 fi
 
-HOST="${1}"
+HOST_REMOTE="${1}"
 
 PORT_REMOTE=2489
 PORT_LOCAL=2489
 
 PAT_SERVER="lemonade server"
-PAT_TUNNEL="${HOST}.*${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
+PAT_TUNNEL="${HOST_REMOTE}.*${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
 
 # kill server
 ${PK_CMD} "${PAT_SERVER}"
@@ -43,9 +43,11 @@ if ! ${PG_CMD} "${PAT_SERVER}"; then
 	exit 1
 fi
 
-# start tunnel
-ssh "${HOST}" -f -N -R "${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
-if ! ${PG_CMD} "${PAT_TUNNEL}"; then
-	exit 1
+# maybe start tunnel
+if [ "${HOST_REMOTE}" ]; then
+	ssh "${HOST_REMOTE}" -f -N -R "${PORT_REMOTE}:127.0.0.1:${PORT_LOCAL}"
+	if ! ${PG_CMD} "${PAT_TUNNEL}"; then
+		exit 1
+	fi
 fi
 
