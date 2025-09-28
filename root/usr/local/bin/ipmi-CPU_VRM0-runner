@@ -1,11 +1,35 @@
 #!/usr/bin/env sh
 
-set -e
-
 interval=5
+out="/run/ipmi-CPU_VRM0"
 
 while true; do
-	ipmi-CPU_VRM0-getter
+	sdr="$(ipmicfg -sdr)"
+	RC=$?
+
+	if [ $RC -ne 0 ]; then
+		# ipmicfg errors go to stdout
+		echo "${sdr}" 1>&2
+		echo "!!" > "${out}"
+		exit $RC
+	fi
+
+	cap_deg_c="^\| +([0-9]+)C.*"
+
+	deg_c="$(echo "${sdr}" | \
+		grep CPU_VRM | \
+		cut -c 35-50 | \
+		sed -E "/${cap_deg_c}/!{q1}; s//\1/g")"
+
+	RC=$?
+	if [ $RC -ne 0 -o -z "${deg_c}" ]; then
+		echo "${sdr}" 1>&2
+		echo "??" > "${out}"
+		exit $RC
+	fi
+
+	printf "%s" "${deg_c}" > "${out}"
+
 	sleep "${interval}"
 done
 
