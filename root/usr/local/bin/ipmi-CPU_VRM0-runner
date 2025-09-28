@@ -22,7 +22,7 @@ while true; do
 		sed -E "/${cap_deg_c}/!{q1}; s//\1/g")"
 
 	RC=$?
-	if [ $RC -ne 0 -o -z "${deg_c}" ]; then
+	if [ $RC -ne 0 ] || [ -z "${deg_c}" ]; then
 		echo "${sdr}" 1>&2
 		echo "??" > "${out}"
 		exit $RC
