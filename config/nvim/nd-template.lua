@@ -86,7 +86,7 @@ vim.cmd([[
 :hi NvimTreeRootFolder guifg=magenta
 ]])
 
-require("lspconfig").lua_ls.setup({})
+vim.lsp.enable("lua_ls")
 
 require("nvim-tree").setup({
   -- DEFAULT_OPTS
