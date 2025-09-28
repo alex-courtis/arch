@@ -499,7 +499,7 @@ inetutils
 jq
 keychain
 keyd
-lemonade-git
+lemonade-bin
 man-db
 man-pages
 ncdu
