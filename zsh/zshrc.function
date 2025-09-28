@@ -76,6 +76,7 @@ make_chdir_sub_vi nt "${HOME}/src/nvim-tree"
 make_chdir_sub_vi wd "${HOME}/src/way-displays"
 make_chdir_sub_vi wr "${HOME}/src/wideriver"
 make_chdir_sub_vi pa "${XDG_DATA_HOME}/nvim/site/pack.packer/packer/start"
+make_chdir_sub_vi sa "${XDG_DATA_HOME}/Steam/steamapps/common"
 
 if [ "${UNAME}" = "Darwin" ]; then
 	make_chdir_sub_vi a  "${HOME}/atlassian"
