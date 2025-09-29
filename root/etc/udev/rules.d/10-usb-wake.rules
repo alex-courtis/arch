@@ -1,0 +1,11 @@
+# framework back left usb 2.0 hub
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d6b", ATTRS{idProduct}=="0002", ATTRS{busnum}=="7", ATTRS{power/wakeup}=="disabled", ATTR{power/wakeup}="enabled"
+
+# framework back right usb 2.0 hub
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d6b", ATTRS{idProduct}=="0002", ATTRS{busnum}=="5", ATTRS{power/wakeup}=="disabled", ATTR{power/wakeup}="enabled"
+
+# framework back left usb 3.0 hub
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d6b", ATTRS{idProduct}=="0003", ATTRS{busnum}=="8", ATTRS{power/wakeup}=="disabled", ATTR{power/wakeup}="enabled"
+
+# framework back right usb 3.0 hub
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d6b", ATTRS{idProduct}=="0003", ATTRS{busnum}=="6", ATTRS{power/wakeup}=="disabled", ATTR{power/wakeup}="enabled"
