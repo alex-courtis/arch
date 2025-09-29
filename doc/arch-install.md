@@ -41,6 +41,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Post Install](#post-install)
   * [Set Hostname](#set-hostname)
   * [Enable NTP Sync](#enable-ntp-sync)
+  * [Disable Watchdog](#disable-watchdog)
   * [yay Package Manager](#yay-package-manager)
   * [Install Packages](#install-packages)
     + [Minimum](#minimum)
@@ -461,6 +462,12 @@ hostnamectl set-hostname gigantor
 ```sh
 timedatectl set-ntp true
 timedatectl status
+```
+
+### Disable Watchdog
+
+```sh
+echo "blacklist sp5100_tco" > /etc/modprobe.d/no_watchdog.conf
 ```
 
 ### yay Package Manager
