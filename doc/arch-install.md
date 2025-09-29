@@ -845,15 +845,6 @@ Ensure the performant RADV vulkan implementation is used rather than the slower 
 vulkaninfo | grep "^GPU "
 ```
 
-Blacklist one of these on "unknown error" kernel messages:
-```sh
-cat << EOF > /etc/modprobe.d/no_ucsi.conf
-# nvidia specific usb c
-blacklist ucsi_ccg
-blacklist ucsi_acpi
-EOF
-```
-
 X:
 ```sh
 yay -S xf86-video-amdgpu
