@@ -364,7 +364,6 @@ HOOKS=(
     block
     filesystems
     fsck
-    resume
 )
 ```
 
@@ -396,20 +395,11 @@ cat << EOF > /boot/loader/entries/90-arch.conf
 title Arch Linux
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options root=UUID=
- resume=UUID=
- rw
-
+options quiet loglevel=4 rw root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3)
 EOF
 ```
 
-Inject the UUIDs of the root and swap partitions:
-```sh
-blkid -s UUID -o value /dev/nvme0n1p3 >> /boot/loader/entries/90-arch.conf
-blkid -s UUID -o value /dev/nvme0n1p2 >> /boot/loader/entries/90-arch.conf
-```
-Move them into their correct places: root and resume.
-
+Reduce [loglevel](https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html) as needed for noisy laptops with "normal" errors.
 
 Activate it:
 ```sh
