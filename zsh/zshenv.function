@@ -23,7 +23,7 @@ fi
 # terminal title; avoid when possible as this is expensive, especially when starting a shell just for it
 function printtermtitle() {
 	# don't include __git_ps1 in the print lest it be prompt substituted
-	print -Pn "%~"
+	print -Pn "${PROMPT_CONTEXT+${PROMPT_CONTEXT} }%~"
 
 	__git_ps1
 }
