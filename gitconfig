@@ -44,6 +44,8 @@
 	signingkey = /home/alex/.ssh/id_rsa.pub
 [gpg]
 	format = ssh
+[commit]
+	gpgsign = true
 [core]
 	excludesfile = ~/.gitignore
 	pager = less --tabs=4
