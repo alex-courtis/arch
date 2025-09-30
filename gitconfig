@@ -41,6 +41,9 @@
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
+	signingkey = ${HOME}/.ssh/id_rsa.pub
+[gpg]
+	format = ssh
 [core]
 	excludesfile = ~/.gitignore
 	pager = less --tabs=4
