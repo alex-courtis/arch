@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec labwc -d > "/tmp/labwc.${XDG_VTNR}.${USER}.log" 2>&1
