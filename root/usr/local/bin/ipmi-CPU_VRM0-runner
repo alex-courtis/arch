@@ -8,10 +8,9 @@ while true; do
 	RC=$?
 
 	if [ $RC -ne 0 ]; then
-		# ipmicfg errors go to stdout
+		# ipmicfg errors go to stdout, redirect to stderr for journal
 		echo "${sdr}" 1>&2
 		echo "!!" > "${out}"
-		exit $RC
 	fi
 
 	cap_deg_c="^\| +([0-9]+)C.*"
@@ -25,7 +24,6 @@ while true; do
 	if [ $RC -ne 0 ] || [ -z "${deg_c}" ]; then
 		echo "${sdr}" 1>&2
 		echo "??" > "${out}"
-		exit $RC
 	fi
 
 	printf "%s" "${deg_c}" > "${out}"
