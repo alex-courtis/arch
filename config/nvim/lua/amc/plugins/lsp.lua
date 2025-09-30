@@ -204,6 +204,15 @@ vim.lsp.config.yamlls = {
 vim.lsp.enable("yamlls")
 
 --
+-- python
+--
+---@type vim.lsp.Config
+vim.lsp.config.pyright = {
+  on_attach = build_on_attach("pyright"),
+}
+vim.lsp.enable("pyright")
+
+--
 -- Functions
 --
 
