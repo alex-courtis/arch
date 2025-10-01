@@ -116,6 +116,8 @@ function M.format()
   if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
     vim.cmd([[silent! norm! gg=G``]])
     return
+  elseif vim.bo.filetype == "python" then
+    return
   end
 
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
