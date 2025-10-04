@@ -39,5 +39,5 @@ DISABLED:
   - NAME_DESC: eDP-1
     IF:
       - PLUGGED:
-          - '!^DP-[1-9]+$'
+          - "!^DP-[1-9]+$"
 
