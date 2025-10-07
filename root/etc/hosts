@@ -4,43 +4,8 @@
 ff02::1		ip6-allnodes
 ff02::2		ip6-allrouters
 
-192.168.1.1	router
+192.168.1.1	modem
 
-192.168.1.14	lord-ipmi-dedicated
-192.168.1.15	lord-ipmi-shared
-192.168.1.16	lord
-
-192.168.1.21	dock	earl	duke	deck
-
-192.168.1.31	emperor
-192.168.1.32	king-ipmi
-192.168.1.35	king
-192.168.1.36	king1
-
-192.168.1.41	dukew
-192.168.1.42	duke1
-
-192.168.1.43	earlw
-192.168.1.44	earl1
-
-192.168.1.71	deckw
-
-192.168.1.81	zima1
-192.168.1.82	zima2
-
-192.168.1.91	pidp11
-192.168.1.92	pidp11w
-
-192.168.1.101	bambu
-
-192.168.1.111	peasant
-
-192.168.1.121	yamaha
-
-192.168.1.131	kobo
-192.168.1.132	kobo0
-
-192.168.1.141	appletv
-192.168.1.142	appletvw
+10.0.0.1	router
 
 # vim:ts=8
