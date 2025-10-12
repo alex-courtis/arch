@@ -1,0 +1,9 @@
+[Unit]
+Description=turbostat PkgWatt to /run/turbostat-PkgWatt
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/turbostat-monitor
+
+[Install]
+WantedBy=multi-user.target
