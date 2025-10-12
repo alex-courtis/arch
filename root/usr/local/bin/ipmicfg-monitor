@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+interval=5
+out_cpu_vrm0="/run/ipmi-CPU_VRM0"
+out_dimmab="/run/ipmi-DIMMAB"
+
+while true; do
+	sdr="$(ipmicfg -sdr)"
+	RC=$?
+
+	if [ $RC -ne 0 ]; then
+		# ipmicfg errors go to stdout, redirect to stderr for journal
+		echo "${sdr}" 1>&2
+		echo "!!" > "${out_cpu_vrm0}"
+		echo "!!" > "${out_dimmab}"
+	fi
+
+	cap_deg_c="^\| +([0-9]+)C.*"
+
+	cpu_vrm0_deg_c="$(echo "${sdr}" | \
+		grep CPU_VRM0 | \
+		cut -c 35-50 | \
+		sed -E "/${cap_deg_c}/!{q1}; s//\1/g")"
+
+	RC=$?
+	if [ $RC -ne 0 ] || [ -z "${cpu_vrm0_deg_c}" ]; then
+		echo "${sdr}" 1>&2
+		echo "??" > "${out_dimmab}"
+	fi
+	printf "%s" "${cpu_vrm0_deg_c}" > "${out_cpu_vrm0}"
+
+	dimmab_deg_c="$(echo "${sdr}" | \
+		grep DIMMAB | \
+		cut -c 35-50 | \
+		sed -E "/${cap_deg_c}/!{q1}; s//\1/g")"
+
+	RC=$?
+	if [ $RC -ne 0 ] || [ -z "${dimmab_deg_c}" ]; then
+		echo "${sdr}" 1>&2
+		echo "??" > "${out_dimmab}"
+	fi
+	printf "%s" "${dimmab_deg_c}" > "${out_dimmab}"
+
+	sleep "${interval}"
+done
+

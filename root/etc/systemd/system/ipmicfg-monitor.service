@@ -1,0 +1,9 @@
+[Unit]
+Description=ipmicfg CPU_VRM0 and DIMMAB to /run/ipmi-xxx
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ipmicfg-monitor
+
+[Install]
+WantedBy=multi-user.target
