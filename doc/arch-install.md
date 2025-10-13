@@ -763,6 +763,23 @@ systemctl disable systemd-userdbd.service
 systemctl stop systemd-userdbd.service
 ```
 
+### Reduce systemd DefaultTimeoutStopSec
+
+Not for servers.
+
+Reduces timeout before killing services, notably at shutdown. Useful for badly behaved docker containers etc.
+
+Also applies to `DefaultTimeoutAbortSec`
+
+```sh
+sudo vi /etc/systemd/system.conf
+```
+
+```
+DefaultTimeoutStopSec=5s
+#DefaultTimeoutAbortSec=
+```
+
 ### Done
 
 Log in via tty1
