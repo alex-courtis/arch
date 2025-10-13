@@ -60,6 +60,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
     + [X11](#x11)
   * [Enable Services](#enable-services)
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
+  * [Reduce systemd DefaultTimeoutStopSec](#reduce-systemd-defaulttimeoutstopsec)
   * [Done](#done)
 - [Boot From Another Disk](#boot-from-another-disk)
 - [Firmware](#firmware)
@@ -555,6 +556,7 @@ xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-user-dirs
 xdg-utils-mimeo
+xorg-xlsclients
 ydotool
 zig-bin
 zsh-completions
