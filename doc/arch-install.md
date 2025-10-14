@@ -524,6 +524,7 @@ zip
 
 `yay -S
 alacritty
+bee-host
 bemenu-wayland
 brave-bin
 gpm
