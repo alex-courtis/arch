@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+out="/tmp/sr.log"
+
+cmd=""
+
+rm -f "${out}"
+
+while getopts gms opt; do
+	case "$opt" in
+		m)
+			cmd="mangohud ${cmd}"
+			;;
+		g)
+			cmd="${cmd} gamemoderun"
+			;;
+		s)
+			scale="true"
+			;;
+		*)
+			exit 1
+			;;
+	esac
+done
+shift $((OPTIND-1))
+
+if [ "${scale}" ]; then
+	way-displays -s scaling off >> "${out}" 2>&1
+fi
+
+echo "${cmd} ${@}" >> "${out}"
+
+${cmd} "${@}" >> "${out}" 2>&1
+
+if [ "${scale}" ]; then
+	way-displays -s scaling on >> "${out}" 2>&1
+fi
+

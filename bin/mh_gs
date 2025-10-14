@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "${0} ${*}" > /tmp/mh_gs.log
-
-mangohud gamescope-run-native --fullscreen -- "${@}" >> /tmp/mh_gs.log 2>&1
-

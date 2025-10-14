@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "${0} ${*}" > /tmp/gm.log
-
-gamemoderun "${@}" >> /tmp/gm.log 2>&1
-
