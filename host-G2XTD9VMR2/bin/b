@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --new-window "$@" >/dev/null 2>&1 &!
-

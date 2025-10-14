@@ -16,9 +16,6 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE="true"
 export GIT_PS1_SHOWSTASHSTATE="true"
 export GIT_PS1_SHOWUPSTREAM="auto"
-if [ "${UNAME}" != "Darwin" ]; then
-	export GIT_PS1_SHOWUNTRACKEDFILES="true"
-fi
 
 # terminal title; avoid when possible as this is expensive, especially when starting a shell just for it
 function printtermtitle() {

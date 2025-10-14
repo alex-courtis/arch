@@ -1,13 +1,3 @@
-if [ "${UNAME}" = "Darwin" ]; then
-	alias o="open"
-	paste="pbpaste"
-elif [ "${UNAME}" = "Linux" ]; then
-	alias o="xdg-open"
-	paste="wl-paste"
-else
-	paste="false"
-fi
-
 # executes non-interactive $SHELL passing -c arguments
 # final space allows aliases to be used, as root's .zshrc is not executed
 alias sudo="sudo -s "
@@ -22,6 +12,8 @@ alias zpnoprompt="unsetopt xtrace"
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
+
+alias o="xdg-open"
 
 alias grep="grep --color=auto"
 alias grepc="grep --color=always"
@@ -41,9 +33,6 @@ alias pdiff="diff -Naur"
 alias findh="find .      -path '*/\.*'"
 alias findv="find . -not -path '*/\.*'"
 
-# unclear why this is needed for macos
-compdef -d diff
-
 alias tailf="tail -n 0 -F"
 
 alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
@@ -60,33 +49,24 @@ alias egrep="grep -E"
 
 alias jqc="jq --color-output"
 
-alias jqp="${paste} | jqc"
+alias jqp="wl-paste | jqc"
 
 # default yaml output to stop needless warnings
 alias yqc="yq --colors"
-alias jqp="${paste} | yqc"
+alias jqp="wl-paste | yqc"
 
 # yq does not autocomplete files reliably
 compdef -d yq
 
-alias xsp="${paste} | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
+alias xsp="wl-paste | xmlstarlet fo | highlight --out-format=ansi --syntax=xml"
 
-if [ "${UNAME}" = "Darwin" ]; then
-	alias pt="pstree"
-	alias ptl="pstree | less"
+alias pt="pstree -TapU -C age"
+alias ptl="pt -l | less"
+alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
 
-	alias pg="pgrep -lif"
-	alias pk="pkill -lif"
-	alias pkk="pkill -9 -lif"
-elif [ "${UNAME}" = "Linux" ]; then
-	alias pt="pstree -TapU -C age"
-	alias ptl="pt -l | less"
-	alias ptw="watch -t -n 0.5 -c pstree -TapU -C age"
-
-	alias pg="pgrep --list-full --full"
-	alias pk="pkill --full"
-	alias pkk="pkill -9 --full"
-fi
+alias pg="pgrep --list-full --full"
+alias pk="pkill --full"
+alias pkk="pkill -9 --full"
 
 alias vg="valgrind --leak-check=full --show-leak-kinds=all"
 alias vgg="vg --gen-suppressions=all"
@@ -115,5 +95,3 @@ alias pc="picocom --baud 115200 --databits 8 --parity n --stopbits 1 --flow n"
 for i in $(seq 1 8); do
 	alias pc${i}="pc /dev/ttyCOM${i}"
 done
-
-unset paste

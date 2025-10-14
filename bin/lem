@@ -5,13 +5,8 @@ if [ $# -gt 2 ] || [ "${1}" = "-h" ]; then
 	exit 1
 fi
 
-if [ "${UNAME}" = "Darwin" ]; then
-	PG_CMD="pgrep -lif"
-	PK_CMD="pkill -lif"
-else
-	PG_CMD="pgrep --list-full --full"
-	PK_CMD="pkill --echo --full"
-fi
+PG_CMD="pgrep --list-full --full"
+PK_CMD="pkill --echo --full"
 
 if [ "${1}" = "-k" ]; then
 	KILL="true"

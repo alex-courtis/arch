@@ -1,7 +1,0 @@
-# Python Config - auto-configured by Jmake
-export PATH="/opt/homebrew/opt/python@3.12/libexec/bin:$PATH"
-
-# docker completion zsh > ~/.docker/completions/_docker
-fpath=(${HOME}/.docker/completions /opt/homebrew/share/zsh/site-functions $fpath)
-
-# vim:ft=zsh

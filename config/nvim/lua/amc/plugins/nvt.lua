@@ -19,12 +19,6 @@ local NO_STARTUP_FT = {
   "gitrebase",
 }
 
-local GIT_DISABLE_FOR_DIRS = {
-  vim.env.HOME .. "/atlassian/src/jira/",
-  vim.env.HOME .. "/atlassian/src/j/",
-  vim.env.HOME .. "/jira/",
-}
-
 ---Absolute paths of the node.
 ---@return string|nil file node
 ---@return string|nil dir parent node of file otherwise node
@@ -78,15 +72,6 @@ local function git_restore()
   if path and dir then
     vim.fn.system({ "git", "-C", dir, "restore", path })
   end
-end
-
-local function git_disable_for_dirs(path)
-  for _, p in ipairs(GIT_DISABLE_FOR_DIRS) do
-    if path:find(p, 1, true) == 1 then
-      return true
-    end
-  end
-  return false
 end
 
 local VIEW_WIDTH_FIXED = 30
@@ -217,7 +202,6 @@ local config = {
   git = {
     timeout = 800,
     show_on_open_dirs = false,
-    disable_for_dirs = git_disable_for_dirs,
   },
   diagnostics = {
     enable = true,
@@ -244,7 +228,7 @@ local config = {
     show_on_open_dirs = false,
   },
   filesystem_watchers = {
-    ignore_dirs = { "/.ccls-cache", "/build", "/node_modules", "/target", "/atlassian/src/jira", "/atlassian/src/j" }
+    ignore_dirs = { "/.ccls-cache", "/build", "/node_modules", "/target", }
   },
   actions = {
     change_dir = {

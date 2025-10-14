@@ -72,16 +72,6 @@ make_chdir_sub_vi wr "${HOME}/src/wideriver"
 make_chdir_sub_vi pa "${XDG_DATA_HOME}/nvim/site/pack.packer/packer/start"
 make_chdir_sub_vi sa "${XDG_DATA_HOME}/Steam/steamapps/common"
 
-if [ "${UNAME}" = "Darwin" ]; then
-	make_chdir_sub_vi a  "${HOME}/atlassian"
-	make_chdir_sub_vi s  "${HOME}/atlassian/src"
-	make_chdir_sub_vi j  "${HOME}/atlassian/src/j"
-	make_chdir_sub_vi mc "${HOME}/Library/Application Support"
-	make_chdir_sub_vi jb "${HOME}/Library/Application Support/JetBrains"
-fi
-if [ -n "${RDE_PROFILE_NAME}" ]; then
-	make_chdir_sub_vi j  "${HOME}/jira"
-fi
 if [ "${HOST}" = "lord" ]; then
 	make_chdir_sub_vi nfs "/srv/nfs"
 fi

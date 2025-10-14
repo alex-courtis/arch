@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser "$@" >/dev/null 2>&1 &!
-

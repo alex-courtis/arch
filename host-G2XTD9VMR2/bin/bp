@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --incognito "$@" >/dev/null 2>&1 &!
