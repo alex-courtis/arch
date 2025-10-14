@@ -24,10 +24,6 @@
     {
       "passKeys": "",
       "pattern": "https?://mail.proton.me/*"
-    },
-    {
-      "passKeys": "",
-      "pattern": "https?://192.168.1.*/viewer.html"
     }
   ]
 }

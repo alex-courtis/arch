@@ -24,7 +24,6 @@
 	lg =  l --graph
 	llg = ll --graph
 
-	mti = mergetool --tool idea
 	mtv = mergetool --tool vimdiff
 
 	co = checkout
@@ -62,10 +61,6 @@
 
 [merge]
 	tool = nvimdiff
-
-[mergetool "idea"]
-	cmd = idea merge "${LOCAL}" "${REMOTE}" "${BASE}" "${MERGED}" > /tmp/ideamerge.log 2>&1
-	trustExitCode = true
 
 # only use these when attempting a particularly large operation
 #[merge]
