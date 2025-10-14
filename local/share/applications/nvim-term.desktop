@@ -1,0 +1,3 @@
+[Desktop Entry]
+Name=Neovim Terminal
+Exec=term -e nvim %F
