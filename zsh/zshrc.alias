@@ -117,9 +117,6 @@ alias dec="gpg --decrypt-files"
 alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
 alias ehx="WAYLAND_DISPLAY=wayland-1 HYPRLAND_INSTANCE_SIGNATURE=\$(cat /tmp/hyp.sig)"
 
-alias mt="xdg-mime query filetype"
-alias ma="xdg-mime query default"
-
 alias pc="picocom --baud 115200 --databits 8 --parity n --stopbits 1 --flow n"
 for i in $(seq 1 8); do
 	alias pc${i}="pc /dev/ttyCOM${i}"

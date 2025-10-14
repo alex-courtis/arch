@@ -5,7 +5,7 @@ way-displays > "/tmp/way-displays.${XDG_VTNR}.${USER}.log" 2>&1 &
 # used by xdg-desktop-portal-wlr
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
-update-desktop-database "${HOME}/.local/share/applications"
+mime-update
 
 mako > "/tmp/mako.${XDG_VTNR}.${USER}.log" 2>&1 &
 

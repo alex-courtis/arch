@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+set -e
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $(basename "${0}") FILE_PATH" >&2
+	exit 1
+fi
+
+xdg_mime_type=$(xdg-mime query filetype "${1}")
+echo "xdg-mime query filetype ${1}"
+echo "${xdg_mime_type}"
+echo
+
+echo "xdg-mime query default ${xdg_mime_type}"
+xdg-mime query default "${xdg_mime_type}"
+echo
+
+echo "mimeo --mimetype ${1}"
+mimeo --mimetype "${1}"
+echo
+
+echo "mimeo --mime2desk --full-path ${xdg_mime_type}"
+mimeo --mime2desk --full-path "${xdg_mime_type}"
+echo
+
