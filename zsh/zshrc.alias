@@ -63,7 +63,6 @@ alias jqc="jq --color-output"
 alias jqp="${paste} | jqc"
 
 # default yaml output to stop needless warnings
-alias yq="yq -oy"
 alias yqc="yq --colors"
 alias jqp="${paste} | yqc"
 
@@ -98,24 +97,19 @@ alias rgh="rg --no-ignore --hidden"
 
 alias yayn="yay --noconfirm"
 
-alias dt="\$(date +%Y%m%d_%H%M%S)"
-
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /lord/music/"
 alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /lord/music/ \${HOME}/.music/"
 alias music-home-to-android="adb-sync --delete \${HOME}/.music/ /sdcard/Music"
 alias music-lord-to-android="adb-sync --delete /lord/music/ /sdcard/Music"
 
-# bash style targets that cannot play well with complete_aliases
 alias todo="todo.sh"
-compdef todo="todo.sh"
 
 alias riverctl-list-rules='for r in dimensions float fullscreen output position ssd tags; do echo "--$r--"; riverctl list-rules "${r}"; done'
 
-alias enc="gpg --symmetric"
-alias dec="gpg --decrypt-files"
+alias gpg-enc="gpg --symmetric"
+alias gpg-dec="gpg --decrypt-files"
 
-alias ewx="WAYLAND_DISPLAY=wayland-1 XDG_VTNR=1"
-alias ehx="WAYLAND_DISPLAY=wayland-1 HYPRLAND_INSTANCE_SIGNATURE=\$(cat /tmp/hyp.sig)"
+alias ewdx="WAYLAND_DISPLAY=wayland-1 DISPLAY=:0 XDG_VTNR=1"
 
 alias pc="picocom --baud 115200 --databits 8 --parity n --stopbits 1 --flow n"
 for i in $(seq 1 8); do

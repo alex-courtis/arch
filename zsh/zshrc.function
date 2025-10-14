@@ -8,10 +8,6 @@ function lcd() {
 	fi
 }
 
-function vimdiff() {
-	vi -d $@
-}
-
 function mnt() {
 	if [ ${#} -ne 1 ]; then
 		echo "Usage: mnt <block device>" >&2
@@ -36,21 +32,18 @@ function umnt() {
 	fi
 }
 
-function pyenv_init() {
-	if [ "$(whence pyenv)" ]; then
-		export PYENV_ROOT=$HOME/.pyenv
-		eval "$(pyenv init -)"
-	fi
-}
-
-function sync_orca() {
+function orca-sync() {
 	if [ ${#} -ne 1 ]; then
-		echo "Usage: sync_orca <host>" >&2
+		echo "Usage: ${0} <host>" >&2
 		return 1
 	fi
 
 	rsync -a -v --delete-after "${XDG_CONFIG_HOME}/OrcaSlicer" "${1}:${XDG_CONFIG_HOME}"
 	ssh "${1}" "rm -rfv ${XDG_DATA_HOME}/orca-slicer"
+}
+
+function dt() {
+	date +%Y%m%d_%H%M%S
 }
 
 typeset -A chdir_subs
