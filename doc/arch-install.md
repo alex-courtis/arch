@@ -487,6 +487,7 @@ makepkg -sri
 #### Minimum
 
 `yay -S
+autofs
 calc
 dnsutils
 dosfstools
