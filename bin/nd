@@ -23,11 +23,12 @@ function init() {
 
 	# pick source
 	if [ -z "${1}" ]; then
-		USR="master"
+		SRC="${HOME}/src/nvim-tree/master"
+	elif [ -d "${1}" ]; then
+		SRC="${1}"
 	else
-		USR="${1}"
+		SRC="${HOME}/src/nvim-tree/${1}"
 	fi
-	SRC="${HOME}/src/nvim-tree/${USR}"
 
 	if [ ! -d "${SRC}" ]; then
 		echo "${SRC} inexistent"
