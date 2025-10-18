@@ -1,0 +1,2 @@
+# mount nfs4 root / without full path e.g. /srv/nfs
+/lord lord:/

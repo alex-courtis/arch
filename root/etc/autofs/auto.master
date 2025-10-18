@@ -10,6 +10,9 @@
 #	"nosuid" and "nodev" options unless the "suid" and "dev"
 #	options are explicitly given.
 #
+# AMC This will map as nfs3 based on "showmount -e <host>", including the nfs4 root e.g. /srv/nfs
+#     Script auto.net is not used.
+#     Script file results are not browseable hence are not valuable when defining individual mount points.
 # /net	-hosts
 #
 # Include /etc/autofs/auto.master.d/*.autofs
@@ -37,4 +40,4 @@
 #
 # +auto.master
 
-/lord /etc/autofs/auto.lord --browse --timeout 5
+/- /etc/autofs/nfs4 --timeout 5
