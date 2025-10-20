@@ -18,6 +18,9 @@ local which_key = require("amc.plugins.which-key")
 
 local M = {}
 
+-- escape a string for vim regex search, escaping most from pattern.txt with magic on
+local pattern_escape = "/*^$.*~\\\\"
+
 --
 -- unused and available normal, leaders commented below
 -- T F
@@ -181,14 +184,14 @@ K.nsl_("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
 --
 --
 --
-K.n_l_("r", ":%s/<C-r>=expand('<cword>')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
-K.n_l_("R", ":%s/<C-r>=expand('<cword>')<CR>/",                            "Replace")
-K.v_l_("r", '"*y:%s/<C-r>=getreg("*")<CR>/<C-r>=getreg("*")<CR>',          "Replace Keep")
-K.v_l_("R", '"*y:%s/<C-r>=getreg("*")<CR>/',                               "Replace")
-K.nsl_("n", "<C-]>",                                                       "Tag",              { remap = true }) -- overridden by lsp
-K.nsl_("N", "<C-]>",                                                       "Tag",              { remap = true }) -- overridden by lsp
-K.nsl_("v", ":put<CR>'[v']=",                                              "Put Format")
-K.nsl_("V", ":put!<CR>'[v']=",                                             "Put Above Format")
+K.n_l_("r", ":%s/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
+K.n_l_("R", ":%s/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>/",                            "Replace")
+K.v_l_("r", "\"*y:%s/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>/<C-r>=getreg('*')<CR>",         "Replace Keep")
+K.v_l_("R", "\"*y:%s/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>/",                              "Replace")
+K.nsl_("n", "<C-]>",                                                                                           "Tag",              { remap = true }) -- overridden by lsp
+K.nsl_("N", "<C-]>",                                                                                           "Tag",              { remap = true }) -- overridden by lsp
+K.nsl_("v", ":put<CR>'[v']=",                                                                                  "Put Format")
+K.nsl_("V", ":put!<CR>'[v']=",                                                                                 "Put Above Format")
 
 --
 --
@@ -208,14 +211,14 @@ K.nsl_("z", dev.format,                                                        "
 --
 --
 --  |
-K.n___("#",  "<Plug>(asterisk-z#)",               "Word Backwards Stay")
-K.n_l_("#",  "#",                                 "Word Backwards")
-K.n_l_("/",  "/<C-r>=expand('<cword>')<CR><Esc>", "Search")
-K.v_l_("/",  '"*y/<C-r>=getreg("*")<CR><Esc>',    "Search Visual")
-K.nsl_("_",  buffers.wipe_all,                    "Wipe All Buffers")
-K.nsl_("-",  ":silent BW!<CR>",                   "Wipe Buffer")
-K.nsl_("\\", which_key.show,                      "Show WhichKey")
-K.nsl_("|",  which_key.show_local,                "Show WhichKey Local")
+K.n___("#",  "<Plug>(asterisk-z#)",                                                      "Word Backwards Stay")
+K.n_l_("#",  "#",                                                                        "Word Backwards")
+K.n_l_("/",  "/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR><Esc>",    "Search")
+K.v_l_("/",  "\"*y<Esc>/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR><Esc>", "Search Visual")
+K.nsl_("_",  buffers.wipe_all,                                                           "Wipe All Buffers")
+K.nsl_("-",  ":silent BW!<CR>",                                                          "Wipe Buffer")
+K.nsl_("\\", which_key.show,                                                             "Show WhichKey")
+K.nsl_("|",  which_key.show_local,                                                       "Show WhichKey Local")
 
 ---
 --- snippets
