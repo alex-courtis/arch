@@ -192,29 +192,30 @@ K.nsl_("V", ":put!<CR>'[v']=",                                             "Put 
 
 --
 --
--- sS
+--
 --  Z
-K.n_l_("!", ": <C-r>=expand('%:.')<CR><Home>",  "Command Relative Filename")
-K.v_l_("!", '"*y: <C-r>=getreg("*")<CR><Home>', "Command Visual")
-K.n_l_("8", ": <C-r>=expand('%:p')<CR><Home>",  "Command Absolute Filename")
-K.nsl_("l", buffers.toggle_list,                "Toggle List")
-K.nsl_("L", buffers.trim_whitespace,            "Trim Whitespace")
-K.nsl_("s", "<Nop>",                            "<Nop>")
-K.nsl_("z", dev.format,                         "Format")
+K.n_l_("!", ": <C-r>=expand('%:.')<CR><Home>",                                 "Command Relative Filename")
+K.v_l_("!", '"*y: <C-r>=getreg("*")<CR><Home>',                                "Command Visual")
+K.n_l_("8", ": <C-r>=expand('%:p')<CR><Home>",                                 "Command Absolute Filename")
+K.nsl_("l", buffers.toggle_list,                                               "Toggle List")
+K.nsl_("L", buffers.trim_whitespace,                                           "Trim Whitespace")
+K.n_l_("s", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
+K.n_l_("S", '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
+K.v_l_("s", '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
+K.nsl_("z", dev.format,                                                        "Format")
 
 --  `
 --
 --
 --  |
-K.n___("#",  "<Plug>(asterisk-z#)",                                             "Word Backwards Stay")
-K.n_l_("#",  "#",                                                               "Word Backwards")
-K.n_l_("/",  '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
-K.n_l_("?",  '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
-K.v_l_("/",  '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
-K.nsl_("_",  buffers.wipe_all,                                                  "Wipe All Buffers")
-K.nsl_("-",  ":silent BW!<CR>",                                                 "Wipe Buffer")
-K.nsl_("\\", which_key.show,                                                    "Show WhichKey")
-K.nsl_("|",  which_key.show_local,                                              "Show WhichKey Local")
+K.n___("#",  "<Plug>(asterisk-z#)",               "Word Backwards Stay")
+K.n_l_("#",  "#",                                 "Word Backwards")
+K.n_l_("/",  "/<C-r>=expand('<cword>')<CR><Esc>", "Search")
+K.v_l_("/",  '"*y/<C-r>=getreg("*")<CR><Esc>',    "Search Visual")
+K.nsl_("_",  buffers.wipe_all,                    "Wipe All Buffers")
+K.nsl_("-",  ":silent BW!<CR>",                   "Wipe Buffer")
+K.nsl_("\\", which_key.show,                      "Show WhichKey")
+K.nsl_("|",  which_key.show_local,                "Show WhichKey Local")
 
 ---
 --- snippets
