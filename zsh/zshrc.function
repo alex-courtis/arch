@@ -32,7 +32,17 @@ function umnt() {
 	fi
 }
 
-function orca-sync() {
+function orca-sync-from() {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${0} <host>" >&2
+		return 1
+	fi
+
+	rsync -a -v --delete-after "${1}:${XDG_CONFIG_HOME}/OrcaSlicer" "${XDG_CONFIG_HOME}"
+	rm -rfv "${XDG_DATA_HOME}/orca-slicer"
+}
+
+function orca-sync-to() {
 	if [ ${#} -ne 1 ]; then
 		echo "Usage: ${0} <host>" >&2
 		return 1
