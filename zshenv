@@ -38,10 +38,6 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_MUSIC_DIR=$HOME/.music
 
-# don't minimise fullscreen SDL (i.e. most steam) when losing focus
-# they send a _NET_WM_STATE_FULLSCREEN _NET_WM_STATE_REMOVE however never send an ADD message on regaining focus
-export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-
 # vdpau defaults to nvidia
 case "${HOST}" in
 	king|earl)
