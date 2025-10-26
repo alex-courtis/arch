@@ -130,3 +130,5 @@ exclusionRules:
     pattern: https?://mail.google.com/*
   - passKeys: ""
     pattern: https?://mail.proton.me/*
+  - passKeys: ""
+    pattern: https?://docs.google.com/*

@@ -24,6 +24,10 @@
     {
       "passKeys": "",
       "pattern": "https?://mail.proton.me/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://docs.google.com/*"
     }
   ]
 }
