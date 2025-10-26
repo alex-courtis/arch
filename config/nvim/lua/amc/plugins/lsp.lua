@@ -159,7 +159,6 @@ vim.lsp.enable("ccls")
 ---@type vim.lsp.Config
 vim.lsp.config.jsonls = {
   on_attach = build_on_attach("jsonls"),
-  filetypes = { "json", "jsonc", "json5" },
 }
 vim.lsp.enable("jsonls")
 
