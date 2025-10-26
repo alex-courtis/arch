@@ -642,7 +642,6 @@ whois
 #### Media
 
 `yay -S
-cmus
 faad2
 ffmpeg
 ffmpeg4.4
