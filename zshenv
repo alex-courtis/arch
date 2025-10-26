@@ -43,9 +43,13 @@ export XDG_MUSIC_DIR=$HOME/.music
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
 # vdpau defaults to nvidia
-if [ "${HOST}" = "king" ]; then
-	export VDPAU_DRIVER="radeonsi"
-fi
+case "${HOST}" in
+	king|earl)
+		export VDPAU_DRIVER="radeonsi"
+		;;
+	*)
+		;;
+esac
 
 # moar history
 HISTFILE=~/.histfile
