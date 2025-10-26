@@ -5,14 +5,14 @@
     "custom/space",
     "river/layout",
     "custom/space",
-    "river/window",
+    "river/window"
   ],
   "modules-right": [
     "custom/space",
     "custom/slstatus",
     "clock#date",
     "clock#time",
-    "tray",
+    "tray"
   ],
   "fixed-center": false,
   "tray": {
@@ -42,16 +42,15 @@
     "tooltip": false
   },
   "custom/space": {
-    "format": "  ",
+    "format": "  "
   },
   "clock#date": {
     "interval": 60,
-    "format": "│ {:%a %d %b} ",
+    "format": "│ {:%a %d %b} "
   },
   "clock#time": {
     "interval": 1,
-    "format": "{:%H:%M:%S} ",
-  },
+    "format": "{:%H:%M:%S} "
+  }
 }
-
-// vim:ft=json5:ts=2:sw=2:et
+// vim:ft=jsonc:ts=2:sw=2:et
