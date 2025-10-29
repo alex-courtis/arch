@@ -2,12 +2,10 @@
 ARRANGE: ROW
 ALIGN: BOTTOM
 ORDER:
+  - XG349C
   - M28U
-  - LG Display 0x05EF
-  - Sharp Corporation 0x148D
-  - Samsung Display Corp. 0x4165
-  - Ancor Communications Inc ROG PG27AQ
-  - Samsung Electric Company C34J79x
+  - eDP-1
+  - M32Q
 SCALING: TRUE
 AUTO_SCALE: TRUE
 AUTO_SCALE_MIN: 1
@@ -17,22 +15,13 @@ SCALE:
     SCALE: 2
   - NAME_DESC: BOE 0x0BCA
     SCALE: 2
-  - NAME_DESC: Sharp Corporation 0x148D
-    SCALE: 2
   - NAME_DESC: XG349C
     SCALE: 1.25
-  - NAME_DESC: Samsung Display Corp. 0x4165
-    SCALE: 2.5
 MODE:
-  - NAME_DESC: MAG274QRF-QD
-    WIDTH: 2560
-    HEIGHT: 1440
-    HZ: 120
   - NAME_DESC: M28U
     MAX: TRUE
 VRR_OFF:
   - LG Display 0x05EF
-  - Samsung Display Corp. 0x4165
   - BOE 0x0BCA
 CALLBACK_CMD: notify-send "way-displays ${CALLBACK_LEVEL}" "${CALLBACK_MSG}"
 DISABLED:
