@@ -6,6 +6,8 @@ if not render_markdown then
   return
 end
 
+vim.cmd("highlight! link RenderMarkdownCodeInline RenderMarkdownCode")
+
 ---@type render.md.UserConfig
 local config = {
   render_modes = true,
