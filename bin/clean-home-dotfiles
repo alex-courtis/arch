@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+find . -xtype l | \
+	grep -v "local/share/Steam" | \
+	grep -v ".steampath" | \
+	grep -v "BraveSoftware" > /tmp/links.broken
+
+while IFS= read -r f <&3; do
+	printf "remove %s ? " "${f}"
+	read -r yn
+	if [ "${yn}" = "y" ]; then
+		rm "${f}"
+	fi
+done 3< /tmp/links.broken
