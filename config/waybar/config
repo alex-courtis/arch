@@ -1,5 +1,6 @@
 {
   "position": "top",
+  "spacing": 0,
   "modules-left": [
     "river/tags",
     "custom/space",
@@ -8,7 +9,6 @@
     "river/window"
   ],
   "modules-right": [
-    "custom/space",
     "custom/slstatus",
     "clock#date",
     "clock#time",
