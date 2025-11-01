@@ -19,7 +19,7 @@
     "spacing": 6
   },
   "river/tags": {
-    "disable-click": false,
+    "hide-vacant": true,
     "num-tags": 10
   },
   "river/layout": {
