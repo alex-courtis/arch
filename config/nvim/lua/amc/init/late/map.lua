@@ -151,15 +151,16 @@ K.nsl_("B",  ":%d_<CR>",                  "Clean Buffer")
 --  gG
 --  H
 --  M
-K.nsl_("g",  "<Nop>",        "<Nop>")
-K.nsl_("hb", ":G blame<CR>", "Fugitive: Blame")
-K.nsl_("hl", ":GcLog!<CR>",  "Fugitive: :GcLog!")
-K.nsl_("mc", dev.clean,      "make clean")
-K.nsl_("mi", dev.install,    "make install")
-K.nsl_("mm", dev.build,      "make")
-K.nsl_("mt", dev.test,       "make test")
-K.nsl_("mT", dev.test_all,   "make test all")
-K.nsl_("ms", dev.source,     ":source")
+K.nsl_("g",  "<Nop>",            "<Nop>")
+K.nsl_("hb", ":G blame<CR>",     "Fugitive: Blame")
+K.nsl_("hl", ":GcLog!<CR>",      "Fugitive: :GcLog!")
+K.nsl_("mc", dev.clean,          "make clean")
+K.nsl_("mi", dev.install,        "make install")
+K.nsl_("mm", dev.build,          "make")
+K.nsl_("mt", dev.test,           "make test")
+K.nsl_("mT", dev.test_all,       "make test all")
+K.nsl_("ms", dev.source_scratch, ":S source")
+K.nsl_("mS", dev.source,         ":source")
 
 
 --  4

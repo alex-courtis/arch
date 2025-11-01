@@ -112,6 +112,13 @@ function M.source()
   end
 end
 
+function M.source_scratch()
+  local filetype = vim.bo.filetype
+  if filetype == "lua" or filetype == "vim" then
+    buffers.exec_to_buffer({ args = "source" })
+  end
+end
+
 function M.format()
   if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
     vim.cmd([[silent! norm! gg=G``]])

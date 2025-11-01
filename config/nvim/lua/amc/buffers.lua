@@ -127,7 +127,7 @@ end
 ---write to a new scratch buffer
 ---@param text string newline delimited
 function M.write_scratch(text)
-  local bufnr = vim.api.nvim_create_buf(true, true)
+  local bufnr = vim.api.nvim_create_buf(false, true)
 
   local line = 0
   if text then
