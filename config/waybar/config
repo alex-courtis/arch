@@ -10,6 +10,7 @@
   ],
   "modules-right": [
     "custom/slstatus",
+    "custom/pipespace",
     "clock#date",
     "clock#time",
     "tray"
@@ -44,9 +45,12 @@
   "custom/space": {
     "format": "  "
   },
+  "custom/pipespace": {
+    "format": "| "
+  },
   "clock#date": {
     "interval": 60,
-    "format": "│ {:%a %d %b} "
+    "format": "{:%a %d %b} "
   },
   "clock#time": {
     "interval": 1,
