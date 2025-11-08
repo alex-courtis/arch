@@ -60,7 +60,6 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
     + [X11](#x11)
   * [Enable Services](#enable-services)
   * [Disable systemd-userdbd](#disable-systemd-userdbd)
-  * [Reduce systemd DefaultTimeoutStopSec](#reduce-systemd-defaulttimeoutstopsec)
   * [Done](#done)
 - [Boot From Another Disk](#boot-from-another-disk)
 - [Firmware](#firmware)
@@ -764,23 +763,6 @@ systemctl disable systemd-userdbd.socket
 systemctl stop systemd-userdbd.socket
 systemctl disable systemd-userdbd.service
 systemctl stop systemd-userdbd.service
-```
-
-### Reduce systemd DefaultTimeoutStopSec
-
-Not for servers.
-
-Reduces timeout before killing services, notably at shutdown. Useful for badly behaved docker containers etc.
-
-Also applies to `DefaultTimeoutAbortSec`
-
-```sh
-sudo vi /etc/systemd/system.conf
-```
-
-```
-DefaultTimeoutStopSec=5s
-#DefaultTimeoutAbortSec=
 ```
 
 ### Done
