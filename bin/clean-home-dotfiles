@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-find . -xtype l | \
+find "${HOME}" -xtype l | \
 	grep -v "local/share/Steam" | \
 	grep -v ".steampath" | \
 	grep -v "BraveSoftware" > /tmp/links.broken
