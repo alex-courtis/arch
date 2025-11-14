@@ -121,20 +121,24 @@ end
 
 function M.format()
   if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
+    -- standard vim formatting priority
     vim.cmd([[silent! norm! gg=G``]])
     return
-  elseif vim.bo.filetype == "python" then
+  elseif vim.bo.filetype == "python" or vim.bo.filetype == "markdown" then
+    -- never format
     return
   end
 
   for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
     if client.server_capabilities.documentFormattingProvider then
+      -- lsp format when available
       vim.lsp.buf.format()
       buffers.update()
       return
     end
   end
 
+  -- fall back to standard vim formatting
   vim.cmd([[silent! norm! gg=G``]])
 end
 
