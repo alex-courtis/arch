@@ -46,7 +46,7 @@
     "format": "  "
   },
   "custom/pipespace": {
-    "format": "| "
+    "format": "│ "
   },
   "clock#date": {
     "interval": 60,
