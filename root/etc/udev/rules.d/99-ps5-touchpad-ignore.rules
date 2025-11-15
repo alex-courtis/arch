@@ -1,6 +1,18 @@
+# find the input devices:
+#
+# ls /dev/input > /tmp/dev.input.unplugged
+# ls /dev/input > /tmp/dev.input.plugged
+# diff /tmp/dev.input.plugged /tmp/dev.input.unplugged
+#
+#
+# enumerate attributes:
+#
+# udevadm info --attribute-walk --name=/dev/input/mouse2
+
 # ps5 bluetooth
 ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
 ATTRS{name}=="DualSense Wireless Controller Motion Sensors", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+
 # ps5 wired
 ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
 ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Motion Sensors", ENV{LIBINPUT_IGNORE_DEVICE}="1"
