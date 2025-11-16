@@ -207,7 +207,7 @@ alias vi=vim
 ### Basic Packages
 
  ```sh
-pacman -S edk2-shell efibootmgr git vim memtest86+-efi mkinitcpio networkmanager openssh pkgfile sudo zsh
+pacman -S edk2-shell efibootmgr git vim memtest86+-efi mkinitcpio networkmanager openssh pkgfile sudo zsh linux-headers
 ```
 
 ### Pacman Config
