@@ -466,8 +466,17 @@ timedatectl status
 
 ### Disable Watchdog
 
+AMD
+
 ```sh
 echo "blacklist sp5100_tco" > /etc/modprobe.d/no_watchdog.conf
+```
+
+Intel Laptop
+
+```sh
+echo "blacklist iTCO_wdt" > /etc/modprobe.d/no_watchdog.conf
+echo "blacklist intel_oc_wdt" >> /etc/modprobe.d/no_watchdog.conf
 ```
 
 ### yay Package Manager
