@@ -77,6 +77,8 @@ alias rgh="rg --no-ignore --hidden"
 
 alias yayn="yay --noconfirm"
 
+alias xhr="xhost si:localuser:root"
+
 alias music-home-to-lord="rsync -a -v --omit-dir-times --delete-after \${HOME}/.music/ /lord/music/"
 alias music-lord-to-home="rsync -a -v --omit-dir-times --delete-after /lord/music/ \${HOME}/.music/"
 alias music-home-to-android="adb-sync --delete \${HOME}/.music/ /sdcard/Music"
