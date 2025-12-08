@@ -7,6 +7,8 @@ path=(~/bin ~/.local/bin $path)
 
 export UNAME="$(uname)"
 
+[ -f ~/.rde ] && source "${HOME}/.zsh/zshenv.rde"
+
 source "${HOME}/.zsh/zshenv.appearance"
 source "${HOME}/.zsh/zshenv.function"
 
