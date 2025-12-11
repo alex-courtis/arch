@@ -1,5 +1,8 @@
-export TERM="xterm-256color"
+export LANG=C.UTF-8
+export TERM="xterm-color"
 export SHELL="/bin/zsh"
+
+unset MAKEFLAGS
 
 path=(~/.local/lib/nvim/bin ~/.local/lib/lua-language-server/bin $path)
 

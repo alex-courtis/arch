@@ -7,6 +7,9 @@ path=(~/bin ~/.local/bin $path)
 
 export UNAME="$(uname)"
 
+# suggest make behaviour
+export MAKEFLAGS="-j12"
+
 [ -f ~/.rde ] && source "${HOME}/.zsh/zshenv.rde"
 
 source "${HOME}/.zsh/zshenv.appearance"
@@ -53,9 +56,6 @@ esac
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-
-# suggest make behaviour
-export MAKEFLAGS="-j12"
 
 # man colours
 #  errors:    reverse as normal
