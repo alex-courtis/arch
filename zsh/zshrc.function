@@ -40,6 +40,7 @@ function orca-sync-from() {
 
 	rsync -a -v --delete-after "${1}:${XDG_CONFIG_HOME}/OrcaSlicer" "${XDG_CONFIG_HOME}"
 	rm -rfv "${XDG_DATA_HOME}/orca-slicer"
+	rm -rfv "${XDG_CACHE_HOME}/orca-slicer"
 }
 
 function orca-sync-to() {
@@ -50,6 +51,7 @@ function orca-sync-to() {
 
 	rsync -a -v --delete-after "${XDG_CONFIG_HOME}/OrcaSlicer" "${1}:${XDG_CONFIG_HOME}"
 	ssh "${1}" "rm -rfv ${XDG_DATA_HOME}/orca-slicer"
+	ssh "${1}" "rm -rfv ${XDG_CACHE_HOME}/orca-slicer"
 }
 
 function dt() {
