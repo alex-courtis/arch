@@ -2,9 +2,9 @@ local require = require("amc.require").or_nil
 
 local M = {}
 
-local configs = require("nvim-treesitter.configs")
+local config = require("nvim-treesitter.config")
 
-if not configs then
+if not config then
   return M
 end
 
@@ -29,7 +29,7 @@ local opts = {
   },
 }
 
-configs.setup(opts)
+config.setup(opts)
 
 vim.opt.runtimepath:append(opts.parser_install_dir)
 
