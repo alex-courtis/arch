@@ -43,15 +43,6 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_MUSIC_DIR=$HOME/.music
 
-# vdpau defaults to nvidia
-case "${HOST}" in
-	king|earl)
-		export VDPAU_DRIVER="radeonsi"
-		;;
-	*)
-		;;
-esac
-
 # moar history
 HISTFILE=~/.histfile
 HISTSIZE=100000

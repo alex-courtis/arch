@@ -554,7 +554,6 @@ swaylock
 ttf-hack-nerd
 ttf-inter
 ttf-liberation
-vdpauinfo
 vulkan-tools
 way-displays
 waybar
@@ -844,7 +843,7 @@ sudo usermod -a -G audio alex
 
 ## Video
 
-Test that hardware acceleration is available via `vainfo` and `vdpauinfo`. RC 0 is OK.
+Test that hardware acceleration is available via `vainfo`. RC 0 is OK.
 
 ### AMD
 
