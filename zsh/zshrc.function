@@ -72,7 +72,7 @@ function make_chdir_sub_vi {
 	alias "${1}vi"="cd \"${2}\" && vi"
 }
 
-make_chdir_sub_vi p  "/lord/prn"
+make_chdir_sub_vi p  "${HOME}/src/p"
 make_chdir_sub_vi s  "${HOME}/src"
 make_chdir_sub_vi d  "${HOME}/.dotfiles"
 make_chdir_sub_vi v  "${HOME}/.dotfiles/config/nvim"
