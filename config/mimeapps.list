@@ -1,6 +1,6 @@
 [Default Applications]
-model/3mf=OrcaSlicer.desktop;
-model/stl=OrcaSlicer.desktop;
+model/3mf=os-open.desktop;
+model/stl=os-open.desktop;
 text/html=brave-browser.desktop;
 x-scheme-handler/about=brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;

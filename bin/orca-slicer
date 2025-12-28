@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# orca slicer needs a full path, but only when opening a file
+# other operations like --info are fine with a relative path
+
+if [ -f "${1}" ]; then
+	/usr/bin/orca-slicer "$(realpath "${1}")"
+else
+	/usr/bin/orca-slicer "$@"
+fi

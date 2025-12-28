@@ -1,0 +1,8 @@
+# override OrcaSlicer.desktop:
+# - it takes a %U url that it doesn't understand
+# - it requires full paths which ~/bin/orca-slicer provides
+[Desktop Entry]
+Name=OS Open
+Exec=orca-slicer %f
+Icon=OrcaSlicer
+Type=Application
