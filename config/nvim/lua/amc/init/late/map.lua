@@ -20,6 +20,8 @@ local M = {}
 
 -- escape a string for vim regex search, escaping most from pattern.txt with magic on
 local pattern_escape = "/*^$.*~\\\\"
+local cword_escape = "<C-r>=escape(expand('<cWORD>'), '" .. pattern_escape .. "')<CR>"
+local reg_star_escape = "<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>"
 
 --
 -- unused and available normal, leaders commented below
@@ -185,14 +187,14 @@ K.nsl_("W",  "<Plug>ReplaceWithRegisterLine",       "Replace Reg Line")
 --
 --
 --
-K.n_l_("r", ":%s/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>/<C-r>=expand('<cword>')<CR>", "Replace Keep")
-K.n_l_("R", ":%s/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>/",                            "Replace")
-K.v_l_("r", "\"*y:%s/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>/<C-r>=getreg('*')<CR>",         "Replace Keep")
-K.v_l_("R", "\"*y:%s/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>/",                              "Replace")
-K.nsl_("n", "<C-]>",                                                                                           "Tag",              { remap = true }) -- overridden by lsp
-K.nsl_("N", "<C-]>",                                                                                           "Tag",              { remap = true }) -- overridden by lsp
-K.nsl_("v", ":put<CR>'[v']=",                                                                                  "Put Format")
-K.nsl_("V", ":put!<CR>'[v']=",                                                                                 "Put Above Format")
+K.n_l_("r", ":%s/" .. cword_escape .. "/" .. cword_escape,           "Replace Keep")
+K.n_l_("R", ":%s/" .. cword_escape .. "/",                           "Replace")
+K.v_l_("r", "\"*y:%s/" .. reg_star_escape .. "/" .. reg_star_escape, "Replace Keep")
+K.v_l_("R", "\"*y:%s/" .. reg_star_escape .. "/",                    "Replace")
+K.nsl_("n", "<C-]>",                                                 "Tag",              { remap = true }) -- overridden by lsp
+K.nsl_("N", "<C-]>",                                                 "Tag",              { remap = true }) -- overridden by lsp
+K.nsl_("v", ":put<CR>'[v']=",                                        "Put Format")
+K.nsl_("V", ":put!<CR>'[v']=",                                       "Put Above Format")
 
 --
 --
