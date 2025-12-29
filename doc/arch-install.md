@@ -34,9 +34,11 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
 - [Users](#users)
 - [Booting](#booting)
   * [Create Boot Image](#create-boot-image)
-  * [systemd-boot](#systemd-boot)
-  * [memtest86+](#memtest86)
-  * [UEFI Shell](#uefi-shell)
+  * [Boot Loader](#boot-loader)
+    + [Option 1: systemd-boot](#option-1-systemd-boot)
+      - [memtest86+](#memtest86)
+      - [UEFI Shell](#uefi-shell)
+    + [Option 2: EFI Boot Stub](#option-2-efi-boot-stub)
   * [Reboot](#reboot)
 - [Post Install](#post-install)
   * [Set Hostname](#set-hostname)
@@ -381,7 +383,9 @@ rm /boot/initramfs*
 pacman -S linux
 ```
 
-### systemd-boot
+### Boot Loader
+
+#### Option 1: systemd-boot
 
 Install:
 ```sh
@@ -413,7 +417,7 @@ default 90-arch.conf
 
 Try `console-mode max` to use native resolution.
 
-### memtest86+
+##### memtest86+
 
 ```sh
 vi /boot/loader/entries/70-memtest.conf
@@ -423,10 +427,36 @@ title Memtest86+
 efi /memtest86+/memtest.efi
 ```
 
-### UEFI Shell
+##### UEFI Shell
 
 ```sh
 cp /usr/share/edk2-shell/x64/Shell.efi /boot/shellx64.efi
+```
+
+#### Option 2: EFI Boot Stub
+
+Create a shell script in `/boot`. Retain it as entries cannot be updated, only removed.
+Disk and part refer to the EFI partition.
+
+```sh
+#!/bin/sh
+efibootmgr \
+	--create \
+	--disk /dev/nvme0n1 \
+	--part 1 \
+	--label "EFIStub Arch Linux" \
+	--loader /vmlinuz-linux \
+	--unicode "root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3) quiet loglevel=4 rw initrd=\initramfs-linux.img"
+```
+
+Check:
+```sh
+efibootmgr
+```
+
+Remove entries:
+```sh
+efibootmgr --bootnum 0005 --delete-bootnum
 ```
 
 ### Reboot
