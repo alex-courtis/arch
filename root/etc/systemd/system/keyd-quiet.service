@@ -3,9 +3,8 @@ Description=key remapping daemon - quiet
 
 [Service]
 Type=simple
-# suppress the annoying "ERROR: unsupported evdev code:" from devices like PS5 controller
-Environment="KEYD_DEBUG=-1"
-ExecStart=/usr/bin/keyd
+# ignore unsupported evdev code from game controllers etc.
+ExecStart=/usr/local/bin/keyd-quiet.sh
 
 [Install]
 WantedBy=multi-user.target
