@@ -28,6 +28,8 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Pacman Config](#pacman-config)
   * [Locale And Time](#locale-and-time)
   * [Networking](#networking)
+    + [Optional: NetworkManager Profile](#optional-networkmanager-profile)
+    + [Optional: Disable ipv6](#optional-disable-ipv6)
   * [Virtual Console](#virtual-console)
   * [Microcode](#microcode)
   * [SSD Trimming](#ssd-trimming)
@@ -283,6 +285,20 @@ hwclock --systohc --utc
 ```sh
 systemctl enable sshd
 systemctl enable NetworkManager
+```
+
+#### Optional: NetworkManager Profile
+
+Create named connection proviles via `nmtui`
+
+#### Optional: Disable ipv6
+
+For servers or networks that do not feature ipv6 disable it via `nmtui` or add the following to `/etc/NetworkManager/system-connections/*.nmconnection`
+
+```
+[ipv6]
+addr-gen-mode=default
+method=disabled
 ```
 
 ### Virtual Console
