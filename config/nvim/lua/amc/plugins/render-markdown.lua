@@ -6,6 +6,10 @@ if not render_markdown then
   return
 end
 
+local function on_attach()
+  vim.treesitter.start()
+end
+
 vim.cmd("highlight! link RenderMarkdownCodeInline RenderMarkdownCode")
 
 ---@type render.md.UserConfig
@@ -17,6 +21,9 @@ local config = {
   code = {
     enabled = true,
     border = "thin",
+  },
+  on = {
+    attach = on_attach,
   },
 }
 
