@@ -65,6 +65,7 @@ function M.install_base()
       "luap",
       "luau",
       "make",
+      "markdown",
       "meson",
       "ninja",
       "passwd",
