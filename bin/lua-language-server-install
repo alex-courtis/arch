@@ -2,26 +2,33 @@
 
 set -e
 
+ROOT="/usr/lib/lua-language-server"
+if [ ! -d "${ROOT}" ]; then
+	echo "${ROOT} not found"
+	ROOT="/usr/local/lib/lua-language-server"
+	echo "using ${ROOT}"
+fi
+
 # remove
 DIR="${HOME}/.local/lib/lua-language-server"
 rm -rf "${DIR}"
 mkdir -p "${DIR}"
 
 # link everything
-for f in /usr/lib/lua-language-server/*; do
+for f in ${ROOT}/*; do
 	ln -sv "${f}" "${DIR}/$(basename "${f}")"
 done
 
 # selectively link meta
 rm "${DIR}/meta"
 mkdir "${DIR}/meta"
-ln -s /usr/lib/lua-language-server/meta/template "${DIR}/meta/template"
+ln -s "${ROOT}/meta/template" "${DIR}/meta/template"
 mkdir "${DIR}/meta/3rd"
-ln -sv /usr/lib/lua-language-server/meta/3rd/luv "${DIR}/meta/3rd/luv"
-ln -sv /usr/lib/lua-language-server/meta/3rd/luassert "${DIR}/meta/3rd/luassert"
+ln -sv "${ROOT}/meta/3rd/luv" "${DIR}/meta/3rd/luv"
+ln -sv "${ROOT}/meta/3rd/luassert" "${DIR}/meta/3rd/luassert"
 
 # selectively link locale
 rm "${DIR}/locale"
 mkdir "${DIR}/locale"
-ln -s /usr/lib/lua-language-server/locale/en-us "${DIR}/locale/en-us"
+ln -s "${ROOT}/locale/en-us" "${DIR}/locale/en-us"
 
