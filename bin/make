@@ -2,17 +2,20 @@
 
 case "${@}" in
 	*clean*)
-		export MAKEFLAGS=-j1
+		export MAKEFLAGS="-j1"
 		;;
 	*)
 		;;
 esac
 
 case "${PWD}" in
-	*/aur/*)
-		/usr/bin/make "${@}"
+	*/nvim-tree/* | */nvim-web-devicons/*)
+		export MAKEFLAGS="-j1"
 		;;
-	*wideriver*|*way-displays*|*xlayoutdisplay*)
+esac
+
+case "${PWD}" in
+	*/wideriver/* | */way-displays/* | */xlayoutdisplay/*)
 		/usr/bin/make CC="clang" CXX"=clang++" "${@}"
 		;;
 	*)
