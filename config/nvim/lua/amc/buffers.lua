@@ -162,4 +162,11 @@ function M.default_modeline(data)
   end
 end
 
+---Set local colorcolumn when > 0 textwidth
+function M.option_set_tw()
+  local tw = vim.api.nvim_get_option_value("textwidth", { scope = "local" })
+  local cc = tw > 0 and tostring(tw) or nil
+  vim.api.nvim_set_option_value("colorcolumn", cc, { scope = "local" })
+end
+
 return M

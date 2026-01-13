@@ -34,3 +34,5 @@ au({ "FileType" },                                              fugitive.attach,
 au({ "FileType" },                                              dev.ft_lua,               { pattern = { "lua" } })
 au({ "FileType" },                                              dev.ft_c,                 { pattern = { "c", "cpp" } })
 au({ "FileType" },                                              buffers.default_modeline, { pattern = { "lua", "json", "yml", "yaml", "ts", "tf" } })
+
+au({ "OptionSet" },                                             buffers.option_set_tw,    { pattern = { "textwidth" } })
