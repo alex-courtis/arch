@@ -51,7 +51,6 @@ export HL_NAMES
 typeset -A HL_FGS=(
 [default]=${BASE16[bright_white]}
 [root]=${BASE16[bright_red]}
-[duke]=${BASE16[orange]}
 [duke]=${BASE16[bright_magenta]}
 [king]=${BASE16[bright_yellow]}
 [lord]=${BASE16[bright_green]}
@@ -62,21 +61,9 @@ export HL_FGS
 # fixed BG
 export HL_BG=${BASE16[selection_background]}
 
-# map user then host then default
-if [ -n "${HL_NAMES[${USER}]}" ]; then
-	export HL_NAME="${HL_NAMES[${USER}]}"
-elif [ -n "${HL_NAMES[${HOST}]}" ]; then
-	export HL_NAME="${HL_NAMES[${HOST}]}"
-else
-	export HL_NAME=$HL_NAMES[default]
-fi
-if [ -n "${HL_FGS[${USER}]}" ]; then
-	export HL_FG=$HL_FGS[${USER}]
-elif [ -n "${HL_FGS[${HOST}]}" ]; then
-	export HL_FG=$HL_FGS[${HOST}]
-else
-	export HL_FG=$HL_FGS[default]
-fi
+# host FG if defined
+export HL_NAME="${HL_NAMES[${HOST}]-$HL_NAMES[default]}"
+export HL_FG="${HL_FGS[${HOST}]-${HL_FGS[default]}}"
 
 #
 # font size
