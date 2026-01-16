@@ -19,7 +19,7 @@ nm	<Space>x	:b#<CR>
 
 syntax on
 
-set clipboard=unnamedplus,autoselect
+set clipboard=unnamedplus
 set cursorline
 set hlsearch
 set ignorecase
