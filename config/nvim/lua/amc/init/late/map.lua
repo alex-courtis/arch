@@ -20,7 +20,7 @@ local M = {}
 
 -- escape a string for vim regex search, escaping most from pattern.txt with magic on
 local pattern_escape = "/*^$.*~\\\\"
-local cword_escape = "<C-r>=escape(expand('<cWORD>'), '" .. pattern_escape .. "')<CR>"
+local cword_escape = "<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>"
 local reg_star_escape = "<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>"
 
 --
