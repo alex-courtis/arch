@@ -114,6 +114,8 @@ case $TERM in
 	alacritty*       )
 		export COLORTERM="truecolor"
 		;;
-	vte*)
+	*)
+		unset COLORTERM
+		;;
 esac
 
