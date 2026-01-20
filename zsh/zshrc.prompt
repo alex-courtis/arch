@@ -2,17 +2,17 @@ setopt promptsubst
 
 if [ "${COLORTERM}" = "truecolor" ] || [ "${COLORTERM}" = "24bit" ]; then
 	PS1_HL_NOR="%F{#${HL_FG}}%K{#${HL_BG}}"
-	PS1_HL_CON="%F{#${HL_FGS[${USER}]-${HL_FG}}}%K{#${HL_BG}}"
+	PS1_HL_CON="%F{#${UH_CONT_HL_FG}}%K{#${HL_BG}}"
 	PS1_HL_ERR="%F{#${BASE16[red]}}%K{#${HL_BG}}"
 	PS1_HL_OFF="%k%f"
 else
 	PS1_HL_NOR="%F{black}%K{${HL_NAME}}"
-	PS1_HL_CON="%F{black}%K{${HL_NAMES[${USER}]-${HL_NAME}}}"
+	PS1_HL_CON="%F{black}%K{${UH_CONT_HL_NAME}}"
 	PS1_HL_ERR="%F{black}%K{red}"
 	PS1_HL_OFF="%k%f"
 fi
 
-PS1="${PS1_HL_NOR}: ${PROMPT_CONTEXT+${PS1_HL_CON}${PROMPT_CONTEXT}${PS1_HL_NOR} }\${PS1_ERR};${PS1_HL_OFF} "
+PS1="${PS1_HL_NOR}: ${UH_CONT+${PS1_HL_CON}${UH_CONT}${PS1_HL_NOR} }\${PS1_ERR};${PS1_HL_OFF} "
 PS2="${PS1_HL_NOR}${PS2}${PS1_HL_OFF} "
 PS3="${PS1_HL_NOR}${PS3}${PS1_HL_OFF} "
 PS4="${PS1_HL_NOR}${PS4}${PS1_HL_OFF} "

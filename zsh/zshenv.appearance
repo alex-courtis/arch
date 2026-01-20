@@ -65,6 +65,14 @@ export HL_BG=${BASE16[selection_background]}
 export HL_NAME="${HL_NAMES[${HOST}]-$HL_NAMES[default]}"
 export HL_FG="${HL_FGS[${HOST}]-${HL_FGS[default]}}"
 
+# context prompt
+if [ -n "${SSH_CONNECTION}" ] || [ "${USER}" != "alex" ]; then
+	export UH_CONT="${USER}@${HOST}"
+fi
+# context colour used by tmux
+export UH_CONT_HL_FG="${HL_FGS[${USER}]-${HL_FG}}"
+export UH_CONT_HL_NAME="${HL_NAMES[${USER}]-${HL_NAME}}"
+
 #
 # font size
 #

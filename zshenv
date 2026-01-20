@@ -76,8 +76,4 @@ if [ "$(whence luarocks)" ]; then
 	eval "$(luarocks path)"
 fi
 
-if [ -n "${SSH_CONNECTION}" ] || [ "${USER}" != "alex" ]; then
-	export PROMPT_CONTEXT="${USER}@${HOST}"
-fi
-
 [ "${ZSH_PROFILE_STARTUP}" ] && echo "====zshenv======" && zprof && zprof -c && echo
