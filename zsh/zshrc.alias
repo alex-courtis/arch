@@ -35,6 +35,8 @@ alias findv="find . -not -path '*/\.*'"
 
 alias tailf="tail -n 0 -F"
 
+alias view="nvim -R"
+
 alias lsrc-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc lsrc"
 # COPY_ALWAYS does not work
 alias rcup-root="cd && sudo HOME= RCRC=.dotfiles/root/rcrc rcup -C"
