@@ -4,13 +4,14 @@ local env = require("amc.env")
 local dev = require("amc.dev")
 local buffers = require("amc.buffers")
 local windows = require("amc.windows")
-local K = require("amc.util").K
+local util = require("amc.util")
 
 local aerial = require("amc.plugins.aerial")
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
 local nvt = require("amc.plugins.nvt")
 local rainbow = require("amc.plugins.rainbow")
+local spectre = require("amc.plugins.spectre")
 local telescope = require("amc.plugins.telescope")
 
 local treesitter = require("amc.plugins.treesitter")
@@ -39,11 +40,12 @@ local function uc(name, command, opts)
   end
 end
 
+local K = util.K
+
 -- normal mode escape clears highlight
-local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 K.n___("<Esc>", function()
   vim.cmd.nohlsearch()
-  vim.api.nvim_feedkeys(ESC, "n", false)
+  vim.api.nvim_feedkeys(util.ESC, "n", false)
 end, ":nohlsearch <Esc>")
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
@@ -201,15 +203,16 @@ K.nsl_("V", ":put!<CR>'[v']=",                                       "Put Above 
 --
 --
 --  Z
-K.n_l_("!", ": <C-r>=expand('%:.')<CR><Home>",                                 "Command Relative Filename")
-K.v_l_("!", '"*y: <C-r>=getreg("*")<CR><Home>',                                "Command Visual")
-K.n_l_("8", ": <C-r>=expand('%:p')<CR><Home>",                                 "Command Absolute Filename")
-K.nsl_("l", buffers.toggle_list,                                               "Toggle List")
-K.nsl_("L", buffers.trim_whitespace,                                           "Trim Whitespace")
-K.n_l_("s", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', "Spectre Word")
-K.n_l_("S", '<cmd>lua require("spectre").open()<CR>',                          "Spectre")
-K.v_l_("s", '<esc><cmd>lua require("spectre").open_visual()<CR>',              "Spectre Visual")
-K.nsl_("z", dev.format,                                                        "Format")
+K.n_l_("!", ": <C-r>=expand('%:.')<CR><Home>",  "Command Relative Filename")
+K.v_l_("!", '"*y: <C-r>=getreg("*")<CR><Home>', "Command Visual")
+K.n_l_("8", ": <C-r>=expand('%:p')<CR><Home>",  "Command Absolute Filename")
+K.nsl_("l", buffers.toggle_list,                "Toggle List")
+K.nsl_("L", buffers.trim_whitespace,            "Trim Whitespace")
+K.n_l_("s", spectre.open_cword_keep,            "Spectre cword Keep")
+K.n_l_("S", spectre.open_cword,                 "Spectre cword")
+K.v_l_("s", spectre.open_visual_keep,           "Spectre Visual Keep")
+K.v_l_("S", spectre.open_visual,                "Spectre Visual Keep")
+K.nsl_("z", dev.format,                         "Format")
 
 --  `
 --

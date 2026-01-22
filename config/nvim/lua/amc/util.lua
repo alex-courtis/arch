@@ -1,5 +1,7 @@
 local M = {}
 
+M.ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+
 ---Read .nvt-dir and return first path containing /lua/nvim-tree.lua
 ---@return string dir from file otherwise "nvim-tree/nvim-tree.lua"
 function M.nvt_plugin_dir()
