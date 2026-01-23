@@ -9,8 +9,7 @@
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/gitsigns.nvim/lua/gitsigns.lua",
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/gitsigns.nvim/lua/gitsigns/actions.lua",
 
-      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-tree.lua/lua/nvim-tree.lua",
-      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-tree.lua/lua/nvim-tree/api.lua",
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-tree.lua/lua",
 
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/lualine.nvim/lua/lualine.lua",
 

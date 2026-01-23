@@ -16,7 +16,9 @@ function edit() {
 }
 
 function clean() {
-	rm -rf "${ROOT}"
+	# don't remove config to preserve an edit session in that directory
+	rm -rf "${CONFIG}/*"
+	rm -rf "${LOCAL}"
 }
 
 function init() {
@@ -54,22 +56,14 @@ function init() {
 		s#-- NVIM_TREE_DIR#{ \"${SRC}\", as = \"nvim-tree.lua.dev\", },#
 	" "${INIT}"
 
-	# scrape options
-	sed -n -e "
-		/BEGIN_DEFAULT_OPTS/,/END_DEFAULT_OPTS/{
-			/BEGIN_DEFAULT_OPTS/d
-			/END_DEFAULT_OPTS/d
-			p
-		}
-	" "${SRC}/lua/nvim-tree.lua" > "${CONFIG}/DEFAULT_OPTS.lua"
+	# scrape default config
+	begin="default-config-start"
+	end="default-config-end"
+	inject="default-config-injection-placeholder"
+	sed -n -e "/${begin}/,/${end}/{ /${begin}/d; /${end}/d; p; }" "${SRC}/lua/nvim-tree.lua" > /tmp/default-config.lua
 
-	# insert options
-	sed -i -e "
-		/DEFAULT_OPTS/{
-			r ${CONFIG}/DEFAULT_OPTS.lua
-			/DEFAULT_OPTS/d
-		}
-	" "${INIT}"
+	# inject then remove the placeholder
+	sed -i -e "/${inject}/r /tmp/default-config.lua" -e "/${inject}/d" "${INIT}"
 
 	# on_attach
 	sed -i -e "
@@ -98,9 +92,6 @@ function init() {
 	sed -i -e "
 		s/multi_instance = .*,/multi_instance = true,/
 	" "${INIT}"
-
-	# clean up
-	rm ${CONFIG}/DEFAULT_OPTS.lua
 }
 
 case "${1}" in
@@ -112,6 +103,7 @@ case "${1}" in
 		;;
 	"init")
 		init "${2}"
+		${NVIM-vi} -nu "${INIT}"
 		;;
 	*)
 		${NVIM-vi} -nu "${INIT}" ${@}

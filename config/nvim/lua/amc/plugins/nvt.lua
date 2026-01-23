@@ -143,6 +143,7 @@ local function on_attach(bufnr)
   K.n__b("ys",    api.fs.copy.absolute_path,                    bufnr, "", opts("Copy Absolute Path"))
 end
 
+---@type nvim_tree.config
 local config = {
   hijack_cursor = true,
   sync_root_with_cwd = true,

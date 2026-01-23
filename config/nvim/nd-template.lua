@@ -88,8 +88,11 @@ vim.cmd([[
 
 vim.lsp.enable("lua_ls")
 
-require("nvim-tree").setup({
-  -- DEFAULT_OPTS
-})
+---@type nvim_tree.config
+local config = {
+  -- default-config-injection-placeholder
+}
+
+require("nvim-tree").setup(config)
 
 return M
