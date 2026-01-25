@@ -38,23 +38,23 @@ done
 
 # basic 8 name
 typeset -A HL_NAMES=(
-[default]="white"
-[root]="red"
-[duke]="magenta"
-[king]="yellow"
-[lord]="green"
-[earl]="blue"
+	[default]="white"
+	[root]="red"
+	[duke]="magenta"
+	[king]="yellow"
+	[lord]="green"
+	[earl]="blue"
 )
 export HL_NAMES
 
 # base16 FG
 typeset -A HL_FGS=(
-[default]=${BASE16[bright_white]}
-[root]=${BASE16[bright_red]}
-[duke]=${BASE16[bright_magenta]}
-[king]=${BASE16[bright_yellow]}
-[lord]=${BASE16[bright_green]}
-[earl]=${BASE16[bright_blue]}
+	[default]=${BASE16[bright_white]}
+	[root]=${BASE16[bright_red]}
+	[duke]=${BASE16[bright_magenta]}
+	[king]=${BASE16[bright_yellow]}
+	[lord]=${BASE16[bright_green]}
+	[earl]=${BASE16[bright_blue]}
 )
 export HL_FGS
 
@@ -114,12 +114,7 @@ esac
 # https://github.com/termstandard/colors
 #
 case $TERM in
-	linux-truecolor  |\
-	tmux-truecolor   |\
-	tmux-direct      |\
-	xterm-truecolor  |\
-	xterm-direct*    |\
-	alacritty*       )
+	linux-truecolor|tmux-truecolor|tmux-direct|xterm-truecolor|xterm-direct*|alacritty*)
 		export COLORTERM="truecolor"
 		;;
 	*)

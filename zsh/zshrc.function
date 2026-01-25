@@ -61,12 +61,10 @@ function dt() {
 typeset -A chdir_subs
 function make_chdir_sub_vi {
 	chdir_subs[${1}]="${2}"
-	function "${1}" { 
-		cd "${chdir_subs[${0}]}/${1}"
-	}
-	function "_${1}" {
-		((CURRENT == 2)) && _files -/ -W "${chdir_subs[${0:1}]}"
-	}
+
+	function "${1}" { cd "${chdir_subs[${0}]}/${1}" }
+	function "_${1}" { ((CURRENT == 2)) && _files -/ -W "${chdir_subs[${0:1}]}" }
+
 	compdef "_${1}" "${1}"
 
 	alias "${1}vi"="cd \"${2}\" && vi"
