@@ -10,6 +10,19 @@ fi
 zstyle ':completion:*' completer _expand_alias _complete
 zstyle ':completion:*' menu select
 
-# complex git aliases
 _git-wb() { _git-branch }
 _git-wc() { _git-branch }
+
+_nd () {
+	case "${CURRENT}" in
+		2)
+			_arguments -C "1: :(init edit clean)"
+			;;
+		3)
+			if [[ "${words[2]}" == "init" ]]; then
+				_files -/ -W "${HOME}/src/nvim-tree/"
+			fi
+			;;
+	esac
+}
+compdef _nd nd
