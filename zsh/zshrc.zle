@@ -1,8 +1,7 @@
 zmodload zsh/complist
 
 # zsh-system-clipboard
-ZSH_SYSTEM_CLIPBOARD_METHOD="${${WAYLAND_DISPLAY+wlc}:-${DISPLAY+xsc}}"
-if [ -n "${ZSH_SYSTEM_CLIPBOARD_METHOD}" ]; then
+if [ -f /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh ]; then
 	ZSH_SYSTEM_CLIPBOARD_METHOD="osc52"
 	. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
 
