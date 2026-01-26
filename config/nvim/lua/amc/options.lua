@@ -8,6 +8,7 @@ vim.o.titlestring = vim.fn.fnamemodify(vim.loop.cwd() or "", ":~")
 -- general options
 vim.o.autowriteall = true
 vim.o.clipboard = "unnamedplus"
+vim.g.clipboard = "osc52"
 vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.o.history = 500 -- applies to shada

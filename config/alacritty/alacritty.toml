@@ -7,3 +7,6 @@ import = [
 	"~/.config/alacritty/bindings.toml",
 	"~/.config/alacritty/host.toml",
 ]
+
+[terminal]
+osc52 = "CopyPaste"
