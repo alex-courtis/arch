@@ -572,7 +572,13 @@ usbutils
 wget
 xmlstarlet
 zip
+zsh-completions
+zsh-syntax-highlighting
+zsh-system-clipboard-git
 `
+Not packaged:
+
+`mkdir -p /usr/local/lib/osc && curl -L https://github.com/theimpostor/osc/releases/latest/download/osc_Linux_x86_64.tar.gz | tar zx --directory /usr/local/lib/osc && ln -fs /usr/local/lib/osc/osc /usr/local/bin`
 
 #### GUI
 
@@ -613,8 +619,6 @@ xdg-utils-mimeo
 xorg-xlsclients
 ydotool
 zig-bin
-zsh-completions
-zsh-system-clipboard-git
 `
 
 #### X

@@ -11,6 +11,7 @@ source "${HOME}/.zsh/zshrc.zle"
 source "${HOME}/.zsh/zshrc.fzf"
 source "${HOME}/.zsh/zshrc.prompt"
 source "${HOME}/.zsh/zshrc.function"
+source "${HOME}/.zsh/zshrc.plugins"
 source "${HOME}/.zsh/zshrc.alias"
 
 # use the keychain wrapper to start ssh-agent if needed

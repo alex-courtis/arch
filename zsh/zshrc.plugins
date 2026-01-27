@@ -1,0 +1,28 @@
+#
+# syntax
+#
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+#
+# osc52 system clipboard
+#
+if [ -f /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh ]; then
+	ZSH_SYSTEM_CLIPBOARD_METHOD="osc52"
+	. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
+
+	# nvim style Y
+	bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
+
+	# osc52 provider
+	function zsh-system-clipboard-set-osc52(){ osc --clipboard c copy; }
+	function zsh-system-clipboard-get-osc52(){ osc --clipboard c paste; }
+
+	# next two overriden so as not to check .config/zsh-system-clipboard/method file every time we yank/put
+	function zsh-system-clipboard-get() { zsh-system-clipboard-get-${_zsh_system_clipboard_method_current} }
+
+	# don't copy single characters as x is slow and not useful
+	function zsh-system-clipboard-set() { [ "${#CUTBUFFER}" -gt 1 ] && zsh-system-clipboard-set-${_zsh_system_clipboard_method_current} }
+fi
+
