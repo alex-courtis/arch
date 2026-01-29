@@ -19,19 +19,68 @@ local config = {
   open_cmd = "above new",
   default = {
     find = {
+      cmd = "rg",
       options = {}, -- no ignore-case
+    },
+    replace = {
+      cmd = "sed",
     },
   },
   mapping = {
     ["run_current_replace"] = {
-      map = "r",
+      map = "s",
       cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
       desc = "replace current line"
     },
     ["run_replace"] = {
-      map = "R",
+      map = "S",
       cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
       desc = "replace all"
+    },
+    ["change_view_mode"] = {
+      map = "v",
+      cmd = "<cmd>lua require('spectre').change_view()<CR>",
+      desc = "change result view mode"
+    },
+    ["delete_line"] = {
+      map = "Z",
+      cmd = "<cmd>lua require('spectre.actions').run_delete_line()<CR>",
+      desc = "delete line",
+    },
+    ["toggle_line"] = {
+      map = "<CR>",
+      cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+      desc = "toggle item"
+    },
+    ["enter_file"] = {
+      map = "<C-CR>",
+      cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
+      desc = "open file"
+    },
+    ["resume_last_search"] = {
+      map = "<C-k>",
+      cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
+      desc = "repeat last search"
+    },
+    ["send_to_qf"] = {
+      map = "oq",
+      cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+      desc = "send all items to quickfix"
+    },
+    ["replace_cmd"] = {
+      map = "oc",
+      cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
+      desc = "input replace command"
+    },
+    ["show_option_menu"] = {
+      map = "oo",
+      cmd = "<cmd>lua require('spectre').show_options()<CR>",
+      desc = "show options"
+    },
+    ["select_template"] = {
+      map = "op",
+      cmd = "<cmd>lua require('spectre.actions').select_template()<CR>",
+      desc = "pick template",
     },
   },
 }
