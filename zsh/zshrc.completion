@@ -13,6 +13,19 @@ zstyle ':completion:*' menu select
 _git-wb() { _git-branch }
 _git-wc() { _git-branch }
 
+_git-d() { _git-diff }
+_git-dn() { _git-diff }
+_git-dns() { _git-diff }
+_git-dw() { _git-diff }
+_git-du() { _git-diff }
+_git-duw() { _git-diff }
+
+_git-ds() { _git-diff }
+_git-dsns() { _git-diff }
+_git-dsw() { _git-diff }
+_git-dsu() { _git-diff }
+_git-dsuw() { _git-diff }
+
 _nd () {
 	case "${CURRENT}" in
 		2)
