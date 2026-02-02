@@ -25,4 +25,8 @@ fi
 
 setopt rmstarsilent
 
+if [ -n "${TMUX}" ]; then
+	tmux list-keys | grep -E 'send-prefix$|copy-mode$|clear-history'
+fi
+
 [ "${ZSH_PROFILE_STARTUP}" ] && echo "====zshrc=======" && zprof && zprof -c && echo

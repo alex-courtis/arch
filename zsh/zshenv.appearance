@@ -122,6 +122,3 @@ case $TERM in
 		;;
 esac
 
-if [ -n "${TMUX}" ]; then
-	tmux list-keys | grep -E 'send-prefix$|copy-mode$|clear-history'
-fi
