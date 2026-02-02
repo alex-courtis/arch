@@ -10,3 +10,8 @@ mime-update
 mako > "/tmp/mako.${XDG_VTNR}.${USER}.log" 2>&1 &
 
 waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
+
+# merge .Xresources
+if [ -r ${HOME}/.Xresources ]; then
+	xrdb -load ${HOME}/.Xresources
+fi
