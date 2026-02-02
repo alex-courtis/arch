@@ -49,13 +49,12 @@ if not vim.env.TERM:match("^linux") then
   vim.o.clipboard = "unnamedplus"
 end
 
--- normally nvim autodetect the clipboard provider
-
-if vim.env.SSH_CONNECTION then
-  -- use osc52 when remoting
+-- as local login user in a session, let nvim autodetect the clipboard provider
+if not vim.env.TERM:match("^linux") and (vim.env.SSH_CONNECTION or vim.env.USER ~= "alex") then
+  -- use osc52 when there's a terminal emulator
   vim.g.clipboard = "osc52"
 
-  -- under remote tmux: builtin osc52 doesn't work at all and autodetected provider's copy does not work
+  -- except under remote tmux: builtin osc52 doesn't work at all and autodetected provider's copy does not work
   if vim.env.TERM:match("^tmux") then
     vim.g.clipboard = {
       name = "tmux osc52",
