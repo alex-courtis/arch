@@ -7,7 +7,6 @@ vim.o.titlestring = vim.fn.fnamemodify(vim.loop.cwd() or "", ":~")
 
 -- general options
 vim.o.autowriteall = true
-vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menu,menuone,noselect"
 vim.o.cursorline = true
 vim.o.history = 500 -- applies to shada
@@ -44,6 +43,11 @@ vim.env.MANWIDTH = 80
 -- clear the right-click mouse help
 vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 vim.cmd.aunmenu("PopUp.-2-")
+
+-- only when a clipboard is available
+if not vim.env.TERM:match("^linux") then
+  vim.o.clipboard = "unnamedplus"
+end
 
 -- normally nvim autodetect the clipboard provider
 
