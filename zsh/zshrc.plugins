@@ -8,12 +8,9 @@ fi
 #
 # osc52 system clipboard
 #
-if [ -f /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh ]; then
+if [[ ! "${TERM}" =~ "^linux" ]] && [ -f /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh ]; then
 	ZSH_SYSTEM_CLIPBOARD_METHOD="osc52"
 	. /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
-
-	# nvim style Y
-	bindkey -M vicmd Y zsh-system-clipboard-vicmd-vi-yank-eol
 
 	# osc52 provider
 	function zsh-system-clipboard-set-osc52(){ osc --clipboard c copy; }
