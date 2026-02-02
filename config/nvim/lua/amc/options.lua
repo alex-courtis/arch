@@ -45,3 +45,19 @@ vim.env.MANWIDTH = 80
 -- clear the right-click mouse help
 vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 vim.cmd.aunmenu("PopUp.-2-")
+
+-- under tmux: builtin osc52 doesn't work at all and autodetected provider's copy does not work
+if vim.env.TERM:match("^tmux") then
+  vim.g.clipboard = {
+    name = "tmux osc52",
+    copy = {
+      ['+'] = {"osc",  "--clipboard", "c", "copy", },
+      ['*'] = {"osc",  "--clipboard", "c", "copy", },
+    },
+    paste = {
+      ['+'] = {"osc",  "--clipboard", "c", "paste",},
+      ['*'] = {"osc",  "--clipboard", "c", "paste",},
+    },
+  }
+  vim.schedule(function() vim.notify( "tmux:  osc --clipboard c", vim.log.levels.WARN) end)
+end
