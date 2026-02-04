@@ -44,18 +44,22 @@ vim.env.MANWIDTH = 80
 vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 vim.cmd.aunmenu("PopUp.-2-")
 
--- only when a clipboard is available
-if not vim.env.TERM:match("^linux") then
-  vim.o.clipboard = "unnamedplus"
+-- linux console has limited capabilities
+if vim.env.TERM:match("^linux") then
+  return
 end
 
--- as local login user in a session, let nvim autodetect the clipboard provider
-if not vim.env.TERM:match("^linux") and (vim.env.SSH_CONNECTION or vim.env.USER ~= "alex") then
-  if vim.env.TERM:match("^tmux") then
-    -- except under remote tmux: builtin osc52 doesn't work at all and autodetected provider's copy does not work
-    --
-    -- TODO osc still doesn't work when root? running under tmux; looks like a tty read timeout. Possibly use a different tty.
-    --
+-- external clipboard
+vim.o.clipboard = "unnamedplus"
+
+-- use osc when remoting otherwise let it autodetect
+if vim.env.SSH_CONNECTION then
+  if not vim.env.TERM:match("^tmux") then
+    -- use builtin osc52 when there's a regular terminal emulator
+    vim.g.clipboard = "osc52"
+    vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard) end)
+  else
+    -- builtin osc52 does not support tmux, shell out to osc which does
     vim.g.clipboard = {
       name = "tmux osc52",
       copy = {
@@ -67,10 +71,6 @@ if not vim.env.TERM:match("^linux") and (vim.env.SSH_CONNECTION or vim.env.USER 
         ["*"] = { "osc", "--clipboard", "c", "paste", },
       },
     }
-    vim.schedule(function() vim.notify("tmux:  osc --clipboard c", vim.log.levels.WARN) end)
-  else
-    -- use osc52 when there's a regular terminal emulator
-    vim.g.clipboard = "osc52"
-    vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard) end)
+    vim.schedule(function() vim.notify("tmux: osc --clipboard c") end)
   end
 end
