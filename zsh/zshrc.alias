@@ -2,8 +2,6 @@
 # final space allows aliases to be used, as root's .zshrc is not executed
 alias sudo="sudo -s "
 
-alias su='su --whitelist-environment="TMUX,TMUX_PANE,SSH_TTY,SSH_CONNECTION"'
-
 alias zpl="zmodload zsh/zprof"
 alias zp="zpl ; zprof | sed -n '3,/^$/p'"
 alias zpc="zpl ; zprof -c"

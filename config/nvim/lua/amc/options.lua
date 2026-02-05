@@ -52,25 +52,8 @@ end
 -- external clipboard
 vim.o.clipboard = "unnamedplus"
 
--- use osc when remoting otherwise let it autodetect
-if vim.env.SSH_CONNECTION then
-  if not vim.env.TERM:match("^tmux") then
-    -- use builtin osc52 when there's a regular terminal emulator
-    vim.g.clipboard = "osc52"
-    vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard) end)
-  else
-    -- builtin osc52 does not support tmux, shell out to osc which does
-    vim.g.clipboard = {
-      name = "tmux osc52",
-      copy = {
-        ["+"] = { "osc", "--clipboard", "c", "copy", },
-        ["*"] = { "osc", "--clipboard", "c", "copy", },
-      },
-      paste = {
-        ["+"] = { "osc", "--clipboard", "c", "paste", },
-        ["*"] = { "osc", "--clipboard", "c", "paste", },
-      },
-    }
-    vim.schedule(function() vim.notify("tmux: osc --clipboard c") end)
-  end
+-- use osc when remoting or not under a compositor, otherwise let it autodetect
+if vim.env.SSH_CONNECTION or not vim.env.WAYLAND_DISPLAY then
+  vim.g.clipboard = "osc52"
+  vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard, vim.log.levels.WARN) end)
 end
