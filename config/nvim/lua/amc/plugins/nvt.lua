@@ -101,7 +101,7 @@ local function on_attach(bufnr)
     return { desc = "nvim-tree: " .. desc, noremap = true, nowait = true }
   end
 
-  api.config.mappings.default_on_attach(bufnr)
+  api.map.on_attach.default(bufnr)
 
   vim.keymap.del("n", "<C-]>", { buffer = bufnr }) -- api.tree.change_root_to_node,
   vim.keymap.del("n", "<C-e>", { buffer = bufnr }) -- api.node.open.replace_tree_buffer,
@@ -300,7 +300,7 @@ end
 
 ---collapse then open and find
 function M.collapse_find()
-  api.tree.collapse_all(false)
+  api.tree.collapse_all({ keep_buffers = false})
   api.tree.open({ find_file = true })
 end
 

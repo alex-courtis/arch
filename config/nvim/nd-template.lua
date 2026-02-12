@@ -65,7 +65,7 @@ function M.on_attach(bufnr)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
-  api.config.mappings.default_on_attach(bufnr)
+  api.map.on_attach.default(bufnr)
 
   vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
 end
