@@ -17,6 +17,9 @@ riverctl rule-add -app-id "blueman-*" float
 # full
 riverctl rule-add -app-id gamescope fullscreen
 
+# tiled
+riverctl rule-add -title "*OpenSCAD" no-float
+
 # behaviour
 riverctl attach-mode bottom
 riverctl hide-cursor when-typing enabled

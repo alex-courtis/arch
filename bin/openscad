@@ -6,10 +6,18 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 
 sed -i -E \
 	'
-s/hideCustomizer=true/hideCustomizer=false/g ;
-s/hideConsole=true/hideConsole=false/g ;
+s/hideCustomizer=false/hideCustomizer=true/g ;
+s/hideConsole=false/hideConsole=true/g ;
 s/hideEditor=false/hideEditor=true/g ;
+s/geometry=.*//g ;
+s/state=.*//g ;
 ' \
 	/home/alex/.config/OpenSCAD/OpenSCAD.conf
+
+# hacky state with everything closed, will open in windows
+cat << EOF >> /home/alex/.config/OpenSCAD/OpenSCAD.conf
+geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\0\0\0\0\0\0\a>\0\0\x4\x66\0\0\0\0\0\0\0\0\0\0\a>\0\0\x4\x66\0\0\0\0\0\0\0\0\n\xc0\0\0\0\0\0\0\0\0\0\0\a>\0\0\x4\x66)
+state=@ByteArray(\0\0\0\xff\0\0\0\0\xfd\0\0\0\x3\0\0\0\0\0\0\x1\xa8\0\0\x4\x37\xfc\x2\0\0\0\x1\xfb\0\0\0\x14\0\x65\0\x64\0i\0t\0o\0r\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\0\0\0\x1\0\0\x1\x38\0\0\x4\x37\xfc\x2\0\0\0\x1\xfb\0\0\0\x1a\0p\0\x61\0r\0\x61\0m\0\x65\0t\0\x65\0r\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3\xc0\0\0\x4g\0\0\0\x3\0\0\a?\0\0\x1>\xfc\x1\0\0\0\x2\xfc\0\0\0\0\0\0\a?\0\0\0\0\0\xff\xff\xff\xfa\xff\xff\xff\xff\x1\0\0\0\x5\xfb\0\0\0\x16\0\x63\0o\0n\0s\0o\0l\0\x65\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\xfb\0\0\0\x18\0\x65\0r\0r\0o\0r\0L\0o\0g\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\xfb\0\0\0\x18\0\x66\0o\0n\0t\0L\0i\0s\0t\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\xfb\0\0\0\x1a\0\x63\0o\0l\0o\0r\0L\0i\0s\0t\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\xfb\0\0\0\x16\0\x61\0n\0i\0m\0\x61\0t\0\x65\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\xfb\0\0\0&\0v\0i\0\x65\0w\0p\0o\0r\0t\0\x43\0o\0n\0t\0r\0o\0l\0\x44\0o\0\x63\0k\x2\0\0\0\0\0\0\0\0\0\0\x3|\0\0\x4g\0\0\a?\0\0\x4\x37\0\0\0\x1\0\0\0\x2\0\0\0\x1\0\0\0\x2\xfc\0\0\0\0)
+EOF
 
 /usr/bin/openscad "$@"
