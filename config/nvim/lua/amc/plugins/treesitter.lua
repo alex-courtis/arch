@@ -2,36 +2,9 @@ local require = require("amc.require").or_nil
 
 local M = {}
 
-local config = require("nvim-treesitter.config")
-
-if not config then
+if not require("nvim-treesitter") then
   return M
 end
-
--- most of these do not look good
--- install explicitly e.g. :TSInstall cpp
-
--- :TSBufToggle highlight
-
-local opts = {
-  parser_install_dir = vim.fn.stdpath("data") .. "/treesitter",
-
-  sync_install = false,
-
-  ignore_install = {},
-
-  auto_install = false,
-
-  highlight = {
-    enable = true,
-
-    disable = {},
-  },
-}
-
-config.setup(opts)
-
-vim.opt.runtimepath:append(opts.parser_install_dir)
 
 -- expensive, only do on demand
 function M.install_base()
