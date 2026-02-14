@@ -69,7 +69,7 @@ else
     "tpope/vim-fugitive",
     "tpope/vim-repeat",
     "vim-scripts/ReplaceWithRegister",
-    util.nvt_plugin_dir(),
+    { util.nvt_plugin_dir(), as = "nvim-tree.lua", },
   }
   if not vim.env.TERM:match("^linux") then
     table.insert(plugins, "nvim-tree/nvim-web-devicons")
