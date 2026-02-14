@@ -2,6 +2,12 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- skip unwanted health checks
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- set the title string early to avoid flashing from async update
 vim.o.titlestring = vim.fn.fnamemodify(vim.loop.cwd() or "", ":~")
 
