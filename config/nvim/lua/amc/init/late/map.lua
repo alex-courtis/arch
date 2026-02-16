@@ -141,8 +141,6 @@ K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 --  fF
 --  D
 --
-K.n___("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
-K.n_l_("*",  "*",                         "Word Forwards")
 K.ns__("ff", telescope.find_files,        "Find Files")
 K.ns__("fg", telescope.git_files,         "Find Files: Git")
 K.ns__("fh", telescope.find_files_hidden, "Find Files: Hidden")
@@ -218,8 +216,6 @@ K.nsl_("z", dev.format,                         "Format")
 --
 --
 --  |
-K.n___("#",  "<Plug>(asterisk-z#)",                                                      "Word Backwards Stay")
-K.n_l_("#",  "#",                                                                        "Word Backwards")
 K.n_l_("/",  "/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR><Esc>",    "Search")
 K.v_l_("/",  "\"*y<Esc>/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR><Esc>", "Search Visual")
 K.nsl_("_",  buffers.wipe_all,                                                           "Wipe All Buffers")
