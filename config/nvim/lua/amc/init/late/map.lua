@@ -225,7 +225,9 @@ K.v_l_("/",  "\"*y<Esc>/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR
 K.nsl_("_",  buffers.wipe_all,                                                           "Wipe All Buffers")
 K.nsl_("-",  ":silent BW!<CR>",                                                          "Wipe Buffer")
 K.nsl_("\\", which_key.show,                                                             "Show WhichKey")
+K.vsl_("\\", which_key.show,                                                             "Show WhichKey")
 K.nsl_("|",  which_key.show_local,                                                       "Show WhichKey Local")
+K.vsl_("|",  which_key.show_local,                                                       "Show WhichKey Local")
 
 ---
 --- snippets
