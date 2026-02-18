@@ -46,10 +46,10 @@ keyMappings: |-
 
   map f  LinkHints.activateMode
   map F  LinkHints.activateModeToOpenInNewForegroundTab
-  map tf LinkHints.activateModeToOpenInNewTab
+  map T  LinkHints.activateModeToOpenInNewTab
   map q  LinkHints.activateModeWithQueue
 
-  map Wf LinkHints.activateModeToOpenIncognito
+  map Z LinkHints.activateModeToOpenIncognito
 
   map ;d LinkHints.activateModeToDownloadLink
   map ;y LinkHints.activateModeToCopyLinkUrl
@@ -76,10 +76,9 @@ keyMappings: |-
   map H goBack
   map L goForward
 
-  map tt createTab
-  map ww createTab window
-  map WW createTab incognito
-  map Ww createTab incognito
+  map t createTab
+  map w createTab window
+  map z createTab incognito https://vimium.github.io/new-tab/
 
   map h previousTab
   map l nextTab
@@ -91,7 +90,7 @@ keyMappings: |-
   map x removeTab
   map X restoreTab
 
-  map tg moveTabToNewWindow
+  map W moveTabToNewWindow
 
   map ch closeTabsOnLeft
   map cl closeTabsOnRight
@@ -121,6 +120,6 @@ searchEngines: |-
   ss: https://store.steampowered.com/search/?term=%s Steam Store
   w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
   y: https://www.youtube.com/results?search_query=%s Youtube
-settingsVersion: "2.4"
+settingsVersion: "2.4.0"
 userDefinedLinkHintCss: |-2
 STYLESHEET:
