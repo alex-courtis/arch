@@ -61,5 +61,6 @@ vim.o.clipboard = "unnamedplus"
 -- use osc when remoting or not under a compositor, otherwise let it autodetect
 if vim.env.SSH_CONNECTION or not vim.env.WAYLAND_DISPLAY then
   vim.g.clipboard = "osc52"
+  -- TODO remove schedule at 0.12 as https://github.com/neovim/neovim/issues/17832 has been fixed
   vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard, vim.log.levels.WARN) end)
 end
