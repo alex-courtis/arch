@@ -1,3 +1,12 @@
+exclusionRules:
+  - pattern: https?://mail.google.com/*
+  - pattern: https?://mail.proton.me/*
+  - pattern: https?://docs.google.com/*
+  - pattern: https?://127.0.0.0:8006/*
+  - pattern: https?://127.0.0.1:8080/*
+  - pattern: https?://10.2.0.1/*
+  - pattern: https?://10.2.0.2/*
+grabBackFocus: true
 keyMappings: |-
   unmapAll
 
@@ -96,19 +105,9 @@ keyMappings: |-
   map = zoomReset
 
   map ? showHelp
-filterLinkHints: false
-hideHud: false
-hideUpdateNotifications: false
 linkHintCharacters: pgcraoeuhtnsqjkmwvz
-linkHintNumbers: "0123456789"
-newTabUrl: pages/blank.html
-nextPatterns: next,more,newer,>,›,→,»,≫,>>
-previousPatterns: prev,previous,back,older,<,‹,←,«,≪,<<
 regexFindMode: true
-ignoreKeyboardLayout: false
 scrollStepSize: 30
-smoothScroll: true
-grabBackFocus: true
 searchEngines: |-
   ap: https://archlinux.org/packages/?q=%s Arch Packages
   au: https://aur.archlinux.org/packages?K=%s AUR Packages
@@ -122,13 +121,6 @@ searchEngines: |-
   ss: https://store.steampowered.com/search/?term=%s Steam Store
   w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
   y: https://www.youtube.com/results?search_query=%s Youtube
-settingsVersion: "2.3"
+settingsVersion: "2.4"
 userDefinedLinkHintCss: |-2
 STYLESHEET:
-exclusionRules:
-  - passKeys: ""
-    pattern: https?://mail.google.com/*
-  - passKeys: ""
-    pattern: https?://mail.proton.me/*
-  - passKeys: ""
-    pattern: https?://docs.google.com/*
