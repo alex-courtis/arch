@@ -18,7 +18,8 @@ riverctl rule-add -app-id "blueman-*" float
 riverctl rule-add -app-id gamescope fullscreen
 
 # tiled
-riverctl rule-add -title "*OpenSCAD" no-float
+riverctl rule-add -title "Customizer — OpenSCAD" no-float
+riverctl rule-add -title "Console (*" no-float
 
 # behaviour
 riverctl attach-mode bottom
