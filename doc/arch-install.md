@@ -30,6 +30,7 @@ Use the standard [Arch installation guide](https://wiki.archlinux.org/index.php/
   * [Networking](#networking)
     + [Optional: NetworkManager Profile](#optional-networkmanager-profile)
     + [Optional: Disable ipv6](#optional-disable-ipv6)
+    + [Optional: Disable NetworkManager Wait](#optional-disable-networkmanager-wait)
   * [Virtual Console](#virtual-console)
   * [Microcode](#microcode)
   * [SSD Trimming](#ssd-trimming)
@@ -299,6 +300,14 @@ For servers or networks that do not feature ipv6 disable it via `nmtui` or add t
 [ipv6]
 addr-gen-mode=default
 method=disabled
+```
+
+#### Optional: Disable NetworkManager Wait
+
+If there are no startup services that require network, disable the blocking wait service:
+
+```sh
+systemctl disable NetworkManager-wait-online.service
 ```
 
 ### Virtual Console
