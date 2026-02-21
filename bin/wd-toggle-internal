@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+INTERNAL="eDP-1"
+
+way-displays --toggle DISABLED "${INTERNAL}"

@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+INTERNAL="eDP-1"
+
+# maybe current internal state
+internal_enabled=$(way-displays --yaml --get | \
+	yq '.STATE.HEADS[] | select(.NAME == "'"${INTERNAL}"'") | .CURRENT.ENABLED')
+
+if [ ! "${internal_enabled}" ]; then
+	printf "\n%s %s not connected\n" "${0}" "${INTERNAL}" 1>&2
+	exit 1
+fi
+
+# maybe externals
+externals=$(way-displays --yaml --get | \
+	yq '.STATE.HEADS[] | select (.NAME != "'"${INTERNAL}"'") | .NAME')
+
+if [ ! "${externals}" ]; then
+	printf "\n%s no externals connected\n" "${0}" 1>&2
+	exit 1
+fi
+
+# toggle internal
+way-displays --toggle DISABLED "${INTERNAL}"
+
+# enable/disable externals
+for d in $externals; do
+	if [ "${internal_enabled}" = "TRUE" ]; then
+		way-displays --delete DISABLED "${d}"
+	else
+		way-displays --set DISABLED "${d}"
+	fi
+done
+
