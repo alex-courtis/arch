@@ -105,6 +105,7 @@ keyMappings: |-
 
   map ? showHelp
 linkHintCharacters: pgcraoeuhtnsqjkmwvz
+openVomnibarOnNewTabPage: false
 regexFindMode: true
 scrollStepSize: 30
 searchEngines: |-
