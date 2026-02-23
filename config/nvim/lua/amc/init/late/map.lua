@@ -64,16 +64,17 @@ K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
 --
 -- left, free leaders commented
 --
-K.n___(";",     ":",                           ":")
-K.v___(";",     ":",                           ":")
+K.n___(";",     ":",                             ":")
+K.v___(";",     ":",                             ":")
 
-K.ns__("ys",    ':let @+ = expand("%:p")<CR>', "Yank Absolute Path")
-K.ns__("yc",    ":let @+ = getcwd()<CR>",      "Yank cwd")
-K.ns__("yn",    ':let @+ = expand("%:t")<CR>', "Yank Name")
-K.ns__("yr",    ':let @+ = expand("%:.")<CR>', "Yank Relative Path")
+K.ns__("ys",    ':let @+ = expand("%:p")<CR>',   "Yank Absolute Path")
+K.ns__("yc",    ":let @+ = getcwd()<CR>",        "Yank cwd")
+K.ns__("yd",    ':let @+ = expand("%:p:h")<CR>', "Yank dirname")
+K.ns__("yn",    ':let @+ = expand("%:t")<CR>',   "Yank basename")
+K.ns__("yr",    ':let @+ = expand("%:.")<CR>',   "Yank Relative Path")
 
-K.c___("<C-j>", "<Down>",                      "<Down>")
-K.c___("<C-k>", "<Up>",                        "<Up>")
+K.c___("<C-j>", "<Down>",                        "<Down>")
+K.c___("<C-k>", "<Up>",                          "<Up>")
 
 -- [7
 -- :
