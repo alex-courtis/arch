@@ -101,6 +101,11 @@ vim.diagnostic.config({
 }, nil)
 
 --
+-- Less logging
+--
+vim.lsp.set_log_level("ERROR")
+
+--
 -- Base LSP config
 --
 ---@type vim.lsp.Config
