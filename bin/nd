@@ -56,14 +56,16 @@ function init() {
 		s#-- NVIM_TREE_DIR#{ \"${SRC}\", as = \"nvim-tree.lua.dev\", },#
 	" "${INIT}"
 
-	# scrape default config
-	begin="default-config-start"
-	end="default-config-end"
-	inject="default-config-injection-placeholder"
-	sed -n -e "/${begin}/,/${end}/{ /${begin}/d; /${end}/d; p; }" "${SRC}/lua/nvim-tree.lua" > /tmp/default-config.lua
+	begin="config-default-start"
+	end="config-default-end"
+	inject="config-default-injection-placeholder"
+
+	# scrape config.default, indented at 2
+	sed -n -E "/${begin}/,/${end}/{ /${begin}/d; /${end}/d; p; }" "${SRC}/lua/nvim-tree/config.lua" > /tmp/config.default.2.lua
 
 	# inject then remove the placeholder
-	sed -i -e "/${inject}/r /tmp/default-config.lua" -e "/${inject}/d" "${INIT}"
+	sed -i -E "/${inject}/r /tmp/config.default.2.lua" "${INIT}"
+	sed -i -E "/${inject}/d" "${INIT}"
 
 	# on_attach
 	sed -i -e "

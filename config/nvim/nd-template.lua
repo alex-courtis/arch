@@ -90,7 +90,7 @@ vim.lsp.enable("lua_ls")
 
 ---@type nvim_tree.config
 local config = {
-  -- default-config-injection-placeholder
+  -- config-default-injection-placeholder
 }
 
 require("nvim-tree").setup(config)
