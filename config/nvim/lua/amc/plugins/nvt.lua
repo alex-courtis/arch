@@ -116,7 +116,9 @@ local function on_attach(bufnr)
   vim.keymap.del("n", "f",     { buffer = bufnr }) -- api.live_filter.start
   vim.keymap.del("n", "F",     { buffer = bufnr }) -- api.live_filter.clear
   vim.keymap.del("n", "g?",    { buffer = bufnr }) -- api.tree.toggle_help,
+  vim.keymap.del("n", "ge",    { buffer = bufnr }) -- api.fs.copy.basename
   vim.keymap.del("n", "gy",    { buffer = bufnr }) -- api.fs.copy.absolute_path,
+  vim.keymap.del("n", "H",     { buffer = bufnr }) -- api.filter.dotfiles.toggle
   vim.keymap.del("n", "y",     { buffer = bufnr }) -- api.fs.copy.filename,
   vim.keymap.del("n", "Y",     { buffer = bufnr }) -- api.fs.copy.relative_path,
 
@@ -131,8 +133,8 @@ local function on_attach(bufnr)
   K.n_lb("j",     api.node.navigate.git.next_recursive,         bufnr, "", opts("Next Git"))
   K.n__b("'",     api.node.navigate.parent_close,               bufnr, "", opts("Close Directory"))
   K.n__b("?",     api.tree.toggle_help,                         bufnr, "", opts("Help"))
-  K.n__b("O",     api.node.navigate.parent_close,               bufnr, "", opts("Close Directory"))
   K.n__b("A",     toggle_width_adaptive,                        bufnr, "", opts("Toggle Adaptive Width"))
+  K.n__b("D",     api.filter.dotfiles.toggle,                   bufnr, "", opts("Toggle Filter: Dotfiles"))
   K.n__b("gr",    git_restore,                                  bufnr, "", opts("Git Restore"))
   K.n__b("gs",    git_stage,                                    bufnr, "", opts("Git Stage"))
   K.n__b("gu",    git_unstage,                                  bufnr, "", opts("Git Unstage"))
@@ -300,7 +302,7 @@ end
 
 ---collapse then open and find
 function M.collapse_find()
-  api.tree.collapse_all({ keep_buffers = false})
+  api.tree.collapse_all({ keep_buffers = false })
   api.tree.open({ find_file = true })
 end
 
