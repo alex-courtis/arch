@@ -35,7 +35,6 @@ local function get_locations_lua(method, opts)
   local tagname = vim.fn.expand("<cword>")
 
   lsp.buf_request_all(bufnr, method, function(client)
-    -- AMC retain params for filtering
     params = util.make_position_params(win, client.offset_encoding)
     return params
   end, function(results)
@@ -52,42 +51,56 @@ local function get_locations_lua(method, opts)
       vim.list_extend(all_items, items)
     end
 
-    local filtered_self = 0
+    local filtered_origin = 0
     local filtered_builtin = 0
+    local filtered_same_line = 0
+    local file_lines = {}
 
-    -- AMC filter
     all_items = vim.tbl_filter(function(item)
+
+      -- LUA builtins
       if item.user_data.targetUri:match("builtin.lua$") then
         filtered_builtin = filtered_builtin + 1
         return false
       end
 
+      -- references to origin line
       if item.user_data.targetUri == params.textDocument.uri and
         item.user_data.targetRange.start.line == params.position.line then
-        filtered_self = filtered_self + 1
+        filtered_origin = filtered_origin + 1
         return false
       end
+
+      -- multiple references to the same line
+      local file_line = item.user_data.targetUri .. item.user_data.targetRange.start.line
+      if file_lines[file_line] then
+        filtered_same_line = filtered_same_line + 1
+        return false
+      end
+      file_lines[file_line] = true
 
       return true
     end, all_items)
 
-    if vim.tbl_isempty(all_items) then
-      vim.notify(string.format("No locations found, filtered %d self, %d builtin", filtered_self, filtered_builtin), vim.log.levels.INFO)
+    if filtered_origin + filtered_builtin + filtered_same_line > 0 or #all_items == 0 then
+      vim.notify(string.format(
+          "%s  '%s'  %sfiltered %d origin, %d builtin, %d same line",
+          method,
+          tagname,
+          #all_items == 0 and "not found, " or "",
+          filtered_origin,
+          filtered_builtin,
+          filtered_same_line
+        ),
+        vim.log.levels.INFO)
+    end
+
+    if #all_items == 0 then
       return
     end
 
     local title = "LSP locations"
-    if opts.on_list then
-      assert(vim.is_callable(opts.on_list), "on_list is not a function")
-      opts.on_list({
-        title = title,
-        items = all_items,
-        context = { bufnr = bufnr, method = method },
-      })
-      return
-    end
 
-    -- AMC always jump
     if #all_items > 0 then
       local item = all_items[1]
       local b = item.bufnr or vim.fn.bufadd(item.filename)
@@ -115,12 +128,10 @@ local function get_locations_lua(method, opts)
       end)
     end
 
-    -- AMC always jump
     if #all_items == 1 then
       return
     end
 
-    -- AMC shift focus back after opening list
     if opts.loclist then
       vim.fn.setloclist(0, {}, " ", { title = title, items = all_items })
       vim.cmd.lopen()
