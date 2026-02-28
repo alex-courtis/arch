@@ -7,6 +7,117 @@ local K = require("amc.util").K
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
+---vim/lsp/buf.lua get_locations hacked to skip reference under the cursor
+---TODO experiment with using vim.lsp.LocationOpts.OnList to pre-filter; needs a mechanism to actually tag jump
+---@param method string
+---@param opts? vim.lsp.LocationOpts
+local function get_locations_skip_self(method, opts)
+
+  -- begin hack
+  local api = vim.api
+  local lsp = vim.lsp
+  local util = vim.lsp.util
+
+  ---@type lsp.TextDocumentPositionParams
+  local params
+  -- end hack
+
+  opts = opts or {}
+  local bufnr = api.nvim_get_current_buf()
+  local clients = lsp.get_clients({ method = method, bufnr = bufnr })
+  if not next(clients) then
+    vim.notify(lsp._unsupported_method(method), vim.log.levels.WARN)
+    return
+  end
+  local win = api.nvim_get_current_win()
+  local from = vim.fn.getpos(".")
+  from[1] = bufnr
+  local tagname = vim.fn.expand("<cword>")
+  local remaining = #clients
+
+  ---@type vim.quickfix.entry[]
+  local all_items = {}
+
+  ---@param result nil|lsp.Location|lsp.Location[]
+  ---@param client vim.lsp.Client
+  local function on_response(_, result, client)
+    local locations = {}
+    if result then
+      locations = vim.islist(result) and result or { result }
+    end
+    local items = util.locations_to_items(locations, client.offset_encoding)
+    vim.list_extend(all_items, items)
+    remaining = remaining - 1
+    if remaining == 0 then
+      if vim.tbl_isempty(all_items) then
+        vim.notify("No locations found", vim.log.levels.INFO)
+        return
+      end
+
+      local title = "LSP locations"
+      if opts.on_list then
+        assert(vim.is_callable(opts.on_list), "on_list is not a function")
+        opts.on_list({
+          title = title,
+          items = all_items,
+          context = { bufnr = bufnr, method = method },
+        })
+        return
+      end
+
+      --- begin hack
+      all_items = vim.tbl_filter(function(item)
+        return item.user_data.targetUri ~= params.textDocument.uri or item.user_data.targetRange.start.line ~= params.position.line
+      end, all_items)
+      --- end hack
+
+      if #all_items == 1 then
+        local item = all_items[1]
+        local b = item.bufnr or vim.fn.bufadd(item.filename)
+
+        -- Save position in jumplist
+        vim.cmd("normal! m'")
+        -- Push a new item into tagstack
+        local tagstack = { { tagname = tagname, from = from } }
+        vim.fn.settagstack(vim.fn.win_getid(win), { items = tagstack }, "t")
+
+        vim.bo[b].buflisted = true
+        local w = win
+        if opts.reuse_win then
+          w = vim.fn.win_findbuf(b)[1] or w
+          if w ~= win then
+            api.nvim_set_current_win(w)
+          end
+        end
+        api.nvim_win_set_buf(w, b)
+        api.nvim_win_set_cursor(w, { item.lnum, item.col - 1 })
+        vim._with({ win = w }, function()
+          -- Open folds under the cursor
+          vim.cmd("normal! zv")
+        end)
+        return
+      end
+      if opts.loclist then
+        vim.fn.setloclist(0, {}, " ", { title = title, items = all_items })
+        vim.cmd.lopen()
+      else
+        vim.fn.setqflist({}, " ", { title = title, items = all_items })
+        vim.cmd("botright copen")
+      end
+    end
+  end
+  for _, client in ipairs(clients) do
+    params = util.make_position_params(win, client.offset_encoding)
+    client:request(method, params, function(_, result)
+      on_response(_, result, client)
+    end)
+  end
+end
+
+local function definition_skip_self(opts)
+  get_locations_skip_self(vim.lsp.protocol.Methods.textDocument_definition, opts)
+end
+
 --
 -- Map
 --
@@ -29,8 +140,7 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.name == "lua_ls" then
-    -- lua_ls definition returns too many results. tagfunc usually gives a single, better result.
-    -- It's fast enough once the language server is started.
+    K.n__b("t", definition_skip_self,   bufnr, "LSP: textDocument/definition")
     K.n__b("T", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
   else
     -- regular definition/declaration
