@@ -7,11 +7,12 @@ local K = require("amc.util").K
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
----vim/lsp/buf.lua get_locations hacked to skip reference under the cursor
+---vim/lsp/buf.lua get_locations hacked to skip reference under the cursor and lua builtins
+---
 ---TODO experiment with using vim.lsp.LocationOpts.OnList to pre-filter; needs a mechanism to actually tag jump
 ---@param method string
 ---@param opts? vim.lsp.LocationOpts
-local function get_locations_skip_self(method, opts)
+local function get_locations_lua(method, opts)
 
   -- begin hack
   local api = vim.api
@@ -54,7 +55,9 @@ local function get_locations_skip_self(method, opts)
     end
 
     if vim.tbl_isempty(all_items) then
-      vim.notify("No locations found", vim.log.levels.INFO)
+      -- begin hack
+      -- vim.notify("No locations found", vim.log.levels.INFO)
+      -- end hack
       return
     end
 
@@ -70,9 +73,12 @@ local function get_locations_skip_self(method, opts)
     end
 
     --- begin hack
-    all_items = vim.tbl_filter(function(item)
-      return item.user_data.targetUri ~= params.textDocument.uri or item.user_data.targetRange.start.line ~= params.position.line
-    end, all_items)
+    if #all_items > 1 then
+      all_items = vim.tbl_filter(function(item)
+        return not item.user_data.targetUri:match("builtin.lua$") and
+          not (item.user_data.targetUri == params.textDocument.uri and item.user_data.targetRange.start.line == params.position.line)
+      end, all_items)
+    end
     -- end hack
 
     if #all_items == 1 then
@@ -113,8 +119,8 @@ local function get_locations_skip_self(method, opts)
 
 end
 
-local function definition_skip_self(opts)
-  get_locations_skip_self(vim.lsp.protocol.Methods.textDocument_definition, opts)
+local function definition_lua(opts)
+  get_locations_lua(vim.lsp.protocol.Methods.textDocument_definition, opts)
 end
 
 --
@@ -139,7 +145,7 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.name == "lua_ls" then
-    K.n__b("t", definition_skip_self,   bufnr, "LSP: textDocument/definition")
+    K.n__b("t", definition_lua,         bufnr, "LSP: textDocument/definition")
     K.n__b("T", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
   else
     -- regular definition/declaration
