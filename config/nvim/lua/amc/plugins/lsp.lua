@@ -7,11 +7,16 @@ local K = require("amc.util").K
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
----vim/lsp/buf.lua get_locations hacked to skip reference under the cursor and lua builtins
----TODO filter same line
+--
+-- Location Jumping
+--
+
+---vim/lsp/buf.lua get_locations hacked to
+---- filter origin, lua builtins and same line targets
+---- always jump to first target
 ---@param method string
 ---@param opts? vim.lsp.LocationOpts
-local function get_locations_lua(method, opts)
+local function get_locations(method, opts)
 
   local api = vim.api
   local lsp = vim.lsp
@@ -145,10 +150,6 @@ local function get_locations_lua(method, opts)
 
 end
 
-local function definition_lua(opts)
-  get_locations_lua(vim.lsp.protocol.Methods.textDocument_definition, opts)
-end
-
 --
 -- Map
 --
@@ -170,21 +171,20 @@ local function on_attach(client, bufnr)
   -- E433: No tags file
   -- E426: Tag not found: xxx
 
-  if client.name == "lua_ls" then
-    K.n__b("t", definition_lua,         bufnr, "LSP: textDocument/definition")
-    K.n__b("T", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
-  else
-    -- regular definition/declaration
-    if client.server_capabilities.definitionProvider then
-      K.n__b("t", vim.lsp.buf.definition, bufnr, "LSP: textDocument/definition")
-    end
-    if client.server_capabilities.declarationProvider then
-      K.n__b("T", vim.lsp.buf.declaration, bufnr, "LSP: textDocument/declaration")
-    end
+  if client.server_capabilities.definitionProvider then
+    K.n__b("t", function(opts) get_locations("textDocument/definition", opts) end, bufnr, "LSP: textDocument/definition")
+  end
+
+  if client.server_capabilities.declarationProvider then
+    K.n__b("T", function(opts) get_locations("textDocument/declaration", opts) end, bufnr, "LSP: textDocument/declaration")
   end
 
   if client.server_capabilities.typeDefinitionProvider then
-    K.n_lb("dt", vim.lsp.buf.type_definition, bufnr, "LSP: textDocument/typeDefinition")
+    K.n_lb("dt", function(opts) get_locations("textDocument/typeDefinition", opts) end, bufnr, "LSP: textDocument/typeDefinition")
+  end
+
+  if client.server_capabilities.implementationProvider then
+    K.n__b("dm", function(opts) get_locations("textDocument/implementation", opts) end, bufnr, "LSP: textDocument/implementation")
   end
 
   if client.server_capabilities.referencesProvider then
@@ -195,10 +195,6 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.callHierarchyProvider then
     K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: callHierarchy/outgoingCalls")
     K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: callHierarchy/incomingCalls")
-  end
-
-  if client.server_capabilities.implementationProvider then
-    K.n_lb("dm", vim.lsp.buf.implementation, bufnr, "LSP: textDocument/implementation")
   end
 
   K.n_lb("d-", vim.cmd.LspRestart, bufnr, "LSP: Restart")
