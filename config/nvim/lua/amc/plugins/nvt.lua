@@ -308,7 +308,7 @@ function M.open_nvim_tree_aerial(update_root)
 
   aerial.open_in_win(winid_aerial, winid_editor)
 
-  aerial.refetch_symbols(bufnr_editor)
+  pcall(aerial.refetch_symbols, bufnr_editor)
 
   vim.api.nvim_set_current_win(winid_editor)
 end

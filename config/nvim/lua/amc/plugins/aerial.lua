@@ -11,6 +11,7 @@ end
 aerial.setup({
   layout = {
     resize_to_content = false,
+    width = 30, -- VIEW_WIDTH_FIXED
   },
   highlight_closest = false,
 })
