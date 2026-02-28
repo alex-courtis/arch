@@ -8,20 +8,17 @@ local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
 ---vim/lsp/buf.lua get_locations hacked to skip reference under the cursor and lua builtins
----
----TODO experiment with using vim.lsp.LocationOpts.OnList to pre-filter; needs a mechanism to actually tag jump
+---TODO filter same line
 ---@param method string
 ---@param opts? vim.lsp.LocationOpts
 local function get_locations_lua(method, opts)
 
-  -- begin hack
   local api = vim.api
   local lsp = vim.lsp
   local util = vim.lsp.util
 
   ---@type lsp.TextDocumentPositionParams
   local params
-  -- end hack
 
   opts = opts or {}
   local bufnr = api.nvim_get_current_buf()
@@ -38,6 +35,7 @@ local function get_locations_lua(method, opts)
   local tagname = vim.fn.expand("<cword>")
 
   lsp.buf_request_all(bufnr, method, function(client)
+    -- AMC retain params for filtering
     params = util.make_position_params(win, client.offset_encoding)
     return params
   end, function(results)
@@ -54,10 +52,27 @@ local function get_locations_lua(method, opts)
       vim.list_extend(all_items, items)
     end
 
+    local filtered_self = 0
+    local filtered_builtin = 0
+
+    -- AMC filter
+    all_items = vim.tbl_filter(function(item)
+      if item.user_data.targetUri:match("builtin.lua$") then
+        filtered_builtin = filtered_builtin + 1
+        return false
+      end
+
+      if item.user_data.targetUri == params.textDocument.uri and
+        item.user_data.targetRange.start.line == params.position.line then
+        filtered_self = filtered_self + 1
+        return false
+      end
+
+      return true
+    end, all_items)
+
     if vim.tbl_isempty(all_items) then
-      -- begin hack
-      -- vim.notify("No locations found", vim.log.levels.INFO)
-      -- end hack
+      vim.notify(string.format("No locations found, filtered %d self, %d builtin", filtered_self, filtered_builtin), vim.log.levels.INFO)
       return
     end
 
@@ -72,16 +87,8 @@ local function get_locations_lua(method, opts)
       return
     end
 
-    --- begin hack
-    if #all_items > 1 then
-      all_items = vim.tbl_filter(function(item)
-        return not item.user_data.targetUri:match("builtin.lua$") and
-          not (item.user_data.targetUri == params.textDocument.uri and item.user_data.targetRange.start.line == params.position.line)
-      end, all_items)
-    end
-    -- end hack
-
-    if #all_items == 1 then
+    -- AMC always jump
+    if #all_items > 0 then
       local item = all_items[1]
       local b = item.bufnr or vim.fn.bufadd(item.filename)
 
@@ -106,14 +113,22 @@ local function get_locations_lua(method, opts)
         -- Open folds under the cursor
         vim.cmd("normal! zv")
       end)
+    end
+
+    -- AMC always jump
+    if #all_items == 1 then
       return
     end
+
+    -- AMC shift focus back after opening list
     if opts.loclist then
       vim.fn.setloclist(0, {}, " ", { title = title, items = all_items })
       vim.cmd.lopen()
+      vim.cmd("wincmd p")
     else
       vim.fn.setqflist({}, " ", { title = title, items = all_items })
       vim.cmd("botright copen")
+      vim.cmd("wincmd p")
     end
   end)
 
