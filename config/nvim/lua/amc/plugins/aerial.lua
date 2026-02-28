@@ -1,6 +1,6 @@
-local require = require("amc.require").or_nil
+local windows = require("amc.windows")
 
--- local K = require("amc.util").K
+local require = require("amc.require").or_nil
 
 local aerial = require("aerial")
 
@@ -10,9 +10,14 @@ end
 
 aerial.setup({
   layout = {
-    default_direction = "left",
+    resize_to_content = false,
   },
   highlight_closest = false,
 })
+
+function aerial.home_focus()
+  windows.go_home()
+  aerial.focus()
+end
 
 return aerial

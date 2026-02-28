@@ -80,7 +80,7 @@ K.c___("<C-k>", "<Up>",                          "<Up>")
 -- :
 --
 --
-K.nsl_(";", aerial.open,               "Aerial: Open")
+K.nsl_(";", aerial.home_focus,         "Aerial: Focus")
 K.nsl_("a", nvt.open_find,             "Open nvim-tree")
 K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree Update Root")
 K.nsl_("'", windows.close_inc,         "Close Lowest Window")
