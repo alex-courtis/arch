@@ -67,16 +67,6 @@ function M.close()
   M.go_home()
 end
 
----close windows other than the current
-function M.close_others()
-  local win = vim.api.nvim_get_current_win()
-  for _, w in ipairs(vim.api.nvim_list_wins()) do
-    if win ~= w then
-      vim.api.nvim_win_close(w, true)
-    end
-  end
-end
-
 ---close lowest window: CLOSE_INC, special, normal
 function M.close_inc()
   -- find lowest special by order

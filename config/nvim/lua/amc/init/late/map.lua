@@ -84,7 +84,7 @@ K.nsl_(";", aerial.home_focus,         "Aerial: Focus")
 K.nsl_("a", nvt.open_find,             "Open nvim-tree")
 K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree Update Root")
 K.nsl_("'", windows.close_inc,         "Close Lowest Window")
-K.nsl_('"', windows.close_others,      "Close Other Windows")
+K.nsl_('"', vim.cmd.only,              "Only")
 
 --  5
 --
@@ -102,11 +102,10 @@ K.vs__(",,", telescope.rhs_v_grep,                 "Live Grep")
 K.vs__(",c", telescope.rhs_v_grep,                 "Live Grep")
 K.vs__(",h", telescope.rhs_v_grep_hidden,          "Live Grep: Hidden")
 K.vs__(",i", telescope.rhs_v_git_grep_live_grep,   "Live Grep: Git")
-K.nsl_(",",  fugitive.open_only,                   "Open Only Fugitive")
-K.nsl_("<",  fugitive.open,                        "Open Fugitive")
+K.nsl_("<",  fugitive.open_only,                   "Open Only Fugitive")
+K.nsl_(",",  fugitive.open,                        "Open Fugitive")
 K.nsl_("o",  windows.go_home_or_next,              "Home Or Next Window")
 K.nsl_("q",  windows.close,                        "Close Window")
-K.nsl_("Q",  vim.cmd.only,                         "Only")
 
 --  3
 --  >

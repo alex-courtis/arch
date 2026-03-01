@@ -20,6 +20,7 @@ function M.open()
     vim.api.nvim_set_current_win(winid)
   else
     vim.cmd.Git({ mods = { emsg_silent = true } })
+    vim.cmd("wincmd L")
   end
 end
 
