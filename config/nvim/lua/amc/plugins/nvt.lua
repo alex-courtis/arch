@@ -1,13 +1,14 @@
 local env = require("amc.env")
 local require = require("amc.require").or_nil
 
+local windows = require("amc.windows")
+
 local M = {}
 
 local K = require("amc.util").K
 
 local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
-local aerial = require("amc.plugins.aerial")
 
 if not tree or not api then
   return M
@@ -290,42 +291,16 @@ if vim.env.NVIM_TREE_PROFILE then
   config.log.types.profile = true
 end
 
----setup the sidebar
-function M.open_nvim_tree_aerial(update_root)
-  api.tree.close()
-  aerial.close_all()
-
-  local bufnr_editor = vim.api.nvim_get_current_buf()
-
-  local winid_editor = vim.api.nvim_get_current_win()
-
-  api.tree.open({ find_file = true, update_root = update_root })
-
-  vim.cmd("below new")
-  vim.cmd("resize 20")
-
-  local winid_aerial = vim.api.nvim_get_current_win()
-
-  aerial.open_in_win(winid_aerial, winid_editor)
-
-  pcall(aerial.refetch_symbols, bufnr_editor)
-
-  vim.api.nvim_set_current_win(winid_editor)
-end
-
 ---open and find
----@param update_root boolean|nil
-function M.open_find(update_root)
-  if api.tree.is_visible() or not aerial then
-    api.tree.open({ find_file = true, update_root = update_root })
-  else
-    M.open_nvim_tree_aerial(update_root)
-  end
+function M.open_find()
+  windows.sidebar()
+  api.tree.open()
 end
 
 ---maybe open, find and update root
 function M.open_find_update_root()
-  M.open_find(true)
+  windows.sidebar()
+  api.tree.open({ update_root = true })
 end
 
 ---Open nvim-tree for real files or startup directory
@@ -339,14 +314,10 @@ function M.vim_enter(data)
 
   if (real_file and not temp_file and not ignored_ft) or env.startup_dir then
     -- open the tree but don't focus it
-    M.open_nvim_tree_aerial(true)
-
-    -- find the file if it exists
-    api.tree.find_file(data.file)
+    windows.sidebar()
   end
 end
 
--- open_nvim_tree_aerial
 tree.setup(config)
 
 return M

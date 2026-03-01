@@ -1,11 +1,11 @@
 local require = require("amc.require").or_nil
 
-require("amc.plugins.aerial")
 require("amc.plugins.fugitive")
 require("amc.plugins.gitsigns")
 require("amc.plugins.lsp")
 require("amc.plugins.lualine")
 require("amc.plugins.nvt")
+require("amc.plugins.outline")
 require("amc.plugins.rainbow")
 require("amc.plugins.render-markdown")
 require("amc.plugins.spectre")

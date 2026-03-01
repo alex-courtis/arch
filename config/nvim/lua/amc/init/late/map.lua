@@ -6,10 +6,8 @@ local buffers = require("amc.buffers")
 local windows = require("amc.windows")
 local util = require("amc.util")
 
-local aerial = require("amc.plugins.aerial")
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
-local nvt = require("amc.plugins.nvt")
 local rainbow = require("amc.plugins.rainbow")
 local spectre = require("amc.plugins.spectre")
 local telescope = require("amc.plugins.telescope")
@@ -80,11 +78,11 @@ K.c___("<C-k>", "<Up>",                          "<Up>")
 -- :
 --
 --
-K.nsl_(";", aerial.home_focus,         "Aerial: Focus")
-K.nsl_("a", nvt.open_find,             "Open nvim-tree")
-K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree Update Root")
-K.nsl_("'", windows.close_inc,         "Close Lowest Window")
-K.nsl_('"', vim.cmd.only,              "Only")
+K.nsl_(";", windows.focus_outline,               "Outline: Open Focus")
+K.nsl_("a", windows.focus_nvim_tree,             "nvim-tree: Focus")
+K.nsl_("A", windows.focus_nvim_tree_update_root, "nvim-tree: Focus Update Root")
+K.nsl_("'", windows.close_inc,                   "Close Lowest Window")
+K.nsl_('"', vim.cmd.only,                        "Only")
 
 --  5
 --
@@ -111,7 +109,8 @@ K.nsl_("q",  windows.close,                        "Close Window")
 --  >
 --  E
 --  J
-K.n_l_("}", aerial.next,         "Aerial: Next")
+-- TODO
+-- K.n_l_("}", aerial.next,         "Aerial: Next")
 K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
 K.nsl_("e", windows.cnext,       "Next QF")
 -- j gitsigns
@@ -120,7 +119,8 @@ K.nsl_("e", windows.cnext,       "Next QF")
 --  P
 --  U
 --  K
-K.n_l_("(", aerial.prev,         "Aerial: Prev")
+-- TODO
+-- K.n_l_("(", aerial.prev,         "Aerial: Prev")
 K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
 K.nsl_("u", windows.cprev,       "Prev QF")
 -- k gitsigns

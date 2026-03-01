@@ -13,9 +13,6 @@ vim.cmd("highlight! link NvimTreeRootFolder NONE")
 vim.cmd("highlight! link NvimTreeNormal Comment")
 vim.cmd("highlight! link NvimTreeSymLink Italic")
 
--- aerial override
-vim.cmd("highlight! link AerialNormal Comment")
-
 vim.cmd("colorscheme base16")
 
 vim.cmd("highlight Search guibg=#" .. vim.env.BASE16_orange)    -- default yellow

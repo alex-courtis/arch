@@ -89,8 +89,8 @@ function M.special(bufnr)
     return SPECIAL.fugitive
   elseif filetype == "NvimTree" then
     return SPECIAL.nvim_tree
-  elseif filetype == "aerial" then
-    return SPECIAL.aerial
+  elseif filetype == "Outline" then
+    return SPECIAL.outline
   elseif vim.fn.isdirectory(bufname) ~= 0 then
     return SPECIAL.dir
   elseif buftype ~= "" then
