@@ -1,3 +1,5 @@
+local locations = require("amc.locations")
+
 local M = {}
 
 local require = require("amc.require").or_empty
@@ -8,168 +10,10 @@ local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 
 --
--- Location Jumping
---
-
----vim/lsp/buf.lua get_locations hacked to
----- filter origin, lua builtins and same line targets
----- always jump to first target
----@param method string
----@param opts? vim.lsp.LocationOpts
-local function get_locations(method, opts)
-
-  local api = vim.api
-  local lsp = vim.lsp
-  local util = vim.lsp.util
-
-  ---@type lsp.TextDocumentPositionParams
-  local params
-
-  opts = opts or {}
-  local bufnr = api.nvim_get_current_buf()
-  local win = api.nvim_get_current_win()
-
-  local clients = lsp.get_clients({ method = method, bufnr = bufnr })
-  if not next(clients) then
-    vim.notify(lsp._unsupported_method(method), vim.log.levels.WARN)
-    return
-  end
-
-  local from = vim.fn.getpos(".")
-  from[1] = bufnr
-  local tagname = vim.fn.expand("<cword>")
-
-  lsp.buf_request_all(bufnr, method, function(client)
-    params = util.make_position_params(win, client.offset_encoding)
-    return params
-  end, function(results)
-    ---@type vim.quickfix.entry[]
-    local all_items = {}
-
-    for client_id, res in pairs(results) do
-      local client = assert(lsp.get_client_by_id(client_id))
-      local locations = {}
-      if res then
-        locations = vim.islist(res.result) and res.result or { res.result }
-      end
-      local items = util.locations_to_items(locations, client.offset_encoding)
-      vim.list_extend(all_items, items)
-    end
-
-    local filtered_origin = 0
-    local filtered_builtin = 0
-    local filtered_same_line = 0
-    local file_lines = {}
-
-    all_items = vim.tbl_filter(function(item)
-      if not item.user_data then
-        return true
-      end
-
-      -- maybe range
-      local range = item.user_data.targetRange or item.user_data.range
-      if not range then
-        return true
-      end
-
-      -- maybe uri
-      local uri = item.user_data.targetUri or item.user_data.uri
-      if not uri then
-        return true
-      end
-
-      -- LUA builtins
-      if uri:match("builtin.lua$") then
-        filtered_builtin = filtered_builtin + 1
-        return false
-      end
-
-      -- references to origin line
-      if uri == params.textDocument.uri and
-        range.start.line == params.position.line then
-        filtered_origin = filtered_origin + 1
-        return false
-      end
-
-      -- multiple references to the same line
-      local file_line = uri .. range.start.line
-      if file_lines[file_line] then
-        filtered_same_line = filtered_same_line + 1
-        return false
-      end
-      file_lines[file_line] = true
-
-      return true
-    end, all_items)
-
-    if filtered_origin + filtered_builtin + filtered_same_line > 0 or #all_items == 0 then
-      vim.notify(string.format(
-          "%s  '%s'  %sfiltered %d origin, %d builtin, %d same line",
-          method,
-          tagname,
-          #all_items == 0 and "not found, " or "",
-          filtered_origin,
-          filtered_builtin,
-          filtered_same_line
-        ),
-        vim.log.levels.INFO)
-    end
-
-    if #all_items == 0 then
-      return
-    end
-
-    local title = "LSP locations"
-
-    if #all_items > 0 then
-      local item = all_items[1]
-      local b = item.bufnr or vim.fn.bufadd(item.filename)
-
-      -- Save position in jumplist
-      vim.cmd("normal! m'")
-      -- Push a new item into tagstack
-      local tagstack = { { tagname = tagname, from = from } }
-      vim.fn.settagstack(vim.fn.win_getid(win), { items = tagstack }, "t")
-
-      vim.bo[b].buflisted = true
-      local w = win
-      if opts.reuse_win and api.nvim_win_get_buf(w) ~= b then
-        w = vim.fn.bufwinid(b)
-        w = w >= 0 and w or vim.fn.win_findbuf(b)[1] or win
-        if w ~= win then
-          api.nvim_set_current_win(w)
-        end
-      end
-      api.nvim_win_set_buf(w, b)
-      api.nvim_win_set_cursor(w, { item.lnum, item.col - 1 })
-      vim._with({ win = w }, function()
-        -- Open folds under the cursor
-        vim.cmd("normal! zv")
-      end)
-    end
-
-    if #all_items == 1 then
-      return
-    end
-
-    if opts.loclist then
-      vim.fn.setloclist(0, {}, " ", { title = title, items = all_items })
-      vim.cmd.lopen()
-      vim.cmd("wincmd p")
-    else
-      vim.fn.setqflist({}, " ", { title = title, items = all_items })
-      vim.cmd("botright copen")
-      vim.cmd("wincmd p")
-    end
-  end)
-
-end
-
---
 -- Map
 --
 
--- see /usr/share/nvim/runtime/lua/vim/lsp/protocol.lua for available methods
+-- see /usr/share/nvim/runtime/lua/vim/lsp/protocol.lua for method names
 
 ---@type elem_or_list<fun(client: vim.lsp.Client, bufnr: integer)>
 local function on_attach(client, bufnr)
@@ -187,49 +31,49 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.server_capabilities.definitionProvider then
-    K.n__b("t", function(opts) get_locations("textDocument/definition", opts) end, bufnr, "LSP: textDocument/definition")
+    K.n__b("t", locations.definition, bufnr, "LSP: Definition")
   end
 
   if client.server_capabilities.declarationProvider then
-    K.n__b("T", function(opts) get_locations("textDocument/declaration", opts) end, bufnr, "LSP: textDocument/declaration")
+    K.n__b("T", locations.declaration, bufnr, "LSP: Declaration")
   end
 
   if client.server_capabilities.typeDefinitionProvider then
-    K.n_lb("dt", function(opts) get_locations("textDocument/typeDefinition", opts) end, bufnr, "LSP: textDocument/typeDefinition")
+    K.n_lb("dt", locations.type_definition, bufnr, "LSP: Type Definition")
   end
 
   if client.server_capabilities.implementationProvider then
-    K.n__b("dm", function(opts) get_locations("textDocument/implementation", opts) end, bufnr, "LSP: textDocument/implementation")
+    K.n__b("dm", locations.implementation, bufnr, "LSP: Implementation")
   end
 
   if client.server_capabilities.referencesProvider then
     K.n_lb("n", telescope.lsp_references, bufnr, "Telescope: References")
-    K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: textDocument/references")
+    K.n_lb("N", vim.lsp.buf.references,   bufnr, "LSP: References")
   end
 
   if client.server_capabilities.callHierarchyProvider then
-    K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: callHierarchy/outgoingCalls")
-    K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: callHierarchy/incomingCalls")
+    K.n_lb("do", vim.lsp.buf.outgoing_calls, bufnr, "LSP: Outgoing Calls")
+    K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming Calls")
   end
 
   K.n_lb("d-", vim.cmd.LspRestart, bufnr, "LSP: Restart")
   K.n_lb("d_", M.disable,          bufnr, "LSP: Disable Active Clients")
 
   if client.server_capabilities.codeActionProvider then
-    K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: textDocument/codeAction")
+    K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: Code Action")
   end
 
   K.n_lb("df", vim.diagnostic.open_float, bufnr, "Diagnostics: Float")
 
   if client.server_capabilities.hoverProvider then
-    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: textDocument/hover")
+    K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover")
   end
 
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
   K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
 
   if client.server_capabilities.renameProvider then
-    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: textDocument/rename")
+    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: Rename")
   end
 
   K.n_lb("dq", vim.diagnostic.setqflist, bufnr, "Diagnostics: QuickFix")
@@ -240,7 +84,7 @@ local function on_attach(client, bufnr)
 
   -- client:supports_method  Always returns true for unknown off-spec methods
   if client.name == "ccls" then
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: textDocument/switchSourceHeader")
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: Switch Source Header")
   end
 end
 
