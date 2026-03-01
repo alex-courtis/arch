@@ -202,7 +202,7 @@ function M.focus_outline()
   M.sidebar()
 
   -- the command does more than API focus, which doesn't always work
-  vim.cmd.OutlineFocus()
+  vim.cmd.OutlineFocusOutline()
 end
 
 function M.focus_nvim_tree()
