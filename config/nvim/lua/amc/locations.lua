@@ -9,6 +9,59 @@ local opts_default = {
   reuse_win = true,
 }
 
+---@class amc.LocationsFiltered
+---@field private origin integer
+---@field private builtin integer
+---@field private same_line integer
+local LocationsFiltered = {}
+
+---@return amc.LocationsFiltered
+function LocationsFiltered:new()
+
+  ---@type amc.LocationsFiltered
+  local o = {
+    origin = 0,
+    builtin = 0,
+    same_line = 0,
+  }
+  setmetatable(o, self)
+  self.__index = self
+  return o
+end
+
+function LocationsFiltered:inc_origin()
+  self.origin = self.origin + 1
+end
+
+function LocationsFiltered:inc_builtin()
+  self.builtin = self.builtin + 1
+end
+
+function LocationsFiltered:inc_same_line()
+  self.same_line = self.same_line + 1
+end
+
+---@return string empty when no filtering occurred
+function LocationsFiltered:summary()
+  local reasons = {}
+
+  if self.origin > 0 then
+    table.insert(reasons, self.origin .. " origin")
+  end
+  if self.builtin > 0 then
+    table.insert(reasons, self.builtin .. " builtin")
+  end
+  if self.same_line > 0 then
+    table.insert(reasons, self.same_line .. " same line")
+  end
+
+  if #reasons > 0 then
+    return "  filtered: " .. table.concat(reasons, ", ")
+  else
+    return ""
+  end
+end
+
 ---vim/lsp/buf.lua get_locations hacked to
 ---- filter origin, lua builtins and same line targets
 ---- always jump to first target
@@ -54,10 +107,10 @@ local function get_locations(method, opts)
       vim.list_extend(all_items, items)
     end
 
-    local filtered_origin = 0
-    local filtered_builtin = 0
-    local filtered_same_line = 0
-    local file_lines = {}
+    ---@type table<string, boolean>
+    local range_lines = {}
+
+    local filtered = LocationsFiltered:new()
 
     all_items = vim.tbl_filter(function(item)
       if not item.user_data then
@@ -78,40 +131,48 @@ local function get_locations(method, opts)
 
       -- LUA builtins
       if uri:match("builtin.lua$") then
-        filtered_builtin = filtered_builtin + 1
+        filtered:inc_builtin()
         return false
       end
 
       -- references to origin line
       if uri == params.textDocument.uri and
         range.start.line == params.position.line then
-        filtered_origin = filtered_origin + 1
+        filtered:inc_origin()
         return false
       end
 
       -- multiple references to the same line
       local file_line = uri .. range.start.line
-      if file_lines[file_line] then
-        filtered_same_line = filtered_same_line + 1
+      if range_lines[file_line] then
+        filtered:inc_same_line()
         return false
       end
-      file_lines[file_line] = true
+      range_lines[file_line] = true
 
       return true
     end, all_items)
 
-    if filtered_origin + filtered_builtin + filtered_same_line > 0 or #all_items == 0 then
-      vim.notify(string.format(
-          "%s  '%s'  %sfiltered %d origin, %d builtin, %d same line",
-          method,
-          tagname,
-          #all_items == 0 and "not found, " or "",
-          filtered_origin,
-          filtered_builtin,
-          filtered_same_line
-        ),
-        vim.log.levels.INFO)
+    local filtered_summary = filtered:summary()
+    local failure_reason = ""
+
+    if #all_items == 0 then
+      if #filtered_summary == 0 then
+        failure_reason = "  not found"
+      else
+        failure_reason = "  skipped"
+      end
     end
+
+    vim.notify(string.format(
+        "%s  '%s'%s%s",
+        method:gsub("textDocument/", "LSP "),
+        tagname,
+        failure_reason,
+        filtered_summary
+      ),
+      vim.log.levels.INFO
+    )
 
     if #all_items == 0 then
       return
