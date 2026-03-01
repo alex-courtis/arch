@@ -30,6 +30,10 @@ local function on_attach(client, bufnr)
   -- E433: No tags file
   -- E426: Tag not found: xxx
 
+  if client.server_capabilities.documentSymbolProvider then
+    K.n_lb("dd", telescope.lsp_functions, bufnr, "Telescope: functions and methods")
+  end
+
   if client.server_capabilities.definitionProvider then
     K.n__b("t", locations.definition, bufnr, "LSP: Definition")
   end

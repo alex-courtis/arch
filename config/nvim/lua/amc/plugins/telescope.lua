@@ -260,6 +260,10 @@ function M.diagnostics_workspace()
   M.diagnostics({ root_dir = vim.lsp.buf.list_workspace_folders()[1] })
 end
 
+function M.lsp_functions()
+  M.lsp_document_symbols({ symbols = { "function", "method" } })
+end
+
 M.rhs_n_grep_cword =
 ":              lua require('amc.plugins.telescope').live_grep({           default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
 
