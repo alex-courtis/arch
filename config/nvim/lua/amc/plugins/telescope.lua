@@ -261,7 +261,11 @@ function M.diagnostics_workspace()
 end
 
 function M.lsp_functions()
-  M.lsp_document_symbols({ symbols = { "function", "method" } })
+  M.lsp_document_symbols({ symbols = { "function", "method", "module", } })
+end
+
+function M.lsp_variables()
+  M.lsp_document_symbols({ symbols = { "variable", } })
 end
 
 M.rhs_n_grep_cword =

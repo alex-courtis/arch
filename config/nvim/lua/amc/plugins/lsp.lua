@@ -31,7 +31,8 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.server_capabilities.documentSymbolProvider then
-    K.n_lb("dd", telescope.lsp_functions, bufnr, "Telescope: functions and methods")
+    K.n_lb("dd", telescope.lsp_functions, bufnr, "Telescope: functions")
+    K.n_lb("dv", telescope.lsp_variables, bufnr, "Telescope: variables")
   end
 
   if client.server_capabilities.definitionProvider then
