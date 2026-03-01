@@ -33,6 +33,10 @@ outline.setup({
         "Array",
         "String",
       },
+      openscad = {
+        exclude = true,
+        "Variable",
+      },
     },
   },
 })

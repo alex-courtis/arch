@@ -3,6 +3,7 @@ local require = require("amc.require").or_empty
 local env = require("amc.env")
 local dev = require("amc.dev")
 local buffers = require("amc.buffers")
+local sidebar = require("amc.sidebar")
 local windows = require("amc.windows")
 local util = require("amc.util")
 
@@ -78,9 +79,9 @@ K.c___("<C-k>", "<Up>",                          "<Up>")
 -- :
 --
 --
-K.nsl_(";", windows.focus_outline,               "Outline: Open Focus")
-K.nsl_("a", windows.focus_nvim_tree,             "nvim-tree: Focus")
-K.nsl_("A", windows.focus_nvim_tree_update_root, "nvim-tree: Focus Update Root")
+K.nsl_(";", sidebar.focus_outline,               "Outline: Open Focus")
+K.nsl_("a", sidebar.focus_nvim_tree,             "nvim-tree: Focus")
+K.nsl_("A", sidebar.focus_nvim_tree_update_root, "nvim-tree: Focus Update Root")
 K.nsl_("'", windows.close_inc,                   "Close Lowest Window")
 K.nsl_('"', vim.cmd.only,                        "Only")
 

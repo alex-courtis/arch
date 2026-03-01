@@ -3,10 +3,10 @@ local env = require("amc.env")
 local require = require("amc.require").or_empty
 
 local buffers = require("amc.buffers")
+local sidebar = require("amc.sidebar")
 local dev = require("amc.dev")
 local windows = require("amc.windows")
 local fugitive = require("amc.plugins.fugitive")
-local nvt = require("amc.plugins.nvt")
 
 local group = vim.api.nvim_create_augroup("amc", { clear = true })
 
@@ -26,7 +26,7 @@ au({ "WinEnter" },                                              windows.man_widt
 au({ "BufWinEnter" },                                           windows.qf_height,        { pattern = { "quickfix" } })
 au({ "BufWinEnter" },                                           windows.doc_position,     {})
 au({ "VimResized" },                                            windows.equalise_windows, {})
-au({ "VimEnter" },                                              nvt.vim_enter,            {})
+au({ "VimEnter" },                                              sidebar.vim_enter,        {})
 
 au({ "User" },                                                  env.update_title,         { pattern = { "FugitiveChanged" } })
 

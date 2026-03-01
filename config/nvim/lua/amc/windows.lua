@@ -5,9 +5,6 @@ local require = require("amc.require").or_nil
 
 local buffers = require("amc.buffers")
 
-local nvim_tree_api = require("nvim-tree.api")
-local outline = require("amc.plugins.outline")
-
 local M = {}
 
 ---go to first nonspecial window, nuke if none found
@@ -173,54 +170,6 @@ end
 function M.equalise_windows()
   vim.cmd.wincmd("=")
   M.man_width()
-end
-
----create the sidebar with nvim-tree and outline
----returns to current window
----when nvim-tree is closed, outline will always be closed
----@return boolean windows were created
-function M.sidebar()
-  local created = false
-
-  local winid_cur = vim.api.nvim_get_current_win()
-
-  if nvim_tree_api.tree.winid() then
-    nvim_tree_api.tree.focus()
-  else
-    if outline.is_open() then
-      outline.close()
-    end
-    nvim_tree_api.tree.open()
-    created = true
-  end
-
-  if not outline.is_open() then
-    outline.open_outline()
-    created = true
-  end
-
-  vim.api.nvim_set_current_win(winid_cur)
-
-  return created
-end
-
----Focus outline, with a hacky delay of 750 to allow it to initialise from the current buffer
-function M.focus_outline()
-  if M.sidebar() then
-    vim.defer_fn(outline.focus_outline, 750)
-  else
-    outline.focus_outline()
-  end
-end
-
-function M.focus_nvim_tree()
-  M.sidebar()
-  nvim_tree_api.tree.open()
-end
-
-function M.focus_nvim_tree_update_root()
-  M.sidebar()
-  nvim_tree_api.tree.open({ update_root = true })
 end
 
 return M
