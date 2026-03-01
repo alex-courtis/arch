@@ -6,17 +6,18 @@ if not outline then
   return
 end
 
--- TODO
--- functions and methods only
--- unmap esc
--- map global navigation
-
 outline.setup({
   outline_window = {
     split_command = "above 25split",
   },
   outline_items = {
     show_symbol_details = false,
+    auto_update_events = {
+      items = { "InsertLeave", "WinEnter", "BufEnter", "BufWinEnter", "TabEnter", "BufWritePost", "LspAttach", },
+    },
+  },
+  keymaps = {
+    close = {},
   },
   symbols = {
     filter = {
@@ -35,3 +36,5 @@ outline.setup({
     },
   },
 })
+
+return outline

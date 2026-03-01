@@ -105,22 +105,18 @@ K.nsl_(",",  fugitive.open,                        "Open Fugitive")
 K.nsl_("o",  windows.go_home_or_next,              "Home Or Next Window")
 K.nsl_("q",  windows.close,                        "Close Window")
 
---  3
+-- }3
 --  >
 --  E
 --  J
--- TODO
--- K.n_l_("}", aerial.next,         "Aerial: Next")
 K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
 K.nsl_("e", windows.cnext,       "Next QF")
 -- j gitsigns
 
---  1
+-- (1
 --  P
 --  U
 --  K
--- TODO
--- K.n_l_("(", aerial.prev,         "Aerial: Prev")
 K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
 K.nsl_("u", windows.cprev,       "Prev QF")
 -- k gitsigns
