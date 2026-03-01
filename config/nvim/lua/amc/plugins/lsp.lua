@@ -62,22 +62,37 @@ local function get_locations(method, opts)
     local file_lines = {}
 
     all_items = vim.tbl_filter(function(item)
+      if not item.user_data then
+        return true
+      end
+
+      -- maybe range
+      local range = item.user_data.targetRange or item.user_data.range
+      if not range then
+        return true
+      end
+
+      -- maybe uri
+      local uri = item.user_data.targetUri or item.user_data.uri
+      if not uri then
+        return true
+      end
 
       -- LUA builtins
-      if item.user_data.targetUri:match("builtin.lua$") then
+      if uri:match("builtin.lua$") then
         filtered_builtin = filtered_builtin + 1
         return false
       end
 
       -- references to origin line
-      if item.user_data.targetUri == params.textDocument.uri and
-        item.user_data.targetRange.start.line == params.position.line then
+      if uri == params.textDocument.uri and
+        range.start.line == params.position.line then
         filtered_origin = filtered_origin + 1
         return false
       end
 
       -- multiple references to the same line
-      local file_line = item.user_data.targetUri .. item.user_data.targetRange.start.line
+      local file_line = uri .. range.start.line
       if file_lines[file_line] then
         filtered_same_line = filtered_same_line + 1
         return false
