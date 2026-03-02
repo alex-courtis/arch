@@ -6,7 +6,7 @@ local rainbow = require("rainbow-delimiters")
 local rainbow_setup = require("rainbow-delimiters.setup")
 
 if not rainbow or not rainbow_setup then
-  return M
+  return
 end
 
 rainbow_setup.setup({

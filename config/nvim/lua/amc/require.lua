@@ -9,7 +9,7 @@ local M = {}
 local function or_(modname, on_fail)
   local ok, module = pcall(require, modname)
   if ok then
-    return module
+    return type(module) == "table" and module or on_fail
   else
     local file = log.err(string.format("%s\n%s", module, debug.traceback()))
 
@@ -23,14 +23,14 @@ local function or_(modname, on_fail)
   end
 end
 
----require a module, logging and printing error, returning nil on failure
+---require a module, logging and printing error, returning nil on failure or non-table module
 ---@param modname string
 ---@return table?
 function M.or_nil(modname)
   return or_(modname, nil)
 end
 
----require a module, logging and printing error, returning {} on failure
+---require a module, logging and printing error, returning {} on failure or non-table module
 ---@param modname string
 ---@return table
 function M.or_empty(modname)

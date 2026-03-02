@@ -7,8 +7,8 @@ local require = require("amc.require").or_nil
 local nvim_tree_api = require("nvim-tree.api")
 local outline = require("amc.plugins.outline")
 
-if not nvim_tree_api or not outline then
-  return M
+if not nvim_tree_api then
+  return
 end
 
 local NO_STARTUP_FT = {
@@ -16,10 +16,15 @@ local NO_STARTUP_FT = {
   "gitrebase",
 }
 
----create the sidebar with nvim-tree and outline
+---create the sidebar with nvim-tree and outline (if present)
 ---returns to current window
 ---when nvim-tree is closed, outline will be closed and opened
 local function sidebar()
+  if not outline then
+    nvim_tree_api.tree.open()
+    return
+  end
+
   local winid_cur = vim.api.nvim_get_current_win()
 
   local winid_tree = nvim_tree_api.tree.winid()
@@ -46,6 +51,10 @@ end
 
 ---Focus outline, with a hacky delay of 750 to allow it to initialise from the current buffer
 function M.focus_outline()
+  if not outline then
+    return
+  end
+
   if not outline.is_open() then
     sidebar()
     vim.defer_fn(outline.focus_outline, 750)

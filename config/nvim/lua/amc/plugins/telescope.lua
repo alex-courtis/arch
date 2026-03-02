@@ -5,7 +5,7 @@ local M = {}
 local telescope = require("telescope")
 
 if not telescope then
-  return M
+  return
 end
 
 local windows = require("amc.windows")

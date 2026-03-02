@@ -3,7 +3,7 @@ local require = require("amc.require").or_nil
 local M = {}
 
 if not require("nvim-treesitter") then
-  return M
+  return
 end
 
 -- expensive, only do on demand

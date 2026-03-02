@@ -7,7 +7,7 @@ local which_key = require("which-key")
 local presets = require("which-key.presets")
 
 if not which_key or not presets then
-  return M
+  return
 end
 
 ---@type wk.Opts

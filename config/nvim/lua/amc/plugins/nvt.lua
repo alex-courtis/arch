@@ -1,7 +1,5 @@
 local require = require("amc.require").or_nil
 
-local windows = require("amc.windows")
-
 local M = {}
 
 local K = require("amc.util").K
@@ -10,7 +8,7 @@ local tree = require("nvim-tree")
 local api = require("nvim-tree.api")
 
 if not tree or not api then
-  return M
+  return
 end
 
 local telescope = require("amc.plugins.telescope")
@@ -283,18 +281,6 @@ end
 if vim.env.NVIM_TREE_PROFILE then
   config.log.enable = true
   config.log.types.profile = true
-end
-
----open and find
-function M.open_find()
-  windows.sidebar()
-  api.tree.open()
-end
-
----maybe open, find and update root
-function M.open_find_update_root()
-  windows.sidebar()
-  api.tree.open({ update_root = true })
 end
 
 tree.setup(config)
