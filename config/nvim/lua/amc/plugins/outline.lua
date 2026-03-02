@@ -14,15 +14,15 @@ outline.setup({
   outline_items = {
     show_symbol_details = false,
     auto_update_events = {
-      items = { "InsertLeave", "WinEnter", "BufEnter", "BufWinEnter", "TabEnter", "BufWritePost", "LspAttach", },
+      items = { "InsertLeave", "WinEnter", "BufEnter", "BufWinEnter", "TabEnter", "BufWritePost", "LspAttach", "LspDetach", "LspTokenUpdate", "LspNotify", },
     },
   },
   keymaps = {
     close = {},
   },
   symbols = {
+    -- see :help outline-configuration icons
     filter = {
-      -- see :help outline-configuration icons
       lua = {
         exclude = true,
         "Constant",
@@ -38,6 +38,8 @@ outline.setup({
         exclude = true,
         "Variable",
       },
+      -- prevents everything being shown from the attached buffer
+      NvimTree = {},
     },
     icons = {
       Array = { icon = "", hl = "Identifier" },

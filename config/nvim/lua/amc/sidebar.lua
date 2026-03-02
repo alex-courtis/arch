@@ -18,50 +18,52 @@ local NO_STARTUP_FT = {
 
 ---create the sidebar with nvim-tree and outline
 ---returns to current window
----when nvim-tree is closed, outline will always be closed
----@return boolean windows were created
+---when nvim-tree is closed, outline will be closed and opened
 local function sidebar()
-  local created = false
-
   local winid_cur = vim.api.nvim_get_current_win()
 
-  if nvim_tree_api.tree.winid() then
+  local winid_tree = nvim_tree_api.tree.winid()
+  local outline_open = outline.is_open()
+
+  if winid_tree and outline_open then
+    return
+  end
+
+  if outline_open then
+    outline.close()
+  end
+
+  if winid_tree then
     nvim_tree_api.tree.focus()
   else
-    if outline.is_open() then
-      outline.close()
-    end
     nvim_tree_api.tree.open()
-    created = true
   end
 
-  if not outline.is_open() then
-    outline.open_outline()
-    created = true
-  end
+  outline.open()
 
   vim.api.nvim_set_current_win(winid_cur)
-
-  return created
 end
 
 ---Focus outline, with a hacky delay of 750 to allow it to initialise from the current buffer
 function M.focus_outline()
-  if sidebar() then
+  if not outline.is_open() then
+    sidebar()
     vim.defer_fn(outline.focus_outline, 750)
   else
     outline.focus_outline()
   end
 end
 
-function M.focus_nvim_tree()
-  sidebar()
-  nvim_tree_api.tree.open()
+---@param opts? nvim_tree.api.tree.open.Opts optional
+function M.focus_nvim_tree(opts)
+  if not nvim_tree_api.tree.winid() then
+    sidebar()
+  end
+  nvim_tree_api.tree.open(opts)
 end
 
 function M.focus_nvim_tree_update_root()
-  sidebar()
-  nvim_tree_api.tree.open({ update_root = true })
+  M.focus_nvim_tree({ update_root = true })
 end
 
 ---Open sidebar for real files or startup directory
