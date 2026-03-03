@@ -1,7 +1,8 @@
 # TODO
-# remove zsh terminal cursor from zshrc.zle
-# scrollback mappings
-# action csi or esc https://ghostty.org/docs/config/keybind#action
+# clear/reset action csi or esc https://ghostty.org/docs/config/keybind#action
+# write screen / scrollback with xdg-open
+
+config-file = ?appearance
 
 # process
 gtk-single-instance = true
@@ -27,46 +28,98 @@ link-previews = false
 # bell
 bell-features = no-border,no-attention,no-title
 
-# font
-font-family = Monospace
-font-size = $FONT_SIZE_PT
-
-config-file = ?base16
-
 # mouse
 right-click-action = copy-or-paste
 
 # map
-keybind = ctrl+shift+l=clear_screen
+keybind = clear
+
+# map - new
 keybind = super+shift+escape=new_window
+
+keybind = ctrl+shift+r=reset
+keybind = ctrl+shift+l=clear_screen
+
+keybind = shift+arrow_up=scroll_page_lines:-1
+keybind = shift+arrow_down=scroll_page_lines:1
+
+keybind = ctrl+shift+j=write_scrollback_file:paste,plain
+keybind = ctrl+alt+j=write_screen_file:paste,plain
+keybind = ctrl+shift+k=write_scrollback_file:open,plain
+keybind = ctrl+alt+k=write_screen_file:open,plain
+
 keybind = ctrl+==reset_font_size
 
-# colours
-palette =  0=#$BASE16[black]
-palette =  1=#$BASE16[red]
-palette =  2=#$BASE16[green]
-palette =  3=#$BASE16[yellow]
-palette =  4=#$BASE16[blue]
-palette =  5=#$BASE16[magenta]
-palette =  6=#$BASE16[cyan]
-palette =  7=#$BASE16[white]
-palette =  8=#$BASE16[bright_black]
-palette =  9=#$BASE16[bright_red]
-palette = 10=#$BASE16[bright_green]
-palette = 11=#$BASE16[bright_yellow]
-palette = 12=#$BASE16[bright_blue]
-palette = 13=#$BASE16[bright_magenta]
-palette = 14=#$BASE16[bright_cyan]
-palette = 15=#$BASE16[bright_white]
-palette = 16=#$BASE16[orange]
-palette = 17=#$BASE16[brown]
-palette = 18=#$BASE16[lighter_background]
-palette = 19=#$BASE16[selection_background]
-palette = 20=#$BASE16[dark_foreground]
-palette = 21=#$BASE16[light_foreground]
-background = #$BASE16[default_background]
-foreground = #$BASE16[default_foreground]
-cursor-color = #$BASE16[default_foreground]
-cursor-text =  #$BASE16[default_background]
-selection-background = #$HL_BG
-selection-foreground = #$HL_FG
+# map - defaults
+keybind = ctrl+shift+,=reload_config
+# keybind = ctrl+,=open_config
+keybind = copy=copy_to_clipboard:mixed
+keybind = paste=paste_from_clipboard
+# keybind = ctrl+insert=copy_to_clipboard:mixed
+keybind = shift+insert=paste_from_selection
+keybind = ctrl+shift+c=copy_to_clipboard:mixed
+keybind = ctrl+shift+v=paste_from_clipboard
+# keybind = ctrl+==increase_font_size:1
+keybind = ctrl++=increase_font_size:1
+keybind = ctrl+-=decrease_font_size:1
+# keybind = ctrl+0=reset_font_size
+# keybind = super+ctrl+shift+j=write_screen_file:copy,plain
+# keybind = ctrl+shift+j=write_screen_file:paste,plain
+# keybind = ctrl+alt+shift+j=write_screen_file:open,plain
+# keybind = shift+arrow_left=adjust_selection:left
+# keybind = shift+arrow_right=adjust_selection:right
+# keybind = shift+arrow_up=adjust_selection:up
+# keybind = shift+arrow_down=adjust_selection:down
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
+keybind = shift+home=scroll_to_top
+keybind = shift+end=scroll_to_bottom
+# keybind = ctrl+shift+tab=previous_tab
+# keybind = ctrl+tab=next_tab
+# keybind = ctrl+shift+n=new_window
+# keybind = ctrl+shift+w=close_tab:this
+# keybind = ctrl+shift+q=quit
+# keybind = alt+f4=close_window
+# keybind = ctrl+shift+t=new_tab
+# keybind = ctrl+shift+arrow_left=previous_tab
+# keybind = ctrl+shift+arrow_right=next_tab
+# keybind = ctrl+page_up=previous_tab
+# keybind = ctrl+page_down=next_tab
+# keybind = ctrl+shift+o=new_split:right
+# keybind = ctrl+shift+e=new_split:down
+# keybind = super+ctrl+[=goto_split:previous
+# keybind = super+ctrl+]=goto_split:next
+# keybind = ctrl+alt+arrow_up=goto_split:up
+# keybind = ctrl+alt+arrow_down=goto_split:down
+# keybind = ctrl+alt+arrow_left=goto_split:left
+# keybind = ctrl+alt+arrow_right=goto_split:right
+# keybind = super+ctrl+shift+arrow_up=resize_split:up,10
+# keybind = super+ctrl+shift+arrow_down=resize_split:down,10
+# keybind = super+ctrl+shift+arrow_left=resize_split:left,10
+# keybind = super+ctrl+shift+arrow_right=resize_split:right,10
+# keybind = ctrl+shift+page_up=jump_to_prompt:-1
+# keybind = ctrl+shift+page_down=jump_to_prompt:1
+keybind = ctrl+shift+f=start_search
+# keybind = escape=end_search
+keybind = ctrl+shift+i=inspector:toggle
+keybind = ctrl+shift+a=select_all
+# keybind = alt+digit_1=goto_tab:1
+# keybind = alt+1=goto_tab:1
+# keybind = alt+digit_2=goto_tab:2
+# keybind = alt+2=goto_tab:2
+# keybind = alt+digit_3=goto_tab:3
+# keybind = alt+3=goto_tab:3
+# keybind = alt+digit_4=goto_tab:4
+# keybind = alt+4=goto_tab:4
+# keybind = alt+digit_5=goto_tab:5
+# keybind = alt+5=goto_tab:5
+# keybind = alt+digit_6=goto_tab:6
+# keybind = alt+6=goto_tab:6
+# keybind = alt+digit_7=goto_tab:7
+# keybind = alt+7=goto_tab:7
+# keybind = alt+digit_8=goto_tab:8
+# keybind = alt+8=goto_tab:8
+# keybind = alt+9=last_tab
+# keybind = ctrl+enter=toggle_fullscreen
+# keybind = ctrl+shift+enter=toggle_split_zoom
+keybind = ctrl+shift+p=toggle_command_palette
