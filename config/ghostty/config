@@ -1,0 +1,72 @@
+# TODO
+# remove zsh terminal cursor from zshrc.zle
+# scrollback mappings
+# action csi or esc https://ghostty.org/docs/config/keybind#action
+
+# process
+gtk-single-instance = true
+linux-cgroup = always
+
+# shell
+shell-integration-features = no-title,no-cursor
+app-notifications = no-clipboard-copy
+
+# chrome
+gtk-titlebar = false
+scrollbar = never
+window-padding-x = 0
+window-padding-y = 0
+window-padding-color = extend
+
+# clipboard
+clipboard-read = allow
+
+# links
+link-previews = false
+
+# bell
+bell-features = no-border,no-attention,no-title
+
+# font
+font-family = Monospace
+font-size = $FONT_SIZE_PT
+
+config-file = ?base16
+
+# mouse
+right-click-action = copy-or-paste
+
+# map
+keybind = ctrl+shift+l=clear_screen
+keybind = super+shift+escape=new_window
+keybind = ctrl+==reset_font_size
+
+# colours
+palette =  0=#$BASE16[black]
+palette =  1=#$BASE16[red]
+palette =  2=#$BASE16[green]
+palette =  3=#$BASE16[yellow]
+palette =  4=#$BASE16[blue]
+palette =  5=#$BASE16[magenta]
+palette =  6=#$BASE16[cyan]
+palette =  7=#$BASE16[white]
+palette =  8=#$BASE16[bright_black]
+palette =  9=#$BASE16[bright_red]
+palette = 10=#$BASE16[bright_green]
+palette = 11=#$BASE16[bright_yellow]
+palette = 12=#$BASE16[bright_blue]
+palette = 13=#$BASE16[bright_magenta]
+palette = 14=#$BASE16[bright_cyan]
+palette = 15=#$BASE16[bright_white]
+palette = 16=#$BASE16[orange]
+palette = 17=#$BASE16[brown]
+palette = 18=#$BASE16[lighter_background]
+palette = 19=#$BASE16[selection_background]
+palette = 20=#$BASE16[dark_foreground]
+palette = 21=#$BASE16[light_foreground]
+background = #$BASE16[default_background]
+foreground = #$BASE16[default_foreground]
+cursor-color = #$BASE16[default_foreground]
+cursor-text =  #$BASE16[default_background]
+selection-background = #$HL_BG
+selection-foreground = #$HL_FG

@@ -114,7 +114,7 @@ esac
 # https://github.com/termstandard/colors
 #
 case $TERM in
-	linux-truecolor|tmux-truecolor|tmux-direct|xterm-truecolor|xterm-direct*|alacritty*)
+	linux-truecolor|tmux-truecolor|tmux-direct|xterm-truecolor|xterm-direct*|alacritty*|xterm-ghostty)
 		export COLORTERM="truecolor"
 		;;
 	*)
