@@ -1,4 +1,25 @@
 [Default Applications]
+text/plain=nvim-term.desktop;
+text/english=nvim-term.desktop;
+text/plain=nvim-term.desktop;
+text/x-makefile=nvim-term.desktop;
+text/x-c++hdr=nvim-term.desktop;
+text/x-c++src=nvim-term.desktop;
+text/x-chdr=nvim-term.desktop;
+text/x-csrc=nvim-term.desktop;
+text/x-java=nvim-term.desktop;
+text/x-moc=nvim-term.desktop;
+text/x-pascal=nvim-term.desktop;
+text/x-tcl=nvim-term.desktop;
+text/x-tex=nvim-term.desktop;
+application/x-shellscript=nvim-term.desktop;
+text/x-c=nvim-term.desktop;
+text/x-c++=nvim-term.desktop;
+text/x-shellscript=nvim-term.desktop;
+application/javascript=nvim-term.desktop;
+application/json=nvim-term.desktop;
+application/octet-stream=nvim-term.desktop;
+application/x-wine-extension-ini=nvim-term.desktop;
 model/3mf=os-open.desktop;
 model/stl=os-open.desktop;
 text/html=brave-browser.desktop;
