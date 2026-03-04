@@ -21,7 +21,7 @@ riverctl map normal $mod3 BackSpace spawn "steam -shutdown"
 riverctl map normal $mod4 backspace exit
 
 riverctl map normal $mod1 Escape spawn term
-# mod2 is alacritty term
+# mod2 is new term from path
 
 riverctl map normal $mod1 Tab spawn b
 riverctl map normal $mod2 Tab spawn bp

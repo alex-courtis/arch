@@ -1,3 +1,6 @@
+# cursor
+adjust-cursor-thickness = 200%
+
 # font
 font-family = Monospace
 font-size = $FONT_SIZE_PT

@@ -78,7 +78,7 @@ export UH_CONT_HL_NAME="${HL_NAMES[${USER}]-${HL_NAME}}"
 #
 case "${HOST}" in
 	*)
-		export FONT_SIZE_PT=11.5
+		export FONT_SIZE_PT=12
 		export FONT_SIZE_PT_BAR=14
 		;;
 esac
