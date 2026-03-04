@@ -1,7 +1,3 @@
-# TODO
-# clear/reset action csi or esc https://ghostty.org/docs/config/keybind#action
-# write screen / scrollback with xdg-open
-
 config-file = ?appearance
 
 # process
@@ -43,10 +39,10 @@ keybind = ctrl+shift+l=clear_screen
 keybind = shift+arrow_up=scroll_page_lines:-1
 keybind = shift+arrow_down=scroll_page_lines:1
 
-keybind = ctrl+shift+j=write_scrollback_file:paste,plain
-keybind = ctrl+alt+j=write_screen_file:paste,plain
-keybind = ctrl+shift+k=write_scrollback_file:open,plain
-keybind = ctrl+alt+k=write_screen_file:open,plain
+keybind = ctrl+alt+j=write_scrollback_file:paste,plain
+keybind = ctrl+shift+j=write_screen_file:paste,plain
+keybind = ctrl+alt+k=write_scrollback_file:open,plain
+keybind = ctrl+shift+k=write_screen_file:open,plain
 
 keybind = ctrl+==reset_font_size
 
