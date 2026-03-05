@@ -36,15 +36,21 @@ keybind = super+shift+escape=new_window
 keybind = ctrl+shift+r=reset
 keybind = ctrl+shift+l=clear_screen
 
-keybind = shift+arrow_up=scroll_page_lines:-1
-keybind = shift+arrow_down=scroll_page_lines:1
+keybind = ctrl+shift+o=write_scrollback_file:open,plain
+keybind = ctrl+alt+o=write_scrollback_file:copy,plain
 
-keybind = ctrl+alt+j=write_scrollback_file:paste,plain
-keybind = ctrl+shift+j=write_screen_file:paste,plain
-keybind = ctrl+alt+k=write_scrollback_file:open,plain
-keybind = ctrl+shift+k=write_screen_file:open,plain
+keybind = ctrl+shift+s=write_screen_file:open,plain
+keybind = ctrl+alt+s=write_screen_file:copy,plain
 
 keybind = ctrl+==reset_font_size
+
+keybind = ctrl+shift+enter=start_search
+
+keybind = ctrl+shift+u=scroll_page_up
+keybind = ctrl+shift+d=scroll_page_down
+keybind = ctrl+shift+k=scroll_page_lines:-1
+keybind = ctrl+shift+j=scroll_page_lines:1
+keybind = ctrl+shift+g=scroll_to_top
 
 # map - defaults
 keybind = ctrl+shift+,=reload_config
@@ -66,10 +72,10 @@ keybind = ctrl+-=decrease_font_size:1
 # keybind = shift+arrow_right=adjust_selection:right
 # keybind = shift+arrow_up=adjust_selection:up
 # keybind = shift+arrow_down=adjust_selection:down
-keybind = shift+page_up=scroll_page_up
-keybind = shift+page_down=scroll_page_down
-keybind = shift+home=scroll_to_top
-keybind = shift+end=scroll_to_bottom
+# keybind = shift+page_up=scroll_page_up
+# keybind = shift+page_down=scroll_page_down
+# keybind = shift+home=scroll_to_top
+# keybind = shift+end=scroll_to_bottom
 # keybind = ctrl+shift+tab=previous_tab
 # keybind = ctrl+tab=next_tab
 # keybind = ctrl+shift+n=new_window
@@ -95,7 +101,7 @@ keybind = shift+end=scroll_to_bottom
 # keybind = super+ctrl+shift+arrow_right=resize_split:right,10
 # keybind = ctrl+shift+page_up=jump_to_prompt:-1
 # keybind = ctrl+shift+page_down=jump_to_prompt:1
-keybind = ctrl+shift+f=start_search
+# keybind = ctrl+shift+f=start_search
 # keybind = escape=end_search
 keybind = ctrl+shift+i=inspector:toggle
 keybind = ctrl+shift+a=select_all
