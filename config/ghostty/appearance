@@ -4,6 +4,7 @@ adjust-cursor-thickness = 200%
 # font
 font-family = Monospace
 font-size = $FONT_SIZE_PT
+adjust-cell-height = 2
 
 # colours
 palette =  0=#$BASE16[black]
