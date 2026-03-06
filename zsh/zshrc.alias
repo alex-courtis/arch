@@ -46,6 +46,7 @@ alias vidone="vi ~/.todo/todotxt/done.txt"
 alias vitodo="vi ~/.todo/todotxt/todo.txt"
 
 alias sun="sort | uniq -c | sort -n"
+alias suns="sun | sed -E 's/^ +([0-9]*).*/\1/g' | paste -sd+ | bc"
 
 alias egrep="grep -E"
 
