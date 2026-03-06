@@ -7,6 +7,7 @@ linux-cgroup = always
 # shell
 shell-integration-features = no-title,no-cursor
 app-notifications = no-clipboard-copy
+window-inherit-working-directory = true
 
 # chrome
 gtk-titlebar = false
@@ -14,6 +15,7 @@ scrollbar = never
 window-padding-x = 0
 window-padding-y = 0
 window-padding-color = extend
+window-decoration = none
 
 # clipboard
 clipboard-read = allow
@@ -42,15 +44,25 @@ keybind = ctrl+alt+o=write_scrollback_file:copy,plain
 keybind = ctrl+shift+s=write_screen_file:open,plain
 keybind = ctrl+alt+s=write_screen_file:copy,plain
 
+keybind = ctrl+shift+t=copy_title_to_clipboard
+
 keybind = ctrl+==reset_font_size
 
 keybind = ctrl+shift+enter=start_search
 
 keybind = ctrl+shift+u=scroll_page_up
 keybind = ctrl+shift+d=scroll_page_down
-keybind = ctrl+shift+k=scroll_page_lines:-1
-keybind = ctrl+shift+j=scroll_page_lines:1
+
 keybind = ctrl+shift+g=scroll_to_top
+keybind = ctrl+shift+left=scroll_to_top
+
+keybind = ctrl+shift+right=scroll_to_bottom
+
+keybind = ctrl+shift+k=scroll_page_lines:-1
+keybind = ctrl+shift+up=scroll_page_lines:-1
+
+keybind = ctrl+shift+j=scroll_page_lines:1
+keybind = ctrl+shift+down=scroll_page_lines:1
 
 # map - defaults
 keybind = ctrl+shift+,=reload_config
