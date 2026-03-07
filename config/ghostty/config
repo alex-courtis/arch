@@ -28,6 +28,8 @@ bell-features = no-border,no-attention,no-title
 
 # mouse
 right-click-action = copy-or-paste
+# 1.5 sends 3, default 3 sends 6
+mouse-scroll-multiplier = precision:1,discrete:0.5
 
 # map
 keybind = clear
