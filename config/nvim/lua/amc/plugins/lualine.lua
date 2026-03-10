@@ -176,7 +176,7 @@ local config = {
 
     -- filetype is name
     {
-      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit", "NvimTree", "Outline" },
+      filetypes = { "fugitive", "fugitiveblame", "git", "gitcommit", "NvimTree", },
       sections = {
         lualine_a = { "filetype" },
         lualine_c = { win_buf_info },

@@ -3,12 +3,12 @@ local require = require("amc.require").or_empty
 local env = require("amc.env")
 local dev = require("amc.dev")
 local buffers = require("amc.buffers")
-local sidebar = require("amc.sidebar")
 local windows = require("amc.windows")
 local util = require("amc.util")
 
 local fugitive = require("amc.plugins.fugitive")
 local lsp = require("amc.plugins.lsp")
+local nvt = require("amc.plugins.nvt")
 local rainbow = require("amc.plugins.rainbow")
 local spectre = require("amc.plugins.spectre")
 local telescope = require("amc.plugins.telescope")
@@ -76,14 +76,13 @@ K.c___("<C-j>", "<Down>",                        "<Down>")
 K.c___("<C-k>", "<Up>",                          "<Up>")
 
 -- [7
--- :
+-- ;:
 --
 --
-K.nsl_(";", sidebar.focus_outline,               "Outline: Open Focus")
-K.nsl_("a", sidebar.focus_nvim_tree,             "nvim-tree: Focus")
-K.nsl_("A", sidebar.focus_nvim_tree_update_root, "nvim-tree: Focus Update Root")
-K.nsl_("'", windows.close_inc,                   "Close Lowest Window")
-K.nsl_('"', vim.cmd.only,                        "Only")
+K.nsl_("a", nvt.open_find,             "Open nvim-tree")
+K.nsl_("A", nvt.open_find_update_root, "Open nvim-tree Update Root")
+K.nsl_("'", windows.close_inc,         "Close Lowest Window")
+K.nsl_('"', vim.cmd.only,              "Only")
 
 --  5
 --

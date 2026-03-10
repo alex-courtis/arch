@@ -1,3 +1,4 @@
+local env = require("amc.env")
 local require = require("amc.require").or_nil
 
 local M = {}
@@ -12,6 +13,11 @@ if not tree or not api then
 end
 
 local telescope = require("amc.plugins.telescope")
+
+local NO_STARTUP_FT = {
+  "gitcommit",
+  "gitrebase",
+}
 
 ---Absolute paths of the node.
 ---@return string|nil file node
@@ -283,6 +289,36 @@ if vim.env.NVIM_TREE_PROFILE then
   config.log.types.profile = true
 end
 
+---open and find
+---@param update_root boolean|nil
+function M.open_find(update_root)
+  api.tree.open({ find_file = true, update_root = update_root })
+end
+
+---maybe open, find and update root
+function M.open_find_update_root()
+  M.open_find(true)
+end
+
+---Open nvim-tree for real files or startup directory
+---@param data table from autocommand
+function M.vim_enter(data)
+  local real_file = vim.fn.filereadable(data.file) == 1
+
+  local temp_file = real_file and data.file:match("^/tmp")
+
+  local ignored_ft = vim.tbl_contains(NO_STARTUP_FT, vim.bo[data.buf].ft)
+
+  if (real_file and not temp_file and not ignored_ft) or env.startup_dir then
+    -- open the tree but don't focus it
+    api.tree.toggle({ focus = false })
+
+    -- find the file if it exists
+    api.tree.find_file(data.file)
+  end
+end
+
+-- init
 tree.setup(config)
 
 return M
