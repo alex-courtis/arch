@@ -33,6 +33,9 @@ local function on_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     K.n_lb("dd", telescope.lsp_functions, bufnr, "Telescope: functions")
     K.n_lb("dv", telescope.lsp_variables, bufnr, "Telescope: variables")
+
+    K.n_lb("u", locations.jump_prev_func, bufnr, "LSP: previous function")
+    K.n_lb("e", locations.jump_next_func, bufnr, "LSP: next function")
   end
 
   if client.server_capabilities.definitionProvider then

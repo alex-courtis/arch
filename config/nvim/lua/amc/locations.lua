@@ -1,5 +1,15 @@
 local M = {}
 
+local FUNCTION_TYPES = {
+  [vim.lsp.protocol.SymbolKind.Module] = true,
+  [vim.lsp.protocol.SymbolKind.Class] = true,
+  [vim.lsp.protocol.SymbolKind.Method] = true,
+  [vim.lsp.protocol.SymbolKind.Constructor] = true,
+  [vim.lsp.protocol.SymbolKind.Interface] = true,
+  [vim.lsp.protocol.SymbolKind.Function] = true,
+  [vim.lsp.protocol.SymbolKind.Operator] = true,
+}
+
 --
 -- Location Jumping
 --
@@ -216,6 +226,56 @@ local function get_locations(method, opts)
     vim.cmd("wincmd p")
   end)
 
+end
+
+--
+-- Function Jumping
+--
+function M.jump_func(next)
+  vim.lsp.buf_request_all(0, "textDocument/documentSymbol", function(client)
+    return vim.lsp.util.make_position_params(0, client.offset_encoding)
+  end, function(results)
+
+    if not results or #results == 0 or not results[1].result then
+      return
+    end
+
+    local lines = {}
+    for _, r in ipairs(results[1].result) do
+      if FUNCTION_TYPES[r.kind] then
+        local range = r.range or r.location and r.location.range
+        if range and range.start and type(range.start.line) == "number" then
+          -- offset to match buffer lnum
+          table.insert(lines, range.start.line + 1)
+        end
+      end
+    end
+
+    table.sort(lines, function(a, b)
+      if next then
+        return a < b
+      else
+        return a > b
+      end
+    end)
+
+    local lnum = vim.fn.getpos(".")[2]
+
+    for _, l in ipairs(lines) do
+      if next and l > lnum or not next and l < lnum then
+        vim.fn.setpos(".", { 0, l, 1, 0 })
+        return
+      end
+    end
+  end)
+end
+
+function M.jump_next_func()
+  M.jump_func(true)
+end
+
+function M.jump_prev_func()
+  M.jump_func(false)
 end
 
 --- Jumps to the declaration of the symbol under the cursor.

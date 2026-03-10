@@ -106,20 +106,22 @@ K.nsl_(",",  fugitive.open,                        "Open Fugitive")
 K.nsl_("o",  windows.go_home_or_next,              "Home Or Next Window")
 K.nsl_("q",  windows.close,                        "Close Window")
 
--- }3
+--  3
 --  >
 --  E
 --  J
-K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
-K.nsl_("e", windows.cnext,       "Next QF")
+K.nsl_("}", lsp.next_diagnostic, "Next Diagnostic")
+-- e lsp
+K.nsl_(".", windows.cnext,       "Next QF")
 -- j gitsigns
 
--- (1
+--  1
 --  P
 --  U
 --  K
-K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
-K.nsl_("u", windows.cprev,       "Prev QF")
+K.nsl_("(", lsp.prev_diagnostic, "Prev Diagnostic")
+-- u lsp
+K.nsl_("p", windows.cprev,       "Prev QF")
 -- k gitsigns
 
 -- =9

@@ -75,6 +75,9 @@ local cfg = actions
         attach_mappings = attach_quickfix_select,
         initial_mode = "normal",
       },
+      lsp_document_symbols = {
+        initial_mode = "normal",
+      },
     },
     defaults = {
       path_display = {
@@ -261,11 +264,11 @@ function M.diagnostics_workspace()
 end
 
 function M.lsp_functions()
-  M.lsp_document_symbols({ symbols = { "function", "method", "module", } })
+  M.lsp_document_symbols({ symbols = { "function", "method", "module", }, show_line = true, })
 end
 
 function M.lsp_variables()
-  M.lsp_document_symbols({ symbols = { "variable", } })
+  M.lsp_document_symbols({ symbols = { "variable", }, show_line = true, })
 end
 
 M.rhs_n_grep_cword =
