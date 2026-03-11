@@ -109,18 +109,18 @@ K.nsl_("q",  windows.close,                        "Close Window")
 --  >
 --  E
 --  J
-K.nsl_("}", lsp.next_diagnostic, "Next Diagnostic")
--- e lsp
-K.nsl_(".", windows.cnext,       "Next QF")
+K.nsl_("}", windows.cnext,       "Next QF")
+K.nsl_(".", lsp.next_diagnostic, "Next Diagnostic")
+-- e lsp function next
 -- j gitsigns
 
 --  1
 --  P
 --  U
 --  K
-K.nsl_("(", lsp.prev_diagnostic, "Prev Diagnostic")
--- u lsp
-K.nsl_("p", windows.cprev,       "Prev QF")
+K.nsl_("(", windows.cprev,       "Prev QF")
+K.nsl_("p", lsp.prev_diagnostic, "Prev Diagnostic")
+-- u lsp function prev
 -- k gitsigns
 
 -- =9
