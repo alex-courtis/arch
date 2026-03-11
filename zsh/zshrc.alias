@@ -15,6 +15,8 @@ alias lla="ll -a"
 
 alias o="xdg-open"
 
+alias c="clear;"
+
 alias grep="grep --color=auto"
 alias grepc="grep --color=always"
 alias rgrep="find . -type f -print0 | xargs -0 grep --color=auto"
