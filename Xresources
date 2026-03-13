@@ -5,7 +5,7 @@ XTerm.termName: xterm-256color
 XTerm.vt100.faceName: Monospace
 XTerm.vt100.faceSize: $FONT_SIZE_PT
 
-# osc52
+!osc52
 XTerm.allowWindowOps: true
 
 XTerm*VT100.Translations:       #override\n\
