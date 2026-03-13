@@ -83,10 +83,6 @@ riverctl map normal $mod1 c send-layout-cmd wideriver "--count 1"
 
 riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 
-riverctl map normal $mod1 n send-layout-cmd wideriver "--stack dwindle"
-riverctl map normal $mod2 n send-layout-cmd wideriver "--stack diminish"
-riverctl map normal $mod3 n send-layout-cmd wideriver "--stack even"
-
 riverctl map normal $mod1 l focus-view right
 riverctl map normal $mod2 l swap right
 riverctl map normal $mod3 l swap next
@@ -103,10 +99,14 @@ riverctl map normal $mod4 h spawn "vollower"
 riverctl map normal $mod1 t focus-view next
 riverctl map normal $mod2 t focus-view previous
 
-riverctl map normal $mod1 s spawn "sss"
-riverctl map normal $mod3 s spawn "wl-color-picker > /dev/null 2>&1"
+riverctl map normal $mod1 n send-layout-cmd wideriver "--stack dwindle"
+riverctl map normal $mod2 n send-layout-cmd wideriver "--stack diminish"
+riverctl map normal $mod3 n send-layout-cmd wideriver "--stack even"
 
-riverctl map normal $mod1 Minus spawn "ssa"
+riverctl map normal $mod2 s spawn "sss"
+riverctl map normal $mod3 s spawn "ssa"
+
+riverctl map normal $mod3 Minus spawn "wl-color-picker > /dev/null 2>&1"
 
 # b\
 riverctl map normal $mod4 b spawn "volmutemic"
@@ -123,7 +123,11 @@ riverctl map normal $mod1 z spawn "way-displays --toggle SCALING"
 riverctl map normal $mod2 z spawn "wd-toggle-internal-only"
 riverctl map normal $mod3 z spawn "wd-toggle-internal"
 
-riverctl map normal $mod3 backslash spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
+riverctl map normal $mod1 backslash spawn 'swaylock -f -c "#${BASE16_lighter_background}" > /dev/null 2>&1'
+if [ "$(whence network-restart.sh)" ]; then
+	riverctl map normal $mod2 backslash spawn "network-restart.sh"
+fi
+
 
 #
 # special
