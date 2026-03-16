@@ -36,6 +36,7 @@
   "custom/slstatus": {
     "exec": "slstatus -s",
     "on-click": "volmute",
+    "on-double-click": "network-restart.sh",
     "on-click-right": "volmutemic",
     "on-scroll-up": "volraise",
     "on-scroll-down": "vollower",
