@@ -19,7 +19,6 @@ vim.o.history = 500 -- applies to shada
 vim.o.ignorecase = true
 vim.o.listchars = vim.o.listchars .. ",space:·"
 vim.o.mouse = "a"
-vim.o.mousescroll="ver:1,hor:2"
 vim.o.number = true
 vim.o.pumheight = 15
 vim.o.pumwidth = 30

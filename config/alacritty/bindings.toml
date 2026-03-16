@@ -33,6 +33,6 @@ bindings = [
 
 { mouse = "Right",                        action = "Copy",                     mode = "~Alt"                       },
 { mouse = "Right",                        action = "ClearSelection",           mode = "~Alt"                       },
-{ mouse = "Right", mods = "Shift",        action = "Paste",                    mode = "~Alt"                       },
+{ mouse = "Right", mods = "Shift",        action = "Paste"                                                         },
 
 	]

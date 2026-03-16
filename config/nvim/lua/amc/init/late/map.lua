@@ -41,6 +41,11 @@ end
 
 local K = util.K
 
+-- mouse
+K.n___("<RightMouse>", "<Nop>", "<Nop>")
+K.i___("<RightMouse>", "<Nop>", "<Nop>")
+K.v___("<RightMouse>", "y",     "yank")
+
 -- normal mode escape clears highlight
 K.n___("<Esc>", function()
   vim.cmd.nohlsearch()
