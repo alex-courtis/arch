@@ -22,10 +22,17 @@ bindings = [
 { key = "Return",                         action = "ScrollToBottom",           mode = "Vi|~Search"                 },
 { key = 8,        mods = "Shift",         action = "First",                    mode = "Vi|~Search"                 },
 { key = 41,                               action = "Last",                     mode = "Vi|~Search"                 },
-{ key = 27,       mods = "Shift",         action = "FirstOccupied",            mode = "Vi|~Search"                 },
-{ key = 2,        mods = "Shift",         action = "Bracket",                  mode = "Vi|~Search"                 },
 
 { key = "Return", mods = "Shift",         chars = "\u001B[13;2u",              mode = "Alt"                        },
 { key = "Return", mods = "Control",       chars = "\u001B[13;5u",              mode = "Alt"                        },
+
+	]
+
+[mouse]
+bindings = [
+
+{ mouse = "Right",                        action = "Copy",                     mode = "~Alt"                       },
+{ mouse = "Right",                        action = "ClearSelection",           mode = "~Alt"                       },
+{ mouse = "Right", mods = "Shift",        action = "Paste",                    mode = "~Alt"                       },
 
 	]

@@ -27,7 +27,7 @@ X:
 * [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay/) X display manager
 
 Tools:
-* [ghostty](https://ghostty.org/) terminal
+* [alacritty](https://alacritty.org/) terminal
 * [neovim](https://github.com/neovim/neovim) editor
 * [zsh](https://github.com/zsh-users/zsh) zsh
 * [dual-function-keys](https://gitlab.com/interception/linux/plugins/dual-function-keys)

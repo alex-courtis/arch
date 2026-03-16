@@ -592,10 +592,10 @@ Not packaged:
 #### GUI
 
 `yay -S
+alacritty
 bee-host
 bemenu-wayland
 brave-bin
-ghostty
 gpm
 grim
 libnotify

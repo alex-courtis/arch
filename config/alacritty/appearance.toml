@@ -44,8 +44,7 @@ foreground = "0x$HL_BG"
 
 
 [colors.primary]
-# background =        "0x$BASE16[default_background]"
-background =        "0x000030"
+background =        "0x$BASE16[default_background]"
 bright_foreground = "0x$BASE16[light_foreground]"
 dim_foreground =    "0x$BASE16[dark_foreground]"
 foreground =        "0x$BASE16[default_foreground]"

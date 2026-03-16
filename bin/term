@@ -1,4 +1,4 @@
 #!/bin/zsh
 
-ghostty "$@" >/dev/null 2>&1 &!
+alacritty "$@" >/dev/null 2>&1 &!
 
