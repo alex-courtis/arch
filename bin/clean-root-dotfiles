@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # adjust this forward as root is cleaned to speed things up
-COMMIT_BEFORE_ROOT="8d5a3fff"
+COMMIT_BEFORE_ROOT="bc1b1959"
 
 rm -rf /tmp/dotfiles.cleaning
 git clone "git@github.com:alex-courtis/arch.git" /tmp/dotfiles.cleaning
@@ -36,6 +36,11 @@ while IFS= read -r f <&3; do
 	fi
 done 3< /tmp/root.files
 echo "created /tmp/root.files.removed"
+
+if [ ! -f "/tmp/root.files.removed" ]; then
+	echo "no root files removed"
+	exit 0
+fi
 
 # maybe delete removed
 echo "prompting for removed to delete"
