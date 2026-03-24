@@ -283,4 +283,11 @@ function M.prev_snippet()
   snippet_jump(-1)
 end
 
+vim.diagnostic.config({
+  signs = {
+    priority = 10,
+  },
+  severity_sort = true,
+})
+
 return M
