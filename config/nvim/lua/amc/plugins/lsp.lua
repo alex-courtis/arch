@@ -8,6 +8,7 @@ local K = require("amc.util").K
 
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
+local nvim_tree_api = require("nvim-tree.api")
 
 --
 -- Map
@@ -31,11 +32,11 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.server_capabilities.documentSymbolProvider then
-    K.n_lb("dd", telescope.lsp_functions, bufnr, "Telescope: functions")
-    K.n_lb("dv", telescope.lsp_variables, bufnr, "Telescope: variables")
+    K.n_lb("dd", telescope.lsp_functions,  bufnr, "Telescope: functions")
+    K.n_lb("dv", telescope.lsp_variables,  bufnr, "Telescope: variables")
 
-    K.n_lb("u", locations.jump_prev_func, bufnr, "LSP: previous function")
-    K.n_lb("e", locations.jump_next_func, bufnr, "LSP: next function")
+    K.n_lb("u",  locations.jump_prev_func, bufnr, "LSP: previous function")
+    K.n_lb("e",  locations.jump_next_func, bufnr, "LSP: next function")
   end
 
   if client.server_capabilities.definitionProvider then
@@ -99,7 +100,24 @@ end
 --
 -- Global diagnostics config
 --
+
+---@type table<vim.diagnostic.Severity,string>
+local signs_text = nil
+if nvim_tree_api then
+  local i = nvim_tree_api.config.default().diagnostics.icons
+  signs_text = {
+    HINT = i and i.hint,
+    INFO = i and i.info,
+    WARN = i and i.warning,
+    ERROR = i and i.error,
+  }
+end
+
 vim.diagnostic.config({
+  signs = {
+    text = signs_text,
+    priority = 10,
+  },
   virtual_text = true,
   severity_sort = true,
 }, nil)
@@ -282,12 +300,5 @@ end
 function M.prev_snippet()
   snippet_jump(-1)
 end
-
-vim.diagnostic.config({
-  signs = {
-    priority = 10,
-  },
-  severity_sort = true,
-})
 
 return M

@@ -214,12 +214,6 @@ local config = {
       min = vim.diagnostic.severity.HINT,
       max = vim.diagnostic.severity.ERROR,
     },
-    icons = {
-      hint = " H",
-      info = " I",
-      warning = " W",
-      error = " E"
-    }
   },
   filters = {
     custom = {
