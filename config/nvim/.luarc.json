@@ -29,6 +29,8 @@
 
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/aerial.nvim/lua/aerial",
 
+      "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/nvim-lspconfig",
+
       "$XDG_DATA_HOME/nvim/site/pack.packer/packer/start/    DISABLED"
     ]
   },

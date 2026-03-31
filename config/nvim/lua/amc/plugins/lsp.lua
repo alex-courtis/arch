@@ -206,6 +206,28 @@ vim.lsp.config.lua_ls = {
       },
     }
   },
+
+  -- disable all diagnostics and other libraries when in a plugin
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if not path:match(vim.fn.stdpath("data") .. "/site/pack.*") then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua --[[@as vim.lsp.ClientConfig]], {
+      diagnostics = {
+        enable = false,
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+      },
+    })
+  end,
 }
 vim.lsp.enable("lua_ls")
 
