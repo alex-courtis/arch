@@ -116,10 +116,16 @@ searchEngines: |-
   di: https://duckduckgo.com/?iar=images&q=%s DuckDuckGo Images
   g: https://www.google.com/search?q=%s Google
   gi: https://images.google.com/search?q=%s Google Images
+  nti: https://github.com/nvim-tree/nvim-tree.lua/issues/%s nvim-tree Issue
+  ntp: https://github.com/nvim-tree/nvim-tree.lua/pull/%s nvim-tree PR
   pd: https://www.protondb.com/search?q=%s Proton DB
   sd: https://steamdb.info/instantsearch/?query=%s Steam DB
   ss: https://store.steampowered.com/search/?term=%s Steam Store
   w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+  wdi: https://github.com/alex-courtis/way-displays/issues/%s way-displays Issue
+  wdp: https://github.com/alex-courtis/way-displays/pull/%s way-displays PR
+  wri: https://github.com/alex-courtis/wideriver/issues/%s wideriver Issue
+  wrp: https://github.com/alex-courtis/wideriver/pull/%s wideriver PR
   y: https://www.youtube.com/results?search_query=%s Youtube
 settingsVersion: "2.4.0"
 userDefinedLinkHintCss: |-2
