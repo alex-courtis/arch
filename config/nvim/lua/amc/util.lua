@@ -2,6 +2,18 @@ local M = {}
 
 M.ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
 
+---Read .nvt-branch if present and return the first line
+---@return string? "master" if no file
+function M.nvt_branch()
+  local config_file_path = vim.env.HOME .. "/.nvt-branch"
+  if vim.loop.fs_stat(config_file_path) then
+    for nvt_branch in io.lines(config_file_path) do
+      return nvt_branch
+    end
+  end
+  return "master"
+end
+
 ---Read .nvt-dir and return first path containing /lua/nvim-tree.lua
 ---@return string dir from file otherwise "nvim-tree/nvim-tree.lua"
 function M.nvt_plugin_dir()

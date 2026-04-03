@@ -34,7 +34,8 @@
     },
     "nvim-tree.lua": {
       "rev": "31503ad5d869fca61461d82a9126f62480ecb0ab",
-      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+      "src": "https://github.com/nvim-tree/nvim-tree.lua",
+      "version": "'master'"
     },
     "nvim-treesitter": {
       "rev": "539abf6da5ee8702e37b82cc953131dadd570da2",

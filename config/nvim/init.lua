@@ -36,8 +36,11 @@ if vim.fn.has("nvim-0.12") == 1 then
     "https://github.com/tpope/vim-repeat.git",
     "https://github.com/vim-scripts/ReplaceWithRegister.git",
     "https://github.com/tpope/vim-fugitive.git",
-    { src = util.nvt_plugin_dir(), name = "nvim-tree.lua" },
     not vim.env.TERM:match("^linux") and "https://github.com/nvim-tree/nvim-web-devicons.git" or nil,
+    {
+      src = "https://github.com/nvim-tree/nvim-tree.lua",
+      version = util.nvt_branch(),
+    },
   })
 
 else
