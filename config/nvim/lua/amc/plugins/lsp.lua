@@ -116,7 +116,7 @@ end
 vim.diagnostic.config({
   signs = {
     text = signs_text,
-    priority = 10,
+    priority = 20,
   },
   virtual_text = true,
   severity_sort = true,

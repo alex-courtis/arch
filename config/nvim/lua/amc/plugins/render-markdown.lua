@@ -25,6 +25,9 @@ local config = {
   on = {
     attach = on_attach,
   },
+  sign = {
+    priority = 10,
+  },
 }
 
 render_markdown.setup(config);

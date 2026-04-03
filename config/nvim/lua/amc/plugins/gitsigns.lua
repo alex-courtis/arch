@@ -41,7 +41,7 @@ end
 
 local config = {
   numhl = true,
-  sign_priority = 20,
+  sign_priority = 30,
   current_line_blame_opts = {
     delay = 100,
   },
