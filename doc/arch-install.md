@@ -696,6 +696,7 @@ qt5ct
 qt6-wayland
 qt6ct
 rivalcfg
+rivalcfg-tray libayatana-appindicator
 sshfs
 stress
 ttf-nanum

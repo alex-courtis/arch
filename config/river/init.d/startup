@@ -11,6 +11,10 @@ mako > "/tmp/mako.${XDG_VTNR}.${USER}.log" 2>&1 &
 
 waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
 
+if [ "$(whence rivalcfg-tray)" ]; then
+	rivalcfg-tray > "/tmp/rivalcfg-tray.${XDG_VTNR}.${USER}.log" 2>&1 &
+fi
+
 # merge .Xresources
 if [ -r ${HOME}/.Xresources ]; then
 	xrdb -load ${HOME}/.Xresources
