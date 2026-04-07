@@ -13,7 +13,7 @@ function M.nvt_branch()
       end
     end
   end
-  return "master"
+  return nil
 end
 
 ---@param mode string
