@@ -8,7 +8,9 @@ function M.nvt_branch()
   local config_file_path = vim.env.HOME .. "/.nvt-branch"
   if vim.loop.fs_stat(config_file_path) then
     for nvt_branch in io.lines(config_file_path) do
-      return nvt_branch
+      if vim.loop.fs_stat("/home/alex/src/nvim-tree/" .. nvt_branch) then
+        return nvt_branch
+      end
     end
   end
   return "master"
