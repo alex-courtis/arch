@@ -275,14 +275,9 @@ K.n_l_("dc", vim.snippet.stop, "Stop Snippets")
 -- commands
 --
 
-uc("CD",     env.cd,                  {})
-uc("S",      buffers.exec_to_buffer,  { nargs = "+", complete = "expression" })
-uc("TSBase", treesitter.install_base, {})
-
-if vim.fn.has("nvim-0.12") == 1 then
-  uc("PS", function() vim.pack.update() end, {})
-else
-  uc("PS", "PackerSync", {})
-end
+uc("CD",     env.cd,                           {})
+uc("S",      buffers.exec_to_buffer,           { nargs = "+", complete = "expression" })
+uc("TSBase", treesitter.install_base,          {})
+uc("PS",     function() vim.pack.update() end, {})
 
 return M

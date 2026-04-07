@@ -33,9 +33,9 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "acc99b775880bc589afc6626ac68952d8ffc09df",
+      "rev": "7adc5679feb439275255aa9e95c434cca206d10c",
       "src": "https://github.com/nvim-tree/nvim-tree.lua",
-      "version": "'3310-minimum-neovim-version-0.10'"
+      "version": "'master'"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",

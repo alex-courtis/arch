@@ -275,19 +275,11 @@ function M.disable()
 end
 
 function M.prev_diagnostic()
-  if vim.fn.has("nvim-0.11") == 1 then
-    vim.diagnostic.jump({ count = -1, float = true, wrap = false, })
-  else
-    vim.diagnostic.goto_prev({ wrap = false }) ---@diagnostic disable-line: deprecated
-  end
+  vim.diagnostic.jump({ count = -1, float = true, wrap = false, })
 end
 
 function M.next_diagnostic()
-  if vim.fn.has("nvim-0.11") == 1 then
-    vim.diagnostic.jump({ count = 1, float = true, wrap = false, })
-  else
-    vim.diagnostic.goto_next({ wrap = false }) ---@diagnostic disable-line: deprecated
-  end
+  vim.diagnostic.jump({ count = 1, float = true, wrap = false, })
 end
 
 --- @param direction (vim.snippet.Direction) Navigation direction. -1 for previous, 1 for next.
