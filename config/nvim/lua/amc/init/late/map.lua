@@ -19,7 +19,7 @@ local which_key = require("amc.plugins.which-key")
 local M = {}
 
 -- escape a string for vim regex search, escaping most from pattern.txt with magic on
-local pattern_escape = "/*^$.*~\\\\"
+local pattern_escape = "/*^$.*~[]\\"
 local cword_escape = "<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR>"
 local reg_star_escape = "<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR>"
 
@@ -223,8 +223,8 @@ K.nsl_("z", dev.format,                         "Format")
 --  |
 K.n___("#",  "<Plug>(asterisk-z#)",                                                      "Word Backwards Stay")
 K.n_l_("#",  "#",                                                                        "Word Backwards")
-K.n_l_("/",  "/<C-r>=escape(expand('<cword>'), '" .. pattern_escape .. "')<CR><Esc>",    "Search")
-K.v_l_("/",  "\"*y<Esc>/<C-r>=escape(getreg('*'), '" .. pattern_escape .. "')<CR><Esc>", "Search Visual")
+K.n_l_("/",  "/" .. cword_escape .. "<Esc>",    "Search")
+K.v_l_("/",  "\"*y<Esc>/" .. reg_star_escape .. "<Esc>", "Search Visual")
 K.nsl_("_",  buffers.wipe_all,                                                           "Wipe All Buffers")
 K.nsl_("-",  ":silent BW!<CR>",                                                          "Wipe Buffer")
 K.nsl_("\\", which_key.show,                                                             "Show WhichKey")
