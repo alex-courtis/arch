@@ -221,16 +221,16 @@ K.nsl_("z", dev.format,                         "Format")
 --
 --
 --  |
-K.n___("#",  "<Plug>(asterisk-z#)",                                                      "Word Backwards Stay")
-K.n_l_("#",  "#",                                                                        "Word Backwards")
-K.n_l_("/",  "/" .. cword_escape .. "<Esc>",    "Search")
+K.n___("#",  "<Plug>(asterisk-z#)",                      "Word Backwards Stay")
+K.n_l_("#",  "#",                                        "Word Backwards")
+K.n_l_("/",  "/" .. cword_escape .. "<Esc>",             "Search")
 K.v_l_("/",  "\"*y<Esc>/" .. reg_star_escape .. "<Esc>", "Search Visual")
-K.nsl_("_",  buffers.wipe_all,                                                           "Wipe All Buffers")
-K.nsl_("-",  ":silent BW!<CR>",                                                          "Wipe Buffer")
-K.nsl_("\\", which_key.show,                                                             "Show WhichKey")
-K.vsl_("\\", which_key.show,                                                             "Show WhichKey")
-K.nsl_("|",  which_key.show_local,                                                       "Show WhichKey Local")
-K.vsl_("|",  which_key.show_local,                                                       "Show WhichKey Local")
+K.nsl_("_",  buffers.wipe_all,                           "Wipe All Buffers")
+K.nsl_("-",  ":silent BW!<CR>",                          "Wipe Buffer")
+K.nsl_("\\", which_key.show,                             "Show WhichKey")
+K.vsl_("\\", which_key.show,                             "Show WhichKey")
+K.nsl_("|",  which_key.show_local,                       "Show WhichKey Local")
+K.vsl_("|",  which_key.show_local,                       "Show WhichKey Local")
 
 ---
 --- snippets
