@@ -2,10 +2,7 @@
 
 # latest systemd core
 function lcd() {
-	local PID=$(coredumpctl -1 | grep present | awk '{ print $5 }')
-	if [ -n "${PID}" ]; then
-		coredumpctl gdb "${PID}"
-	fi
+	coredumpctl -1 debug
 }
 
 function mnt() {
