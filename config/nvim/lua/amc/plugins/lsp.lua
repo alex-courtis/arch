@@ -65,8 +65,8 @@ local function on_attach(client, bufnr)
     K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming Calls")
   end
 
-  K.n_lb("d-", vim.cmd.LspRestart, bufnr, "LSP: Restart")
-  K.n_lb("d_", M.disable,          bufnr, "LSP: Disable Active Clients")
+  K.n_lb("d-", function() vim.cmd.lsp("restart") end, bufnr, "LSP: Restart")
+  K.n_lb("d_", M.disable,                             bufnr, "LSP: Disable Active Clients")
 
   if client.server_capabilities.codeActionProvider then
     K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: Code Action")
