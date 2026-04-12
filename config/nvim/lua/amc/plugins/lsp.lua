@@ -165,6 +165,7 @@ end
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
   on_attach = build_on_attach("ccls"),
+  root_markers = { "compile_commands.json", ".ccls", ".git", "/usr/include/", "/usr/local/include/" },
   init_options = {
     compilationDatabaseDirectory = "build",
     clang = {
