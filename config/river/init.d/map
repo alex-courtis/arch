@@ -55,13 +55,13 @@ riverctl map normal $mod2 Apostrophe send-layout-cmd wideriver "--ratio 0.35"
 riverctl map normal $mod1 q spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
 riverctl map normal $mod2 q send-layout-cmd wideriver "--ratio 0.5"
 
-riverctl map normal $mod1 j focus-view down
-riverctl map normal $mod2 j swap down
-riverctl map normal $mod3 j swap next
+# riverctl map normal $mod1 j focus-view down
+# riverctl map normal $mod2 j swap down
+# riverctl map normal $mod3 j swap next
 
-riverctl map normal $mod1 k focus-view up
-riverctl map normal $mod2 k swap up
-riverctl map normal $mod3 k swap previous
+# riverctl map normal $mod1 k focus-view up
+# riverctl map normal $mod2 k swap up
+# riverctl map normal $mod3 k swap previous
 
 riverctl map normal $mod1 x focus-previous-tags
 
@@ -89,17 +89,17 @@ riverctl map normal $mod1 c send-layout-cmd wideriver "--count 1"
 
 riverctl map normal $mod1 r send-layout-cmd wideriver "--count -1"
 
-riverctl map normal $mod1 l focus-view right
-riverctl map normal $mod2 l swap right
-riverctl map normal $mod3 l swap next
+# riverctl map normal $mod1 l focus-view right
+# riverctl map normal $mod2 l swap right
+# riverctl map normal $mod3 l swap next
 
 # s
 riverctl map normal $mod1 d toggle-float
 riverctl map normal $mod4 d spawn "vollowermic"
 
-riverctl map normal $mod1 h focus-view left
-riverctl map normal $mod2 h swap left
-riverctl map normal $mod3 h swap previous
+# riverctl map normal $mod1 h focus-view left
+# riverctl map normal $mod2 h swap left
+# riverctl map normal $mod3 h swap previous
 riverctl map normal $mod4 h spawn "vollower"
 
 riverctl map normal $mod1 t focus-view next
