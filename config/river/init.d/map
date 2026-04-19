@@ -27,9 +27,9 @@ riverctl map normal $mod1 Tab spawn b
 riverctl map normal $mod2 Tab spawn bp
 
 riverctl map normal $mod1 Return focus-view next
-riverctl map normal $mod2 Return focus-view previous
+riverctl map normal $mod2 Return swap next
 
-riverctl map normal $mod1 Delete swap next
+riverctl map normal $mod1 Delete focus-view previous
 riverctl map normal $mod2 Delete swap previous
 
 riverctl map normal $mod1 Space send-layout-cmd wideriver "--layout-toggle"
@@ -49,11 +49,11 @@ for k in "a" "o" "e" "u" "i" "semicolon" "comma" "period" "p" "y"; do
 done
 
 #
-riverctl map normal $mod1 Apostrophe spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
-riverctl map normal $mod2 Apostrophe send-layout-cmd wideriver "--ratio 0.35"
+riverctl map normal $mod1 Apostrophe spawn                     "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide'"
+riverctl map normal $mod2 Apostrophe send-layout-cmd wideriver "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout wide' && riverctl send-layout-cmd wideriver --ratio 0.35"
 
-riverctl map normal $mod1 q spawn "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
-riverctl map normal $mod2 q send-layout-cmd wideriver "--ratio 0.5"
+riverctl map normal $mod1 q spawn                     "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left'"
+riverctl map normal $mod2 q send-layout-cmd wideriver "riverctl send-layout-cmd wideriver '--layout monocle' && riverctl send-layout-cmd wideriver '--layout left' && riverctl send-layout-cmd wideriver --ratio 0.5"
 
 # riverctl map normal $mod1 j focus-view down
 # riverctl map normal $mod2 j swap down
@@ -102,8 +102,8 @@ riverctl map normal $mod4 d spawn "vollowermic"
 # riverctl map normal $mod3 h swap previous
 riverctl map normal $mod4 h spawn "vollower"
 
-riverctl map normal $mod1 t focus-view next
-riverctl map normal $mod2 t focus-view previous
+# riverctl map normal $mod1 t focus-view next
+# riverctl map normal $mod2 t focus-view previous
 
 riverctl map normal $mod1 n send-layout-cmd wideriver "--stack dwindle"
 riverctl map normal $mod2 n send-layout-cmd wideriver "--stack diminish"
