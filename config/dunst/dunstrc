@@ -17,7 +17,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = none
+    follow = keyboard
 
     ### Geometry ###
 
@@ -26,7 +26,7 @@
     # width = (0, 300)
     # constant width of 300
     # width = 300
-    width = (300, 600)
+    width = (400, 800)
 
     # The height of a single notification, excluding the frame.
     # dynamic height from 0 to 300
@@ -146,7 +146,7 @@
 
     ### Text ###
 
-    font = Monospace $FONT_SIZE_PT_BAR
+    font = Monospace $FONT_SIZE_PT_NOTIFICATION
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.

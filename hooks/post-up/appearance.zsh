@@ -22,6 +22,7 @@ for f in ${(ps: :)APPEARANCE_FILES}; do
 	sed -i -e "${base16sed}" "${tmp}"
 
 	# font
+	sed -i -e "s/\$FONT_SIZE_PT_NOTIFICATION/${FONT_SIZE_PT_NOTIFICATION}/g" "${tmp}"
 	sed -i -e "s/\$FONT_SIZE_PT_BAR/${FONT_SIZE_PT_BAR}/g" "${tmp}"
 	sed -i -e "s/\$FONT_SIZE_PT/${FONT_SIZE_PT}/g" "${tmp}"
 
