@@ -7,8 +7,6 @@ dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 mime-update
 
-dunst > "/tmp/dunst.${XDG_VTNR}.${USER}.log" 2>&1 &
-
 waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
 
 # merge .Xresources
