@@ -25,7 +25,8 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    # width = 300
+    width = (300, 600)
 
     # The height of a single notification, excluding the frame.
     # dynamic height from 0 to 300
@@ -41,7 +42,8 @@
     # Offset from the origin
     # NOTE: Dunst from version 1.11 and older use this alternative notation
     # offset = 10x50
-    offset = (10, 50)
+    # offset = (10, 50)
+    offset = (20, 20)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -108,7 +110,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#aaaaaa"
@@ -117,7 +119,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 0
+    gap_size = 6
 
     # Define a color for the separator.
     # possible values are:
@@ -144,7 +146,7 @@
 
     ### Text ###
 
-    font = Monospace 8
+    font = Monospace $FONT_SIZE_PT_BAR
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -186,7 +188,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  literal %
     # Markup is allowed
-    format = "<b>%s</b>\n%b"
+    format = "<b>%s</b>\n\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -261,7 +263,7 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/bemenu -p dunst:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -293,7 +295,7 @@
     # Useful to enforce the timeout set by dunst configuration. Without this
     # parameter, an application may close the notification sent before the
     # user defined timeout.
-    ignore_dbusclose = false
+    ignore_dbusclose = true
 
     ### Wayland ###
     # These settings are Wayland-specific. They have no effect when using X11
@@ -334,8 +336,8 @@
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
     mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    mouse_middle_click = close_all
+    mouse_right_click = do_action
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -351,7 +353,7 @@
     # When enabled, notifications won't timeout while the mouse pointer is over
     # them. The timeout resumes when the pointer leaves the window.
     # Only works on Wayland.
-    pause_on_mouse_over = false
+    pause_on_mouse_over = true
 
     # Use PCRE regular expressions for filtering rules.
     # This setting overrides enable_posix_regex.
@@ -360,28 +362,30 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#$BASE16[lighter_background]"
+    foreground = "#$BASE16[comments]"
+    frame_color = "#$BASE16[selection_background]"
     timeout = 10
     # Icon for notifications with low urgency
-    default_icon = dialog-information
+    # default_icon = dialog-information
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
+    background = "#$BASE16[lighter_background]"
+    foreground = "#$BASE16[default_foreground]"
+    frame_color = "#$BASE16[comments]"
     timeout = 10
-    override_pause_level = 30
+    # override_pause_level = 30
     # Icon for notifications with normal urgency
-    default_icon = dialog-information
+    # default_icon = dialog-information
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#$BASE16[selection_background]"
+    foreground = "#$BASE16[light_foreground]"
+    frame_color = "#$BASE16[bright_red]"
     timeout = 0
-    override_pause_level = 60
+    # override_pause_level = 60
     # Icon for notifications with critical urgency
-    default_icon = dialog-warning
+    # default_icon = dialog-warning
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
