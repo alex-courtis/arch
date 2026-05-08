@@ -596,12 +596,12 @@ alacritty
 bee-host
 bemenu-wayland
 brave-bin
+dunst
 gpm
 grim
 libnotify
 libva-utils
 lswt
-mako
 menjar
 mimeo
 noto-fonts-emoji

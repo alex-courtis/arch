@@ -1,4 +1,4 @@
-exec mako > /tmp/mako.${XDG_VTNR}.${USER}.log 2>&1
+exec dunst > /tmp/dunst.${XDG_VTNR}.${USER}.log 2>&1
 
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
