@@ -144,16 +144,18 @@ K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 --  fF
 --  D
 --
-K.n___("*",  "<Plug>(asterisk-z*)",       "Word Forwards Stay")
-K.n_l_("*",  "*",                         "Word Forwards")
-K.ns__("ff", telescope.find_files,        "Find Files")
-K.ns__("fg", telescope.git_files,         "Find Files: Git")
-K.ns__("fh", telescope.find_files_hidden, "Find Files: Hidden")
-K.ns__("fo", telescope.oldfiles,          "Find Files: Previously Open")
-K.n___("F",  "<Nop>",                     "<Nop>")
-K.nsl_("f",  "<Nop>",                     "<Nop>")
-K.nsl_("b",  ":%y<CR>",                   "Yank Buffer")
-K.nsl_("B",  ":%d_<CR>",                  "Clean Buffer")
+K.n___("*",  "<Plug>(asterisk-z*)",           "Word Forwards Stay")
+K.n_l_("*",  "*",                             "Word Forwards")
+K.ns__("ff", telescope.find_files,            "Find Files")
+K.ns__("fg", telescope.git_files,             "Find Files: Git")
+K.ns__("fh", telescope.find_files_hidden,     "Find Files: Hidden")
+K.ns__("fo", telescope.oldfiles,              "Find Files: Previously Open")
+K.n___("F",  "<Nop>",                         "<Nop>")
+K.nsl_("f",  "<Nop>",                         "<Nop>")
+K.n_l_("dl", telescope.diagnostics_workspace, "Telescope: Diagnostics Workspace")
+K.n_l_("dL", telescope.diagnostics,           "Telescope: Diagnostics")
+K.nsl_("b",  ":%y<CR>",                       "Yank Buffer")
+K.nsl_("B",  ":%d_<CR>",                      "Clean Buffer")
 
 --  )2
 --  gG
