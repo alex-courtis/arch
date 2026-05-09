@@ -22,6 +22,7 @@ application/octet-stream=nvim-term.desktop;
 application/x-wine-extension-ini=nvim-term.desktop;
 model/3mf=os-open.desktop;
 model/stl=os-open.desktop;
+inode/directory=brave-browser.desktop
 text/html=brave-browser.desktop;
 x-scheme-handler/about=brave-browser.desktop;
 x-scheme-handler/http=brave-browser.desktop;
