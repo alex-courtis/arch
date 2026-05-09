@@ -78,6 +78,7 @@ local function on_attach(client, bufnr)
     K.n_lb("dh", vim.lsp.buf.hover, bufnr, "LSP: Hover")
   end
 
+  -- TODO make this global
   K.n_lb("dl", telescope.diagnostics_workspace, bufnr, "Telescope: Diagnostics Workspace")
   K.n_lb("dL", telescope.diagnostics,           bufnr, "Telescope: Diagnostics")
 

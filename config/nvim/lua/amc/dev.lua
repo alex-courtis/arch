@@ -65,8 +65,6 @@ end
 function M.test()
   local bt = build_type()
 
-  buffers.update()
-
   if bt == BUILD_TYPE.make then
     local bufnr = vim.api.nvim_get_current_buf()
     local buf_name = vim.api.nvim_buf_get_name(bufnr)
@@ -83,8 +81,6 @@ end
 function M.test_all()
   local bt = build_type()
 
-  buffers.update()
-
   if bt == BUILD_TYPE.make then
     make_test_target = "test"
     vim.cmd.make({ args = { make_test_target } })
@@ -95,8 +91,6 @@ end
 
 function M.build()
   local bt = build_type()
-
-  buffers.update()
 
   if bt == BUILD_TYPE.make then
     vim.cmd.make()
@@ -133,7 +127,6 @@ function M.format()
     if client.server_capabilities.documentFormattingProvider then
       -- lsp format when available
       vim.lsp.buf.format()
-      buffers.update()
       return
     end
   end

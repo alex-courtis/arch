@@ -44,24 +44,9 @@ function M.wipe_no_name_new(data)
   end
 end
 
----au BufLeave
----au FocusLost
----autowriteall doesn't cover all cases
----@param data table|number|nil table for autocommand otherwise bufnr
-function M.update(data)
-  local bufnr
-  if type(data) == "table" then
-    bufnr = data.buf
-  elseif type(data) == "number" then
-    bufnr = data
-  else
-    bufnr = 0
-  end
-
-  local bo = vim.bo[bufnr]
-  if bo and bo.buftype == "" and not bo.readonly and bo.modifiable and vim.api.nvim_buf_get_name(bufnr) ~= "" then
-    vim.cmd.update()
-  end
+---write all, suppressing errors like no file
+function M.write_all()
+  pcall(vim.cmd.wall)
 end
 
 ---&buftype set or otherwise not a normal buffer
