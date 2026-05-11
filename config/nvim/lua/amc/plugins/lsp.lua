@@ -65,8 +65,8 @@ local function on_attach(client, bufnr)
     K.n_lb("di", vim.lsp.buf.incoming_calls, bufnr, "LSP: Incoming Calls")
   end
 
-  K.n_lb("d-", function() vim.cmd.lsp("restart") end, bufnr, "LSP: Restart")
-  K.n_lb("d_", M.disable,                             bufnr, "LSP: Disable Active Clients")
+  K.n_l_("d-", function() M.restart(client) end, "LSP: Restart")
+  K.n_l_("d_", function() M.toggle(client) end,  "LSP: Toggle")
 
   if client.server_capabilities.codeActionProvider then
     K.n_lb("da", vim.lsp.buf.code_action, bufnr, "LSP: Code Action")
@@ -83,12 +83,7 @@ local function on_attach(client, bufnr)
   end
 
   if client.server_capabilities.completionProvider then
-    vim.lsp.completion.enable(true, client.id, bufnr, {}) -- textDocument/completion
-  end
-
-  -- client:supports_method  Always returns true for unknown off-spec methods
-  if client.name == "ccls" then
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: Switch Source Header")
+    vim.lsp.completion.enable(true, client.id, bufnr, {})
   end
 end
 
@@ -142,10 +137,10 @@ local function build_on_attach(name, client_on_attach)
     if type(config_on_attach) == "function" then
       config_on_attach(client, bufnr)
     end
+    on_attach(client, bufnr)
     if type(client_on_attach) == "function" then
       client_on_attach(client, bufnr)
     end
-    on_attach(client, bufnr)
   end
 end
 
@@ -159,7 +154,9 @@ end
 
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
-  on_attach = build_on_attach("ccls"),
+  on_attach = build_on_attach("ccls", function(_, bufnr)
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: Switch Source Header")
+  end),
   root_markers = { "compile_commands.json", ".ccls", ".git", "/usr/include/", "/usr/local/include/" },
   init_options = {
     compilationDatabaseDirectory = "build",
@@ -260,13 +257,18 @@ vim.lsp.enable("pyright")
 -- Functions
 --
 
--- nvim-lspconfig stop is in flux at 11.2:
--- old and new versions have different problems, work around for now
-function M.disable()
-  vim.cmd.LspStop()
-  for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-    print("disabling " .. client.name)
-    vim.lsp.enable(client.name, false)
+---@param client vim.lsp.Client
+function M.restart(client)
+  client:stop(true)
+  vim.lsp.enable(client.config)
+end
+
+---@param client vim.lsp.Client
+function M.toggle(client)
+  if (client:is_stopped()) then
+    vim.lsp.enable(client.config)
+  else
+    client:stop(true)
   end
 end
 
