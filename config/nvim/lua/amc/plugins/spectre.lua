@@ -92,6 +92,7 @@ spectre.setup(config)
 ---@param replace_text? string
 ---@param is_insert_mode boolean
 local function open(search_text, replace_text, is_insert_mode)
+  pcall(vim.cmd.wall)
   spectre.open({
     search_text = search_text,
     replace_text = replace_text,
