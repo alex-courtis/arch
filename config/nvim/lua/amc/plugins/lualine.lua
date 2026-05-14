@@ -149,6 +149,30 @@ else
   }
 end
 
+local function gitsigns_added()
+  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.added > 0 then
+    return "+" .. vim.b.gitsigns_status_dict.added .. " "
+  else
+    return ""
+  end
+end
+
+local function gitsigns_changed()
+  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.changed > 0 then
+    return "~" .. vim.b.gitsigns_status_dict.changed .. " "
+  else
+    return ""
+  end
+end
+
+local function gitsigns_removed()
+  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.removed > 0 then
+    return "-" .. vim.b.gitsigns_status_dict.removed .. " "
+  else
+    return ""
+  end
+end
+
 local config = {
   options = {
     theme = theme,
@@ -158,11 +182,34 @@ local config = {
 
   sections = {
     lualine_a = { filename },
-    lualine_b = { "searchcount" },
-    lualine_c = { "diagnostics", win_buf_info },
+    lualine_b = { "diagnostics" },
+    lualine_c = { "searchcount", win_buf_info },
     lualine_x = { "filetype" },
-    lualine_y = { "progress" },
-    lualine_z = { "location" },
+    lualine_y = {
+      -- TODO
+      -- generify functions
+      -- dynamically pad each status based on others
+      -- extract highlight colours
+      {
+        gitsigns_added,
+        color = { fg = "#a1c659", bg = theme.normal.b.bg },
+        padding = { left = 0, right = 0 },
+        separator = "",
+      },
+      {
+        gitsigns_changed,
+        color = { fg = "#d381c3", bg = theme.normal.b.bg },
+        padding = { left = 0, right = 0 },
+        separator = "",
+      },
+      {
+        gitsigns_removed,
+        color = { fg = "#fb0120", bg = theme.normal.b.bg },
+        padding = { left = 0, right = 0 },
+        separator = "",
+      },
+    },
+    lualine_z = { "location", },
   },
   inactive_sections = {
     lualine_a = { filename },
