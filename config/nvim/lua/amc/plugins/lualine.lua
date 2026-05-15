@@ -14,6 +14,15 @@ local filename = {
   },
 }
 
+---@alias GitSignsType "added" | "changed" | "removed"
+
+---@type table<GitSignsType, string>
+local gs_indicator = {
+  added = "+",
+  changed = "~",
+  removed = "-",
+}
+
 ---loclist or quickfix title
 ---replaces :setXXlist() which can happen after list manipulation
 ---@return string|nil
@@ -73,7 +82,7 @@ local function win_buf_info()
   return string.format("b%d w%d i%d", vim.fn.bufnr(), vim.fn.winnr(), vim.fn.win_getid())
 end
 
-local theme, section_separators, component_separators
+local theme, section_separators, component_separators, gs_colour
 
 if vim.env.TERM:match("^linux") then
   section_separators = { left = "", right = "" }
@@ -111,6 +120,13 @@ if vim.env.TERM:match("^linux") then
       c = { fg = 7, bg = 0 },
     },
   }
+
+  ---@type table<GitSignsType, table> gitsigns theme item
+  gs_colour = {
+    added = { fg = 2, bg = theme.normal.c.bg },
+    changed = { fg = 5, bg = theme.normal.c.bg },
+    removed = { fg = 1, bg = theme.normal.c.bg },
+  }
 else
   section_separators = { left = "", right = "" }
   component_separators = { left = "", right = "" }
@@ -147,29 +163,31 @@ else
       c = { fg = "#" .. vim.env.BASE16_dark_foreground, bg = "#" .. vim.env.BASE16_selection_background },
     },
   }
+
+  gs_colour = {
+    added = { fg = string.format("#%x", vim.api.nvim_get_hl(0, { name = "DiffAdd" }).fg), bg = theme.normal.c.bg },
+    changed = { fg = string.format("#%x", vim.api.nvim_get_hl(0, { name = "DiffChange" }).fg), bg = theme.normal.c.bg },
+    removed = { fg = string.format("#%x", vim.api.nvim_get_hl(0, { name = "DiffDelete" }).fg), bg = theme.normal.c.bg },
+  }
 end
 
-local function gitsigns_added()
-  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.added > 0 then
-    return "+" .. vim.b.gitsigns_status_dict.added .. " "
-  else
-    return ""
+---@param type GitSignsType
+---@return fun(): table gitsigns theme item
+local function gitsigns_colour(type)
+  return function()
+    return gs_colour[type]
   end
 end
 
-local function gitsigns_changed()
-  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.changed > 0 then
-    return "~" .. vim.b.gitsigns_status_dict.changed .. " "
-  else
-    return ""
-  end
-end
-
-local function gitsigns_removed()
-  if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.removed > 0 then
-    return "-" .. vim.b.gitsigns_status_dict.removed .. " "
-  else
-    return ""
+---@param type GitSignsType
+---@return fun(): string
+local function gitsigns_component(type)
+  return function()
+    if vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict[type] > 0 then
+      return gs_indicator[type] .. vim.b.gitsigns_status_dict[type] .. " "
+    else
+      return ""
+    end
   end
 end
 
@@ -182,33 +200,29 @@ local config = {
 
   sections = {
     lualine_a = { filename },
-    lualine_b = { "diagnostics" },
-    lualine_c = { "searchcount", win_buf_info },
-    lualine_x = { "filetype" },
-    lualine_y = {
-      -- TODO
-      -- generify functions
-      -- dynamically pad each status based on others
-      -- extract highlight colours
+    lualine_b = { "filetype" },
+    lualine_c = { "diagnostics" },
+    lualine_x = {
       {
-        gitsigns_added,
-        color = { fg = "#a1c659", bg = theme.normal.b.bg },
+        gitsigns_component("added"),
+        color = gitsigns_colour("added"),
         padding = { left = 0, right = 0 },
         separator = "",
       },
       {
-        gitsigns_changed,
-        color = { fg = "#d381c3", bg = theme.normal.b.bg },
+        gitsigns_component("changed"),
+        color = gitsigns_colour("changed"),
         padding = { left = 0, right = 0 },
         separator = "",
       },
       {
-        gitsigns_removed,
-        color = { fg = "#fb0120", bg = theme.normal.b.bg },
+        gitsigns_component("removed"),
+        color = gitsigns_colour("removed"),
         padding = { left = 0, right = 0 },
         separator = "",
       },
     },
+    lualine_y = { "searchcount", win_buf_info },
     lualine_z = { "location", },
   },
   inactive_sections = {
