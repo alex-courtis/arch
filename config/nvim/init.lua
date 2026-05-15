@@ -11,7 +11,9 @@ log.line("---- options")
 require_or_nil("amc.options")
 
 log.line("---- vim.pack")
-vim.pack.add({
+
+---@type vim.pack.keyset.add
+local packages = {
   "https://github.com/davvid/telescope-git-grep.nvim.git",
   "https://github.com/echasnovski/mini.base16.git",
   "https://github.com/farmergreg/vim-lastplace.git",
@@ -35,12 +37,15 @@ vim.pack.add({
   "https://github.com/tpope/vim-repeat.git",
   "https://github.com/vim-scripts/ReplaceWithRegister.git",
   "https://github.com/tpope/vim-fugitive.git",
-  not vim.env.TERM:match("^linux") and "https://github.com/nvim-tree/nvim-web-devicons.git" or nil,
   {
     src = "https://github.com/nvim-tree/nvim-tree.lua",
     version = util.nvt_branch(),
   },
-})
+}
+if not vim.env.TERM:match("^linux") then
+  table.insert(packages, "https://github.com/nvim-tree/nvim-web-devicons.git")
+end
+vim.pack.add(packages)
 
 log.line("---- init early")
 require("amc.init.early")
