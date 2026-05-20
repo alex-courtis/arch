@@ -13,6 +13,7 @@ function M.attach(data)
 end
 
 function M.open()
+  pcall(vim.cmd.wall)
   local winid = windows.winid_special(SPECIAL.fugitive)
 
   -- focus ourselves as fugitive resets the cursor
@@ -25,6 +26,7 @@ function M.open()
 end
 
 function M.open_only()
+  pcall(vim.cmd.wall)
   M.open()
   vim.cmd.only({ mods = { silent = true } })
 end

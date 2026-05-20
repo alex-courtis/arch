@@ -178,11 +178,12 @@ local function opts(o)
   return o
 end
 
----extend each builtin to go home and include opts
+---extend each builtin to write, go home and include opts
 local function extend_builtins()
   for n, f in pairs(builtin) do
     if type(f) == "function" then
       M[n] = function(o)
+        pcall(vim.cmd.wall)
         if windows then
           windows.go_home()
         end
