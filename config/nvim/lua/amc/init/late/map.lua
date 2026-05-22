@@ -75,6 +75,18 @@ K.v___(";",              ":",                   ":")
 K.n___("*",              "<Plug>(asterisk-z*)", "Word Forwards Stay")
 K.n___("F",              "<Nop>",               "<Nop>")
 
+K.n___("m",              "`",                   "Jump To Mark")
+K.v___("m",              "`",                   "Jump To Mark")
+K.n___("mm",             "``",                  "Jump To Position Before Latest Jump")
+K.v___("mm",             "``",                  "Jump To Position Before Latest Jump")
+
+K.n___("M",              "m",                   "Set Mark")
+K.v___("M",              "m",                   "Set Mark")
+K.n___("Mm",             "<Nop>",               "<Nop>")
+K.v___("Mm",             "<Nop>",               "<Nop>")
+K.n___("MM",             "<Nop>",               "<Nop>")
+K.v___("MM",             "<Nop>",               "<Nop>")
+
 K.n___("t",              "<C-]>",               "Tag",                                 { remap = true }) -- overridden by lsp
 K.n___("T",              "<C-]>",               "Tag",                                 { remap = true }) -- keep this as a backup for misbehaving lua
 
