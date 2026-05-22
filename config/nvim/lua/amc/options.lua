@@ -22,6 +22,7 @@ vim.o.mouse = "a"
 vim.o.number = true
 vim.o.pumheight = 15
 vim.o.pumwidth = 30
+vim.o.shada = vim.o.shada .. ",f0" -- no marks
 vim.o.shiftwidth = 4
 vim.o.shortmess = vim.o.shortmess .. "S" -- no search count
 vim.o.showcmd = false

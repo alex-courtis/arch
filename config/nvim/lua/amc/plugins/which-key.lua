@@ -2,6 +2,9 @@ local require = require("amc.require").or_nil
 
 local M = {}
 
+-- add to marks.lua to filter special marks:
+-- if not labels[key] then
+
 ---@type wk
 local which_key = require("which-key")
 local presets = require("which-key.presets")
@@ -40,6 +43,7 @@ which_key.add({
   { "<Space>", mode = { "n", "v", }, group = "leader" },
   { "f",       mode = { "n", },      group = "find", },
   { ",",       mode = { "n", "v", }, group = "grep", },
+  { "m",       mode = { "n", "v", }, group = "marks", },
 })
 for _, leader in ipairs({ "<Space>", "<BS>" }) do
   which_key.add({
@@ -51,7 +55,9 @@ for _, leader in ipairs({ "<Space>", "<BS>" }) do
 end
 
 -- hide
-which_key.add({ { "y<C-g>", hidden = true, } }) -- fugitive
+which_key.add({
+  { "y<C-g>", hidden = true, }, -- fugitive
+})
 
 function M.show()
   which_key.show({})

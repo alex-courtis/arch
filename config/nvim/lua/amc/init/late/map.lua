@@ -75,10 +75,11 @@ K.v___(";",              ":",                   ":")
 K.n___("*",              "<Plug>(asterisk-z*)", "Word Forwards Stay")
 K.n___("F",              "<Nop>",               "<Nop>")
 
-K.n___("m",              "`",                   "Jump To Mark")
-K.v___("m",              "`",                   "Jump To Mark")
+K.n___("m",              "`",                   "Jump To Mark",                        { remap = true })
+K.v___("m",              "`",                   "Jump To Mark",                        { remap = true })
 K.n___("mm",             "``",                  "Jump To Position Before Latest Jump")
 K.v___("mm",             "``",                  "Jump To Position Before Latest Jump")
+K.n___("m<BS>",          ":delmarks!<CR>",      "Delete all marks for current buffer")
 
 K.n___("M",              "m",                   "Set Mark")
 K.v___("M",              "m",                   "Set Mark")
