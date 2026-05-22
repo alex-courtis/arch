@@ -52,25 +52,37 @@ K.n___("<Esc>", function()
   vim.api.nvim_feedkeys(util.ESC, "n", false)
 end, ":nohlsearch <Esc>")
 
+--
+-- no leader
+--
+
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
-K.v___("<LeftRelease>",  '"*ygv',          "Autoselect")
+K.v___("<LeftRelease>",  '"*ygv',               "Autoselect")
 
-K.n___("<C-j>",          "<C-w>j",         "<C-w>j")
-K.n___("<C-k>",          "<C-w>k",         "<C-w>k")
-K.n___("<C-l>",          "<C-w>l",         "<C-w>l")
-K.n___("<C-h>",          "<C-w>h",         "<C-w>h")
-K.n___("<C-Space>",      "<C-w>w",         "<C-w>w")
-K.n___("<C-S-Space>",    "<C-w>W",         "<C-w>W")
+K.n___("<C-j>",          "<C-w>j",              "<C-w>j")
+K.n___("<C-k>",          "<C-w>k",              "<C-w>k")
+K.n___("<C-l>",          "<C-w>l",              "<C-w>l")
+K.n___("<C-h>",          "<C-w>h",              "<C-w>h")
+K.n___("<C-Space>",      "<C-w>w",              "<C-w>w")
+K.n___("<C-S-Space>",    "<C-w>W",              "<C-w>W")
 
-K.ns__("<BS><BS>",       ":silent BB<CR>", "Prev Buffer")
-K.ns__("<Space><Space>", ":silent BF<CR>", "Next Buffer")
+K.ns__("<BS><BS>",       ":silent BB<CR>",      "Prev Buffer")
+K.ns__("<Space><Space>", ":silent BF<CR>",      "Next Buffer")
+
+K.n___(";",              ":",                   ":")
+K.v___(";",              ":",                   ":")
+
+K.n___("*",              "<Plug>(asterisk-z*)", "Word Forwards Stay")
+K.n___("F",              "<Nop>",               "<Nop>")
+
+K.n___("t",              "<C-]>",               "Tag",                                 { remap = true }) -- overridden by lsp
+K.n___("T",              "<C-]>",               "Tag",                                 { remap = true }) -- keep this as a backup for misbehaving lua
+
+K.n___("#",              "<Plug>(asterisk-z#)", "Word Backwards Stay")
 
 --
 -- left, free leaders commented
 --
-K.n___(";",     ":",                             ":")
-K.v___(";",     ":",                             ":")
-
 K.ns__("ys",    ':let @+ = expand("%:p")<CR>',   "Yank Absolute Path")
 K.ns__("yc",    ":let @+ = getcwd()<CR>",        "Yank cwd")
 K.ns__("yd",    ':let @+ = expand("%:p:h")<CR>', "Yank dirname")
@@ -144,13 +156,11 @@ K.nsl_("x", ":silent BA<CR>",     "Alt Buffer")
 --  fF
 --  D
 --
-K.n___("*",  "<Plug>(asterisk-z*)",           "Word Forwards Stay")
 K.n_l_("*",  "*",                             "Word Forwards")
 K.ns__("ff", telescope.find_files,            "Find Files")
 K.ns__("fg", telescope.git_files,             "Find Files: Git")
 K.ns__("fh", telescope.find_files_hidden,     "Find Files: Hidden")
 K.ns__("fo", telescope.oldfiles,              "Find Files: Previously Open")
-K.n___("F",  "<Nop>",                         "<Nop>")
 K.nsl_("f",  "<Nop>",                         "<Nop>")
 K.n_l_("dl", telescope.diagnostics_workspace, "Telescope: Diagnostics Workspace")
 K.n_l_("dL", telescope.diagnostics,           "Telescope: Diagnostics")
@@ -184,8 +194,6 @@ K.nsl_("ck", telescope.keymaps,                     "Telescope: Keymaps")
 K.nsl_("co", telescope.commands,                    "Telescope: Commands")
 K.nsl_("cr", telescope.resume,                      "Telescope: Resume")
 K.nsl_("cs", telescope.search_history,              "Telescope: Search History")
-K.n___("t",  "<C-]>",                               "Tag",                        { remap = true }) -- overridden by lsp
-K.n___("T",  "<C-]>",                               "Tag",                        { remap = true }) -- keep this as a backup for misbehaving lua
 K.nsl_("t",  "<Nop>",                               "<Nop>")
 K.nsl_("w",  "<Plug>ReplaceWithRegisterOperatoriw", "Replace Reg Inner Word")
 K.vsl_("w",  "<Plug>ReplaceWithRegisterVisual",     "Replace Reg Visual")
@@ -223,7 +231,6 @@ K.nsl_("z", dev.format,                         "Format")
 --
 --
 --  |
-K.n___("#",  "<Plug>(asterisk-z#)",                      "Word Backwards Stay")
 K.n_l_("#",  "#",                                        "Word Backwards")
 K.n_l_("/",  "/" .. cword_escape .. "<Esc>",             "Search")
 K.v_l_("/",  "\"*y<Esc>/" .. reg_star_escape .. "<Esc>", "Search Visual")
