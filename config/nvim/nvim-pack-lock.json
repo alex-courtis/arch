@@ -21,11 +21,11 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
     "mini.base16": {
-      "rev": "f2b4697eb678c396052f7fd3599c142292ad94c3",
+      "rev": "772f224c5e9527d7c9a843081600c401617c545f",
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "f9349d4d99e7d66403ae8bf4fbd357b154dca7a7",
+      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -41,7 +41,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-web-devicons": {
-      "rev": "63263f3f19d2f7bcb96cb487161f506cd047fa9f",
+      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
       "src": "https://github.com/nvim-tree/nvim-web-devicons.git"
     },
     "plenary.nvim": {
@@ -49,7 +49,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
     "rainbow-delimiters.nvim": {
-      "rev": "9bcf34fa65def40aef16bbd60b6155bf76edf57b",
+      "rev": "a798325b7f36acc62741d1029930a7b96d4dd4bf",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim.git"
     },
     "render-markdown.nvim": {
