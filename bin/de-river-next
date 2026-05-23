@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec river -c 'way-displays -L debug' > "/tmp/river-next.${XDG_VTNR}.${USER}.log" 2>&1
