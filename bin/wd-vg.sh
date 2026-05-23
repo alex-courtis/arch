@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export WAYLAND_DEBUG=1
+
 valgrind \
 	--leak-check=full \
 	--show-leak-kinds=all \
