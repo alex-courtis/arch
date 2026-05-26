@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/alex-courtis/way-displays/refs/heads/master/schema/cfg-1.1.0.yaml
+# yaml-language-server: $schema=https://raw.githubusercontent.com/alex-courtis/way-displays/refs/heads/master/schema/cfg-1.2.0.yaml
 ARRANGE: ROW
 ALIGN: BOTTOM
 ORDER:
@@ -10,13 +10,13 @@ SCALING: TRUE
 AUTO_SCALE: TRUE
 AUTO_SCALE_MIN: 1
 AUTO_SCALE_MAX: -1
+SCALE_ROUND_TO: 0.25
+SCALE_ROUND_STRATEGY: UP
 SCALE:
   - NAME_DESC: LG Display 0x05EF
     SCALE: 2
   - NAME_DESC: BOE 0x0BCA
     SCALE: 2
-  - NAME_DESC: XG349C
-    SCALE: 1.25
 MODE:
   - NAME_DESC: M28U
     MAX: TRUE
