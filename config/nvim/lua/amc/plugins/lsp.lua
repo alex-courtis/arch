@@ -122,6 +122,9 @@ vim.lsp.log.set_level("ERROR")
 --
 ---@type vim.lsp.Config
 vim.lsp.config["*"] = {
+  flags = {
+    debounce_text_changes = 50,
+  },
 }
 
 ---Global and local on_attach will clobber each other so wrap them
