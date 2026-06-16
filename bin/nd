@@ -67,7 +67,18 @@ function init() {
 	sed -i -E "/${inject}/r /tmp/config.default.2.lua" "${INIT}"
 	sed -i -E "/${inject}/d" "${INIT}"
 
-	# on_attach
+	begin="BEGIN_ON_ATTACH_DEFAULT"
+	end="END_ON_ATTACH_DEFAULT"
+	inject="on-attach-default-injection-placeholder"
+
+	# scrape ON_ATTACH_DEFAULT, indented at 2
+	sed -n -E "/${begin}/,/${end}/{ /${begin}/d; /${end}/d; p; }" "${SRC}/lua/nvim-tree/keymap.lua" > /tmp/ON_ATTACH_DEFAULT.lua
+
+	# inject then remove the placeholder
+	sed -i -E "/${inject}/r /tmp/ON_ATTACH_DEFAULT.lua" "${INIT}"
+	sed -i -E "/${inject}/d" "${INIT}"
+
+	# link M.on_attach
 	sed -i -e "
 		s/on_attach = .*,/on_attach = M.on_attach,/g
 	" "${INIT}"
