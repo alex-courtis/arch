@@ -6,6 +6,9 @@ wd-vg.sh
 # used by xdg-desktop-portal-wlr
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
 
+# middle click paste for browsers etc.
+gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+
 mime-update
 
 waybar > "/tmp/waybar.${XDG_VTNR}.${USER}.log" 2>&1 &
