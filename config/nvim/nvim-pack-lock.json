@@ -5,7 +5,7 @@
       "src": "https://github.com/vim-scripts/ReplaceWithRegister.git"
     },
     "gitsigns.nvim": {
-      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
+      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "hexmode": {
@@ -17,15 +17,19 @@
       "src": "https://github.com/GutenYe/json5.vim.git"
     },
     "lualine.nvim": {
-      "rev": "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c",
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
+    "marks.nvim": {
+      "rev": "f353e8c08c50f39e99a9ed474172df7eddd89b72",
+      "src": "https://github.com/chentoast/marks.nvim.git"
+    },
     "mini.base16": {
-      "rev": "772f224c5e9527d7c9a843081600c401617c545f",
+      "rev": "33c6fb4a088392df272a4d88f9bf07f466c5a459",
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
+      "rev": "a683e0ddf0cf64c6cd689e18ffb480ade3c162b7",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -33,7 +37,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
+      "rev": "fb343438d49fba8c35ecc4829d66fca7a1f0ed3d",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -41,7 +45,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-web-devicons": {
-      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
+      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
       "src": "https://github.com/nvim-tree/nvim-web-devicons.git"
     },
     "plenary.nvim": {
@@ -53,7 +57,7 @@
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim.git"
     },
     "render-markdown.nvim": {
-      "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",
+      "rev": "5adf0895310c1904e5abfaad40a2baad7fe44a07",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
     },
     "sqlite.lua": {
@@ -69,7 +73,7 @@
       "src": "https://github.com/nvim-telescope/telescope-smart-history.nvim.git"
     },
     "telescope.nvim": {
-      "rev": "7d324792b7943e4aa16ad007212e6acc6f9fe335",
+      "rev": "9377230aa5305d9e9aca4ed8dadf1070fb4aa9fc",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git"
     },
     "vim-asterisk": {
