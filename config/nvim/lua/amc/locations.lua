@@ -236,7 +236,7 @@ function M.jump_func(next)
     return vim.lsp.util.make_position_params(0, client.offset_encoding)
   end, function(results)
 
-    if not results or #results == 0 or not results[1].result then
+    if not results or #results == 0 or not results[1] or not results[1].result then
       return
     end
 
