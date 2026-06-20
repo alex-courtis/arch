@@ -19,7 +19,7 @@ local function home(wins)
   end
 
   vim.cmd.new()
-  M.close_others()
+  vim.cmd.only({ mods = { silent = true } })
 end
 
 ---if current window is special go to the topleftest non special window
