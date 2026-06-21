@@ -157,7 +157,7 @@ local config = {
     },
   },
   renderer = {
-    hidden_display = "simple",
+    hidden_display = "none",
     highlight_git = "none",
     highlight_diagnostics = "name",
     highlight_opened_files = "name",
