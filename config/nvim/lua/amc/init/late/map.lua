@@ -241,6 +241,7 @@ K.n_l_("S", spectre.open_cword,                 "Spectre cword")
 K.v_l_("s", spectre.open_visual_keep,           "Spectre Visual Keep")
 K.v_l_("S", spectre.open_visual,                "Spectre Visual Keep")
 K.nsl_("z", dev.format,                         "Format")
+K.nsl_("Z", "vip :sort<CR>",                    "Sort Paragraph")
 
 --  `
 --
