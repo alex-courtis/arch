@@ -595,7 +595,7 @@ Not packaged:
 alacritty
 bee-host
 bemenu-wayland
-brave-bin
+brave-origin-bin
 dunst
 gpm
 grim
