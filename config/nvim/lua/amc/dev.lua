@@ -99,6 +99,15 @@ function M.build()
   end
 end
 
+function M.cppcheck()
+  local bt = build_type()
+
+  if bt == BUILD_TYPE.make then
+    make_test_target = "cppcheck"
+    vim.cmd.make({ args = { make_test_target } })
+  end
+end
+
 function M.source()
   local filetype = vim.bo.filetype
   if filetype == "lua" or filetype == "vim" then
