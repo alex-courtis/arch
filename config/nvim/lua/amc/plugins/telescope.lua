@@ -272,6 +272,22 @@ function M.lsp_variables()
   M.lsp_document_symbols({ symbols = { "variable", }, show_line = true, })
 end
 
+function M.lsp_dynamic_functions(o)
+  o = o or {}
+  o.fname_width = o.fname_width or 45
+  o.symbols = { "function", "method", "module", }
+  o.file_ignore_patterns = { "/usr/include", "/usr/share/", "/usr/local/lib", }
+  M.lsp_dynamic_workspace_symbols(o)
+end
+
+function M.ccls_dynamic_functions()
+  M.lsp_dynamic_functions({
+    fname_width = 25,
+    symbol_width = 83,
+    show_line = false,
+  })
+end
+
 M.rhs_n_grep_cword =
 ":              lua require('amc.plugins.telescope').live_grep({           default_text = '<C-r>=expand('<cword>')<CR>', initial_mode = \"normal\" })<CR>"
 

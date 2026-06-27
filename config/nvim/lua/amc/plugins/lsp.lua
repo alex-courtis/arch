@@ -32,11 +32,15 @@ local function on_attach(client, bufnr)
   -- E426: Tag not found: xxx
 
   if client.server_capabilities.documentSymbolProvider then
-    K.n_lb("dd", telescope.lsp_functions,  bufnr, "Telescope: functions")
-    K.n_lb("dv", telescope.lsp_variables,  bufnr, "Telescope: variables")
+    K.n_lb("dd", telescope.lsp_functions,  bufnr, "Telescope: buffer functions")
+    K.n_lb("dv", telescope.lsp_variables,  bufnr, "Telescope: buffer variables")
 
     K.n_lb("u",  locations.jump_prev_func, bufnr, "LSP: previous function")
     K.n_lb("e",  locations.jump_next_func, bufnr, "LSP: next function")
+  end
+
+  if client.server_capabilities.workspaceSymbolProvider then
+    K.ns__(",n", telescope.lsp_dynamic_functions, "Telescope: dynamic workspace functions")
   end
 
   if client.server_capabilities.definitionProvider then
@@ -158,8 +162,10 @@ end
 ---@type vim.lsp.Config
 vim.lsp.config.ccls = {
   on_attach = build_on_attach("ccls", function(_, bufnr)
-    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "LSP: Switch Source Header")
+    K.n_lb("ds", vim.cmd.LspCclsSwitchSourceHeader, bufnr, "ccls: Switch Source Header")
+    K.n__b(",n", telescope.ccls_dynamic_functions,  bufnr, "ccls: dynamic workspace functions")
   end),
+
   root_markers = { "compile_commands.json", ".ccls", ".git", "/usr/include/", "/usr/local/include/" },
   init_options = {
     compilationDatabaseDirectory = "build",
