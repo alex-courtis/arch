@@ -3,7 +3,11 @@
 find "${HOME}" -xtype l | \
 	grep -v "local/share/Steam" | \
 	grep -v ".steampath" | \
-	grep -v "BraveSoftware" > /tmp/${USER}.links.broken
+	grep -v "BraveSoftware" | \
+	grep -v "TorBrowser" | \
+	grep -v "${HOME}/src" | \
+	grep -v "${HOME}/.cache" \
+	> /tmp/${USER}.links.broken
 
 while IFS= read -r f <&3; do
 	printf "remove %s ? " "${f}"
