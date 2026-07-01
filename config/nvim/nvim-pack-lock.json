@@ -25,11 +25,11 @@
       "src": "https://github.com/chentoast/marks.nvim.git"
     },
     "mini.base16": {
-      "rev": "ecbcb4e363169a663ece476f35fd87870c6d6a8b",
+      "rev": "ea3a5ea66eec5e154a1699fdae7f66b50a2a9b00",
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "bfcc0171a43f22afa61d927ffe9fcb6cb85dc99e",
+      "rev": "dd1c9b802c943278179a5d819369cda085b79d45",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "8e8be709c9a93e1ebefde7964884a8b564bfd3e0",
+      "rev": "c760c92667fe5febf99e2a5bb8a543b0208c743b",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
