@@ -9,6 +9,8 @@ if not spectre then
   return
 end
 
+local buffers = require("amc.buffers")
+
 local M = {}
 
 ---@type SpectreConfig
@@ -92,7 +94,7 @@ spectre.setup(config)
 ---@param replace_text? string
 ---@param is_insert_mode boolean
 local function open(search_text, replace_text, is_insert_mode)
-  pcall(vim.cmd.wall)
+  buffers.write_all()
   spectre.open({
     search_text = search_text,
     replace_text = replace_text,

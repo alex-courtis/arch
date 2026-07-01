@@ -8,6 +8,7 @@ if not telescope then
   return
 end
 
+local buffers = require("amc.buffers")
 local windows = require("amc.windows")
 
 local actions = require("telescope.actions")
@@ -183,7 +184,7 @@ local function extend_builtins()
   for n, f in pairs(builtin) do
     if type(f) == "function" then
       M[n] = function(o)
-        pcall(vim.cmd.wall)
+        buffers.write_all()
         if windows then
           windows.go_home()
         end
