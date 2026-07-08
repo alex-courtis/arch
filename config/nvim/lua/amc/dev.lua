@@ -156,4 +156,9 @@ function M.ft_c(data)
   vim.api.nvim_set_option_value("commentstring", "// %s", { buf = data.buf })
 end
 
+function M.lsp_rename()
+  buffers.write_all()
+  vim.lsp.buf.rename()
+end
+
 return M

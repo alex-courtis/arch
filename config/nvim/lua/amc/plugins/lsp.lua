@@ -9,6 +9,7 @@ local K = require("amc.util").K
 local telescope = require("amc.plugins.telescope")
 local snippet = require("vim.snippet")
 local nvim_tree_api = require("nvim-tree.api")
+local dev = require("amc.dev")
 
 --
 -- Map
@@ -83,7 +84,7 @@ local function on_attach(client, bufnr)
   end
 
   if client.server_capabilities.renameProvider then
-    K.n_lb("dr", vim.lsp.buf.rename, bufnr, "LSP: Rename")
+    K.n_lb("dr", dev.lsp_rename, bufnr, "LSP: Rename")
   end
 
   if client.server_capabilities.completionProvider then
