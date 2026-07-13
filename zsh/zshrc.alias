@@ -102,3 +102,5 @@ alias pc="picocom --baud 115200 --databits 8 --parity n --stopbits 1 --flow n"
 for i in $(seq 1 8); do
 	alias pc${i}="pc /dev/ttyCOM${i}"
 done
+
+alias mc="clear && make clean && make all && make cppcheck && make iwyu && make test && make test-vg"
