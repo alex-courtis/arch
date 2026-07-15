@@ -276,7 +276,7 @@ end
 function M.lsp_dynamic_functions(o)
   o = o or {}
   o.fname_width = o.fname_width or 45
-  o.symbols = { "function", "method", "module", }
+  o.symbols = { "function", "method", "module", "enum", }
   o.file_ignore_patterns = { "/usr/include", "/usr/share/", "/usr/local/lib", }
   M.lsp_dynamic_workspace_symbols(o)
 end
