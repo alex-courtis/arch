@@ -64,3 +64,7 @@ if vim.env.SSH_CONNECTION or not vim.env.WAYLAND_DISPLAY then
   vim.g.clipboard = "osc52"
   vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard, vim.log.levels.WARN) end)
 end
+
+-- C-Syntax Highlighting: Compound literals in some expressions are falsely highlighted as errors.
+-- https://github.com/vim/vim/issues/7366
+vim.cmd("let c_no_curly_error=1")
