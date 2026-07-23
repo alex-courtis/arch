@@ -44,9 +44,9 @@ end
 
 local function qf_title()
   if vim.fn.getloclist(0, { filewinid = 0 }).filewinid ~= 0 then
-    return "Location"
+    return "Loc"
   else
-    return "QuickFix"
+    return "QF"
   end
 end
 
@@ -201,7 +201,7 @@ local config = {
   sections = {
     lualine_a = { filename },
     lualine_b = { "filetype" },
-    lualine_c = { "diagnostics" },
+    lualine_c = { "diagnostics", "searchcount" },
     lualine_x = {
       {
         gitsigns_component("added"),
@@ -221,15 +221,18 @@ local config = {
         padding = { left = 0, right = 0 },
         separator = "",
       },
+      {
+        win_buf_info,
+      },
     },
-    lualine_y = { "searchcount", win_buf_info },
-    lualine_z = { "location", },
+    lualine_y = { "location", },
+    lualine_z = { "progress", },
   },
   inactive_sections = {
     lualine_a = { filename },
     lualine_b = {},
-    lualine_c = { win_buf_info },
-    lualine_x = {},
+    lualine_c = {},
+    lualine_x = { win_buf_info },
     lualine_y = {},
     lualine_z = {},
   },
@@ -253,15 +256,19 @@ local config = {
       filetypes = { "qf" },
       sections = {
         lualine_a = { qf_name },
-        lualine_c = { win_buf_info },
-        lualine_y = { qf_title },
-        lualine_z = { qf_progress },
+        lualine_b = {},
+        lualine_c = { qf_progress },
+        lualine_x = { win_buf_info, qf_title, },
+        lualine_y = { "location", },
+        lualine_z = { "progress", },
       },
       inactive_sections = {
         lualine_a = { qf_name },
-        lualine_c = { win_buf_info },
-        lualine_y = { qf_title },
-        lualine_z = { qf_progress },
+        lualine_b = {},
+        lualine_c = { qf_progress },
+        lualine_x = { win_buf_info, },
+        lualine_y = {},
+        lualine_z = {},
       },
     },
   },
