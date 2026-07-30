@@ -3,7 +3,7 @@
 echo "zshenv   ${$} ${ZSH_EXECUTION_STRING}" >> /tmp/zsh.${XDG_VTNR-x}.${USER}.log
 
 typeset -U path
-path=(~/bin ~/.local/bin $path)
+path=(~/bin ~/.local/bin ~/.cargo/bin $path)
 
 export UNAME="$(uname)"
 
