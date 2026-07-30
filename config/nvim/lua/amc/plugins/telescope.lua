@@ -254,6 +254,22 @@ function M.live_grep_directory_prompt()
   end)
 end
 
+---find by buffer directory
+function M.find_files_directory_buffer()
+  local path = vim.api.nvim_buf_get_name(0)
+  local head = vim.fn.fnamemodify(path, ":h")
+  M.find_files({ search_dirs = { head } })
+end
+
+---find for and grep by directory
+function M.find_files_directory_prompt()
+  vim.ui.input({ prompt = "directory: ", completion = "dir", }, function(path)
+    if path then
+      M.find_files({ search_dirs = { path } })
+    end
+  end)
+end
+
 ---git grep extension
 function M.git_grep_live_grep(o)
   o = o or {}
