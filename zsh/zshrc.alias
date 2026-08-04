@@ -96,7 +96,7 @@ alias riverctl-list-rules='for r in dimensions float fullscreen output position 
 alias gpg-enc="gpg --symmetric"
 alias gpg-dec="gpg --decrypt-files"
 
-alias ewdx="WAYLAND_DISPLAY=wayland-1 DISPLAY=:0 XDG_VTNR=1"
+alias ewdx="export WAYLAND_DISPLAY=wayland-1; export DISPLAY=:0; export XDG_VTNR=1"
 
 alias pc="picocom --baud 115200 --databits 8 --parity n --stopbits 1 --flow n"
 for i in $(seq 1 8); do
