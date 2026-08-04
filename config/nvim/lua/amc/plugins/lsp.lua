@@ -170,6 +170,12 @@ vim.lsp.config.ccls = {
   root_markers = { "compile_commands.json", ".ccls", ".git", "/usr/include/", "/usr/local/include/" },
   init_options = {
     compilationDatabaseDirectory = "build",
+    cache = {
+      directory = "/tmp/ccls-cache",
+    },
+    index = {
+      onChange = true,
+    },
     clang = {
       excludeArgs = {
         "-Werror",
