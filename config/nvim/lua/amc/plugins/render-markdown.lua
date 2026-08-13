@@ -10,8 +10,8 @@ end
 
 local function on_attach()
   vim.treesitter.start()
-  K.n_lb("mc", ':s/- \\[ \\]/- [x]/g<CR>', 0, "Markdown: check box")
-  K.n_lb("mu", ':s/- \\[x\\]/- [ ]/g<CR>', 0, "Markdown: uncheck box")
+  K.n_lb("mc", ':s/[-\\*] \\[ \\]/- [x]/g<CR>:nohlsearch<CR>', 0, "Markdown: check box")
+  K.n_lb("mu", ':s/[-\\*] \\[x\\]/- [ ]/g<CR>:nohlsearch<CR>', 0, "Markdown: uncheck box")
 end
 
 vim.cmd("highlight! link RenderMarkdownCodeInline RenderMarkdownCode")
