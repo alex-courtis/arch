@@ -5,7 +5,7 @@
       "src": "https://github.com/vim-scripts/ReplaceWithRegister.git"
     },
     "gitsigns.nvim": {
-      "rev": "31d6fb2d618bca1482b9f274751ead5f03461408",
+      "rev": "5be654f2232c10ddcad19c1607a67b6b4b78fc29",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "hexmode": {
@@ -20,16 +20,12 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
-    "marks.nvim": {
-      "rev": "f353e8c08c50f39e99a9ed474172df7eddd89b72",
-      "src": "https://github.com/chentoast/marks.nvim.git"
-    },
     "mini.base16": {
       "rev": "d5f7b0db4559eb14c1c6c9e88aae95b9a79df408",
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "1c0d8f70dbc8827263eedc3cf7021ceba0f68689",
+      "rev": "d2011e1dd0c27569c551f16b688d86029ae015c9",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -41,7 +37,7 @@
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "7b6cc8949f9999c5ed91436cbe24aa5f99c42025",
+      "rev": "c9f9ed6c1892f629ea399f4ee7905f2686fa13f2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-web-devicons": {
@@ -57,7 +53,7 @@
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim.git"
     },
     "render-markdown.nvim": {
-      "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
+      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
     },
     "sqlite.lua": {
