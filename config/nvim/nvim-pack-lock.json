@@ -21,11 +21,11 @@
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
     "mini.base16": {
-      "rev": "d5f7b0db4559eb14c1c6c9e88aae95b9a79df408",
+      "rev": "419207d1fb57ef79356c8f478f5f9cda9483fe73",
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "af9adce488c75ca0a81017945c2b7fa7b461bc23",
+      "rev": "684cb45c2faa24ce463b4fe9aaf011bfe1e0fb26",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
