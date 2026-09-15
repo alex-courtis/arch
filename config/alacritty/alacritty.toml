@@ -9,3 +9,7 @@ import = [
 
 [terminal]
 osc52 = "CopyPaste"
+
+[window]
+resize_increments = true
+decorations = 'None'
