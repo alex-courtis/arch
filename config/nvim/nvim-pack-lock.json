@@ -33,7 +33,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "882c54f2815bf6d02663d482c2cf9dbadf4e9b07",
+      "rev": "8d814495983e8db87d02d2f1da293f25b2fd1bdc",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
