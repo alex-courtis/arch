@@ -42,8 +42,8 @@ export XDG_MUSIC_DIR=$HOME/.music
 
 # moar history
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=10000
+SAVEHIST=10000
 
 # man colours
 #  errors:    reverse as normal
