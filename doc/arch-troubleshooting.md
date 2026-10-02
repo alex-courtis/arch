@@ -33,6 +33,8 @@ acpi_mask_gpe=0x16
 
 Error is always emitted when not using Intel, despite being an intel only feature.
 
+[Patch submitted but not merged](https://patchew.org/linux/20260702043204.81741-1-jirislaby@kernel.org)
+
 Suppress via kernel param:
 
 ```
