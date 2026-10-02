@@ -28,3 +28,14 @@ e.g.
 ```
 acpi_mask_gpe=0x16
 ```
+
+## virt/tdx: TDX not supported by the host platform
+
+Error is always emitted when not using Intel, despite being an intel only feature.
+
+Suppress via kernel param:
+
+```
+initcall_blacklist=tdx_enable
+```
+
