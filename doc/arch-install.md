@@ -460,8 +460,14 @@ cp /usr/share/edk2-shell/x64/Shell.efi /boot/shellx64.efi
 
 #### Option 2: EFI Boot Stub
 
-Create a shell script in `/boot`. Retain it as entries cannot be updated, only removed.
+Create shell scripts in `/boot`. Retain them as entries cannot be updated, only removed.
 Disk and part refer to the EFI partition.
+
+##### Linux
+
+```sh
+vi /boot/efistub.linux.sh
+```
 
 ```sh
 #!/bin/sh
@@ -469,19 +475,40 @@ efibootmgr \
 	--create \
 	--disk /dev/nvme0n1 \
 	--part 1 \
-	--label "EFIStub Arch Linux" \
+	--label "Arch Linux" \
 	--loader /vmlinuz-linux \
-	--unicode "root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3) quiet loglevel=4 rw initrd=\initramfs-linux.img"
+	--unicode "root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3) quiet loglevel=4 initcall_blacklist=tdx_enable rw initrd=\initramfs-linux.img"
 ```
 
-Check:
+##### Memtest86+
+
+```sh
+vi /boot/efistub.memtest86+.sh
+```
+
+```sh
+#!/bin/sh
+efibootmgr \
+	--create \
+	--disk /dev/nvme0n1 \
+	--part 1 \
+	--label "Memtest86+" \
+	--loader "/memtest86+/memtest.efi"
+```
+
+##### Check
 ```sh
 efibootmgr
 ```
 
-Remove entries:
+##### Remove Entries
 ```sh
-efibootmgr --bootnum 0005 --delete-bootnum
+efibootmgr --bootnum 000X --delete-bootnum
+```
+
+##### Set Order
+```sh
+efibootmgr --bootorder 000X,000Y
 ```
 
 ### Reboot
