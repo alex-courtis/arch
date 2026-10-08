@@ -21,6 +21,7 @@ au({ "DirChanged", "VimEnter" },                                env.update_path,
 au({ "BufEnter" },                                              buffers.wipe_no_name_new, {})
 au({ "WinClosed" },                                             buffers.wipe_unwanted,    {})
 au({ "FocusLost" },                                             buffers.write_all,        { nested = true })
+au({ "BufEnter", },                                             buffers.write_all,        { pattern = { "fugitive://*" }, nested = true, })
 au({ "QuickFixCmdPost" },                                       windows.qf_open,          { nested = true })
 au({ "WinEnter" },                                              windows.man_width,        { pattern = { "man://*" } })
 au({ "BufWinEnter" },                                           windows.qf_height,        { pattern = { "quickfix" } })
