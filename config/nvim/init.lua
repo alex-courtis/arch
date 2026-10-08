@@ -47,6 +47,10 @@ if not vim.env.TERM:match("^linux") then
 end
 vim.pack.add(packages)
 
+vim.cmd.packadd({
+  "nohlsearch",
+})
+
 log.line("---- init early")
 require("amc.init.early")
 

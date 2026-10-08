@@ -46,12 +46,6 @@ K.n___("<RightMouse>", "<Nop>", "<Nop>")
 K.i___("<RightMouse>", "<Nop>", "<Nop>")
 K.v___("<RightMouse>", "y",     "yank")
 
--- normal mode escape clears highlight
-K.n___("<Esc>", function()
-  vim.cmd.nohlsearch()
-  vim.api.nvim_feedkeys(util.ESC, "n", false)
-end, ":nohlsearch <Esc>")
-
 --
 -- no leader
 --
