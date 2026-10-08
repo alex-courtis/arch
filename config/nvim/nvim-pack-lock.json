@@ -25,7 +25,7 @@
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "33497f4930d40f28a465d38a763a00fc6902c658",
+      "rev": "db68de3575fff9dd9bb78b34c8371759ed35fe34",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
