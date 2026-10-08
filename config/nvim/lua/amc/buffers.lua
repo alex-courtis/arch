@@ -47,10 +47,7 @@ end
 ---write all, suppressing errors like no file
 ---if this isn't working, go back to 485a0852d for explicit buffer updating
 function M.write_all()
-  vim.api.nvim_cmd({
-    cmd = "wall",
-    mods = { emsg_silent = true, },
-  }, {})
+  vim.cmd.wall({ mods = { emsg_silent = true } })
 end
 
 ---&buftype set or otherwise not a normal buffer
