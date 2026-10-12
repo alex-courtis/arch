@@ -634,7 +634,7 @@ mimeo
 noto-fonts-emoji
 pavucontrol
 pulseaudio
-river
+river-classic
 slurp
 swappy
 swaylock
