@@ -767,9 +767,10 @@ gamescope
 gputest
 mangohud
 mesa-utils
-proton-ge-custom-bin
 steam
 `
+
+Use `vulkan-radeon` as the vulkan provider.
 
 ### Clean Unnecessary Packages
 
