@@ -25,7 +25,7 @@
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
+      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -33,11 +33,11 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "0142ac30ba84fa6ebf7818b097b2addffed78668",
+      "rev": "9a2e0006d42f292eb3ade7dfdff201a7429a780c",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
-      "rev": "d3e4a28b63961ba972b0945d66c73b6eec969953",
+      "rev": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-web-devicons": {
