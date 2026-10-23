@@ -34,7 +34,7 @@ vim.o.tabstop = 4
 vim.o.tags = "**/tags"
 vim.o.title = true
 vim.o.undofile = true
-vim.o.updatetime = 1000
+vim.o.updatetime = 2500
 vim.o.wrapscan = false
 
 -- error format
