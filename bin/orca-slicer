@@ -3,6 +3,9 @@
 # orca slicer needs a full path, but only when opening a file
 # other operations like --info are fine with a relative path
 
+# https://www.phoronix.com/news/WebKitGTK-DMA-BUF-Rendering
+export WEBKIT_DISABLE_DMABUF_RENDERER=1 
+
 if [ -f "${1}" ]; then
 	/usr/bin/orca-slicer "$(realpath "${1}")"
 else
