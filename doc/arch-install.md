@@ -471,13 +471,17 @@ vi /boot/efistub.linux.sh
 
 ```sh
 #!/bin/sh
+if [ ${#} -ne 2 ]; then
+	echo "Usage: ${0} <disk name e.g. /dev/nvme0n1> <root partition e.g. p3" >&2
+	exit 1
+fi
 efibootmgr \
 	--create \
-	--disk /dev/nvme0n1 \
+	--disk "${1}" \
 	--part 1 \
 	--label "Arch Linux" \
 	--loader /vmlinuz-linux \
-	--unicode "root=UUID=$(blkid -s UUID -o value /dev/nvme0n1p3) quiet loglevel=4 initcall_blacklist=tdx_enable rw initrd=\initramfs-linux.img"
+	--unicode "root=UUID=$(blkid -s UUID -o value "${1}${2}") quiet loglevel=4 initcall_blacklist=tdx_enable rw initrd=\initramfs-linux.img"
 ```
 
 ##### Memtest86+
@@ -488,17 +492,21 @@ vi /boot/efistub.memtest86+.sh
 
 ```sh
 #!/bin/sh
+if [ ${#} -ne 1 ]; then
+	echo "Usage: ${0} <disk name e.g. /dev/nvme0n1>" >&2
+	exit 1
+fi
 efibootmgr \
 	--create \
-	--disk /dev/nvme0n1 \
+	--disk "${1}" \
 	--part 1 \
 	--label "Memtest86+" \
-	--loader "/memtest86+/memtest.efi"
+	--loader "/memtest86+/memtest86x64.efi"
 ```
 
 ##### Check
 ```sh
-efibootmgr
+efibootmgr --unicode
 ```
 
 ##### Remove Entries
