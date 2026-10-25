@@ -52,8 +52,12 @@ vim.env.MANWIDTH = 80
 vim.cmd.aunmenu("PopUp.How-to\\ disable\\ mouse")
 vim.cmd.aunmenu("PopUp.-2-")
 
--- linux console has limited capabilities
-if vim.env.TERM:match("^linux") then
+-- C-Syntax Highlighting: Compound literals in some expressions are falsely highlighted as errors.
+-- https://github.com/vim/vim/issues/7366
+vim.cmd("let c_no_curly_error=1")
+
+-- linux console has limited clipboard capabilities, as does tmux osc52
+if vim.env.TERM:match("^linux") or vim.env.TMUX then
   return
 end
 
@@ -65,7 +69,3 @@ if vim.env.SSH_CONNECTION or not vim.env.WAYLAND_DISPLAY then
   vim.g.clipboard = "osc52"
   vim.schedule(function() vim.notify("vim.g.clipboard=" .. vim.g.clipboard, vim.log.levels.WARN) end)
 end
-
--- C-Syntax Highlighting: Compound literals in some expressions are falsely highlighted as errors.
--- https://github.com/vim/vim/issues/7366
-vim.cmd("let c_no_curly_error=1")
