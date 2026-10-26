@@ -36,6 +36,7 @@ vim.o.title = true
 vim.o.undofile = true
 vim.o.updatetime = 2500
 vim.o.wrapscan = false
+vim.o.scrolloff = 5
 
 -- error format
 vim.o.errorformat = "%.%#] --- %f:%l:%m," .. vim.o.errorformat -- cmocka
