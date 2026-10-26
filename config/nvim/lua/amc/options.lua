@@ -62,7 +62,11 @@ if vim.env.TERM:match("^linux") or vim.env.TMUX then
 end
 
 -- external clipboard
-vim.o.clipboard = "unnamedplus"
+vim.api.nvim_create_autocmd('UIEnter', {
+  callback = function()
+    vim.o.clipboard = 'unnamedplus'
+  end,
+})
 
 -- use osc when remoting or not under a compositor, otherwise let it autodetect
 if vim.env.SSH_CONNECTION or not vim.env.WAYLAND_DISPLAY then
