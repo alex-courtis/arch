@@ -19,7 +19,6 @@ while getopts gms opt; do
 		s)
 			if [ "${XDG_CURRENT_DESKTOP}" != "gamescope" ]; then
 				scale="true"
-				exit 1
 			fi
 			;;
 		*)
