@@ -9,13 +9,18 @@ rm -f "${out}"
 while getopts gms opt; do
 	case "$opt" in
 		m)
-			cmd="mangohud ${cmd}"
+			if [ "${XDG_CURRENT_DESKTOP}" != "gamescope" ]; then
+				cmd="mangohud ${cmd}"
+			fi
 			;;
 		g)
 			cmd="${cmd} gamemoderun"
 			;;
 		s)
-			scale="true"
+			if [ "${XDG_CURRENT_DESKTOP}" != "gamescope" ]; then
+				scale="true"
+				exit 1
+			fi
 			;;
 		*)
 			exit 1
@@ -29,6 +34,8 @@ if [ "${scale}" ]; then
 fi
 
 echo "${cmd} ${@}" >> "${out}"
+
+env >> "${out}"
 
 ${cmd} "${@}" >> "${out}" 2>&1
 
