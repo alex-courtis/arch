@@ -2,12 +2,40 @@ exec dunst > /tmp/dunst.${XDG_VTNR}.${USER}.log 2>&1
 
 exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
-bindsym Mod4+M exec bemenu-run
-bindsym Mod4+Q exec swaymsg exit
-bindsym Mod4+T exec term > /dev/null 2>&1
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+b exec bemenu-run
+bindsym $mod+Mod1+shift+control+backspace exec swaymsg exit
+bindsym $mod+t exec term > /dev/null 2>&1
+
+bindsym $mod+shift+backspace kill
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+d floating toggle
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+a workspace number 1
+bindsym $mod+o workspace number 2
+bindsym $mod+e workspace number 3
+bindsym $mod+u workspace number 4
+bindsym $mod+i workspace number 5
 
 bar {
     position top
     status_command slstatus -s
 }
+
+# workaround for high adaptive sync refresh rates
+# set to ~2/3 refresh rate
+output 'ASUSTek COMPUTER INC XG349C R8LMRS013108 ' max_render_time 5
 
