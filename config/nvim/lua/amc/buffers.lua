@@ -57,11 +57,6 @@ function M.special(bufnr)
   local buftype = vim.bo[bufnr].buftype
   local bufhidden = vim.bo[bufnr].bufhidden
 
-  -- scratch is not special
-  if buftype == "nofile" and bufhidden == "hide" then
-    return nil
-  end
-
   local filetype = vim.bo[bufnr].filetype
   local bufname = vim.api.nvim_buf_get_name(bufnr)
 
@@ -77,7 +72,7 @@ function M.special(bufnr)
     return SPECIAL.nvim_tree
   elseif vim.fn.isdirectory(bufname) ~= 0 then
     return SPECIAL.dir
-  elseif buftype ~= "" then
+  elseif buftype ~= "" and buftype ~= "nofile" and bufhidden ~= "hide" then -- scratch is not special
     return SPECIAL.other
   end
 
