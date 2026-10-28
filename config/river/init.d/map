@@ -100,6 +100,9 @@ riverctl map normal $mod1 n send-layout-cmd wideriver "--stack dwindle"
 riverctl map normal $mod2 n send-layout-cmd wideriver "--stack diminish"
 riverctl map normal $mod3 n send-layout-cmd wideriver "--stack even"
 
+riverctl map normal $mod1 Slash spawn "dunstctl close"
+riverctl map normal $mod2 Slash spawn "dunstctl history-pop"
+
 riverctl map normal $mod1 Minus spawn "sss"
 riverctl map normal $mod2 Minus spawn "ssa"
 riverctl map normal $mod3 Minus spawn "wl-color-picker > /dev/null 2>&1"

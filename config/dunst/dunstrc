@@ -43,7 +43,7 @@
     # NOTE: Dunst from version 1.11 and older use this alternative notation
     # offset = 10x50
     # offset = (10, 50)
-    offset = (20, 20)
+    offset = (50, 50)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -119,7 +119,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 6
+    gap_size = 20
 
     # Define a color for the separator.
     # possible values are:
@@ -365,7 +365,7 @@
     background = "#$BASE16[lighter_background]"
     foreground = "#$BASE16[comments]"
     frame_color = "#$BASE16[selection_background]"
-    timeout = 10
+    timeout = 5
     # Icon for notifications with low urgency
     # default_icon = dialog-information
 
@@ -373,7 +373,7 @@
     background = "#$BASE16[lighter_background]"
     foreground = "#$BASE16[default_foreground]"
     frame_color = "#$BASE16[comments]"
-    timeout = 10
+    timeout = 5
     # override_pause_level = 30
     # Icon for notifications with normal urgency
     # default_icon = dialog-information
