@@ -1,4 +1,7 @@
 #!/bin/sh
 
 # exec river -c 'way-displays -L debug' > "/tmp/river-next.${XDG_VTNR}.${USER}.log" 2>&1
-exec river -c cow
+
+# exec river -c cow "/tmp/river-cow.${XDG_VTNR}.${USER}.log" 2>&1
+# exec river -c /home/alex/src/tinyrwm/c/build/tinyrwm > "/tmp/river-tinyrwm.${XDG_VTNR}.${USER}.log" 2>&1
+exec river -c /home/alex/src/rhine/zig-out/bin/rhine > "/tmp/river-rhine.${XDG_VTNR}.${USER}.log" 2>&1
