@@ -1,16 +1,5 @@
 #!/bin/sh
 
-# 2024 02 25
-# 3.13.19 with e8bfeb1 applied
-# adaptive sync only works from a tty session: https://github.com/ValveSoftware/gamescope/issues/975
-# vsync results in low framerates, a little of a half
-# extra XWayland servers appear to be needed:
-# - steam correct window size
-# - fullscreen switches
-# - change tag
-
-echo "${*}"
-
 # fetch the first display
 if ! VARS="$(way-displays -y -g | yq '.STATE.HEADS[0] | "NAME=\"" + .NAME + "\" DESCRIPTION=\"" + .DESCRIPTION + "\" WIDTH=" + .CURRENT.MODE.WIDTH + " HEIGHT=" + .CURRENT.MODE.HEIGHT')"; then
 	exit 1
@@ -20,12 +9,15 @@ fi
 eval "${VARS}"
 printf "name:   %s\ndesc:   %s\nwidth:  %d\nheight: %d\n" "${NAME}" "${DESCRIPTION}" "${WIDTH}" "${HEIGHT}"
 
+export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
+
 # launch arguments with gamescope
 gamescope \
 	--prefer-output "${NAME}" \
 	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
-	--nested-width "${WIDTH}" --nested-height "${HEIGHT}" \
-	--xwayland-count 2 \
+	--force-grab-cursor \
 	--adaptive-sync \
-	"${@}"
+	--mangoapp \
+	--fullscreen \
+	"${@}" > "/tmp/gamescope-run-native.${XDG_VTNR}.${USER}.log" 2>&1
 

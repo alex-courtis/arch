@@ -30,6 +30,12 @@ bindsym $mod+e workspace number 3
 bindsym $mod+u workspace number 4
 bindsym $mod+i workspace number 5
 
+bindsym $mod+Shift+a move container to workspace number 1
+bindsym $mod+Shift+o move container to workspace number 2
+bindsym $mod+Shift+e move container to workspace number 3
+bindsym $mod+Shift+u move container to workspace number 4
+bindsym $mod+Shift+i move container to workspace number 5
+
 bar {
     position top
     status_command slstatus -s
