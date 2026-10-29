@@ -25,7 +25,7 @@
       "src": "https://github.com/echasnovski/mini.base16.git"
     },
     "nvim-lspconfig": {
-      "rev": "77b7432d4770d23b277d37923e5a08a442d8bb07",
+      "rev": "4b2b045b8ceb035f5c8bc9cab19b95706bfa6a19",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-spectre": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/nvim-pack/nvim-spectre.git"
     },
     "nvim-tree.lua": {
-      "rev": "3be8cad084e79e84833ef98cef88116c26a224ff",
+      "rev": "96b6d0ea594a1e519abd58fd8b60a39a9dec1869",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {
@@ -49,7 +49,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
     "rainbow-delimiters.nvim": {
-      "rev": "b55decda611755171bc5bf8f4c99603a75de4b41",
+      "rev": "65734f76783705255d9ede8a6e4692e1572801a5",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim.git"
     },
     "render-markdown.nvim": {
@@ -61,7 +61,7 @@
       "src": "https://github.com/kkharji/sqlite.lua.git"
     },
     "telescope-git-grep.nvim": {
-      "rev": "43b870723b3fb8eefd6f007214516e50540ac801",
+      "rev": "9f23a9c56a0bf79928488db59a70d9bf679b3008",
       "src": "https://github.com/davvid/telescope-git-grep.nvim.git"
     },
     "telescope-smart-history.nvim": {
