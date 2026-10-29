@@ -91,3 +91,32 @@ function boot {
 		printf "\nno %s\n" "${1}"
 	fi
 }
+
+function h2d {
+	echo "$(( 16#${1#0[Xx]} ))"
+}
+
+function d2h {
+	echo "$(( [##16] ${1} ))"
+}
+
+function o2d {
+	echo "$(( 8#${1} ))"
+}
+
+function d2o {
+	echo "$(( [##8] ${1} ))"
+}
+
+function d2b {
+	echo "$(( [##2] ${1} ))"
+}
+
+function h2b {
+	echo "$(( [##2] 16#${1#0[Xx]} ))"
+}
+
+function b2h {
+	echo "$(( [##16] 2#${1} ))"
+}
+
