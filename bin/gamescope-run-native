@@ -13,11 +13,12 @@ export MANGOHUD_CONFIGFILE=~/.config/MangoHud/MangoHud.conf
 
 # launch arguments with gamescope
 gamescope \
+	--backend wayland \
 	--prefer-output "${NAME}" \
 	--output-width "${WIDTH}" --output-height "${HEIGHT}" \
 	--force-grab-cursor \
 	--adaptive-sync \
 	--mangoapp \
-	--fullscreen \
-	"${@}" > "/tmp/gamescope-run-native.${XDG_VTNR}.${USER}.log" 2>&1
+	--borderless \
+	"${@}" >> "/tmp/gamescope-run-native.${XDG_VTNR}.${USER}.log" 2>&1
 
