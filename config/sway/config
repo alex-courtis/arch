@@ -45,3 +45,4 @@ bar {
 # set to ~2/3 refresh rate
 output 'ASUSTek COMPUTER INC XG349C R8LMRS013108 ' max_render_time 5
 
+# output 'ASUSTek COMPUTER INC XG349C R8LMRS013108 ' hdr on
