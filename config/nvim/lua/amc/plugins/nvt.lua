@@ -93,6 +93,16 @@ local function get_view_width_max()
   return view_width_max
 end
 
+local function clear_clipboard_copy()
+  api.fs.clear_clipboard()
+  api.fs.copy.node()
+end
+
+local function clear_clipboard_cut()
+  api.fs.clear_clipboard()
+  api.fs.cut()
+end
+
 local function on_attach(bufnr)
 
   ---@param desc string
@@ -143,6 +153,14 @@ local function on_attach(bufnr)
   K.n__b("yn",    api.fs.copy.filename,                         bufnr, "", opts("Copy Name"))
   K.n__b("yr",    api.fs.copy.relative_path,                    bufnr, "", opts("Copy Relative Path"))
   K.n__b("ys",    api.fs.copy.absolute_path,                    bufnr, "", opts("Copy Absolute Path"))
+  K.n__b("c",     clear_clipboard_copy,                         bufnr, "", opts("Copy, Clearing Clipboard"))
+  K.x__b("c",     clear_clipboard_copy,                         bufnr, "", opts("Copy, Clearing Clipboard"))
+  K.n__b("C",     api.fs.copy.node,                             bufnr, "", opts("Copy"))
+  K.x__b("C",     api.fs.copy.node,                             bufnr, "", opts("Copy"))
+  K.n__b("x",     clear_clipboard_cut,                          bufnr, "", opts("Cut, Clearing Clipboard"))
+  K.x__b("x",     clear_clipboard_cut,                          bufnr, "", opts("Cut, Clearing Clipboard"))
+  K.n__b("X",     api.fs.cut,                                   bufnr, "", opts("Cut"))
+  K.x__b("X",     api.fs.cut,                                   bufnr, "", opts("Cut"))
 end
 
 ---@type nvim_tree.config
