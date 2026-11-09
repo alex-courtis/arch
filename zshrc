@@ -17,9 +17,9 @@ source "${HOME}/.zsh/zshrc.alias"
 # use the keychain wrapper to start ssh-agent if needed
 if [ "$(whence keychain)" ]; then
 	if [ "${XDG_RUNTIME_DIR}" ] && [ "${DBUS_SESSION_BUS_ADDRESS}" ]; then
-		eval $(keychain --eval --systemd --quiet --immediate id_rsa )
+		eval $(keychain --eval --systemd --quiet --immediate id_ed25519 )
 	else
-		eval $(keychain --eval           --quiet --immediate id_rsa )
+		eval $(keychain --eval           --quiet --immediate id_ed25519 )
 	fi
 fi
 

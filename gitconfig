@@ -40,7 +40,7 @@
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
-	signingkey = ~/.ssh/id_rsa.pub
+	signingkey = ~/.ssh/id_ed25519.pub
 [gpg]
 	format = ssh
 [commit]
