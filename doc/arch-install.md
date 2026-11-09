@@ -281,35 +281,6 @@ ln -fs /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 hwclock --systohc --utc
 ```
 
-### Networking
-
-```sh
-systemctl enable sshd
-systemctl enable NetworkManager
-```
-
-#### Optional: NetworkManager Profile
-
-Create named connection proviles via `nmtui`
-
-#### Optional: Disable ipv6
-
-For servers or networks that do not feature ipv6 disable it via `nmtui` or add the following to `/etc/NetworkManager/system-connections/*.nmconnection`
-
-```
-[ipv6]
-addr-gen-mode=default
-method=disabled
-```
-
-#### Optional: Disable NetworkManager Wait
-
-If there are no startup services that require network, disable the blocking wait service:
-
-```sh
-systemctl disable NetworkManager-wait-online.service
-```
-
 ### Virtual Console
 
 Keymap:
@@ -357,21 +328,13 @@ chsh -s /usr/bin/zsh
 
 Add a user:
 ```sh
-useradd -m -g users -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
+useradd -m -G wheel,input -c "Alexander Courtis" -s /bin/zsh alex
 passwd alex
 ```
 
 ## Booting
 
 ### Create Boot Image
-
-Remove fallback image:
-```sh
-vi /etc/mkinitcpio.d/linux.preset
-```
-```
-PRESETS=('default')
-```
 
 Update the boot image configuration:
 ```sh
@@ -545,6 +508,35 @@ Apply the hostname e.g.:
 
 ```sh
 hostnamectl set-hostname gigantor
+```
+
+### Networking
+
+```sh
+systemctl enable sshd
+systemctl enable NetworkManager
+```
+
+#### Optional: NetworkManager Profile
+
+Create named connection proviles via `nmtui`
+
+#### Optional: Disable ipv6
+
+For servers or networks that do not feature ipv6 disable it via `nmtui` or add the following to `/etc/NetworkManager/system-connections/*.nmconnection`
+
+```
+[ipv6]
+addr-gen-mode=default
+method=disabled
+```
+
+#### Optional: Disable NetworkManager Wait
+
+If there are no startup services that require network, disable the blocking wait service:
+
+```sh
+systemctl disable NetworkManager-wait-online.service
 ```
 
 ### Enable NTP Sync
@@ -733,7 +725,6 @@ qt6ct
 rivalcfg
 sshfs
 stress
-ttf-nanum
 unrar
 wf-recorder
 whois
