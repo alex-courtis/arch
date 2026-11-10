@@ -2,13 +2,6 @@
 # final space allows aliases to be used, as root's .zshrc is not executed
 alias sudo="sudo -s "
 
-alias zpl="zmodload zsh/zprof"
-alias zp="zpl ; zprof | sed -n '3,/^$/p'"
-alias zpc="zpl ; zprof -c"
-alias zpshell="ZSH_PROFILE_STARTUP=true zsh -l"
-alias zpprompt="setopt xtrace"
-alias zpnoprompt="unsetopt xtrace"
-
 alias ls="ls --color=auto"
 alias ll="ls -lh"
 alias lla="ll -a"
