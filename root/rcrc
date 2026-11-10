@@ -1,5 +1,5 @@
-# cd && RCRC=".dotfiles/root/rcrc" HOME= rcup -v
-
+HOME=
+COPY_ALWAYS='* etc/* usr/*'
 DOTFILES_DIRS=".dotfiles/root"
 EXCLUDES="rcrc"
 UNDOTTED="etc usr"
