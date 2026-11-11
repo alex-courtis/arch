@@ -695,6 +695,7 @@ ninja
 nodejs-markdown-toc
 shellcheck-bin
 stylua
+tree-sitter-cli
 valgrind
 vscode-langservers-extracted
 yaml-language-server
