@@ -51,42 +51,47 @@ K.v___("<RightMouse>", "y",     "yank")
 --
 
 -- hacky vim clipboard=autoselect https://github.com/neovim/neovim/issues/2325
-K.v___("<LeftRelease>",  '"*ygv',               "Autoselect")
+K.v___("<LeftRelease>",  '"*ygv',                     "Autoselect")
 
-K.n___("<C-j>",          "<C-w>j",              "<C-w>j")
-K.n___("<C-k>",          "<C-w>k",              "<C-w>k")
-K.n___("<C-l>",          "<C-w>l",              "<C-w>l")
-K.n___("<C-h>",          "<C-w>h",              "<C-w>h")
-K.n___("<C-Space>",      "<C-w>p",              "<C-w>w")
-K.n___("<C-CR>",         "<C-w>w",              "<C-w>w")
-K.n___("<C-S-CR>",       "<C-w>W",              "<C-w>W")
+K.n___("<C-j>",          "<C-w>j",                    "<C-w>j")
+K.n___("<C-k>",          "<C-w>k",                    "<C-w>k")
+K.n___("<C-l>",          "<C-w>l",                    "<C-w>l")
+K.n___("<C-h>",          "<C-w>h",                    "<C-w>h")
+K.n___("<C-Space>",      "<C-w>p",                    "<C-w>w")
+K.n___("<C-CR>",         "<C-w>w",                    "<C-w>w")
+K.n___("<C-S-CR>",       "<C-w>W",                    "<C-w>W")
 
-K.ns__("<BS><BS>",       ":silent BB<CR>",      "Prev Buffer")
-K.ns__("<Space><Space>", ":silent BF<CR>",      "Next Buffer")
+K.ns__("<C-.>",       ":silent m +1<CR>",          "Move line down")
+K.ns__("<C-P>",          ":silent m -2<CR>",          "Move line up")
+K.vs__("<C-.>",       ":silent:'<,'>m '>+1<CR>gv", "Move visual down")
+K.vs__("<C-P>",          ":silent:'<,'>m '<-2<CR>gv", "Move visual up")
 
-K.n___(";",              ":",                   ":")
-K.v___(";",              ":",                   ":")
+K.ns__("<BS><BS>",       ":silent BB<CR>",            "Prev Buffer")
+K.ns__("<Space><Space>", ":silent BF<CR>",            "Next Buffer")
 
-K.n___("*",              "<Plug>(asterisk-z*)", "Word Forwards Stay")
-K.n___("F",              "<Nop>",               "<Nop>")
+K.n___(";",              ":",                         ":")
+K.v___(";",              ":",                         ":")
 
-K.n___("m",              "`",                   "Jump To Mark",                        { remap = true })
-K.v___("m",              "`",                   "Jump To Mark",                        { remap = true })
-K.n___("mm",             "``",                  "Jump To Position Before Latest Jump")
-K.v___("mm",             "``",                  "Jump To Position Before Latest Jump")
-K.n___("m<BS>",          ":delmarks!<CR>",      "Delete all marks for current buffer")
+K.n___("*",              "<Plug>(asterisk-z*)",       "Word Forwards Stay")
+K.n___("F",              "<Nop>",                     "<Nop>")
 
-K.n___("M",              "m",                   "Set Mark")
-K.v___("M",              "m",                   "Set Mark")
-K.n___("Mm",             "<Nop>",               "<Nop>")
-K.v___("Mm",             "<Nop>",               "<Nop>")
-K.n___("MM",             "<Nop>",               "<Nop>")
-K.v___("MM",             "<Nop>",               "<Nop>")
+K.n___("m",              "`",                         "Jump To Mark",                        { remap = true })
+K.v___("m",              "`",                         "Jump To Mark",                        { remap = true })
+K.n___("mm",             "``",                        "Jump To Position Before Latest Jump")
+K.v___("mm",             "``",                        "Jump To Position Before Latest Jump")
+K.n___("m<BS>",          ":delmarks!<CR>",            "Delete all marks for current buffer")
 
-K.n___("t",              "<C-]>",               "Tag",                                 { remap = true }) -- overridden by lsp
-K.n___("T",              "<C-]>",               "Tag",                                 { remap = true }) -- keep this as a backup for misbehaving lua
+K.n___("M",              "m",                         "Set Mark")
+K.v___("M",              "m",                         "Set Mark")
+K.n___("Mm",             "<Nop>",                     "<Nop>")
+K.v___("Mm",             "<Nop>",                     "<Nop>")
+K.n___("MM",             "<Nop>",                     "<Nop>")
+K.v___("MM",             "<Nop>",                     "<Nop>")
 
-K.n___("#",              "<Plug>(asterisk-z#)", "Word Backwards Stay")
+K.n___("t",              "<C-]>",                     "Tag",                                 { remap = true }) -- overridden by lsp
+K.n___("T",              "<C-]>",                     "Tag",                                 { remap = true }) -- keep this as a backup for misbehaving lua
+
+K.n___("#",              "<Plug>(asterisk-z#)",       "Word Backwards Stay")
 
 --
 -- left, free leaders commented
