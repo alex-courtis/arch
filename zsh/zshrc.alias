@@ -47,12 +47,10 @@ alias paste-plus-bc="paste -sd+ | bc"
 alias egrep="grep -E"
 
 alias jqc="jq --color-output"
-
 alias jqp="wl-paste | jqc"
 
-# default yaml output to stop needless warnings
 alias yqc="yq --colors"
-alias jqp="wl-paste | yqc"
+alias yqp="wl-paste | yqc"
 
 # yq does not autocomplete files reliably
 compdef -d yq
