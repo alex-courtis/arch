@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # adjust this forward as root is cleaned to speed things up
-COMMIT_BEFORE_ROOT="bc1b1959"
+COMMIT_BEFORE_ROOT="45b0b1cf"
 
 rm -rf /tmp/dotfiles.cleaning
 git clone "git@github.com:alex-courtis/arch.git" /tmp/dotfiles.cleaning
