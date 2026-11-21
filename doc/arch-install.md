@@ -583,7 +583,7 @@ dnsutils
 dosfstools
 efibootmgr
 fzf
-htop-vim
+btop
 inetutils
 jq
 keychain
