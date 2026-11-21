@@ -1,11 +1,18 @@
 exclusionRules:
-  - pattern: https?://mail.google.com/*
-  - pattern: https?://mail.proton.me/*
-  - pattern: https?://docs.google.com/*
-  - pattern: https?://127.0.0.0:8006/*
-  - pattern: https?://127.0.0.1:8080/*
-  - pattern: https?://10.2.0.1/*
-  - pattern: https?://10.2.0.2/*
+  - passKeys: ""
+    pattern: https?://mail.google.com/*
+  - passKeys: ""
+    pattern: https?://mail.proton.me/*
+  - passKeys: ""
+    pattern: https?://docs.google.com/*
+  - passKeys: ""
+    pattern: https?://127.0.0.0:8006/*
+  - passKeys: ""
+    pattern: https?://127.0.0.1:8080/*
+  - passKeys: ""
+    pattern: https?://10.2.0.1/*
+  - passKeys: ""
+    pattern: https?://10.2.0.2/*
 grabBackFocus: true
 keyMappings: |-
   unmapAll
@@ -105,6 +112,7 @@ keyMappings: |-
 
   map ? showHelp
 linkHintCharacters: pgcraoeuhtnsqjkmwvz
+newTabDestination: browserNewTabPage
 openVomnibarOnNewTabPage: false
 regexFindMode: true
 scrollStepSize: 30
@@ -127,6 +135,6 @@ searchEngines: |-
   wri: https://github.com/alex-courtis/wideriver/issues/%s wideriver Issue
   wrp: https://github.com/alex-courtis/wideriver/pull/%s wideriver PR
   y: https://www.youtube.com/results?search_query=%s Youtube
-settingsVersion: "2.4.0"
+settingsVersion: "2.4.2"
 userDefinedLinkHintCss: |-2
 STYLESHEET:
