@@ -13,7 +13,6 @@ local rainbow = require("amc.plugins.rainbow")
 local spectre = require("amc.plugins.spectre")
 local telescope = require("amc.plugins.telescope")
 
-local treesitter = require("amc.plugins.treesitter")
 local which_key = require("amc.plugins.which-key")
 
 local M = {}
@@ -306,7 +305,6 @@ K.n_l_("dc", vim.snippet.stop, "Stop Snippets")
 
 uc("CD",     env.cd,                           {})
 uc("S",      buffers.exec_to_buffer,           { nargs = "+", complete = "expression" })
-uc("TSBase", treesitter.install_base,          {})
 uc("PS",     function() vim.pack.update() end, {})
 
 return M
