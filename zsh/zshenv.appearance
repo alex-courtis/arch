@@ -131,6 +131,6 @@ case "${HOST}" in
 		export BTOP_PRESETS="cpu:1:default,proc:0:default mem:0:default,net:0:default"
 		;;
 	*)
-		export BTOP_PRESETS="cpu:1:default,proc:0:default mem:0:default,net:0:default,gpu0:0:default"
+		export BTOP_PRESETS="cpu:1:default,proc:0:default mem:0:default,net:0:default gpu0:0:default,cpu:1:default"
 		;;
 esac
