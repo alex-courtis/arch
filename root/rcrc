@@ -6,3 +6,4 @@ UNDOTTED="etc usr"
 
 EXCLUDES="${EXCLUDES} etc/hosts"
 
+# vim:ft=sh

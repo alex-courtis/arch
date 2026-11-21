@@ -51,6 +51,19 @@ function orca-sync-to() {
 	ssh "${1}" "rm -rfv ${XDG_CACHE_HOME}/orca-slicer"
 }
 
+function brave-origin-sync-to() {
+	if [ ${#} -ne 1 ]; then
+		echo "Usage: ${0} <host>" >&2
+		return 1
+	fi
+
+	ssh "${1}" "rm -rfv ${XDG_CONFIG_HOME}/BraveSoftware/Brave-Origin"
+	ssh "${1}" "rm -rfv ${XDG_CACHE_HOME}/BraveSoftware/Brave-Origin"
+	ssh "${1}" "rm -rfv /tmp/org.chromium.Chromium*"
+
+	rsync -a -v --delete-after "${XDG_CONFIG_HOME}/BraveSoftware/Brave-Origin" "${1}:${XDG_CONFIG_HOME}/BraveSoftware"
+}
+
 function dt() {
 	date +%Y%m%d_%H%M%S
 }
