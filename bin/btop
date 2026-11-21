@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 
-/usr/bin/btop --preset 1
+if [ "${#}" -gt 0 ]; then
+	/usr/bin/btop "$@"
+else
+	/usr/bin/btop --preset 1
+fi

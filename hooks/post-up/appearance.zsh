@@ -31,6 +31,9 @@ for f in ${(ps: :)APPEARANCE_FILES}; do
 	sed -i -e "s/\$HL_FG/${HL_FG}/g" "${tmp}"
 	sed -i -e "s/\$HL_BG/${HL_BG}/g" "${tmp}"
 
+	# btop
+	sed -i -e "s/\$BTOP_PRESETS/${BTOP_PRESETS}/g" "${tmp}"
+
 	diff "${tmp}" "${dst}" > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
 		mv -v "${tmp}" "${dst}"
