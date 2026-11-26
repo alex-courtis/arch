@@ -37,6 +37,10 @@
 	si = status --ignored
 
 	t = stash show --patch
+
+	h =  "!f() { git rev-parse --short      HEAD | tee >(wl-copy -n); }; f"
+	hh = "!f() { git rev-parse              HEAD | tee >(wl-copy -n); }; f"
+	b =  "!f() { git rev-parse --abbrev-ref HEAD | tee >(wl-copy -n); }; f"
 [user]
 	name = Alexander Courtis
 	email = alex@courtis.org
