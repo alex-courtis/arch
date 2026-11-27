@@ -32,3 +32,4 @@ DISABLED:
     - LID: CLOSED
     - PLUGGED:
       - '!^DP-[1-9]+$'
+LOG_THRESHOLD: DEBUG
