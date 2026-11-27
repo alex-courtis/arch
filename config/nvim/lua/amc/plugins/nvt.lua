@@ -262,6 +262,7 @@ local config = {
     threshold = vim.log.levels.WARN,
   },
   experimental = {
+    git_async_load = true,
   },
   log = {
     enable = false,
